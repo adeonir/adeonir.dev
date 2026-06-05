@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>adeonir.dev — Styleguide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ===== DESIGN TOKENS — DESIGN.md frontmatter as plain CSS custom properties (default Mocha skin) ===== */
+  :root {
+    /* colors */
+    --color-primary: #38bdf8;
+    --color-primary-foreground: #11111b;
+    --color-secondary: #ff3d8a;
+    --color-secondary-foreground: #11111b;
+    --color-accent: #313244;
+    --color-accent-foreground: #cdd6f4;
+    --color-muted: #313244;
+    --color-muted-foreground: #a6adc8;
+    --color-background: #1e1e2e;
+    --color-foreground: #cdd6f4;
+    --color-card: #181825;
+    --color-card-foreground: #cdd6f4;
+    --color-popover: #181825;
+    --color-popover-foreground: #cdd6f4;
+    --color-border: #313244;
+    --color-input: #313244;
+    --color-ring: #38bdf8;
+    /* typography */
+    --font-display-family: "Geist"; --font-display-size: 3.75rem; --font-display-weight: 800; --font-display-lh: 1; --font-display-ls: -0.025em;
+    --font-heading-family: "Geist"; --font-heading-size: 1.875rem; --font-heading-weight: 700; --font-heading-lh: 1.2; --font-heading-ls: 0;
+    --font-title-family: "Geist"; --font-title-size: 1.5rem; --font-title-weight: 600; --font-title-lh: 1.333; --font-title-ls: 0;
+    --font-subtitle-family: "Geist"; --font-subtitle-size: 1.125rem; --font-subtitle-weight: 500; --font-subtitle-lh: 1.556; --font-subtitle-ls: 0;
+    --font-body-family: "Geist"; --font-body-size: 1rem; --font-body-weight: 400; --font-body-lh: 1.5;
+    --font-caption-family: "Geist"; --font-caption-size: 0.75rem; --font-caption-weight: 400; --font-caption-lh: 1.333;
+    --font-label-family: "Geist"; --font-label-size: 0.75rem; --font-label-weight: 600; --font-label-lh: 1.333; --font-label-ls: 0.1em;
+    --font-button-family: "Geist"; --font-button-size: 0.875rem; --font-button-weight: 600; --font-button-lh: 1.428;
+    --font-code-family: "Fira Code"; --font-code-size: 0.875rem; --font-code-weight: 400; --font-code-lh: 1.428;
+    /* radius */
+    --radius-xs: 0.25rem; --radius-sm: 0.375rem; --radius-md: 0.5rem; --radius-lg: 0.625rem; --radius-xl: 0.875rem; --radius-2xl: 1rem; --radius-full: 9999px;
+    /* border width */
+    --border-width-0: 0px; --border-width-default: 1px; --border-width-2: 2px; --border-width-4: 4px;
+    /* spacing */
+    --spacing-1: 0.25rem; --spacing-2: 0.5rem; --spacing-3: 0.75rem; --spacing-4: 1rem; --spacing-6: 1.5rem; --spacing-8: 2rem; --spacing-12: 3rem; --spacing-16: 4rem; --spacing-24: 6rem;
+    /* elevation */
+    --shadow-2xs: 0 1px 1px 0 rgb(0 0 0 / 0.20);
+    --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.25);
+    --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.30), 0 1px 2px -1px rgb(0 0 0 / 0.30);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.35), 0 2px 4px -2px rgb(0 0 0 / 0.35);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.40), 0 4px 6px -4px rgb(0 0 0 / 0.40);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.45), 0 8px 10px -6px rgb(0 0 0 / 0.45);
+    --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.60);
+    /* motion */
+    --duration-fast: 150ms; --duration-base: 300ms; --duration-slow: 400ms;
+    --ease-in: cubic-bezier(0.4, 0, 1, 1); --ease-out: cubic-bezier(0, 0, 0.2, 1); --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+    /* breakpoints */
+    --breakpoint-xs: 32rem; --breakpoint-sm: 40rem; --breakpoint-md: 48rem; --breakpoint-lg: 64rem; --breakpoint-xl: 80rem; --breakpoint-2xl: 96rem;
+  }
+  /* ===== Light skin (Latte) — overrides tokens for light specimens ===== */
+  .light {
+    --color-primary: #04a5e5; /* primary-foreground stays dark (#11111b) — white fails contrast on primary */
+    --color-secondary: #e0306f; --color-secondary-foreground: #eff1f5;
+    --color-accent: #ccd0da; --color-accent-foreground: #4c4f69;
+    --color-muted: #ccd0da; --color-muted-foreground: #6c6f85;
+    --color-background: #eff1f5; --color-foreground: #4c4f69;
+    --color-card: #e6e9ef; --color-card-foreground: #4c4f69;
+    --color-popover: #e6e9ef; --color-popover-foreground: #4c4f69;
+    --color-border: #ccd0da; --color-input: #ccd0da; --color-ring: #04a5e5;
+  }
+
+  /* ===== Neutral chrome — system UI, never project tokens ===== */
+  :root {
+    --chrome-bg: #f4f4f5; --chrome-surface: #ffffff; --chrome-line: #e4e4e7;
+    --chrome-text: #18181b; --chrome-muted: #71717a; --chrome-faint: #a1a1aa;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: system-ui, -apple-system, sans-serif; background: var(--chrome-bg); color: var(--chrome-text); }
+  .topbar { position: sticky; top: 0; z-index: 50; background: var(--chrome-surface); border-bottom: 1px solid var(--chrome-line); padding: 12px 28px; display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+  .topbar h1 { font-size: 14px; font-weight: 700; margin: 0; letter-spacing: -.01em; }
+  .topbar .tag { font-size: 12px; color: var(--chrome-muted); }
+  .jump { display: flex; gap: 4px; flex-wrap: wrap; margin-left: auto; }
+  .jump a { font-size: 11px; color: var(--chrome-muted); text-decoration: none; padding: 4px 8px; border-radius: 6px; }
+  .jump a:hover { background: var(--chrome-bg); color: var(--chrome-text); }
+  main { max-width: 1180px; margin: 0 auto; padding: 32px 28px 120px; }
+  section { margin-bottom: 56px; scroll-margin-top: 70px; }
+  .sec-h { font-size: 19px; font-weight: 700; margin: 0 0 2px; letter-spacing: -.01em; }
+  .sec-cap { font-size: 13px; color: var(--chrome-muted); margin: 0 0 20px; }
+  .grp { font-family: "Fira Code", monospace; font-size: 12px; font-weight: 600; color: var(--chrome-text); margin: 4px 0 12px; }
+  .grp.second { margin-top: 28px; }
+  .scale-lab { font-family: "Fira Code", monospace; font-size: 11px; font-weight: 600; color: var(--chrome-muted); margin: 10px 0 6px; }
+  .palette-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-top: 8px; }
+  .pal-card { background: var(--chrome-surface); border: 1px solid var(--chrome-line); border-radius: 12px; padding: 12px; }
+  .pal-chip { height: 60px; border-radius: 8px; border: 1px solid var(--chrome-line); margin-bottom: 10px; }
+  .pal-name { font-size: 13px; font-weight: 600; }
+  .pal-hex { font-family: "Fira Code", monospace; font-size: 11px; color: var(--chrome-faint); margin-top: 4px; }
+  .palette-panel { background: var(--chrome-surface); border: 1px solid var(--chrome-line); border-radius: 12px; padding: 16px 16px 18px; }
+  .palette-panel + .palette-panel { margin-top: 12px; }
+  .palette-grid.cols-7 { grid-template-columns: repeat(7, 1fr); }
+  .palette-panel .pal-card { border: 0; background: transparent; padding: 0; }
+  .palette-panel .scale-lab:first-child { margin-top: 0; }
+  /* token panel rendered on project background */
+  .stage { background: var(--color-background); border: 1px solid var(--chrome-line); border-radius: 12px; padding: 28px; }
+  /* type ramp */
+  .ramp-row { display: grid; grid-template-columns: 220px 1fr; gap: 20px; align-items: baseline; padding: 14px 0; border-bottom: 1px solid color-mix(in oklab, var(--color-border) 60%, transparent); }
+  .ramp-row:last-child { border-bottom: 0; }
+  .ramp-spec { font-family: "Fira Code", monospace; font-size: 11px; color: var(--color-muted-foreground); line-height: 1.5; }
+  .ramp-name { color: var(--color-foreground); font-weight: 600; font-family: "Geist"; font-size: 13px; margin-bottom: 4px; }
+  /* spacing ruler */
+  .ruler { display: flex; flex-direction: column; gap: 8px; }
+  .ruler .r { display: flex; align-items: center; gap: 12px; }
+  .ruler .bar { height: 14px; background: var(--color-primary); border-radius: 3px; }
+  .ruler .lab { font-family: "Fira Code", monospace; font-size: 11px; color: var(--color-muted-foreground); white-space: nowrap; }
+  /* rounded + border + elevation rows */
+  .row-spec { display: flex; gap: 16px; flex-wrap: wrap; }
+  .box { width: 92px; }
+  .box .vis { height: 64px; background: var(--color-card); border: 1px solid var(--color-border); }
+  .box .lab { font-family: "Fira Code", monospace; font-size: 10px; color: var(--color-muted-foreground); margin-top: 6px; text-align: center; }
+  .elev .vis { background: var(--color-card); border: 1px solid var(--color-border); border-radius: var(--radius-lg); }
+  /* motion chips */
+  .motion { display: flex; gap: 18px; flex-wrap: wrap; }
+  .mchip { text-align: center; }
+  .mchip .track { width: 120px; height: 34px; background: var(--color-card); border: 1px solid var(--color-border); border-radius: var(--radius-full); position: relative; overflow: hidden; }
+  .mchip .dot { position: absolute; top: 5px; left: 5px; width: 24px; height: 24px; border-radius: 50%; background: var(--color-primary); }
+  .mchip .dot.f { transition: transform var(--duration-fast) var(--ease-in); }
+  .mchip .dot.b { transition: transform var(--duration-base) var(--ease-out); }
+  .mchip .dot.s { transition: transform var(--duration-slow) var(--ease-in-out); }
+  .mchip .dot.go { transform: translateX(86px); }
+  .mchip .lab { font-family: "Fira Code", monospace; font-size: 10px; color: var(--color-muted-foreground); margin-top: 7px; }
+  /* breakpoints */
+  .bp { display: flex; flex-direction: column; gap: 6px; }
+  .bp .b { display: flex; align-items: center; gap: 12px; font-family: "Fira Code", monospace; font-size: 11px; color: var(--color-muted-foreground); }
+  .bp .b span.mark { height: 24px; width: 2px; background: var(--color-primary); display: inline-block; }
+  /* ===== specimen helpers using tokens ===== */
+  .t-display { font-family: var(--font-display-family); font-size: var(--font-display-size); font-weight: var(--font-display-weight); line-height: var(--font-display-lh); letter-spacing: var(--font-display-ls); color: var(--color-foreground); }
+  .t-heading { font-family: var(--font-heading-family); font-size: var(--font-heading-size); font-weight: var(--font-heading-weight); line-height: var(--font-heading-lh); color: var(--color-foreground); }
+  .t-title { font-family: var(--font-title-family); font-size: var(--font-title-size); font-weight: var(--font-title-weight); line-height: var(--font-title-lh); color: var(--color-foreground); }
+  .t-subtitle { font-family: var(--font-subtitle-family); font-size: var(--font-subtitle-size); font-weight: var(--font-subtitle-weight); line-height: var(--font-subtitle-lh); color: var(--color-foreground); }
+  .t-body { font-family: var(--font-body-family); font-size: var(--font-body-size); font-weight: var(--font-body-weight); line-height: var(--font-body-lh); color: var(--color-foreground); }
+  .t-caption { font-family: var(--font-caption-family); font-size: var(--font-caption-size); line-height: var(--font-caption-lh); color: var(--color-muted-foreground); }
+  .t-label { font-family: var(--font-label-family); font-size: var(--font-label-size); font-weight: var(--font-label-weight); line-height: var(--font-label-lh); letter-spacing: var(--font-label-ls); text-transform: uppercase; color: var(--color-foreground); }
+  .t-button { font-family: var(--font-button-family); font-size: var(--font-button-size); font-weight: var(--font-button-weight); line-height: var(--font-button-lh); color: var(--color-foreground); }
+  .t-code { font-family: var(--font-code-family); font-size: var(--font-code-size); line-height: var(--font-code-lh); color: var(--color-foreground); }
+  /* components */
+  .c-btn { font-family: var(--font-button-family); font-size: var(--font-button-size); font-weight: var(--font-button-weight); line-height: var(--font-button-lh); padding: var(--spacing-3) calc(var(--spacing-3) * 1.6); border-radius: var(--radius-md); border: 0; cursor: pointer; }
+  .c-btn-primary { background: var(--color-primary); color: var(--color-primary-foreground); transition: filter var(--duration-fast) var(--ease-out); }
+  .c-btn-primary:hover { filter: brightness(0.92); }
+  .c-btn-primary[disabled] { background: var(--color-muted); color: var(--color-muted-foreground); cursor: not-allowed; }
+  .c-btn-secondary { background: transparent; color: var(--color-foreground); border: var(--border-width-default) solid var(--color-border); transition: all var(--duration-fast) var(--ease-out); }
+  .c-btn-secondary:hover { border-color: var(--color-primary); color: var(--color-primary); }
+  .c-card { background: var(--color-card); color: var(--color-card-foreground); border: var(--border-width-default) solid var(--color-border); border-radius: var(--radius-lg); padding: var(--spacing-6); box-shadow: var(--shadow-sm); }
+  .c-input { background: var(--color-background); color: var(--color-foreground); border: var(--border-width-default) solid var(--color-input); border-radius: var(--radius-md); padding: var(--spacing-3); font-family: var(--font-body-standard-family); font-size: var(--font-body-sm-size); width: 100%; }
+  .c-input:focus { outline: none; border-color: var(--color-ring); }
+  .c-eyebrow { display: inline-block; background: transparent; color: var(--color-primary); border: var(--border-width-2) solid var(--color-primary); border-radius: var(--radius-full); padding: var(--spacing-2) var(--spacing-3); font-family: var(--font-label-family); font-size: var(--font-label-size); font-weight: var(--font-label-weight); letter-spacing: var(--font-label-ls); text-transform: uppercase; }
+  .c-badge { display: inline-block; background: color-mix(in oklab, var(--color-secondary) 15%, transparent); color: var(--color-secondary); border-radius: var(--radius-full); padding: var(--spacing-2) var(--spacing-3); font-family: var(--font-label-family); font-size: var(--font-label-size); font-weight: var(--font-label-weight); letter-spacing: var(--font-label-ls); text-transform: uppercase; }
+  .c-nav { display: flex; gap: 20px; }
+  .c-nav a { font-family: var(--font-button-family); font-size: var(--font-button-size); font-weight: var(--font-button-weight); color: var(--color-muted-foreground); text-decoration: none; transition: color var(--duration-fast) var(--ease-out); }
+  .c-nav a:hover { color: var(--color-primary); }
+  .c-popover { display: inline-block; background: var(--color-popover); color: var(--color-popover-foreground); border: var(--border-width-default) solid var(--color-border); border-radius: var(--radius-lg); padding: var(--spacing-4); box-shadow: var(--shadow-lg); font-family: var(--font-body-sm-family); font-size: var(--font-body-sm-size); }
+  .comp-grid { display: flex; gap: 16px; flex-wrap: wrap; align-items: flex-start; }
+  .comp-block { display: flex; flex-direction: column; gap: 10px; }
+  .comp-lab { font-family: "Fira Code", monospace; font-size: 10px; color: var(--color-muted-foreground); }
+  .skins { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 900px) { .skins { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="topbar">
+  <h1>adeonir.dev</h1>
+  <span class="tag">Design system styleguide · Catppuccin + blue/pink accents · Geist / Fira Code</span>
+  <nav class="jump">
+    <a href="#colors">Colors</a><a href="#type">Type</a><a href="#spacing">Spacing</a><a href="#rounded">Radius</a><a href="#border">Border</a><a href="#elevation">Elevation</a><a href="#motion">Motion</a><a href="#components">Components</a><a href="#breakpoints">Breakpoints</a>
+  </nav>
+</div>
+
+<main>
+
+  <!-- COLORS -->
+  <section id="colors">
+    <h2 class="sec-h">Colors</h2>
+    <p class="sec-cap">Semantic roles in both skins. Contrast measured against each token's in-use pairing.</p>
+    <div class="grp">▸ Brand Raw</div>
+    <div class="palette-panel">
+    <div class="scale-lab">mocha · dark skin</div>
+    <div class="palette-grid">
+      <div class="pal-card"><div class="pal-chip" style="background:#cdd6f4"></div><div class="pal-name">mocha-50</div><div class="pal-hex">#cdd6f4</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#bac2de"></div><div class="pal-name">mocha-100</div><div class="pal-hex">#bac2de</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#a6adc8"></div><div class="pal-name">mocha-150</div><div class="pal-hex">#a6adc8</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#9399b2"></div><div class="pal-name">mocha-200</div><div class="pal-hex">#9399b2</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#7f849c"></div><div class="pal-name">mocha-300</div><div class="pal-hex">#7f849c</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#6c7086"></div><div class="pal-name">mocha-400</div><div class="pal-hex">#6c7086</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#585b70"></div><div class="pal-name">mocha-500</div><div class="pal-hex">#585b70</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#45475a"></div><div class="pal-name">mocha-600</div><div class="pal-hex">#45475a</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#313244"></div><div class="pal-name">mocha-700</div><div class="pal-hex">#313244</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#1e1e2e"></div><div class="pal-name">mocha-800</div><div class="pal-hex">#1e1e2e</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#181825"></div><div class="pal-name">mocha-900</div><div class="pal-hex">#181825</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#11111b"></div><div class="pal-name">mocha-950</div><div class="pal-hex">#11111b</div></div>
+    </div>
+    </div>
+    <div class="palette-panel">
+    <div class="scale-lab">latte · light skin</div>
+    <div class="palette-grid">
+      <div class="pal-card"><div class="pal-chip" style="background:#4c4f69"></div><div class="pal-name">latte-50</div><div class="pal-hex">#4c4f69</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#5c5f77"></div><div class="pal-name">latte-100</div><div class="pal-hex">#5c5f77</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#6c6f85"></div><div class="pal-name">latte-150</div><div class="pal-hex">#6c6f85</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#7c7f93"></div><div class="pal-name">latte-200</div><div class="pal-hex">#7c7f93</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#8c8fa1"></div><div class="pal-name">latte-300</div><div class="pal-hex">#8c8fa1</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#9ca0b0"></div><div class="pal-name">latte-400</div><div class="pal-hex">#9ca0b0</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#acb0be"></div><div class="pal-name">latte-500</div><div class="pal-hex">#acb0be</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#bcc0cc"></div><div class="pal-name">latte-600</div><div class="pal-hex">#bcc0cc</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#ccd0da"></div><div class="pal-name">latte-700</div><div class="pal-hex">#ccd0da</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#dce0e8"></div><div class="pal-name">latte-800</div><div class="pal-hex">#dce0e8</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#e6e9ef"></div><div class="pal-name">latte-900</div><div class="pal-hex">#e6e9ef</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#eff1f5"></div><div class="pal-name">latte-950</div><div class="pal-hex">#eff1f5</div></div>
+    </div>
+    </div>
+    <div class="palette-panel">
+    <div class="scale-lab">accents</div>
+    <div class="palette-grid">
+      <div class="pal-card"><div class="pal-chip" style="background:#38bdf8"></div><div class="pal-name">stream</div><div class="pal-hex">#38bdf8</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#04a5e5"></div><div class="pal-name">ocean</div><div class="pal-hex">#04a5e5</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#ff3d8a"></div><div class="pal-name">azalea</div><div class="pal-hex">#ff3d8a</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#e0306f"></div><div class="pal-name">hibiscus</div><div class="pal-hex">#e0306f</div></div>
+    </div>
+    </div>
+
+    <div class="grp second">▸ Semantic aliases</div>
+    <div class="palette-panel">
+    <div class="scale-lab">dark skin (default)</div>
+    <div class="palette-grid cols-7">
+      <div class="pal-card"><div class="pal-chip" style="background:#1e1e2e"></div><div class="pal-name">background</div><div class="pal-hex">mocha-800 · #1e1e2e</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#181825"></div><div class="pal-name">card</div><div class="pal-hex">mocha-900 · #181825</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#313244"></div><div class="pal-name">accent</div><div class="pal-hex">mocha-700 · #313244</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#a6adc8"></div><div class="pal-name">muted-foreground</div><div class="pal-hex">mocha-150 · #a6adc8</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#cdd6f4"></div><div class="pal-name">foreground</div><div class="pal-hex">mocha-50 · #cdd6f4</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#38bdf8"></div><div class="pal-name">primary</div><div class="pal-hex">stream · #38bdf8</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#ff3d8a"></div><div class="pal-name">secondary</div><div class="pal-hex">azalea · #ff3d8a</div></div>
+    </div>
+    </div>
+
+    <div class="palette-panel">
+    <div class="scale-lab">light skin (toggle)</div>
+    <div class="palette-grid cols-7">
+      <div class="pal-card"><div class="pal-chip" style="background:#eff1f5"></div><div class="pal-name">background</div><div class="pal-hex">latte-950 · #eff1f5</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#e6e9ef"></div><div class="pal-name">card</div><div class="pal-hex">latte-900 · #e6e9ef</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#ccd0da"></div><div class="pal-name">accent</div><div class="pal-hex">latte-700 · #ccd0da</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#6c6f85"></div><div class="pal-name">muted-foreground</div><div class="pal-hex">latte-150 · #6c6f85</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#4c4f69"></div><div class="pal-name">foreground</div><div class="pal-hex">latte-50 · #4c4f69</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#04a5e5"></div><div class="pal-name">primary</div><div class="pal-hex">ocean · #04a5e5</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#e0306f"></div><div class="pal-name">secondary</div><div class="pal-hex">hibiscus · #e0306f</div></div>
+    </div>
+    </div>
+  </section>
+
+  <!-- TYPOGRAPHY -->
+  <section id="type">
+    <h2 class="sec-h">Typography</h2>
+    <p class="sec-cap">Geist across the system; Fira Code for code. Each row rendered at its real values.</p>
+    <div class="stage light">
+      <div class="ramp-row"><div class="ramp-spec"><div class="ramp-name">Display</div>display · 6xl · Geist 3.75rem · 800 · lh 1 · ls -0.025em</div><div class="t-display">Adeonir Kohl</div></div>
+      <div class="ramp-row"><div class="ramp-spec"><div class="ramp-name">Heading</div>heading · 3xl · Geist 1.875rem · 700 · lh 1.2</div><div class="t-heading">Projetos em destaque</div></div>
+      <div class="ramp-row"><div class="ramp-spec"><div class="ramp-name">Title</div>title · 2xl · Geist 1.5rem · 600 · lh 1.333</div><div class="t-title">React Snakke</div></div>
+      <div class="ramp-row"><div class="ramp-spec"><div class="ramp-name">Subtitle</div>subtitle · lg · Geist 1.125rem · 500 · lh 1.556</div><div class="t-subtitle">Desenvolvedor frontend com olhar de designer.</div></div>
+      <div class="ramp-row"><div class="ramp-spec"><div class="ramp-name">Body</div>body · base · Geist 1rem · 400 · lh 1.5</div><div class="t-body">Construo interfaces que equilibram estética, performance e pragmatismo — porque o melhor código entrega valor sem virar refém da perfeição.</div></div>
+      <div class="ramp-row"><div class="ramp-spec"><div class="ramp-name">Caption</div>caption · xs · Geist 0.75rem · 400 · lh 1.333</div><div class="t-caption">Reading position indicator para React. Mostra progresso de leitura.</div></div>
+      <div class="ramp-row"><div class="ramp-spec"><div class="ramp-name">Label</div>label · xs · Geist 0.75rem · 600 · ls 0.1em · uppercase</div><div class="t-label">Senior Frontend Developer</div></div>
+      <div class="ramp-row"><div class="ramp-spec"><div class="ramp-name">Button</div>button · sm · Geist 0.875rem · 600 · lh 1.428</div><div class="t-button">Ver projetos</div></div>
+      <div class="ramp-row"><div class="ramp-spec"><div class="ramp-name">Code</div>code · sm · Fira Code 0.875rem · 400 · lh 1.428</div><div class="t-code">const stack = ['React', 'TanStack']</div></div>
+    </div>
+  </section>
+
+  <!-- SPACING -->
+  <section id="spacing">
+    <h2 class="sec-h">Spacing</h2>
+    <p class="sec-cap">4px base grid. Intra-component in the 2–6 band; section separation jumps to 16–24.</p>
+    <div class="stage light"><div class="ruler" id="ruler"></div></div>
+  </section>
+
+  <!-- ROUNDED -->
+  <section id="rounded">
+    <h2 class="sec-h">Radius</h2>
+    <p class="sec-cap">Gently rounded and consistent — considered software, not playful.</p>
+    <div class="stage light"><div class="row-spec" id="radius"></div></div>
+  </section>
+
+  <!-- BORDER WIDTH -->
+  <section id="border">
+    <h2 class="sec-h">Border Width</h2>
+    <p class="sec-cap">Hairline does the work; emphasis at 2px for the eyebrow outline.</p>
+    <div class="stage light"><div class="row-spec" id="borders"></div></div>
+  </section>
+
+  <!-- ELEVATION -->
+  <section id="elevation">
+    <h2 class="sec-h">Elevation</h2>
+    <p class="sec-cap">Depth is tone-first; shadows stay a whisper, denser opacity for the dark field.</p>
+    <div class="stage light"><div class="row-spec elev" id="elev"></div></div>
+  </section>
+
+  <!-- MOTION -->
+  <section id="motion">
+    <h2 class="sec-h">Motion &amp; Easing</h2>
+    <p class="sec-cap">Loops automatically. Ease-out is the default for entrances and hovers.</p>
+    <div class="stage light">
+      <div class="motion">
+        <div class="mchip"><div class="track"><div class="dot f"></div></div><div class="lab">fast · 150ms · ease-in</div></div>
+        <div class="mchip"><div class="track"><div class="dot b"></div></div><div class="lab">base · 300ms · ease-out</div></div>
+        <div class="mchip"><div class="track"><div class="dot s"></div></div><div class="lab">slow · 400ms · ease-in-out</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPONENTS -->
+  <section id="components">
+    <h2 class="sec-h">Components</h2>
+    <p class="sec-cap">Token preview — each specimen resolves the token references in DESIGN.md.</p>
+    <div class="skins">
+      <!-- DARK (Mocha) -->
+      <div>
+        <div class="scale-lab">dark skin (default)</div>
+        <div class="stage">
+          <div class="comp-grid">
+            <div class="comp-block"><button class="c-btn c-btn-primary">Ver projetos</button><span class="comp-lab">button-primary (hover)</span></div>
+            <div class="comp-block"><button class="c-btn c-btn-primary" disabled>Ver projetos</button><span class="comp-lab">disabled</span></div>
+            <div class="comp-block"><button class="c-btn c-btn-secondary">Falar comigo</button><span class="comp-lab">button-secondary (hover)</span></div>
+          </div>
+          <div class="comp-grid" style="margin-top:20px">
+            <div class="comp-block"><span class="c-eyebrow">Senior Frontend Developer</span><span class="comp-lab">eyebrow</span></div>
+            <div class="comp-block"><span class="c-badge">disponível</span><span class="comp-lab">badge</span></div>
+            <div class="comp-block"><nav class="c-nav"><a href="#">Sobre</a><a href="#">Projetos</a><a href="#">Contato</a></nav><span class="comp-lab">nav-link (hover)</span></div>
+          </div>
+          <div class="comp-grid" style="margin-top:20px; align-items:stretch">
+            <div class="comp-block" style="flex:1; min-width:220px"><div class="c-card"><div class="t-title" style="margin-bottom:6px">React Snakke</div><div class="t-caption">Reading position indicator para React.</div></div><span class="comp-lab">card</span></div>
+            <div class="comp-block" style="min-width:180px"><input class="c-input" placeholder="seu@email.com"><span class="comp-lab">input (focus)</span></div>
+          </div>
+          <div class="comp-grid" style="margin-top:20px">
+            <div class="comp-block"><div class="c-popover">Alternar tema · idioma</div><span class="comp-lab">popover</span></div>
+          </div>
+        </div>
+      </div>
+      <!-- LIGHT (Latte) -->
+      <div>
+        <div class="scale-lab">light skin (toggle)</div>
+        <div class="stage light">
+          <div class="comp-grid">
+            <div class="comp-block"><button class="c-btn c-btn-primary">Ver projetos</button><span class="comp-lab">button-primary (hover)</span></div>
+            <div class="comp-block"><button class="c-btn c-btn-primary" disabled>Ver projetos</button><span class="comp-lab">disabled</span></div>
+            <div class="comp-block"><button class="c-btn c-btn-secondary">Falar comigo</button><span class="comp-lab">button-secondary (hover)</span></div>
+          </div>
+          <div class="comp-grid" style="margin-top:20px">
+            <div class="comp-block"><span class="c-eyebrow">Senior Frontend Developer</span><span class="comp-lab">eyebrow</span></div>
+            <div class="comp-block"><span class="c-badge">disponível</span><span class="comp-lab">badge</span></div>
+            <div class="comp-block"><nav class="c-nav"><a href="#">Sobre</a><a href="#">Projetos</a><a href="#">Contato</a></nav><span class="comp-lab">nav-link (hover)</span></div>
+          </div>
+          <div class="comp-grid" style="margin-top:20px; align-items:stretch">
+            <div class="comp-block" style="flex:1; min-width:220px"><div class="c-card"><div class="t-title" style="margin-bottom:6px">React Snakke</div><div class="t-caption">Reading position indicator para React.</div></div><span class="comp-lab">card</span></div>
+            <div class="comp-block" style="min-width:180px"><input class="c-input" placeholder="seu@email.com"><span class="comp-lab">input (focus)</span></div>
+          </div>
+          <div class="comp-grid" style="margin-top:20px">
+            <div class="comp-block"><div class="c-popover">Alternar tema · idioma</div><span class="comp-lab">popover</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BREAKPOINTS -->
+  <section id="breakpoints">
+    <h2 class="sec-h">Breakpoints</h2>
+    <p class="sec-cap">Single readable column; primary width reached well before xl.</p>
+    <div class="stage light"><div class="bp" id="bp"></div></div>
+  </section>
+
+</main>
+
+<script>
+  // build scale specimens from the theme values (label text only; rendering via vars)
+  const css = getComputedStyle(document.documentElement);
+  const spacing = { '1':'0.25rem','2':'0.5rem','3':'0.75rem','4':'1rem','6':'1.5rem','8':'2rem','12':'3rem','16':'4rem','24':'6rem' };
+  const ruler = document.getElementById('ruler');
+  for (const [k,v] of Object.entries(spacing)) {
+    const row = document.createElement('div'); row.className = 'r';
+    row.innerHTML = `<span class="bar" style="width:${v}"></span><span class="lab">spacing.${k} · ${v}</span>`;
+    ruler.appendChild(row);
+  }
+  const radii = { 'xs':'0.25rem','sm':'0.375rem','md':'0.5rem','lg':'0.625rem','xl':'0.875rem','2xl':'1rem','full':'9999px' };
+  const radEl = document.getElementById('radius');
+  for (const [k,v] of Object.entries(radii)) {
+    const b = document.createElement('div'); b.className='box';
+    b.innerHTML = `<div class="vis" style="border-radius:${v}"></div><div class="lab">${k}<br>${v}</div>`;
+    radEl.appendChild(b);
+  }
+  const borders = [['0','0px'],['DEFAULT','1px'],['2','2px'],['4','4px']];
+  const bEl = document.getElementById('borders');
+  for (const [k,v] of borders) {
+    const b = document.createElement('div'); b.className='box';
+    b.innerHTML = `<div class="vis" style="border-width:${v};border-radius:0.5rem"></div><div class="lab">${k}<br>${v}</div>`;
+    bEl.appendChild(b);
+  }
+  const elevs = ['2xs','xs','sm','md','lg','xl','2xl'];
+  const eEl = document.getElementById('elev');
+  for (const k of elevs) {
+    const b = document.createElement('div'); b.className='box';
+    b.innerHTML = `<div class="vis" style="box-shadow:var(--shadow-${k});height:64px"></div><div class="lab">${k}</div>`;
+    eEl.appendChild(b);
+  }
+  const bps = { 'xs':'32rem','sm':'40rem','md':'48rem','lg':'64rem','xl':'80rem','2xl':'96rem' };
+  const bpEl = document.getElementById('bp');
+  const aud = { xs:'compact', sm:'mobile', md:'tablet', lg:'desktop', xl:'wide', '2xl':'ultra-wide' };
+  for (const [k,v] of Object.entries(bps)) {
+    const r = document.createElement('div'); r.className='b';
+    r.innerHTML = `<span class="mark"></span> breakpoints.${k} · ${v} · ${aud[k]}`;
+    bpEl.appendChild(r);
+  }
+  // motion: auto-loop the dots so duration + easing read without hover
+  setInterval(() => {
+    document.querySelectorAll('.mchip .dot').forEach(d => d.classList.toggle('go'));
+  }, 1100);
+</script>
+</body>
+</html>
