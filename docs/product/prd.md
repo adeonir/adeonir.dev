@@ -79,6 +79,7 @@ graded against a KPI.
 |----|------------|-------|
 | FR-10 | Previous / next navigation between projects | Keeps visitors moving through the work |
 | FR-11 | Light / dark presentation | Owner preference; not launch-blocking |
+| FR-12 | Portuguese / English bilingual presentation | Launch in Portuguese first; English added in a later phase, visitor switches via a language control |
 
 ### Won't Have
 
@@ -182,7 +183,7 @@ graded against a KPI.
 | NFR-1 | Performance — the differentiator must be evident | Fast load on mobile and desktop (concrete budget TBD in design) |
 | NFR-2 | Accessibility | WCAG 2.1 AA |
 | NFR-3 | Responsiveness | Usable from small mobile to large desktop |
-| NFR-4 | Shareability | Correct title, description, and preview metadata for links |
+| NFR-4 | Shareability | Correct title, description, and preview metadata for links, localized per language with hreflang annotations |
 
 ## 9. Milestones
 
@@ -190,12 +191,13 @@ graded against a KPI.
 |-----------|-------------|
 | M1 — Landing | Identity, positioning, curated work, contact path, persistent navigation |
 | M2 — Work | Full work index and per-project detail surfaces |
-| M3 — Enhancements | Previous / next navigation, light/dark presentation, polish |
+| M3 — Enhancements | Previous / next navigation, light/dark presentation, English locale, polish |
 
 ## 10. Assumptions
 
 - Adeonir authors and maintains the project content himself.
 - Project, bio, and tool content is authored separately (copy phase), not in this PRD.
+- The site launches in Portuguese; English is a later phase. Copy and case studies are authored in Portuguese first, then translated when English ships.
 - Contact volume is low enough that a simple form plus a direct channel suffices.
 
 ## 11. Risks
@@ -220,6 +222,7 @@ Resolved:
 - Positioning emphasis — craft leads, 6 years anchors credibility (shorthand: "design + code").
 - Projects at launch — 4 ready; home curates a subset, the work index lists all four. Empty state (EC-1) is defensive only, not a launch concern.
 - Analytics — confirmed (FR-9); privacy-respecting, no audience targets. Tool choice deferred to design.
+- Internationalization — bilingual PT/EN is a Could Have (FR-12); launch is Portuguese-first, English in a later phase. Default locale and routing strategy decided in design.
 
 ## 14. References
 
