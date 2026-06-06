@@ -1,0 +1,250 @@
+metadata:
+  source: "docs/product/brief.md, docs/product/prd.md, docs/design/blueprint.md, conversation"
+  created: "2026-06-06"
+  version: "1.0.0"
+  status: "draft"
+
+project:
+  name: "adeonir.dev"
+  language: "en"
+  industry: "portfolio"
+  description: "Personal portfolio for Adeonir Kohl, a frontend developer with a graphic-design background, positioned on design + code (aesthetics and performance)."
+
+# The content tree mirrors docs/design/blueprint.md: surfaces home, work, project.
+# header and footer are persistent across all three surfaces — defined once on
+# home and aliased. Projects live in one top-level `projects` collection (always
+# complete); the work index shows all, the landing shows featured: true.
+
+content:
+  home:
+    header: &header
+      logo:
+        text: "adeonir.dev"
+      nav:
+        - text: "About"
+        - text: "Projects"
+        - text: "Contact"
+
+    hero:
+      eyebrow: "Frontend Developer"
+      display: "Hi, I'm Adeonir Kohl"
+      headline: "I build interfaces that look right and run fast."
+      body:
+        - "Frontend developer with a designer's background. I build the whole product, not just the UI — because the best code is the kind that delivers value without getting bogged down in the pursuit of perfection. I use AI-assisted workflows to ship faster without giving up craft."
+      actions:
+        primary: "See the work"
+        secondary: "Get in touch"
+
+    about:
+      eyebrow: "About me"
+      headline: "From design to code."
+      bio:
+        - "After years as a graphic designer, I moved into code. The shift wasn't a detour — it was a natural evolution for someone who always wanted to see things come to life on screen. I've been a frontend developer for 6+ years now, working where design and engineering meet."
+        - "These days I'm digging into product engineering and bringing it into my projects — owning more of the product than the interface alone."
+        - "I work with AI-assisted and agentic workflows for the heavy lifting, always under my supervision. It lets me move fast without trading away craft or judgment."
+      code-block:
+        language: "ts"
+        code: |
+          const developer = {
+            name: 'Adeonir Kohl',
+            role: 'Frontend Developer',
+            based: 'Salvador do Sul, RS',
+            focus: 'Design + Code + Product',
+            stack: ['React', 'TypeScript', 'Tailwind CSS'],
+            available: 'Open to freelance work',
+            // Quality and delivery walk together.
+          }
+
+    stack:
+      eyebrow: "Tech Stack"
+      headline: "The tools I build with."
+      tools:
+        - title: "Frontend"
+          items:
+            - "React"
+            - "Next.js"
+            - "Astro"
+            - "TanStack Start"
+            - "TypeScript"
+            - "Tailwind CSS"
+        - title: "Backend & Data"
+          items:
+            - "Node.js"
+            - "Express"
+            - "Fastify"
+            - "Drizzle"
+            - "Prisma"
+            - "PostgreSQL"
+            - "SQLite"
+        - title: "Craft & Tooling"
+          items:
+            - "Figma"
+            - "Pencil"
+            - "Vite"
+            - "Bun"
+            - "Biome"
+            - "Claude Code"
+            - "Cursor"
+
+    projects:
+      eyebrow: "Featured projects"
+      headline: "A few things I've designed and shipped."
+      # list -> top-level `projects` collection, filtered to featured: true
+      see-all: "See all work"
+
+    contact:
+      eyebrow: "Let's talk"
+      headline: "Have a project in mind?"
+      body:
+        - "I love meeting new people, trading ideas and experiences, and collaborating on interesting projects. Whether you want to chat about development or have an idea that needs a hand getting off the ground — drop me a message."
+      social:
+        - platform: "email"
+          label: "adeonir@gmail.com"
+          link: "mailto:adeonir@gmail.com"
+        - platform: "github"
+          label: "github.com/adeonir"
+          link: "https://github.com/adeonir"
+        - platform: "linkedin"
+          label: "linkedin.com/in/adeonir"
+          link: "https://www.linkedin.com/in/adeonir"
+        - platform: "x"
+          label: "x.com/adeonir"
+          link: "https://x.com/adeonir"
+      form:
+        fields:
+          - name: "name"
+            label: "Name"
+            placeholder: "Your name"
+          - name: "email"
+            label: "Email"
+            placeholder: "you@example.com"
+          - name: "message"
+            label: "Message"
+            placeholder: "What are you building?"
+        submit: "Send message"
+        states:
+          success: "Thanks — I'll be in touch soon."
+          error: "Something went wrong. Email me directly at adeonir@gmail.com."
+
+    footer: &footer
+      brand:
+        text: "adeonir.dev"
+        copyright: "© 2026 Adeonir Kohl"
+      tagline: "Built with care, code, and coffee."
+
+  work:
+    header: *header
+    page-header:
+      eyebrow: "Work"
+      headline: "Things I've designed and built."
+      subheadline: "Every project, start to finish — design and code."
+    # list -> top-level `projects` collection (all, in order)
+    states:
+      empty: "No projects to show yet — check back soon." # EC-1
+    footer: *footer
+
+  project:
+    header: *header
+    # Per-project detail. Page content is keyed by slug in the top-level
+    # `projects` collection (overview / body / gallery / launch). The labels below
+    # are the static chrome shared by every project detail surface.
+    page-header:
+      eyebrow: "Project"
+      # title and meta resolve from the matching projects entry:
+      #   title -> name, meta -> "{role} · {launch}"
+    overview:
+      # text -> entry.overview, meta -> stack used + links (live: entry.link, repo: entry.repo)
+      meta-label: "Links"
+    gallery: [] # images -> entry.gallery
+    body: {} # long-form -> entry.body
+    prev-next:
+      prev:
+        text: "Previous project"
+      next:
+        text: "Next project"
+    states:
+      not-found: "That project doesn't exist. Back to all work." # EC-3
+    footer: *footer
+
+# Projects — single source of truth (always complete). The work index renders
+# every entry in order; the landing renders the featured: true ones (same order).
+projects:
+  - slug: "charas-beer"
+    name: "Charas Beer"
+    featured: true
+    summary: "An online store for a craft beer brand."
+    role: "Product engineer, UI designer & frontend developer"
+    launch: "12/2026"
+    link: "https://charasbeer.com.br"
+    repo: null
+    cta: "View project"
+    # Detail fields — author per project (see notes):
+    overview: null # TODO: case-study overview paragraph
+    body: null # TODO: long-form case study
+    gallery: [] # TODO: project images (description/url/alt)
+  - slug: "adeonir-kohl"
+    name: "Adeonir Kohl"
+    featured: false
+    summary: "This portfolio, crafted end to end with AI in the loop."
+    role: "Product engineer, UI designer & frontend developer"
+    launch: "06/2026"
+    link: "https://adeonir.dev"
+    repo: null
+    cta: "View project"
+    overview: null # TODO
+    body: null # TODO
+    gallery: [] # TODO
+  - slug: "uira-muller"
+    name: "Uirá Müller Design"
+    featured: true
+    summary: "A portfolio showcasing a graphic designer's work."
+    role: "UI designer & frontend developer"
+    launch: "05/2026"
+    link: "https://uiramuller.com.br"
+    repo: null
+    cta: "View project"
+    overview: null # TODO
+    body: null # TODO
+    gallery: [] # TODO
+  - slug: "reisenthal"
+    name: "Reisenthal Turismo"
+    featured: true
+    summary: "A travel agency offering trips to Europe, Brazil, and beyond."
+    role: "UI designer & frontend developer"
+    launch: "07/2025"
+    link: "https://reisenthal.com.br"
+    repo: null
+    cta: "View project"
+    overview: null # TODO
+    body: null # TODO
+    gallery: [] # TODO
+  - slug: "atio"
+    name: "Atio"
+    featured: false
+    summary: "Food safety standards, certification, and training for industry."
+    role: "UI designer & frontend developer"
+    launch: "02/2024"
+    link: "https://atio.com.br"
+    repo: null
+    cta: "View project"
+    overview: null # TODO
+    body: null # TODO
+    gallery: [] # TODO
+
+notes: |
+  Voice: first person, present tense, confident, dry, proof outward (the work,
+  not adjectives). Positioning shorthand "design + code" (aesthetics +
+  performance); graphic-design → frontend arc, AI-assisted workflow under human
+  supervision.
+
+  Projects: one top-level `projects` collection (always complete). The work
+  index shows all in order; the landing shows the featured: true ones.
+
+  Placeholders to author (flagged, not invented — proof must stay outward):
+  - Per-project case-study content: overview, body, gallery (images) are
+    null/empty for all entries; author per project before the project detail
+    surface has real content.
+  - repo links are null — add if any project is open source.
+
+  Design-blind: no colors, fonts, icons, or layout in this file. The about
+  code-block carries a content snippet (language + code only), not styling.
