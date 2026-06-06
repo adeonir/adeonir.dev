@@ -87,7 +87,7 @@ content:
             - "Cursor"
 
     projects:
-      eyebrow: "Featured projects"
+      eyebrow: "Featured work"
       headline: "A few things I've designed and shipped."
       # list -> top-level `projects` collection, filtered to featured: true
       see-all: "See all work"
@@ -96,7 +96,7 @@ content:
       eyebrow: "Let's talk"
       headline: "Have a project in mind?"
       body:
-        - "I love meeting new people, trading ideas and experiences, and collaborating on interesting projects. Whether you want to chat about development or have an idea that needs a hand getting off the ground — drop me a message."
+        - "I love meeting new people, trading experiences, and collaborating on interesting projects. Whether you want to chat about development or have an idea that needs a hand getting off the ground — drop me a message."
       social:
         - platform: "email"
           label: "adeonir@gmail.com"
@@ -130,7 +130,7 @@ content:
       brand:
         text: "adeonir.dev"
         copyright: "© 2026 Adeonir Kohl"
-      tagline: "Built with care, code, and coffee."
+      tagline: "Built with care, passion, and coffee."
 
   work:
     header: *header

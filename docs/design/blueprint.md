@@ -2,7 +2,7 @@
 metadata:
   source: "conversation"
   created: "2026-06-05"
-  version: "1.1.0"
+  version: "1.2.0"
   status: "draft"
 
 # Region tree — design-blind, content-optional. Surfaces and blocks named by
@@ -44,14 +44,13 @@ surfaces:
       children:
         - block: "eyebrow"
           shape: "full-width"
-        - block: "tagline"
-          shape: "full-width"
         - block: "content"
           shape: "split"
+          note: "tagline on one side, bio on the other"
           children:
-            - block: "bio"
+            - block: "tagline"
               shape: "full-width"
-            - block: "code-block"
+            - block: "bio"
               shape: "full-width"
 
     - block: "stack"
@@ -197,8 +196,8 @@ The landing page, top to bottom:
 2. **hero** — stacked: eyebrow, display, tagline, then a split where a
    description fills one half and the actions (a primary and an outline) fill
    the other.
-3. **about** — eyebrow and tagline lead, then a split: bio on one side, a
-   code-block on the other.
+3. **about** — eyebrow leads, then a split: the tagline on one side, the bio
+   on the other.
 4. **stack** — eyebrow and tagline lead, then a three-column grid of tool
    lists.
 5. **projects** — eyebrow and tagline lead, then a stacked list of a selected
