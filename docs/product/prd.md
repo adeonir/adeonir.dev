@@ -226,4 +226,6 @@ Resolved:
 
 ## 14. References
 
-- None
+- Figma — [adeonir.dev](https://www.figma.com/design/T4wd9lMdUUdpfpmbT3C0bN/Adeonir) (Website page)
+  - [Home — Desktop](https://www.figma.com/design/T4wd9lMdUUdpfpmbT3C0bN/Adeonir?node-id=2500-93)
+  - [Home — Mobile](https://www.figma.com/design/T4wd9lMdUUdpfpmbT3C0bN/Adeonir?node-id=2530-2)
