@@ -1,7 +1,7 @@
 metadata:
   source: "docs/product/brief.md, docs/product/prd.md, docs/design/blueprint.md, conversation"
   created: "2026-06-06"
-  version: "1.0.0"
+  version: "1.0.1"
   status: "draft"
 
 project:
@@ -39,7 +39,7 @@ content:
       eyebrow: "About me"
       headline: "From design to code."
       bio:
-        - "After years as a graphic designer, I moved into code. The shift wasn't a detour — it was a natural evolution for someone who always wanted to see things come to life on screen. I've been a frontend developer for 6+ years now, working where design and engineering meet."
+        - "After years as a graphic designer, I moved into code. The shift wasn't a detour — it was a natural evolution that landed me right where design and engineering meet. I've been a frontend developer for 6+ years, and on the projects I run myself, I work as a design engineer — owning design and code end to end."
         - "These days I'm digging into product engineering and bringing it into my projects — owning more of the product than the interface alone."
         - "I work with AI-assisted and agentic workflows for the heavy lifting, always under my supervision. It lets me move fast without trading away craft or judgment."
       code-block:
