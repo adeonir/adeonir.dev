@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository state
 
-This is a **documentation-only repository** — no application code is scaffolded yet. The stack, architecture, design system, and product scope are fully locked in `docs/`. The first implementation step is the Astro scaffold (GitHub story #5 under the Foundation epic).
+This is a **documentation-only repository** — no application code is scaffolded yet. The stack, architecture, design system, and product scope are fully locked in `docs/`.
 
 Because there is no `package.json` yet, there are no build/lint/test commands to run. The intended toolchain and pipeline are specified in `docs/tech/design.md` §3.7–§3.8 — follow it when scaffolding; do not invent alternatives.
 
@@ -48,12 +48,11 @@ When a doc and this file disagree, the doc wins. Change specs via the `spec-driv
 
 ## Delivery & tracking
 
-- Milestones (priority decoupled from sequence): **M1 Landing** → **M2 Work** → **M3 Theme & Locale** (light/dark + English are Could-Haves, planned after work).
-- Work is tracked on **GitHub Issues** (repo `adeonir/adeonir.dev`), milestones + sub-issues, labels-only (no Issue Types). M1 is broken into epics #1–#4; the Foundation epic (#1) is broken into stories #5–#10. Use the `epic-tracker` skill for epic/story changes.
+- Work is tracked on GitHub Issues (repo `adeonir/adeonir.dev`), milestones + sub-issues, labels-only (no Issue Types). Use the `epic-tracker` skill for epic/story changes.
 
 ## Notable repo files
 
 - `.mcp.json` — declares the `ark-ui` MCP server (`@ark-ui/mcp`), used to scaffold UI primitives. See UI primitives below.
 - `.artifacts/` — scratch space (design variant HTML, epic/story drafts, a Pencil `.pen` file). Not shipped; not authoritative — `docs/` is.
-- `index.html` / `logo.png` — placeholder holding page, to be replaced by the Astro app.
+- `index.html` / `logo.png` — holding page served at `/`.
 - Figma source: https://www.figma.com/design/T4wd9lMdUUdpfpmbT3C0bN/Adeonir
