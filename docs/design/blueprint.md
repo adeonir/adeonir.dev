@@ -2,7 +2,7 @@
 metadata:
   source: "conversation"
   created: "2026-06-05"
-  version: "1.2.0"
+  version: "1.0.3"
   status: "draft"
 
 # Region tree — design-blind, content-optional. Surfaces and blocks named by
@@ -12,13 +12,16 @@ surfaces:
   home:
     - block: "header"
       shape: "split"
-      note: "brand on the left, nav on the right"
+      note: "brand on the left; nav and controls on the right. on narrow viewports nav and controls collapse behind a menu toggle that opens an overlay panel holding the same anchors and toggles"
       children:
         - block: "logo"
           shape: "full-width"
         - block: "nav"
           shape: "full-width"
           note: "horizontal anchors to the home sections — about, projects, contact"
+        - block: "controls"
+          shape: "full-width"
+          note: "language and theme toggles"
 
     - block: "hero"
       shape: "stack"
@@ -107,7 +110,7 @@ surfaces:
   work:
     - block: "header"
       shape: "split"
-      note: "persistent — brand on the left, nav on the right"
+      note: "persistent — same as home"
     - block: "page-header"
       shape: "stack"
       children:
@@ -127,7 +130,7 @@ surfaces:
   project:
     - block: "header"
       shape: "split"
-      note: "persistent — brand on the left, nav on the right"
+      note: "persistent — same as home"
     - block: "page-header"
       shape: "stack"
       children:
@@ -191,8 +194,10 @@ home ─┬─> work ──> project
 
 The landing page, top to bottom:
 
-1. **header** — split: brand on the left, horizontal nav on the right with
-   anchors to the home sections (about, projects, contact).
+1. **header** — split: brand on the left; horizontal nav (anchors to about,
+   projects, contact) and controls (language and theme toggles) on the right.
+   On narrow viewports the nav and controls collapse behind a menu toggle that
+   opens an overlay panel holding the same anchors and toggles.
 2. **hero** — stacked: eyebrow, display, tagline, then a split where a
    description fills one half and the actions (a primary and an outline) fill
    the other.
