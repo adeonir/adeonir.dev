@@ -1,7 +1,7 @@
 ---
 name: adeonir-dev-portfolio
 created: 2026-06-06
-updated: 2026-06-06
+updated: 2026-06-07
 status: draft
 sources: []
 ---
@@ -79,7 +79,7 @@ graded against a KPI.
 |----|------------|-------|
 | FR-10 | Previous / next navigation between projects | Keeps visitors moving through the work |
 | FR-11 | Light / dark presentation | Owner preference; not launch-blocking |
-| FR-12 | Portuguese / English bilingual presentation | Launch in Portuguese first; English added in a later phase, visitor switches via a language control |
+| FR-12 | Portuguese / English bilingual presentation | Default Portuguese; visitor switches to English via a language control |
 
 ### Won't Have
 
@@ -189,9 +189,11 @@ graded against a KPI.
 
 | Milestone | Deliverables |
 |-----------|-------------|
-| M1 — Landing | Identity, positioning, curated work, contact path, persistent navigation |
-| M2 — Work | Full work index and per-project detail surfaces |
-| M3 — Enhancements | Previous / next navigation, light/dark presentation, English locale, polish |
+| M1 — Landing | Identity, positioning, contact path, persistent navigation |
+| M2 — Work | Curated work on the landing, full work index, per-project detail, previous / next navigation |
+| M3 — Theme & Locale | Light/dark presentation, English presentation, language control, hreflang annotations |
+
+Non-functional requirements (performance, accessibility, responsiveness, shareability) are baseline across every milestone — not a separate phase. The landing (M1) ships standalone; work does not gate its deploy. M3 deliverables are Could Haves planned after work; epic split deferred.
 
 ## 10. Assumptions
 
