@@ -54,5 +54,5 @@ When a doc and this file disagree, the doc wins. Change specs via the `spec-driv
 
 - `.mcp.json` — declares the `ark-ui` MCP server (`@ark-ui/mcp`), used to scaffold UI primitives. See UI primitives below.
 - `.artifacts/` — scratch space (design variant HTML, epic/story drafts, a Pencil `.pen` file). Not shipped; not authoritative — `docs/` is.
-- `index.html` / `logo.png` — holding page served at `/`.
+- `src/pages/index.astro` / `public/logo.svg` — holding page served at `/` until the real landing ships.
 - Figma source: https://www.figma.com/design/T4wd9lMdUUdpfpmbT3C0bN/Adeonir
