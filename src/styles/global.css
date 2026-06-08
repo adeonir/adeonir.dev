@@ -1,1 +1,145 @@
 @import "tailwindcss";
+@import "@fontsource-variable/geist";
+@import "@fontsource-variable/fira-code";
+
+:root {
+  --mocha-50: oklch(87.9% 0.043 272.28);
+  --mocha-100: oklch(81.7% 0.04 272.86);
+  --mocha-150: oklch(75.1% 0.04 273.93);
+  --mocha-200: oklch(68.7% 0.037 274.73);
+  --mocha-300: oklch(61.8% 0.037 276);
+  --mocha-400: oklch(55.0% 0.034 277.1);
+  --mocha-500: oklch(47.7% 0.034 278.64);
+  --mocha-600: oklch(40.4% 0.032 280.15);
+  --mocha-700: oklch(32.4% 0.032 281.98);
+  --mocha-800: oklch(24.3% 0.03 283.91);
+  --mocha-900: oklch(21.6% 0.025 284.06);
+  --mocha-950: oklch(18.3% 0.02 284.2);
+
+  --latte-50: oklch(43.5% 0.043 279.33);
+  --latte-100: oklch(49.2% 0.038 279.3);
+  --latte-150: oklch(54.7% 0.034 279.08);
+  --latte-200: oklch(60.1% 0.03 278.69);
+  --latte-300: oklch(65.4% 0.027 278.12);
+  --latte-400: oklch(70.8% 0.024 274.6);
+  --latte-500: oklch(75.8% 0.02 273.15);
+  --latte-600: oklch(80.8% 0.017 271.2);
+  --latte-700: oklch(85.7% 0.014 268.48);
+  --latte-800: oklch(90.6% 0.012 264.51);
+  --latte-900: oklch(93.3% 0.009 264.52);
+  --latte-950: oklch(95.8% 0.006 264.53);
+
+  --stream: oklch(75.4% 0.139 232.66);
+  --ocean: oklch(68.2% 0.145 235.38);
+  --azalea: oklch(67.2% 0.233 2.27);
+  --hibiscus: oklch(60.4% 0.213 5.46);
+  --ink: oklch(18.3% 0.02 284.2);
+
+  --primary: var(--stream);
+  --primary-foreground: var(--ink);
+  --secondary: var(--azalea);
+  --secondary-foreground: var(--ink);
+  --accent: var(--mocha-700);
+  --accent-foreground: var(--mocha-50);
+  --muted: var(--mocha-700);
+  --muted-foreground: var(--mocha-150);
+  --background: var(--mocha-800);
+  --foreground: var(--mocha-50);
+  --card: var(--mocha-900);
+  --card-foreground: var(--mocha-50);
+  --popover: var(--mocha-900);
+  --popover-foreground: var(--mocha-50);
+  --border: var(--mocha-700);
+  --input: var(--mocha-700);
+  --ring: var(--stream);
+}
+
+[data-theme="light"] {
+  --primary: var(--ocean);
+  --primary-foreground: var(--ink);
+  --secondary: var(--hibiscus);
+  --secondary-foreground: var(--latte-950);
+  --accent: var(--latte-700);
+  --accent-foreground: var(--latte-50);
+  --muted: var(--latte-700);
+  --muted-foreground: var(--latte-150);
+  --background: var(--latte-950);
+  --foreground: var(--latte-50);
+  --card: var(--latte-900);
+  --card-foreground: var(--latte-50);
+  --popover: var(--latte-900);
+  --popover-foreground: var(--latte-50);
+  --border: var(--latte-700);
+  --input: var(--latte-700);
+  --ring: var(--ocean);
+}
+
+@theme inline {
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+@theme {
+  --font-sans: "Geist Variable", system-ui, -apple-system, sans-serif;
+  --font-mono:
+    "Fira Code Variable", ui-monospace, "SF Mono", Consolas, monospace;
+
+  --breakpoint-xs: 32rem;
+}
+
+@utility text-display {
+  @apply text-6xl font-extrabold tracking-tight;
+}
+
+@utility text-heading {
+  @apply text-3xl font-bold;
+}
+
+@utility text-title {
+  @apply text-2xl font-semibold;
+}
+
+@utility text-subtitle {
+  @apply text-lg font-medium;
+}
+
+@utility text-body {
+  @apply text-base;
+}
+
+@utility text-caption {
+  @apply text-xs;
+}
+
+@utility text-label {
+  @apply text-xs font-semibold tracking-widest uppercase;
+}
+
+@utility text-button {
+  @apply text-sm font-semibold;
+}
+
+@utility text-code {
+  @apply font-mono text-sm;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+  }
+}

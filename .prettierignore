@@ -2,3 +2,6 @@ node_modules
 dist
 .astro
 pnpm-lock.yaml
+
+# CSS is owned by Biome (see biome.json); keep Prettier off it
+**/*.css
