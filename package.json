@@ -10,7 +10,8 @@
     "astro": "astro",
     "typecheck": "astro check",
     "lint": "biome check --write && prettier --write \"src/**/*.{astro,yaml}\"",
-    "check": "biome check && prettier --check \"src/**/*.{astro,yaml}\""
+    "check": "biome check && prettier --check \"src/**/*.{astro,yaml}\"",
+    "prepare": "[ -n \"$CI\" ] || lefthook install"
   },
   "dependencies": {
     "@astrojs/preact": "5.1.5",
@@ -22,6 +23,7 @@
   "devDependencies": {
     "@astrojs/check": "0.9.9",
     "@biomejs/biome": "2.4.16",
+    "lefthook": "2.1.9",
     "prettier": "3.8.3",
     "prettier-plugin-astro": "0.14.1",
     "typescript": "6.0.3"
