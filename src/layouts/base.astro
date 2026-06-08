@@ -1,0 +1,35 @@
+---
+import { getEntry } from 'astro:content'
+import '~/styles/global.css'
+
+interface Props {
+  title?: string
+  description?: string
+}
+
+const settings = await getEntry('settings', 'metadata')
+
+if (!settings) {
+  throw new Error('Missing settings/metadata entry')
+}
+
+const { title, description } = Astro.props
+
+const resolvedTitle = title?.trim() ? title : settings.data.title
+const resolvedDescription = description?.trim()
+  ? description
+  : settings.data.description
+---
+
+<!doctype html>
+<html lang={settings.data.locale} class="h-full">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{resolvedTitle}</title>
+    <meta name="description" content={resolvedDescription} />
+  </head>
+  <body class="h-full bg-background text-foreground antialiased">
+    <slot />
+  </body>
+</html>
