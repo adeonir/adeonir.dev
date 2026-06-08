@@ -100,11 +100,11 @@ typography:
     fontWeight: 400
     lineHeight: 1.428
 rounded:
-  xs: 0.25rem
-  sm: 0.375rem
-  md: 0.5rem
-  lg: 0.625rem
-  xl: 0.875rem
+  xs: 0.125rem
+  sm: 0.25rem
+  md: 0.375rem
+  lg: 0.5rem
+  xl: 0.75rem
   2xl: 1rem
   full: 9999px
 borderWidth:
@@ -190,13 +190,13 @@ components:
   nav-link-hover:
     textColor: "{colors.primary}"
 elevation:
-  2xs: "0 1px 1px 0 rgb(0 0 0 / 0.20)"
-  xs: "0 1px 2px 0 rgb(0 0 0 / 0.25)"
-  sm: "0 1px 3px 0 rgb(0 0 0 / 0.30), 0 1px 2px -1px rgb(0 0 0 / 0.30)"
-  md: "0 4px 6px -1px rgb(0 0 0 / 0.35), 0 2px 4px -2px rgb(0 0 0 / 0.35)"
-  lg: "0 10px 15px -3px rgb(0 0 0 / 0.40), 0 4px 6px -4px rgb(0 0 0 / 0.40)"
-  xl: "0 20px 25px -5px rgb(0 0 0 / 0.45), 0 8px 10px -6px rgb(0 0 0 / 0.45)"
-  2xl: "0 25px 50px -12px rgb(0 0 0 / 0.60)"
+  2xs: "0 1px rgb(0 0 0 / 0.05)"
+  xs: "0 1px 2px 0 rgb(0 0 0 / 0.05)"
+  sm: "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)"
+  md: "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)"
+  lg: "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)"
+  xl: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)"
+  2xl: "0 25px 50px -12px rgb(0 0 0 / 0.25)"
 duration:
   fast: 150ms
   base: 300ms
@@ -366,7 +366,7 @@ Corners are gently rounded and consistent — soft enough to feel approachable a
 
 ## 7. Elevation & Depth
 
-Depth is carried first by tone, second by hairline, and only last by shadow. Surfaces step through a narrow luminance band — `popover`/`card` sit below `background` — so layering reads through color, not lift. Resting cards take `elevation.sm`, barely perceptible. Floating elements (menus, dropdowns) use `elevation.md`; popovers and the language/theme menus use `elevation.lg`; modals and dialogs reach `elevation.xl`. The shadow stack uses higher opacity than a light theme would (dark UIs need denser shadows to register) but is applied sparingly — most of the interface is flat, separated by `border` rules.
+Depth is carried first by tone, second by hairline, and only last by shadow. Surfaces step through a narrow luminance band — `popover`/`card` sit below `background` — so layering reads through color, not lift. Resting cards take `elevation.sm`, barely perceptible. Floating elements (menus, dropdowns) use `elevation.md`; popovers and the language/theme menus use `elevation.lg`; modals and dialogs reach `elevation.xl`. The shadow stack stays light and is applied sparingly — depth reads through tone and the `border` hairline, not lift, so most of the interface is flat.
 
 ### Decorative Depth
 
