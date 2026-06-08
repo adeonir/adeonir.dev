@@ -8,7 +8,9 @@ project:
   name: "adeonir.dev"
   language: "en"
   industry: "portfolio"
-  description: "Personal portfolio for Adeonir Kohl, a frontend developer with a graphic-design background, positioned on design + code (aesthetics and performance)."
+  title: "Adeonir Kohl | Portfolio"
+  description: "Personal portfolio for Adeonir Kohl, a design engineer focused on aesthetics and performance."
+  meta_description: "Design engineer building interfaces that look right and run fast"
 
 # The content tree mirrors docs/design/blueprint.md: surfaces home, work, project.
 # header and footer are persistent across all three surfaces — defined once on
@@ -30,7 +32,7 @@ content:
       display: "Hi, I'm Adeonir Kohl"
       headline: "I build interfaces that look right and run fast."
       body:
-        - "Frontend developer with a designer's background. I build the whole product, not just the UI — because the best code is the kind that delivers value without getting bogged down in the pursuit of perfection. I use AI-assisted workflows to ship faster without giving up craft."
+        - "I'm a design engineer — a frontend developer with a designer's background — and I own the whole product not just the UI, because the best code delivers value instead of chasing perfection."
       actions:
         primary: "See the work"
         secondary: "Get in touch"
@@ -39,7 +41,7 @@ content:
       eyebrow: "About me"
       headline: "From design to code."
       bio:
-        - "After years as a graphic designer, I moved into code. The shift wasn't a detour — it was a natural evolution that landed me right where design and engineering meet. I've been a frontend developer for 6+ years, and on the projects I run myself, I work as a design engineer — owning design and code end to end."
+        - "After years as a graphic designer, I moved into code — not a detour, it was a natural evolution that landed me right where design and engineering meet. I've been a frontend developer for 6+ years, building for companies in Brazil, Europe, and recently the US. On the projects I run myself, I get hands-on with design and code, end to end."
         - "These days I'm digging into product engineering and bringing it into my projects — owning more of the product than the interface alone."
         - "I work with AI-assisted and agentic workflows for the heavy lifting, always under my supervision. It lets me move fast without trading away craft or judgment."
       code-block:
