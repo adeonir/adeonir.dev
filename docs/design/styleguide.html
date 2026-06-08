@@ -11,23 +11,23 @@
   /* ===== DESIGN TOKENS — DESIGN.md frontmatter as plain CSS custom properties (default Mocha skin) ===== */
   :root {
     /* colors */
-    --color-primary: #38bdf8;
-    --color-primary-foreground: #11111b;
-    --color-secondary: #ff3d8a;
-    --color-secondary-foreground: #11111b;
-    --color-accent: #313244;
-    --color-accent-foreground: #cdd6f4;
-    --color-muted: #313244;
-    --color-muted-foreground: #a6adc8;
-    --color-background: #1e1e2e;
-    --color-foreground: #cdd6f4;
-    --color-card: #181825;
-    --color-card-foreground: #cdd6f4;
-    --color-popover: #181825;
-    --color-popover-foreground: #cdd6f4;
-    --color-border: #313244;
-    --color-input: #313244;
-    --color-ring: #38bdf8;
+    --color-primary: oklch(75.4% 0.139 232.66);
+    --color-primary-foreground: oklch(18.3% 0.020 284.20);
+    --color-secondary: oklch(67.2% 0.233 2.27);
+    --color-secondary-foreground: oklch(18.3% 0.020 284.20);
+    --color-accent: oklch(32.4% 0.032 281.98);
+    --color-accent-foreground: oklch(87.9% 0.043 272.28);
+    --color-muted: oklch(32.4% 0.032 281.98);
+    --color-muted-foreground: oklch(75.1% 0.040 273.93);
+    --color-background: oklch(24.3% 0.030 283.91);
+    --color-foreground: oklch(87.9% 0.043 272.28);
+    --color-card: oklch(21.6% 0.025 284.06);
+    --color-card-foreground: oklch(87.9% 0.043 272.28);
+    --color-popover: oklch(21.6% 0.025 284.06);
+    --color-popover-foreground: oklch(87.9% 0.043 272.28);
+    --color-border: oklch(32.4% 0.032 281.98);
+    --color-input: oklch(32.4% 0.032 281.98);
+    --color-ring: oklch(75.4% 0.139 232.66);
     /* typography */
     --font-display-family: "Geist"; --font-display-size: 3.75rem; --font-display-weight: 800; --font-display-lh: 1; --font-display-ls: -0.025em;
     --font-heading-family: "Geist"; --font-heading-size: 1.875rem; --font-heading-weight: 700; --font-heading-lh: 1.2; --font-heading-ls: 0;
@@ -60,14 +60,14 @@
   }
   /* ===== Light skin (Latte) — overrides tokens for light specimens ===== */
   .light {
-    --color-primary: #04a5e5; /* primary-foreground stays dark (#11111b) — white fails contrast on primary */
-    --color-secondary: #e0306f; --color-secondary-foreground: #eff1f5;
-    --color-accent: #ccd0da; --color-accent-foreground: #4c4f69;
-    --color-muted: #ccd0da; --color-muted-foreground: #6c6f85;
-    --color-background: #eff1f5; --color-foreground: #4c4f69;
-    --color-card: #e6e9ef; --color-card-foreground: #4c4f69;
-    --color-popover: #e6e9ef; --color-popover-foreground: #4c4f69;
-    --color-border: #ccd0da; --color-input: #ccd0da; --color-ring: #04a5e5;
+    --color-primary: oklch(68.2% 0.145 235.38); /* primary-foreground stays dark (oklch(18.3% 0.020 284.20) / #11111b) — white fails contrast on primary */
+    --color-secondary: oklch(60.4% 0.213 5.46); --color-secondary-foreground: oklch(95.8% 0.006 264.53);
+    --color-accent: oklch(85.7% 0.014 268.48); --color-accent-foreground: oklch(43.5% 0.043 279.33);
+    --color-muted: oklch(85.7% 0.014 268.48); --color-muted-foreground: oklch(54.7% 0.034 279.08);
+    --color-background: oklch(95.8% 0.006 264.53); --color-foreground: oklch(43.5% 0.043 279.33);
+    --color-card: oklch(93.3% 0.009 264.52); --color-card-foreground: oklch(43.5% 0.043 279.33);
+    --color-popover: oklch(93.3% 0.009 264.52); --color-popover-foreground: oklch(43.5% 0.043 279.33);
+    --color-border: oklch(85.7% 0.014 268.48); --color-input: oklch(85.7% 0.014 268.48); --color-ring: oklch(68.2% 0.145 235.38);
   }
 
   /* ===== Neutral chrome — system UI, never project tokens ===== */

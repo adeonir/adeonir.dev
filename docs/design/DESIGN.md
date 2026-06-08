@@ -3,54 +3,56 @@ name: adeonir.dev
 description: Calm pastel-dark developer identity where a single blue accent carries every action and a warm pink punctuates emphasis
 colors:
   # ── Mocha: Catppuccin dark-flavor neutral scale, light→dark (the dark skin) ──
-  mocha-50: "#cdd6f4"
-  mocha-100: "#bac2de"
-  mocha-150: "#a6adc8"
-  mocha-200: "#9399b2"
-  mocha-300: "#7f849c"
-  mocha-400: "#6c7086"
-  mocha-500: "#585b70"
-  mocha-600: "#45475a"
-  mocha-700: "#313244"
-  mocha-800: "#1e1e2e"
-  mocha-900: "#181825"
-  mocha-950: "#11111b"
+  mocha-50: { hex: "#cdd6f4", oklch: "oklch(87.9% 0.043 272.28)" }
+  mocha-100: { hex: "#bac2de", oklch: "oklch(81.7% 0.040 272.86)" }
+  mocha-150: { hex: "#a6adc8", oklch: "oklch(75.1% 0.040 273.93)" }
+  mocha-200: { hex: "#9399b2", oklch: "oklch(68.7% 0.037 274.73)" }
+  mocha-300: { hex: "#7f849c", oklch: "oklch(61.8% 0.037 276.00)" }
+  mocha-400: { hex: "#6c7086", oklch: "oklch(55.0% 0.034 277.10)" }
+  mocha-500: { hex: "#585b70", oklch: "oklch(47.7% 0.034 278.64)" }
+  mocha-600: { hex: "#45475a", oklch: "oklch(40.4% 0.032 280.15)" }
+  mocha-700: { hex: "#313244", oklch: "oklch(32.4% 0.032 281.98)" }
+  mocha-800: { hex: "#1e1e2e", oklch: "oklch(24.3% 0.030 283.91)" }
+  mocha-900: { hex: "#181825", oklch: "oklch(21.6% 0.025 284.06)" }
+  mocha-950: { hex: "#11111b", oklch: "oklch(18.3% 0.020 284.20)" }
   # ── Latte: Catppuccin light-flavor neutral scale (position-numbered; hex dark→light) ──
-  latte-50: "#4c4f69"
-  latte-100: "#5c5f77"
-  latte-150: "#6c6f85"
-  latte-200: "#7c7f93"
-  latte-300: "#8c8fa1"
-  latte-400: "#9ca0b0"
-  latte-500: "#acb0be"
-  latte-600: "#bcc0cc"
-  latte-700: "#ccd0da"
-  latte-800: "#dce0e8"
-  latte-900: "#e6e9ef"
-  latte-950: "#eff1f5"
+  latte-50: { hex: "#4c4f69", oklch: "oklch(43.5% 0.043 279.33)" }
+  latte-100: { hex: "#5c5f77", oklch: "oklch(49.2% 0.038 279.30)" }
+  latte-150: { hex: "#6c6f85", oklch: "oklch(54.7% 0.034 279.08)" }
+  latte-200: { hex: "#7c7f93", oklch: "oklch(60.1% 0.030 278.69)" }
+  latte-300: { hex: "#8c8fa1", oklch: "oklch(65.4% 0.027 278.12)" }
+  latte-400: { hex: "#9ca0b0", oklch: "oklch(70.8% 0.024 274.60)" }
+  latte-500: { hex: "#acb0be", oklch: "oklch(75.8% 0.020 273.15)" }
+  latte-600: { hex: "#bcc0cc", oklch: "oklch(80.8% 0.017 271.20)" }
+  latte-700: { hex: "#ccd0da", oklch: "oklch(85.7% 0.014 268.48)" }
+  latte-800: { hex: "#dce0e8", oklch: "oklch(90.6% 0.012 264.51)" }
+  latte-900: { hex: "#e6e9ef", oklch: "oklch(93.3% 0.009 264.52)" }
+  latte-950: { hex: "#eff1f5", oklch: "oklch(95.8% 0.006 264.53)" }
   # ── Brand accents: 4 distinct named colors (waters + flowers); the skin selects which ──
-  stream: "#38bdf8"
-  ocean: "#04a5e5"
-  azalea: "#ff3d8a"
-  hibiscus: "#e0306f"
+  stream: { hex: "#38bdf8", oklch: "oklch(75.4% 0.139 232.66)" }
+  ocean: { hex: "#04a5e5", oklch: "oklch(68.2% 0.145 235.38)" }
+  azalea: { hex: "#ff3d8a", oklch: "oklch(67.2% 0.233 2.27)" }
+  hibiscus: { hex: "#e0306f", oklch: "oklch(60.4% 0.213 5.46)" }
+  # ── Skin-neutral ink: dark text on bright accent fills (both skins) ──
+  ink: { hex: "#11111b", oklch: "oklch(18.3% 0.020 284.20)" }
   # ── Semantic (default Mocha/dark skin; aliases the scales above) ──
-  primary: "#38bdf8"
-  primary-foreground: "#11111b"
-  secondary: "#ff3d8a"
-  secondary-foreground: "#11111b"
-  accent: "#313244"
-  accent-foreground: "#cdd6f4"
-  muted: "#313244"
-  muted-foreground: "#a6adc8"
-  background: "#1e1e2e"
-  foreground: "#cdd6f4"
-  card: "#181825"
-  card-foreground: "#cdd6f4"
-  popover: "#181825"
-  popover-foreground: "#cdd6f4"
-  border: "#313244"
-  input: "#313244"
-  ring: "#38bdf8"
+  primary: { hex: "#38bdf8", oklch: "oklch(75.4% 0.139 232.66)" }
+  primary-foreground: { hex: "#11111b", oklch: "oklch(18.3% 0.020 284.20)" }
+  secondary: { hex: "#ff3d8a", oklch: "oklch(67.2% 0.233 2.27)" }
+  secondary-foreground: { hex: "#11111b", oklch: "oklch(18.3% 0.020 284.20)" }
+  accent: { hex: "#313244", oklch: "oklch(32.4% 0.032 281.98)" }
+  accent-foreground: { hex: "#cdd6f4", oklch: "oklch(87.9% 0.043 272.28)" }
+  muted: { hex: "#313244", oklch: "oklch(32.4% 0.032 281.98)" }
+  muted-foreground: { hex: "#a6adc8", oklch: "oklch(75.1% 0.040 273.93)" }
+  background: { hex: "#1e1e2e", oklch: "oklch(24.3% 0.030 283.91)" }
+  foreground: { hex: "#cdd6f4", oklch: "oklch(87.9% 0.043 272.28)" }
+  card: { hex: "#181825", oklch: "oklch(21.6% 0.025 284.06)" }
+  card-foreground: { hex: "#cdd6f4", oklch: "oklch(87.9% 0.043 272.28)" }
+  popover: { hex: "#181825", oklch: "oklch(21.6% 0.025 284.06)" }
+  popover-foreground: { hex: "#cdd6f4", oklch: "oklch(87.9% 0.043 272.28)" }
+  border: { hex: "#313244", oklch: "oklch(32.4% 0.032 281.98)" }
+  input: { hex: "#313244", oklch: "oklch(32.4% 0.032 281.98)" }
+  ring: { hex: "#38bdf8", oklch: "oklch(75.4% 0.139 232.66)" }
 typography:
   display:
     fontFamily: "Geist"
@@ -236,39 +238,40 @@ The primitive layer. Every semantic token below aliases a step of the active ski
 
 - **mocha** — Catppuccin dark flavor, 12-step ramp light→dark: `mocha-50` (#cdd6f4) · `mocha-100` (#bac2de) · `mocha-150` (#a6adc8) · `mocha-200` (#9399b2) · `mocha-300` (#7f849c) · `mocha-400` (#6c7086) · `mocha-500` (#585b70) · `mocha-600` (#45475a) · `mocha-700` (#313244) · `mocha-800` (#1e1e2e) · `mocha-900` (#181825) · `mocha-950` (#11111b)
 - **latte** — Catppuccin light flavor, 12-step ramp (hex runs dark→light): `latte-50` (#4c4f69) · `latte-100` (#5c5f77) · `latte-150` (#6c6f85) · `latte-200` (#7c7f93) · `latte-300` (#8c8fa1) · `latte-400` (#9ca0b0) · `latte-500` (#acb0be) · `latte-600` (#bcc0cc) · `latte-700` (#ccd0da) · `latte-800` (#dce0e8) · `latte-900` (#e6e9ef) · `latte-950` (#eff1f5)
-- **stream** (#38bdf8) — bright water blue; the interactive accent on the dark skin.
-- **ocean** (#04a5e5) — deep water blue; the interactive accent on the light skin.
-- **azalea** (#ff3d8a) — bright bloom pink; the emphasis accent on the dark skin.
-- **hibiscus** (#e0306f) — deep bloom pink; the emphasis accent on the light skin.
+- **stream** (oklch(75.4% 0.139 232.66) / #38bdf8) — bright water blue; the interactive accent on the dark skin.
+- **ocean** (oklch(68.2% 0.145 235.38) / #04a5e5) — deep water blue; the interactive accent on the light skin.
+- **azalea** (oklch(67.2% 0.233 2.27) / #ff3d8a) — bright bloom pink; the emphasis accent on the dark skin.
+- **hibiscus** (oklch(60.4% 0.213 5.46) / #e0306f) — deep bloom pink; the emphasis accent on the light skin.
+- **ink** (oklch(18.3% 0.020 284.20) / #11111b) — skin-neutral near-black; the dark text that sits on bright accent fills in both skins (no latte step is dark enough, so it is its own primitive rather than a scale step).
 
 ### Primary
 
-- **stream** (#38bdf8) → `primary` — every interactive signal: CTA fills, links, focus, hover, eyebrow labels. The one hue that acts. Light skin selects `ocean` (#04a5e5).
-- **mocha-950** (#11111b) → `primary-foreground` — dark ink on the blue fill, both skins; white fails contrast on it.
-- **stream** (#38bdf8) → `ring` — focus ring, same hue as primary. Light skin selects `ocean` (#04a5e5).
+- **stream** (oklch(75.4% 0.139 232.66) / #38bdf8) → `primary` — every interactive signal: CTA fills, links, focus, hover, eyebrow labels. The one hue that acts. Light skin selects `ocean` (oklch(68.2% 0.145 235.38) / #04a5e5).
+- **ink** (oklch(18.3% 0.020 284.20) / #11111b) → `primary-foreground` — skin-neutral dark ink on the blue fill, both skins; white fails contrast on it.
+- **stream** (oklch(75.4% 0.139 232.66) / #38bdf8) → `ring` — focus ring, same hue as primary. Light skin selects `ocean` (oklch(68.2% 0.145 235.38) / #04a5e5).
 
 ### Secondary & Accent
 
-- **azalea** (#ff3d8a) → `secondary` — emphasis only: the second word of a heading, a list marker, one keyword. Never interactive. Light skin selects `hibiscus` (#e0306f).
-- **mocha-950** (#11111b) → `secondary-foreground` — ink on a pink chip. Light skin flips to `latte-950` (#eff1f5), since the light bloom is darker.
-- **mocha-700** (#313244) → `accent` — neutral hover surface; carries no chroma. Light skin: `latte-700` (#ccd0da).
-- **mocha-50** (#cdd6f4) → `accent-foreground` — text on the neutral accent surface. Light skin: `latte-50` (#4c4f69).
+- **azalea** (oklch(67.2% 0.233 2.27) / #ff3d8a) → `secondary` — emphasis only: the second word of a heading, a list marker, one keyword. Never interactive. Light skin selects `hibiscus` (oklch(60.4% 0.213 5.46) / #e0306f).
+- **ink** (oklch(18.3% 0.020 284.20) / #11111b) → `secondary-foreground` — the same skin-neutral ink on a dark pink chip. Light skin flips to `latte-950` (oklch(95.8% 0.006 264.53) / #eff1f5), since the light bloom is darker.
+- **mocha-700** (oklch(32.4% 0.032 281.98) / #313244) → `accent` — neutral hover surface; carries no chroma. Light skin: `latte-700` (oklch(85.7% 0.014 268.48) / #ccd0da).
+- **mocha-50** (oklch(87.9% 0.043 272.28) / #cdd6f4) → `accent-foreground` — text on the neutral accent surface. Light skin: `latte-50` (oklch(43.5% 0.043 279.33) / #4c4f69).
 
 ### Surface & Background
 
-- **mocha-800** (#1e1e2e) → `background` — the main resting field, a deep violet-charcoal, never pure black. Light skin: `latte-950` (#eff1f5).
-- **mocha-900** (#181825) → `card` — cards and elevated containers sit one step deeper, receding behind hairline borders. Light skin: `latte-900` (#e6e9ef).
-- **mocha-900** (#181825) → `popover` — popovers share the card step for a unified recessed family. Light skin: `latte-900` (#e6e9ef).
-- **mocha-700** (#313244) → `border` — hairline dividers and edges; the primary depth cue in place of shadow. Light skin: `latte-700` (#ccd0da).
-- **mocha-700** (#313244) → `input` — input strokes share the border step at rest. Light skin: `latte-700` (#ccd0da).
+- **mocha-800** (oklch(24.3% 0.030 283.91) / #1e1e2e) → `background` — the main resting field, a deep violet-charcoal, never pure black. Light skin: `latte-950` (oklch(95.8% 0.006 264.53) / #eff1f5).
+- **mocha-900** (oklch(21.6% 0.025 284.06) / #181825) → `card` — cards and elevated containers sit one step deeper, receding behind hairline borders. Light skin: `latte-900` (oklch(93.3% 0.009 264.52) / #e6e9ef).
+- **mocha-900** (oklch(21.6% 0.025 284.06) / #181825) → `popover` — popovers share the card step for a unified recessed family. Light skin: `latte-900` (oklch(93.3% 0.009 264.52) / #e6e9ef).
+- **mocha-700** (oklch(32.4% 0.032 281.98) / #313244) → `border` — hairline dividers and edges; the primary depth cue in place of shadow. Light skin: `latte-700` (oklch(85.7% 0.014 268.48) / #ccd0da).
+- **mocha-700** (oklch(32.4% 0.032 281.98) / #313244) → `input` — input strokes share the border step at rest. Light skin: `latte-700` (oklch(85.7% 0.014 268.48) / #ccd0da).
 
 ### Neutrals & Text
 
-- **mocha-50** (#cdd6f4) → `foreground` — primary text and headings; soft, never clinical white. Light skin: `latte-50` (#4c4f69).
-- **mocha-50** (#cdd6f4) → `card-foreground` — text on recessed panels. Light skin: `latte-50` (#4c4f69).
-- **mocha-50** (#cdd6f4) → `popover-foreground` — text on popovers. Light skin: `latte-50` (#4c4f69).
-- **mocha-150** (#a6adc8) → `muted-foreground` — secondary text, captions, supporting copy. Light skin: `latte-150` (#6c6f85).
-- **mocha-700** (#313244) → `muted` — muted fills and disabled surfaces. Light skin: `latte-700` (#ccd0da).
+- **mocha-50** (oklch(87.9% 0.043 272.28) / #cdd6f4) → `foreground` — primary text and headings; soft, never clinical white. Light skin: `latte-50` (oklch(43.5% 0.043 279.33) / #4c4f69).
+- **mocha-50** (oklch(87.9% 0.043 272.28) / #cdd6f4) → `card-foreground` — text on recessed panels. Light skin: `latte-50` (oklch(43.5% 0.043 279.33) / #4c4f69).
+- **mocha-50** (oklch(87.9% 0.043 272.28) / #cdd6f4) → `popover-foreground` — text on popovers. Light skin: `latte-50` (oklch(43.5% 0.043 279.33) / #4c4f69).
+- **mocha-150** (oklch(75.1% 0.040 273.93) / #a6adc8) → `muted-foreground` — secondary text, captions, supporting copy. Light skin: `latte-150` (oklch(54.7% 0.034 279.08) / #6c6f85).
+- **mocha-700** (oklch(32.4% 0.032 281.98) / #313244) → `muted` — muted fills and disabled surfaces. Light skin: `latte-700` (oklch(85.7% 0.014 268.48) / #ccd0da).
 
 ## 3. Typography Rules
 
@@ -435,16 +438,16 @@ Project thumbnails hold a consistent aspect ratio (about 16:10) with cover cropp
 
 ### Quick Token Reference
 
-- Primary: stream (#38bdf8) → `primary`
-- Primary hover: stream at 90% (#38bdf8 / 90%)
-- Emphasis: azalea (#ff3d8a) → `secondary`
-- Background: mocha-800 (#1e1e2e) → `background`
-- Card surface: mocha-900 (#181825) → `card`
-- Heading text: mocha-50 (#cdd6f4) → `foreground`
-- Body text: mocha-50 (#cdd6f4) → `foreground`
-- Muted text: mocha-150 (#a6adc8) → `muted-foreground`
-- Border: mocha-700 (#313244) → `border`
-- Focus ring: stream (#38bdf8) → `ring`
+- Primary: stream (oklch(75.4% 0.139 232.66) / #38bdf8) → `primary`
+- Primary hover: stream at 90% (oklch(75.4% 0.139 232.66) / #38bdf8, 90%)
+- Emphasis: azalea (oklch(67.2% 0.233 2.27) / #ff3d8a) → `secondary`
+- Background: mocha-800 (oklch(24.3% 0.030 283.91) / #1e1e2e) → `background`
+- Card surface: mocha-900 (oklch(21.6% 0.025 284.06) / #181825) → `card`
+- Heading text: mocha-50 (oklch(87.9% 0.043 272.28) / #cdd6f4) → `foreground`
+- Body text: mocha-50 (oklch(87.9% 0.043 272.28) / #cdd6f4) → `foreground`
+- Muted text: mocha-150 (oklch(75.1% 0.040 273.93) / #a6adc8) → `muted-foreground`
+- Border: mocha-700 (oklch(32.4% 0.032 281.98) / #313244) → `border`
+- Focus ring: stream (oklch(75.4% 0.139 232.66) / #38bdf8) → `ring`
 
 ### Example Component Prompts
 
