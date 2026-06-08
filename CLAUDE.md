@@ -4,9 +4,20 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository state
 
-This is a **documentation-only repository** — no application code is scaffolded yet. The stack, architecture, design system, and product scope are fully locked in `docs/`.
+The Astro app is **scaffolded but not yet built out**: tooling, runtime integrations, and routing skeleton are in place; the real site pages (home/work/project) do not exist yet. Only a holding page (`/`) and a dev-only landing stub ship today. The stack, architecture, design system, and product scope remain fully locked in `docs/` — `docs/tech/design.md` §3.7–§3.8 is authoritative for the toolchain; do not invent alternatives.
 
-Because there is no `package.json` yet, there are no build/lint/test commands to run. The intended toolchain and pipeline are specified in `docs/tech/design.md` §3.7–§3.8 — follow it when scaffolding; do not invent alternatives.
+Package manager is **pnpm** (`pnpm-lock.yaml`). No test runner is configured yet — there are no test commands.
+
+## Commands
+
+- `pnpm dev` — Astro dev server. Middleware rewrites `/` to the dev-only landing surface (see below).
+- `pnpm build` — production build. Holding page stays at `/`; the `_landing` route 404s (excluded from prod).
+- `pnpm preview` — serve the production build locally.
+- `pnpm typecheck` — `astro check` (TS + `.astro` diagnostics).
+- `pnpm lint` — autofix: `biome check --write` (JS/TS/CSS/JSON) + `prettier --write` (`.astro`/`.yaml`).
+- `pnpm check` — CI-style, no writes: `biome check` + `prettier --check`. Run before committing.
+
+Formatting is split by file type: **Biome** owns JS/TS/CSS/JSON (`.astro` is excluded in `biome.json`); **Prettier** owns `.astro`/`.yaml`. Tailwind class sorting follows the same split — Biome `useSortedClasses` (functions `cn`/`clsx`/`cva`/`tv`) for code, `prettier-plugin-tailwindcss` for `.astro`. Lefthook runs both on staged files pre-commit.
 
 ## Source-of-truth documents
 
@@ -35,6 +46,8 @@ When a doc and this file disagree, the doc wins. Change specs via the `spec-driv
 ## Conventions (per design.md §3.3)
 
 - **Files:** `kebab-case`. **Component default export:** `PascalCase` (`project-card.astro` → `ProjectCard`). Slugs, folders, routes lowercase.
+- **Imports:** `~/` alias (resolves to `src/`, per `tsconfig.json`) for any cross-directory import; reserve `./`/`../` for same-directory files. JSX is Preact (`jsxImportSource: preact`) — no React on the client.
+- **Local conventions in `.claude/rules/`** are auto-loaded and enforced: kebab-case filenames, `~/` alias imports, Tailwind canonical shorthand over arbitrary values, and commit/PR-merge format. Read them before large edits.
 - **Routing / i18n:** routing-based, `i18n.routing.prefixDefaultLocale = false`. Portuguese is the default and ships bare at `/`, `/work`, `/work/[slug]`, `/404`; English mirrors under `/en/...`. Locale keys are `pt`/`en` but emitted `lang`/`hreflang` are `pt-BR`/`en` (decoupled). Build localized links with `getRelativeLocaleUrl()`. No client-side language switching, no browser auto-detect.
 - **Localized content:** default locale is bare (`*.yaml`, `index.mdx`); English carries an `.en` suffix (`*.en.yaml`, `index.en.mdx`). Cover/gallery images are shared across locales.
 - **Quality budget (CI-enforced gate):** mobile Lighthouse Performance ≥ 95, Accessibility/Best-Practices/SEO 100; LCP < 2.0s, CLS < 0.1, INP < 200ms; WCAG 2.1 AA. Builds fail on regression.
@@ -54,5 +67,6 @@ When a doc and this file disagree, the doc wins. Change specs via the `spec-driv
 
 - `.mcp.json` — declares the `ark-ui` MCP server (`@ark-ui/mcp`), used to scaffold UI primitives. See UI primitives below.
 - `.artifacts/` — scratch space (design variant HTML, epic/story drafts, a Pencil `.pen` file). Not shipped; not authoritative — `docs/` is.
-- `index.html` / `logo.png` — holding page served at `/`.
+- `src/pages/index.astro` / `public/logo.svg` — holding page served at `/` until the real landing ships.
+- **Dev-only landing surface** — three files cooperate so the landing can be assembled at `/` in dev without shipping in prod: `src/pages/_landing.astro` (the stub; `_`-prefix keeps it out of the prod build), the `landing()` integration in `astro.config.mjs` (injects the `/_landing` route only under `astro dev`), and `src/middleware.ts` (rewrites `/` → `/_landing` guarded by `import.meta.env.DEV`). All three no-op in production.
 - Figma source: https://www.figma.com/design/T4wd9lMdUUdpfpmbT3C0bN/Adeonir

@@ -1,8 +1,8 @@
 ---
 name: adeonir-dev-portfolio
 created: 2026-06-06
-updated: 2026-06-06
-status: draft
+updated: 2026-06-07
+status: accepted
 sources:
   - docs/product/prd.md
   - docs/design/copy.yaml
@@ -223,6 +223,9 @@ erDiagram
   Vitest (+ browser mode) → Playwright → Lighthouse CI → build →
   `wrangler pages deploy`. The deploy job is downstream of the test jobs, so it
   never runs on a red build.
+- **Local quality gate:** lefthook runs format and lint on staged files at
+  pre-commit, blocking the commit on violation — a fast local mirror of the CI
+  lint/format step so a red tree never reaches CI.
 - **Release strategy:** production deploys from `main`; every PR/branch gets a
   preview deployment via `wrangler pages deploy --branch=<name>`.
 - **Rendering:** static prerender for all content pages; the contact route is
@@ -254,6 +257,7 @@ erDiagram
 | i18n strategy | Routing-based: pt bare, en `/en`, no auto-detect | Client-side (react-i18next style); both-locales-prefixed; browser detection | Keeps the perf budget and SEO/hreflang intact; clean prefix-free URL for the primary (BR) audience | — |
 | Analytics | Umami Cloud (free) | Cloudflare Web Analytics | Need custom events (contact submissions) and UTM campaigns, which CF Web Analytics does not cover on free | — |
 | E2E testing | Keep Playwright (scoped) | Drop it | Component tests can't exercise the contact Action, routing, or 404 — the only places that can actually break | — |
+| Pre-commit hook manager | lefthook | husky; simple-git-hooks; native git hooks | Single YAML config, parallel hook execution, language-agnostic Go binary with no Node runtime in the hook path; husky needs more wiring, simple-git-hooks is leaner but less capable, native hooks aren't shareable | — |
 
 **Record column:** `—` means the design doc is the only record. No decision has
 been promoted to an ADR yet.
