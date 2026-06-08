@@ -22,8 +22,8 @@ the explicit differentiator: the site itself is the proof of craft, so the
 architecture optimizes for near-zero shipped JavaScript and top quality scores.
 
 The surrounding landscape is intentionally small: Cloudflare hosts and runs the
-one on-demand route, Resend delivers transactional email, Cloudflare Email
-Routing forwards the branded inbox, and Umami Cloud collects cookieless
+one on-demand route, Resend delivers transactional email, a mailbox on the
+domain receives the branded inbox, and Umami Cloud collects cookieless
 analytics. There is no database and no backend beyond contact handling.
 
 > See PRD: `docs/product/prd.md`
@@ -103,16 +103,15 @@ flowchart LR
   CF --> App[adeonir.dev Astro app]
   App --> Resend[Resend - transactional email]
   Resend --> Submitter[Confirmation to visitor email]
-  Resend --> Inbox[Notification to contato@adeonir.dev]
-  Inbox --> Routing[CF Email Routing] --> Gmail[adeonir@gmail.com]
+  Resend --> Inbox[Notification to contato@adeonir.dev mailbox]
   App --> Umami[Umami Cloud - analytics]
   GH[GitHub Actions CI] --> Deploy[wrangler pages deploy] --> CF
 ```
 
 - **Actors:** site visitors (the three PRD personas).
 - **External services:** Cloudflare Pages (host + edge runtime), Resend
-  (outbound transactional email), Cloudflare Email Routing (inbound forward of
-  `contato@adeonir.dev` → Gmail), Umami Cloud (analytics), GitHub Actions (CI).
+  (outbound transactional email), a hosted mailbox on `adeonir.dev` (inbound
+  `contato@adeonir.dev`), Umami Cloud (analytics), GitHub Actions (CI).
 
 ### 3.3 Conventions
 
@@ -135,8 +134,8 @@ flowchart LR
 
 ### 3.4 Domain
 
-- **Bounded contexts:** two — *content* (projects + section copy, build-time,
-  read-only) and *contact* (transient inbound message, runtime, write-only to
+- **Bounded contexts:** two — _content_ (projects + section copy, build-time,
+  read-only) and _contact_ (transient inbound message, runtime, write-only to
   email).
 
 | Entity | Purpose | Key Invariants | Storage |
@@ -162,9 +161,9 @@ erDiagram
   PROJECT }|--|| LOCALE : "body authored per"
 ```
 
-- **Ubiquitous glossary:** *locale* (pt | en), *island* (a hydrated Preact
-  component), *section copy* (UI text for one section, per locale), *project
-  entry* (one MDX case study), *featured* (ordered home curation).
+- **Ubiquitous glossary:** _locale_ (pt | en), _island_ (a hydrated Preact
+  component), _section copy_ (UI text for one section, per locale), _project
+  entry_ (one MDX case study), _featured_ (ordered home curation).
 
 ### 3.5 Security & Compliance
 
@@ -247,9 +246,9 @@ erDiagram
 | Decision | Chosen | Rejected | Reasoning | Record |
 |----------|--------|----------|-----------|--------|
 | Framework | Astro (hybrid) | TanStack Start | Content-first site where performance is the message; TanStack Start is an app framework solving a content problem — its loaders/server-fns are app features this site does not need | — |
-| Host / rendering | Cloudflare Pages, hybrid | Vercel / Netlify; fully static | Free edge hosting on the workerd runtime with a native ecosystem (Email Routing, rate-limit binding, Pages previews); hybrid keeps the form first-party (one on-demand route) while everything else prerenders. Vercel/Netlify are equally capable; fully static would force the form onto a third party | — |
+| Host / rendering | Cloudflare Pages, hybrid | Vercel / Netlify; fully static | Free edge hosting on the workerd runtime with a native ecosystem (rate-limit binding, Pages previews); hybrid keeps the form first-party (one on-demand route) while everything else prerenders. Vercel/Netlify are equally capable; fully static would force the form onto a third party | — |
 | Deploy pipeline | Wrangler in GitHub Actions | Cloudflare dashboard git integration | A real test suite should gate deploy directly; in Actions the deploy job is downstream of tests, so red never ships (vs. branch-protection-by-proxy) | — |
-| Contact delivery | Resend (2 emails) | CF Email Routing send-binding; D1 persistence | The flow must email the *visitor* (arbitrary address) — the send-binding can only reach verified self-addresses; no DB needed since emails are the record | — |
+| Contact delivery | Resend (2 emails) | CF Email Routing send-binding; D1 persistence | The flow must email the _visitor_ (arbitrary address) — the send-binding can only reach verified self-addresses; no DB needed since emails are the record | — |
 | Spam defense | Honeypot + Workers rate-limit | Turnstile from day one | Low-volume personal form; Turnstile adds a script + widget that costs perf — reserved until spam is proven | — |
 | UI runtime | Preact | React | ~4 tiny islands; Preact gives the same JSX/hooks API at a fraction of the bytes. React appears only via react-email, server-side, never shipped | — |
 | Styling | Tailwind | Vanilla CSS; CSS Modules | Existing dual-skin tokens map cleanly to generated utilities; first-class Astro integration | — |
