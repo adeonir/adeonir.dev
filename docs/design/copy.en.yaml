@@ -6,11 +6,11 @@ metadata:
 
 project:
   name: "adeonir.dev"
-  language: "pt"
+  language: "en"
   industry: "portfolio"
-  title: "Adeonir Kohl | Portfólio"
-  description: "Portfólio pessoal de Adeonir Kohl, um design engineer focado em estética e performance."
-  meta_description: "Design engineer criando interfaces que são bonitas e rodam rápido"
+  title: "Adeonir Kohl | Portfolio"
+  description: "Personal portfolio for Adeonir Kohl, a design engineer focused on aesthetics and performance."
+  meta_description: "Design engineer building interfaces that look beautiful and run fast"
 
 # The content tree mirrors docs/design/blueprint.md: surfaces home, work, project.
 # header and footer are persistent across all three surfaces — defined once on
@@ -23,27 +23,27 @@ content:
       logo:
         text: "adeonir.dev"
       nav:
-        - text: "Sobre"
-        - text: "Projetos"
-        - text: "Contato"
+        - text: "About"
+        - text: "Projects"
+        - text: "Contact"
 
     hero:
       eyebrow: "Design Engineer"
-      display: "Olá, sou o Adeonir Kohl"
-      headline: "Construo interfaces que são bonitas e rodam rápido."
+      display: "Hi, I'm Adeonir Kohl"
+      headline: "I build interfaces that look beautiful and run fast."
       body:
-        - "Sou um design engineer — um desenvolvedor frontend com bagagem de designer — e cuido do produto inteiro, não só da interface, porque o melhor código entrega valor em vez de perseguir a perfeição."
+        - "I'm a design engineer — a frontend developer with a designer's background — and I own the whole product not just the UI, because the best code delivers value instead of chasing perfection."
       actions:
-        primary: "Ver os projetos"
-        secondary: "Entrar em contato"
+        primary: "See the work"
+        secondary: "Get in touch"
 
     about:
-      eyebrow: "Sobre mim"
-      headline: "Do design ao código."
+      eyebrow: "About me"
+      headline: "From design to code."
       bio:
-        - "Depois de anos como designer gráfico, migrei para o código — isso não foi um desvio, foi uma evolução natural que me trouxe exatamente para onde design e engenharia se encontram. Sou desenvolvedor frontend há mais de 6 anos, trabalhando para empresas no Brasil, na Europa e, mais recentemente, nos EUA. Nos projetos que toco sozinho, coloco a mão na massa no design e no código, de ponta a ponta."
-        - "Atualmente estou me aprofundando em product engineering e trazendo isso para os meus projetos — assumindo mais do produto do que apenas a interface."
-        - "Eu trabalho com AI-assisted e agentic workflows para o trabalho pesado, sempre sob minha supervisão (HITL - Human in the loop). Isso me permite avançar rápido sem abrir mão de qualidade e bom senso."
+        - "After years as a graphic designer, I moved into code — not a detour, it was a natural evolution that landed me right where design and engineering meet. I've been a frontend developer for 6+ years, working for companies in Brazil, Europe, and recently the US. On the projects I run myself, I get hands-on with design and code, end to end."
+        - "These days I'm digging into product engineering and bringing it into my projects — owning more of the product than the interface alone."
+        - "I work with AI-assisted and agentic workflows for the heavy lifting, always under my supervision (HITL - Human in the loop). It lets me move fast without trading away craft or judgment."
       code-block:
         language: "ts"
         code: |
@@ -53,13 +53,13 @@ content:
             based: 'Salvador do Sul, RS',
             focus: 'Design + Code + Product',
             stack: ['Figma', 'React', 'TypeScript', 'Tailwind CSS'],
-            available: 'Aberto a colaborações',
-            // Qualidade e entrega andam juntas.
+            available: 'Open to collaborations',
+            // Quality and delivery walk together.
           }
 
     stack:
       eyebrow: "Tech Stack"
-      headline: "As ferramentas que uso para construir."
+      headline: "The tools I build with."
       tools:
         - title: "Frontend"
           items:
@@ -78,7 +78,7 @@ content:
             - "Prisma"
             - "PostgreSQL"
             - "SQLite"
-        - title: "Ferramentas"
+        - title: "Tooling"
           items:
             - "Figma"
             - "Pencil"
@@ -89,16 +89,16 @@ content:
             - "Cursor"
 
     projects:
-      eyebrow: "Projetos em destaque"
-      headline: "Algumas coisas que desenhei e publiquei."
+      eyebrow: "Featured work"
+      headline: "A few things I've designed and shipped."
       # list -> top-level `projects` collection, filtered to featured: true
-      see-all: "Ver todos os projetos"
+      see-all: "See all work"
 
     contact:
-      eyebrow: "Vamos conversar"
-      headline: "Tem um projeto em mente?"
+      eyebrow: "Let's talk"
+      headline: "Have a project in mind?"
       body:
-        - "Adoro conhecer gente nova, trocar experiências e colaborar em projetos interessantes. Se você quer bater um papo sobre desenvolvimento ou tem uma ideia que precisa de uma mão para sair do papel — me manda uma mensagem."
+        - "I love meeting new people, trading experiences, and collaborating on interesting projects. Whether you want to chat about development or have an idea that needs a hand getting off the ground — drop me a message."
       social:
         - platform: "email"
           label: "contato@adeonir.dev"
@@ -115,34 +115,34 @@ content:
       form:
         fields:
           - name: "name"
-            label: "Nome"
-            placeholder: "Seu nome"
+            label: "Name"
+            placeholder: "Your name"
           - name: "email"
             label: "Email"
-            placeholder: "voce@exemplo.com"
+            placeholder: "you@example.com"
           - name: "message"
-            label: "Mensagem"
-            placeholder: "O que você está construindo?"
-        submit: "Enviar mensagem"
+            label: "Message"
+            placeholder: "What are you building?"
+        submit: "Send message"
         states:
-          success: "Obrigado — em breve entro em contato."
-          error: "Algo deu errado. Me escreva direto em contato@adeonir.dev."
+          success: "Thanks — I'll be in touch soon."
+          error: "Something went wrong. Email me directly at contato@adeonir.dev."
 
     footer: &footer
       brand:
         text: "adeonir.dev"
         copyright: "© 2026 Adeonir Kohl"
-      tagline: "Feito com cuidado, paixão e café."
+      tagline: "Built with care, passion, and coffee."
 
   work:
     header: *header
     page-header:
-      eyebrow: "Projetos"
-      headline: "Coisas que desenhei e construí."
-      subheadline: "Cada projeto, do início ao fim — design e código."
+      eyebrow: "Work"
+      headline: "Things I've designed and built."
+      subheadline: "Every project, start to finish — design and code."
     # list -> top-level `projects` collection (all, in order)
     states:
-      empty: "Nenhum projeto por aqui ainda — volte em breve." # EC-1
+      empty: "No projects to show yet — check back soon." # EC-1
     footer: *footer
 
   project:
@@ -151,7 +151,7 @@ content:
     # `projects` collection (overview / body / gallery / launch). The labels below
     # are the static chrome shared by every project detail surface.
     page-header:
-      eyebrow: "Projeto"
+      eyebrow: "Project"
       # title and meta resolve from the matching projects entry:
       #   title -> name, meta -> "{role} · {launch}"
     overview:
@@ -161,11 +161,11 @@ content:
     body: {} # long-form -> entry.body
     prev-next:
       prev:
-        text: "Projeto anterior"
+        text: "Previous project"
       next:
-        text: "Próximo projeto"
+        text: "Next project"
     states:
-      not-found: "Esse projeto não existe. Voltar para os projetos." # EC-3
+      not-found: "That project doesn't exist. Back to all work." # EC-3
     footer: *footer
 
 # Projects — single source of truth (always complete). The work index renders
@@ -174,12 +174,12 @@ projects:
   - slug: "charas-beer"
     name: "Charas Beer"
     featured: true
-    summary: "Uma loja online para uma marca de cerveja artesanal."
+    summary: "An online store for a craft beer brand."
     role: "Product engineer, UI designer & frontend developer"
     launch: "12/2026"
     link: "https://charasbeer.com.br"
     repo: null
-    cta: "Ver projeto"
+    cta: "View project"
     # Detail fields — author per project (see notes):
     overview: null # TODO: case-study overview paragraph
     body: null # TODO: long-form case study
@@ -187,48 +187,48 @@ projects:
   - slug: "adeonir-kohl"
     name: "Adeonir Kohl"
     featured: false
-    summary: "Este portfólio, criado de ponta a ponta com IA no processo."
+    summary: "This portfolio, crafted end to end with AI in the loop."
     role: "Product engineer, UI designer & frontend developer"
     launch: "06/2026"
     link: "https://adeonir.dev"
     repo: null
-    cta: "Ver projeto"
+    cta: "View project"
     overview: null # TODO
     body: null # TODO
     gallery: [] # TODO
   - slug: "uira-muller"
     name: "Uirá Müller Design"
     featured: true
-    summary: "Um portfólio apresentando o trabalho de um designer gráfico."
+    summary: "A portfolio showcasing a graphic designer's work."
     role: "UI designer & frontend developer"
     launch: "05/2026"
     link: "https://uiramuller.com.br"
     repo: null
-    cta: "Ver projeto"
+    cta: "View project"
     overview: null # TODO
     body: null # TODO
     gallery: [] # TODO
   - slug: "reisenthal"
     name: "Reisenthal Turismo"
     featured: true
-    summary: "Uma agência de viagens com destinos pela Europa, Brasil e além."
+    summary: "A travel agency offering trips to Europe, Brazil, and beyond."
     role: "UI designer & frontend developer"
     launch: "07/2025"
     link: "https://reisenthal.com.br"
     repo: null
-    cta: "Ver projeto"
+    cta: "View project"
     overview: null # TODO
     body: null # TODO
     gallery: [] # TODO
   - slug: "atio"
     name: "Atio"
     featured: false
-    summary: "Normas, certificação e treinamento em segurança de alimentos para a indústria."
+    summary: "Food safety standards, certification, and training for industry."
     role: "UI designer & frontend developer"
     launch: "02/2024"
     link: "https://atio.com.br"
     repo: null
-    cta: "Ver projeto"
+    cta: "View project"
     overview: null # TODO
     body: null # TODO
     gallery: [] # TODO
