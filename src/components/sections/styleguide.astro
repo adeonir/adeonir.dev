@@ -1,0 +1,237 @@
+---
+interface Props {
+  skin: string
+}
+
+const { skin } = Astro.props
+
+const colors = [
+  {
+    box: 'bg-primary',
+    text: 'text-primary-foreground',
+    label: 'primary / primary-foreground',
+  },
+  {
+    box: 'bg-secondary',
+    text: 'text-secondary-foreground',
+    label: 'secondary / secondary-foreground',
+  },
+  {
+    box: 'bg-background',
+    text: 'text-foreground',
+    label: 'background / foreground',
+  },
+  {
+    box: 'bg-card',
+    text: 'text-card-foreground',
+    label: 'card / card-foreground',
+  },
+  {
+    box: 'bg-popover',
+    text: 'text-popover-foreground',
+    label: 'popover / popover-foreground',
+  },
+  {
+    box: 'bg-accent',
+    text: 'text-accent-foreground',
+    label: 'accent / accent-foreground',
+  },
+  {
+    box: 'bg-muted',
+    text: 'text-muted-foreground',
+    label: 'muted / muted-foreground',
+  },
+]
+
+const lines = [
+  { cls: 'border-border', label: 'border' },
+  { cls: 'border-input', label: 'input' },
+  { cls: 'border-ring', label: 'ring' },
+]
+
+const types = [
+  { cls: 'text-display', label: 'text-display' },
+  { cls: 'text-heading', label: 'text-heading' },
+  { cls: 'text-title', label: 'text-title' },
+  { cls: 'text-subtitle', label: 'text-subtitle' },
+  { cls: 'text-body', label: 'text-body' },
+  { cls: 'text-caption', label: 'text-caption' },
+  { cls: 'text-label', label: 'text-label' },
+  { cls: 'text-button', label: 'text-button' },
+  { cls: 'text-code', label: 'text-code' },
+]
+
+const spacing = [
+  { cls: 'w-1', label: '1 · 0.25rem' },
+  { cls: 'w-2', label: '2 · 0.5rem' },
+  { cls: 'w-3', label: '3 · 0.75rem' },
+  { cls: 'w-4', label: '4 · 1rem' },
+  { cls: 'w-6', label: '6 · 1.5rem' },
+  { cls: 'w-8', label: '8 · 2rem' },
+  { cls: 'w-12', label: '12 · 3rem' },
+  { cls: 'w-16', label: '16 · 4rem' },
+  { cls: 'w-24', label: '24 · 6rem' },
+]
+
+const radii = [
+  { cls: 'rounded-xs', label: 'xs' },
+  { cls: 'rounded-sm', label: 'sm' },
+  { cls: 'rounded-md', label: 'md' },
+  { cls: 'rounded-lg', label: 'lg' },
+  { cls: 'rounded-xl', label: 'xl' },
+  { cls: 'rounded-2xl', label: '2xl' },
+  { cls: 'rounded-full', label: 'full' },
+]
+
+const widths = [
+  { cls: 'border', label: 'border · 1px' },
+  { cls: 'border-2', label: 'border-2 · 2px' },
+  { cls: 'border-4', label: 'border-4 · 4px' },
+]
+
+const shadows = [
+  { cls: 'shadow-2xs', label: '2xs' },
+  { cls: 'shadow-xs', label: 'xs' },
+  { cls: 'shadow-sm', label: 'sm' },
+  { cls: 'shadow-md', label: 'md' },
+  { cls: 'shadow-lg', label: 'lg' },
+  { cls: 'shadow-xl', label: 'xl' },
+  { cls: 'shadow-2xl', label: '2xl' },
+]
+
+const breakpoints = [
+  { name: 'xs', value: '32rem' },
+  { name: 'sm', value: '40rem' },
+  { name: 'md', value: '48rem' },
+  { name: 'lg', value: '64rem' },
+  { name: 'xl', value: '80rem' },
+  { name: '2xl', value: '96rem' },
+]
+---
+
+<div class="flex flex-col gap-12">
+  <header class="flex flex-col gap-1">
+    <p class="text-label text-secondary">{skin} skin</p>
+    <h2 class="text-heading">Styleguide</h2>
+  </header>
+
+  <section class="flex flex-col gap-4">
+    <h3 class="text-title">Colors</h3>
+    <div class="grid grid-cols-2 gap-3">
+      {
+        colors.map((c) => (
+          <div
+            class:list={[
+              'flex h-20 flex-col justify-end rounded-md border border-border p-3',
+              c.box,
+              c.text,
+            ]}
+          >
+            <span class="text-caption">{c.label}</span>
+          </div>
+        ))
+      }
+    </div>
+    <div class="flex gap-3">
+      {
+        lines.map((l) => (
+          <div class="flex flex-col items-center gap-1">
+            <div class:list={['size-12 rounded-md border-2', l.cls]} />
+            <span class="text-caption text-muted-foreground">{l.label}</span>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="flex flex-col gap-4">
+    <h3 class="text-title">Type</h3>
+    <div class="flex flex-col gap-3">
+      {
+        types.map((t) => (
+          <div class="flex flex-col gap-1 border-b border-border pb-3">
+            <span class="text-caption text-muted-foreground">{t.label}</span>
+            <span class={t.cls}>The quick brown fox jumps</span>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="flex flex-col gap-4">
+    <h3 class="text-title">Spacing</h3>
+    <div class="flex flex-col gap-2">
+      {
+        spacing.map((s) => (
+          <div class="flex items-center gap-3">
+            <div class:list={['h-3 rounded-xs bg-primary', s.cls]} />
+            <span class="text-caption text-muted-foreground">{s.label}</span>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="flex flex-col gap-4">
+    <h3 class="text-title">Radius</h3>
+    <div class="flex flex-wrap gap-3">
+      {
+        radii.map((r) => (
+          <div class="flex flex-col items-center gap-1">
+            <div class:list={['size-14 border border-border bg-card', r.cls]} />
+            <span class="text-caption text-muted-foreground">{r.label}</span>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="flex flex-col gap-4">
+    <h3 class="text-title">Border width</h3>
+    <div class="flex gap-3">
+      {
+        widths.map((w) => (
+          <div class="flex flex-col items-center gap-1">
+            <div
+              class:list={['size-14 rounded-md border-border bg-card', w.cls]}
+            />
+            <span class="text-caption text-muted-foreground">{w.label}</span>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="flex flex-col gap-4">
+    <h3 class="text-title">Elevation</h3>
+    <div class="flex flex-wrap gap-4">
+      {
+        shadows.map((s) => (
+          <div class="flex flex-col items-center gap-1">
+            <div
+              class:list={[
+                'size-14 rounded-lg border border-border bg-card',
+                s.cls,
+              ]}
+            />
+            <span class="text-caption text-muted-foreground">{s.label}</span>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="flex flex-col gap-4">
+    <h3 class="text-title">Breakpoints</h3>
+    <div class="flex flex-col gap-2">
+      {
+        breakpoints.map((b) => (
+          <div class="flex items-center justify-between border-b border-border pb-2">
+            <span class="text-code">{b.name}</span>
+            <span class="text-caption text-muted-foreground">{b.value}</span>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+</div>

@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository state
 
-The Astro app is **scaffolded but not yet built out**: tooling, runtime integrations, and routing skeleton are in place; the real site pages (home/work/project) do not exist yet. Only a holding page (`/`) and a dev-only landing stub ship today. The stack, architecture, design system, and product scope remain fully locked in `docs/` — `docs/tech/design.md` §3.7–§3.8 is authoritative for the toolchain; do not invent alternatives.
+The Astro app is **scaffolded with the design system wired in, but the pages are not built out**: tooling, runtime integrations, the routing skeleton, and the full design-token + font layer (`src/styles/global.css`) are in place; the real site pages (home/work/project) do not exist yet. Only a holding page (`/`) and a dev-only landing stub ship today. The stack, architecture, design system, and product scope remain fully locked in `docs/` — `docs/tech/design.md` §3.7–§3.8 is authoritative for the toolchain; do not invent alternatives.
 
 Package manager is **pnpm** (`pnpm-lock.yaml`). No test runner is configured yet — there are no test commands.
 
@@ -17,7 +17,7 @@ Package manager is **pnpm** (`pnpm-lock.yaml`). No test runner is configured yet
 - `pnpm lint` — autofix: `biome check --write` (JS/TS/CSS/JSON) + `prettier --write` (`.astro`/`.yaml`).
 - `pnpm check` — CI-style, no writes: `biome check` + `prettier --check`. Run before committing.
 
-Formatting is split by file type: **Biome** owns JS/TS/CSS/JSON (`.astro` is excluded in `biome.json`); **Prettier** owns `.astro`/`.yaml`. Tailwind class sorting follows the same split — Biome `useSortedClasses` (functions `cn`/`clsx`/`cva`/`tv`) for code, `prettier-plugin-tailwindcss` for `.astro`. Lefthook runs both on staged files pre-commit.
+Formatting is split by file type: **Biome** owns JS/TS/CSS/JSON (`.astro` is excluded in `biome.json`; CSS is double-quoted via `css.formatter` with `css.parser.tailwindDirectives` enabled for the Tailwind v4 at-rules, and `**/*.css` is in `.prettierignore` so Prettier never touches it); **Prettier** owns `.astro`/`.yaml`. Tailwind class sorting follows the same split — Biome `useSortedClasses` (functions `cn`/`clsx`/`cva`/`tv`) for code, `prettier-plugin-tailwindcss` for `.astro`. Lefthook runs both on staged files pre-commit.
 
 ## Source-of-truth documents
 
@@ -26,7 +26,7 @@ Read these before planning or building any feature. Each is authoritative for it
 - `docs/tech/design.md` — architecture, runtime boundaries, conventions, contact flow, security, testing, CI/CD, and the full alternatives-considered table. The technical authority.
 - `docs/product/prd.md` — scope (FR/NFR IDs), personas, journeys, business rules (BR-1..3), edge cases (EC-1..3), milestones.
 - `docs/product/brief.md` — one-page product summary.
-- `docs/design/DESIGN.md` — visual identity and design tokens (frontmatter holds the token values; body holds the rules and do/don'ts). The design authority.
+- `docs/design/DESIGN.md` — visual identity and design tokens (frontmatter holds the token values — colors as dual `{ hex, oklch }`; body holds the rules and do/don'ts). The design authority.
 - `docs/design/blueprint.md` — design-blind layout: region tree per surface (home/work/project) and screen flow. The structure authority.
 - `docs/design/copy.yaml` — site copy payload.
 - `docs/design/wireframe.html`, `docs/design/styleguide.html` — rendered lo-fi wireframe and token styleguide.
@@ -40,7 +40,7 @@ When a doc and this file disagree, the doc wins. Change specs via the `spec-driv
 - **Content layer** under `src/content/`: a `projects` MDX collection (one case study per folder, colocated images) + per-section YAML copy collections, both validated by a shared `schemas.ts` (Zod).
 - **Contact flow:** Zod validate → honeypot + Workers rate-limit binding (5 req / 10 min per IP, keyed on `CF-Connecting-IP`) → send two transactional emails via Resend → discard. No database, nothing persisted or logged. The visitor's email is set as `Reply-To`. The form must work without JS (progressive enhancement); the island only enhances it. On failure, surface a direct fallback channel (EC-2).
 - **External services:** Resend (outbound email), Cloudflare Email Routing (`contato@adeonir.dev` → Gmail), Umami Cloud (cookieless analytics — work views + a custom contact-submission event + UTM).
-- **Styling:** Tailwind consuming the existing dual-skin design tokens — do not hardcode hex values.
+- **Styling (wired):** Tailwind v4 CSS-first in `src/styles/global.css` — raw Catppuccin scales as plain `:root` vars in **oklch**, semantic roles aliased per skin (dark on `:root`, latte under `[data-theme=light]`) and exposed via `@theme inline` so a runtime skin flip re-resolves with no rebuild, a skin-neutral `--ink` for text on accent fills, plus nine `@utility text-*` type-role composites. Style against the semantic utilities (`bg-background`, `text-foreground`, `text-display`) — never hardcode hex.
 - **UI primitives:** Ark UI (`@ark-ui/preact`), scaffolded via the `ark-ui` MCP server. Wire every component to the dual-skin tokens; never keep a default palette. Audit against the design do/don'ts after scaffolding. Docs: https://ark-ui.com/llms.txt
 
 ## Conventions (per design.md §3.3)
@@ -67,6 +67,7 @@ When a doc and this file disagree, the doc wins. Change specs via the `spec-driv
 
 - `.mcp.json` — declares the `ark-ui` MCP server (`@ark-ui/mcp`), used to scaffold UI primitives. See UI primitives below.
 - `.artifacts/` — scratch space (design variant HTML, epic/story drafts, a Pencil `.pen` file). Not shipped; not authoritative — `docs/` is.
-- `src/pages/index.astro` / `public/logo.svg` — holding page served at `/` until the real landing ships.
+- `src/pages/index.astro` / `public/logo.svg` — holding page served at `/` until the real landing ships (styled with the `bg-background` token, no hardcoded hex).
+- `src/styles/global.css` — the wired design layer: `@import "tailwindcss"` + self-hosted Geist/Fira Code variable fonts (`@fontsource-variable/*`, same-origin), raw oklch scales, dual-skin semantic roles via `@theme inline`, `@theme` fonts + `--breakpoint-xs`, and the `text-*` type utilities. Import it wherever styles are needed.
 - **Dev-only landing surface** — three files cooperate so the landing can be assembled at `/` in dev without shipping in prod: `src/pages/_landing.astro` (the stub; `_`-prefix keeps it out of the prod build), the `landing()` integration in `astro.config.mjs` (injects the `/_landing` route only under `astro dev`), and `src/middleware.ts` (rewrites `/` → `/_landing` guarded by `import.meta.env.DEV`). All three no-op in production.
 - Figma source: https://www.figma.com/design/T4wd9lMdUUdpfpmbT3C0bN/Adeonir
