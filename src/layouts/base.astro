@@ -3,7 +3,7 @@ import { getEntry } from 'astro:content'
 import '~/styles/global.css'
 
 interface Props {
-  title?: string
+  title: string
   description?: string
 }
 
@@ -15,7 +15,7 @@ if (!settings) {
 
 const { title, description } = Astro.props
 
-const resolvedTitle = title?.trim() ? title : settings.data.title
+const fullTitle = `${title} | ${settings.data.siteName}`
 const resolvedDescription = description?.trim()
   ? description
   : settings.data.description
@@ -26,7 +26,7 @@ const resolvedDescription = description?.trim()
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{resolvedTitle}</title>
+    <title>{fullTitle}</title>
     <meta name="description" content={resolvedDescription} />
   </head>
   <body class="h-full bg-background text-foreground antialiased">
