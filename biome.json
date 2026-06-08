@@ -33,5 +33,14 @@
       "jsxQuoteStyle": "double",
       "semicolons": "asNeeded"
     }
+  },
+  "css": {
+    "formatter": {
+      "enabled": true,
+      "quoteStyle": "double"
+    },
+    "parser": {
+      "tailwindDirectives": true
+    }
   }
 }
