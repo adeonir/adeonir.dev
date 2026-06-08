@@ -7,7 +7,10 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "typecheck": "astro check",
+    "lint": "biome check --write && prettier --write \"src/**/*.{astro,yaml}\"",
+    "check": "biome check && prettier --check \"src/**/*.{astro,yaml}\""
   },
   "dependencies": {
     "@astrojs/preact": "5.1.5",
@@ -15,5 +18,12 @@
     "astro": "6.4.4",
     "preact": "10.29.2",
     "tailwindcss": "4.3.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.9",
+    "@biomejs/biome": "2.4.16",
+    "prettier": "3.8.3",
+    "prettier-plugin-astro": "0.14.1",
+    "typescript": "6.0.3"
   }
 }
