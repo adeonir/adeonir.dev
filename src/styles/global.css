@@ -1,1 +1,17 @@
 @import "tailwindcss";
+@import "@fontsource-variable/geist";
+@import "@fontsource-variable/fira-code";
+
+@theme {
+  --font-sans: "Geist Variable", system-ui, -apple-system, sans-serif;
+  --font-mono:
+    "Fira Code Variable", ui-monospace, "SF Mono", Consolas, monospace;
+
+  --breakpoint-xs: 32rem;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+  }
+}
