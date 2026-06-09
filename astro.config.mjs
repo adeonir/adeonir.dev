@@ -19,6 +19,7 @@ function landing() {
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://adeonir.dev',
   integrations: [preact(), landing()],
   vite: {
     plugins: [tailwindcss()],
