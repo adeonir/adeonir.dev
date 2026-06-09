@@ -1,4 +1,5 @@
 import preact from '@astrojs/preact'
+import sitemap from '@astrojs/sitemap'
 import tailwindcss from '@tailwindcss/vite'
 import { defineConfig } from 'astro/config'
 
@@ -10,17 +11,23 @@ function landing() {
     hooks: {
       'astro:config:setup': ({ command, injectRoute }) => {
         if (command === 'dev') {
-          injectRoute({ pattern: '/_landing', entrypoint: './src/pages/_landing.astro' })
+          injectRoute({
+            pattern: '/_landing',
+            entrypoint: './src/pages/_landing.astro',
+          })
         }
       },
     },
   }
 }
 
-// https://astro.build/config
 export default defineConfig({
   site: 'https://adeonir.dev',
-  integrations: [preact(), landing()],
+  integrations: [
+    preact(),
+    landing(),
+    sitemap({ filter: (page) => !page.includes('/styleguide') }),
+  ],
   vite: {
     plugins: [tailwindcss()],
   },
