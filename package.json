@@ -11,9 +11,6 @@
     "typecheck": "astro check",
     "lint": "biome check && prettier --check \"src/**/*.{astro,yaml}\"",
     "lint:fix": "biome check --write && prettier --write \"src/**/*.{astro,yaml}\"",
-    "deploy:prod": "astro build && wrangler pages deploy --branch=main",
-    "deploy:preview": "astro build && wrangler pages deploy --branch=preview",
-    "deploy:landing": "PREVIEW=true astro build && wrangler pages deploy --branch=preview",
     "prepare": "[ -n \"$CI\" ] || lefthook install"
   },
   "dependencies": {
@@ -34,7 +31,6 @@
     "prettier": "3.8.3",
     "prettier-plugin-astro": "0.14.1",
     "prettier-plugin-tailwindcss": "0.8.0",
-    "typescript": "6.0.3",
-    "wrangler": "4.98.0"
+    "typescript": "6.0.3"
   }
 }
