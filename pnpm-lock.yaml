@@ -23,6 +23,9 @@ importers:
       astro:
         specifier: 6.4.4
         version: 6.4.4(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.61.1)(yaml@2.9.0)
+      astro-seo:
+        specifier: 1.1.0
+        version: 1.1.0(prettier-plugin-astro@0.14.1)(prettier@3.8.3)(typescript@6.0.3)
       preact:
         specifier: 10.29.2
         version: 10.29.2
@@ -1010,6 +1013,9 @@ packages:
 
   array-iterate@2.0.1:
     resolution: {integrity: sha512-I1jXZMjAgCMmxT4qxXfPXa6SthSoE8h6gkSI9BGGNv8mP8G/v0blc+qFnZu6K42vTOiuME596QaLO0TP3Lk0xg==}
+
+  astro-seo@1.1.0:
+    resolution: {integrity: sha512-G6LDNDyga30o+52v58jU7C35n3cORUzk7RSuY+xf/ZRbW6JiNplyaOO1VoYVKO+xzYNaBcxqNln2RFRR/wgJNQ==}
 
   astro@6.4.4:
     resolution: {integrity: sha512-hVe8tq3lqt/Dr0UyB//yUmQSlHMTU8scTiF/vQddQVahLE4TTaSdH5H0nb7OvRcwo0UmlAO8DWYar4jNaS7H+A==}
@@ -3248,6 +3254,14 @@ snapshots:
   aria-query@5.3.2: {}
 
   array-iterate@2.0.1: {}
+
+  astro-seo@1.1.0(prettier-plugin-astro@0.14.1)(prettier@3.8.3)(typescript@6.0.3):
+    dependencies:
+      '@astrojs/check': 0.9.9(prettier-plugin-astro@0.14.1)(prettier@3.8.3)(typescript@6.0.3)
+    transitivePeerDependencies:
+      - prettier
+      - prettier-plugin-astro
+      - typescript
 
   astro@6.4.4(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.61.1)(yaml@2.9.0):
     dependencies:
