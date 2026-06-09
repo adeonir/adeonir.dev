@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /styleguide
+Sitemap: https://adeonir.dev/sitemap-index.xml
