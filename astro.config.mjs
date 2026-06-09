@@ -1,7 +1,7 @@
 import preact from '@astrojs/preact'
 import sitemap from '@astrojs/sitemap'
 import tailwindcss from '@tailwindcss/vite'
-import { defineConfig, envField } from 'astro/config'
+import { defineConfig } from 'astro/config'
 
 // Injects the dev-only landing surface; `_`-prefixed entrypoint keeps it out of
 // production builds, and the route is only added under `astro dev` (404 in prod).
@@ -29,18 +29,7 @@ export default defineConfig({
     sitemap({ filter: (page) => !page.includes('/styleguide') }),
   ],
   env: {
-    schema: {
-      UMAMI_WEBSITE_ID: envField.string({
-        context: 'client',
-        access: 'public',
-        optional: true,
-      }),
-      UMAMI_HOST: envField.string({
-        context: 'client',
-        access: 'public',
-        default: 'https://cloud.umami.is',
-      }),
-    },
+    schema: {},
   },
   vite: {
     plugins: [tailwindcss()],

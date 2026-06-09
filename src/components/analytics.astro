@@ -1,16 +1,3 @@
 ---
-import { UMAMI_HOST, UMAMI_WEBSITE_ID } from 'astro:env/client'
 
-const enabled = Boolean(UMAMI_WEBSITE_ID)
 ---
-
-{
-  enabled && (
-    <script
-      is:inline
-      defer
-      src={`${UMAMI_HOST}/script.js`}
-      data-website-id={UMAMI_WEBSITE_ID}
-    />
-  )
-}
