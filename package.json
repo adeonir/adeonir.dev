@@ -13,6 +13,7 @@
     "check": "biome check && prettier --check \"src/**/*.{astro,yaml}\"",
     "deploy:prod": "astro build && wrangler pages deploy --branch=main",
     "deploy:preview": "astro build && wrangler pages deploy --branch=preview",
+    "deploy:landing": "PREVIEW=true astro build && wrangler pages deploy --branch=preview",
     "prepare": "[ -n \"$CI\" ] || lefthook install"
   },
   "dependencies": {

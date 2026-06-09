@@ -3,14 +3,15 @@ import sitemap from '@astrojs/sitemap'
 import tailwindcss from '@tailwindcss/vite'
 import { defineConfig, envField } from 'astro/config'
 
-// Injects the dev-only landing surface; `_`-prefixed entrypoint keeps it out of
-// production builds, and the route is only added under `astro dev` (404 in prod).
+// astro.config can't import `astro:env`, so read the preview flag from process.env.
+const isPreviewBuild = process.env.PREVIEW === 'true'
+
 function landing() {
   return {
     name: 'landing',
     hooks: {
       'astro:config:setup': ({ command, injectRoute }) => {
-        if (command === 'dev') {
+        if (command === 'dev' || isPreviewBuild) {
           injectRoute({
             pattern: '/_landing',
             entrypoint: './src/pages/_landing.astro',
@@ -39,6 +40,11 @@ export default defineConfig({
         context: 'client',
         access: 'public',
         default: 'https://t.adeonir.dev',
+      }),
+      PREVIEW: envField.boolean({
+        context: 'server',
+        access: 'public',
+        default: false,
       }),
     },
   },

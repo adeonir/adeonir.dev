@@ -1,9 +1,10 @@
+import { PREVIEW } from 'astro:env/server'
 import { defineMiddleware } from 'astro:middleware'
 
-// In dev, serve the landing surface at the site root so it is built where it will
-// live. The guard makes this a no-op in production (the holding page stays at `/`).
+// In dev and preview builds, serve the landing surface at the site root; the
+// guard keeps the holding page at `/` in production.
 export const onRequest = defineMiddleware((context, next) => {
-  if (import.meta.env.DEV && context.url.pathname === '/') {
+  if ((import.meta.env.DEV || PREVIEW) && context.url.pathname === '/') {
     return next('/_landing')
   }
 
