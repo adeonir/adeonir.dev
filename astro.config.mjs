@@ -38,7 +38,7 @@ export default defineConfig({
       POSTHOG_HOST: envField.string({
         context: 'client',
         access: 'public',
-        default: 'https://us.i.posthog.com',
+        default: 'https://t.adeonir.dev',
       }),
     },
   },
