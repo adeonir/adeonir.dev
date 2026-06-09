@@ -30,15 +30,15 @@ export default defineConfig({
   ],
   env: {
     schema: {
-      UMAMI_WEBSITE_ID: envField.string({
+      POSTHOG_KEY: envField.string({
         context: 'client',
         access: 'public',
         optional: true,
       }),
-      UMAMI_HOST: envField.string({
+      POSTHOG_HOST: envField.string({
         context: 'client',
         access: 'public',
-        default: 'https://cloud.umami.is',
+        default: 'https://us.i.posthog.com',
       }),
     },
   },

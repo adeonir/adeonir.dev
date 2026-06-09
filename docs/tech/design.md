@@ -1,7 +1,7 @@
 ---
 name: adeonir-dev-portfolio
 created: 2026-06-06
-updated: 2026-06-07
+updated: 2026-06-08
 status: accepted
 sources:
   - docs/product/prd.md
@@ -23,8 +23,9 @@ architecture optimizes for near-zero shipped JavaScript and top quality scores.
 
 The surrounding landscape is intentionally small: Cloudflare hosts and runs the
 one on-demand route, Resend delivers transactional email, a mailbox on the
-domain receives the branded inbox, and Umami Cloud collects cookieless
-analytics. There is no database and no backend beyond contact handling.
+domain receives the branded inbox, and PostHog collects cookieless,
+privacy-first analytics. There is no database and no backend beyond contact
+handling.
 
 > See PRD: `docs/product/prd.md`
 
@@ -88,6 +89,7 @@ flowchart TD
   Action --> Zod[Zod input validation]
   Action --> RL[Workers rate-limit binding]
   Action --> Resend[Resend HTTP API]
+  Action -. waitUntil .-> PostHog[PostHog capture - contact-submission]
 ```
 
 - **Components:** Astro app (prerendered pages + one on-demand Action), Preact
@@ -104,14 +106,15 @@ flowchart LR
   App --> Resend[Resend - transactional email]
   Resend --> Submitter[Confirmation to visitor email]
   Resend --> Inbox[Notification to contato@adeonir.dev mailbox]
-  App --> Umami[Umami Cloud - analytics]
+  App --> PostHog[PostHog US Cloud - cookieless analytics]
   GH[GitHub Actions CI] --> Deploy[wrangler pages deploy] --> CF
 ```
 
 - **Actors:** site visitors (the three PRD personas).
 - **External services:** Cloudflare Pages (host + edge runtime), Resend
   (outbound transactional email), a hosted mailbox on `adeonir.dev` (inbound
-  `contato@adeonir.dev`), Umami Cloud (analytics), GitHub Actions (CI).
+  `contato@adeonir.dev`), PostHog US Cloud (cookieless analytics — manual
+  capture, server-side `contact-submission` event), GitHub Actions (CI).
 
 ### 3.3 Conventions
 
@@ -189,16 +192,28 @@ erDiagram
 
 ### 3.6 Observability
 
-- **Metrics:** Umami Cloud (cookieless, ~2 kb) — work views (pageviews of
-  project surfaces), contact submissions (custom `track()` event), and UTM
-  source/medium/campaign attribution (FR-9).
+- **Metrics:** PostHog US Cloud (`us.i.posthog.com`), hardened cookieless —
+  `cookieless_mode: 'always'` (server-side daily-salt hash identity; unique
+  counts are effectively per-day as the salt rotates), `persistence: 'memory'`,
+  `autocapture: false`, `disable_session_recording: true`, `respect_dnt: true`;
+  loaded async and direct (no reverse proxy), off the LCP critical path. All
+  events are manual: pageviews, button/CTA clicks, and form interactions
+  (client), plus `contact-submission` — a standalone conversion count (not
+  joined to the visitor funnel) captured **server-side in the contact Action**
+  via a direct `fetch` to the capture endpoint, so it survives the no-JS
+  progressive-enhancement submit. The event carries name + UTM/source only — no
+  form PII — and fires non-blocking via `waitUntil`, isolated from the Resend
+  send so analytics never blocks or breaks submission. UTM source/medium/campaign
+  attribution (FR-9). posthog-js core is heavier than Umami; with autocapture
+  and session recording off the heavy chunks lazy-load out — confirm the real
+  shipped size against the perf budget (§2) before locking the lib.
 - **Logging:** Cloudflare Worker logs capture contact Action errors (no PII);
   Resend's dashboard records delivery status. The site is otherwise static and
   log-free.
 - **Alerts:** N/A for paging — this is a personal site. Delivery failure is
   surfaced to the visitor in-band (EC-2 fallback to the direct channel) and
   visible in the Resend dashboard.
-- **Dashboards:** Umami dashboard (owner) for traffic and goals.
+- **Dashboards:** PostHog dashboard (owner) for traffic and goals.
 - **Tracing:** N/A — a single edge function with no downstream call graph.
 
 ### 3.7 Testing
@@ -254,7 +269,7 @@ erDiagram
 | Styling | Tailwind | Vanilla CSS; CSS Modules | Existing dual-skin tokens map cleanly to generated utilities; first-class Astro integration | — |
 | Content model | Single-source MDX + per-section yaml collections | Split metadata (yaml) from body (MDX) | One source of truth per project; schema-validated; no slug duplication or join logic | — |
 | i18n strategy | Routing-based: pt bare, en `/en`, no auto-detect | Client-side (react-i18next style); both-locales-prefixed; browser detection | Keeps the perf budget and SEO/hreflang intact; clean prefix-free URL for the primary (BR) audience | — |
-| Analytics | Umami Cloud (free) | Cloudflare Web Analytics | Need custom events (contact submissions) and UTM campaigns, which CF Web Analytics does not cover on free | — |
+| Analytics | PostHog US Cloud (cookieless) | Umami Cloud; Cloudflare Web Analytics | Privacy-first is the driver: PostHog's cookieless mode (daily-salt hash identity, memory persistence, autocapture + session recording off, DNT respected) delivers custom events and UTM in one privacy-first config, plus server-side `contact-submission` capture that survives the no-JS submit — which CF Web Analytics lacks and Umami does not cover. Umami ships lighter, but client weight is held down by manual-only capture; measure the real bundle before locking the lib | — |
 | E2E testing | Keep Playwright (scoped) | Drop it | Component tests can't exercise the contact Action, routing, or 404 — the only places that can actually break | — |
 | Pre-commit hook manager | lefthook | husky; simple-git-hooks; native git hooks | Single YAML config, parallel hook execution, language-agnostic Go binary with no Node runtime in the hook path; husky needs more wiring, simple-git-hooks is leaner but less capable, native hooks aren't shareable | — |
 
