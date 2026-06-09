@@ -49,8 +49,9 @@ handling.
 - **Contact path integrity:** server-side validated submission, two
   transactional emails per submit, spam-guarded, zero persistence; on failure
   the UI surfaces a direct fallback channel (FR-5, EC-2).
-- **Safe delivery:** production deploys only after the full test suite passes;
-  every PR gets a preview deployment.
+- **Safe delivery:** production publishes only from a green, branch-protected
+  `main` (CI quality gates are required checks); every PR gets an automatic
+  preview deployment.
 
 ### Non-Goals
 
@@ -107,14 +108,17 @@ flowchart LR
   Resend --> Submitter[Confirmation to visitor email]
   Resend --> Inbox[Notification to contato@adeonir.dev mailbox]
   App --> PostHog[PostHog US Cloud - cookieless analytics]
-  GH[GitHub Actions CI] --> Deploy[wrangler pages deploy] --> CF
+  Repo[GitHub repo] -- git integration --> CF
+  GH[GitHub Actions - quality gates] -. required checks .-> Repo
 ```
 
 - **Actors:** site visitors (the three PRD personas).
-- **External services:** Cloudflare Pages (host + edge runtime), Resend
+- **External services:** Cloudflare Pages (host + edge runtime, git-integration
+  build and deploy), Resend
   (outbound transactional email), a hosted mailbox on `adeonir.dev` (inbound
   `contato@adeonir.dev`), PostHog US Cloud (cookieless analytics — manual
-  capture, server-side `contact-submission` event), GitHub Actions (CI).
+  capture, server-side `contact-submission` event), GitHub Actions (CI quality
+  gates).
 
 ### 3.3 Conventions
 
@@ -228,20 +232,27 @@ erDiagram
 
 - **Test environments:** local, plus per-PR Cloudflare preview deployments.
 - **Flake handling:** Playwright retries on CI; deterministic selectors.
-- **CI integration:** all suites run in GitHub Actions on every PR as a blocking
-  gate (see §3.8).
+- **CI integration:** all suites run in GitHub Actions on every PR as required
+  status checks; branch protection blocks merge to `main` on failure (see §3.8).
 
 ### 3.8 Deployment
 
-- **CI/CD:** GitHub Actions, one pipeline — install → lint (Biome) → typecheck →
-  Vitest (+ browser mode) → Playwright → Lighthouse CI → build →
-  `wrangler pages deploy`. The deploy job is downstream of the test jobs, so it
-  never runs on a red build.
+- **CI (quality gates):** GitHub Actions on every PR — install → lint (Biome) →
+  typecheck → Vitest (+ browser mode) → Playwright → Lighthouse CI → build. The
+  jobs are required status checks and grow as tooling lands: lint, typecheck, and
+  build first; the unit, e2e, a11y, and budget suites as the pages and suites
+  exist. No deploy step runs in Actions.
+- **Deploy:** Cloudflare Pages git integration builds and publishes — production
+  from `main` on push, an automatic preview deployment per branch/PR. No
+  Cloudflare credentials live in GitHub.
+- **Safety:** branch protection on `main` makes the CI checks required, so a red
+  branch cannot merge and Cloudflare only ever builds a green `main`; admin
+  bypass stays enabled for emergencies.
 - **Local quality gate:** lefthook runs format and lint on staged files at
   pre-commit, blocking the commit on violation — a fast local mirror of the CI
   lint/format step so a red tree never reaches CI.
-- **Release strategy:** production deploys from `main`; every PR/branch gets a
-  preview deployment via `wrangler pages deploy --branch=<name>`.
+- **Release strategy:** production deploys from `main`; every PR/branch gets an
+  automatic preview deployment via the git integration.
 - **Rendering:** static prerender for all content pages; the contact route is
   `export const prerender = false` and runs on the Cloudflare Worker runtime.
 - **Migrations:** N/A — no database.
@@ -250,9 +261,10 @@ erDiagram
 - **Rollback:** redeploy the previous build, or roll back to a prior deployment
   from the Cloudflare Pages dashboard.
 - **Environments:** local (`.dev.vars`), PR preview, production.
-- **Secrets management:** Cloudflare env / Pages secrets for the Resend key;
-  `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` stored as GitHub Actions
-  secrets for the deploy step.
+- **Secrets management:** Cloudflare Pages environment variables hold the Resend
+  key and per-environment runtime config (production vs preview). No Cloudflare
+  credentials in GitHub — the git integration deploys, so Actions holds no deploy
+  secrets.
 
 ---
 
@@ -262,7 +274,7 @@ erDiagram
 |----------|--------|----------|-----------|--------|
 | Framework | Astro (hybrid) | TanStack Start | Content-first site where performance is the message; TanStack Start is an app framework solving a content problem — its loaders/server-fns are app features this site does not need | — |
 | Host / rendering | Cloudflare Pages, hybrid | Vercel / Netlify; fully static | Free edge hosting on the workerd runtime with a native ecosystem (rate-limit binding, Pages previews); hybrid keeps the form first-party (one on-demand route) while everything else prerenders. Vercel/Netlify are equally capable; fully static would force the form onto a third party | — |
-| Deploy pipeline | Wrangler in GitHub Actions | Cloudflare dashboard git integration | A real test suite should gate deploy directly; in Actions the deploy job is downstream of tests, so red never ships (vs. branch-protection-by-proxy) | — |
+| Deploy pipeline | Cloudflare Pages git integration | Wrangler deploy job in GitHub Actions | Solo, deterministic static build: git integration gives automatic per-PR previews, dashboard rollback, and per-environment vars with zero deploy credentials in GitHub. Quality gates run in Actions as required checks and branch protection keeps `main` green, so red never reaches production — the artifact-parity edge of an in-pipeline deploy job doesn't justify rebuilding that DX by hand | — |
 | Contact delivery | Resend (2 emails) | CF Email Routing send-binding; D1 persistence | The flow must email the _visitor_ (arbitrary address) — the send-binding can only reach verified self-addresses; no DB needed since emails are the record | — |
 | Spam defense | Honeypot + Workers rate-limit | Turnstile from day one | Low-volume personal form; Turnstile adds a script + widget that costs perf — reserved until spam is proven | — |
 | UI runtime | Preact | React | ~4 tiny islands; Preact gives the same JSX/hooks API at a fraction of the bytes. React appears only via react-email, server-side, never shipped | — |
