@@ -14,8 +14,8 @@ Package manager is **pnpm** (`pnpm-lock.yaml`). No test runner is configured yet
 - `pnpm build` — production build. Holding page stays at `/`; the `_landing` route 404s (excluded from prod).
 - `pnpm preview` — serve the production build locally.
 - `pnpm typecheck` — `astro check` (TS + `.astro` diagnostics).
-- `pnpm lint` — autofix: `biome check --write` (JS/TS/CSS/JSON) + `prettier --write` (`.astro`/`.yaml`).
-- `pnpm check` — CI-style, no writes: `biome check` + `prettier --check`. Run before committing.
+- `pnpm lint` — CI-style, no writes: `biome check` (JS/TS/CSS/JSON) + `prettier --check` (`.astro`/`.yaml`). Run before committing.
+- `pnpm lint:fix` — autofix: `biome check --write` (JS/TS/CSS/JSON) + `prettier --write` (`.astro`/`.yaml`).
 - `pnpm deploy:prod` — `astro build` then `wrangler pages deploy` to the **production** branch (`main` → `adeonir.dev`).
 - `pnpm deploy:preview` — `astro build` then `wrangler pages deploy` to the `preview` branch (preview URL on `*.adeonir.pages.dev`). Ships the holding page.
 - `pnpm deploy:landing` — same target as `deploy:preview`, but builds with `PREVIEW=true` so the preview deployment serves the **landing surface** instead of the holding page.
