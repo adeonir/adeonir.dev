@@ -52,7 +52,7 @@ When a doc and this file disagree, the doc wins. Change specs via the `spec-driv
   - `src/components/` — `.astro` for server-side composition; `.tsx` for stateful Preact reused inside islands
   - `src/components/islands/` — Preact hydration boundaries; used with `client:*` in templates
   - `src/components/sections/` — `.astro` files for each page section
-  - `src/components/ui/` — styled wrappers over Ark UI or plain HTML elements; no state, semantic tokens only
+  - `src/components/ui/` — styled primitives, no state, semantic tokens only; built on the Ark UI factory (`ark.<element>`) by default so each is polymorphic and accepts `asChild` — whether it wraps an Ark primitive or a plain element. Drop to a bare HTML element only for a trivial primitive that never needs `asChild`
   Use `/new-component` skill to scaffold any tier.
 - **Imports:** `~/` alias (resolves to `src/`, per `tsconfig.json`) for any cross-directory import; reserve `./`/`../` for same-directory files. JSX is Preact (`jsxImportSource: preact`) — no React on the client.
 - **Local conventions in `.claude/rules/`** are auto-loaded and enforced: kebab-case filenames, `~/` alias imports, Tailwind canonical shorthand over arbitrary values, and commit/PR-merge format. Read them before large edits.
