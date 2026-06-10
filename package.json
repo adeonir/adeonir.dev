@@ -10,7 +10,7 @@
     "astro": "astro",
     "typecheck": "astro check",
     "lint": "biome check && prettier --check \"src/**/*.{astro,yaml}\"",
-    "lint:fix": "biome check --write && prettier --write \"src/**/*.{astro,yaml}\"",
+    "lint:fix": "biome check --write --unsafe && prettier --write \"src/**/*.{astro,yaml}\"",
     "prepare": "[ -n \"$CI\" ] || lefthook install"
   },
   "dependencies": {
