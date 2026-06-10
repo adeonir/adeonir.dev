@@ -1,4 +1,4 @@
-import preact from '@astrojs/preact'
+import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
 import tailwindcss from '@tailwindcss/vite'
 import { defineConfig, envField } from 'astro/config'
@@ -25,9 +25,9 @@ function landing() {
 export default defineConfig({
   site: 'https://adeonir.dev',
   integrations: [
-    preact(),
-    landing(),
+    react(),
     sitemap({ filter: (page) => !page.includes('/styleguide') }),
+    landing(),
   ],
   env: {
     schema: {
