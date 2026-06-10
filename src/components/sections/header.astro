@@ -1,13 +1,16 @@
 ---
 import { getEntry } from 'astro:content'
 
+import MobileMenu from '~/components/islands/mobile-menu'
+import NavLink from '~/components/ui/nav-link'
+
 const header = await getEntry('header', 'header')
 
 if (!header) {
   throw new Error('Missing header/header entry')
 }
 
-const { logo, nav } = header.data
+const { logo, nav, menu } = header.data
 ---
 
 <header
@@ -18,21 +21,23 @@ const { logo, nav } = header.data
     <a href="/" class="shrink-0">
       <img class="w-32" src="/logo.svg" alt={logo} />
     </a>
-    <nav>
+    <nav class="hidden md:block">
       <ul class="flex items-center gap-6">
         {
           nav.map((item) => (
             <li>
-              <a
-                href={item.href}
-                class="text-code font-semibold text-muted-foreground transition-colors before:text-secondary before:content-['#'] hover:text-primary"
-              >
-                {item.label}
-              </a>
+              <NavLink href={item.href}>{item.label}</NavLink>
             </li>
           ))
         }
       </ul>
     </nav>
+    <div class="md:hidden">
+      <MobileMenu
+        client:media="(max-width: 47.9375rem)"
+        nav={nav}
+        menu={menu}
+      />
+    </div>
   </div>
 </header>
