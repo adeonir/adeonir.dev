@@ -83,22 +83,21 @@ After writing, the auto-format hook will handle formatting — no need to run ma
 
 ## Templates
 
-### `ui` — without Ark UI
+### `ui` — default (factory)
+
+Built on the Ark UI factory (`ark.<element>`) so every `ui` primitive is polymorphic and accepts
+`asChild` — same signature as the Ark-wrapped template. Pass `asChild` with a **single** child to
+swap the rendered element without rewriting (e.g. render a badge as `<a>` instead of `<span>`).
 
 ```tsx
 // src/components/ui/[name].tsx
-import type { ComponentChildren } from 'preact'
+// Pick the element this primitive renders (div, span, button…) — keep the generic in sync
+import { ark, type HTMLArkProps } from '@ark-ui/preact/factory'
 
-type Props = {
-  children?: ComponentChildren
-}
+type Props = HTMLArkProps<'div'>
 
-export default function Name({ children }: Props) {
-  return (
-    <div class="bg-surface text-foreground">
-      {children}
-    </div>
-  )
+export default function Name(props: Props) {
+  return <ark.div class="bg-surface text-foreground" {...props} />
 }
 ```
 
@@ -119,6 +118,28 @@ export default function Name(props: Props) {
     <ArkPrimitive.Root class="bg-surface text-foreground border-border" {...props}>
       {/* anatomy parts — add sub-components with semantic token classes per MCP output */}
     </ArkPrimitive.Root>
+  )
+}
+```
+
+### `ui` — plain HTML (fallback)
+
+For a trivial primitive that never needs polymorphism or `asChild` (divider, static label), skip
+the factory and render the element directly:
+
+```tsx
+// src/components/ui/[name].tsx
+import type { ComponentChildren } from 'preact'
+
+type Props = {
+  children?: ComponentChildren
+}
+
+export default function Name({ children }: Props) {
+  return (
+    <div class="bg-surface text-foreground">
+      {children}
+    </div>
   )
 }
 ```

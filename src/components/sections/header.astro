@@ -1,0 +1,38 @@
+---
+import { getEntry } from 'astro:content'
+
+const header = await getEntry('header', 'header')
+
+if (!header) {
+  throw new Error('Missing header/header entry')
+}
+
+const { logo, nav } = header.data
+---
+
+<header
+  transition:persist="header"
+  class="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur"
+>
+  <div class="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
+    <a href="/" class="shrink-0">
+      <img class="w-32" src="/logo.svg" alt={logo} />
+    </a>
+    <nav>
+      <ul class="flex items-center gap-6">
+        {
+          nav.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class="text-code font-semibold text-muted-foreground transition-colors before:text-secondary before:content-['#'] hover:text-primary"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>

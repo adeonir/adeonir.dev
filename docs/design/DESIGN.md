@@ -48,6 +48,8 @@ colors:
   foreground: { hex: "#cdd6f4", oklch: "oklch(87.9% 0.043 272.28)" }
   card: { hex: "#181825", oklch: "oklch(21.6% 0.025 284.06)" }
   card-foreground: { hex: "#cdd6f4", oklch: "oklch(87.9% 0.043 272.28)" }
+  sunken: { hex: "#11111b", oklch: "oklch(18.3% 0.020 284.20)" }
+  sunken-foreground: { hex: "#cdd6f4", oklch: "oklch(87.9% 0.043 272.28)" }
   popover: { hex: "#181825", oklch: "oklch(21.6% 0.025 284.06)" }
   popover-foreground: { hex: "#cdd6f4", oklch: "oklch(87.9% 0.043 272.28)" }
   border: { hex: "#313244", oklch: "oklch(32.4% 0.032 281.98)" }

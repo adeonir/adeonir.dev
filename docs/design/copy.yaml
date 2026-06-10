@@ -23,9 +23,9 @@ content:
       logo:
         text: "adeonir.dev"
       nav:
-        - text: "Sobre"
-        - text: "Projetos"
-        - text: "Contato"
+        - text: "sobre"
+        - text: "projetos"
+        - text: "contato"
 
     hero:
       eyebrow: "Design Engineer"
