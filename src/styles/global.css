@@ -51,6 +51,7 @@
   --popover-foreground: var(--mocha-50);
   --sunken: var(--mocha-950);
   --sunken-foreground: var(--mocha-50);
+  --overlay: color-mix(in oklab, var(--ink) 50%, transparent);
   --border: var(--mocha-700);
   --input: var(--mocha-700);
   --ring: var(--stream);
@@ -95,6 +96,7 @@
   --color-popover-foreground: var(--popover-foreground);
   --color-sunken: var(--sunken);
   --color-sunken-foreground: var(--sunken-foreground);
+  --color-overlay: var(--overlay);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);

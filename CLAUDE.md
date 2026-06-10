@@ -54,6 +54,7 @@ When a doc and this file disagree, the doc wins. Change specs via the `spec-driv
   - `src/components/sections/` — `.astro` files for each page section
   - `src/components/ui/` — styled primitives, no state, semantic tokens only; built on the Ark UI factory (`ark.<element>`) by default so each is polymorphic and accepts `asChild` — whether it wraps an Ark primitive or a plain element. Drop to a bare HTML element only for a trivial primitive that never needs `asChild`
   Use `/new-component` skill to scaffold any tier.
+- **`src/lib/`** — shared pure helpers, no JSX (e.g. `cn` class composer).
 - **Imports:** `~/` alias (resolves to `src/`, per `tsconfig.json`) for any cross-directory import; reserve `./`/`../` for same-directory files. JSX is React (`jsxImportSource: react`); use `className` in `.tsx`, `class` in `.astro`.
 - **Local conventions in `.claude/rules/`** are auto-loaded and enforced: kebab-case filenames, `~/` alias imports, Tailwind canonical shorthand over arbitrary values, and commit/PR-merge format. Read them before large edits.
 - **Routing / i18n:** routing-based, `i18n.routing.prefixDefaultLocale = false`. Portuguese is the default and ships bare at `/`, `/work`, `/work/[slug]`, `/404`; English mirrors under `/en/...`. Locale keys are `pt`/`en` but emitted `lang`/`hreflang` are `pt-BR`/`en` (decoupled). Build localized links with `getRelativeLocaleUrl()`. No client-side language switching, no browser auto-detect.
