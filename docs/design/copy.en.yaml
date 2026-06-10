@@ -26,6 +26,10 @@ content:
         - text: "about"
         - text: "projects"
         - text: "contact"
+      menu:
+        label: "Menu"
+        open: "Open menu"
+        close: "Close menu"
 
     hero:
       eyebrow: "Design Engineer"

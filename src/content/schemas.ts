@@ -17,6 +17,11 @@ export const headerSchema = z.object({
       }),
     )
     .min(1),
+  menu: z.object({
+    label: z.string().min(1),
+    open: z.string().min(1),
+    close: z.string().min(1),
+  }),
 })
 
 export const footerSchema = z.object({

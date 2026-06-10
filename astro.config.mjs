@@ -1,7 +1,8 @@
-import preact from '@astrojs/preact'
+import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
 import tailwindcss from '@tailwindcss/vite'
 import { defineConfig, envField } from 'astro/config'
+import icons from 'unplugin-icons/vite'
 
 // astro.config can't import `astro:env`, so read the preview flag from process.env.
 const isPreviewBuild = process.env.PREVIEW === 'true'
@@ -25,9 +26,9 @@ function landing() {
 export default defineConfig({
   site: 'https://adeonir.dev',
   integrations: [
-    preact(),
-    landing(),
+    react(),
     sitemap({ filter: (page) => !page.includes('/styleguide') }),
+    landing(),
   ],
   env: {
     schema: {
@@ -49,6 +50,6 @@ export default defineConfig({
     },
   },
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [tailwindcss(), icons({ compiler: 'jsx', jsx: 'react' })],
   },
 })

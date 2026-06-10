@@ -25,8 +25,9 @@ Scaffold a component file from the correct tier, applying all project convention
 - **Styling**: semantic token classes only — `bg-background`, `text-foreground`, `bg-surface`,
   `bg-primary`, `text-on-primary`, `border-border`, etc. Never hardcode hex or oklch values.
   Never use `dark:` variants — skins are handled by `[data-theme]` on `:root` in global.css.
-- **JSX runtime**: Preact — never import from `react`. For islands/tsx use `preact/hooks`.
-  `tsconfig.json` sets `jsxImportSource: preact` globally — no need to import `h` or `Fragment`.
+- **JSX runtime**: React (`@astrojs/react`) — hooks come from `react`.
+  `tsconfig.json` sets `jsxImportSource: react` globally. In `.tsx` use `className`
+  (never `class` — that's `.astro` only).
 
 ## Tier inference (when not specified)
 
@@ -70,8 +71,8 @@ to avoid name collisions with the export — replace `Switch` with the actual pr
 
 ```tsx
 // Replace "Switch" with the actual primitive (e.g. Dialog, Tooltip, Select…)
-import { Switch as ArkSwitch } from '@ark-ui/preact/switch'
-import type { SwitchRootProps } from '@ark-ui/preact/switch'
+import { Switch as ArkSwitch } from '@ark-ui/react/switch'
+import type { SwitchRootProps } from '@ark-ui/react/switch'
 ```
 
 ### 3. Write the file
@@ -92,12 +93,12 @@ swap the rendered element without rewriting (e.g. render a badge as `<a>` instea
 ```tsx
 // src/components/ui/[name].tsx
 // Pick the element this primitive renders (div, span, button…) — keep the generic in sync
-import { ark, type HTMLArkProps } from '@ark-ui/preact/factory'
+import { ark, type HTMLArkProps } from '@ark-ui/react/factory'
 
 type Props = HTMLArkProps<'div'>
 
 export default function Name(props: Props) {
-  return <ark.div class="bg-surface text-foreground" {...props} />
+  return <ark.div className="bg-surface text-foreground" {...props} />
 }
 ```
 
@@ -108,14 +109,14 @@ Replace all occurrences of `Primitive`/`primitive` with the real primitive name 
 ```tsx
 // src/components/ui/[name].tsx
 // Replace "Primitive" → actual primitive name from MCP (e.g. Switch, Dialog, Select)
-import { Primitive as ArkPrimitive } from '@ark-ui/preact/primitive'
-import type { PrimitiveRootProps } from '@ark-ui/preact/primitive'
+import { Primitive as ArkPrimitive } from '@ark-ui/react/primitive'
+import type { PrimitiveRootProps } from '@ark-ui/react/primitive'
 
 type Props = PrimitiveRootProps
 
 export default function Name(props: Props) {
   return (
-    <ArkPrimitive.Root class="bg-surface text-foreground border-border" {...props}>
+    <ArkPrimitive.Root className="bg-surface text-foreground border-border" {...props}>
       {/* anatomy parts — add sub-components with semantic token classes per MCP output */}
     </ArkPrimitive.Root>
   )
@@ -129,15 +130,15 @@ the factory and render the element directly:
 
 ```tsx
 // src/components/ui/[name].tsx
-import type { ComponentChildren } from 'preact'
+import type { ReactNode } from 'react'
 
 type Props = {
-  children?: ComponentChildren
+  children?: ReactNode
 }
 
 export default function Name({ children }: Props) {
   return (
-    <div class="bg-surface text-foreground">
+    <div className="bg-surface text-foreground">
       {children}
     </div>
   )
@@ -148,11 +149,11 @@ export default function Name({ children }: Props) {
 
 ```tsx
 // src/components/islands/[name].tsx
-// import { useState, useEffect } from 'preact/hooks' — add as needed
+// import { useState, useEffect } from 'react' — add as needed
 
 export default function Name() {
   return (
-    <div class="bg-surface text-foreground">
+    <div className="bg-surface text-foreground">
     </div>
   )
 }
@@ -162,11 +163,11 @@ export default function Name() {
 
 ```tsx
 // src/components/[name].tsx
-// import { useState, useEffect } from 'preact/hooks' — add as needed
+// import { useState, useEffect } from 'react' — add as needed
 
 export default function Name() {
   return (
-    <div class="bg-surface text-foreground">
+    <div className="bg-surface text-foreground">
     </div>
   )
 }

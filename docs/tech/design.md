@@ -1,7 +1,7 @@
 ---
 name: adeonir-dev-portfolio
 created: 2026-06-06
-updated: 2026-06-08
+updated: 2026-06-10
 status: accepted
 sources:
   - docs/product/prd.md
@@ -76,7 +76,7 @@ flowchart TD
   subgraph App[Astro app - Cloudflare Worker runtime]
     Pages[Prerendered pages: pt and en]
     Action[Contact Action - on-demand, prerender=false]
-    Islands[Preact islands: toggle, form, switcher, nav]
+    Islands[React islands: toggle, form, switcher, nav]
   end
   subgraph Content[src/content - build time]
     MDX[projects MDX collection]
@@ -93,7 +93,7 @@ flowchart TD
   Action -. waitUntil .-> PostHog[PostHog capture - contact-submission]
 ```
 
-- **Components:** Astro app (prerendered pages + one on-demand Action), Preact
+- **Components:** Astro app (prerendered pages + one on-demand Action), React
   islands, content layer (MDX projects + per-section yaml copy), shared `schemas.ts`.
 - **Runtime boundaries:** everything prerenders to static assets except the
   contact Action, which executes on the Cloudflare Worker runtime (workerd).
@@ -168,7 +168,7 @@ erDiagram
   PROJECT }|--|| LOCALE : "body authored per"
 ```
 
-- **Ubiquitous glossary:** _locale_ (pt | en), _island_ (a hydrated Preact
+- **Ubiquitous glossary:** _locale_ (pt | en), _island_ (a hydrated React
   component), _section copy_ (UI text for one section, per locale), _project
   entry_ (one MDX case study), _featured_ (ordered home curation).
 
@@ -225,7 +225,7 @@ erDiagram
 | Type | Scope | Tools | Coverage Target |
 |------|-------|-------|-----------------|
 | Unit | Zod schemas, theme/locale utilities | Vitest (node) | Core logic |
-| Component | Preact islands (toggle, form, switcher) in a real browser | Vitest browser mode (Playwright provider) | Each island |
+| Component | React islands (toggle, form, switcher) in a real browser | Vitest browser mode (Playwright provider) | Each island |
 | E2E | Contact flow + EC-2 fallback, routing, 404 (EC-3) | Playwright | Critical flows |
 | A11y | Rendered pages, WCAG AA | `@axe-core/playwright` | All pages |
 | Perf / budget | Quality budgets (see §2) | Lighthouse CI | Key pages |
@@ -277,7 +277,7 @@ erDiagram
 | Deploy pipeline | Cloudflare Pages git integration | Wrangler deploy job in GitHub Actions | Solo, deterministic static build: git integration gives automatic per-PR previews, dashboard rollback, and per-environment vars with zero deploy credentials in GitHub. Quality gates run in Actions as required checks and branch protection keeps `main` green, so red never reaches production — the artifact-parity edge of an in-pipeline deploy job doesn't justify rebuilding that DX by hand | — |
 | Contact delivery | Resend (2 emails) | CF Email Routing send-binding; D1 persistence | The flow must email the _visitor_ (arbitrary address) — the send-binding can only reach verified self-addresses; no DB needed since emails are the record | — |
 | Spam defense | Honeypot + Workers rate-limit | Turnstile from day one | Low-volume personal form; Turnstile adds a script + widget that costs perf — reserved until spam is proven | — |
-| UI runtime | Preact | React | ~4 tiny islands; Preact gives the same JSX/hooks API at a fraction of the bytes. React appears only via react-email, server-side, never shipped | — |
+| UI runtime | React 19 (`@astrojs/react`) | Preact; Preact + `preact/compat` shim | Ark UI is the primitives layer and ships no Preact flavor; the compat route failed SSR in practice (`document` access under `preact-render-to-string`). Runtime cost (~50kb gzip on hydrating viewports) is deferred via `client:*` and guarded by the Lighthouse CI budget | ADR-001 |
 | Styling | Tailwind | Vanilla CSS; CSS Modules | Existing dual-skin tokens map cleanly to generated utilities; first-class Astro integration | — |
 | Content model | Single-source MDX + per-section yaml collections | Split metadata (yaml) from body (MDX) | One source of truth per project; schema-validated; no slug duplication or join logic | — |
 | i18n strategy | Routing-based: pt bare, en `/en`, no auto-detect | Client-side (react-i18next style); both-locales-prefixed; browser detection | Keeps the perf budget and SEO/hreflang intact; clean prefix-free URL for the primary (BR) audience | — |
@@ -285,8 +285,8 @@ erDiagram
 | E2E testing | Keep Playwright (scoped) | Drop it | Component tests can't exercise the contact Action, routing, or 404 — the only places that can actually break | — |
 | Pre-commit hook manager | lefthook | husky; simple-git-hooks; native git hooks | Single YAML config, parallel hook execution, language-agnostic Go binary with no Node runtime in the hook path; husky needs more wiring, simple-git-hooks is leaner but less capable, native hooks aren't shareable | — |
 
-**Record column:** `—` means the design doc is the only record. No decision has
-been promoted to an ADR yet.
+**Record column:** `—` means the design doc is the only record. Rows with an
+`ADR-NNNN` are frozen — reversals require a superseding ADR.
 
 ---
 
@@ -301,4 +301,4 @@ been promoted to an ADR yet.
 
 - PRD: `docs/product/prd.md`
 - Astro i18n routing: https://docs.astro.build/en/guides/internationalization/
-- ADRs: none yet
+- ADRs: `docs/adr/001-react-islands-runtime.md`
