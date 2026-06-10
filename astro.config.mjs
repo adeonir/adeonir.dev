@@ -2,6 +2,7 @@ import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
 import tailwindcss from '@tailwindcss/vite'
 import { defineConfig, envField } from 'astro/config'
+import icons from 'unplugin-icons/vite'
 
 // astro.config can't import `astro:env`, so read the preview flag from process.env.
 const isPreviewBuild = process.env.PREVIEW === 'true'
@@ -49,6 +50,6 @@ export default defineConfig({
     },
   },
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [tailwindcss(), icons({ compiler: 'jsx', jsx: 'react' })],
   },
 })
