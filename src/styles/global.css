@@ -108,6 +108,21 @@
     "Fira Code Variable", ui-monospace, "SF Mono", Consolas, monospace;
 
   --breakpoint-xs: 32rem;
+
+  --animate-fade-in: fade-in 150ms ease-out;
+  --animate-fade-out: fade-out 100ms ease-in;
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+  }
+
+  @keyframes fade-out {
+    to {
+      opacity: 0;
+    }
+  }
 }
 
 @utility text-display {
