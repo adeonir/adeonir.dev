@@ -1,8 +1,20 @@
-import { z } from 'astro:content'
+import { z } from 'astro/zod'
 
 export const settingsSchema = z.object({
   siteName: z.string(),
   description: z.string(),
   ogImage: z.string(),
   locale: z.string(),
+})
+
+export const headerSchema = z.object({
+  logo: z.string().min(1),
+  nav: z
+    .array(
+      z.object({
+        label: z.string().min(1),
+        href: z.string().min(1),
+      }),
+    )
+    .min(1),
 })
