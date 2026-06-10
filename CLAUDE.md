@@ -38,23 +38,23 @@ When a doc and this file disagree, the doc wins. Change specs via the `spec-driv
 ## Planned architecture (per design.md)
 
 - **Astro hybrid app on Cloudflare Pages (workerd runtime).** All content pages prerender to static HTML. The **only** on-demand route is the contact Action (`export const prerender = false`).
-- **Preact islands** for the ~4 interactive pieces only: theme toggle, contact form, language switcher, mobile nav. No React on the client; React is server-only via react-email.
+- **React islands** (`@astrojs/react`) for the ~4 interactive pieces only: theme toggle, contact form, language switcher, mobile nav — hydration deferred via `client:*` directives. `docs/tech/design.md` still says Preact islands; pending update via docs-writer — this file wins on that point until then.
 - **Content layer** under `src/content/`: the scaffolding is wired (`src/content.config.ts` + `src/content/schemas.ts`) with a `settings` collection (site metadata via the `file()` loader). Still planned on the same scaffolding: a `projects` MDX collection (one case study per folder, colocated images) + per-section YAML copy collections, validated by the same shared `schemas.ts` (Zod).
 - **Contact flow:** Zod validate → honeypot + Workers rate-limit binding (5 req / 10 min per IP, keyed on `CF-Connecting-IP`) → send two transactional emails via Resend → discard. No database, nothing persisted or logged. The visitor's email is set as `Reply-To`. The form must work without JS (progressive enhancement); the island only enhances it. On failure, surface a direct fallback channel (EC-2).
 - **External services:** Resend (outbound email), a hosted mailbox on `adeonir.dev` (inbound `contato@adeonir.dev`), PostHog (cookieless, privacy-first analytics — pageviews + UTM, no device storage).
 - **Styling (wired):** Tailwind v4 CSS-first in `src/styles/global.css` — raw Catppuccin scales as plain `:root` vars in **oklch**, semantic roles aliased per skin (dark on `:root`, latte under `[data-theme=light]`) and exposed via `@theme inline` so a runtime skin flip re-resolves with no rebuild, a skin-neutral `--ink` for text on accent fills, plus nine `@utility text-*` type-role composites. Style against the semantic utilities (`bg-background`, `text-foreground`, `text-display`) — never hardcode hex.
-- **UI primitives:** Ark UI (`@ark-ui/preact`), scaffolded via the `ark-ui` MCP server. Wire every component to the dual-skin tokens; never keep a default palette. Audit against the design do/don'ts after scaffolding. Docs: https://ark-ui.com/llms.txt
+- **UI primitives:** Ark UI (`@ark-ui/react`), scaffolded via the `ark-ui` MCP server. Wire every component to the dual-skin tokens; never keep a default palette. Audit against the design do/don'ts after scaffolding. Docs: https://ark-ui.com/llms.txt
 
 ## Conventions (per design.md §3.3)
 
 - **Files:** `kebab-case`. **Component default export:** `PascalCase` (`project-card.astro` → `ProjectCard`). Slugs, folders, routes lowercase.
 - **Component tiers** — four directories, each with a distinct role:
-  - `src/components/` — `.astro` for server-side composition; `.tsx` for stateful Preact reused inside islands
-  - `src/components/islands/` — Preact hydration boundaries; used with `client:*` in templates
+  - `src/components/` — `.astro` for server-side composition; `.tsx` for stateful React reused inside islands
+  - `src/components/islands/` — React hydration boundaries; used with `client:*` in templates
   - `src/components/sections/` — `.astro` files for each page section
   - `src/components/ui/` — styled primitives, no state, semantic tokens only; built on the Ark UI factory (`ark.<element>`) by default so each is polymorphic and accepts `asChild` — whether it wraps an Ark primitive or a plain element. Drop to a bare HTML element only for a trivial primitive that never needs `asChild`
   Use `/new-component` skill to scaffold any tier.
-- **Imports:** `~/` alias (resolves to `src/`, per `tsconfig.json`) for any cross-directory import; reserve `./`/`../` for same-directory files. JSX is Preact (`jsxImportSource: preact`) — no React on the client.
+- **Imports:** `~/` alias (resolves to `src/`, per `tsconfig.json`) for any cross-directory import; reserve `./`/`../` for same-directory files. JSX is React (`jsxImportSource: react`); use `className` in `.tsx`, `class` in `.astro`.
 - **Local conventions in `.claude/rules/`** are auto-loaded and enforced: kebab-case filenames, `~/` alias imports, Tailwind canonical shorthand over arbitrary values, and commit/PR-merge format. Read them before large edits.
 - **Routing / i18n:** routing-based, `i18n.routing.prefixDefaultLocale = false`. Portuguese is the default and ships bare at `/`, `/work`, `/work/[slug]`, `/404`; English mirrors under `/en/...`. Locale keys are `pt`/`en` but emitted `lang`/`hreflang` are `pt-BR`/`en` (decoupled). Build localized links with `getRelativeLocaleUrl()`. No client-side language switching, no browser auto-detect.
 - **Localized content:** default locale is bare (`*.yaml`, `index.mdx`); English carries an `.en` suffix (`*.en.yaml`, `index.en.mdx`). Cover/gallery images are shared across locales.
