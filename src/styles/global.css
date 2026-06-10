@@ -160,9 +160,3 @@
 @utility text-code {
   @apply font-mono text-sm;
 }
-
-@layer base {
-  html {
-    font-family: var(--font-sans);
-  }
-}

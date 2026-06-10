@@ -41,7 +41,10 @@ const ogImageURL = new URL(
 ---
 
 <!doctype html>
-<html lang={settings.data.locale} class="h-full">
+<html
+  lang={settings.data.locale}
+  class="h-full scroll-pt-16 scroll-smooth font-sans motion-reduce:scroll-auto"
+>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -73,7 +76,7 @@ const ogImageURL = new URL(
     <Analytics />
   </head>
   <body
-    class="flex min-h-screen flex-col bg-background text-foreground antialiased"
+    class="flex min-h-dvh flex-col bg-background text-foreground antialiased"
   >
     {
       shell ? (
@@ -86,5 +89,8 @@ const ogImageURL = new URL(
         <slot />
       )
     }
+    <script>
+      import '~/scripts/anchor-nav'
+    </script>
   </body>
 </html>
