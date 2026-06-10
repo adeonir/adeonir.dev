@@ -49,6 +49,8 @@
   --card-foreground: var(--mocha-50);
   --popover: var(--mocha-900);
   --popover-foreground: var(--mocha-50);
+  --sunken: var(--mocha-950);
+  --sunken-foreground: var(--mocha-50);
   --border: var(--mocha-700);
   --input: var(--mocha-700);
   --ring: var(--stream);
@@ -69,6 +71,8 @@
   --card-foreground: var(--latte-50);
   --popover: var(--latte-900);
   --popover-foreground: var(--latte-50);
+  --sunken: var(--latte-800);
+  --sunken-foreground: var(--latte-50);
   --border: var(--latte-700);
   --input: var(--latte-700);
   --ring: var(--ocean);
@@ -89,6 +93,8 @@
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
+  --color-sunken: var(--sunken);
+  --color-sunken-foreground: var(--sunken-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);

@@ -1,0 +1,15 @@
+footer:
+  brand:
+    text: 'adeonir.dev'
+    copyright: '© 2026 Adeonir Kohl'
+  tagline:
+    - text: 'Feito com '
+    - text: 'cuidado'
+      emphasis: true
+    - text: ', '
+    - text: 'paixão'
+      emphasis: true
+    - text: ' e '
+    - text: 'café'
+      emphasis: true
+    - text: '.'
