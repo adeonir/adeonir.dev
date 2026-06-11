@@ -4,7 +4,7 @@ import { cn } from '~/lib/cn'
 
 export type NavLinkProps = HTMLArkProps<'a'>
 
-export default function NavLink({ className, ...props }: NavLinkProps) {
+export function NavLink({ className, ...props }: NavLinkProps) {
   return (
     <ark.a
       className={cn(

@@ -1,8 +1,8 @@
 import { Portal } from '@ark-ui/react/portal'
 import { useEffect, useState } from 'react'
-import Popover from '~/components/popover'
-import Button from '~/components/ui/button'
-import NavLink from '~/components/ui/nav-link'
+import { Popover } from '~/components/popover'
+import { Button } from '~/components/ui/button'
+import { NavLink } from '~/components/ui/nav-link'
 import IconMenu from '~icons/tabler/menu'
 import IconX from '~icons/tabler/x'
 
@@ -11,7 +11,7 @@ type MobileMenuProps = {
   menu: { label: string; open: string; close: string }
 }
 
-export default function MobileMenu({ nav, menu }: MobileMenuProps) {
+export function MobileMenu({ nav, menu }: MobileMenuProps) {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
@@ -33,11 +33,15 @@ export default function MobileMenu({ nav, menu }: MobileMenuProps) {
       positioning={{ placement: 'bottom-end', gutter: 8 }}
     >
       <Popover.Trigger asChild>
-        <Button aria-label={open ? menu.close : menu.open}>
+        <Button
+          aria-label={open ? menu.close : menu.open}
+          className="hover:border-border!"
+          size="icon"
+        >
           {open ? (
-            <IconX className="size-4" />
+            <IconX className="size-5" />
           ) : (
-            <IconMenu className="size-4" />
+            <IconMenu className="size-5" />
           )}
         </Button>
       </Popover.Trigger>
