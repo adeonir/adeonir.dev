@@ -3,80 +3,106 @@
 @import "@fontsource-variable/fira-code";
 
 :root {
-  --mocha-50: oklch(87.9% 0.043 272.28);
-  --mocha-100: oklch(81.7% 0.04 272.86);
-  --mocha-150: oklch(75.1% 0.04 273.93);
-  --mocha-200: oklch(68.7% 0.037 274.73);
-  --mocha-300: oklch(61.8% 0.037 276);
-  --mocha-400: oklch(55.0% 0.034 277.1);
-  --mocha-500: oklch(47.7% 0.034 278.64);
-  --mocha-600: oklch(40.4% 0.032 280.15);
-  --mocha-700: oklch(32.4% 0.032 281.98);
-  --mocha-800: oklch(24.3% 0.03 283.91);
-  --mocha-900: oklch(21.6% 0.025 284.06);
-  --mocha-950: oklch(18.3% 0.02 284.2);
+  --mocha-50: oklch(87.87% 0.0426 272.28); /* text */
+  --mocha-100: oklch(81.68% 0.0403 272.86); /* subtext-1 */
+  --mocha-200: oklch(75.10% 0.0396 273.93); /* subtext-0 */
+  --mocha-300: oklch(68.65% 0.0374 274.73); /* overlay-2 */
+  --mocha-400: oklch(61.76% 0.0367 276); /* overlay-1 */
+  --mocha-500: oklch(54.97% 0.0345 277.1); /* overlay-0 */
+  --mocha-600: oklch(47.65% 0.034 278.64); /* surface-2 */
+  --mocha-700: oklch(40.37% 0.032 280.15); /* surface-1 */
+  --mocha-800: oklch(32.40% 0.0319 281.98); /* surface-0 */
+  --mocha-850: oklch(24.29% 0.0304 283.91); /* base */
+  --mocha-875: oklch(22.92% 0.0279 283.99); /* base/mantle blend */
+  --mocha-900: oklch(21.55% 0.0254 284.06); /* mantle */
+  --mocha-950: oklch(18.28% 0.0204 284.2); /* crust */
 
-  --latte-50: oklch(43.5% 0.043 279.33);
-  --latte-100: oklch(49.2% 0.038 279.3);
-  --latte-150: oklch(54.7% 0.034 279.08);
-  --latte-200: oklch(60.1% 0.03 278.69);
-  --latte-300: oklch(65.4% 0.027 278.12);
-  --latte-400: oklch(70.8% 0.024 274.6);
-  --latte-500: oklch(75.8% 0.02 273.15);
-  --latte-600: oklch(80.8% 0.017 271.2);
-  --latte-700: oklch(85.7% 0.014 268.48);
-  --latte-800: oklch(90.6% 0.012 264.51);
-  --latte-900: oklch(93.3% 0.009 264.52);
-  --latte-950: oklch(95.8% 0.006 264.53);
+  --latte-50: oklch(95.78% 0.0058 264.53); /* base */
+  --latte-75: oklch(94.57% 0.0073 264.53); /* base/mantle blend */
+  --latte-100: oklch(93.35% 0.0087 264.52); /* mantle */
+  --latte-150: oklch(90.60% 0.0117 264.51); /* crust */
+  --latte-200: oklch(85.75% 0.0145 268.48); /* surface-0 */
+  --latte-300: oklch(80.83% 0.0174 271.2); /* surface-1 */
+  --latte-400: oklch(75.84% 0.0205 273.15); /* surface-2 */
+  --latte-500: oklch(70.77% 0.0237 274.6); /* overlay-0 */
+  --latte-600: oklch(65.36% 0.0269 278.12); /* overlay-1 */
+  --latte-700: oklch(60.09% 0.0305 278.69); /* overlay-2 */
+  --latte-800: oklch(54.71% 0.0343 279.08); /* subtext-0 */
+  --latte-900: oklch(49.20% 0.0385 279.3); /* subtext-1 */
+  --latte-950: oklch(43.55% 0.043 279.33); /* text */
 
-  --stream: oklch(75.4% 0.139 232.66);
-  --ocean: oklch(68.2% 0.145 235.38);
-  --azalea: oklch(67.2% 0.233 2.27);
-  --hibiscus: oklch(60.4% 0.213 5.46);
+  --ocean-50: oklch(97.7% 0.012 236.62);
+  --ocean-100: oklch(95.1% 0.025 236.82);
+  --ocean-200: oklch(90.1% 0.055 230.9);
+  --ocean-300: oklch(82.5% 0.102 231.23);
+  --ocean-400: oklch(75.1% 0.141 233.62);
+  --ocean-500: oklch(67.7% 0.148 238.14);
+  --ocean-600: oklch(58.6% 0.141 242.85);
+  --ocean-700: oklch(49.8% 0.122 243.78);
+  --ocean-800: oklch(44.1% 0.101 241.65);
+  --ocean-900: oklch(38.9% 0.085 241.95);
+  --ocean-950: oklch(29.3% 0.063 243.16);
+
+  --azalea-50: oklch(97% 0.016 347.63);
+  --azalea-100: oklch(94.6% 0.031 347.06);
+  --azalea-200: oklch(89.3% 0.068 348.58);
+  --azalea-300: oklch(81.2% 0.125 351.86);
+  --azalea-400: oklch(71.6% 0.199 357.08);
+  --azalea-500: oklch(67.2% 0.233 2.27);
+  --azalea-600: oklch(61.4% 0.24 11.26);
+  --azalea-700: oklch(54.8% 0.217 15.02);
+  --azalea-800: oklch(47.8% 0.188 14.62);
+  --azalea-900: oklch(42% 0.16 12.52);
+  --azalea-950: oklch(29.3% 0.117 13.61);
+
   --ink: oklch(18.3% 0.02 284.2);
+  --paper: oklch(98.5% 0.005 264.5);
 
-  --primary: var(--stream);
+  --primary: var(--ocean-500);
   --primary-foreground: var(--ink);
-  --secondary: var(--azalea);
+  --secondary: var(--azalea-500);
   --secondary-foreground: var(--ink);
-  --accent: var(--mocha-700);
-  --accent-foreground: var(--mocha-50);
-  --muted: var(--mocha-700);
-  --muted-foreground: var(--mocha-150);
-  --background: var(--mocha-800);
-  --foreground: var(--mocha-50);
-  --card: var(--mocha-900);
-  --card-foreground: var(--mocha-50);
-  --popover: var(--mocha-900);
-  --popover-foreground: var(--mocha-50);
-  --sunken: var(--mocha-950);
-  --sunken-foreground: var(--mocha-50);
-  --overlay: color-mix(in oklab, var(--ink) 50%, transparent);
-  --border: var(--mocha-700);
-  --input: var(--mocha-700);
-  --ring: var(--stream);
+  --action: var(--ocean-500); /* primary as text */
+  --emphasis: var(--azalea-500); /* secondary as text */
+  --accent: var(--mocha-700); /* surface-1 */
+  --accent-foreground: var(--mocha-50); /* text */
+  --muted: var(--mocha-800); /* surface-0 */
+  --muted-foreground: var(--mocha-100); /* subtext-1 */
+  --background: var(--mocha-850); /* base */
+  --foreground: var(--mocha-50); /* text */
+  --card: var(--mocha-900); /* mantle */
+  --card-foreground: var(--mocha-50); /* text */
+  --popover: var(--mocha-875); /* base/mantle blend */
+  --popover-foreground: var(--mocha-50); /* text */
+  --sunken: var(--mocha-950); /* crust */
+  --sunken-foreground: var(--mocha-50); /* text */
+  --border: var(--mocha-800); /* surface-0 */
+  --input: var(--mocha-800); /* surface-0 */
+  --ring: var(--ocean-600);
 }
 
 [data-theme="light"] {
-  --primary: var(--ocean);
+  --primary: var(--ocean-500);
   --primary-foreground: var(--ink);
-  --secondary: var(--hibiscus);
-  --secondary-foreground: var(--latte-950);
-  --accent: var(--latte-700);
-  --accent-foreground: var(--latte-50);
-  --muted: var(--latte-700);
-  --muted-foreground: var(--latte-150);
-  --background: var(--latte-950);
-  --foreground: var(--latte-50);
-  --card: var(--latte-900);
-  --card-foreground: var(--latte-50);
-  --popover: var(--latte-900);
-  --popover-foreground: var(--latte-50);
-  --sunken: var(--latte-800);
-  --sunken-foreground: var(--latte-50);
-  --border: var(--latte-700);
-  --input: var(--latte-700);
-  --ring: var(--ocean);
+  --secondary: var(--azalea-500);
+  --secondary-foreground: var(--ink);
+  --action: var(--ocean-700); /* primary as text */
+  --emphasis: var(--azalea-800); /* secondary as text */
+  --accent: var(--latte-300); /* surface-1 */
+  --accent-foreground: var(--latte-950); /* text */
+  --muted: var(--latte-200); /* surface-0 */
+  --muted-foreground: var(--latte-900); /* subtext-1 */
+  --background: var(--latte-50); /* base */
+  --foreground: var(--latte-950); /* text */
+  --card: var(--latte-100); /* mantle */
+  --card-foreground: var(--latte-950); /* text */
+  --popover: var(--latte-75); /* base/mantle blend */
+  --popover-foreground: var(--latte-950); /* text */
+  --sunken: var(--latte-150); /* crust */
+  --sunken-foreground: var(--latte-950); /* text */
+  --border: var(--latte-200); /* surface-0 */
+  --input: var(--latte-200); /* surface-0 */
+  --ring: var(--ocean-600);
 }
 
 @theme inline {
@@ -84,6 +110,8 @@
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
+  --color-action: var(--action);
+  --color-emphasis: var(--emphasis);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-muted: var(--muted);
@@ -96,7 +124,6 @@
   --color-popover-foreground: var(--popover-foreground);
   --color-sunken: var(--sunken);
   --color-sunken-foreground: var(--sunken-foreground);
-  --color-overlay: var(--overlay);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
