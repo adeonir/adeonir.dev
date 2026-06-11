@@ -1,6 +1,7 @@
 ---
 import { getEntry } from 'astro:content'
 
+import Logo from '~/components/logo.astro'
 import MobileMenu from '~/components/islands/mobile-menu'
 import NavLink from '~/components/ui/nav-link'
 
@@ -22,7 +23,7 @@ const { logo, nav, menu } = header.data
       href="/"
       class="-mx-1.5 -my-0.5 shrink-0 rounded-sm px-1.5 py-0.5 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
     >
-      <img class="w-32" src="/logo.svg" alt={logo} />
+      <Logo class="w-32" label={logo} />
     </a>
     <nav class="hidden md:block">
       <ul class="flex items-center gap-6">
