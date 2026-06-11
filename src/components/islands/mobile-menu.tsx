@@ -33,11 +33,15 @@ export function MobileMenu({ nav, menu }: MobileMenuProps) {
       positioning={{ placement: 'bottom-end', gutter: 8 }}
     >
       <Popover.Trigger asChild>
-        <Button aria-label={open ? menu.close : menu.open}>
+        <Button
+          aria-label={open ? menu.close : menu.open}
+          className="hover:border-border!"
+          size="icon"
+        >
           {open ? (
-            <IconX className="size-4" />
+            <IconX className="size-5" />
           ) : (
-            <IconMenu className="size-4" />
+            <IconMenu className="size-5" />
           )}
         </Button>
       </Popover.Trigger>
