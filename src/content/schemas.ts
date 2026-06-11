@@ -30,6 +30,19 @@ export const heroSchema = z.object({
   }),
 })
 
+export const aboutSchema = z.object({
+  eyebrow: z.string().min(1),
+  headline: z
+    .array(
+      z.object({
+        text: z.string().min(1),
+        strong: z.boolean().optional(),
+      }),
+    )
+    .min(1),
+  bio: z.array(z.string().min(1)).min(1),
+})
+
 export const headerSchema = z.object({
   logo: z.string().min(1),
   nav: z

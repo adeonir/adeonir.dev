@@ -1,6 +1,7 @@
 import { defineCollection } from 'astro:content'
 import { file } from 'astro/loaders'
 import {
+  aboutSchema,
   footerSchema,
   headerSchema,
   heroSchema,
@@ -22,9 +23,14 @@ const hero = defineCollection({
   schema: heroSchema,
 })
 
+const about = defineCollection({
+  loader: file('src/content/about.yaml'),
+  schema: aboutSchema,
+})
+
 const footer = defineCollection({
   loader: file('src/content/footer.yaml'),
   schema: footerSchema,
 })
 
-export const collections = { settings, header, footer, hero }
+export const collections = { settings, header, footer, hero, about }

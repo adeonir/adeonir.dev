@@ -1,0 +1,39 @@
+---
+import { getEntry } from 'astro:content'
+
+import { Eyebrow } from '~/components/ui/eyebrow'
+
+const about = await getEntry('about', 'about')
+
+if (!about) {
+  throw new Error('Missing about/about entry')
+}
+
+const { eyebrow, headline, bio } = about.data
+---
+
+<section id="about" class="mx-auto w-full max-w-5xl px-6 py-16 md:py-24">
+  <Eyebrow>{eyebrow}</Eyebrow>
+  <div class="mt-6 flex flex-col gap-8 md:flex-row md:gap-12">
+    <h2 class="flex-1 text-display text-pretty text-foreground">
+      {
+        headline.map((segment) =>
+          segment.strong ? (
+            <span class="text-secondary">{segment.text}</span>
+          ) : (
+            segment.text
+          ),
+        )
+      }
+    </h2>
+    <div class="flex flex-1 flex-col gap-4">
+      {
+        bio.map((paragraph) => (
+          <p class="text-body leading-relaxed text-pretty text-muted-foreground">
+            {paragraph}
+          </p>
+        ))
+      }
+    </div>
+  </div>
+</section>
