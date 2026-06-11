@@ -1,34 +1,23 @@
 import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
 import tailwindcss from '@tailwindcss/vite'
+import robotsTxt from 'astro-robots-txt'
 import { defineConfig, envField } from 'astro/config'
 import icons from 'unplugin-icons/vite'
 
-// astro.config can't import `astro:env`, so read the preview flag from process.env.
-const isPreviewBuild = process.env.PREVIEW === 'true'
-
-function landing() {
-  return {
-    name: 'landing',
-    hooks: {
-      'astro:config:setup': ({ command, injectRoute }) => {
-        if (command === 'dev' || isPreviewBuild) {
-          injectRoute({
-            pattern: '/_landing',
-            entrypoint: './src/pages/_landing.astro',
-          })
-        }
-      },
-    },
-  }
-}
+const noIndexRoutes = ['/styleguide', '/maintenance']
 
 export default defineConfig({
   site: 'https://adeonir.dev',
   integrations: [
     react(),
-    sitemap({ filter: (page) => !page.includes('/styleguide') }),
-    landing(),
+    sitemap({
+      filter: (page) =>
+        !noIndexRoutes.includes(new URL(page).pathname.replace(/\/+$/, '')),
+    }),
+    robotsTxt({
+      policy: [{ userAgent: '*', allow: '/', disallow: noIndexRoutes }],
+    }),
   ],
   env: {
     schema: {
@@ -41,11 +30,6 @@ export default defineConfig({
         context: 'client',
         access: 'public',
         default: 'https://t.adeonir.dev',
-      }),
-      PREVIEW: envField.boolean({
-        context: 'server',
-        access: 'public',
-        default: false,
       }),
     },
   },

@@ -1,10 +1,15 @@
 ---
-import Logo from '~/components/logo.astro'
+import About from '~/components/sections/about.astro'
+import Hero from '~/components/sections/hero.astro'
+import Stack from '~/components/sections/stack.astro'
+import { Divider } from '~/components/ui/divider'
 import Layout from '~/layouts/base.astro'
 ---
 
-<Layout title="Portfólio">
-  <main class="flex flex-1 items-center justify-center">
-    <Logo class="w-64" />
-  </main>
+<Layout title="Portfólio" shell>
+  <Hero />
+  <Divider />
+  <About />
+  <Divider />
+  <Stack />
 </Layout>
