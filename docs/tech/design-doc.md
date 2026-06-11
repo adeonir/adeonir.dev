@@ -1,7 +1,7 @@
 ---
 name: adeonir-dev-portfolio
 created: 2026-06-06
-updated: 2026-06-10
+updated: 2026-06-11
 status: accepted
 sources:
   - docs/product/prd.md
@@ -22,8 +22,8 @@ the explicit differentiator: the site itself is the proof of craft, so the
 architecture optimizes for near-zero shipped JavaScript and top quality scores.
 
 The surrounding landscape is intentionally small: Cloudflare hosts and runs the
-one on-demand route, Resend delivers transactional email, a mailbox on the
-domain receives the branded inbox, and PostHog collects cookieless,
+one on-demand route, Resend delivers transactional email, a Plesk-hosted
+mailbox on the domain receives the branded inbox, and PostHog collects cookieless,
 privacy-first analytics. There is no database and no backend beyond contact
 handling.
 
@@ -88,7 +88,7 @@ flowchart TD
   Schemas -. validates .-> Copy
   Islands -. hydrate .-> Pages
   Action --> Zod[Zod input validation]
-  Action --> RL[Workers rate-limit binding]
+  Action --> RL[KV rate-limit counter]
   Action --> Resend[Resend HTTP API]
   Action -. waitUntil .-> PostHog[PostHog capture - contact-submission]
 ```
@@ -115,8 +115,8 @@ flowchart LR
 - **Actors:** site visitors (the three PRD personas).
 - **External services:** Cloudflare Pages (host + edge runtime, git-integration
   build and deploy), Resend
-  (outbound transactional email), a hosted mailbox on `adeonir.dev` (inbound
-  `contato@adeonir.dev`), PostHog US Cloud (cookieless analytics — manual
+  (outbound transactional email), a Plesk-hosted mailbox on `adeonir.dev`
+  (inbound `contato@adeonir.dev`), PostHog US Cloud (cookieless analytics — manual
   capture, server-side `contact-submission` event), GitHub Actions (CI quality
   gates).
 
@@ -181,8 +181,10 @@ erDiagram
   written to logs. The visitor's email is set as `Reply-To` on the notification
   so replies route back to them.
 - **Auth / Authz:** N/A — no accounts, no protected resources.
-- **Spam / abuse:** honeypot field + Cloudflare Workers rate-limit binding
-  (5 requests / 10 min per IP, keyed on `CF-Connecting-IP`) + Zod validation.
+- **Spam / abuse:** honeypot field + KV rate-limit counter (5 requests / 10 min
+  per IP, keyed on `CF-Connecting-IP`, 600s TTL) + Zod validation. The Workers
+  Rate Limiting binding was ruled out: it is not supported on Pages Functions
+  and its maximum period (60s) cannot express the 10-minute window.
   Cloudflare Turnstile is held in reserve and added only if spam gets through.
 - **Audit log:** N/A — no sensitive or stateful operations to audit.
 - **Regulatory (LGPD/GDPR):** analytics is cookieless and aggregate and nothing
@@ -273,10 +275,10 @@ erDiagram
 | Decision | Chosen | Rejected | Reasoning | Record |
 |----------|--------|----------|-----------|--------|
 | Framework | Astro (hybrid) | TanStack Start | Content-first site where performance is the message; TanStack Start is an app framework solving a content problem — its loaders/server-fns are app features this site does not need | — |
-| Host / rendering | Cloudflare Pages, hybrid | Vercel / Netlify; fully static | Free edge hosting on the workerd runtime with a native ecosystem (rate-limit binding, Pages previews); hybrid keeps the form first-party (one on-demand route) while everything else prerenders. Vercel/Netlify are equally capable; fully static would force the form onto a third party | — |
+| Host / rendering | Cloudflare Pages, hybrid | Vercel / Netlify; fully static | Free edge hosting on the workerd runtime with a native ecosystem (KV, Pages previews); hybrid keeps the form first-party (one on-demand route) while everything else prerenders. Vercel/Netlify are equally capable; fully static would force the form onto a third party | — |
 | Deploy pipeline | Cloudflare Pages git integration | Wrangler deploy job in GitHub Actions | Solo, deterministic static build: git integration gives automatic per-PR previews, dashboard rollback, and per-environment vars with zero deploy credentials in GitHub. Quality gates run in Actions as required checks and branch protection keeps `main` green, so red never reaches production — the artifact-parity edge of an in-pipeline deploy job doesn't justify rebuilding that DX by hand | — |
 | Contact delivery | Resend (2 emails) | CF Email Routing send-binding; D1 persistence | The flow must email the _visitor_ (arbitrary address) — the send-binding can only reach verified self-addresses; no DB needed since emails are the record | — |
-| Spam defense | Honeypot + Workers rate-limit | Turnstile from day one | Low-volume personal form; Turnstile adds a script + widget that costs perf — reserved until spam is proven | — |
+| Spam defense | Honeypot + KV rate-limit counter | Workers Rate Limiting binding; Turnstile from day one | The binding is not supported on Pages Functions and its max period (60s) cannot express the 5 req / 10 min rule — a KV counter with 600s TTL can, and eventual consistency is acceptable for a low-volume personal form. Turnstile adds a script + widget that costs perf — reserved until spam is proven | — |
 | UI runtime | React 19 (`@astrojs/react`) | Preact; Preact + `preact/compat` shim | Ark UI is the primitives layer and ships no Preact flavor; the compat route failed SSR in practice (`document` access under `preact-render-to-string`). Runtime cost (~50kb gzip on hydrating viewports) is deferred via `client:*` and guarded by the Lighthouse CI budget | ADR-001 |
 | Styling | Tailwind | Vanilla CSS; CSS Modules | Existing dual-skin tokens map cleanly to generated utilities; first-class Astro integration | — |
 | Content model | Single-source MDX + per-section yaml collections | Split metadata (yaml) from body (MDX) | One source of truth per project; schema-validated; no slug duplication or join logic | — |
@@ -292,8 +294,7 @@ erDiagram
 
 ## 5. Open Questions
 
-- [ ] **Rate-limit binding** — confirm Workers Rate Limiting binding config and
-      availability in the deploy target; KV-counter fallback if needed.
+- None currently.
 
 ---
 
