@@ -31,6 +31,7 @@ colors:
   latte-700: { hex: "#7c7f93", oklch: "oklch(60.09% 0.0305 278.69)" } # overlay-2
   latte-800: { hex: "#6c6f85", oklch: "oklch(54.71% 0.0343 279.08)" } # subtext-0
   latte-900: { hex: "#5c5f77", oklch: "oklch(49.20% 0.0385 279.30)" } # subtext-1
+  latte-925: { hex: "#545770", oklch: "oklch(46.40% 0.0408 279.30)" } # subtext-1/text blend
   latte-950: { hex: "#4c4f69", oklch: "oklch(43.55% 0.0430 279.33)" } # text
   # ── Brand accents: two full ramps (blue waters + pink flowers); the skin selects steps ──
   ocean-50: { hex: "#f0f9ff", oklch: "oklch(97.7% 0.012 236.62)" }
@@ -52,6 +53,7 @@ colors:
   azalea-500: { hex: "#ff3d8a", oklch: "oklch(67.2% 0.233 2.27)" }
   azalea-600: { hex: "#f0125f", oklch: "oklch(61.4% 0.240 11.26)" }
   azalea-700: { hex: "#d10546", oklch: "oklch(54.8% 0.217 15.02)" }
+  azalea-750: { hex: "#bf0540", oklch: "oklch(51.3% 0.203 14.82)" }
   azalea-800: { hex: "#ad073a", oklch: "oklch(47.8% 0.188 14.62)" }
   azalea-900: { hex: "#8f0c34", oklch: "oklch(42.0% 0.160 12.52)" }
   azalea-950: { hex: "#58001a", oklch: "oklch(29.3% 0.117 13.61)" }
@@ -82,12 +84,13 @@ colors:
   ring: { hex: "#0183c8", oklch: "oklch(58.6% 0.141 242.85)" }
   # ── Latte/light skin override: redefines only what changes; the rest inherits the flat dark token ──
   light:
+    secondary: { hex: "#f0125f", oklch: "oklch(61.4% 0.240 11.26)" }
     action: { hex: "#0268a2", oklch: "oklch(49.8% 0.122 243.78)" }
-    emphasis: { hex: "#ad073a", oklch: "oklch(47.8% 0.188 14.62)" }
+    emphasis: { hex: "#bf0540", oklch: "oklch(51.3% 0.203 14.82)" }
     accent: { hex: "#c4c8d3", oklch: "oklch(83.29% 0.0159 269.84)" }
     accent-foreground: { hex: "#4c4f69", oklch: "oklch(43.55% 0.0430 279.33)" }
     muted: { hex: "#ccd0da", oklch: "oklch(85.75% 0.0145 268.48)" }
-    muted-foreground: { hex: "#5c5f77", oklch: "oklch(49.20% 0.0385 279.30)" }
+    muted-foreground: { hex: "#545770", oklch: "oklch(46.40% 0.0408 279.30)" }
     background: { hex: "#eff1f5", oklch: "oklch(95.78% 0.0058 264.53)" }
     foreground: { hex: "#4c4f69", oklch: "oklch(43.55% 0.0430 279.33)" }
     card: { hex: "#e6e9ef", oklch: "oklch(93.35% 0.0087 264.52)" }
@@ -101,23 +104,23 @@ colors:
 typography:
   display:
     fontFamily: "Geist"
-    fontSize: 3.75rem
+    fontSize: { base: 2.25rem, sm: 3rem }
     fontWeight: 800
     lineHeight: 1
     letterSpacing: -0.025em
   heading:
     fontFamily: "Geist"
-    fontSize: 1.875rem
+    fontSize: { base: 1.5rem, sm: 1.875rem }
     fontWeight: 700
     lineHeight: 1.2
   title:
     fontFamily: "Geist"
-    fontSize: 1.5rem
+    fontSize: { base: 1.25rem, sm: 1.5rem }
     fontWeight: 600
     lineHeight: 1.333
   subtitle:
     fontFamily: "Geist"
-    fontSize: 1.125rem
+    fontSize: { base: 1rem, sm: 1.125rem }
     fontWeight: 500
     lineHeight: 1.556
   body:
@@ -282,9 +285,9 @@ The palette is two layers. The neutrals are two Catppuccin scales — `mocha` (d
 The primitive layer. Every semantic token below aliases a step of the active skin's scale, an accent-ramp step, or the skin-neutral ink/paper pair.
 
 - **mocha** — Catppuccin dark flavor, role-numbered light→dark: `mocha-50` text (#cdd6f4) · `-100` subtext-1 · `-200` subtext-0 · `-300` overlay-2 · `-400` overlay-1 · `-500` overlay-0 · `-600` surface-2 · `-700` surface-1 · `-800` surface-0 · `-850` base (#1e1e2e) · `-875` base/mantle blend · `-900` mantle · `-950` crust (#11111b)
-- **latte** — Catppuccin light flavor, role-numbered light→dark: `latte-50` base (#eff1f5) · `-75` base/mantle blend · `-100` mantle · `-150` crust · `-200` surface-0 · `-300` surface-1 · `-400` surface-2 · `-500` overlay-0 · `-600` overlay-1 · `-700` overlay-2 · `-800` subtext-0 · `-900` subtext-1 · `-950` text (#4c4f69)
+- **latte** — Catppuccin light flavor, role-numbered light→dark: `latte-50` base (#eff1f5) · `-75` base/mantle blend · `-100` mantle · `-150` crust · `-200` surface-0 · `-300` surface-1 · `-400` surface-2 · `-500` overlay-0 · `-600` overlay-1 · `-700` overlay-2 · `-800` subtext-0 · `-900` subtext-1 · `-925` subtext-1/text blend · `-950` text (#4c4f69)
 - **ocean** — blue water ramp, the hue that acts: `ocean-500` (#0da2e7) bright fills + dark-skin text · `ocean-600` (#0183c8) focus ring · `ocean-700` (#0268a2) light-skin link text. Full ramp `ocean-50`…`ocean-950`.
-- **azalea** — pink bloom ramp, the hue that points: `azalea-500` (#ff3d8a) bright fills + dark-skin emphasis · `azalea-800` (#ad073a) light-skin emphasis text. Full ramp `azalea-50`…`azalea-950`.
+- **azalea** — pink bloom ramp, the hue that points: `azalea-500` (#ff3d8a) bright fills + dark-skin secondary/emphasis · `azalea-600` (#f0125f) light-skin secondary text · `azalea-750` (#bf0540) light-skin emphasis text. Full ramp `azalea-50`…`azalea-950`.
 - **ink** (oklch(18.3% 0.020 284.20) / #11111b) — skin-neutral near-black; dark text on bright accent fills.
 - **paper** (oklch(98.5% 0.005 264.50) / #f8fafe) — skin-neutral near-white; the light counterpart to ink, for light text on a dark accent fill.
 
@@ -297,9 +300,9 @@ The primitive layer. Every semantic token below aliases a step of the active ski
 
 ### Secondary & Accent
 
-- **Azalea** (oklch(67.2% 0.233 2.27) / #ff3d8a) → `secondary` — emphasis fills and tints; never interactive. Same `azalea-500` in both skins.
-- **Ink** (oklch(18.3% 0.020 284.20) / #11111b) → `secondary-foreground` — skin-neutral dark text on a pink chip, both skins.
-- **Azalea deep** (oklch(47.8% 0.188 14.62) / #ad073a) → `emphasis` — the narrow AA fallback for **small** pink text. Most pink emphasis uses `secondary` directly (bright, WCAG-exempt at large or decorative sizes); `emphasis` only kicks in where small body text must clear AA, stepping the light skin from `azalea-500` to `azalea-800`.
+- **Azalea** (oklch(67.2% 0.233 2.27) / #ff3d8a) → `secondary` — emphasis fills and tints, and large pink text (the role for headline-scale emphasis); never interactive. Dark skin keeps `azalea-500`; the light skin steps to `azalea-600` (oklch(61.4% 0.240 11.26) / #f0125f) so it clears 3:1 on near-white.
+- **Ink** (oklch(18.3% 0.020 284.20) / #11111b) → `secondary-foreground` — skin-neutral dark text on a pink chip, both skins. On the light-skin solid `secondary` fill (`azalea-600`) this clears 3:1 for large/UI text only (4.43:1); for small labels use the `secondary/7` tint with `emphasis` instead.
+- **Azalea deep** (oklch(51.3% 0.203 14.82) / #bf0540) → `emphasis` — the AA-safe step for **small** pink text. Large pink text uses `secondary` directly; `emphasis` kicks in where small text must clear 4.5:1, stepping the light skin from `azalea-500` to `azalea-750`. In the dark skin both `secondary` and `emphasis` resolve to `azalea-500`, so they diverge only in the light skin.
 - **Surface 0/1 blend** (oklch(36.38% 0.0319 281.06) / #3b3c4f) → `accent` — neutral hover surface, a half-step lift between surface-0 and surface-1 so a hovered row reads while body text on it still clears AA. Light skin: `latte-250` (oklch(83.29% 0.0159 269.84) / #c4c8d3).
 - **Text** (oklch(87.87% 0.0426 272.28) / #cdd6f4) → `accent-foreground` — text on the neutral accent surface. Light skin: `latte-950` (oklch(43.55% 0.0430 279.33) / #4c4f69).
 
@@ -318,7 +321,7 @@ The primitive layer. Every semantic token below aliases a step of the active ski
 - **Text** (oklch(87.87% 0.0426 272.28) / #cdd6f4) → `card-foreground` — text on recessed panels. Light skin: `latte-950` (oklch(43.55% 0.0430 279.33) / #4c4f69).
 - **Text** (oklch(87.87% 0.0426 272.28) / #cdd6f4) → `popover-foreground` — text on popovers. Light skin: `latte-950` (oklch(43.55% 0.0430 279.33) / #4c4f69).
 - **Text** (oklch(87.87% 0.0426 272.28) / #cdd6f4) → `sunken-foreground` — text on the deepest panels. Light skin: `latte-950` (oklch(43.55% 0.0430 279.33) / #4c4f69).
-- **Subtext 1** (oklch(81.68% 0.0403 272.86) / #bac2de) → `muted-foreground` — secondary text, captions, supporting copy; subtext-1 is the lightest step that still holds AA against background and card on both skins. Light skin: `latte-900` (oklch(49.20% 0.0385 279.30) / #5c5f77).
+- **Subtext 1** (oklch(81.68% 0.0403 272.86) / #bac2de) → `muted-foreground` — secondary text, captions, supporting copy. The dark skin uses subtext-1 (`mocha-100`); the light skin steps to `latte-925` (oklch(46.40% 0.0408 279.30) / #545770) so supporting copy clears AA against background, card, and the solid `muted` fill alike.
 - **Surface 0** (oklch(32.40% 0.0319 281.98) / #313244) → `muted` — muted fills and disabled surfaces, one step below the accent hover. Light skin: `latte-200` (oklch(85.75% 0.0145 268.48) / #ccd0da).
 
 ## 3. Typography Rules
@@ -330,12 +333,12 @@ The primitive layer. Every semantic token below aliases a step of the active ski
 
 ### Hierarchy
 
-Sizes follow the standard `text-*` step scale (`6xl`, `3xl`, `2xl`, `lg`, `base`, `sm`, `xs`); line-heights are the scale's per-step defaults. Letter-spacing departs from `normal` only twice: the display tightens, the label widens.
+Sizes follow the standard `text-*` step scale; line-heights are the scale's per-step defaults. The four heading roles (`display`, `heading`, `title`, `subtitle`) scale responsively — one step smaller below the `sm` breakpoint (40rem), their full size at and above it — while body and the smaller roles stay fixed. Letter-spacing departs from `normal` only twice: the display tightens, the label widens.
 
-- **Display** (`display`): Geist 3.75rem (`6xl`) weight 800, line-height 1, letter-spacing -0.025em (`tight`) — the hero name, set large and confident.
-- **Heading** (`heading`): Geist 1.875rem (`3xl`) weight 700, line-height 1.2 — section titles; the second word may take `secondary`.
-- **Title** (`title`): Geist 1.5rem (`2xl`) weight 600, line-height 1.333 — card titles, project names.
-- **Subtitle** (`subtitle`): Geist 1.125rem (`lg`) weight 500, line-height 1.556 — lead-in copy and sub-headings, a step above body.
+- **Display** (`display`): Geist 2.25rem→3rem (`4xl`→`5xl`, mobile→desktop) weight 800, line-height 1, letter-spacing -0.025em (`tight`) — section headlines, set large and confident. The hero name is an exception, sized larger with its own raw steps.
+- **Heading** (`heading`): Geist 1.5rem→1.875rem (`2xl`→`3xl`, mobile→desktop) weight 700, line-height 1.2 — section titles; the second word may take `secondary`.
+- **Title** (`title`): Geist 1.25rem→1.5rem (`xl`→`2xl`, mobile→desktop) weight 600, line-height 1.333 — card titles, project names.
+- **Subtitle** (`subtitle`): Geist 1rem→1.125rem (`base`→`lg`, mobile→desktop) weight 500, line-height 1.556 — lead-in copy and sub-headings, a step above body.
 - **Body** (`body`): Geist 1rem (`base`) weight 400, line-height 1.5 — primary reading copy.
 - **Caption** (`caption`): Geist 0.75rem (`xs`) weight 400, line-height 1.333 — small print, metadata, supporting descriptions.
 - **Label** (`label`): Geist 0.75rem (`xs`) weight 600, line-height 1.333, letter-spacing 0.1em (`widest`) — uppercase eyebrows and badges; tracked wide for caps legibility.
@@ -345,7 +348,7 @@ Sizes follow the standard `text-*` step scale (`6xl`, `3xl`, `2xl`, `lg`, `base`
 ### Principles
 
 - **One sans does it all**: Geist spans display through caption so the interface reads as a single engineered voice; weight and size carry hierarchy, not family-switching.
-- **Standard step scale**: every size is a `text-*` step with its default line-height, so the ramp is even and predictable rather than hand-tuned.
+- **Standard step scale**: every size is a `text-*` step with its default line-height; the four heading roles shift one step at the `sm` breakpoint while the rest stay fixed, so the ramp is even and predictable rather than hand-tuned.
 - **Two deliberate tracking exceptions**: only the display tightens (`-0.025em`) for a compact headline mass, and only the uppercase label widens (`0.1em`) so caps don't crowd — everything else stays at `normal`.
 - **Mono as a technical accent**: Fira Code appears only where the content is genuinely code or coordinate-like metadata, signaling the engineering craft without theming the whole page.
 

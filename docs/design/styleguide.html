@@ -33,7 +33,7 @@
     --color-input: oklch(32.40% 0.0319 281.98);
     --color-ring: oklch(58.6% 0.141 242.85);
     /* typography */
-    --font-display-family: "Geist"; --font-display-size: 3.75rem; --font-display-weight: 800; --font-display-lh: 1; --font-display-ls: -0.025em;
+    --font-display-family: "Geist"; --font-display-size: 3rem; --font-display-weight: 800; --font-display-lh: 1; --font-display-ls: -0.025em;
     --font-heading-family: "Geist"; --font-heading-size: 1.875rem; --font-heading-weight: 700; --font-heading-lh: 1.2; --font-heading-ls: 0;
     --font-title-family: "Geist"; --font-title-size: 1.5rem; --font-title-weight: 600; --font-title-lh: 1.333; --font-title-ls: 0;
     --font-subtitle-family: "Geist"; --font-subtitle-size: 1.125rem; --font-subtitle-weight: 500; --font-subtitle-lh: 1.556; --font-subtitle-ls: 0;
@@ -64,10 +64,11 @@
   }
   /* ===== Light skin (Latte) — overrides tokens for light specimens ===== */
   .light {
-    /* primary, secondary, their foregrounds, and ring inherit from :root — identical in both skins */
-    --color-action: oklch(49.8% 0.122 243.78); --color-emphasis: oklch(47.8% 0.188 14.62);
+    /* primary, foregrounds, and ring inherit from :root; secondary darkens for light-skin text contrast */
+    --color-secondary: oklch(61.4% 0.240 11.26);
+    --color-action: oklch(49.8% 0.122 243.78); --color-emphasis: oklch(51.3% 0.203 14.82);
     --color-accent: oklch(83.29% 0.0159 269.84); --color-accent-foreground: oklch(43.55% 0.0430 279.33);
-    --color-muted: oklch(85.75% 0.0145 268.48); --color-muted-foreground: oklch(49.20% 0.0385 279.30);
+    --color-muted: oklch(85.75% 0.0145 268.48); --color-muted-foreground: oklch(46.4% 0.0408 279.3);
     --color-background: oklch(95.78% 0.0058 264.53); --color-foreground: oklch(43.55% 0.0430 279.33);
     --color-card: oklch(93.35% 0.0087 264.52); --color-card-foreground: oklch(43.55% 0.0430 279.33);
     --color-popover: oklch(94.57% 0.0073 264.53); --color-popover-foreground: oklch(43.55% 0.0430 279.33);
@@ -221,6 +222,7 @@
       <div class="pal-card"><div class="pal-chip" style="background:#7c7f93"></div><div class="pal-name">latte-700</div><div class="pal-hex">overlay-2 · #7c7f93</div></div>
       <div class="pal-card"><div class="pal-chip" style="background:#6c6f85"></div><div class="pal-name">latte-800</div><div class="pal-hex">subtext-0 · #6c6f85</div></div>
       <div class="pal-card"><div class="pal-chip" style="background:#5c5f77"></div><div class="pal-name">latte-900</div><div class="pal-hex">subtext-1 · #5c5f77</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#545770"></div><div class="pal-name">latte-925</div><div class="pal-hex">subtext-1/text · #545770</div></div>
       <div class="pal-card"><div class="pal-chip" style="background:#4c4f69"></div><div class="pal-name">latte-950</div><div class="pal-hex">text · #4c4f69</div></div>
     </div>
     </div>
@@ -247,9 +249,10 @@
       <div class="pal-card"><div class="pal-chip" style="background:#ff9fca"></div><div class="pal-name">azalea-300</div><div class="pal-hex">#ff9fca</div></div>
       <div class="pal-card"><div class="pal-chip" style="background:#ff63a5"></div><div class="pal-name">azalea-400</div><div class="pal-hex">#ff63a5</div></div>
       <div class="pal-card"><div class="pal-chip" style="background:#ff3d8a"></div><div class="pal-name">azalea-500</div><div class="pal-hex">secondary · #ff3d8a</div></div>
-      <div class="pal-card"><div class="pal-chip" style="background:#f0125f"></div><div class="pal-name">azalea-600</div><div class="pal-hex">#f0125f</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#f0125f"></div><div class="pal-name">azalea-600</div><div class="pal-hex">secondary (light) · #f0125f</div></div>
       <div class="pal-card"><div class="pal-chip" style="background:#d10546"></div><div class="pal-name">azalea-700</div><div class="pal-hex">#d10546</div></div>
-      <div class="pal-card"><div class="pal-chip" style="background:#ad073a"></div><div class="pal-name">azalea-800</div><div class="pal-hex">emphasis (light) · #ad073a</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#bf0540"></div><div class="pal-name">azalea-750</div><div class="pal-hex">emphasis (light) · #bf0540</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#ad073a"></div><div class="pal-name">azalea-800</div><div class="pal-hex">#ad073a</div></div>
       <div class="pal-card"><div class="pal-chip" style="background:#8f0c34"></div><div class="pal-name">azalea-900</div><div class="pal-hex">#8f0c34</div></div>
       <div class="pal-card"><div class="pal-chip" style="background:#58001a"></div><div class="pal-name">azalea-950</div><div class="pal-hex">#58001a</div></div>
     </div>
@@ -287,11 +290,12 @@
       <div class="pal-card"><div class="pal-chip" style="background:#dce0e8"></div><div class="pal-name">sunken</div><div class="pal-hex">latte-150 · #dce0e8</div></div>
       <div class="pal-card"><div class="pal-chip" style="background:#c4c8d3"></div><div class="pal-name">accent</div><div class="pal-hex">latte-250 · #c4c8d3</div></div>
       <div class="pal-card"><div class="pal-chip" style="background:#ccd0da"></div><div class="pal-name">muted / border</div><div class="pal-hex">latte-200 · #ccd0da</div></div>
-      <div class="pal-card"><div class="pal-chip" style="background:#5c5f77"></div><div class="pal-name">muted-foreground</div><div class="pal-hex">latte-900 · #5c5f77</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#545770"></div><div class="pal-name">muted-foreground</div><div class="pal-hex">latte-925 · #545770</div></div>
       <div class="pal-card"><div class="pal-chip" style="background:#4c4f69"></div><div class="pal-name">foreground</div><div class="pal-hex">latte-950 · #4c4f69</div></div>
       <div class="pal-card"><div class="pal-chip" style="background:#0268a2"></div><div class="pal-name">action</div><div class="pal-hex">ocean-700 · #0268a2</div></div>
-      <div class="pal-card"><div class="pal-chip" style="background:#ad073a"></div><div class="pal-name">emphasis</div><div class="pal-hex">azalea-800 · #ad073a</div></div>
-      <div class="pal-card"><div class="pal-chip" style="background:#0da2e7"></div><div class="pal-name">primary / secondary</div><div class="pal-hex">inherit · #0da2e7 / #ff3d8a</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#bf0540"></div><div class="pal-name">emphasis</div><div class="pal-hex">azalea-750 · #bf0540</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#0da2e7"></div><div class="pal-name">primary</div><div class="pal-hex">inherit · #0da2e7</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#f0125f"></div><div class="pal-name">secondary</div><div class="pal-hex">azalea-600 · #f0125f</div></div>
     </div>
     </div>
   </section>
@@ -301,10 +305,10 @@
     <h2 class="sec-h">Typography</h2>
     <p class="sec-cap">Geist across the system; Fira Code for code. Each row rendered at its real values.</p>
     <div class="stage light">
-      <div class="ramp-row"><div class="ramp-spec"><div class="ramp-name">Display</div>display · 6xl · Geist 3.75rem · 800 · lh 1 · ls -0.025em</div><div class="t-display">Adeonir Kohl</div></div>
-      <div class="ramp-row"><div class="ramp-spec"><div class="ramp-name">Heading</div>heading · 3xl · Geist 1.875rem · 700 · lh 1.2</div><div class="t-heading">Projetos em destaque</div></div>
-      <div class="ramp-row"><div class="ramp-spec"><div class="ramp-name">Title</div>title · 2xl · Geist 1.5rem · 600 · lh 1.333</div><div class="t-title">React Snakke</div></div>
-      <div class="ramp-row"><div class="ramp-spec"><div class="ramp-name">Subtitle</div>subtitle · lg · Geist 1.125rem · 500 · lh 1.556</div><div class="t-subtitle">Desenvolvedor frontend com olhar de designer.</div></div>
+      <div class="ramp-row"><div class="ramp-spec"><div class="ramp-name">Display</div>display · 4xl→5xl · Geist 2.25→3rem · 800 · lh 1 · ls -0.025em</div><div class="t-display">Adeonir Kohl</div></div>
+      <div class="ramp-row"><div class="ramp-spec"><div class="ramp-name">Heading</div>heading · 2xl→3xl · Geist 1.5→1.875rem · 700 · lh 1.2</div><div class="t-heading">Projetos em destaque</div></div>
+      <div class="ramp-row"><div class="ramp-spec"><div class="ramp-name">Title</div>title · xl→2xl · Geist 1.25→1.5rem · 600 · lh 1.333</div><div class="t-title">React Snakke</div></div>
+      <div class="ramp-row"><div class="ramp-spec"><div class="ramp-name">Subtitle</div>subtitle · base→lg · Geist 1→1.125rem · 500 · lh 1.556</div><div class="t-subtitle">Desenvolvedor frontend com olhar de designer.</div></div>
       <div class="ramp-row"><div class="ramp-spec"><div class="ramp-name">Body</div>body · base · Geist 1rem · 400 · lh 1.5</div><div class="t-body">Construo interfaces que equilibram estética, performance e pragmatismo — porque o melhor código entrega valor sem virar refém da perfeição.</div></div>
       <div class="ramp-row"><div class="ramp-spec"><div class="ramp-name">Caption</div>caption · xs · Geist 0.75rem · 400 · lh 1.333</div><div class="t-caption">Reading position indicator para React. Mostra progresso de leitura.</div></div>
       <div class="ramp-row"><div class="ramp-spec"><div class="ramp-name">Label</div>label · xs · Geist 0.75rem · 600 · ls 0.1em · uppercase</div><div class="t-label">Senior Frontend Developer</div></div>
