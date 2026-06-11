@@ -17,7 +17,7 @@ export const heroSchema = z.object({
     .array(
       z.object({
         text: z.string().min(1),
-        emphasis: z.boolean().optional(),
+        strong: z.boolean().optional(),
       }),
     )
     .min(1),
@@ -28,6 +28,19 @@ export const heroSchema = z.object({
       href: z.string().min(1),
     }),
   }),
+})
+
+export const aboutSchema = z.object({
+  eyebrow: z.string().min(1),
+  headline: z
+    .array(
+      z.object({
+        text: z.string().min(1),
+        strong: z.boolean().optional(),
+      }),
+    )
+    .min(1),
+  bio: z.array(z.string().min(1)).min(1),
 })
 
 export const headerSchema = z.object({
