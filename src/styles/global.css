@@ -156,6 +156,13 @@
   }
 }
 
+@layer base {
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+}
+
 @utility wrapper {
   @apply mx-auto w-full max-w-6xl px-6;
 }
