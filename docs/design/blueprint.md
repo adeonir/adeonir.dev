@@ -186,8 +186,8 @@ route. header and footer are persistent across all three surfaces.
 home ─┬─> work ──> project
       └─> project ──┐
                     │
-        project ─┬─> work    (header nav / back)
-                 └─> project  (prev / next)
+                    project ─┬─> work     (header nav / back)
+                             └─> project  (prev / next)
 ```
 
 ## home
