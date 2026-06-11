@@ -4,7 +4,7 @@ hero:
     greeting: 'Olá, sou'
     name: 'Adeonir Kohl'
   tagline:
-    - text: 'Construo interfaces que são '
+    - text: 'Eu construo interfaces que são '
     - text: 'bonitas'
       strong: true
     - text: ' e rodam '
