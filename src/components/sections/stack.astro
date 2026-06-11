@@ -15,16 +15,19 @@ const { eyebrow, headline, tools } = stack.data
 
 <section id="stack">
   <Eyebrow>{eyebrow}</Eyebrow>
-  <div class="mt-6 grid grid-cols-1 gap-8 md:grid-cols-5 md:gap-12">
+  <div class="mt-6 grid grid-cols-1 gap-12 md:grid-cols-5">
     <h2 class="text-display text-pretty text-foreground md:col-span-2">
       {
-        headline.map((segment) =>
-          segment.strong ? (
-            <span class="text-secondary">{segment.text}</span>
-          ) : (
-            segment.text
-          ),
-        )
+        headline.map((segment) => (
+          <>
+            {segment.strong ? (
+              <span class="text-secondary">{segment.text}</span>
+            ) : (
+              segment.text
+            )}
+            {segment.break && <br class="hidden md:block" />}
+          </>
+        ))
       }
     </h2>
     <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-3 md:col-span-3">

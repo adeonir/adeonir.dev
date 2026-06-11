@@ -18,6 +18,7 @@ export const heroSchema = z.object({
       z.object({
         text: z.string().min(1),
         strong: z.boolean().optional(),
+        break: z.boolean().optional(),
       }),
     )
     .min(1),
@@ -37,6 +38,7 @@ export const aboutSchema = z.object({
       z.object({
         text: z.string().min(1),
         strong: z.boolean().optional(),
+        break: z.boolean().optional(),
       }),
     )
     .min(1),
@@ -50,6 +52,7 @@ export const stackSchema = z.object({
       z.object({
         text: z.string().min(1),
         strong: z.boolean().optional(),
+        break: z.boolean().optional(),
       }),
     )
     .min(1),

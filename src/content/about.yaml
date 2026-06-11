@@ -2,9 +2,10 @@ about:
   eyebrow: 'Sobre mim'
   headline:
     - text: 'Do '
-    - text: 'design'
+    - text: 'design '
       strong: true
-    - text: ' ao '
+      break: true
+    - text: 'ao '
     - text: 'código'
       strong: true
     - text: '.'

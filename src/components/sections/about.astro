@@ -14,16 +14,19 @@ const { eyebrow, headline, bio } = about.data
 
 <section id="about">
   <Eyebrow>{eyebrow}</Eyebrow>
-  <div class="mt-6 flex flex-col gap-8 md:flex-row md:gap-12">
+  <div class="mt-6 flex flex-col gap-12 md:flex-row">
     <h2 class="flex-1 text-display text-pretty text-foreground">
       {
-        headline.map((segment) =>
-          segment.strong ? (
-            <span class="text-secondary">{segment.text}</span>
-          ) : (
-            segment.text
-          ),
-        )
+        headline.map((segment) => (
+          <>
+            {segment.strong ? (
+              <span class="text-secondary">{segment.text}</span>
+            ) : (
+              segment.text
+            )}
+            {segment.break && <br class="hidden md:block" />}
+          </>
+        ))
       }
     </h2>
     <div class="flex flex-1 flex-col gap-4">

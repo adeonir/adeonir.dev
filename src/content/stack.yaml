@@ -2,9 +2,10 @@ stack:
   eyebrow: 'Tech Stack'
   headline:
     - text: 'As '
-    - text: 'ferramentas'
+    - text: 'ferramentas '
       strong: true
-    - text: ' que eu uso.'
+      break: true
+    - text: 'que eu uso.'
   tools:
     - title: 'frontend'
       items:
