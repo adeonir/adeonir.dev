@@ -9,7 +9,7 @@ const button = cva(
     variants: {
       variant: {
         outline:
-          'border border-border bg-transparent text-muted-foreground hover:bg-muted/20 hover:text-primary',
+          'border border-border bg-transparent text-muted-foreground hover:bg-muted/20',
       },
       size: {
         icon: 'size-9',

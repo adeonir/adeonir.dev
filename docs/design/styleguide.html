@@ -11,23 +11,27 @@
   /* ===== DESIGN TOKENS — DESIGN.md frontmatter as plain CSS custom properties (default Mocha skin) ===== */
   :root {
     /* colors */
-    --color-primary: oklch(75.4% 0.139 232.66);
+    --color-primary: oklch(67.7% 0.148 238.14);
     --color-primary-foreground: oklch(18.3% 0.020 284.20);
     --color-secondary: oklch(67.2% 0.233 2.27);
     --color-secondary-foreground: oklch(18.3% 0.020 284.20);
-    --color-accent: oklch(32.4% 0.032 281.98);
-    --color-accent-foreground: oklch(87.9% 0.043 272.28);
-    --color-muted: oklch(32.4% 0.032 281.98);
-    --color-muted-foreground: oklch(75.1% 0.040 273.93);
-    --color-background: oklch(24.3% 0.030 283.91);
-    --color-foreground: oklch(87.9% 0.043 272.28);
-    --color-card: oklch(21.6% 0.025 284.06);
-    --color-card-foreground: oklch(87.9% 0.043 272.28);
-    --color-popover: oklch(21.6% 0.025 284.06);
-    --color-popover-foreground: oklch(87.9% 0.043 272.28);
-    --color-border: oklch(32.4% 0.032 281.98);
-    --color-input: oklch(32.4% 0.032 281.98);
-    --color-ring: oklch(75.4% 0.139 232.66);
+    --color-action: oklch(67.7% 0.148 238.14);
+    --color-emphasis: oklch(67.2% 0.233 2.27);
+    --color-accent: oklch(36.38% 0.0319 281.06);
+    --color-accent-foreground: oklch(87.87% 0.0426 272.28);
+    --color-muted: oklch(32.40% 0.0319 281.98);
+    --color-muted-foreground: oklch(81.68% 0.0403 272.86);
+    --color-background: oklch(24.29% 0.0304 283.91);
+    --color-foreground: oklch(87.87% 0.0426 272.28);
+    --color-card: oklch(21.55% 0.0254 284.06);
+    --color-card-foreground: oklch(87.87% 0.0426 272.28);
+    --color-popover: oklch(22.92% 0.0279 283.99);
+    --color-popover-foreground: oklch(87.87% 0.0426 272.28);
+    --color-sunken: oklch(18.28% 0.0204 284.20);
+    --color-sunken-foreground: oklch(87.87% 0.0426 272.28);
+    --color-border: oklch(32.40% 0.0319 281.98);
+    --color-input: oklch(32.40% 0.0319 281.98);
+    --color-ring: oklch(58.6% 0.141 242.85);
     /* typography */
     --font-display-family: "Geist"; --font-display-size: 3.75rem; --font-display-weight: 800; --font-display-lh: 1; --font-display-ls: -0.025em;
     --font-heading-family: "Geist"; --font-heading-size: 1.875rem; --font-heading-weight: 700; --font-heading-lh: 1.2; --font-heading-ls: 0;
@@ -60,14 +64,15 @@
   }
   /* ===== Light skin (Latte) — overrides tokens for light specimens ===== */
   .light {
-    --color-primary: oklch(68.2% 0.145 235.38); /* primary-foreground stays dark (oklch(18.3% 0.020 284.20) / #11111b) — white fails contrast on primary */
-    --color-secondary: oklch(60.4% 0.213 5.46); --color-secondary-foreground: oklch(95.8% 0.006 264.53);
-    --color-accent: oklch(85.7% 0.014 268.48); --color-accent-foreground: oklch(43.5% 0.043 279.33);
-    --color-muted: oklch(85.7% 0.014 268.48); --color-muted-foreground: oklch(54.7% 0.034 279.08);
-    --color-background: oklch(95.8% 0.006 264.53); --color-foreground: oklch(43.5% 0.043 279.33);
-    --color-card: oklch(93.3% 0.009 264.52); --color-card-foreground: oklch(43.5% 0.043 279.33);
-    --color-popover: oklch(93.3% 0.009 264.52); --color-popover-foreground: oklch(43.5% 0.043 279.33);
-    --color-border: oklch(85.7% 0.014 268.48); --color-input: oklch(85.7% 0.014 268.48); --color-ring: oklch(68.2% 0.145 235.38);
+    /* primary, secondary, their foregrounds, and ring inherit from :root — identical in both skins */
+    --color-action: oklch(49.8% 0.122 243.78); --color-emphasis: oklch(47.8% 0.188 14.62);
+    --color-accent: oklch(83.29% 0.0159 269.84); --color-accent-foreground: oklch(43.55% 0.0430 279.33);
+    --color-muted: oklch(85.75% 0.0145 268.48); --color-muted-foreground: oklch(49.20% 0.0385 279.30);
+    --color-background: oklch(95.78% 0.0058 264.53); --color-foreground: oklch(43.55% 0.0430 279.33);
+    --color-card: oklch(93.35% 0.0087 264.52); --color-card-foreground: oklch(43.55% 0.0430 279.33);
+    --color-popover: oklch(94.57% 0.0073 264.53); --color-popover-foreground: oklch(43.55% 0.0430 279.33);
+    --color-sunken: oklch(90.60% 0.0117 264.51); --color-sunken-foreground: oklch(43.55% 0.0430 279.33);
+    --color-border: oklch(85.75% 0.0145 268.48); --color-input: oklch(85.75% 0.0145 268.48);
   }
 
   /* ===== Neutral chrome — system UI, never project tokens ===== */
@@ -148,12 +153,12 @@
   .c-btn-primary:hover { filter: brightness(0.92); }
   .c-btn-primary[disabled] { background: var(--color-muted); color: var(--color-muted-foreground); cursor: not-allowed; }
   .c-btn-secondary { background: transparent; color: var(--color-foreground); border: var(--border-width-default) solid var(--color-border); transition: all var(--duration-fast) var(--ease-out); }
-  .c-btn-secondary:hover { border-color: var(--color-primary); color: var(--color-primary); }
+  .c-btn-secondary:hover { border-color: var(--color-action); color: var(--color-action); }
   .c-card { background: var(--color-card); color: var(--color-card-foreground); border: var(--border-width-default) solid var(--color-border); border-radius: var(--radius-lg); padding: var(--spacing-6); box-shadow: var(--shadow-sm); }
   .c-input { background: var(--color-background); color: var(--color-foreground); border: var(--border-width-default) solid var(--color-input); border-radius: var(--radius-md); padding: var(--spacing-3); font-family: var(--font-body-standard-family); font-size: var(--font-body-sm-size); width: 100%; }
   .c-input:focus { outline: none; border-color: var(--color-ring); }
-  .c-eyebrow { display: inline-block; background: transparent; color: var(--color-primary); border: var(--border-width-2) solid var(--color-primary); border-radius: var(--radius-full); padding: var(--spacing-2) var(--spacing-3); font-family: var(--font-label-family); font-size: var(--font-label-size); font-weight: var(--font-label-weight); letter-spacing: var(--font-label-ls); text-transform: uppercase; }
-  .c-badge { display: inline-block; background: color-mix(in oklab, var(--color-secondary) 15%, transparent); color: var(--color-secondary); border-radius: var(--radius-full); padding: var(--spacing-2) var(--spacing-3); font-family: var(--font-label-family); font-size: var(--font-label-size); font-weight: var(--font-label-weight); letter-spacing: var(--font-label-ls); text-transform: uppercase; }
+  .c-eyebrow { display: inline-block; background: transparent; color: var(--color-action); border: var(--border-width-2) solid var(--color-action); border-radius: var(--radius-full); padding: var(--spacing-2) var(--spacing-3); font-family: var(--font-label-family); font-size: var(--font-label-size); font-weight: var(--font-label-weight); letter-spacing: var(--font-label-ls); text-transform: uppercase; }
+  .c-badge { display: inline-block; background: color-mix(in oklab, var(--color-secondary) 7%, transparent); color: var(--color-emphasis); border-radius: var(--radius-full); padding: var(--spacing-1) var(--spacing-3); font-family: var(--font-label-family); font-size: var(--font-label-size); font-weight: var(--font-label-weight); letter-spacing: var(--font-label-ls); text-transform: uppercase; }
   .c-nav { display: flex; gap: 20px; }
   .c-nav a { font-family: var(--font-button-family); font-size: var(--font-button-size); font-weight: var(--font-button-weight); color: var(--color-muted-foreground); text-decoration: none; transition: color var(--duration-fast) var(--ease-out); }
   .c-nav a:hover { color: var(--color-primary); }
@@ -182,73 +187,111 @@
     <p class="sec-cap">Semantic roles in both skins. Contrast measured against each token's in-use pairing.</p>
     <div class="grp">▸ Brand Raw</div>
     <div class="palette-panel">
-    <div class="scale-lab">mocha · dark skin</div>
+    <div class="scale-lab">mocha · dark skin · role-numbered (text→crust)</div>
     <div class="palette-grid">
-      <div class="pal-card"><div class="pal-chip" style="background:#cdd6f4"></div><div class="pal-name">mocha-50</div><div class="pal-hex">#cdd6f4</div></div>
-      <div class="pal-card"><div class="pal-chip" style="background:#bac2de"></div><div class="pal-name">mocha-100</div><div class="pal-hex">#bac2de</div></div>
-      <div class="pal-card"><div class="pal-chip" style="background:#a6adc8"></div><div class="pal-name">mocha-150</div><div class="pal-hex">#a6adc8</div></div>
-      <div class="pal-card"><div class="pal-chip" style="background:#9399b2"></div><div class="pal-name">mocha-200</div><div class="pal-hex">#9399b2</div></div>
-      <div class="pal-card"><div class="pal-chip" style="background:#7f849c"></div><div class="pal-name">mocha-300</div><div class="pal-hex">#7f849c</div></div>
-      <div class="pal-card"><div class="pal-chip" style="background:#6c7086"></div><div class="pal-name">mocha-400</div><div class="pal-hex">#6c7086</div></div>
-      <div class="pal-card"><div class="pal-chip" style="background:#585b70"></div><div class="pal-name">mocha-500</div><div class="pal-hex">#585b70</div></div>
-      <div class="pal-card"><div class="pal-chip" style="background:#45475a"></div><div class="pal-name">mocha-600</div><div class="pal-hex">#45475a</div></div>
-      <div class="pal-card"><div class="pal-chip" style="background:#313244"></div><div class="pal-name">mocha-700</div><div class="pal-hex">#313244</div></div>
-      <div class="pal-card"><div class="pal-chip" style="background:#1e1e2e"></div><div class="pal-name">mocha-800</div><div class="pal-hex">#1e1e2e</div></div>
-      <div class="pal-card"><div class="pal-chip" style="background:#181825"></div><div class="pal-name">mocha-900</div><div class="pal-hex">#181825</div></div>
-      <div class="pal-card"><div class="pal-chip" style="background:#11111b"></div><div class="pal-name">mocha-950</div><div class="pal-hex">#11111b</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#cdd6f4"></div><div class="pal-name">mocha-50</div><div class="pal-hex">text · #cdd6f4</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#bac2de"></div><div class="pal-name">mocha-100</div><div class="pal-hex">subtext-1 · #bac2de</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#a6adc8"></div><div class="pal-name">mocha-200</div><div class="pal-hex">subtext-0 · #a6adc8</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#9399b2"></div><div class="pal-name">mocha-300</div><div class="pal-hex">overlay-2 · #9399b2</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#7f849c"></div><div class="pal-name">mocha-400</div><div class="pal-hex">overlay-1 · #7f849c</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#6c7086"></div><div class="pal-name">mocha-500</div><div class="pal-hex">overlay-0 · #6c7086</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#585b70"></div><div class="pal-name">mocha-600</div><div class="pal-hex">surface-2 · #585b70</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#45475a"></div><div class="pal-name">mocha-700</div><div class="pal-hex">surface-1 · #45475a</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#3b3c4f"></div><div class="pal-name">mocha-750</div><div class="pal-hex">s-0/1 blend · #3b3c4f</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#313244"></div><div class="pal-name">mocha-800</div><div class="pal-hex">surface-0 · #313244</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#1e1e2e"></div><div class="pal-name">mocha-850</div><div class="pal-hex">base · #1e1e2e</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#1b1b29"></div><div class="pal-name">mocha-875</div><div class="pal-hex">b/m blend · #1b1b29</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#181825"></div><div class="pal-name">mocha-900</div><div class="pal-hex">mantle · #181825</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#11111b"></div><div class="pal-name">mocha-950</div><div class="pal-hex">crust · #11111b</div></div>
     </div>
     </div>
     <div class="palette-panel">
-    <div class="scale-lab">latte · light skin</div>
+    <div class="scale-lab">latte · light skin · role-numbered (base→text)</div>
     <div class="palette-grid">
-      <div class="pal-card"><div class="pal-chip" style="background:#4c4f69"></div><div class="pal-name">latte-50</div><div class="pal-hex">#4c4f69</div></div>
-      <div class="pal-card"><div class="pal-chip" style="background:#5c5f77"></div><div class="pal-name">latte-100</div><div class="pal-hex">#5c5f77</div></div>
-      <div class="pal-card"><div class="pal-chip" style="background:#6c6f85"></div><div class="pal-name">latte-150</div><div class="pal-hex">#6c6f85</div></div>
-      <div class="pal-card"><div class="pal-chip" style="background:#7c7f93"></div><div class="pal-name">latte-200</div><div class="pal-hex">#7c7f93</div></div>
-      <div class="pal-card"><div class="pal-chip" style="background:#8c8fa1"></div><div class="pal-name">latte-300</div><div class="pal-hex">#8c8fa1</div></div>
-      <div class="pal-card"><div class="pal-chip" style="background:#9ca0b0"></div><div class="pal-name">latte-400</div><div class="pal-hex">#9ca0b0</div></div>
-      <div class="pal-card"><div class="pal-chip" style="background:#acb0be"></div><div class="pal-name">latte-500</div><div class="pal-hex">#acb0be</div></div>
-      <div class="pal-card"><div class="pal-chip" style="background:#bcc0cc"></div><div class="pal-name">latte-600</div><div class="pal-hex">#bcc0cc</div></div>
-      <div class="pal-card"><div class="pal-chip" style="background:#ccd0da"></div><div class="pal-name">latte-700</div><div class="pal-hex">#ccd0da</div></div>
-      <div class="pal-card"><div class="pal-chip" style="background:#dce0e8"></div><div class="pal-name">latte-800</div><div class="pal-hex">#dce0e8</div></div>
-      <div class="pal-card"><div class="pal-chip" style="background:#e6e9ef"></div><div class="pal-name">latte-900</div><div class="pal-hex">#e6e9ef</div></div>
-      <div class="pal-card"><div class="pal-chip" style="background:#eff1f5"></div><div class="pal-name">latte-950</div><div class="pal-hex">#eff1f5</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#eff1f5"></div><div class="pal-name">latte-50</div><div class="pal-hex">base · #eff1f5</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#ebedf2"></div><div class="pal-name">latte-75</div><div class="pal-hex">b/m blend · #ebedf2</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#e6e9ef"></div><div class="pal-name">latte-100</div><div class="pal-hex">mantle · #e6e9ef</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#dce0e8"></div><div class="pal-name">latte-150</div><div class="pal-hex">crust · #dce0e8</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#ccd0da"></div><div class="pal-name">latte-200</div><div class="pal-hex">surface-0 · #ccd0da</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#c4c8d3"></div><div class="pal-name">latte-250</div><div class="pal-hex">s-0/1 blend · #c4c8d3</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#bcc0cc"></div><div class="pal-name">latte-300</div><div class="pal-hex">surface-1 · #bcc0cc</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#acb0be"></div><div class="pal-name">latte-400</div><div class="pal-hex">surface-2 · #acb0be</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#9ca0b0"></div><div class="pal-name">latte-500</div><div class="pal-hex">overlay-0 · #9ca0b0</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#8c8fa1"></div><div class="pal-name">latte-600</div><div class="pal-hex">overlay-1 · #8c8fa1</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#7c7f93"></div><div class="pal-name">latte-700</div><div class="pal-hex">overlay-2 · #7c7f93</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#6c6f85"></div><div class="pal-name">latte-800</div><div class="pal-hex">subtext-0 · #6c6f85</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#5c5f77"></div><div class="pal-name">latte-900</div><div class="pal-hex">subtext-1 · #5c5f77</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#4c4f69"></div><div class="pal-name">latte-950</div><div class="pal-hex">text · #4c4f69</div></div>
     </div>
     </div>
     <div class="palette-panel">
-    <div class="scale-lab">accents</div>
+    <div class="scale-lab">ocean · blue accent ramp (acts)</div>
     <div class="palette-grid">
-      <div class="pal-card"><div class="pal-chip" style="background:#38bdf8"></div><div class="pal-name">stream</div><div class="pal-hex">#38bdf8</div></div>
-      <div class="pal-card"><div class="pal-chip" style="background:#04a5e5"></div><div class="pal-name">ocean</div><div class="pal-hex">#04a5e5</div></div>
-      <div class="pal-card"><div class="pal-chip" style="background:#ff3d8a"></div><div class="pal-name">azalea</div><div class="pal-hex">#ff3d8a</div></div>
-      <div class="pal-card"><div class="pal-chip" style="background:#e0306f"></div><div class="pal-name">hibiscus</div><div class="pal-hex">#e0306f</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#f0f9ff"></div><div class="pal-name">ocean-50</div><div class="pal-hex">#f0f9ff</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#e0f2fe"></div><div class="pal-name">ocean-100</div><div class="pal-hex">#e0f2fe</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#bae6fd"></div><div class="pal-name">ocean-200</div><div class="pal-hex">#bae6fd</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#7dd2fc"></div><div class="pal-name">ocean-300</div><div class="pal-hex">#7dd2fc</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#37bcf9"></div><div class="pal-name">ocean-400</div><div class="pal-hex">#37bcf9</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#0da2e7"></div><div class="pal-name">ocean-500</div><div class="pal-hex">primary · #0da2e7</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#0183c8"></div><div class="pal-name">ocean-600</div><div class="pal-hex">ring · #0183c8</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#0268a2"></div><div class="pal-name">ocean-700</div><div class="pal-hex">action (light) · #0268a2</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#075885"></div><div class="pal-name">ocean-800</div><div class="pal-hex">#075885</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#0c496e"></div><div class="pal-name">ocean-900</div><div class="pal-hex">#0c496e</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#082f49"></div><div class="pal-name">ocean-950</div><div class="pal-hex">#082f49</div></div>
+    </div>
+    <div class="scale-lab">azalea · pink accent ramp (points)</div>
+    <div class="palette-grid">
+      <div class="pal-card"><div class="pal-chip" style="background:#fef1f7"></div><div class="pal-name">azalea-50</div><div class="pal-hex">#fef1f7</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#fee5f1"></div><div class="pal-name">azalea-100</div><div class="pal-hex">#fee5f1</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#ffcae3"></div><div class="pal-name">azalea-200</div><div class="pal-hex">#ffcae3</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#ff9fca"></div><div class="pal-name">azalea-300</div><div class="pal-hex">#ff9fca</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#ff63a5"></div><div class="pal-name">azalea-400</div><div class="pal-hex">#ff63a5</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#ff3d8a"></div><div class="pal-name">azalea-500</div><div class="pal-hex">secondary · #ff3d8a</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#f0125f"></div><div class="pal-name">azalea-600</div><div class="pal-hex">#f0125f</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#d10546"></div><div class="pal-name">azalea-700</div><div class="pal-hex">#d10546</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#ad073a"></div><div class="pal-name">azalea-800</div><div class="pal-hex">emphasis (light) · #ad073a</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#8f0c34"></div><div class="pal-name">azalea-900</div><div class="pal-hex">#8f0c34</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#58001a"></div><div class="pal-name">azalea-950</div><div class="pal-hex">#58001a</div></div>
+    </div>
+    <div class="scale-lab">skin-neutral pair</div>
+    <div class="palette-grid">
+      <div class="pal-card"><div class="pal-chip" style="background:#11111b"></div><div class="pal-name">ink</div><div class="pal-hex">dark on fills · #11111b</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#f8fafe"></div><div class="pal-name">paper</div><div class="pal-hex">light on fills · #f8fafe</div></div>
     </div>
     </div>
 
     <div class="grp second">▸ Semantic aliases</div>
     <div class="palette-panel">
-    <div class="scale-lab">dark skin (default)</div>
+    <div class="scale-lab">dark skin (default / flat tokens)</div>
     <div class="palette-grid cols-7">
-      <div class="pal-card"><div class="pal-chip" style="background:#1e1e2e"></div><div class="pal-name">background</div><div class="pal-hex">mocha-800 · #1e1e2e</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#1e1e2e"></div><div class="pal-name">background</div><div class="pal-hex">mocha-850 · #1e1e2e</div></div>
       <div class="pal-card"><div class="pal-chip" style="background:#181825"></div><div class="pal-name">card</div><div class="pal-hex">mocha-900 · #181825</div></div>
-      <div class="pal-card"><div class="pal-chip" style="background:#313244"></div><div class="pal-name">accent</div><div class="pal-hex">mocha-700 · #313244</div></div>
-      <div class="pal-card"><div class="pal-chip" style="background:#a6adc8"></div><div class="pal-name">muted-foreground</div><div class="pal-hex">mocha-150 · #a6adc8</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#1b1b29"></div><div class="pal-name">popover</div><div class="pal-hex">mocha-875 · #1b1b29</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#11111b"></div><div class="pal-name">sunken</div><div class="pal-hex">mocha-950 · #11111b</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#3b3c4f"></div><div class="pal-name">accent</div><div class="pal-hex">mocha-750 · #3b3c4f</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#313244"></div><div class="pal-name">muted / border</div><div class="pal-hex">mocha-800 · #313244</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#bac2de"></div><div class="pal-name">muted-foreground</div><div class="pal-hex">mocha-100 · #bac2de</div></div>
       <div class="pal-card"><div class="pal-chip" style="background:#cdd6f4"></div><div class="pal-name">foreground</div><div class="pal-hex">mocha-50 · #cdd6f4</div></div>
-      <div class="pal-card"><div class="pal-chip" style="background:#38bdf8"></div><div class="pal-name">primary</div><div class="pal-hex">stream · #38bdf8</div></div>
-      <div class="pal-card"><div class="pal-chip" style="background:#ff3d8a"></div><div class="pal-name">secondary</div><div class="pal-hex">azalea · #ff3d8a</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#0da2e7"></div><div class="pal-name">primary / action</div><div class="pal-hex">ocean-500 · #0da2e7</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#ff3d8a"></div><div class="pal-name">secondary / emphasis</div><div class="pal-hex">azalea-500 · #ff3d8a</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#0183c8"></div><div class="pal-name">ring</div><div class="pal-hex">ocean-600 · #0183c8</div></div>
     </div>
     </div>
 
     <div class="palette-panel">
-    <div class="scale-lab">light skin (toggle)</div>
+    <div class="scale-lab">light skin (toggle / light: override)</div>
     <div class="palette-grid cols-7">
-      <div class="pal-card"><div class="pal-chip" style="background:#eff1f5"></div><div class="pal-name">background</div><div class="pal-hex">latte-950 · #eff1f5</div></div>
-      <div class="pal-card"><div class="pal-chip" style="background:#e6e9ef"></div><div class="pal-name">card</div><div class="pal-hex">latte-900 · #e6e9ef</div></div>
-      <div class="pal-card"><div class="pal-chip" style="background:#ccd0da"></div><div class="pal-name">accent</div><div class="pal-hex">latte-700 · #ccd0da</div></div>
-      <div class="pal-card"><div class="pal-chip" style="background:#6c6f85"></div><div class="pal-name">muted-foreground</div><div class="pal-hex">latte-150 · #6c6f85</div></div>
-      <div class="pal-card"><div class="pal-chip" style="background:#4c4f69"></div><div class="pal-name">foreground</div><div class="pal-hex">latte-50 · #4c4f69</div></div>
-      <div class="pal-card"><div class="pal-chip" style="background:#04a5e5"></div><div class="pal-name">primary</div><div class="pal-hex">ocean · #04a5e5</div></div>
-      <div class="pal-card"><div class="pal-chip" style="background:#e0306f"></div><div class="pal-name">secondary</div><div class="pal-hex">hibiscus · #e0306f</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#eff1f5"></div><div class="pal-name">background</div><div class="pal-hex">latte-50 · #eff1f5</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#e6e9ef"></div><div class="pal-name">card</div><div class="pal-hex">latte-100 · #e6e9ef</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#ebedf2"></div><div class="pal-name">popover</div><div class="pal-hex">latte-75 · #ebedf2</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#dce0e8"></div><div class="pal-name">sunken</div><div class="pal-hex">latte-150 · #dce0e8</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#c4c8d3"></div><div class="pal-name">accent</div><div class="pal-hex">latte-250 · #c4c8d3</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#ccd0da"></div><div class="pal-name">muted / border</div><div class="pal-hex">latte-200 · #ccd0da</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#5c5f77"></div><div class="pal-name">muted-foreground</div><div class="pal-hex">latte-900 · #5c5f77</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#4c4f69"></div><div class="pal-name">foreground</div><div class="pal-hex">latte-950 · #4c4f69</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#0268a2"></div><div class="pal-name">action</div><div class="pal-hex">ocean-700 · #0268a2</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#ad073a"></div><div class="pal-name">emphasis</div><div class="pal-hex">azalea-800 · #ad073a</div></div>
+      <div class="pal-card"><div class="pal-chip" style="background:#0da2e7"></div><div class="pal-name">primary / secondary</div><div class="pal-hex">inherit · #0da2e7 / #ff3d8a</div></div>
     </div>
     </div>
   </section>
