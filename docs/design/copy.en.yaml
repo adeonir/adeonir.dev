@@ -34,8 +34,8 @@ content:
     hero:
       eyebrow: "Design Engineer"
       display: "Hi, I'm Adeonir Kohl"
-      headline: "I build interfaces that look beautiful and run fast."
-      body:
+      tagline: "I build interfaces that look beautiful and run fast."
+      description:
         - "I'm a design engineer — a frontend developer with a designer's background — and I own the whole product not just the UI, because the best code delivers value instead of chasing perfection."
       actions:
         primary: "See the work"

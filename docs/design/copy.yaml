@@ -34,8 +34,8 @@ content:
     hero:
       eyebrow: "Design Engineer"
       display: "Olá, sou o Adeonir Kohl"
-      headline: "Construo interfaces que são bonitas e rodam rápido."
-      body:
+      tagline: "Construo interfaces que são bonitas e rodam rápido."
+      description:
         - "Sou um design engineer — um desenvolvedor frontend com bagagem de designer — e cuido do produto inteiro, não só da interface, porque o melhor código entrega valor em vez de perseguir a perfeição."
       actions:
         primary: "Ver os projetos"
