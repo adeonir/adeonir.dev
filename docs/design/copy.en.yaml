@@ -1,16 +1,16 @@
 metadata:
-  source: "docs/product/brief.md, docs/product/prd.md, docs/design/blueprint.md, conversation"
-  created: "2026-06-06"
-  version: "1.0.1"
-  status: "draft"
+  source: 'docs/product/brief.md, docs/product/prd.md, docs/design/blueprint.md, conversation'
+  created: '2026-06-06'
+  version: '1.0.1'
+  status: 'draft'
 
 project:
-  name: "adeonir.dev"
-  language: "en"
-  industry: "portfolio"
-  title: "Adeonir Kohl | Portfolio"
-  description: "Personal portfolio for Adeonir Kohl, a design engineer focused on aesthetics and performance."
-  meta_description: "Design engineer building interfaces that look beautiful and run fast"
+  name: 'adeonir.dev'
+  language: 'en'
+  industry: 'portfolio'
+  title: 'Adeonir Kohl | Portfolio'
+  description: 'Personal portfolio for Adeonir Kohl, a design engineer focused on aesthetics and performance.'
+  meta_description: 'Design engineer building interfaces that look beautiful and run fast'
 
 # The content tree mirrors docs/design/blueprint.md: surfaces home, work, project.
 # header and footer are persistent across all three surfaces — defined once on
@@ -21,35 +21,35 @@ content:
   home:
     header: &header
       logo:
-        text: "adeonir.dev"
+        text: 'adeonir.dev'
       nav:
-        - text: "about"
-        - text: "projects"
-        - text: "contact"
+        - text: 'about'
+        - text: 'projects'
+        - text: 'contact'
       menu:
-        label: "Menu"
-        open: "Open menu"
-        close: "Close menu"
+        label: 'Menu'
+        open: 'Open menu'
+        close: 'Close menu'
 
     hero:
-      eyebrow: "Design Engineer"
+      eyebrow: 'Design Engineer'
       display: "Hi, I'm Adeonir Kohl"
-      tagline: "I build interfaces that look beautiful and run fast."
+      tagline: 'I build interfaces that look beautiful and run fast.'
       description:
         - "I'm a design engineer — a frontend developer with a designer's background — and I own the whole product not just the UI, because the best code delivers value instead of chasing perfection."
       actions:
-        primary: "See the work"
-        secondary: "Get in touch"
+        primary: 'See the work'
+        secondary: 'Get in touch'
 
     about:
-      eyebrow: "About me"
-      headline: "From design to code."
+      eyebrow: 'About me'
+      headline: 'From design to code.'
       bio:
         - "After years as a graphic designer, I moved into code — not a detour, it was a natural evolution that landed me right where design and engineering meet. I've been a frontend developer for 6+ years, working for companies in Brazil, Europe, and recently the US. On the projects I run myself, I get hands-on with design and code, end to end."
         - "These days I'm digging into product engineering and bringing it into my projects — owning more of the product than the interface alone."
-        - "I work with AI-assisted and agentic workflows for the heavy lifting, always under my supervision (HITL - Human in the loop). It lets me move fast without trading away craft or judgment."
+        - 'I work with AI-assisted and agentic workflows for the heavy lifting, always under my supervision (HITL - Human in the loop). It lets me move fast without trading away craft or judgment.'
       code-block:
-        language: "ts"
+        language: 'ts'
         code: |
           const developer = {
             name: 'Adeonir Kohl',
@@ -62,91 +62,92 @@ content:
           }
 
     stack:
-      eyebrow: "Tech Stack"
-      headline: "The tools I build with."
+      eyebrow: 'Tech Stack'
+      headline: 'The tools I build with.'
       tools:
-        - title: "Frontend"
+        - title: 'frontend'
           items:
-            - "React"
-            - "Next.js"
-            - "Astro"
-            - "TanStack Start"
-            - "TypeScript"
-            - "Tailwind CSS"
-        - title: "Backend"
+            - 'react'
+            - 'next.js'
+            - 'astro'
+            - 'tanstack-start'
+            - 'typescript'
+            - 'tailwindcss'
+            - 'zustand'
+        - title: 'backend'
           items:
-            - "Node.js"
-            - "Express"
-            - "Fastify"
-            - "Drizzle"
-            - "Prisma"
-            - "PostgreSQL"
-            - "SQLite"
-        - title: "Tooling"
+            - 'node.js'
+            - 'hono'
+            - 'fastify'
+            - 'drizzle'
+            - 'prisma'
+            - 'sqlite'
+            - 'postgresql'
+        - title: 'tooling'
           items:
-            - "Figma"
-            - "Pencil"
-            - "Vite"
-            - "Bun"
-            - "Biome"
-            - "Claude Code"
-            - "Cursor"
+            - 'vite'
+            - 'biome'
+            - 'figma'
+            - 'vscode'
+            - 'claude-code'
+            - 'cloudflare'
+            - 'posthog'
 
     projects:
-      eyebrow: "Featured work"
+      eyebrow: 'Featured work'
       headline: "A few things I've designed and shipped."
       # list -> top-level `projects` collection, filtered to featured: true
-      see-all: "See all work"
+      see-all: 'See all work'
 
     contact:
       eyebrow: "Let's talk"
-      headline: "Have a project in mind?"
+      headline: 'Have a project in mind?'
       body:
-        - "I love meeting new people, trading experiences, and collaborating on interesting projects. Whether you want to chat about development or have an idea that needs a hand getting off the ground — drop me a message."
+        - 'I love meeting new people, trading experiences, and collaborating on interesting projects. Whether you want to chat about development or have an idea that needs a hand getting off the ground — drop me a message.'
       social:
-        - platform: "email"
-          label: "contato@adeonir.dev"
-          link: "mailto:contato@adeonir.dev"
-        - platform: "github"
-          label: "github.com/adeonir"
-          link: "https://github.com/adeonir"
-        - platform: "linkedin"
-          label: "linkedin.com/in/adeonir"
-          link: "https://www.linkedin.com/in/adeonir"
-        - platform: "x"
-          label: "x.com/adeonir"
-          link: "https://x.com/adeonir"
+        - platform: 'email'
+          label: 'contato@adeonir.dev'
+          link: 'mailto:contato@adeonir.dev'
+        - platform: 'github'
+          label: 'github.com/adeonir'
+          link: 'https://github.com/adeonir'
+        - platform: 'linkedin'
+          label: 'linkedin.com/in/adeonir'
+          link: 'https://www.linkedin.com/in/adeonir'
+        - platform: 'x'
+          label: 'x.com/adeonir'
+          link: 'https://x.com/adeonir'
       form:
         fields:
-          - name: "name"
-            label: "Name"
-            placeholder: "Your name"
-          - name: "email"
-            label: "Email"
-            placeholder: "you@example.com"
-          - name: "message"
-            label: "Message"
-            placeholder: "What are you building?"
-        submit: "Send message"
+          - name: 'name'
+            label: 'Name'
+            placeholder: 'Your name'
+          - name: 'email'
+            label: 'Email'
+            placeholder: 'you@example.com'
+          - name: 'message'
+            label: 'Message'
+            placeholder: 'What are you building?'
+        submit: 'Send message'
         states:
           success: "Thanks — I'll be in touch soon."
-          error: "Something went wrong. Email me directly at contato@adeonir.dev."
+          error: 'Something went wrong. Email me directly at contato@adeonir.dev.'
 
     footer: &footer
       brand:
-        text: "adeonir.dev"
-        copyright: "© 2026 Adeonir Kohl"
-      tagline: "Built with care, passion, and coffee."
+        text: 'adeonir.dev'
+        copyright: '© 2026 Adeonir Kohl'
+      tagline: 'Built with care, passion, and coffee.'
 
   work:
     header: *header
     page-header:
-      eyebrow: "Work"
+      eyebrow: 'Work'
       headline: "Things I've designed and built."
-      subheadline: "Every project, start to finish — design and code."
+      subheadline: 'Every project, start to finish — design and code.'
     # list -> top-level `projects` collection (all, in order)
     states:
-      empty: "No projects to show yet — check back soon." # EC-1
+      empty: 'No projects to show yet — check back soon.' # EC-1
     footer: *footer
 
   project:
@@ -155,19 +156,19 @@ content:
     # `projects` collection (overview / body / gallery / launch). The labels below
     # are the static chrome shared by every project detail surface.
     page-header:
-      eyebrow: "Project"
+      eyebrow: 'Project'
       # title and meta resolve from the matching projects entry:
       #   title -> name, meta -> "{role} · {launch}"
     overview:
       # text -> entry.overview, meta -> stack used + links (live: entry.link, repo: entry.repo)
-      meta-label: "Links"
+      meta-label: 'Links'
     gallery: [] # images -> entry.gallery
     body: {} # long-form -> entry.body
     prev-next:
       prev:
-        text: "Previous project"
+        text: 'Previous project'
       next:
-        text: "Next project"
+        text: 'Next project'
     states:
       not-found: "That project doesn't exist. Back to all work." # EC-3
     footer: *footer
@@ -175,64 +176,64 @@ content:
 # Projects — single source of truth (always complete). The work index renders
 # every entry in order; the landing renders the featured: true ones (same order).
 projects:
-  - slug: "charas-beer"
-    name: "Charas Beer"
+  - slug: 'charas-beer'
+    name: 'Charas Beer'
     featured: true
-    summary: "An online store for a craft beer brand."
-    role: "Product engineer, UI designer & frontend developer"
-    launch: "12/2026"
-    link: "https://charasbeer.com.br"
+    summary: 'An online store for a craft beer brand.'
+    role: 'Product engineer, UI designer & frontend developer'
+    launch: '12/2026'
+    link: 'https://charasbeer.com.br'
     repo: null
-    cta: "View project"
+    cta: 'View project'
     # Detail fields — author per project (see notes):
     overview: null # TODO: case-study overview paragraph
     body: null # TODO: long-form case study
     gallery: [] # TODO: project images (description/url/alt)
-  - slug: "adeonir-kohl"
-    name: "Adeonir Kohl"
+  - slug: 'adeonir-kohl'
+    name: 'Adeonir Kohl'
     featured: false
-    summary: "This portfolio, crafted end to end with AI in the loop."
-    role: "Product engineer, UI designer & frontend developer"
-    launch: "06/2026"
-    link: "https://adeonir.dev"
+    summary: 'This portfolio, crafted end to end with AI in the loop.'
+    role: 'Product engineer, UI designer & frontend developer'
+    launch: '06/2026'
+    link: 'https://adeonir.dev'
     repo: null
-    cta: "View project"
+    cta: 'View project'
     overview: null # TODO
     body: null # TODO
     gallery: [] # TODO
-  - slug: "uira-muller"
-    name: "Uirá Müller Design"
+  - slug: 'uira-muller'
+    name: 'Uirá Müller Design'
     featured: true
     summary: "A portfolio showcasing a graphic designer's work."
-    role: "UI designer & frontend developer"
-    launch: "05/2026"
-    link: "https://uiramuller.com.br"
+    role: 'UI designer & frontend developer'
+    launch: '05/2026'
+    link: 'https://uiramuller.com.br'
     repo: null
-    cta: "View project"
+    cta: 'View project'
     overview: null # TODO
     body: null # TODO
     gallery: [] # TODO
-  - slug: "reisenthal"
-    name: "Reisenthal Turismo"
+  - slug: 'reisenthal'
+    name: 'Reisenthal Turismo'
     featured: true
-    summary: "A travel agency offering trips to Europe, Brazil, and beyond."
-    role: "UI designer & frontend developer"
-    launch: "07/2025"
-    link: "https://reisenthal.com.br"
+    summary: 'A travel agency offering trips to Europe, Brazil, and beyond.'
+    role: 'UI designer & frontend developer'
+    launch: '07/2025'
+    link: 'https://reisenthal.com.br'
     repo: null
-    cta: "View project"
+    cta: 'View project'
     overview: null # TODO
     body: null # TODO
     gallery: [] # TODO
-  - slug: "atio"
-    name: "Atio"
+  - slug: 'atio'
+    name: 'Atio'
     featured: false
-    summary: "Food safety standards, certification, and training for industry."
-    role: "UI designer & frontend developer"
-    launch: "02/2024"
-    link: "https://atio.com.br"
+    summary: 'Food safety standards, certification, and training for industry.'
+    role: 'UI designer & frontend developer'
+    launch: '02/2024'
+    link: 'https://atio.com.br'
     repo: null
-    cta: "View project"
+    cta: 'View project'
     overview: null # TODO
     body: null # TODO
     gallery: [] # TODO

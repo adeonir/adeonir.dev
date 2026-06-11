@@ -77,7 +77,7 @@ content:
         - title: 'backend'
           items:
             - 'node.js'
-            - 'express'
+            - 'hono'
             - 'fastify'
             - 'drizzle'
             - 'prisma'
