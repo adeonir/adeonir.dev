@@ -22,6 +22,12 @@ export const heroSchema = z.object({
     )
     .min(1),
   description: z.array(z.string().min(1)).min(1),
+  actions: z.object({
+    secondary: z.object({
+      label: z.string().min(1),
+      href: z.string().min(1),
+    }),
+  }),
 })
 
 export const headerSchema = z.object({

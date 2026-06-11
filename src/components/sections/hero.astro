@@ -1,7 +1,9 @@
 ---
 import { getEntry } from 'astro:content'
 
+import { buttonVariants } from '~/components/ui/button'
 import { Eyebrow } from '~/components/ui/eyebrow'
+import { cn } from '~/lib/cn'
 
 const hero = await getEntry('hero', 'hero')
 
@@ -9,7 +11,7 @@ if (!hero) {
   throw new Error('Missing hero/hero entry')
 }
 
-const { eyebrow, display, tagline, description } = hero.data
+const { eyebrow, display, tagline, description, actions } = hero.data
 ---
 
 <section class="mx-auto w-full max-w-5xl px-6 py-16 md:py-24">
@@ -33,7 +35,9 @@ const { eyebrow, display, tagline, description } = hero.data
       )
     }
   </p>
-  <div class="mt-12 flex gap-8 md:items-end">
+  <div
+    class="mt-12 flex flex-col gap-8 md:flex-row md:items-end md:justify-between"
+  >
     <div class="flex max-w-2xl flex-col gap-4">
       {
         description.map((paragraph) => (
@@ -43,5 +47,14 @@ const { eyebrow, display, tagline, description } = hero.data
         ))
       }
     </div>
+    <a
+      href={actions.secondary.href}
+      class={cn(
+        buttonVariants({ variant: 'outline', size: 'default' }),
+        'shrink-0',
+      )}
+    >
+      {actions.secondary.label}
+    </a>
   </div>
 </section>
