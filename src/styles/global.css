@@ -156,19 +156,19 @@
 }
 
 @utility text-display {
-  @apply text-6xl font-extrabold tracking-tight;
+  @apply text-4xl font-extrabold tracking-tight sm:text-5xl;
 }
 
 @utility text-heading {
-  @apply text-3xl font-bold;
+  @apply text-2xl font-bold sm:text-3xl;
 }
 
 @utility text-title {
-  @apply text-2xl font-semibold;
+  @apply text-xl font-semibold sm:text-2xl;
 }
 
 @utility text-subtitle {
-  @apply text-lg font-medium;
+  @apply text-base font-medium sm:text-lg;
 }
 
 @utility text-body {
