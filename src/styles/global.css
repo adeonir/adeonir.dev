@@ -53,6 +53,7 @@
   --azalea-500: oklch(67.2% 0.233 2.27);
   --azalea-600: oklch(61.4% 0.24 11.26);
   --azalea-700: oklch(54.8% 0.217 15.02);
+  --azalea-750: oklch(51.3% 0.203 14.82);
   --azalea-800: oklch(47.8% 0.188 14.62);
   --azalea-900: oklch(42% 0.16 12.52);
   --azalea-950: oklch(29.3% 0.117 13.61);
@@ -86,10 +87,10 @@
 [data-theme="light"] {
   --primary: var(--ocean-500);
   --primary-foreground: var(--ink);
-  --secondary: var(--azalea-500);
+  --secondary: var(--azalea-600);
   --secondary-foreground: var(--ink);
   --action: var(--ocean-700); /* primary as text */
-  --emphasis: var(--azalea-800); /* secondary as text */
+  --emphasis: var(--azalea-750); /* secondary as text */
   --accent: var(--latte-250); /* surface-0/1 blend */
   --accent-foreground: var(--latte-950); /* text */
   --muted: var(--latte-200); /* surface-0 */
