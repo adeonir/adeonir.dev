@@ -6,6 +6,7 @@ import {
   headerSchema,
   heroSchema,
   settingsSchema,
+  stackSchema,
 } from '~/content/schemas'
 
 const settings = defineCollection({
@@ -33,4 +34,9 @@ const footer = defineCollection({
   schema: footerSchema,
 })
 
-export const collections = { settings, header, footer, hero, about }
+const stack = defineCollection({
+  loader: file('src/content/stack.yaml'),
+  schema: stackSchema,
+})
+
+export const collections = { settings, header, footer, hero, about, stack }

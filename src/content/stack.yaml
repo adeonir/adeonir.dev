@@ -1,0 +1,35 @@
+stack:
+  eyebrow: 'Tech Stack'
+  headline:
+    - text: 'As '
+    - text: 'ferramentas'
+      strong: true
+    - text: ' que eu uso.'
+  tools:
+    - title: 'frontend'
+      items:
+        - 'react'
+        - 'next.js'
+        - 'astro'
+        - 'tanstack-start'
+        - 'typescript'
+        - 'tailwindcss'
+        - 'zustand'
+    - title: 'backend'
+      items:
+        - 'node.js'
+        - 'express'
+        - 'fastify'
+        - 'drizzle'
+        - 'prisma'
+        - 'sqlite'
+        - 'postgresql'
+    - title: 'tooling'
+      items:
+        - 'vite'
+        - 'biome'
+        - 'figma'
+        - 'vscode'
+        - 'claude-code'
+        - 'cloudflare'
+        - 'posthog'
