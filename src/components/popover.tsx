@@ -25,7 +25,7 @@ function Content({
   )
 }
 
-const Popover = {
+export const Popover = {
   Root: ArkPopover.Root,
   Trigger: ArkPopover.Trigger,
   Context: ArkPopover.Context,
@@ -33,5 +33,3 @@ const Popover = {
   Positioner,
   Content,
 }
-
-export default Popover

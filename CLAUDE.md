@@ -47,7 +47,7 @@ When a doc and this file disagree, the doc wins. Change specs via the `spec-driv
 
 ## Conventions (per design.md §3.3)
 
-- **Files:** `kebab-case`. **Component default export:** `PascalCase` (`project-card.astro` → `ProjectCard`). Slugs, folders, routes lowercase.
+- **Files:** `kebab-case`. **Component export:** `PascalCase` — `.tsx` components use a named export (`export function Button`); `.astro` components are the file's implicit default (`project-card.astro` → `ProjectCard`). Slugs, folders, routes lowercase.
 - **Component tiers** — four directories, each with a distinct role:
   - `src/components/` — `.astro` for server-side composition; `.tsx` for stateful React reused inside islands
   - `src/components/islands/` — React hydration boundaries; used with `client:*` in templates

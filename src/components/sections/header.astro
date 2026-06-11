@@ -2,8 +2,8 @@
 import { getEntry } from 'astro:content'
 
 import Logo from '~/components/logo.astro'
-import MobileMenu from '~/components/islands/mobile-menu'
-import NavLink from '~/components/ui/nav-link'
+import { MobileMenu } from '~/components/islands/mobile-menu'
+import { NavLink } from '~/components/ui/nav-link'
 
 const header = await getEntry('header', 'header')
 

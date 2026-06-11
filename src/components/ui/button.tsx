@@ -24,12 +24,7 @@ const button = cva(
 
 export type ButtonProps = HTMLArkProps<'button'> & VariantProps<typeof button>
 
-export default function Button({
-  variant,
-  size,
-  className,
-  ...props
-}: ButtonProps) {
+export function Button({ variant, size, className, ...props }: ButtonProps) {
   return (
     <ark.button
       className={cn(button({ variant, size }), className)}

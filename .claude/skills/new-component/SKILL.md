@@ -97,7 +97,7 @@ import { ark, type HTMLArkProps } from '@ark-ui/react/factory'
 
 type Props = HTMLArkProps<'div'>
 
-export default function Name(props: Props) {
+export function Name(props: Props) {
   return <ark.div className="bg-surface text-foreground" {...props} />
 }
 ```
@@ -114,7 +114,7 @@ import type { PrimitiveRootProps } from '@ark-ui/react/primitive'
 
 type Props = PrimitiveRootProps
 
-export default function Name(props: Props) {
+export function Name(props: Props) {
   return (
     <ArkPrimitive.Root className="bg-surface text-foreground border-border" {...props}>
       {/* anatomy parts — add sub-components with semantic token classes per MCP output */}
@@ -136,7 +136,7 @@ type Props = {
   children?: ReactNode
 }
 
-export default function Name({ children }: Props) {
+export function Name({ children }: Props) {
   return (
     <div className="bg-surface text-foreground">
       {children}
@@ -151,7 +151,7 @@ export default function Name({ children }: Props) {
 // src/components/islands/[name].tsx
 // import { useState, useEffect } from 'react' — add as needed
 
-export default function Name() {
+export function Name() {
   return (
     <div className="bg-surface text-foreground">
     </div>
@@ -165,7 +165,7 @@ export default function Name() {
 // src/components/[name].tsx
 // import { useState, useEffect } from 'react' — add as needed
 
-export default function Name() {
+export function Name() {
   return (
     <div className="bg-surface text-foreground">
     </div>
