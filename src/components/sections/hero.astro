@@ -1,0 +1,47 @@
+---
+import { getEntry } from 'astro:content'
+
+import { Eyebrow } from '~/components/ui/eyebrow'
+
+const hero = await getEntry('hero', 'hero')
+
+if (!hero) {
+  throw new Error('Missing hero/hero entry')
+}
+
+const { eyebrow, display, tagline, description } = hero.data
+---
+
+<section class="mx-auto w-full max-w-5xl px-6 py-16 md:py-24">
+  <Eyebrow>{eyebrow}</Eyebrow>
+  <h1 class="mt-6 flex flex-col font-extrabold tracking-tight text-foreground">
+    <span class="text-3xl sm:text-4xl lg:text-5xl">{display.greeting}</span>
+    <span class="text-5xl leading-none sm:text-7xl lg:text-8xl">
+      {display.name}
+    </span>
+  </h1>
+  <p
+    class="mt-6 max-w-xl text-2xl font-semibold text-pretty text-foreground sm:text-3xl lg:text-4xl"
+  >
+    {
+      tagline.map((segment) =>
+        segment.emphasis ? (
+          <span class="text-emphasis">{segment.text}</span>
+        ) : (
+          segment.text
+        ),
+      )
+    }
+  </p>
+  <div class="mt-12 flex gap-8 md:items-end">
+    <div class="flex max-w-2xl flex-col gap-4">
+      {
+        description.map((paragraph) => (
+          <p class="text-body leading-relaxed text-pretty text-muted-foreground">
+            {paragraph}
+          </p>
+        ))
+      }
+    </div>
+  </div>
+</section>
