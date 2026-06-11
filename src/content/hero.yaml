@@ -6,10 +6,10 @@ hero:
   tagline:
     - text: 'Construo interfaces que são '
     - text: 'bonitas'
-      emphasis: true
+      strong: true
     - text: ' e rodam '
     - text: 'rápido'
-      emphasis: true
+      strong: true
     - text: '.'
   description:
     - 'Sou design engineer — um desenvolvedor frontend com bagagem de designer — eu cuido do produto inteiro, não só da interface. Porque o melhor código é aquele que entrega valor em vez de perseguir a perfeição.'

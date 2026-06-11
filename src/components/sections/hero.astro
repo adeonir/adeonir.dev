@@ -27,8 +27,8 @@ const { eyebrow, display, tagline, description, actions } = hero.data
   >
     {
       tagline.map((segment) =>
-        segment.emphasis ? (
-          <span class="text-emphasis">{segment.text}</span>
+        segment.strong ? (
+          <span class="text-secondary">{segment.text}</span>
         ) : (
           segment.text
         ),
