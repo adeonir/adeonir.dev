@@ -156,6 +156,10 @@
   }
 }
 
+@utility wrapper {
+  @apply mx-auto w-full max-w-6xl px-6;
+}
+
 @utility text-display {
   @apply text-4xl font-extrabold tracking-tight sm:text-5xl;
 }

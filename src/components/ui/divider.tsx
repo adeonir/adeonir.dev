@@ -6,7 +6,7 @@ export type DividerProps = HTMLArkProps<'hr'>
 
 export function Divider({ className, ...props }: DividerProps) {
   return (
-    <div className="mx-auto w-full max-w-5xl px-6">
+    <div className="w-full">
       <ark.hr className={cn('border-border border-t', className)} {...props} />
     </div>
   )
