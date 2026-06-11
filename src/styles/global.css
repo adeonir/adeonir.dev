@@ -11,6 +11,7 @@
   --mocha-500: oklch(54.97% 0.0345 277.1); /* overlay-0 */
   --mocha-600: oklch(47.65% 0.034 278.64); /* surface-2 */
   --mocha-700: oklch(40.37% 0.032 280.15); /* surface-1 */
+  --mocha-750: oklch(36.38% 0.0319 281.06); /* surface-0/1 blend */
   --mocha-800: oklch(32.40% 0.0319 281.98); /* surface-0 */
   --mocha-850: oklch(24.29% 0.0304 283.91); /* base */
   --mocha-875: oklch(22.92% 0.0279 283.99); /* base/mantle blend */
@@ -22,6 +23,7 @@
   --latte-100: oklch(93.35% 0.0087 264.52); /* mantle */
   --latte-150: oklch(90.60% 0.0117 264.51); /* crust */
   --latte-200: oklch(85.75% 0.0145 268.48); /* surface-0 */
+  --latte-250: oklch(83.29% 0.0159 269.84); /* surface-0/1 blend */
   --latte-300: oklch(80.83% 0.0174 271.2); /* surface-1 */
   --latte-400: oklch(75.84% 0.0205 273.15); /* surface-2 */
   --latte-500: oklch(70.77% 0.0237 274.6); /* overlay-0 */
@@ -64,7 +66,7 @@
   --secondary-foreground: var(--ink);
   --action: var(--ocean-500); /* primary as text */
   --emphasis: var(--azalea-500); /* secondary as text */
-  --accent: var(--mocha-700); /* surface-1 */
+  --accent: var(--mocha-750); /* surface-0/1 blend */
   --accent-foreground: var(--mocha-50); /* text */
   --muted: var(--mocha-800); /* surface-0 */
   --muted-foreground: var(--mocha-100); /* subtext-1 */
@@ -88,7 +90,7 @@
   --secondary-foreground: var(--ink);
   --action: var(--ocean-700); /* primary as text */
   --emphasis: var(--azalea-800); /* secondary as text */
-  --accent: var(--latte-300); /* surface-1 */
+  --accent: var(--latte-250); /* surface-0/1 blend */
   --accent-foreground: var(--latte-950); /* text */
   --muted: var(--latte-200); /* surface-0 */
   --muted-foreground: var(--latte-900); /* subtext-1 */
