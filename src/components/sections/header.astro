@@ -37,11 +37,7 @@ const { logo, nav, menu } = header.data
       </ul>
     </nav>
     <div class="md:hidden">
-      <MobileMenu
-        client:media="(max-width: 47.9375rem)"
-        nav={nav}
-        menu={menu}
-      />
+      <MobileMenu client:visible nav={nav} menu={menu} />
     </div>
   </div>
 </header>
