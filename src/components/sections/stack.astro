@@ -1,0 +1,59 @@
+---
+import { getEntry } from 'astro:content'
+
+import { Eyebrow } from '~/components/ui/eyebrow'
+import IconFolder from '~icons/tabler/folder'
+
+const stack = await getEntry('stack', 'stack')
+
+if (!stack) {
+  throw new Error('Missing stack/stack entry')
+}
+
+const { eyebrow, headline, tools } = stack.data
+---
+
+<section id="stack">
+  <Eyebrow>{eyebrow}</Eyebrow>
+  <div class="mt-6 grid grid-cols-1 gap-12 md:grid-cols-5">
+    <h2 class="text-display text-pretty text-foreground md:col-span-2">
+      {
+        headline.map((segment) => (
+          <>
+            {segment.strong ? (
+              <span class="text-secondary">{segment.text}</span>
+            ) : (
+              segment.text
+            )}
+            {segment.break && <br class="hidden md:block" />}
+          </>
+        ))
+      }
+    </h2>
+    <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-3 md:col-span-3">
+      {
+        tools.map((group) => (
+          <div class="flex flex-col gap-2">
+            <p class="inline-flex items-center gap-2 text-code text-foreground">
+              <IconFolder className="size-3.5 shrink-0 text-action" />
+              <span>{group.title}/</span>
+            </p>
+            <ul
+              aria-label={group.title}
+              class="flex flex-col gap-1.5 border-l border-border pl-4"
+            >
+              {group.items.map((item) => (
+                <li class="flex gap-2 text-code">
+                  <span class="text-secondary" aria-hidden="true">
+                    —
+                  </span>
+                  <span class="text-muted-foreground">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
