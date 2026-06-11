@@ -2,7 +2,14 @@
   "mcpServers": {
     "ark-ui": {
       "command": "npx",
-      "args": ["-y", "@ark-ui/mcp"]
+      "args": [
+        "-y",
+        "@ark-ui/mcp"
+      ]
+    },
+    "posthog": {
+      "type": "http",
+      "url": "https://mcp.posthog.com/mcp"
     }
   }
 }
