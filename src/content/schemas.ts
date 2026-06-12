@@ -7,6 +7,23 @@ export const settingsSchema = z.object({
   locale: z.string(),
 })
 
+export const headerSchema = z.object({
+  logo: z.string().min(1),
+  nav: z
+    .array(
+      z.object({
+        label: z.string().min(1),
+        href: z.string().min(1),
+      }),
+    )
+    .min(1),
+  menu: z.object({
+    label: z.string().min(1),
+    open: z.string().min(1),
+    close: z.string().min(1),
+  }),
+})
+
 export const heroSchema = z.object({
   eyebrow: z.string().min(1),
   display: z.object({
@@ -66,23 +83,6 @@ export const stackSchema = z.object({
     .min(1),
 })
 
-export const headerSchema = z.object({
-  logo: z.string().min(1),
-  nav: z
-    .array(
-      z.object({
-        label: z.string().min(1),
-        href: z.string().min(1),
-      }),
-    )
-    .min(1),
-  menu: z.object({
-    label: z.string().min(1),
-    open: z.string().min(1),
-    close: z.string().min(1),
-  }),
-})
-
 export const footerSchema = z.object({
   brand: z.object({
     text: z.string().min(1),
@@ -96,4 +96,23 @@ export const footerSchema = z.object({
       }),
     )
     .min(1),
+})
+
+export const notFoundSchema = z.object({
+  eyebrow: z.string().min(1),
+  display: z.string().min(1),
+  headline: z
+    .array(
+      z.object({
+        text: z.string().min(1),
+        strong: z.boolean().optional(),
+        break: z.boolean().optional(),
+      }),
+    )
+    .min(1),
+  body: z.array(z.string().min(1)).min(1),
+  action: z.object({
+    label: z.string().min(1),
+    href: z.string().min(1),
+  }),
 })
