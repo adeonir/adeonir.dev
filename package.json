@@ -11,8 +11,7 @@
     "astro": "astro",
     "typecheck": "astro check",
     "lint": "biome check && prettier --check \"src/**/*.{astro,yaml}\"",
-    "lint:fix": "biome check --write --unsafe && prettier --write \"src/**/*.{astro,yaml}\"",
-    "prepare": "[ -n \"$CI\" ] || lefthook install"
+    "lint:fix": "biome check --write --unsafe && prettier --write \"src/**/*.{astro,yaml}\""
   },
   "dependencies": {
     "@ark-ui/react": "5.37.2",
