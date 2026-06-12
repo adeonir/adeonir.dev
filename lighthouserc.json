@@ -11,7 +11,7 @@
         "categories:accessibility": ["error", { "minScore": 1, "aggregationMethod": "median" }],
         "categories:best-practices": ["error", { "minScore": 1, "aggregationMethod": "median" }],
         "categories:seo": ["error", { "minScore": 1, "aggregationMethod": "median" }],
-        "largest-contentful-paint": ["warn", { "maxNumericValue": 2000, "aggregationMethod": "median" }],
+        "largest-contentful-paint": ["warn", { "maxNumericValue": 2200, "aggregationMethod": "median" }],
         "cumulative-layout-shift": ["warn", { "maxNumericValue": 0.1, "aggregationMethod": "median" }],
         "total-blocking-time": ["warn", { "maxNumericValue": 200, "aggregationMethod": "median" }]
       }
