@@ -1,0 +1,13 @@
+notFound:
+  eyebrow: 'Erro 404'
+  display: '404'
+  headline:
+    - text: 'Página '
+    - text: 'não encontrada'
+      strong: true
+    - text: '.'
+  body:
+    - 'O endereço que você procura não existe. Volte para a página inicial.'
+  action:
+    label: 'Voltar ao início'
+    href: '/'

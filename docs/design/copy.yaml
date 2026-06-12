@@ -1,7 +1,7 @@
 metadata:
   source: 'docs/product/brief.md, docs/product/prd.md, docs/design/blueprint.md, conversation'
   created: '2026-06-06'
-  version: '1.0.1'
+  version: '1.0.2'
   status: 'draft'
 
 project:
@@ -12,8 +12,9 @@ project:
   description: 'Portfólio pessoal de Adeonir Kohl, um design engineer focado em estética e performance.'
   meta_description: 'Design engineer criando interfaces que são bonitas e rodam rápido'
 
-# The content tree mirrors docs/design/blueprint.md: surfaces home, work, project.
-# header and footer are persistent across all three surfaces — defined once on
+# The content tree mirrors docs/design/blueprint.md: surfaces home, work, project,
+# plus a global not-found (404) error surface.
+# header and footer are persistent across every surface — defined once on
 # home and aliased. Projects live in one top-level `projects` collection (always
 # complete); the work index shows all, the landing shows featured: true.
 
@@ -171,6 +172,16 @@ content:
         text: 'Próximo projeto'
     states:
       not-found: 'Esse projeto não existe. Voltar para os projetos.' # EC-3
+    footer: *footer
+
+  not-found:
+    header: *header
+    eyebrow: 'Erro 404'
+    display: '404'
+    headline: 'Página não encontrada.'
+    body:
+      - 'O endereço que você procura não existe. Volte para a página inicial.'
+    cta: 'Voltar ao início'
     footer: *footer
 
 # Projects — single source of truth (always complete). The work index renders

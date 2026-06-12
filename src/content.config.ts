@@ -5,6 +5,7 @@ import {
   footerSchema,
   headerSchema,
   heroSchema,
+  notFoundSchema,
   settingsSchema,
   stackSchema,
 } from '~/content/schemas'
@@ -39,4 +40,17 @@ const stack = defineCollection({
   schema: stackSchema,
 })
 
-export const collections = { settings, header, footer, hero, about, stack }
+const notFound = defineCollection({
+  loader: file('src/content/not-found.yaml'),
+  schema: notFoundSchema,
+})
+
+export const collections = {
+  settings,
+  header,
+  footer,
+  hero,
+  about,
+  stack,
+  notFound,
+}
