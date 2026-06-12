@@ -1,4 +1,5 @@
 ---
+import { Font } from 'astro:assets'
 import { getEntry } from 'astro:content'
 import { ClientRouter } from 'astro:transitions'
 import { SEO } from 'astro-seo'
@@ -49,6 +50,9 @@ const ogImageURL = new URL(
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <Font cssVariable="--font-geist" preload />
+    <Font cssVariable="--font-fira-code" />
 
     <SEO
       title={title}
