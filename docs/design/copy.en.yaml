@@ -37,7 +37,7 @@ content:
       display: "Hi, I'm Adeonir Kohl"
       tagline: 'I build interfaces that look beautiful and run fast.'
       description:
-        - "I'm a design engineer, a frontend developer with a designer's background, and I own the whole product, not just the UI. The best code delivers value without chasing perfection."
+        - "I'm a design engineer, a frontend developer with a designer's background. I think about the whole product, not just the UI. The best code delivers value without chasing perfection."
       actions:
         primary: 'See the work'
         secondary: 'Get in touch'
