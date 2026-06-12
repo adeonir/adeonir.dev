@@ -37,7 +37,8 @@ content:
       display: 'Olá, sou Adeonir Kohl'
       tagline: 'Eu construo interfaces que são bonitas e rodam rápido.'
       description:
-        - 'Sou design engineer, um desenvolvedor frontend com bagagem de designer. Penso no produto inteiro, não só na interface. O melhor código entrega valor, sem perseguir a perfeição.'
+        - 'Sou design engineer: um desenvolvedor frontend com bagagem de designer.'
+        - 'Isso me faz pensar no produto inteiro, não só na interface, sempre buscando um código que entrega valor sem perseguir a perfeição.'
       actions:
         primary: 'Ver os projetos'
         secondary: 'Entrar em contato'
