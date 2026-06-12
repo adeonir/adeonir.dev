@@ -37,7 +37,7 @@ content:
       display: 'Olá, sou Adeonir Kohl'
       tagline: 'Eu construo interfaces que são bonitas e rodam rápido.'
       description:
-        - 'Sou design engineer — um desenvolvedor frontend com bagagem de designer — eu cuido do produto inteiro, não só da interface. Porque o melhor código é aquele que entrega valor em vez de perseguir a perfeição.'
+        - 'Sou design engineer, um desenvolvedor frontend com bagagem de designer, e cuido do produto inteiro, não só da interface. O melhor código entrega valor, sem perseguir a perfeição.'
       actions:
         primary: 'Ver os projetos'
         secondary: 'Entrar em contato'
@@ -46,8 +46,8 @@ content:
       eyebrow: 'Sobre mim'
       headline: 'Do design ao código.'
       bio:
-        - 'Depois de anos como designer gráfico, migrei para o código — e isso não foi um desvio, foi uma evolução natural que me trouxe exatamente para onde design e engenharia se encontram. Sou desenvolvedor frontend há mais de 6 anos, trabalhando para empresas no Brasil, na Europa e, mais recentemente, nos EUA. Nos projetos que toco sozinho, coloco a mão na massa no design e no código, de ponta a ponta.'
-        - 'Atualmente estou me aprofundando em product engineering e trazendo isso para os meus projetos — assumindo mais do produto do que apenas a interface.'
+        - 'Depois de anos como designer gráfico, migrei para o desenvolvimento numa evolução natural que me colocou exatamente onde design e código se encontram. Sou desenvolvedor frontend há mais de 6 anos, trabalhando para empresas no Brasil, na Europa e, mais recentemente, nos EUA. Nos projetos que toco sozinho, coloco a mão na massa no design e no código, de ponta a ponta.'
+        - 'Atualmente estou me aprofundando em product engineering e levando esse conhecimento para os meus projetos, indo além da interface.'
         - 'Eu trabalho com AI-assisted e agentic workflows para o trabalho pesado, sempre sob minha supervisão (HITL - Human in the loop). Isso me permite avançar rápido sem abrir mão de qualidade e bom senso.'
       code-block:
         language: 'ts'
@@ -104,7 +104,7 @@ content:
       eyebrow: 'Vamos conversar'
       headline: 'Tem um projeto em mente?'
       body:
-        - 'Adoro conhecer gente nova, trocar experiências e colaborar em projetos interessantes. Se você quer bater um papo sobre desenvolvimento ou tem uma ideia que precisa de uma mão para sair do papel — me manda uma mensagem.'
+        - 'Adoro conhecer gente nova, trocar experiências e colaborar em projetos interessantes. Se você quer bater um papo sobre desenvolvimento ou tem uma ideia que precisa de uma mão para sair do papel, me manda uma mensagem.'
       social:
         - platform: 'email'
           label: 'contato@adeonir.dev'
@@ -131,7 +131,7 @@ content:
             placeholder: 'O que você está construindo?'
         submit: 'Enviar mensagem'
         states:
-          success: 'Obrigado — em breve entro em contato.'
+          success: 'Obrigado! Logo eu entro em contato.'
           error: 'Algo deu errado. Me escreva direto em contato@adeonir.dev.'
 
     footer: &footer
@@ -145,10 +145,10 @@ content:
     page-header:
       eyebrow: 'Projetos'
       headline: 'Coisas que desenhei e construí.'
-      subheadline: 'Cada projeto, do início ao fim — design e código.'
+      subheadline: 'Uma seleção do que construí ou ajudei a construir.'
     # list -> top-level `projects` collection (all, in order)
     states:
-      empty: 'Nenhum projeto por aqui ainda — volte em breve.' # EC-1
+      empty: 'Nenhum projeto por aqui ainda, volte em breve.' # EC-1
     footer: *footer
 
   project:

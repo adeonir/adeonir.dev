@@ -37,7 +37,7 @@ content:
       display: "Hi, I'm Adeonir Kohl"
       tagline: 'I build interfaces that look beautiful and run fast.'
       description:
-        - "I'm a design engineer — a frontend developer with a designer's background — and I own the whole product not just the UI, because the best code delivers value instead of chasing perfection."
+        - "I'm a design engineer, a frontend developer with a designer's background, and I own the whole product, not just the UI. The best code delivers value without chasing perfection."
       actions:
         primary: 'See the work'
         secondary: 'Get in touch'
@@ -46,8 +46,8 @@ content:
       eyebrow: 'About me'
       headline: 'From design to code.'
       bio:
-        - "After years as a graphic designer, I moved into code — not a detour, it was a natural evolution that landed me right where design and engineering meet. I've been a frontend developer for 6+ years, working for companies in Brazil, Europe, and recently the US. On the projects I run myself, I get hands-on with design and code, end to end."
-        - "These days I'm digging into product engineering and bringing it into my projects — owning more of the product than the interface alone."
+        - "After years as a graphic designer, I moved into development in a natural evolution that put me exactly where design and code meet. I've been a frontend developer for 6+ years, working for companies in Brazil, Europe, and recently the US. On the projects I run myself, I get hands-on with design and code, end to end."
+        - "These days I'm digging into product engineering and bringing that knowledge into my projects, going beyond the interface."
         - 'I work with AI-assisted and agentic workflows for the heavy lifting, always under my supervision (HITL - Human in the loop). It lets me move fast without trading away craft or judgment.'
       code-block:
         language: 'ts'
@@ -104,7 +104,7 @@ content:
       eyebrow: "Let's talk"
       headline: 'Have a project in mind?'
       body:
-        - 'I love meeting new people, trading experiences, and collaborating on interesting projects. Whether you want to chat about development or have an idea that needs a hand getting off the ground — drop me a message.'
+        - 'I love meeting new people, trading experiences, and collaborating on interesting projects. Whether you want to chat about development or have an idea that needs a hand getting off the ground, drop me a message.'
       social:
         - platform: 'email'
           label: 'contato@adeonir.dev'
@@ -131,7 +131,7 @@ content:
             placeholder: 'What are you building?'
         submit: 'Send message'
         states:
-          success: "Thanks — I'll be in touch soon."
+          success: "Thanks! I'll be in touch soon."
           error: 'Something went wrong. Email me directly at contato@adeonir.dev.'
 
     footer: &footer
@@ -145,10 +145,10 @@ content:
     page-header:
       eyebrow: 'Work'
       headline: "Things I've designed and built."
-      subheadline: 'Every project, start to finish — design and code.'
+      subheadline: 'A selection of what I built or helped build.'
     # list -> top-level `projects` collection (all, in order)
     states:
-      empty: 'No projects to show yet — check back soon.' # EC-1
+      empty: 'No projects to show yet, check back soon.' # EC-1
     footer: *footer
 
   project:
