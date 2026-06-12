@@ -49,7 +49,7 @@ content:
       bio:
         - "After years as a graphic designer, I moved into development in a natural evolution that put me exactly where design and code meet. I've been a frontend developer for 6+ years, working for companies in Brazil, Europe, and recently the US. On the projects I run myself, I get hands-on with design and code, end to end."
         - "These days I'm digging into product engineering and bringing that knowledge into my projects, going beyond the interface."
-        - 'I work with AI-assisted and agentic workflows for the heavy lifting, always under my supervision (HITL - Human in the loop). It lets me move fast without trading away craft or judgment.'
+        - 'I use AI-assisted tools and agentic workflows for the heavy lifting, always under my supervision (HITL - Human in the loop). It lets me move fast without trading away craft or judgment.'
       code-block:
         language: 'ts'
         code: |
