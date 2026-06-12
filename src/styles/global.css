@@ -1,6 +1,4 @@
 @import "tailwindcss";
-@import "@fontsource-variable/geist";
-@import "@fontsource-variable/fira-code";
 
 :root {
   --mocha-50: oklch(87.87% 0.0426 272.28); /* text */
@@ -134,9 +132,8 @@
 }
 
 @theme {
-  --font-sans: "Geist Variable", system-ui, -apple-system, sans-serif;
-  --font-mono:
-    "Fira Code Variable", ui-monospace, "SF Mono", Consolas, monospace;
+  --font-sans: var(--font-geist), sans-serif;
+  --font-mono: var(--font-fira-code), monospace;
 
   --breakpoint-xs: 32rem;
 

@@ -2,13 +2,31 @@ import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
 import tailwindcss from '@tailwindcss/vite'
 import robotsTxt from 'astro-robots-txt'
-import { defineConfig, envField } from 'astro/config'
+import { defineConfig, envField, fontProviders } from 'astro/config'
 import icons from 'unplugin-icons/vite'
 
 const noIndexRoutes = ['/styleguide', '/maintenance']
 
 export default defineConfig({
   site: 'https://adeonir.dev',
+  fonts: [
+    {
+      name: 'Geist',
+      cssVariable: '--font-geist',
+      provider: fontProviders.fontsource(),
+      weights: ['100 900'],
+      styles: ['normal'],
+      fallbacks: ['Arial', 'sans-serif'],
+    },
+    {
+      name: 'Fira Code',
+      cssVariable: '--font-fira-code',
+      provider: fontProviders.fontsource(),
+      weights: ['300 700'],
+      styles: ['normal'],
+      fallbacks: ['monospace'],
+    },
+  ],
   integrations: [
     react(),
     sitemap({
