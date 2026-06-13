@@ -38,7 +38,7 @@ content:
       tagline: 'Eu construo interfaces que são bonitas e rodam rápido.'
       description:
         - 'Sou design engineer: um desenvolvedor frontend com bagagem de designer.'
-        - 'Isso me faz pensar no produto inteiro, não só na interface, sempre buscando um código que entrega valor sem perseguir a perfeição.'
+        - 'Isso me faz pensar no produto inteiro, não só na interface, sempre buscando soluções que entregam valor sem perseguir a perfeição.'
       actions:
         primary: 'Ver os projetos'
         secondary: 'Entrar em contato'
@@ -47,9 +47,9 @@ content:
       eyebrow: 'Sobre mim'
       headline: 'Do design ao código.'
       bio:
-        - 'Depois de anos como designer gráfico, migrei para o desenvolvimento numa evolução natural que me colocou exatamente onde design e código se encontram. Sou desenvolvedor frontend há mais de 6 anos, trabalhando para empresas no Brasil, na Europa e, mais recentemente, nos EUA. Nos projetos que toco sozinho, coloco a mão na massa no design e no código, de ponta a ponta.'
+        - 'Depois de anos como designer gráfico, migrei para o desenvolvimento numa evolução natural que me colocou exatamente onde design e código se encontram. Sou desenvolvedor frontend há mais de 6 anos, trabalhando para empresas no Brasil, na Europa e, mais recentemente, nos EUA. Nos projetos que toco sozinho, cuido do código de ponta a ponta, e também do design quando preciso.'
         - 'Atualmente estou me aprofundando em product engineering e levando esse conhecimento para os meus projetos, indo além da interface.'
-        - 'Eu uso ferramentas assistidas por IA e fluxos agênticos para o trabalho pesado, sempre sob minha supervisão (HITL - Human in the loop). Isso me permite avançar rápido sem abrir mão de qualidade e bom senso.'
+        - 'Eu uso ferramentas de IA e fluxos agênticos para o trabalho pesado, sempre sob minha supervisão (HITL - Human in the loop). Isso me permite avançar rápido sem abrir mão de qualidade e bom senso.'
       code-block:
         language: 'ts'
         code: |
@@ -57,7 +57,7 @@ content:
             name: 'Adeonir Kohl',
             role: 'Design Engineer',
             based: 'Salvador do Sul, RS',
-            focus: 'Design + Code + Product',
+            focus: 'Code + Design + Product',
             stack: ['Figma', 'React', 'TypeScript', 'Tailwind CSS'],
             available: 'Aberto a colaborações',
             // Qualidade e entrega andam juntas.
