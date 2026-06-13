@@ -189,7 +189,7 @@
 }
 
 @utility text-label {
-  @apply text-xs font-semibold tracking-widest uppercase;
+  @apply font-mono font-medium text-xs tracking-wider uppercase;
 }
 
 @utility text-button {

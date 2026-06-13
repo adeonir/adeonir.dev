@@ -2,6 +2,7 @@ import { defineCollection } from 'astro:content'
 import { file } from 'astro/loaders'
 import {
   aboutSchema,
+  contactSchema,
   footerSchema,
   headerSchema,
   heroSchema,
@@ -40,6 +41,11 @@ const stack = defineCollection({
   schema: stackSchema,
 })
 
+const contact = defineCollection({
+  loader: file('src/content/contact.yaml'),
+  schema: contactSchema,
+})
+
 const notFound = defineCollection({
   loader: file('src/content/not-found.yaml'),
   schema: notFoundSchema,
@@ -52,5 +58,6 @@ export const collections = {
   hero,
   about,
   stack,
+  contact,
   notFound,
 }

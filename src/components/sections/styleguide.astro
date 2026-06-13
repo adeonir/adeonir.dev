@@ -4,6 +4,7 @@ import IconArrowRight from '~icons/tabler/arrow-right'
 import Logo from '~/components/logo.astro'
 import { Button } from '~/components/ui/button'
 import { Eyebrow } from '~/components/ui/eyebrow'
+import { Field } from '~/components/ui/field'
 import { NavLink } from '~/components/ui/nav-link'
 
 interface Props {
@@ -256,7 +257,8 @@ const breakpoints = [
       <div class="flex flex-col gap-2">
         <span class="text-caption text-muted-foreground">Button</span>
         <div class="flex flex-wrap items-center gap-3">
-          <Button>Button</Button>
+          <Button variant="primary">Primary</Button>
+          <Button variant="outline">Outline</Button>
           <Button size="icon" aria-label="Example icon button">
             <IconArrowRight className="size-4" />
           </Button>
@@ -265,6 +267,24 @@ const breakpoints = [
       <div class="flex flex-col gap-2">
         <span class="text-caption text-muted-foreground">NavLink</span>
         <NavLink href="#">nav link</NavLink>
+      </div>
+      <div class="flex flex-col gap-2">
+        <span class="text-caption text-muted-foreground">Field</span>
+        <div class="flex flex-col gap-4">
+          <Field label="Label" name="sg-field" placeholder="Placeholder" />
+          <Field
+            label="Message"
+            name="sg-field-message"
+            placeholder="Placeholder"
+            multiline
+          />
+          <Field
+            label="Disabled"
+            name="sg-field-disabled"
+            placeholder="Placeholder"
+            disabled
+          />
+        </div>
       </div>
     </div>
   </section>
