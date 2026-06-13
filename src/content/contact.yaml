@@ -1,0 +1,37 @@
+contact:
+  eyebrow: 'Vamos conversar'
+  title:
+    - text: 'Tem um '
+    - text: 'projeto'
+      strong: true
+    - text: ' em mente?'
+  body:
+    - 'Adoro conhecer gente nova, trocar experiências e colaborar em projetos interessantes. Se você quer bater um papo sobre desenvolvimento ou tem uma ideia que precisa de uma mão para sair do papel, me manda uma mensagem.'
+  social:
+    - platform: 'email'
+      label: 'contato@adeonir.dev'
+      link: 'mailto:contato@adeonir.dev'
+    - platform: 'github'
+      label: 'github.com/adeonir'
+      link: 'https://github.com/adeonir'
+    - platform: 'linkedin'
+      label: 'linkedin.com/in/adeonir'
+      link: 'https://www.linkedin.com/in/adeonir'
+    - platform: 'x'
+      label: 'x.com/adeonir'
+      link: 'https://x.com/adeonir'
+  form:
+    fields:
+      - name: 'name'
+        label: 'Nome'
+        placeholder: 'Seu nome'
+      - name: 'email'
+        label: 'Email'
+        placeholder: 'voce@exemplo.com'
+      - name: 'message'
+        label: 'Mensagem'
+        placeholder: 'O que você está construindo?'
+    submit: 'Enviar mensagem'
+    states:
+      success: 'Obrigado! Logo eu entro em contato.'
+      error: 'Algo deu errado. Me escreva direto em contato@adeonir.dev.'

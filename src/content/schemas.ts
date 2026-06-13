@@ -98,6 +98,45 @@ export const footerSchema = z.object({
     .min(1),
 })
 
+export const contactSchema = z.object({
+  eyebrow: z.string().min(1),
+  title: z
+    .array(
+      z.object({
+        text: z.string().min(1),
+        strong: z.boolean().optional(),
+        break: z.boolean().optional(),
+      }),
+    )
+    .min(1),
+  body: z.array(z.string().min(1)).min(1),
+  social: z
+    .array(
+      z.object({
+        platform: z.enum(['email', 'github', 'linkedin', 'x']),
+        label: z.string().min(1),
+        link: z.string().min(1),
+      }),
+    )
+    .min(1),
+  form: z.object({
+    fields: z
+      .array(
+        z.object({
+          name: z.string().min(1),
+          label: z.string().min(1),
+          placeholder: z.string().min(1),
+        }),
+      )
+      .min(1),
+    submit: z.string().min(1),
+    states: z.object({
+      success: z.string().min(1),
+      error: z.string().min(1),
+    }),
+  }),
+})
+
 export const notFoundSchema = z.object({
   eyebrow: z.string().min(1),
   display: z.string().min(1),

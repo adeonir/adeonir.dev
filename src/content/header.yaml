@@ -3,8 +3,8 @@ header:
   nav:
     - label: 'sobre'
       href: '#about'
-    # - label: 'contato'
-    #   href: '#contact'
+    - label: 'contato'
+      href: '#contact'
   menu:
     label: 'Menu'
     open: 'Abrir menu'
