@@ -51,6 +51,7 @@ export default defineConfig({
         access: 'public',
         default: 'https://t.adeonir.dev',
       }),
+      RESEND_API_KEY: envField.string({ context: 'server', access: 'secret' }),
     },
   },
   vite: {
