@@ -14,7 +14,7 @@ hero:
     - text: '.'
   description:
     - 'Sou design engineer: um desenvolvedor frontend com bagagem de designer.'
-    - 'Isso me faz pensar no produto inteiro, não só na interface, sempre buscando um código que entrega valor sem perseguir a perfeição.'
+    - 'Isso me faz pensar no produto inteiro, não só na interface, sempre buscando soluções que entregam valor sem perseguir a perfeição.'
   actions:
     secondary:
       label: 'Entrar em contato'

@@ -38,7 +38,7 @@ content:
       tagline: 'I build interfaces that look beautiful and run fast.'
       description:
         - "I'm a design engineer: a frontend developer with a designer's background."
-        - "That makes me think about the whole product, not just the UI, always seeking code that delivers value without chasing perfection."
+        - "That makes me think about the whole product, not just the UI, always seeking solutions that deliver value without chasing perfection."
       actions:
         primary: 'See the work'
         secondary: 'Get in touch'
@@ -47,9 +47,9 @@ content:
       eyebrow: 'About me'
       headline: 'From design to code.'
       bio:
-        - "After years as a graphic designer, I moved into development in a natural evolution that put me exactly where design and code meet. I've been a frontend developer for 6+ years, working for companies in Brazil, Europe, and recently the US. On the projects I run myself, I get hands-on with design and code, end to end."
+        - "After years as a graphic designer, I moved into development in a natural evolution that put me exactly where design and code meet. I've been a frontend developer for 6+ years, working for companies in Brazil, Europe, and recently the US. On the projects I run myself, I handle the code end to end, and the design too when needed."
         - "These days I'm digging into product engineering and bringing that knowledge into my projects, going beyond the interface."
-        - 'I use AI-assisted tools and agentic workflows for the heavy lifting, always under my supervision (HITL - Human in the loop). It lets me move fast without trading away craft or judgment.'
+        - 'I use AI tools and agentic workflows for the heavy lifting, always under my supervision (HITL - Human in the loop). It lets me move fast without trading away craft or judgment.'
       code-block:
         language: 'ts'
         code: |
@@ -57,7 +57,7 @@ content:
             name: 'Adeonir Kohl',
             role: 'Design Engineer',
             based: 'Salvador do Sul, RS',
-            focus: 'Design + Code + Product',
+            focus: 'Code + Design + Product',
             stack: ['Figma', 'React', 'TypeScript', 'Tailwind CSS'],
             available: 'Open to collaborations',
             // Quality and delivery walk together.
