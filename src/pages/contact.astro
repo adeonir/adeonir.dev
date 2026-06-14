@@ -7,8 +7,11 @@ import Layout from '~/layouts/base.astro'
 export const prerender = false
 
 const result = Astro.getActionResult(actions.contact)
-const state: 'success' | undefined =
-  result && !result.error ? 'success' : undefined
+const state: 'success' | 'error' | undefined = result
+  ? result.error
+    ? 'error'
+    : 'success'
+  : undefined
 ---
 
 <Layout title="Contato" shell>

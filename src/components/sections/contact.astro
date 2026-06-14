@@ -9,7 +9,7 @@ import { cn } from '~/helpers/classnames'
 import IconFolder from '~icons/tabler/folder'
 
 interface Props {
-  state?: 'success'
+  state?: 'success' | 'error'
 }
 
 const { state } = Astro.props
@@ -91,6 +91,15 @@ const { eyebrow, title, body, social, form } = contact.data
         >
           <p class="text-body text-pretty text-foreground">
             {form.states.success}
+          </p>
+        </div>
+      ) : state === 'error' ? (
+        <div
+          role="alert"
+          class="flex flex-col gap-2 rounded-lg border border-border bg-card p-6"
+        >
+          <p class="text-body text-pretty text-foreground">
+            {form.states.error}
           </p>
         </div>
       ) : (
