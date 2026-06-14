@@ -127,9 +127,12 @@ content:
           - name: 'email'
             label: 'Email'
             placeholder: 'you@example.com'
+          - name: 'subject'
+            label: 'Subject'
+            placeholder: 'What do you want to talk about?'
           - name: 'message'
             label: 'Message'
-            placeholder: 'What are you building?'
+            placeholder: 'Tell me more about your idea.'
         submit: 'Send message'
         states:
           success: "Thanks! I'll be in touch soon."
