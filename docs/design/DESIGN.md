@@ -37,13 +37,13 @@ colors:
   ocean-50: { hex: "#f0f9ff", oklch: "oklch(97.7% 0.012 236.62)" }
   ocean-100: { hex: "#e0f2fe", oklch: "oklch(95.1% 0.025 236.82)" }
   ocean-200: { hex: "#bae6fd", oklch: "oklch(90.1% 0.055 230.90)" }
-  ocean-300: { hex: "#7dd2fc", oklch: "oklch(82.5% 0.102 231.23)" }
-  ocean-400: { hex: "#37bcf9", oklch: "oklch(75.1% 0.141 233.62)" }
-  ocean-500: { hex: "#0da2e7", oklch: "oklch(67.7% 0.148 238.14)" }
+  ocean-300: { hex: "#7cd2fc", oklch: "oklch(82.5% 0.102 231.23)" }
+  ocean-400: { hex: "#36bcf9", oklch: "oklch(75.1% 0.141 233.62)" }
+  ocean-500: { hex: "#0ea2e7", oklch: "oklch(67.7% 0.148 238.14)" }
   ocean-600: { hex: "#0183c8", oklch: "oklch(58.6% 0.141 242.85)" }
-  ocean-700: { hex: "#0268a2", oklch: "oklch(49.8% 0.122 243.78)" }
+  ocean-700: { hex: "#0168a2", oklch: "oklch(49.8% 0.122 243.78)" }
   ocean-800: { hex: "#075885", oklch: "oklch(44.1% 0.101 241.65)" }
-  ocean-900: { hex: "#0c496e", oklch: "oklch(38.9% 0.085 241.95)" }
+  ocean-900: { hex: "#0d496e", oklch: "oklch(38.9% 0.085 241.95)" }
   ocean-950: { hex: "#082f49", oklch: "oklch(29.3% 0.063 243.16)" }
   azalea-50: { hex: "#fef1f7", oklch: "oklch(97.0% 0.016 347.63)" }
   azalea-100: { hex: "#fee5f1", oklch: "oklch(94.6% 0.031 347.06)" }
@@ -51,21 +51,21 @@ colors:
   azalea-300: { hex: "#ff9fca", oklch: "oklch(81.2% 0.125 351.86)" }
   azalea-400: { hex: "#ff63a5", oklch: "oklch(71.6% 0.199 357.08)" }
   azalea-500: { hex: "#ff3d8a", oklch: "oklch(67.2% 0.233 2.27)" }
-  azalea-600: { hex: "#f0125f", oklch: "oklch(61.4% 0.240 11.26)" }
-  azalea-700: { hex: "#d10546", oklch: "oklch(54.8% 0.217 15.02)" }
+  azalea-600: { hex: "#f0115f", oklch: "oklch(61.4% 0.240 11.26)" }
+  azalea-700: { hex: "#d10646", oklch: "oklch(54.8% 0.217 15.02)" }
   azalea-750: { hex: "#bf0540", oklch: "oklch(51.3% 0.203 14.82)" }
   azalea-800: { hex: "#ad073a", oklch: "oklch(47.8% 0.188 14.62)" }
-  azalea-900: { hex: "#8f0c34", oklch: "oklch(42.0% 0.160 12.52)" }
+  azalea-900: { hex: "#8f0d34", oklch: "oklch(42.0% 0.160 12.52)" }
   azalea-950: { hex: "#58001a", oklch: "oklch(29.3% 0.117 13.61)" }
   # ── Skin-neutral pair: dark ink on bright fills / light paper on dark fills ──
   ink: { hex: "#11111b", oklch: "oklch(18.3% 0.020 284.20)" }
   paper: { hex: "#f8fafe", oklch: "oklch(98.5% 0.005 264.50)" }
   # ── Semantic (flat = default Mocha/dark skin; aliases the scales above) ──
-  primary: { hex: "#0da2e7", oklch: "oklch(67.7% 0.148 238.14)" }
+  primary: { hex: "#0ea2e7", oklch: "oklch(67.7% 0.148 238.14)" }
   primary-foreground: { hex: "#11111b", oklch: "oklch(18.3% 0.020 284.20)" }
   secondary: { hex: "#ff3d8a", oklch: "oklch(67.2% 0.233 2.27)" }
   secondary-foreground: { hex: "#11111b", oklch: "oklch(18.3% 0.020 284.20)" }
-  action: { hex: "#0da2e7", oklch: "oklch(67.7% 0.148 238.14)" } # primary as text
+  action: { hex: "#0ea2e7", oklch: "oklch(67.7% 0.148 238.14)" } # primary as text
   emphasis: { hex: "#ff3d8a", oklch: "oklch(67.2% 0.233 2.27)" } # secondary as text
   accent: { hex: "#3b3c4f", oklch: "oklch(36.38% 0.0319 281.06)" } # surface-0/1 blend
   accent-foreground: { hex: "#cdd6f4", oklch: "oklch(87.87% 0.0426 272.28)" }
@@ -84,8 +84,8 @@ colors:
   ring: { hex: "#0183c8", oklch: "oklch(58.6% 0.141 242.85)" }
   # ── Latte/light skin override: redefines only what changes; the rest inherits the flat dark token ──
   light:
-    secondary: { hex: "#f0125f", oklch: "oklch(61.4% 0.240 11.26)" }
-    action: { hex: "#0268a2", oklch: "oklch(49.8% 0.122 243.78)" }
+    secondary: { hex: "#f0115f", oklch: "oklch(61.4% 0.240 11.26)" }
+    action: { hex: "#0168a2", oklch: "oklch(49.8% 0.122 243.78)" }
     emphasis: { hex: "#bf0540", oklch: "oklch(51.3% 0.203 14.82)" }
     accent: { hex: "#c4c8d3", oklch: "oklch(83.29% 0.0159 269.84)" }
     accent-foreground: { hex: "#4c4f69", oklch: "oklch(43.55% 0.0430 279.33)" }
@@ -286,21 +286,21 @@ The primitive layer. Every semantic token below aliases a step of the active ski
 
 - **mocha** — Catppuccin dark flavor, role-numbered light→dark: `mocha-50` text (#cdd6f4) · `-100` subtext-1 · `-200` subtext-0 · `-300` overlay-2 · `-400` overlay-1 · `-500` overlay-0 · `-600` surface-2 · `-700` surface-1 · `-800` surface-0 · `-850` base (#1e1e2e) · `-875` base/mantle blend · `-900` mantle · `-950` crust (#11111b)
 - **latte** — Catppuccin light flavor, role-numbered light→dark: `latte-50` base (#eff1f5) · `-75` base/mantle blend · `-100` mantle · `-150` crust · `-200` surface-0 · `-300` surface-1 · `-400` surface-2 · `-500` overlay-0 · `-600` overlay-1 · `-700` overlay-2 · `-800` subtext-0 · `-900` subtext-1 · `-925` subtext-1/text blend · `-950` text (#4c4f69)
-- **ocean** — blue water ramp, the hue that acts: `ocean-500` (#0da2e7) bright fills + dark-skin text · `ocean-600` (#0183c8) focus ring · `ocean-700` (#0268a2) light-skin link text. Full ramp `ocean-50`…`ocean-950`.
-- **azalea** — pink bloom ramp, the hue that points: `azalea-500` (#ff3d8a) bright fills + dark-skin secondary/emphasis · `azalea-600` (#f0125f) light-skin secondary text · `azalea-750` (#bf0540) light-skin emphasis text. Full ramp `azalea-50`…`azalea-950`.
+- **ocean** — blue water ramp, the hue that acts: `ocean-500` (#0ea2e7) bright fills + dark-skin text · `ocean-600` (#0183c8) focus ring · `ocean-700` (#0168a2) light-skin link text. Full ramp `ocean-50`…`ocean-950`.
+- **azalea** — pink bloom ramp, the hue that points: `azalea-500` (#ff3d8a) bright fills + dark-skin secondary/emphasis · `azalea-600` (#f0115f) light-skin secondary text · `azalea-750` (#bf0540) light-skin emphasis text. Full ramp `azalea-50`…`azalea-950`.
 - **ink** (oklch(18.3% 0.020 284.20) / #11111b) — skin-neutral near-black; dark text on bright accent fills.
 - **paper** (oklch(98.5% 0.005 264.50) / #f8fafe) — skin-neutral near-white; the light counterpart to ink, for light text on a dark accent fill.
 
 ### Primary
 
-- **Ocean** (oklch(67.7% 0.148 238.14) / #0da2e7) → `primary` — interactive fills: CTA buttons, the bright blue that acts. Same `ocean-500` in both skins; logos and fills are WCAG-exempt so the brightness holds.
+- **Ocean** (oklch(67.7% 0.148 238.14) / #0ea2e7) → `primary` — interactive fills: CTA buttons, the bright blue that acts. Same `ocean-500` in both skins; logos and fills are WCAG-exempt so the brightness holds.
 - **Ink** (oklch(18.3% 0.020 284.20) / #11111b) → `primary-foreground` — skin-neutral dark text on the blue fill, both skins.
-- **Ocean deep** (oklch(49.8% 0.122 243.78) / #0268a2) → `action` — `primary` rendered as text (links, nav-hover, eyebrow). The dark skin keeps the bright `ocean-500`; the light skin steps to `ocean-700` so text clears AA on near-white.
+- **Ocean deep** (oklch(49.8% 0.122 243.78) / #0168a2) → `action` — `primary` rendered as text (links, nav-hover, eyebrow). The dark skin keeps the bright `ocean-500`; the light skin steps to `ocean-700` so text clears AA on near-white.
 - **Ocean mid** (oklch(58.6% 0.141 242.85) / #0183c8) → `ring` — focus ring, both skins; `ocean-600` clears 3:1 against either field.
 
 ### Secondary & Accent
 
-- **Azalea** (oklch(67.2% 0.233 2.27) / #ff3d8a) → `secondary` — emphasis fills and tints, and large pink text (the role for headline-scale emphasis); never interactive. Dark skin keeps `azalea-500`; the light skin steps to `azalea-600` (oklch(61.4% 0.240 11.26) / #f0125f) so it clears 3:1 on near-white.
+- **Azalea** (oklch(67.2% 0.233 2.27) / #ff3d8a) → `secondary` — emphasis fills and tints, and large pink text (the role for headline-scale emphasis); never interactive. Dark skin keeps `azalea-500`; the light skin steps to `azalea-600` (oklch(61.4% 0.240 11.26) / #f0115f) so it clears 3:1 on near-white.
 - **Ink** (oklch(18.3% 0.020 284.20) / #11111b) → `secondary-foreground` — skin-neutral dark text on a pink chip, both skins. On the light-skin solid `secondary` fill (`azalea-600`) this clears 3:1 for large/UI text only (4.43:1); for small labels use the `secondary/7` tint with `emphasis` instead.
 - **Azalea deep** (oklch(51.3% 0.203 14.82) / #bf0540) → `emphasis` — the AA-safe step for **small** pink text. Large pink text uses `secondary` directly; `emphasis` kicks in where small text must clear 4.5:1, stepping the light skin from `azalea-500` to `azalea-750`. In the dark skin both `secondary` and `emphasis` resolve to `azalea-500`, so they diverge only in the light skin.
 - **Surface 0/1 blend** (oklch(36.38% 0.0319 281.06) / #3b3c4f) → `accent` — neutral hover surface, a half-step lift between surface-0 and surface-1 so a hovered row reads while body text on it still clears AA. Light skin: `latte-250` (oklch(83.29% 0.0159 269.84) / #c4c8d3).
@@ -489,8 +489,8 @@ Project thumbnails hold a consistent aspect ratio (about 16:10) with cover cropp
 
 ### Quick Token Reference
 
-- Primary fill: Ocean (oklch(67.7% 0.148 238.14) / #0da2e7) → `primary`
-- Action text: Ocean (oklch(67.7% 0.148 238.14) / #0da2e7) → `action` — light skin steps to ocean-700 (oklch(49.8% 0.122 243.78) / #0268a2) for AA
+- Primary fill: Ocean (oklch(67.7% 0.148 238.14) / #0ea2e7) → `primary`
+- Action text: Ocean (oklch(67.7% 0.148 238.14) / #0ea2e7) → `action` — light skin steps to ocean-700 (oklch(49.8% 0.122 243.78) / #0168a2) for AA
 - Secondary fill: Azalea (oklch(67.2% 0.233 2.27) / #ff3d8a) → `secondary`
 - Emphasis text: Azalea (oklch(67.2% 0.233 2.27) / #ff3d8a) → `emphasis` — light skin steps to azalea-800 (oklch(47.8% 0.188 14.62) / #ad073a) for AA
 - Background: Base (oklch(24.29% 0.0304 283.91) / #1e1e2e) → `background`
