@@ -188,6 +188,26 @@ content:
     cta: 'Back to home'
     footer: *footer
 
+# Transactional emails — not a routed surface. Sent on contact form submit.
+# Tokens: {name} = sender's name (first name in body/button), {date} = received timestamp.
+# Recap/table field values come from the submission, not copy.
+emails:
+  confirmation:
+    preview: "Got your message, I'll reply as soon as I can."
+    heading: 'Your message was sent'
+    body: "Hi, {name}! Thanks for reaching out. I got your message and I'll reply within 48 hours."
+    recap:
+      label: 'What you sent'
+      fields: ['name', 'email', 'subject', 'message']
+    footer: 'Need to add anything? Just reply to this email and it comes straight to me.'
+  notification:
+    preview: 'New message from {name} via the contact form.'
+    badge: 'New contact'
+    heading: 'New contact message'
+    received: 'Received on {date}'
+    button: 'Reply to {name}'
+    footer: 'Automatic notification from the site contact form. Reply to this email to talk directly with {name}.'
+
 # Projects — single source of truth (always complete). The work index renders
 # every entry in order; the landing renders the featured: true ones (same order).
 projects:
