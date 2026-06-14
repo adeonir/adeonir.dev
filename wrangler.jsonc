@@ -2,7 +2,9 @@
   "name": "adeonir",
   "main": "@astrojs/cloudflare/entrypoints/server",
   "compatibility_date": "2026-06-11",
-  "compatibility_flags": ["nodejs_compat"],
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
   "assets": {
     "directory": "./dist/client",
     "binding": "ASSETS",
@@ -12,5 +14,12 @@
   "preview_urls": true,
   "observability": {
     "enabled": true
-  }
+  },
+  "kv_namespaces": [
+    {
+      "binding": "RATE_LIMIT",
+      "id": "25c418925dcb4e14889f7f7e7388174c",
+      "preview_id": "f581417346124ecbad438cd2cf30d4cd"
+    }
+  ]
 }
