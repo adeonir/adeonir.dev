@@ -5,7 +5,7 @@ export const contactInputSchema = z.object({
   email: z.email(),
   subject: z.string().min(1).max(120),
   message: z.string().min(1).max(2000),
-  website: z.string().max(0).optional(),
+  website: z.string().optional(),
 })
 
 export type ContactInput = z.infer<typeof contactInputSchema>
