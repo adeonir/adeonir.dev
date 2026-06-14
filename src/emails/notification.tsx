@@ -51,7 +51,21 @@ export type NotificationProps = {
   email: string
   subject: string
   message: string
-  receivedAt: string
+  replyTo: string
+  copy: {
+    preview: string
+    badge: string
+    heading: string
+    received: string
+    button: string
+    footer: string
+    fields: {
+      name: string
+      email: string
+      subject: string
+      message: string
+    }
+  }
 }
 
 export function Notification({
@@ -59,18 +73,15 @@ export function Notification({
   email,
   subject,
   message,
-  receivedAt,
+  replyTo,
+  copy,
 }: NotificationProps) {
-  const firstName = name.split(' ')[0]
-
   return (
     <Html lang="pt-BR">
       <Head>
         <style>{`* { font-family: ${fontFamily.sans.join(', ')} }`}</style>
       </Head>
-      <Preview>
-        Nova mensagem de {firstName} pelo formulário de contato.
-      </Preview>
+      <Preview>{copy.preview}</Preview>
       <Tailwind config={tailwindConfig}>
         <Body className="m-0 bg-background py-8 font-sans">
           <Container className="mx-auto max-w-120 overflow-hidden rounded-2xl border border-border border-solid bg-card">
@@ -87,7 +98,7 @@ export function Notification({
                 <Column align="right">
                   <span className="inline-block rounded-full bg-header-surface px-3 py-1.5 align-middle font-semibold text-header-fg text-xs leading-none">
                     <span className="mr-1.5 inline-block h-2 w-2 rounded-full bg-header-dot align-middle" />
-                    Novo contato
+                    {copy.badge}
                   </span>
                 </Column>
               </Row>
@@ -98,16 +109,16 @@ export function Notification({
                 as="h1"
                 className="m-0 mb-1 font-bold text-2xl text-foreground leading-[1.2]"
               >
-                Nova mensagem de contato
+                {copy.heading}
               </Heading>
               <Text className="m-0 mb-6 text-muted/50 text-sm leading-normal">
-                Recebido em {receivedAt}
+                {copy.received}
               </Text>
 
               <Row className="border-0 border-border border-b border-solid">
                 <Column className="w-20 py-3.5 align-baseline">
                   <Text className="m-0 font-mono text-muted/50 text-xs leading-normal">
-                    nome
+                    {copy.fields.name}
                   </Text>
                 </Column>
                 <Column className="py-3.5 pl-4 align-baseline">
@@ -120,7 +131,7 @@ export function Notification({
               <Row className="border-0 border-border border-b border-solid">
                 <Column className="w-20 py-3.5 align-baseline">
                   <Text className="m-0 font-mono text-muted/50 text-xs leading-normal">
-                    email
+                    {copy.fields.email}
                   </Text>
                 </Column>
                 <Column className="py-3.5 pl-4 align-baseline">
@@ -133,7 +144,7 @@ export function Notification({
               <Row className="border-0 border-border border-b border-solid">
                 <Column className="w-20 py-3.5 align-baseline">
                   <Text className="m-0 font-mono text-muted/50 text-xs leading-normal">
-                    assunto
+                    {copy.fields.subject}
                   </Text>
                 </Column>
                 <Column className="py-3.5 pl-4 align-baseline">
@@ -146,7 +157,7 @@ export function Notification({
               <Row>
                 <Column className="w-20 py-3.5 align-baseline">
                   <Text className="m-0 font-mono text-muted/50 text-xs leading-normal">
-                    mensagem
+                    {copy.fields.message}
                   </Text>
                 </Column>
                 <Column className="py-3.5 pl-4 align-baseline">
@@ -158,17 +169,15 @@ export function Notification({
 
               <Section className="mt-5 mb-6 text-center">
                 <Link
-                  href={`mailto:${email}`}
+                  href={`mailto:${replyTo}`}
                   className="inline-block rounded-lg border border-muted/50 border-solid bg-sunken px-5 py-3 text-center font-semibold text-muted text-sm no-underline"
                 >
-                  Responder a {firstName}
+                  {copy.button}
                 </Link>
               </Section>
 
               <Text className="m-0 text-muted/50 text-xs leading-[1.6]">
-                Notificação automática enviada pelo formulário de contato do
-                site. Responda a este e-mail para falar diretamente com{' '}
-                {firstName}.
+                {copy.footer}
               </Text>
             </Section>
           </Container>
@@ -184,7 +193,22 @@ Notification.PreviewProps = {
   subject: 'Landing page para lançamento',
   message:
     'Oi! Vou lançar um produto e preciso de uma landing page performática. Já tenho o design no Figma e quero implementar em Astro/React. Qual o prazo e orçamento?',
-  receivedAt: '14 jun 2026, 14:32',
+  replyTo: 'marina.souza@email.com',
+  copy: {
+    preview: 'Nova mensagem de Marina pelo formulário de contato.',
+    badge: 'Novo contato',
+    heading: 'Nova mensagem de contato',
+    received: 'Recebido em 14 jun 2026, 14:32',
+    button: 'Responder a Marina',
+    footer:
+      'Notificação automática enviada pelo formulário de contato do site. Responda a este e-mail para falar diretamente com Marina.',
+    fields: {
+      name: 'nome',
+      email: 'email',
+      subject: 'assunto',
+      message: 'mensagem',
+    },
+  },
 } satisfies NotificationProps
 
 export default Notification

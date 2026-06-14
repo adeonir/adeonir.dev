@@ -46,6 +46,21 @@ export type ConfirmationProps = {
   email: string
   subject: string
   message: string
+  replyTo: string
+  copy: {
+    preview: string
+    heading: string
+    body: string
+    recapLabel: string
+    footer: string
+    button: string
+    fields: {
+      name: string
+      email: string
+      subject: string
+      message: string
+    }
+  }
 }
 
 export function Confirmation({
@@ -53,15 +68,15 @@ export function Confirmation({
   email,
   subject,
   message,
+  replyTo,
+  copy,
 }: ConfirmationProps) {
-  const firstName = name.split(' ')[0]
-
   return (
     <Html lang="pt-BR">
       <Head>
         <style>{`* { font-family: ${fontFamily.sans.join(', ')} }`}</style>
       </Head>
-      <Preview>Recebi sua mensagem, respondo assim que possível.</Preview>
+      <Preview>{copy.preview}</Preview>
       <Tailwind config={tailwindConfig}>
         <Body className="m-0 bg-background py-8 font-sans">
           <Container className="mx-auto max-w-120 overflow-hidden rounded-2xl border border-border border-solid bg-card">
@@ -79,37 +94,36 @@ export function Confirmation({
                 as="h1"
                 className="m-0 mb-5 font-bold text-2xl text-foreground leading-[1.2]"
               >
-                Sua mensagem foi enviada
+                {copy.heading}
               </Heading>
               <Text className="m-0 mb-5 text-base text-foreground leading-[1.6]">
-                Olá, {firstName}! Obrigado por entrar em contato. Recebi sua
-                mensagem e respondo em até 48 horas.
+                {copy.body}
               </Text>
 
               <Section className="mb-5 rounded-xl border border-primary/50 border-solid bg-primary/8 p-5">
                 <Text className="m-0 mb-4 font-semibold text-foreground text-sm uppercase tracking-wider">
-                  Resumo do envio
+                  {copy.recapLabel}
                 </Text>
                 <Text className="m-0 mb-1 font-mono text-muted/50 text-xs">
-                  nome
+                  {copy.fields.name}
                 </Text>
                 <Text className="m-0 mb-4 text-foreground text-sm leading-normal">
                   {name}
                 </Text>
                 <Text className="m-0 mb-1 font-mono text-muted/50 text-xs">
-                  email
+                  {copy.fields.email}
                 </Text>
                 <Text className="m-0 mb-4 text-foreground text-sm leading-normal">
                   {email}
                 </Text>
                 <Text className="m-0 mb-1 font-mono text-muted/50 text-xs">
-                  assunto
+                  {copy.fields.subject}
                 </Text>
                 <Text className="m-0 mb-4 text-foreground text-sm leading-normal">
                   {subject}
                 </Text>
                 <Text className="m-0 mb-1 font-mono text-muted/50 text-xs">
-                  mensagem
+                  {copy.fields.message}
                 </Text>
                 <Text className="m-0 whitespace-pre-wrap text-foreground text-sm leading-normal">
                   {message}
@@ -117,16 +131,15 @@ export function Confirmation({
               </Section>
 
               <Text className="m-0 text-foreground text-sm leading-[1.6]">
-                Precisa acrescentar alguma informação? É só responder a este
-                e-mail, sua resposta chega direto para mim.
+                {copy.footer}
               </Text>
 
               <Section className="mt-6 text-center">
                 <Link
-                  href="mailto:contato@adeonir.dev"
+                  href={`mailto:${replyTo}`}
                   className="inline-block rounded-lg border border-muted/50 border-solid bg-sunken px-5 py-3 text-center font-semibold text-muted text-sm no-underline"
                 >
-                  Responder
+                  {copy.button}
                 </Link>
               </Section>
             </Section>
@@ -152,6 +165,22 @@ Confirmation.PreviewProps = {
   subject: 'Landing page para lançamento',
   message:
     'Oi! Vou lançar um produto e preciso de uma landing page performática. Já tenho o design no Figma e quero implementar em Astro/React. Qual o prazo e orçamento?',
+  replyTo: 'contato@adeonir.dev',
+  copy: {
+    preview: 'Recebi sua mensagem, respondo assim que possível.',
+    heading: 'Sua mensagem foi enviada',
+    body: 'Olá, Marina! Obrigado por entrar em contato. Recebi sua mensagem e respondo assim que possível.',
+    recapLabel: 'Resumo do envio',
+    footer:
+      'Precisa acrescentar alguma informação? É só responder a este e-mail, sua resposta chega direto para mim.',
+    button: 'Responder',
+    fields: {
+      name: 'nome',
+      email: 'email',
+      subject: 'assunto',
+      message: 'mensagem',
+    },
+  },
 } satisfies ConfirmationProps
 
 export default Confirmation
