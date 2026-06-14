@@ -18,6 +18,8 @@
     "@astrojs/cloudflare": "13.7.0",
     "@astrojs/react": "5.0.7",
     "@astrojs/sitemap": "3.7.3",
+    "@react-email/components": "1.0.12",
+    "@react-email/render": "2.0.8",
     "@tailwindcss/vite": "4.3.0",
     "astro": "6.4.4",
     "astro-robots-txt": "1.0.0",
