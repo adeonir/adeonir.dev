@@ -26,6 +26,8 @@
     "astro-robots-txt": "1.0.0",
     "astro-seo": "1.1.0",
     "class-variance-authority": "0.7.1",
+    "date-fns": "4.4.0",
+    "date-fns-tz": "3.2.0",
     "react": "19.2.7",
     "react-dom": "19.2.7",
     "tailwindcss": "4.3.0"
