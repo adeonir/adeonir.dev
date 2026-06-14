@@ -1,0 +1,16 @@
+---
+import { actions } from 'astro:actions'
+
+import Contact from '~/components/sections/contact.astro'
+import Layout from '~/layouts/base.astro'
+
+export const prerender = false
+
+const result = Astro.getActionResult(actions.contact)
+const state: 'success' | undefined =
+  result && !result.error ? 'success' : undefined
+---
+
+<Layout title="Contato" shell>
+  <Contact state={state} />
+</Layout>
