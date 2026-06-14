@@ -2,7 +2,7 @@
 metadata:
   source: "conversation"
   created: "2026-06-05"
-  version: "1.0.3"
+  version: "1.0.4"
   status: "draft"
 
 # Region tree — design-blind, content-optional. Surfaces and blocks named by
@@ -166,6 +166,44 @@ surfaces:
       shape: "split"
       note: "persistent — same as home"
 
+  # Transactional email templates — not routed surfaces, absent from `flow`.
+  email-confirmation:
+    - block: "header"
+      shape: "full-width"
+      note: "centered brand mark"
+    - block: "heading"
+      shape: "full-width"
+    - block: "intro"
+      shape: "full-width"
+      note: "greeting and reply-time promise"
+    - block: "recap"
+      shape: "stack"
+      note: "a label, then the submitted fields stacked — each a slot label above its value"
+    - block: "hint"
+      shape: "full-width"
+      note: "reply-to-this-email note"
+    - block: "footer"
+      shape: "full-width"
+      note: "brand mark"
+  email-notification:
+    - block: "header"
+      shape: "split"
+      note: "brand on the left; a status badge on the right"
+    - block: "heading"
+      shape: "full-width"
+    - block: "received"
+      shape: "full-width"
+      note: "submission timestamp"
+    - block: "details"
+      shape: "stack"
+      note: "the submitted fields as rows — each a split of slot label beside its value"
+    - block: "action"
+      shape: "full-width"
+      note: "reply action"
+    - block: "footer"
+      shape: "full-width"
+      note: "automated-notice note"
+
 flow:
   - "home -> work"
   - "home -> project"
@@ -233,3 +271,28 @@ The per-project case study:
 5. **body** — long-form case study in a single column.
 6. **prev-next** — split: previous on the left, next on the right.
 7. **footer** — persistent.
+
+## email-confirmation
+
+Transactional — sent to the visitor on contact submit. Not a routed surface, so
+it is absent from the screen map and flow.
+
+1. **header** — centered brand mark.
+2. **heading** — confirmation title.
+3. **intro** — greeting and the reply-time promise.
+4. **recap** — a label over the submitted fields, each a slot label above its
+   value, stacked.
+5. **hint** — a reply-to-this-email note.
+6. **footer** — brand mark.
+
+## email-notification
+
+Transactional — sent to the site owner on contact submit. Not routed either.
+
+1. **header** — split: brand on the left, a status badge on the right.
+2. **heading** — new-message title.
+3. **received** — submission timestamp.
+4. **details** — the submitted fields as rows, each a split of slot label
+   beside its value.
+5. **action** — a reply action.
+6. **footer** — an automated-notice note.
