@@ -1,6 +1,7 @@
 import { ActionError, defineAction } from 'astro:actions'
 
 import { contactInputSchema } from '~/schemas/contact'
+import { captureContactSubmission } from '~/services/analytics'
 import { sendContactEmails } from '~/services/email'
 import { isRateLimited } from '~/services/rate-limit'
 
@@ -22,6 +23,8 @@ export const server = {
       } catch {
         throw new ActionError({ code: 'INTERNAL_SERVER_ERROR' })
       }
+
+      context.locals.cfContext.waitUntil(captureContactSubmission(context.url))
     },
   }),
 }
