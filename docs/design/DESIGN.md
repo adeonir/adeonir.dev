@@ -73,9 +73,9 @@ colors:
   muted-foreground: { hex: "#bac2de", oklch: "oklch(81.68% 0.0403 272.86)" } # subtext-1
   background: { hex: "#1e1e2e", oklch: "oklch(24.29% 0.0304 283.91)" } # base
   foreground: { hex: "#cdd6f4", oklch: "oklch(87.87% 0.0426 272.28)" } # text
-  card: { hex: "#181825", oklch: "oklch(21.55% 0.0254 284.06)" } # mantle
+  card: { hex: "#1b1b29", oklch: "oklch(22.92% 0.0279 283.99)" } # base/mantle blend
   card-foreground: { hex: "#cdd6f4", oklch: "oklch(87.87% 0.0426 272.28)" }
-  popover: { hex: "#1b1b29", oklch: "oklch(22.92% 0.0279 283.99)" } # base/mantle blend
+  popover: { hex: "#181825", oklch: "oklch(21.55% 0.0254 284.06)" } # mantle
   popover-foreground: { hex: "#cdd6f4", oklch: "oklch(87.87% 0.0426 272.28)" }
   sunken: { hex: "#11111b", oklch: "oklch(18.28% 0.0204 284.20)" } # crust
   sunken-foreground: { hex: "#cdd6f4", oklch: "oklch(87.87% 0.0426 272.28)" }
@@ -93,9 +93,9 @@ colors:
     muted-foreground: { hex: "#545770", oklch: "oklch(46.40% 0.0408 279.30)" }
     background: { hex: "#eff1f5", oklch: "oklch(95.78% 0.0058 264.53)" }
     foreground: { hex: "#4c4f69", oklch: "oklch(43.55% 0.0430 279.33)" }
-    card: { hex: "#e6e9ef", oklch: "oklch(93.35% 0.0087 264.52)" }
+    card: { hex: "#ebedf2", oklch: "oklch(94.57% 0.0073 264.53)" }
     card-foreground: { hex: "#4c4f69", oklch: "oklch(43.55% 0.0430 279.33)" }
-    popover: { hex: "#ebedf2", oklch: "oklch(94.57% 0.0073 264.53)" }
+    popover: { hex: "#e6e9ef", oklch: "oklch(93.35% 0.0087 264.52)" }
     popover-foreground: { hex: "#4c4f69", oklch: "oklch(43.55% 0.0430 279.33)" }
     sunken: { hex: "#dce0e8", oklch: "oklch(90.60% 0.0117 264.51)" }
     sunken-foreground: { hex: "#4c4f69", oklch: "oklch(43.55% 0.0430 279.33)" }
@@ -309,8 +309,8 @@ The primitive layer. Every semantic token below aliases a step of the active ski
 ### Surface & Background
 
 - **Base** (oklch(24.29% 0.0304 283.91) / #1e1e2e) → `background` — the main resting field, a deep violet-charcoal, never pure black. Light skin: `latte-50` (oklch(95.78% 0.0058 264.53) / #eff1f5).
-- **Mantle** (oklch(21.55% 0.0254 284.06) / #181825) → `card` — cards and elevated containers sit one step deeper, receding behind hairline borders. Light skin: `latte-100` (oklch(93.35% 0.0087 264.52) / #e6e9ef).
-- **Base/mantle blend** (oklch(22.92% 0.0279 283.99) / #1b1b29) → `popover` — a half-step between base and mantle so a floating panel sits just clear of the card it overlays. Light skin: `latte-75` (oklch(94.57% 0.0073 264.53) / #ebedf2).
+- **Base/mantle blend** (oklch(22.92% 0.0279 283.99) / #1b1b29) → `card` — a gentle half-step between base and mantle; the ambient grouping container, lifted just clear of the canvas. Light skin: `latte-75` (oklch(94.57% 0.0073 264.53) / #ebedf2).
+- **Mantle** (oklch(21.55% 0.0254 284.06) / #181825) → `popover` — transient floating panels take the firmer full-step tone drop so a menu reads clear of the `card` it overlays. Light skin: `latte-100` (oklch(93.35% 0.0087 264.52) / #e6e9ef).
 - **Crust** (oklch(18.28% 0.0204 284.20) / #11111b) → `sunken` — the deepest well, for inset or brand-immersive panels. Light skin: `latte-150` (oklch(90.60% 0.0117 264.51) / #dce0e8).
 - **Surface 0** (oklch(32.40% 0.0319 281.98) / #313244) → `border` — hairline dividers and edges; the primary depth cue in place of shadow. Light skin: `latte-200` (oklch(85.75% 0.0145 268.48) / #ccd0da).
 - **Surface 0** (oklch(32.40% 0.0319 281.98) / #313244) → `input` — input strokes share the surface-0 step at rest. Light skin: `latte-200` (oklch(85.75% 0.0145 268.48) / #ccd0da).
@@ -361,7 +361,7 @@ Sizes follow the standard `text-*` step scale; line-heights are the scale's per-
 
 ### Cards & Containers
 
-The `card` is a `card` (recessed panel) fill set one tone below the canvas, wrapped in a `border` hairline (`borderWidth.DEFAULT`) at `rounded.lg`, padded `spacing.6`, carrying only `elevation.sm`. Depth comes from the tone drop and the rule line, not the shadow — the shadow is a whisper. Containers stack with generous gaps and rely on the same hairline to separate, never on heavy dividers. The `popover` shares the recessed tone and hairline but floats higher with `elevation.lg` — used for the language and theme menus and any transient floating surface.
+The `card` is a `card` (recessed panel) fill set a half-step below the canvas, wrapped in a `border` hairline (`borderWidth.DEFAULT`) at `rounded.lg`, padded `spacing.6`, carrying only `elevation.sm`. Depth comes from the tone drop and the rule line, not the shadow — the shadow is a whisper. Containers stack with generous gaps and rely on the same hairline to separate, never on heavy dividers. The `popover` drops a deeper tone (mantle, a full step) and shares the hairline but floats higher with `elevation.lg` — used for the language and theme menus and any transient floating surface.
 
 ### Inputs & Forms
 
@@ -420,7 +420,7 @@ Corners are gently rounded and consistent — soft enough to feel approachable a
 
 ## 7. Elevation & Depth
 
-Depth is carried first by tone, second by hairline, and only last by shadow. Surfaces step through a narrow luminance band — `popover` sits a half-step below `background` (a base/mantle blend, so a floating panel clears the `card` it overlays), `card` a full step below, and `sunken` deepest at crust — so layering reads through color, not lift. Resting cards take `elevation.sm`, barely perceptible. Floating elements (menus, dropdowns) use `elevation.md`; popovers and the language/theme menus use `elevation.lg`; modals and dialogs reach `elevation.xl`. The shadow stack stays light and is applied sparingly — depth reads through tone and the `border` hairline, not lift, so most of the interface is flat.
+Depth is carried first by tone, second by hairline, and only last by shadow. Surfaces step through a narrow luminance band — `card` sits a half-step below `background` (a base/mantle blend, the ambient grouping container), `popover` a full step below (a mantle drop, so a floating menu clears the `card` it overlays), and `sunken` deepest at crust — so layering reads through color, not lift. Resting cards take `elevation.sm`, barely perceptible. Floating elements (menus, dropdowns) use `elevation.md`; popovers and the language/theme menus use `elevation.lg`; modals and dialogs reach `elevation.xl`. The shadow stack stays light and is applied sparingly — depth reads through tone and the `border` hairline, not lift, so most of the interface is flat.
 
 ### Decorative Depth
 
@@ -494,8 +494,8 @@ Project thumbnails hold a consistent aspect ratio (about 16:10) with cover cropp
 - Secondary fill: Azalea (oklch(67.2% 0.233 2.27) / #ff3d8a) → `secondary`
 - Emphasis text: Azalea (oklch(67.2% 0.233 2.27) / #ff3d8a) → `emphasis` — light skin steps to azalea-800 (oklch(47.8% 0.188 14.62) / #ad073a) for AA
 - Background: Base (oklch(24.29% 0.0304 283.91) / #1e1e2e) → `background`
-- Card surface: Mantle (oklch(21.55% 0.0254 284.06) / #181825) → `card`
-- Popover surface: Base/mantle blend (oklch(22.92% 0.0279 283.99) / #1b1b29) → `popover`
+- Card surface: Base/mantle blend (oklch(22.92% 0.0279 283.99) / #1b1b29) → `card`
+- Popover surface: Mantle (oklch(21.55% 0.0254 284.06) / #181825) → `popover`
 - Sunken surface: Crust (oklch(18.28% 0.0204 284.20) / #11111b) → `sunken`
 - Hover surface: Surface 0/1 blend (oklch(36.38% 0.0319 281.06) / #3b3c4f) → `accent`
 - Heading & body text: Text (oklch(87.87% 0.0426 272.28) / #cdd6f4) → `foreground`

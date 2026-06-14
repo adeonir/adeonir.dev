@@ -72,9 +72,9 @@
   --muted-foreground: var(--mocha-100); /* subtext-1 */
   --background: var(--mocha-850); /* base */
   --foreground: var(--mocha-50); /* text */
-  --card: var(--mocha-900); /* mantle */
+  --card: var(--mocha-875); /* base/mantle blend */
   --card-foreground: var(--mocha-50); /* text */
-  --popover: var(--mocha-875); /* base/mantle blend */
+  --popover: var(--mocha-900); /* mantle */
   --popover-foreground: var(--mocha-50); /* text */
   --sunken: var(--mocha-950); /* crust */
   --sunken-foreground: var(--mocha-50); /* text */
@@ -96,9 +96,9 @@
   --muted-foreground: var(--latte-925); /* subtext-1/text blend */
   --background: var(--latte-50); /* base */
   --foreground: var(--latte-950); /* text */
-  --card: var(--latte-100); /* mantle */
+  --card: var(--latte-75); /* base/mantle blend */
   --card-foreground: var(--latte-950); /* text */
-  --popover: var(--latte-75); /* base/mantle blend */
+  --popover: var(--latte-100); /* mantle */
   --popover-foreground: var(--latte-950); /* text */
   --sunken: var(--latte-150); /* crust */
   --sunken-foreground: var(--latte-950); /* text */
