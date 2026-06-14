@@ -1,4 +1,5 @@
 ---
+import { actions } from 'astro:actions'
 import { getEntry } from 'astro:content'
 
 import { buttonVariants } from '~/components/ui/button'
@@ -6,6 +7,12 @@ import { Eyebrow } from '~/components/ui/eyebrow'
 import { Field } from '~/components/ui/field'
 import { cn } from '~/lib/cn'
 import IconFolder from '~icons/tabler/folder'
+
+interface Props {
+  state?: 'success'
+}
+
+const { state } = Astro.props
 
 const contact = await getEntry('contact', 'contact')
 
@@ -76,25 +83,39 @@ const { eyebrow, title, body, social, form } = contact.data
         </ul>
       </div>
     </div>
-    <form class="flex flex-col gap-6">
-      {
-        form.fields.map((field) => (
-          <Field
-            label={field.label}
-            name={field.name}
-            placeholder={field.placeholder}
-            type={field.name === 'email' ? 'email' : 'text'}
-            multiline={field.name === 'message'}
-          />
-        ))
-      }
-      <button
-        type="submit"
-        disabled
-        class={cn(buttonVariants({ variant: 'primary' }), 'w-fit')}
-      >
-        {form.submit}
-      </button>
-    </form>
+    {
+      state === 'success' ? (
+        <div
+          role="status"
+          class="flex flex-col gap-2 rounded-lg border border-border bg-card p-6"
+        >
+          <p class="text-body text-pretty text-foreground">
+            {form.states.success}
+          </p>
+        </div>
+      ) : (
+        <form
+          method="POST"
+          action={'/contact' + actions.contact}
+          class="flex flex-col gap-6"
+        >
+          {form.fields.map((field) => (
+            <Field
+              label={field.label}
+              name={field.name}
+              placeholder={field.placeholder}
+              type={field.name === 'email' ? 'email' : 'text'}
+              multiline={field.name === 'message'}
+            />
+          ))}
+          <button
+            type="submit"
+            class={cn(buttonVariants({ variant: 'primary' }), 'w-fit')}
+          >
+            {form.submit}
+          </button>
+        </form>
+      )
+    }
   </div>
 </section>
