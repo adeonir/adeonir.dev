@@ -189,10 +189,12 @@ content:
     footer: *footer
 
 # Transactional emails — not a routed surface. Sent on contact form submit.
-# Tokens: {name} = sender's name (first name in body/button), {date} = received timestamp.
+# Tokens: {name} = sender's name (first name in body/button), {date} = received timestamp, {subject} = submitted subject (notification subject line).
 # Recap/table field values come from the submission, not copy.
 emails:
+  from: 'Adeonir'
   confirmation:
+    subject: 'Recebi sua mensagem'
     preview: 'Recebi sua mensagem, respondo assim que possível.'
     heading: 'Sua mensagem foi enviada'
     body: 'Olá, {name}! Obrigado por entrar em contato. Recebi sua mensagem e respondo em até 48 horas.'
@@ -201,6 +203,7 @@ emails:
       fields: ['nome', 'e-mail', 'assunto', 'mensagem']
     footer: 'Precisa acrescentar alguma informação? É só responder a este e-mail, sua resposta chega direto para mim.'
   notification:
+    subject: 'Novo contato: {subject}'
     preview: 'Nova mensagem de {name} pelo formulário de contato.'
     badge: 'Novo contato'
     heading: 'Nova mensagem de contato'
