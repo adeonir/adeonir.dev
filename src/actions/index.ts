@@ -17,7 +17,11 @@ export const server = {
         throw new ActionError({ code: 'TOO_MANY_REQUESTS' })
       }
 
-      await sendContactEmails(input)
+      try {
+        await sendContactEmails(input)
+      } catch {
+        throw new ActionError({ code: 'INTERNAL_SERVER_ERROR' })
+      }
     },
   }),
 }
