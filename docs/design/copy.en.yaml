@@ -38,7 +38,7 @@ content:
       tagline: 'I build interfaces that look beautiful and run fast.'
       description:
         - "I'm a design engineer: a frontend developer with a designer's background."
-        - "That makes me think about the whole product, not just the UI, always seeking solutions that deliver value without chasing perfection."
+        - 'That makes me think about the whole product, not just the UI, always seeking solutions that deliver value without chasing perfection.'
       actions:
         primary: 'See the work'
         secondary: 'Get in touch'
@@ -197,7 +197,7 @@ emails:
     subject: 'Got your message'
     preview: "Got your message, I'll reply as soon as I can."
     heading: 'Your message was sent'
-    body: "Hi, {name}! Thanks for reaching out. I got your message and I'll reply within 48 hours."
+    body: "Hi, {name}! Thanks for reaching out. I got your message and I'll reply as soon as I can."
     recap:
       label: 'What you sent'
       fields: ['name', 'email', 'subject', 'message']

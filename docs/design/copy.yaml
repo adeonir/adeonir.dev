@@ -197,7 +197,7 @@ emails:
     subject: 'Recebi sua mensagem'
     preview: 'Recebi sua mensagem, respondo assim que possível.'
     heading: 'Sua mensagem foi enviada'
-    body: 'Olá, {name}! Obrigado por entrar em contato. Recebi sua mensagem e respondo em até 48 horas.'
+    body: 'Olá, {name}! Obrigado por entrar em contato. Recebi sua mensagem e respondo assim que possível.'
     recap:
       label: 'Resumo do envio'
       fields: ['nome', 'e-mail', 'assunto', 'mensagem']
