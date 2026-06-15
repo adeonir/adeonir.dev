@@ -13,6 +13,8 @@ export type FieldProps = {
   multiline?: boolean
   disabled?: boolean
   required?: boolean
+  invalid?: boolean
+  error?: string
 }
 
 export function Field({
@@ -23,11 +25,14 @@ export function Field({
   multiline = false,
   disabled,
   required,
+  invalid,
+  error,
 }: FieldProps) {
   return (
     <ArkField.Root
       disabled={disabled}
       required={required}
+      invalid={invalid}
       className="flex flex-col gap-2"
     >
       <ArkField.Label className="text-label text-muted-foreground">
@@ -38,15 +43,28 @@ export function Field({
           name={name}
           placeholder={placeholder}
           rows={5}
-          className={cn(fieldClasses, 'min-h-32 resize-y py-3')}
+          className={cn(
+            fieldClasses,
+            'min-h-32 resize-y py-3',
+            invalid && 'border-destructive focus-visible:ring-destructive',
+          )}
         />
       ) : (
         <ArkField.Input
           name={name}
           type={type}
           placeholder={placeholder}
-          className={cn(fieldClasses, 'h-11')}
+          className={cn(
+            fieldClasses,
+            'h-11',
+            invalid && 'border-destructive focus-visible:ring-destructive',
+          )}
         />
+      )}
+      {invalid && error && (
+        <ArkField.ErrorText className="text-body text-destructive">
+          {error}
+        </ArkField.ErrorText>
       )}
     </ArkField.Root>
   )
