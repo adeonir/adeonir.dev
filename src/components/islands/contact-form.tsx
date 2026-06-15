@@ -51,8 +51,12 @@ export function ContactForm({ content }: ContactFormProps) {
       return null
     },
     onSubmit: async (formData) => {
-      const result = await actions.contact(formData)
-      setStatus(result.error ? 'error' : 'success')
+      try {
+        const result = await actions.contact(formData)
+        setStatus(result.error ? 'error' : 'success')
+      } catch {
+        setStatus('error')
+      }
     },
   })
 
