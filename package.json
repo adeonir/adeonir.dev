@@ -12,7 +12,8 @@
     "email": "email dev --dir src/emails",
     "typecheck": "astro check",
     "lint": "biome check && prettier --check \"src/**/*.{astro,yaml}\"",
-    "lint:fix": "biome check --write --unsafe && prettier --write \"src/**/*.{astro,yaml}\""
+    "lint:fix": "biome check --write --unsafe && prettier --write \"src/**/*.{astro,yaml}\"",
+    "lighthouse": "astro build && npx -y @lhci/cli autorun"
   },
   "dependencies": {
     "@ark-ui/react": "5.37.2",
