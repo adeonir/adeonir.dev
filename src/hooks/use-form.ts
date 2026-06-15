@@ -28,6 +28,18 @@ export function useForm({ validate, onSubmit }: UseFormOptions): UseFormReturn {
 
     if (fieldErrors) {
       setErrors(fieldErrors)
+
+      const form = event.currentTarget
+      requestAnimationFrame(() => {
+        for (const element of Array.from(form.elements)) {
+          const control = element as HTMLElement & { name?: string }
+          if (control.name && fieldErrors[control.name]) {
+            control.focus()
+            break
+          }
+        }
+      })
+
       return
     }
 
