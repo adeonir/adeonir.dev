@@ -75,13 +75,11 @@ export async function sendContactEmails({
   const notificationHtml = await render(
     createElement(Notification, {
       ...data,
-      replyTo: email,
       copy: {
         preview: fill(notification.preview, { name: firstName }),
         badge: notification.badge,
         heading: notification.heading,
         received: fill(notification.received, { date: receivedAt }),
-        button: fill(notification.button, { name: firstName }),
         footer: fill(notification.footer, { name: firstName }),
         fields,
       },
@@ -91,14 +89,12 @@ export async function sendContactEmails({
   const confirmationHtml = await render(
     createElement(Confirmation, {
       ...data,
-      replyTo: OWNER,
       copy: {
         preview: confirmation.preview,
         heading: confirmation.heading,
         body: fill(confirmation.body, { name: firstName }),
         recapLabel: confirmation.recapLabel,
         footer: confirmation.footer,
-        button: confirmation.button,
         fields,
       },
     }),
