@@ -11,3 +11,8 @@ pre-commit:
       glob: "src/**/*.{astro,yaml,yml}"
       run: pnpm exec prettier --write {staged_files}
       stage_fixed: true
+
+pre-push:
+  jobs:
+    - name: typecheck
+      run: pnpm typecheck
