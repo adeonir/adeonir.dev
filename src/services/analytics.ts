@@ -1,16 +1,17 @@
 import { POSTHOG_KEY } from 'astro:env/client'
 
-const POSTHOG_ENDPOINT = 'https://us.i.posthog.com/i/v0/e/'
-const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign'] as const
+import { UTM_KEYS, type UtmTags } from '~/schemas/contact'
 
-export async function captureContactSubmission(url: URL): Promise<void> {
+const POSTHOG_ENDPOINT = 'https://us.i.posthog.com/i/v0/e/'
+
+export async function captureContactSubmission(utm: UtmTags): Promise<void> {
   if (!POSTHOG_KEY) {
     return
   }
 
   const properties: Record<string, string> = {}
   for (const key of UTM_KEYS) {
-    const value = url.searchParams.get(key)
+    const value = utm[key]
     if (value) {
       properties[key] = value
     }

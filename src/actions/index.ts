@@ -24,7 +24,13 @@ export const server = {
         throw new ActionError({ code: 'INTERNAL_SERVER_ERROR' })
       }
 
-      context.locals.cfContext.waitUntil(captureContactSubmission(context.url))
+      context.locals.cfContext.waitUntil(
+        captureContactSubmission({
+          utm_source: input.utm_source,
+          utm_medium: input.utm_medium,
+          utm_campaign: input.utm_campaign,
+        }),
+      )
     },
   }),
 }

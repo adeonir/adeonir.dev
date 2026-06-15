@@ -1,18 +1,9 @@
 ---
-import { actions } from 'astro:actions'
 import { getEntry } from 'astro:content'
 
-import { buttonVariants } from '~/components/ui/button'
+import { ContactForm } from '~/components/islands/contact-form'
 import { Eyebrow } from '~/components/ui/eyebrow'
-import { Field } from '~/components/ui/field'
-import { cn } from '~/helpers/classnames'
 import IconFolder from '~icons/tabler/folder'
-
-interface Props {
-  state?: 'success' | 'error'
-}
-
-const { state } = Astro.props
 
 const contact = await getEntry('contact', 'contact')
 
@@ -69,7 +60,7 @@ const { eyebrow, title, body, social, form } = contact.data
                   </span>
                   <a
                     href={channel.link}
-                    class="-mx-1 rounded-sm px-1 text-muted-foreground transition hover:text-action focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                    class="-mx-1 rounded-sm px-1 text-muted-foreground transition hover:text-action focus-visible:ring-4 focus-visible:ring-ring/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
                     {...(external
                       ? { target: '_blank', rel: 'noopener noreferrer' }
                       : {})}
@@ -83,56 +74,6 @@ const { eyebrow, title, body, social, form } = contact.data
         </ul>
       </div>
     </div>
-    {
-      state === 'success' ? (
-        <div
-          role="status"
-          class="flex flex-col gap-2 rounded-lg border border-border bg-card p-6"
-        >
-          <p class="text-body text-pretty text-foreground">
-            {form.states.success}
-          </p>
-        </div>
-      ) : state === 'error' ? (
-        <div
-          role="alert"
-          class="flex flex-col gap-2 rounded-lg border border-border bg-card p-6"
-        >
-          <p class="text-body text-pretty text-foreground">
-            {form.states.error}
-          </p>
-        </div>
-      ) : (
-        <form
-          method="POST"
-          action={'/contact' + actions.contact}
-          class="flex flex-col gap-6"
-        >
-          <input
-            type="text"
-            name="website"
-            tabindex="-1"
-            autocomplete="off"
-            aria-hidden="true"
-            class="sr-only"
-          />
-          {form.fields.map((field) => (
-            <Field
-              label={field.label}
-              name={field.name}
-              placeholder={field.placeholder}
-              type={field.name === 'email' ? 'email' : 'text'}
-              multiline={field.name === 'message'}
-            />
-          ))}
-          <button
-            type="submit"
-            class={cn(buttonVariants({ variant: 'primary' }), 'w-fit')}
-          >
-            {form.submit}
-          </button>
-        </form>
-      )
-    }
+    <ContactForm content={form} client:visible />
   </div>
 </section>
