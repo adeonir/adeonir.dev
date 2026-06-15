@@ -1,49 +1,60 @@
 import { actions } from 'astro:actions'
-import { type SubmitEvent, useState } from 'react'
+import { useState } from 'react'
 
 import { Button } from '~/components/ui/button'
 import { Field } from '~/components/ui/field'
+import { useForm } from '~/hooks/use-form'
+import {
+  type ContactValidationMessages,
+  createContactSchema,
+} from '~/schemas/contact'
 
-type FieldCopy = {
+type FieldContent = {
   name: string
   label: string
   placeholder: string
 }
 
-type FormCopy = {
-  fields: FieldCopy[]
+type ContactFormContent = {
+  fields: FieldContent[]
   submit: string
   states: {
     success: string
     error: string
   }
+  validation: ContactValidationMessages
 }
 
 type ContactFormProps = {
-  copy: FormCopy
+  content: ContactFormContent
 }
 
-export function ContactForm({ copy }: ContactFormProps) {
-  const [status, setStatus] = useState<
-    'idle' | 'submitting' | 'success' | 'error'
-  >('idle')
+export function ContactForm({ content }: ContactFormProps) {
+  const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
-  const handleSubmit = async (event: SubmitEvent<HTMLFormElement>) => {
-    event.preventDefault()
+  const { errors, isSubmitting, handleSubmit, handleInput } = useForm({
+    validate: (formData) => {
+      const schema = createContactSchema(content.validation)
+      const result = schema.safeParse(Object.fromEntries(formData))
 
-    if (status === 'submitting') return
+      if (!result.success) {
+        const fieldErrors: Record<string, string> = {}
+        for (const issue of result.error.issues) {
+          const field = issue.path[0]
+          if (typeof field !== 'string' || field === 'website') continue
+          if (fieldErrors[field]) continue
+          fieldErrors[field] = issue.message
+        }
+        return fieldErrors
+      }
 
-    setStatus('submitting')
-
-    const formData = new FormData(event.currentTarget)
-    const result = await actions.contact(formData)
-
-    if (result.error) {
-      setStatus('error')
-    } else {
-      setStatus('success')
-    }
-  }
+      return null
+    },
+    onSubmit: async (formData) => {
+      const result = await actions.contact(formData)
+      setStatus(result.error ? 'error' : 'success')
+    },
+  })
 
   if (status === 'success') {
     return (
@@ -52,7 +63,7 @@ export function ContactForm({ copy }: ContactFormProps) {
         className="flex flex-col gap-2 rounded-lg border border-border bg-card p-6"
       >
         <p className="text-pretty text-body text-foreground">
-          {copy.states.success}
+          {content.states.success}
         </p>
       </div>
     )
@@ -65,14 +76,19 @@ export function ContactForm({ copy }: ContactFormProps) {
         className="flex flex-col gap-2 rounded-lg border border-border bg-card p-6"
       >
         <p className="text-pretty text-body text-foreground">
-          {copy.states.error}
+          {content.states.error}
         </p>
       </div>
     )
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+    <form
+      onSubmit={handleSubmit}
+      onInput={handleInput}
+      noValidate
+      className="flex flex-col gap-6"
+    >
       <input
         type="text"
         name="website"
@@ -81,7 +97,7 @@ export function ContactForm({ copy }: ContactFormProps) {
         aria-hidden="true"
         className="sr-only"
       />
-      {copy.fields.map((field) => (
+      {content.fields.map((field) => (
         <Field
           key={field.name}
           label={field.label}
@@ -90,15 +106,17 @@ export function ContactForm({ copy }: ContactFormProps) {
           type={field.name === 'email' ? 'email' : 'text'}
           multiline={field.name === 'message'}
           required
+          invalid={!!errors[field.name]}
+          error={errors[field.name]}
         />
       ))}
       <Button
         type="submit"
         variant="primary"
-        disabled={status === 'submitting'}
+        disabled={isSubmitting}
         className="w-fit"
       >
-        {copy.submit}
+        {content.submit}
       </Button>
     </form>
   )
