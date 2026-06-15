@@ -1,5 +1,10 @@
 import { z } from 'zod'
 
+export const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign'] as const
+
+export type UtmKey = (typeof UTM_KEYS)[number]
+export type UtmTags = Partial<Record<UtmKey, string>>
+
 export type ContactValidationMessages = {
   required: string
   email: string
@@ -19,6 +24,9 @@ export function createContactSchema(messages?: ContactValidationMessages) {
       .min(1, messages?.required)
       .max(2000, messages?.maxLength?.replace('{max}', '2000')),
     website: z.string().optional(),
+    utm_source: z.string().optional(),
+    utm_medium: z.string().optional(),
+    utm_campaign: z.string().optional(),
   })
 }
 

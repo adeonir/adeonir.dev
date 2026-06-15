@@ -7,6 +7,7 @@ import { useForm } from '~/hooks/use-form'
 import {
   type ContactValidationMessages,
   createContactSchema,
+  UTM_KEYS,
 } from '~/schemas/contact'
 
 type FieldContent = {
@@ -51,6 +52,14 @@ export function ContactForm({ content }: ContactFormProps) {
       return null
     },
     onSubmit: async (formData) => {
+      const params = new URLSearchParams(window.location.search)
+      for (const key of UTM_KEYS) {
+        const value = params.get(key)
+        if (value) {
+          formData.set(key, value)
+        }
+      }
+
       try {
         const result = await actions.contact(formData)
         setStatus(result.error ? 'error' : 'success')
