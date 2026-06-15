@@ -78,8 +78,8 @@
   --popover-foreground: var(--mocha-50); /* text */
   --sunken: var(--mocha-950); /* crust */
   --sunken-foreground: var(--mocha-50); /* text */
-  --destructive: var(--color-red-400);
-  --destructive-foreground: var(--color-red-50);
+  --destructive: var(--color-red-500);
+  --destructive-foreground: var(--ink);
   --border: var(--mocha-800); /* surface-0 */
   --input: var(--mocha-800); /* surface-0 */
   --ring: var(--ocean-600);
@@ -105,7 +105,7 @@
   --sunken: var(--latte-150); /* crust */
   --sunken-foreground: var(--latte-950); /* text */
   --destructive: var(--color-red-500);
-  --destructive-foreground: var(--color-red-50);
+  --destructive-foreground: var(--ink);
   --border: var(--latte-200); /* surface-0 */
   --input: var(--latte-200); /* surface-0 */
   --ring: var(--ocean-600);
