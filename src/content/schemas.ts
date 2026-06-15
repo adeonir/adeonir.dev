@@ -171,7 +171,6 @@ export const emailsSchema = z.object({
     body: z.string().min(1),
     recapLabel: z.string().min(1),
     footer: z.string().min(1),
-    button: z.string().min(1),
   }),
   notification: z.object({
     subject: z.string().min(1),
@@ -179,7 +178,6 @@ export const emailsSchema = z.object({
     badge: z.string().min(1),
     heading: z.string().min(1),
     received: z.string().min(1),
-    button: z.string().min(1),
     footer: z.string().min(1),
   }),
 })

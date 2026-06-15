@@ -12,12 +12,10 @@ emails:
     body: 'Olá, {name}! Obrigado por entrar em contato. Recebi sua mensagem e respondo assim que possível.'
     recapLabel: 'Resumo do envio'
     footer: 'Precisa acrescentar alguma informação? É só responder a este e-mail, sua resposta chega direto para mim.'
-    button: 'Responder'
   notification:
     subject: 'Novo contato: {subject}'
     preview: 'Nova mensagem de {name} pelo formulário de contato.'
     badge: 'Novo contato'
     heading: 'Nova mensagem de contato'
     received: 'Recebido em {date}'
-    button: 'Responder a {name}'
     footer: 'Notificação automática enviada pelo formulário de contato do site. Responda a este e-mail para falar diretamente com {name}.'

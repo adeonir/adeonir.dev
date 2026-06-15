@@ -4,7 +4,6 @@ import {
   Head,
   Heading,
   Html,
-  Link,
   Preview,
   pixelBasedPreset,
   Section,
@@ -46,14 +45,12 @@ export type ConfirmationProps = {
   email: string
   subject: string
   message: string
-  replyTo: string
   copy: {
     preview: string
     heading: string
     body: string
     recapLabel: string
     footer: string
-    button: string
     fields: {
       name: string
       email: string
@@ -68,7 +65,6 @@ export function Confirmation({
   email,
   subject,
   message,
-  replyTo,
   copy,
 }: ConfirmationProps) {
   return (
@@ -133,15 +129,6 @@ export function Confirmation({
               <Text className="m-0 text-foreground text-sm leading-[1.6]">
                 {copy.footer}
               </Text>
-
-              <Section className="mt-6 text-center">
-                <Link
-                  href={`mailto:${replyTo}`}
-                  className="inline-block rounded-lg border border-muted/50 border-solid bg-sunken px-5 py-3 text-center font-semibold text-muted text-sm no-underline"
-                >
-                  {copy.button}
-                </Link>
-              </Section>
             </Section>
 
             <Section className="border-border border-t border-solid bg-sunken px-10 py-6">
@@ -165,7 +152,6 @@ Confirmation.PreviewProps = {
   subject: 'Landing page para lançamento',
   message:
     'Oi! Vou lançar um produto e preciso de uma landing page performática. Já tenho o design no Figma e quero implementar em Astro/React. Qual o prazo e orçamento?',
-  replyTo: 'contato@adeonir.dev',
   copy: {
     preview: 'Recebi sua mensagem, respondo assim que possível.',
     heading: 'Sua mensagem foi enviada',
@@ -173,7 +159,6 @@ Confirmation.PreviewProps = {
     recapLabel: 'Resumo do envio',
     footer:
       'Precisa acrescentar alguma informação? É só responder a este e-mail, sua resposta chega direto para mim.',
-    button: 'Responder',
     fields: {
       name: 'nome',
       email: 'email',

@@ -5,7 +5,6 @@ import {
   Head,
   Heading,
   Html,
-  Link,
   Preview,
   pixelBasedPreset,
   Row,
@@ -51,13 +50,11 @@ export type NotificationProps = {
   email: string
   subject: string
   message: string
-  replyTo: string
   copy: {
     preview: string
     badge: string
     heading: string
     received: string
-    button: string
     footer: string
     fields: {
       name: string
@@ -73,7 +70,6 @@ export function Notification({
   email,
   subject,
   message,
-  replyTo,
   copy,
 }: NotificationProps) {
   return (
@@ -167,16 +163,7 @@ export function Notification({
                 </Column>
               </Row>
 
-              <Section className="mt-5 mb-6 text-center">
-                <Link
-                  href={`mailto:${replyTo}`}
-                  className="inline-block rounded-lg border border-muted/50 border-solid bg-sunken px-5 py-3 text-center font-semibold text-muted text-sm no-underline"
-                >
-                  {copy.button}
-                </Link>
-              </Section>
-
-              <Text className="m-0 text-muted/50 text-xs leading-[1.6]">
+              <Text className="m-0 mt-6 text-muted/50 text-xs leading-[1.6]">
                 {copy.footer}
               </Text>
             </Section>
@@ -193,13 +180,11 @@ Notification.PreviewProps = {
   subject: 'Landing page para lançamento',
   message:
     'Oi! Vou lançar um produto e preciso de uma landing page performática. Já tenho o design no Figma e quero implementar em Astro/React. Qual o prazo e orçamento?',
-  replyTo: 'marina.souza@email.com',
   copy: {
     preview: 'Nova mensagem de Marina pelo formulário de contato.',
     badge: 'Novo contato',
     heading: 'Nova mensagem de contato',
     received: 'Recebido em 14 jun 2026, 14:32',
-    button: 'Responder a Marina',
     footer:
       'Notificação automática enviada pelo formulário de contato do site. Responda a este e-mail para falar diretamente com Marina.',
     fields: {
