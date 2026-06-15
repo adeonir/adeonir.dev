@@ -38,7 +38,7 @@ content:
       tagline: 'I build interfaces that look beautiful and run fast.'
       description:
         - "I'm a design engineer: a frontend developer with a designer's background."
-        - "That makes me think about the whole product, not just the UI, always seeking solutions that deliver value without chasing perfection."
+        - 'That makes me think about the whole product, not just the UI, always seeking solutions that deliver value without chasing perfection.'
       actions:
         primary: 'See the work'
         secondary: 'Get in touch'
@@ -127,9 +127,12 @@ content:
           - name: 'email'
             label: 'Email'
             placeholder: 'you@example.com'
+          - name: 'subject'
+            label: 'Subject'
+            placeholder: 'What do you want to talk about?'
           - name: 'message'
             label: 'Message'
-            placeholder: 'What are you building?'
+            placeholder: 'Tell me more about your idea.'
         submit: 'Send message'
         states:
           success: "Thanks! I'll be in touch soon."
@@ -184,6 +187,29 @@ content:
       - "The page you're looking for doesn't exist or has moved. Head back to the homepage and pick up from there."
     cta: 'Back to home'
     footer: *footer
+
+# Transactional emails — not a routed surface. Sent on contact form submit.
+# Tokens: {name} = sender's name (first name in body/button), {date} = received timestamp, {subject} = submitted subject (notification subject line).
+# Recap/table field values come from the submission, not copy.
+emails:
+  from: 'Adeonir'
+  confirmation:
+    subject: 'Got your message'
+    preview: "Got your message, I'll reply as soon as I can."
+    heading: 'Your message was sent'
+    body: "Hi, {name}! Thanks for reaching out. I got your message and I'll reply as soon as I can."
+    recap:
+      label: 'What you sent'
+      fields: ['name', 'email', 'subject', 'message']
+    footer: 'Need to add anything? Just reply to this email and it comes straight to me.'
+  notification:
+    subject: 'New contact: {subject}'
+    preview: 'New message from {name} via the contact form.'
+    badge: 'New contact'
+    heading: 'New contact message'
+    received: 'Received on {date}'
+    button: 'Reply to {name}'
+    footer: 'Automatic notification from the site contact form. Reply to this email to talk directly with {name}.'
 
 # Projects — single source of truth (always complete). The work index renders
 # every entry in order; the landing renders the featured: true ones (same order).

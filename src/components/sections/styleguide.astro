@@ -15,9 +15,19 @@ const { skin } = Astro.props
 
 const colors = [
   {
+    box: 'bg-sunken',
+    text: 'text-sunken-foreground',
+    label: 'sunken / sunken-foreground',
+  },
+  {
     box: 'bg-primary',
     text: 'text-primary-foreground',
     label: 'primary / primary-foreground',
+  },
+  {
+    box: 'bg-background',
+    text: 'text-foreground',
+    label: 'background / foreground',
   },
   {
     box: 'bg-secondary',
@@ -25,9 +35,9 @@ const colors = [
     label: 'secondary / secondary-foreground',
   },
   {
-    box: 'bg-background',
-    text: 'text-foreground',
-    label: 'background / foreground',
+    box: 'bg-card',
+    text: 'text-card-foreground',
+    label: 'card / card-foreground',
   },
   {
     box: 'bg-muted',
@@ -43,11 +53,6 @@ const colors = [
     box: 'bg-accent',
     text: 'text-accent-foreground',
     label: 'accent / accent-foreground',
-  },
-  {
-    box: 'bg-card',
-    text: 'text-card-foreground',
-    label: 'card / card-foreground',
   },
 ]
 

@@ -127,9 +127,12 @@ content:
           - name: 'email'
             label: 'Email'
             placeholder: 'voce@exemplo.com'
+          - name: 'subject'
+            label: 'Assunto'
+            placeholder: 'Sobre o que você quer falar?'
           - name: 'message'
             label: 'Mensagem'
-            placeholder: 'O que você está construindo?'
+            placeholder: 'Conta mais sobre a sua ideia.'
         submit: 'Enviar mensagem'
         states:
           success: 'Obrigado! Logo eu entro em contato.'
@@ -184,6 +187,29 @@ content:
       - 'O endereço que você procura não existe. Volte para a página inicial.'
     cta: 'Voltar ao início'
     footer: *footer
+
+# Transactional emails — not a routed surface. Sent on contact form submit.
+# Tokens: {name} = sender's name (first name in body/button), {date} = received timestamp, {subject} = submitted subject (notification subject line).
+# Recap/table field values come from the submission, not copy.
+emails:
+  from: 'Adeonir'
+  confirmation:
+    subject: 'Recebi sua mensagem'
+    preview: 'Recebi sua mensagem, respondo assim que possível.'
+    heading: 'Sua mensagem foi enviada'
+    body: 'Olá, {name}! Obrigado por entrar em contato. Recebi sua mensagem e respondo assim que possível.'
+    recap:
+      label: 'Resumo do envio'
+      fields: ['nome', 'e-mail', 'assunto', 'mensagem']
+    footer: 'Precisa acrescentar alguma informação? É só responder a este e-mail, sua resposta chega direto para mim.'
+  notification:
+    subject: 'Novo contato: {subject}'
+    preview: 'Nova mensagem de {name} pelo formulário de contato.'
+    badge: 'Novo contato'
+    heading: 'Nova mensagem de contato'
+    received: 'Recebido em {date}'
+    button: 'Responder a {name}'
+    footer: 'Notificação automática enviada pelo formulário de contato do site. Responda a este e-mail para falar diretamente com {name}.'
 
 # Projects — single source of truth (always complete). The work index renders
 # every entry in order; the landing renders the featured: true ones (same order).

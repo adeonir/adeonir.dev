@@ -3,6 +3,7 @@ import { file } from 'astro/loaders'
 import {
   aboutSchema,
   contactSchema,
+  emailsSchema,
   footerSchema,
   headerSchema,
   heroSchema,
@@ -51,6 +52,11 @@ const notFound = defineCollection({
   schema: notFoundSchema,
 })
 
+const emails = defineCollection({
+  loader: file('src/content/emails.yaml'),
+  schema: emailsSchema,
+})
+
 export const collections = {
   settings,
   header,
@@ -60,4 +66,5 @@ export const collections = {
   stack,
   contact,
   notFound,
+  emails,
 }

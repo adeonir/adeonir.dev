@@ -1,6 +1,6 @@
 import { Field as ArkField } from '@ark-ui/react/field'
 
-import { cn } from '~/lib/cn'
+import { cn } from '~/helpers/classnames'
 
 const fieldClasses =
   'w-full rounded-lg border border-border bg-transparent px-4 text-body text-foreground transition placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-60'

@@ -4,6 +4,8 @@ node_modules/
 # build output
 dist/
 .astro/
+.wrangler/
+.react-email/
 
 # environment
 .env

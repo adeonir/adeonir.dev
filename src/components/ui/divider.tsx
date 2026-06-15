@@ -1,6 +1,6 @@
 import { ark, type HTMLArkProps } from '@ark-ui/react/factory'
 
-import { cn } from '~/lib/cn'
+import { cn } from '~/helpers/classnames'
 
 export type DividerProps = HTMLArkProps<'hr'>
 

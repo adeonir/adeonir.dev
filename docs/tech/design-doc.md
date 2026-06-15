@@ -1,7 +1,7 @@
 ---
 name: adeonir-dev-portfolio
 created: 2026-06-06
-updated: 2026-06-11
+updated: 2026-06-13
 status: accepted
 sources:
   - docs/product/prd.md
@@ -102,7 +102,7 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-  Visitor[Visitor: client / recruiter / peer] --> CF[Cloudflare Pages edge]
+  Visitor[Visitor: client / recruiter / peer] --> CF[Cloudflare Workers edge]
   CF --> App[adeonir.dev Astro app]
   App --> Resend[Resend - transactional email]
   Resend --> Submitter[Confirmation to visitor email]
@@ -113,7 +113,7 @@ flowchart LR
 ```
 
 - **Actors:** site visitors (the three PRD personas).
-- **External services:** Cloudflare Pages (host + edge runtime, git-integration
+- **External services:** Cloudflare Workers (host + edge runtime, git-integration
   build and deploy), Resend
   (outbound transactional email), a Plesk-hosted mailbox on `adeonir.dev`
   (inbound `contato@adeonir.dev`), PostHog US Cloud (cookieless analytics — manual
@@ -134,8 +134,10 @@ flowchart LR
   collection live under `src/content/`; default locale is bare (`*.yaml`,
   `index.mdx`), English carries an `.en` suffix (`*.en.yaml`, `index.en.mdx`);
   cover and gallery images are shared across locales.
-- **Action contract:** Zod input schema; typed, structured errors; progressive
-  enhancement (form posts and works without JS, enhanced by the island).
+- **Action contract:** Zod input schema; typed, structured errors; the form posts
+  to the on-demand `/contact` route, which runs the Action server-side (Resend,
+  secrets, KV) and renders server-side success/error states; the island enhances
+  submit UX.
 - **Styling:** Tailwind consuming the existing dual-skin design tokens.
 - **Versioning:** N/A — no public API to version.
 
@@ -183,18 +185,18 @@ erDiagram
 - **Auth / Authz:** N/A — no accounts, no protected resources.
 - **Spam / abuse:** honeypot field + KV rate-limit counter (5 requests / 10 min
   per IP, keyed on `CF-Connecting-IP`, 600s TTL) + Zod validation. The Workers
-  Rate Limiting binding was ruled out: it is not supported on Pages Functions
-  and its maximum period (60s) cannot express the 10-minute window.
+  Rate Limiting binding was ruled out: its maximum period (60s) cannot express
+  the 10-minute window, which a KV counter with a 600s TTL can.
   Cloudflare Turnstile is held in reserve and added only if spam gets through.
 - **Audit log:** N/A — no sensitive or stateful operations to audit.
 - **Regulatory (LGPD/GDPR):** analytics is cookieless and aggregate and nothing
   is retained, so no consent banner is required; a lightweight privacy notice
   sits near the form ("your message is emailed to me, not stored"). A standalone
   `/privacy` page is deferred.
-- **Secrets:** the Resend API key (and any future tokens) live in Cloudflare env
-  / Pages secrets, with `.dev.vars` for local development; never committed.
-  Sending domain `adeonir.dev` is verified in Resend via SPF/DKIM/DMARC records
-  in Cloudflare DNS.
+- **Secrets:** the Resend API key (and any future tokens) live in the Cloudflare
+  Worker's environment variables, with `.dev.vars` for local development; never
+  committed. Sending domain `adeonir.dev` is verified in Resend via SPF/DKIM/DMARC
+  records in Cloudflare DNS.
 
 ### 3.6 Observability
 
@@ -206,8 +208,8 @@ erDiagram
   events are manual: pageviews, button/CTA clicks, and form interactions
   (client), plus `contact-submission` — a standalone conversion count (not
   joined to the visitor funnel) captured **server-side in the contact Action**
-  via a direct `fetch` to the capture endpoint, so it survives the no-JS
-  progressive-enhancement submit. The event carries name + UTM/source only — no
+  via a direct `fetch` to the capture endpoint, keeping the count server-authoritative
+  and free of client double-firing. The event carries name + UTM/source only — no
   form PII — and fires non-blocking via `waitUntil`, isolated from the Resend
   send so analytics never blocks or breaks submission. UTM source/medium/campaign
   attribution (FR-9). posthog-js core is heavier than Umami; with autocapture
@@ -244,9 +246,10 @@ erDiagram
   jobs are required status checks and grow as tooling lands: lint, typecheck, and
   build first; the unit, e2e, a11y, and budget suites as the pages and suites
   exist. No deploy step runs in Actions.
-- **Deploy:** Cloudflare Pages git integration builds and publishes — production
-  from `main` on push, an automatic preview deployment per branch/PR. No
-  Cloudflare credentials live in GitHub.
+- **Deploy:** Cloudflare Workers Builds git integration builds and publishes — a
+  push to `main` runs `pnpm build` then `npx wrangler deploy` for production, with
+  an automatic preview deployment per branch/PR. No Cloudflare credentials live
+  in GitHub.
 - **Safety:** branch protection on `main` makes the CI checks required, so a red
   branch cannot merge and Cloudflare only ever builds a green `main`; admin
   bypass stays enabled for emergencies.
@@ -261,9 +264,9 @@ erDiagram
 - **Backups:** all content (MDX + yaml + images) is versioned in git; there is
   no separate data store to back up.
 - **Rollback:** redeploy the previous build, or roll back to a prior deployment
-  from the Cloudflare Pages dashboard.
+  from the Cloudflare Workers dashboard.
 - **Environments:** local (`.dev.vars`), PR preview, production.
-- **Secrets management:** Cloudflare Pages environment variables hold the Resend
+- **Secrets management:** Cloudflare Worker environment variables hold the Resend
   key and per-environment runtime config (production vs preview). No Cloudflare
   credentials in GitHub — the git integration deploys, so Actions holds no deploy
   secrets.
@@ -275,15 +278,15 @@ erDiagram
 | Decision | Chosen | Rejected | Reasoning | Record |
 |----------|--------|----------|-----------|--------|
 | Framework | Astro (hybrid) | TanStack Start | Content-first site where performance is the message; TanStack Start is an app framework solving a content problem — its loaders/server-fns are app features this site does not need | — |
-| Host / rendering | Cloudflare Pages, hybrid | Vercel / Netlify; fully static | Free edge hosting on the workerd runtime with a native ecosystem (KV, Pages previews); hybrid keeps the form first-party (one on-demand route) while everything else prerenders. Vercel/Netlify are equally capable; fully static would force the form onto a third party | — |
-| Deploy pipeline | Cloudflare Pages git integration | Wrangler deploy job in GitHub Actions | Solo, deterministic static build: git integration gives automatic per-PR previews, dashboard rollback, and per-environment vars with zero deploy credentials in GitHub. Quality gates run in Actions as required checks and branch protection keeps `main` green, so red never reaches production — the artifact-parity edge of an in-pipeline deploy job doesn't justify rebuilding that DX by hand | — |
+| Host / rendering | Cloudflare Workers (static assets today, on-demand contact Action planned) | Vercel / Netlify; fully static | Free edge hosting on the workerd runtime with a native ecosystem (KV, per-branch preview URLs); ships as static assets now, with the contact Action the one planned on-demand route while everything else prerenders. Vercel/Netlify are equally capable; fully static would force the form onto a third party | — |
+| Deploy pipeline | Cloudflare Workers Builds git integration | Wrangler deploy job in GitHub Actions | Solo, deterministic static build: the git integration runs `pnpm build` + `wrangler deploy` on push, giving automatic per-branch previews, dashboard rollback, and per-environment vars with zero deploy credentials in GitHub. Quality gates run in Actions as required checks and branch protection keeps `main` green, so red never reaches production — the artifact-parity edge of an in-pipeline deploy job doesn't justify rebuilding that DX by hand | — |
 | Contact delivery | Resend (2 emails) | CF Email Routing send-binding; D1 persistence | The flow must email the _visitor_ (arbitrary address) — the send-binding can only reach verified self-addresses; no DB needed since emails are the record | — |
-| Spam defense | Honeypot + KV rate-limit counter | Workers Rate Limiting binding; Turnstile from day one | The binding is not supported on Pages Functions and its max period (60s) cannot express the 5 req / 10 min rule — a KV counter with 600s TTL can, and eventual consistency is acceptable for a low-volume personal form. Turnstile adds a script + widget that costs perf — reserved until spam is proven | — |
+| Spam defense | Honeypot + KV rate-limit counter | Workers Rate Limiting binding; Turnstile from day one | The binding's max period (60s) cannot express the 5 req / 10 min rule — a KV counter with 600s TTL can, and eventual consistency is acceptable for a low-volume personal form. Turnstile adds a script + widget that costs perf — reserved until spam is proven | — |
 | UI runtime | React 19 (`@astrojs/react`) | Preact; Preact + `preact/compat` shim | Ark UI is the primitives layer and ships no Preact flavor; the compat route failed SSR in practice (`document` access under `preact-render-to-string`). Runtime cost (~50kb gzip on hydrating viewports) is deferred via `client:*` and guarded by the Lighthouse CI budget | ADR-001 |
 | Styling | Tailwind | Vanilla CSS; CSS Modules | Existing dual-skin tokens map cleanly to generated utilities; first-class Astro integration | — |
 | Content model | Single-source MDX + per-section yaml collections | Split metadata (yaml) from body (MDX) | One source of truth per project; schema-validated; no slug duplication or join logic | — |
 | i18n strategy | Routing-based: pt bare, en `/en`, no auto-detect | Client-side (react-i18next style); both-locales-prefixed; browser detection | Keeps the perf budget and SEO/hreflang intact; clean prefix-free URL for the primary (BR) audience | — |
-| Analytics | PostHog US Cloud (cookieless) | Umami Cloud; Cloudflare Web Analytics | Privacy-first is the driver: PostHog's cookieless mode (daily-salt hash identity, memory persistence, autocapture + session recording off, DNT respected) delivers custom events and UTM in one privacy-first config, plus server-side `contact-submission` capture that survives the no-JS submit — which CF Web Analytics lacks and Umami does not cover. Umami ships lighter, but client weight is held down by manual-only capture; measure the real bundle before locking the lib | — |
+| Analytics | PostHog US Cloud (cookieless) | Umami Cloud; Cloudflare Web Analytics | Privacy-first is the driver: PostHog's cookieless mode (daily-salt hash identity, memory persistence, autocapture + session recording off, DNT respected) delivers custom events and UTM in one privacy-first config, plus server-side `contact-submission` capture (server-authoritative, no client double-count) — which CF Web Analytics lacks and Umami does not cover. Umami ships lighter, but client weight is held down by manual-only capture; measure the real bundle before locking the lib | — |
 | E2E testing | Keep Playwright (scoped) | Drop it | Component tests can't exercise the contact Action, routing, or 404 — the only places that can actually break | — |
 | Pre-commit hook manager | lefthook | husky; simple-git-hooks; native git hooks | Single YAML config, parallel hook execution, language-agnostic Go binary with no Node runtime in the hook path; husky needs more wiring, simple-git-hooks is leaner but less capable, native hooks aren't shareable | — |
 

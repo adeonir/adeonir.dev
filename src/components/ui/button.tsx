@@ -1,7 +1,7 @@
 import { ark, type HTMLArkProps } from '@ark-ui/react/factory'
 import { cva, type VariantProps } from 'class-variance-authority'
 
-import { cn } from '~/lib/cn'
+import { cn } from '~/helpers/classnames'
 
 export const buttonVariants = cva(
   'inline-flex cursor-pointer items-center justify-center rounded-lg transition-all focus-visible:outline-2 focus-visible:outline-ring focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-50',

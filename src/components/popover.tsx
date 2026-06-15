@@ -1,7 +1,7 @@
 import { Popover as ArkPopover } from '@ark-ui/react/popover'
 import type { ComponentProps } from 'react'
 
-import { cn } from '~/lib/cn'
+import { cn } from '~/helpers/classnames'
 
 function Positioner({
   className,

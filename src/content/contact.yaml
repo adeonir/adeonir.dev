@@ -28,9 +28,12 @@ contact:
       - name: 'email'
         label: 'Email'
         placeholder: 'voce@exemplo.com'
+      - name: 'subject'
+        label: 'Assunto'
+        placeholder: 'Sobre o que você quer falar?'
       - name: 'message'
         label: 'Mensagem'
-        placeholder: 'O que você está construindo?'
+        placeholder: 'Conta mais sobre a sua ideia.'
     submit: 'Enviar mensagem'
     states:
       success: 'Obrigado! Logo eu entro em contato.'
