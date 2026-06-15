@@ -137,6 +137,10 @@ content:
         states:
           success: "Thanks! I'll be in touch soon."
           error: 'Something went wrong. Email me directly at contato@adeonir.dev.'
+        validation:
+          required: 'Please fill in this field.'
+          email: "That email doesn't look right. Could you double-check?"
+          maxLength: 'This field accepts up to {max} characters.'
 
     footer: &footer
       brand:
