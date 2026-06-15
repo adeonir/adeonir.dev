@@ -134,6 +134,11 @@ export const contactSchema = z.object({
       success: z.string().min(1),
       error: z.string().min(1),
     }),
+    validation: z.object({
+      required: z.string().min(1),
+      email: z.string().min(1),
+      maxLength: z.string().min(1),
+    }),
   }),
 })
 

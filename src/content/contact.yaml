@@ -38,3 +38,7 @@ contact:
     states:
       success: 'Obrigado! Logo eu entro em contato.'
       error: 'Algo deu errado. Me escreva direto em contato@adeonir.dev.'
+    validation:
+      required: 'Por favor, preencha este campo.'
+      email: 'Parece que esse email não está certo. Pode conferir?'
+      maxLength: 'Este campo aceita no máximo {max} caracteres.'
