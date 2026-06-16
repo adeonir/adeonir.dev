@@ -5,6 +5,7 @@ import {
   captureContactAbuse,
   captureContactFailure,
   captureContactSubmission,
+  captureException,
 } from '~/services/analytics'
 import { ContactDeliveryError, sendContactEmails } from '~/services/email'
 import { isRateLimited } from '~/services/rate-limit'
@@ -31,6 +32,8 @@ export const server = {
           context.locals.cfContext.waitUntil(
             captureContactFailure(error.reason),
           )
+        } else {
+          context.locals.cfContext.waitUntil(captureException(error))
         }
 
         throw new ActionError({ code: 'INTERNAL_SERVER_ERROR' })
