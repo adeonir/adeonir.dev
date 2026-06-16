@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { Button } from '~/components/ui/button'
 import { NavLink } from '~/components/ui/nav-link'
 import { Popover } from '~/components/ui/popover'
+import { Swap } from '~/components/ui/swap'
 import IconMenu from '~icons/tabler/menu'
 import IconX from '~icons/tabler/x'
 
@@ -38,11 +39,14 @@ export function MobileMenu({ nav, menu }: MobileMenuProps) {
           className="hover:border-border!"
           size="icon"
         >
-          {open ? (
-            <IconX className="size-5" />
-          ) : (
-            <IconMenu className="size-5" />
-          )}
+          <Swap.Root className="size-5" swap={open}>
+            <Swap.Indicator type="off" variant="fade">
+              <IconMenu className="size-5" />
+            </Swap.Indicator>
+            <Swap.Indicator type="on" variant="fade">
+              <IconX className="size-5" />
+            </Swap.Indicator>
+          </Swap.Root>
         </Button>
       </Popover.Trigger>
       <Portal>
