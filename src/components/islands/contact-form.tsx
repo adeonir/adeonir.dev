@@ -1,4 +1,5 @@
 import { actions } from 'astro:actions'
+import { useRef } from 'react'
 import { toaster } from '~/components/islands/toaster'
 import { Button } from '~/components/ui/button'
 import { Field } from '~/components/ui/field'
@@ -36,6 +37,8 @@ type ContactFormProps = {
 }
 
 export function ContactForm({ content }: ContactFormProps) {
+  const formRef = useRef<HTMLFormElement>(null)
+
   const { errors, isSubmitting, handleSubmit, handleInput } = useForm({
     validate: (formData) => {
       const schema = createContactSchema(content.validation)
@@ -69,6 +72,7 @@ export function ContactForm({ content }: ContactFormProps) {
           toaster.error({ ...content.states.error, duration: Infinity })
         } else {
           toaster.success(content.states.success)
+          formRef.current?.reset()
         }
       } catch {
         toaster.error({ ...content.states.error, duration: Infinity })
@@ -78,6 +82,7 @@ export function ContactForm({ content }: ContactFormProps) {
 
   return (
     <form
+      ref={formRef}
       method="post"
       action={actions.contact.queryString}
       onSubmit={handleSubmit}
