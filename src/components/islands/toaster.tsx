@@ -6,9 +6,9 @@ import { Toast } from '~/components/ui/toast'
 export const toaster = createToaster({
   placement: 'bottom-end',
   duration: 5000,
-  overlap: false,
+  overlap: true,
   gap: 16,
-  max: 3,
+  max: 4,
 })
 
 export function Toaster() {
@@ -20,10 +20,13 @@ export function Toaster() {
             key={toast.id}
             aria-live={toast.type === 'error' ? 'assertive' : 'polite'}
           >
-            {toast.title && <Toast.Title>{toast.title}</Toast.Title>}
-            {toast.description && (
-              <Toast.Description>{toast.description}</Toast.Description>
-            )}
+            <Toast.Indicator type={toast.type} />
+            <div className="flex min-w-0 flex-1 flex-col gap-1">
+              {toast.title && <Toast.Title>{toast.title}</Toast.Title>}
+              {toast.description && (
+                <Toast.Description>{toast.description}</Toast.Description>
+              )}
+            </div>
             <Toast.CloseTrigger />
           </Toast.Root>
         )}
