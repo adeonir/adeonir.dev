@@ -20,6 +20,7 @@ export function Toaster() {
             {toast.description && (
               <Toast.Description>{toast.description}</Toast.Description>
             )}
+            <Toast.CloseTrigger />
           </Toast.Root>
         )}
       </ArkToaster>

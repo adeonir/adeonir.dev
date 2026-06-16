@@ -2,6 +2,7 @@ import { Toast as ArkToast } from '@ark-ui/react/toast'
 import type { ComponentProps } from 'react'
 
 import { cn } from '~/helpers/classnames'
+import IconX from '~icons/tabler/x'
 
 function Root({ className, ...props }: ComponentProps<typeof ArkToast.Root>) {
   return (
@@ -41,8 +42,26 @@ function Description({
   )
 }
 
+function CloseTrigger({
+  className,
+  ...props
+}: ComponentProps<typeof ArkToast.CloseTrigger>) {
+  return (
+    <ArkToast.CloseTrigger
+      className={cn(
+        'absolute top-2 right-2 inline-flex size-8 items-center justify-center rounded-md text-current opacity-80 transition-opacity hover:bg-current/10 hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current',
+        className,
+      )}
+      {...props}
+    >
+      <IconX className="size-4" />
+    </ArkToast.CloseTrigger>
+  )
+}
+
 export const Toast = {
   Root,
   Title,
   Description,
+  CloseTrigger,
 }
