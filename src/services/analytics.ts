@@ -52,3 +52,18 @@ export async function captureContactAbuse(
 ): Promise<void> {
   await captureEvent('contact-abuse', { cause })
 }
+
+export async function captureException(error: unknown): Promise<void> {
+  const normalized = error instanceof Error ? error : new Error(String(error))
+
+  await captureEvent('$exception', {
+    $exception_list: [
+      {
+        type: normalized.name,
+        value: normalized.message,
+        mechanism: { handled: true },
+      },
+    ],
+    $exception_stack: normalized.stack ?? '',
+  })
+}
