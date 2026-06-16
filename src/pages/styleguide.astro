@@ -2,6 +2,7 @@
 import { ToastDemo } from '~/components/styleguide/toast'
 import StyleguideSections from '~/components/styleguide/sections.astro'
 import '~/styles/global.css'
+import { ThemeToggle } from '~/components/islands/theme-toggle'
 ---
 
 <!doctype html>
@@ -13,16 +14,16 @@ import '~/styles/global.css'
     <title>Styleguide — adeonir.dev</title>
   </head>
   <body>
-    <main class="grid grid-cols-1 lg:grid-cols-2">
-      <div class="min-h-screen space-y-8 bg-background p-8 text-foreground">
+    <main class="bg-background text-foreground">
+      <div class="fixed top-2 right-2 rounded-xl bg-background p-4">
+        <ThemeToggle
+          client:load
+          label={{ dark: 'Dark theme', light: 'Light theme' }}
+        />
+      </div>
+      <div class="mx-auto min-h-screen max-w-5xl space-y-8 p-8">
         <StyleguideSections skin="dark" />
         <ToastDemo client:load />
-      </div>
-      <div
-        data-theme="light"
-        class="min-h-screen bg-background p-8 text-foreground"
-      >
-        <StyleguideSections skin="light" />
       </div>
     </main>
   </body>
