@@ -2,6 +2,7 @@ import { ActionError, defineAction } from 'astro:actions'
 
 import { contactInputSchema } from '~/schemas/contact'
 import {
+  captureContactAbuse,
   captureContactFailure,
   captureContactSubmission,
 } from '~/services/analytics'
@@ -14,10 +15,12 @@ export const server = {
     input: contactInputSchema,
     handler: async (input, context) => {
       if (input.website) {
+        context.locals.cfContext.waitUntil(captureContactAbuse('honeypot'))
         return
       }
 
       if (await isRateLimited(context.clientAddress)) {
+        context.locals.cfContext.waitUntil(captureContactAbuse('rate_limit'))
         throw new ActionError({ code: 'TOO_MANY_REQUESTS' })
       }
 
