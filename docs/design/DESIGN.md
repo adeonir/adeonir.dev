@@ -79,9 +79,20 @@ colors:
   popover-foreground: { hex: "#cdd6f4", oklch: "oklch(87.87% 0.0426 272.28)" }
   sunken: { hex: "#11111b", oklch: "oklch(18.28% 0.0204 284.20)" } # crust
   sunken-foreground: { hex: "#cdd6f4", oklch: "oklch(87.87% 0.0426 272.28)" }
+  destructive: { hex: "#fb2c36", oklch: "oklch(63.7% 0.237 25.331)" } # red-500
+  destructive-foreground: { hex: "#11111b", oklch: "oklch(18.3% 0.020 284.20)" } # ink
   border: { hex: "#313244", oklch: "oklch(32.40% 0.0319 281.98)" } # surface-0
   input: { hex: "#313244", oklch: "oklch(32.40% 0.0319 281.98)" }
   ring: { hex: "#0183c8", oklch: "oklch(58.6% 0.141 242.85)" }
+  # ── Status feedback: skin-neutral filled chips with ink text; never interactive ──
+  success: { hex: "#00c950", oklch: "oklch(72.3% 0.219 149.579)" } # green-500
+  success-foreground: { hex: "#11111b", oklch: "oklch(18.3% 0.020 284.20)" } # ink
+  error: { hex: "#fb2c36", oklch: "oklch(63.7% 0.237 25.331)" } # red-500
+  error-foreground: { hex: "#11111b", oklch: "oklch(18.3% 0.020 284.20)" } # ink
+  warning: { hex: "#ff6900", oklch: "oklch(70.5% 0.213 47.604)" } # orange-500
+  warning-foreground: { hex: "#11111b", oklch: "oklch(18.3% 0.020 284.20)" } # ink
+  info: { hex: "#00b8db", oklch: "oklch(71.5% 0.143 215.221)" } # cyan-500
+  info-foreground: { hex: "#11111b", oklch: "oklch(18.3% 0.020 284.20)" } # ink
   # ── Latte/light skin override: redefines only what changes; the rest inherits the flat dark token ──
   light:
     secondary: { hex: "#f0115f", oklch: "oklch(61.4% 0.240 11.26)" }
@@ -323,6 +334,21 @@ The primitive layer. Every semantic token below aliases a step of the active ski
 - **Text** (oklch(87.87% 0.0426 272.28) / #cdd6f4) → `sunken-foreground` — text on the deepest panels. Light skin: `latte-950` (oklch(43.55% 0.0430 279.33) / #4c4f69).
 - **Subtext 1** (oklch(81.68% 0.0403 272.86) / #bac2de) → `muted-foreground` — secondary text, captions, supporting copy. The dark skin uses subtext-1 (`mocha-100`); the light skin steps to `latte-925` (oklch(46.40% 0.0408 279.30) / #545770) so supporting copy clears AA against background, card, and the solid `muted` fill alike.
 - **Surface 0** (oklch(32.40% 0.0319 281.98) / #313244) → `muted` — muted fills and disabled surfaces, one step below the accent hover. Light skin: `latte-200` (oklch(85.75% 0.0145 268.48) / #ccd0da).
+
+### Destructive
+
+- **Red 500** (oklch(63.7% 0.237 25.331) / #fb2c36) → `destructive` — the error/danger intent on form controls: invalid-field border and error text. Skin-neutral; an action cue, distinct from the `error` status fill.
+- **Ink** (oklch(18.3% 0.020 284.20) / #11111b) → `destructive-foreground` — dark text on a destructive fill, both skins.
+
+### Status
+
+Functional feedback fills (toasts), not brand accents — they report state, never act. Skin-neutral: each holds the same step in both skins, only the neutrals around them flip. All carry `ink` text and clear AA.
+
+- **Green 500** (oklch(72.3% 0.219 149.579) / #00c950) → `success` — positive feedback fill; `ink` text clears 8.46:1.
+- **Red 500** (oklch(63.7% 0.237 25.331) / #fb2c36) → `error` — error feedback fill; `ink` clears 4.93:1. Distinct from `destructive`, which is the action intent on form fields (same red, different role).
+- **Orange 500** (oklch(70.5% 0.213 47.604) / #ff6900) → `warning` — caution feedback fill; `ink` clears 6.49:1.
+- **Cyan 500** (oklch(71.5% 0.143 215.221) / #00b8db) → `info` — informational feedback fill, distinct from the `primary` action blue; `ink` clears 7.93:1.
+- **Ink** (oklch(18.3% 0.020 284.20) / #11111b) → `success`/`error`/`warning`/`info-foreground` — skin-neutral dark text on every status fill.
 
 ## 3. Typography Rules
 

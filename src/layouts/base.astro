@@ -6,6 +6,7 @@ import { SEO } from 'astro-seo'
 import Analytics from '~/components/analytics.astro'
 import Footer from '~/components/sections/footer.astro'
 import Header from '~/components/sections/header.astro'
+import { Toaster } from '~/components/islands/toaster'
 import '~/styles/global.css'
 
 interface Props {
@@ -96,6 +97,7 @@ const ogImageURL = new URL(
         <slot />
       )
     }
+    <Toaster client:load transition:persist />
     <script>
       import '~/scripts/anchor-nav'
     </script>

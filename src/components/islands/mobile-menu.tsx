@@ -1,8 +1,8 @@
 import { Portal } from '@ark-ui/react/portal'
 import { useEffect, useState } from 'react'
-import { Popover } from '~/components/popover'
 import { Button } from '~/components/ui/button'
 import { NavLink } from '~/components/ui/nav-link'
+import { Popover } from '~/components/ui/popover'
 import IconMenu from '~icons/tabler/menu'
 import IconX from '~icons/tabler/x'
 

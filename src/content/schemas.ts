@@ -131,8 +131,14 @@ export const contactSchema = z.object({
       .min(1),
     submit: z.string().min(1),
     states: z.object({
-      success: z.string().min(1),
-      error: z.string().min(1),
+      success: z.object({
+        title: z.string().min(1),
+        description: z.string().min(1),
+      }),
+      error: z.object({
+        title: z.string().min(1),
+        description: z.string().min(1),
+      }),
     }),
     validation: z.object({
       required: z.string().min(1),

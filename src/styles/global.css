@@ -78,17 +78,25 @@
   --popover-foreground: var(--mocha-50); /* text */
   --sunken: var(--mocha-950); /* crust */
   --sunken-foreground: var(--mocha-50); /* text */
-  --destructive: var(--color-red-400);
-  --destructive-foreground: var(--color-red-50);
+  --destructive: var(--color-red-500);
+  --destructive-foreground: var(--ink);
   --border: var(--mocha-800); /* surface-0 */
   --input: var(--mocha-800); /* surface-0 */
   --ring: var(--ocean-600);
+  --success: var(--color-green-500);
+  --success-foreground: var(--ink);
+  --error: var(--color-red-500);
+  --error-foreground: var(--ink);
+  --warning: var(--color-orange-500);
+  --warning-foreground: var(--ink);
+  --info: var(--color-cyan-500);
+  --info-foreground: var(--ink);
 }
 
 [data-theme="light"] {
   --primary: var(--ocean-500);
   --primary-foreground: var(--ink);
-  --secondary: var(--azalea-600);
+  --secondary: var(--azalea-500);
   --secondary-foreground: var(--ink);
   --action: var(--ocean-700); /* primary as text */
   --emphasis: var(--azalea-750); /* secondary as text */
@@ -105,7 +113,7 @@
   --sunken: var(--latte-150); /* crust */
   --sunken-foreground: var(--latte-950); /* text */
   --destructive: var(--color-red-500);
-  --destructive-foreground: var(--color-red-50);
+  --destructive-foreground: var(--ink);
   --border: var(--latte-200); /* surface-0 */
   --input: var(--latte-200); /* surface-0 */
   --ring: var(--ocean-600);
@@ -132,6 +140,14 @@
   --color-sunken-foreground: var(--sunken-foreground);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-error: var(--error);
+  --color-error-foreground: var(--error-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
