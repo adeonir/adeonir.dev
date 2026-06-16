@@ -161,6 +161,14 @@
 
   --animate-fade-in: fade-in 150ms ease-out;
   --animate-fade-out: fade-out 100ms ease-in;
+  --animate-rotate-in: rotate-in 200ms ease-out;
+  --animate-rotate-out: rotate-out 100ms ease-in;
+  --animate-scale-in: scale-in 200ms ease-out;
+  --animate-scale-out: scale-out 100ms ease-in;
+  --animate-flip-in: flip-in 400ms ease;
+  --animate-flip-out: flip-out 200ms ease;
+  --animate-blur-in: blur-in 200ms ease-out;
+  --animate-blur-out: blur-out 100ms ease-in;
 
   @keyframes fade-in {
     from {
@@ -171,6 +179,62 @@
   @keyframes fade-out {
     to {
       opacity: 0;
+    }
+  }
+
+  @keyframes rotate-in {
+    from {
+      opacity: 0;
+      transform: rotate(-90deg);
+    }
+  }
+
+  @keyframes rotate-out {
+    to {
+      opacity: 0;
+      transform: rotate(90deg);
+    }
+  }
+
+  @keyframes scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0);
+    }
+  }
+
+  @keyframes scale-out {
+    to {
+      opacity: 0;
+      transform: scale(0);
+    }
+  }
+
+  @keyframes flip-in {
+    from {
+      opacity: 0;
+      transform: rotateY(180deg);
+    }
+  }
+
+  @keyframes flip-out {
+    to {
+      opacity: 0;
+      transform: rotateY(180deg);
+    }
+  }
+
+  @keyframes blur-in {
+    from {
+      opacity: 0;
+      filter: blur(2px);
+    }
+  }
+
+  @keyframes blur-out {
+    to {
+      opacity: 0;
+      filter: blur(2px);
     }
   }
 }
