@@ -36,7 +36,7 @@ export function MobileMenu({ nav, menu }: MobileMenuProps) {
       <Popover.Trigger asChild>
         <Button
           aria-label={open ? menu.close : menu.open}
-          className="hover:border-border!"
+          className="border-border!"
           size="icon"
         >
           <Swap.Root className="size-5" swap={open}>
