@@ -5,6 +5,10 @@ import { Toast } from '~/components/ui/toast'
 
 export const toaster = createToaster({
   placement: 'bottom-end',
+  duration: 5000,
+  overlap: false,
+  gap: 16,
+  max: 3,
 })
 
 export function Toaster() {
