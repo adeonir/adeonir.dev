@@ -1,8 +1,13 @@
 import { ActionError, defineAction } from 'astro:actions'
 
 import { contactInputSchema } from '~/schemas/contact'
-import { captureContactSubmission } from '~/services/analytics'
-import { sendContactEmails } from '~/services/email'
+import {
+  captureContactAbuse,
+  captureContactFailure,
+  captureContactSubmission,
+  captureException,
+} from '~/services/analytics'
+import { ContactDeliveryError, sendContactEmails } from '~/services/email'
 import { isRateLimited } from '~/services/rate-limit'
 
 export const server = {
@@ -11,16 +16,26 @@ export const server = {
     input: contactInputSchema,
     handler: async (input, context) => {
       if (input.website) {
+        context.locals.cfContext.waitUntil(captureContactAbuse('honeypot'))
         return
       }
 
       if (await isRateLimited(context.clientAddress)) {
+        context.locals.cfContext.waitUntil(captureContactAbuse('rate_limit'))
         throw new ActionError({ code: 'TOO_MANY_REQUESTS' })
       }
 
       try {
         await sendContactEmails(input)
-      } catch {
+      } catch (error) {
+        if (error instanceof ContactDeliveryError) {
+          context.locals.cfContext.waitUntil(
+            captureContactFailure(error.reason),
+          )
+        } else {
+          context.locals.cfContext.waitUntil(captureException(error))
+        }
+
         throw new ActionError({ code: 'INTERNAL_SERVER_ERROR' })
       }
 

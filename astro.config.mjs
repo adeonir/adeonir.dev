@@ -8,6 +8,31 @@ import icons from 'unplugin-icons/vite'
 
 const noIndexRoutes = ['/styleguide', '/maintenance']
 
+const serverDeps = [
+  'react',
+  'react-dom',
+  'react/jsx-runtime',
+  '@ark-ui/react',
+  'astro-seo',
+  'astro/zod',
+  'astro/actions/runtime/entrypoints/server.js',
+  'astro/virtual-modules/transitions.js',
+  'astro/virtual-modules/transitions-router.js',
+  'astro/virtual-modules/transitions-types.js',
+  'astro/virtual-modules/transitions-events.js',
+  'astro/virtual-modules/transitions-swap-functions.js',
+]
+
+function optimizeServerDeps() {
+  return {
+    name: 'optimize-server-deps',
+    configEnvironment(name) {
+      if (name === 'client') return
+      return { optimizeDeps: { include: serverDeps } }
+    },
+  }
+}
+
 export default defineConfig({
   site: 'https://adeonir.dev',
   adapter: cloudflare(),
@@ -55,6 +80,27 @@ export default defineConfig({
     },
   },
   vite: {
-    plugins: [tailwindcss(), icons({ compiler: 'jsx', jsx: 'react' })],
+    plugins: [
+      tailwindcss(),
+      icons({ compiler: 'jsx', jsx: 'react' }),
+      optimizeServerDeps(),
+    ],
+    optimizeDeps: {
+      include: [
+        'react',
+        'react-dom',
+        'react/jsx-runtime',
+        '@ark-ui/react',
+        'astro/virtual-modules/transitions-router.js',
+        'astro/virtual-modules/transitions-types.js',
+        'astro/virtual-modules/transitions-events.js',
+        'astro/virtual-modules/transitions-swap-functions.js',
+      ],
+    },
+    server: {
+      warmup: {
+        ssrFiles: ['./src/pages/index.astro'],
+      },
+    },
   },
 })

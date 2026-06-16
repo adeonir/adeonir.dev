@@ -8,6 +8,16 @@ import { createElement } from 'react'
 import { Confirmation } from '~/emails/confirmation'
 import { Notification } from '~/emails/notification'
 
+export class ContactDeliveryError extends Error {
+  reason: 'resend_error' | 'missing_content'
+
+  constructor(reason: 'resend_error' | 'missing_content', message: string) {
+    super(message)
+    this.reason = reason
+    this.name = 'ContactDeliveryError'
+  }
+}
+
 type ContactEmailInput = {
   name: string
   email: string
@@ -50,7 +60,10 @@ async function send(payload: ResendPayload) {
   })
 
   if (!response.ok) {
-    throw new Error(`Resend request failed with status ${response.status}`)
+    throw new ContactDeliveryError(
+      'resend_error',
+      `Resend request failed with status ${response.status}`,
+    )
   }
 }
 
@@ -63,7 +76,10 @@ export async function sendContactEmails({
   const entry = await getEntry('emails', 'emails')
 
   if (!entry) {
-    throw new Error('Missing emails/emails entry')
+    throw new ContactDeliveryError(
+      'missing_content',
+      'Missing emails/emails entry',
+    )
   }
 
   const { from, fields, confirmation, notification } = entry.data

@@ -4,11 +4,32 @@ import { UTM_KEYS, type UtmTags } from '~/schemas/contact'
 
 const POSTHOG_ENDPOINT = 'https://us.i.posthog.com/i/v0/e/'
 
-export async function captureContactSubmission(utm: UtmTags): Promise<void> {
+type CaptureProperties = Record<
+  string,
+  string | number | boolean | object | unknown[]
+>
+
+async function captureEvent(
+  event: string,
+  properties: CaptureProperties,
+): Promise<void> {
   if (!POSTHOG_KEY) {
     return
   }
 
+  await fetch(POSTHOG_ENDPOINT, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      api_key: POSTHOG_KEY,
+      event,
+      distinct_id: crypto.randomUUID(),
+      properties,
+    }),
+  }).catch(() => undefined)
+}
+
+export async function captureContactSubmission(utm: UtmTags): Promise<void> {
   const properties: Record<string, string> = {}
   for (const key of UTM_KEYS) {
     const value = utm[key]
@@ -17,14 +38,32 @@ export async function captureContactSubmission(utm: UtmTags): Promise<void> {
     }
   }
 
-  await fetch(POSTHOG_ENDPOINT, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      api_key: POSTHOG_KEY,
-      event: 'contact-submission',
-      distinct_id: crypto.randomUUID(),
-      properties,
-    }),
-  }).catch(() => undefined)
+  await captureEvent('contact-submission', properties)
+}
+
+export async function captureContactFailure(
+  reason: 'resend_error' | 'missing_content',
+): Promise<void> {
+  await captureEvent('contact-failure', { reason })
+}
+
+export async function captureContactAbuse(
+  cause: 'rate_limit' | 'honeypot',
+): Promise<void> {
+  await captureEvent('contact-abuse', { cause })
+}
+
+export async function captureException(error: unknown): Promise<void> {
+  const normalized = error instanceof Error ? error : new Error(String(error))
+
+  await captureEvent('$exception', {
+    $exception_list: [
+      {
+        type: normalized.name,
+        value: normalized.message,
+        mechanism: { handled: true },
+      },
+    ],
+    $exception_stack: normalized.stack ?? '',
+  })
 }
