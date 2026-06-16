@@ -1,6 +1,5 @@
 import { actions } from 'astro:actions'
-import { useState } from 'react'
-
+import { toaster } from '~/components/islands/toaster'
 import { Button } from '~/components/ui/button'
 import { Field } from '~/components/ui/field'
 import { useForm } from '~/hooks/use-form'
@@ -20,8 +19,14 @@ type ContactFormContent = {
   fields: FieldContent[]
   submit: string
   states: {
-    success: string
-    error: string
+    success: {
+      title: string
+      description: string
+    }
+    error: {
+      title: string
+      description: string
+    }
   }
   validation: ContactValidationMessages
 }
@@ -31,8 +36,6 @@ type ContactFormProps = {
 }
 
 export function ContactForm({ content }: ContactFormProps) {
-  const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle')
-
   const { errors, isSubmitting, handleSubmit, handleInput } = useForm({
     validate: (formData) => {
       const schema = createContactSchema(content.validation)
@@ -62,38 +65,16 @@ export function ContactForm({ content }: ContactFormProps) {
 
       try {
         const result = await actions.contact(formData)
-        setStatus(result.error ? 'error' : 'success')
+        if (result.error) {
+          toaster.error(content.states.error)
+        } else {
+          toaster.success(content.states.success)
+        }
       } catch {
-        setStatus('error')
+        toaster.error(content.states.error)
       }
     },
   })
-
-  if (status === 'success') {
-    return (
-      <div
-        role="status"
-        className="flex flex-col gap-2 rounded-lg border border-border bg-card p-6"
-      >
-        <p className="text-pretty text-body text-foreground">
-          {content.states.success}
-        </p>
-      </div>
-    )
-  }
-
-  if (status === 'error') {
-    return (
-      <div
-        role="alert"
-        className="flex flex-col gap-2 rounded-lg border border-border bg-card p-6"
-      >
-        <p className="text-pretty text-body text-foreground">
-          {content.states.error}
-        </p>
-      </div>
-    )
-  }
 
   return (
     <form
