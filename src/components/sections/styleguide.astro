@@ -13,16 +13,11 @@ interface Props {
 
 const { skin } = Astro.props
 
-const colors = [
+const surfaces = [
   {
     box: 'bg-sunken',
     text: 'text-sunken-foreground',
     label: 'sunken / sunken-foreground',
-  },
-  {
-    box: 'bg-primary',
-    text: 'text-primary-foreground',
-    label: 'primary / primary-foreground',
   },
   {
     box: 'bg-background',
@@ -30,14 +25,27 @@ const colors = [
     label: 'background / foreground',
   },
   {
-    box: 'bg-secondary',
-    text: 'text-secondary-foreground',
-    label: 'secondary / secondary-foreground',
-  },
-  {
     box: 'bg-card',
     text: 'text-card-foreground',
     label: 'card / card-foreground',
+  },
+  {
+    box: 'bg-popover',
+    text: 'text-popover-foreground',
+    label: 'popover / popover-foreground',
+  },
+]
+
+const accents = [
+  {
+    box: 'bg-primary',
+    text: 'text-primary-foreground',
+    label: 'primary / primary-foreground',
+  },
+  {
+    box: 'bg-secondary',
+    text: 'text-secondary-foreground',
+    label: 'secondary / secondary-foreground',
   },
   {
     box: 'bg-muted',
@@ -45,14 +53,32 @@ const colors = [
     label: 'muted / muted-foreground',
   },
   {
-    box: 'bg-popover',
-    text: 'text-popover-foreground',
-    label: 'popover / popover-foreground',
-  },
-  {
     box: 'bg-accent',
     text: 'text-accent-foreground',
     label: 'accent / accent-foreground',
+  },
+]
+
+const status = [
+  {
+    box: 'bg-success',
+    text: 'text-success-foreground',
+    label: 'success / success-foreground',
+  },
+  {
+    box: 'bg-error',
+    text: 'text-error-foreground',
+    label: 'error / error-foreground',
+  },
+  {
+    box: 'bg-warning',
+    text: 'text-warning-foreground',
+    label: 'warning / warning-foreground',
+  },
+  {
+    box: 'bg-info',
+    text: 'text-info-foreground',
+    label: 'info / info-foreground',
   },
 ]
 
@@ -130,17 +156,21 @@ const breakpoints = [
 
   <section class="flex flex-col gap-4">
     <h3 class="text-title">Colors</h3>
-    <div class="grid grid-cols-2 gap-3">
+    <div class="flex gap-3">
       {
-        colors.map((c) => (
-          <div
-            class:list={[
-              'flex h-20 flex-col justify-end rounded-md border border-border p-3',
-              c.box,
-              c.text,
-            ]}
-          >
-            <span class="text-caption">{c.label}</span>
+        [surfaces, accents, status].map((group) => (
+          <div class="flex flex-1 flex-col gap-3">
+            {group.map((c) => (
+              <div
+                class:list={[
+                  'flex h-20 flex-col justify-end rounded-md border border-border p-3',
+                  c.box,
+                  c.text,
+                ]}
+              >
+                <span class="text-caption">{c.label}</span>
+              </div>
+            ))}
           </div>
         ))
       }
