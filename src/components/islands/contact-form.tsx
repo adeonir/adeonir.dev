@@ -66,12 +66,12 @@ export function ContactForm({ content }: ContactFormProps) {
       try {
         const result = await actions.contact(formData)
         if (result.error) {
-          toaster.error(content.states.error)
+          toaster.error({ ...content.states.error, duration: Infinity })
         } else {
           toaster.success(content.states.success)
         }
       } catch {
-        toaster.error(content.states.error)
+        toaster.error({ ...content.states.error, duration: Infinity })
       }
     },
   })
