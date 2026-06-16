@@ -97,6 +97,8 @@ export function ContactForm({ content }: ContactFormProps) {
 
   return (
     <form
+      method="post"
+      action={actions.contact.queryString}
       onSubmit={handleSubmit}
       onInput={handleInput}
       noValidate
