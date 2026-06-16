@@ -46,3 +46,9 @@ export async function captureContactFailure(
 ): Promise<void> {
   await captureEvent('contact-failure', { reason })
 }
+
+export async function captureContactAbuse(
+  cause: 'rate_limit' | 'honeypot',
+): Promise<void> {
+  await captureEvent('contact-abuse', { cause })
+}
