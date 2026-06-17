@@ -1,6 +1,6 @@
 import { POSTHOG_KEY } from 'astro:env/client'
 
-import { UTM_KEYS, type UtmTags } from '~/schemas/contact'
+import { UTM_KEYS, type UtmTags } from '~/validations/contact'
 
 const POSTHOG_ENDPOINT = 'https://us.i.posthog.com/i/v0/e/'
 

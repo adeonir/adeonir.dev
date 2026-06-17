@@ -8,7 +8,7 @@ import {
   type ContactValidationMessages,
   createContactSchema,
   UTM_KEYS,
-} from '~/schemas/contact'
+} from '~/validations/contact'
 
 type FieldContent = {
   name: string
