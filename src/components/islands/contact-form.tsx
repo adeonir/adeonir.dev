@@ -10,14 +10,12 @@ import {
   UTM_KEYS,
 } from '~/validations/contact'
 
-type FieldContent = {
-  name: string
-  label: string
-  placeholder: string
-}
-
 type ContactFormContent = {
-  fields: FieldContent[]
+  fields: {
+    name: string
+    label: string
+    placeholder: string
+  }[]
   submit: string
   states: {
     success: {
