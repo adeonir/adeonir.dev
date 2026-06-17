@@ -3,7 +3,7 @@ import { getEntry } from 'astro:content'
 
 import Logo from '~/components/logo.astro'
 import MobileMenu from '~/components/mobile-menu.astro'
-import { ThemeToggle } from '~/components/islands/theme-toggle'
+import ThemeToggle from '~/components/theme-toggle.astro'
 import { Divider } from '~/components/ui/divider'
 import { NavLink } from '~/components/ui/nav-link'
 
@@ -13,7 +13,7 @@ if (!header) {
   throw new Error('Missing header/header entry')
 }
 
-const { logo, nav, theme } = header.data
+const { logo, nav } = header.data
 ---
 
 <header
@@ -41,13 +41,13 @@ const { logo, nav, theme } = header.data
       </nav>
       <Divider orientation="vertical" className="hidden h-5 md:block" />
       <div class="hidden xxs:block">
-        <ThemeToggle client:load label={theme} />
+        <ThemeToggle />
       </div>
       <div class="md:hidden">
         <MobileMenu nav={nav}>
           <Divider className="block xxs:hidden" />
           <div class="flex items-center gap-4 xxs:hidden">
-            <ThemeToggle client:load label={theme} />
+            <ThemeToggle />
           </div>
         </MobileMenu>
       </div>

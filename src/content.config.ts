@@ -11,6 +11,7 @@ import {
   notFoundSchema,
   settingsSchema,
   stackSchema,
+  themeToggleSchema,
 } from '~/content/schemas'
 
 const settings = defineCollection({
@@ -26,6 +27,11 @@ const header = defineCollection({
 const mobileMenu = defineCollection({
   loader: file('src/content/mobile-menu.yaml'),
   schema: mobileMenuSchema,
+})
+
+const themeToggle = defineCollection({
+  loader: file('src/content/theme-toggle.yaml'),
+  schema: themeToggleSchema,
 })
 
 const hero = defineCollection({
@@ -67,6 +73,7 @@ export const collections = {
   settings,
   header,
   mobileMenu,
+  themeToggle,
   footer,
   hero,
   about,

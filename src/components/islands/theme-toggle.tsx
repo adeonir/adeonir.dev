@@ -1,40 +1,17 @@
-import { useEffect, useState } from 'react'
+import { useStore } from '@nanostores/react'
 
 import { Button } from '~/components/ui/button'
 import { Swap } from '~/components/ui/swap'
+import { $theme, toggleTheme } from '~/stores/theme'
 import IconMoon from '~icons/tabler/moon'
 import IconSun from '~icons/tabler/sun'
 
 type ThemeToggleProps = {
-  label: { dark: string; light: string }
+  labels: { dark: string; light: string }
 }
 
-export function ThemeToggle({ label }: ThemeToggleProps) {
-  const [theme, setTheme] = useState<'dark' | 'light'>('dark')
-
-  useEffect(() => {
-    const current = document.documentElement.dataset.theme
-    setTheme(current === 'light' ? 'light' : 'dark')
-  }, [])
-
-  const handleToggle = () => {
-    const next = theme === 'dark' ? 'light' : 'dark'
-    const root = document.documentElement
-
-    root.setAttribute('data-theme-switching', '')
-    root.dataset.theme = next
-
-    try {
-      localStorage.setItem('theme', next)
-    } catch {}
-
-    setTheme(next)
-
-    requestAnimationFrame(() =>
-      requestAnimationFrame(() => root.removeAttribute('data-theme-switching')),
-    )
-  }
-
+export function ThemeToggle({ labels: label }: ThemeToggleProps) {
+  const theme = useStore($theme)
   const isLight = theme === 'light'
 
   return (
@@ -44,7 +21,7 @@ export function ThemeToggle({ label }: ThemeToggleProps) {
       aria-label={isLight ? label.light : label.dark}
       className="border-border!"
       aria-pressed={isLight}
-      onClick={handleToggle}
+      onClick={toggleTheme}
     >
       <Swap.Root className="size-5" swap={isLight}>
         <Swap.Indicator type="off" variant="rotate">

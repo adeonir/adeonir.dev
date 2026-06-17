@@ -1,0 +1,13 @@
+---
+import { getEntry } from 'astro:content'
+
+import { ThemeToggle } from '~/components/islands/theme-toggle'
+
+const labels = await getEntry('themeToggle', 'labels')
+
+if (!labels) {
+  throw new Error('Missing themeToggle/labels entry')
+}
+---
+
+<ThemeToggle client:load labels={labels.data} />

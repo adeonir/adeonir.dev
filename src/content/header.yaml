@@ -5,6 +5,3 @@ header:
       href: '#about'
     - label: 'contato'
       href: '#contact'
-  theme:
-    dark: 'Tema escuro'
-    light: 'Tema claro'
