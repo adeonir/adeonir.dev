@@ -96,7 +96,7 @@
 [data-theme="light"] {
   --primary: var(--ocean-500);
   --primary-foreground: var(--ink);
-  --secondary: var(--azalea-500);
+  --secondary: var(--azalea-600);
   --secondary-foreground: var(--ink);
   --action: var(--ocean-700); /* primary as text */
   --emphasis: var(--azalea-750); /* secondary as text */
