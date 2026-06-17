@@ -119,6 +119,12 @@
   --ring: var(--ocean-600);
 }
 
+[data-theme-switching] *,
+[data-theme-switching] *::before,
+[data-theme-switching] *::after {
+  @apply transition-none;
+}
+
 @theme inline {
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);

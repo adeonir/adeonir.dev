@@ -19,11 +19,20 @@ export function ThemeToggle({ label }: ThemeToggleProps) {
 
   const handleToggle = () => {
     const next = theme === 'dark' ? 'light' : 'dark'
-    document.documentElement.dataset.theme = next
+    const root = document.documentElement
+
+    root.setAttribute('data-theme-switching', '')
+    root.dataset.theme = next
+
     try {
       localStorage.setItem('theme', next)
     } catch {}
+
     setTheme(next)
+
+    requestAnimationFrame(() =>
+      requestAnimationFrame(() => root.removeAttribute('data-theme-switching')),
+    )
   }
 
   const isLight = theme === 'light'
