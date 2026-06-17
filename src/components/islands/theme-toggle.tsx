@@ -1,8 +1,9 @@
 import { useStore } from '@nanostores/react'
+import { useEffect } from 'react'
 
 import { Button } from '~/components/ui/button'
 import { Swap } from '~/components/ui/swap'
-import { $theme, toggleTheme } from '~/stores/theme'
+import { $theme, syncTheme, toggleTheme } from '~/stores/theme'
 import IconMoon from '~icons/tabler/moon'
 import IconSun from '~icons/tabler/sun'
 
@@ -12,6 +13,11 @@ type ThemeToggleProps = {
 
 export function ThemeToggle({ labels: label }: ThemeToggleProps) {
   const theme = useStore($theme)
+
+  useEffect(() => {
+    syncTheme()
+  }, [])
+
   const isLight = theme === 'light'
 
   return (

@@ -1,14 +1,14 @@
-import { atom, onMount } from 'nanostores'
+import { atom } from 'nanostores'
 
 type Theme = 'dark' | 'light'
 
 export const $theme = atom<Theme>('dark')
 
-onMount($theme, () => {
+export function syncTheme() {
   $theme.set(
     document.documentElement.dataset.theme === 'light' ? 'light' : 'dark',
   )
-})
+}
 
 export function toggleTheme() {
   const next: Theme = $theme.get() === 'dark' ? 'light' : 'dark'
