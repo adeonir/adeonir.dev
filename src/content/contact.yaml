@@ -3,7 +3,7 @@ contact:
   title:
     - text: 'Tem um '
     - text: 'projeto'
-      strong: true
+      highlight: true
     - text: ' em mente?'
   body:
     - 'Adoro conhecer gente nova, trocar experiências e colaborar em projetos interessantes. Se você quer bater um papo sobre desenvolvimento ou tem uma ideia que precisa de uma mão para sair do papel, me manda uma mensagem.'

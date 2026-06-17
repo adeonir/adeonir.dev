@@ -1,18 +1,16 @@
 import { defineCollection } from 'astro:content'
 import { file } from 'astro/loaders'
-import {
-  aboutSchema,
-  contactSchema,
-  emailsSchema,
-  footerSchema,
-  headerSchema,
-  heroSchema,
-  mobileMenuSchema,
-  notFoundSchema,
-  settingsSchema,
-  stackSchema,
-  themeToggleSchema,
-} from '~/content/schemas'
+import { aboutSchema } from '~/schemas/about'
+import { contactSchema } from '~/schemas/contact'
+import { emailsSchema } from '~/schemas/emails'
+import { footerSchema } from '~/schemas/footer'
+import { headerSchema } from '~/schemas/header'
+import { heroSchema } from '~/schemas/hero'
+import { mobileMenuSchema } from '~/schemas/mobile-menu'
+import { notFoundSchema } from '~/schemas/not-found'
+import { settingsSchema } from '~/schemas/settings'
+import { stackSchema } from '~/schemas/stack'
+import { themeToggleSchema } from '~/schemas/theme-toggle'
 
 const settings = defineCollection({
   loader: file('src/content/settings.yaml'),

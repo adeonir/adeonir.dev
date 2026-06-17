@@ -8,7 +8,7 @@ paths:
 
 **Impact: MEDIUM**
 
-Inline highlight segments in content collections name their boolean field by the text's meaning, never by a color token. Use `strong` for strong importance and `emphasis` for stress emphasis (the HTML `<strong>`/`<em>` split); the section renderer maps meaning to token — `strong` to `text-secondary`, `emphasis` to `text-emphasis`. Never name the field `secondary`, which leaks the color token into content data. The split is also a WCAG floor: `strong` is for large text (>=24px, or >=18.66px bold) that clears 3:1 with the vivid `text-secondary`, while `emphasis` is for small text that needs the darker `text-emphasis` to clear 4.5:1. Beware the trap — in the dark skin both tokens resolve to the same azalea-500, so a wrong pick is invisible in dark and only surfaces in the light skin (secondary=azalea-600, emphasis=azalea-750); verify highlighted text in the light skin.
+Inline highlight segments in content collections name their boolean field by the text's meaning, never by a color token. Use `highlight` for strong importance and `emphasis` for stress emphasis; the section renderer maps meaning to token — `highlight` to `text-secondary`, `emphasis` to `text-emphasis`. Never name the field `secondary`, which leaks the color token into content data. The split is also a WCAG floor: `highlight` is for large text (>=24px, or >=18.66px bold) that clears 3:1 with the vivid `text-secondary`, while `emphasis` is for small text that needs the darker `text-emphasis` to clear 4.5:1. Beware the trap — in the dark skin both tokens resolve to the same azalea-500, so a wrong pick is invisible in dark and only surfaces in the light skin (secondary=azalea-600, emphasis=azalea-750); verify highlighted text in the light skin.
 
 **Incorrect:**
 
@@ -22,9 +22,9 @@ Inline highlight segments in content collections name their boolean field by the
 **Correct:**
 
 ```astro
-<!-- large tagline: meaning is `strong`, rendered with the large-text token -->
+<!-- large tagline: meaning is `highlight`, rendered with the large-text token -->
 <p class="text-3xl font-semibold">
-  {tagline.map((s) => (s.strong ? <span class="text-secondary">{s.text}</span> : s.text))}
+  {tagline.map((s) => (s.highlight ? <span class="text-secondary">{s.text}</span> : s.text))}
 </p>
 
 <!-- small tagline keeps `emphasis` -> text-emphasis -->

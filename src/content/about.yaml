@@ -3,11 +3,11 @@ about:
   headline:
     - text: 'Do '
     - text: 'design '
-      strong: true
+      highlight: true
       break: true
     - text: 'ao '
     - text: 'código'
-      strong: true
+      highlight: true
     - text: '.'
   bio:
     - 'Depois de anos como designer gráfico, migrei para o desenvolvimento numa evolução natural que me colocou exatamente onde design e código se encontram. Sou desenvolvedor frontend há mais de 6 anos, trabalhando para empresas no Brasil, na Europa e, mais recentemente, nos EUA. Nos projetos que toco sozinho, cuido do código de ponta a ponta, e também do design quando preciso.'
