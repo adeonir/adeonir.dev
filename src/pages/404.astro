@@ -27,7 +27,7 @@ const { eyebrow, display, headline, body, action } = notFound.data
       {
         headline.map((segment) => (
           <>
-            {segment.strong ? (
+            {segment.highlight ? (
               <span class="text-secondary">{segment.text}</span>
             ) : (
               segment.text

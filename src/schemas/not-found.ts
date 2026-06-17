@@ -7,7 +7,7 @@ export const notFoundSchema = z.object({
     .array(
       z.object({
         text: z.string().min(1),
-        strong: z.boolean().optional(),
+        highlight: z.boolean().optional(),
         break: z.boolean().optional(),
       }),
     )

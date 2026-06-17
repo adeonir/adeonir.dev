@@ -22,7 +22,7 @@ const { eyebrow, title, body, social, form } = contact.data
         {
           title.map((segment) => (
             <>
-              {segment.strong ? (
+              {segment.highlight ? (
                 <span class="text-secondary">{segment.text}</span>
               ) : (
                 segment.text

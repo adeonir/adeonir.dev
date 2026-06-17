@@ -20,7 +20,7 @@ const { eyebrow, headline, tools } = stack.data
       {
         headline.map((segment) => (
           <>
-            {segment.strong ? (
+            {segment.highlight ? (
               <span class="text-secondary">{segment.text}</span>
             ) : (
               segment.text
