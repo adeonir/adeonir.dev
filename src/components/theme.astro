@@ -1,11 +1,17 @@
 <script is:inline>
   function applyTheme() {
-    let stored = null
+    let theme = null
     try {
-      stored = localStorage.getItem('theme')
+      theme = localStorage.getItem('theme')
     } catch {}
-    document.documentElement.dataset.theme =
-      stored === 'light' || stored === 'dark' ? stored : 'dark'
+
+    if (theme !== 'light' && theme !== 'dark') {
+      theme = window.matchMedia('(prefers-color-scheme: light)').matches
+        ? 'light'
+        : 'dark'
+    }
+
+    document.documentElement.dataset.theme = theme
   }
 
   document.addEventListener('astro:after-swap', applyTheme)
