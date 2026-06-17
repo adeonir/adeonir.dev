@@ -157,6 +157,7 @@
   --font-sans: var(--font-geist), sans-serif;
   --font-mono: var(--font-fira-code), monospace;
 
+  --breakpoint-xxs: 24rem;
   --breakpoint-xs: 32rem;
 
   --animate-fade-in: fade-in 150ms ease-out;
