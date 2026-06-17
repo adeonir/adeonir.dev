@@ -1,6 +1,8 @@
 import { Portal } from '@ark-ui/react/portal'
 import { useEffect, useState } from 'react'
+import { ThemeToggle } from '~/components/islands/theme-toggle'
 import { Button } from '~/components/ui/button'
+import { Divider } from '~/components/ui/divider'
 import { NavLink } from '~/components/ui/nav-link'
 import { Popover } from '~/components/ui/popover'
 import { Swap } from '~/components/ui/swap'
@@ -10,9 +12,10 @@ import IconX from '~icons/tabler/x'
 type MobileMenuProps = {
   nav: { label: string; href: string }[]
   menu: { label: string; open: string; close: string }
+  theme: { dark: string; light: string }
 }
 
-export function MobileMenu({ nav, menu }: MobileMenuProps) {
+export function MobileMenu({ nav, menu, theme }: MobileMenuProps) {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
@@ -51,11 +54,14 @@ export function MobileMenu({ nav, menu }: MobileMenuProps) {
       </Popover.Trigger>
       <Portal>
         <Popover.Positioner>
-          <Popover.Content aria-label={menu.label} className="px-6">
+          <Popover.Content
+            aria-label={menu.label}
+            className="flex flex-col gap-4"
+          >
             <nav>
               <ul className="flex flex-col gap-3">
                 {nav.map((item) => (
-                  <li key={item.href}>
+                  <li key={item.href} className="px-1 py-px">
                     <Popover.CloseTrigger asChild>
                       <NavLink href={item.href}>{item.label}</NavLink>
                     </Popover.CloseTrigger>
@@ -63,6 +69,10 @@ export function MobileMenu({ nav, menu }: MobileMenuProps) {
                 ))}
               </ul>
             </nav>
+            <Divider className="block xxs:hidden" />
+            <div className="flex xxs:hidden items-center gap-4">
+              <ThemeToggle label={theme} />
+            </div>
           </Popover.Content>
         </Popover.Positioner>
       </Portal>
