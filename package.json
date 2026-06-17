@@ -13,13 +13,15 @@
     "typecheck": "astro check",
     "lint": "biome check && prettier --check \"src/**/*.{astro,yaml}\"",
     "lint:fix": "biome check --write --unsafe && prettier --write \"src/**/*.{astro,yaml}\"",
-    "lighthouse": "astro build && npx -y @lhci/cli autorun"
+    "lighthouse": "astro build && npx -y @lhci/cli autorun",
+    "gates": "pnpm typecheck && pnpm lint:fix"
   },
   "dependencies": {
     "@ark-ui/react": "5.37.2",
     "@astrojs/cloudflare": "13.7.0",
     "@astrojs/react": "5.0.7",
     "@astrojs/sitemap": "3.7.3",
+    "@nanostores/react": "1.1.0",
     "@react-email/components": "1.0.12",
     "@react-email/render": "2.0.8",
     "@tailwindcss/vite": "4.3.1",
@@ -29,6 +31,7 @@
     "class-variance-authority": "0.7.1",
     "date-fns": "4.4.0",
     "date-fns-tz": "3.2.0",
+    "nanostores": "1.3.0",
     "react": "19.2.7",
     "react-dom": "19.2.7",
     "tailwindcss": "4.3.1",

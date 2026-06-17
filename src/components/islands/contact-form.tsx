@@ -8,16 +8,14 @@ import {
   type ContactValidationMessages,
   createContactSchema,
   UTM_KEYS,
-} from '~/schemas/contact'
-
-type FieldContent = {
-  name: string
-  label: string
-  placeholder: string
-}
+} from '~/validations/contact'
 
 type ContactFormContent = {
-  fields: FieldContent[]
+  fields: {
+    name: string
+    label: string
+    placeholder: string
+  }[]
   submit: string
   states: {
     success: {

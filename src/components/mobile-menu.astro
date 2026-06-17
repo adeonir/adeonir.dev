@@ -1,0 +1,21 @@
+---
+import { getEntry } from 'astro:content'
+
+import { MobileMenu } from '~/components/islands/mobile-menu'
+
+interface Props {
+  nav: { label: string; href: string }[]
+}
+
+const content = await getEntry('mobileMenu', 'content')
+
+if (!content) {
+  throw new Error('Missing mobileMenu/content entry')
+}
+
+const { nav } = Astro.props
+---
+
+<MobileMenu client:visible nav={nav} content={content.data}>
+  <slot />
+</MobileMenu>

@@ -1,0 +1,5 @@
+content:
+  label: 'Menu'
+  trigger:
+    open: 'Abrir menu'
+    close: 'Fechar menu'

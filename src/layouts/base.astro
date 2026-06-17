@@ -6,6 +6,7 @@ import { SEO } from 'astro-seo'
 import Analytics from '~/components/analytics.astro'
 import Footer from '~/components/sections/footer.astro'
 import Header from '~/components/sections/header.astro'
+import Theme from '~/components/theme.astro'
 import { Toaster } from '~/components/islands/toaster'
 import '~/styles/global.css'
 
@@ -51,6 +52,8 @@ const ogImageURL = new URL(
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <Theme />
 
     <Font cssVariable="--font-geist" preload />
     <Font cssVariable="--font-fira-code" />

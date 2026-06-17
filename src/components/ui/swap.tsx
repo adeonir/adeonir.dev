@@ -9,12 +9,12 @@ const indicatorVariants = cva(
   {
     variants: {
       variant: {
-        fade: 'data-[state=closed]:animate-fade-out data-[state=open]:animate-fade-in',
-        flip: 'data-[state=closed]:animate-flip-out data-[state=open]:animate-flip-in',
+        fade: 'motion-safe:data-[state=closed]:animate-fade-out motion-safe:data-[state=open]:animate-fade-in',
+        flip: 'motion-safe:data-[state=closed]:animate-flip-out motion-safe:data-[state=open]:animate-flip-in',
         rotate:
-          'data-[state=closed]:animate-rotate-out data-[state=open]:animate-rotate-in',
+          'motion-safe:data-[state=closed]:animate-rotate-out motion-safe:data-[state=open]:animate-rotate-in',
         scale:
-          'data-[state=closed]:animate-scale-out data-[state=open]:animate-scale-in',
+          'motion-safe:data-[state=closed]:animate-scale-out motion-safe:data-[state=open]:animate-scale-in',
       },
     },
     defaultVariants: {

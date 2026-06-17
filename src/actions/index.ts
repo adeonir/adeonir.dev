@@ -1,6 +1,4 @@
 import { ActionError, defineAction } from 'astro:actions'
-
-import { contactInputSchema } from '~/schemas/contact'
 import {
   captureContactAbuse,
   captureContactFailure,
@@ -9,6 +7,7 @@ import {
 } from '~/services/analytics'
 import { ContactDeliveryError, sendContactEmails } from '~/services/email'
 import { isRateLimited } from '~/services/rate-limit'
+import { contactInputSchema } from '~/validations/contact'
 
 export const server = {
   contact: defineAction({

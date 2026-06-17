@@ -1,5 +1,5 @@
 import { Portal } from '@ark-ui/react/portal'
-import { useEffect, useState } from 'react'
+import { type ReactNode, useEffect, useState } from 'react'
 import { Button } from '~/components/ui/button'
 import { NavLink } from '~/components/ui/nav-link'
 import { Popover } from '~/components/ui/popover'
@@ -9,10 +9,11 @@ import IconX from '~icons/tabler/x'
 
 type MobileMenuProps = {
   nav: { label: string; href: string }[]
-  menu: { label: string; open: string; close: string }
+  content: { label: string; trigger: { open: string; close: string } }
+  children: ReactNode
 }
 
-export function MobileMenu({ nav, menu }: MobileMenuProps) {
+export function MobileMenu({ nav, content, children }: MobileMenuProps) {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
@@ -29,14 +30,12 @@ export function MobileMenu({ nav, menu }: MobileMenuProps) {
       open={open}
       onOpenChange={(details) => setOpen(details.open)}
       modal
-      lazyMount
-      unmountOnExit
       positioning={{ placement: 'bottom-end', gutter: 8 }}
     >
       <Popover.Trigger asChild>
         <Button
-          aria-label={open ? menu.close : menu.open}
-          className="hover:border-border!"
+          aria-label={open ? content.trigger.close : content.trigger.open}
+          className="border-border!"
           size="icon"
         >
           <Swap.Root className="size-5" swap={open}>
@@ -51,11 +50,14 @@ export function MobileMenu({ nav, menu }: MobileMenuProps) {
       </Popover.Trigger>
       <Portal>
         <Popover.Positioner>
-          <Popover.Content aria-label={menu.label} className="px-6">
+          <Popover.Content
+            aria-label={content.label}
+            className="flex flex-col gap-4"
+          >
             <nav>
               <ul className="flex flex-col gap-3">
                 {nav.map((item) => (
-                  <li key={item.href}>
+                  <li key={item.href} className="px-1 py-px">
                     <Popover.CloseTrigger asChild>
                       <NavLink href={item.href}>{item.label}</NavLink>
                     </Popover.CloseTrigger>
@@ -63,6 +65,7 @@ export function MobileMenu({ nav, menu }: MobileMenuProps) {
                 ))}
               </ul>
             </nav>
+            {children}
           </Popover.Content>
         </Popover.Positioner>
       </Portal>

@@ -96,7 +96,7 @@
 [data-theme="light"] {
   --primary: var(--ocean-500);
   --primary-foreground: var(--ink);
-  --secondary: var(--azalea-500);
+  --secondary: var(--azalea-600);
   --secondary-foreground: var(--ink);
   --action: var(--ocean-700); /* primary as text */
   --emphasis: var(--azalea-750); /* secondary as text */
@@ -117,6 +117,12 @@
   --border: var(--latte-200); /* surface-0 */
   --input: var(--latte-200); /* surface-0 */
   --ring: var(--ocean-600);
+}
+
+[data-theme-switching] *,
+[data-theme-switching] *::before,
+[data-theme-switching] *::after {
+  @apply transition-none;
 }
 
 @theme inline {
@@ -157,6 +163,7 @@
   --font-sans: var(--font-geist), sans-serif;
   --font-mono: var(--font-fira-code), monospace;
 
+  --breakpoint-xxs: 24rem;
   --breakpoint-xs: 32rem;
 
   --animate-fade-in: fade-in 150ms ease-out;
