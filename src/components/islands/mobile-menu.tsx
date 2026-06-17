@@ -1,8 +1,6 @@
 import { Portal } from '@ark-ui/react/portal'
-import { useEffect, useState } from 'react'
-import { ThemeToggle } from '~/components/islands/theme-toggle'
+import { type ReactNode, useEffect, useState } from 'react'
 import { Button } from '~/components/ui/button'
-import { Divider } from '~/components/ui/divider'
 import { NavLink } from '~/components/ui/nav-link'
 import { Popover } from '~/components/ui/popover'
 import { Swap } from '~/components/ui/swap'
@@ -11,11 +9,11 @@ import IconX from '~icons/tabler/x'
 
 type MobileMenuProps = {
   nav: { label: string; href: string }[]
-  menu: { label: string; open: string; close: string }
-  theme: { dark: string; light: string }
+  content: { label: string; trigger: { open: string; close: string } }
+  children: ReactNode
 }
 
-export function MobileMenu({ nav, menu, theme }: MobileMenuProps) {
+export function MobileMenu({ nav, content, children }: MobileMenuProps) {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
@@ -32,13 +30,11 @@ export function MobileMenu({ nav, menu, theme }: MobileMenuProps) {
       open={open}
       onOpenChange={(details) => setOpen(details.open)}
       modal
-      lazyMount
-      unmountOnExit
       positioning={{ placement: 'bottom-end', gutter: 8 }}
     >
       <Popover.Trigger asChild>
         <Button
-          aria-label={open ? menu.close : menu.open}
+          aria-label={open ? content.trigger.close : content.trigger.open}
           className="border-border!"
           size="icon"
         >
@@ -55,7 +51,7 @@ export function MobileMenu({ nav, menu, theme }: MobileMenuProps) {
       <Portal>
         <Popover.Positioner>
           <Popover.Content
-            aria-label={menu.label}
+            aria-label={content.label}
             className="flex flex-col gap-4"
           >
             <nav>
@@ -69,10 +65,7 @@ export function MobileMenu({ nav, menu, theme }: MobileMenuProps) {
                 ))}
               </ul>
             </nav>
-            <Divider className="block xxs:hidden" />
-            <div className="flex xxs:hidden items-center gap-4">
-              <ThemeToggle label={theme} />
-            </div>
+            {children}
           </Popover.Content>
         </Popover.Positioner>
       </Portal>

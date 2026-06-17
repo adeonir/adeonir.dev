@@ -7,6 +7,7 @@ import {
   footerSchema,
   headerSchema,
   heroSchema,
+  mobileMenuSchema,
   notFoundSchema,
   settingsSchema,
   stackSchema,
@@ -20,6 +21,11 @@ const settings = defineCollection({
 const header = defineCollection({
   loader: file('src/content/header.yaml'),
   schema: headerSchema,
+})
+
+const mobileMenu = defineCollection({
+  loader: file('src/content/mobile-menu.yaml'),
+  schema: mobileMenuSchema,
 })
 
 const hero = defineCollection({
@@ -60,6 +66,7 @@ const emails = defineCollection({
 export const collections = {
   settings,
   header,
+  mobileMenu,
   footer,
   hero,
   about,

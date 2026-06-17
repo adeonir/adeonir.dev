@@ -17,14 +17,17 @@ export const headerSchema = z.object({
       }),
     )
     .min(1),
-  menu: z.object({
-    label: z.string().min(1),
-    open: z.string().min(1),
-    close: z.string().min(1),
-  }),
   theme: z.object({
     dark: z.string().min(1),
     light: z.string().min(1),
+  }),
+})
+
+export const mobileMenuSchema = z.object({
+  label: z.string().min(1),
+  trigger: z.object({
+    open: z.string().min(1),
+    close: z.string().min(1),
   }),
 })
 

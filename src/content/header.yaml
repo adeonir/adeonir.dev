@@ -5,10 +5,6 @@ header:
       href: '#about'
     - label: 'contato'
       href: '#contact'
-  menu:
-    label: 'Menu'
-    open: 'Abrir menu'
-    close: 'Fechar menu'
   theme:
     dark: 'Tema escuro'
     light: 'Tema claro'
