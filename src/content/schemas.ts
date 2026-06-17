@@ -22,6 +22,10 @@ export const headerSchema = z.object({
     open: z.string().min(1),
     close: z.string().min(1),
   }),
+  theme: z.object({
+    dark: z.string().min(1),
+    light: z.string().min(1),
+  }),
 })
 
 export const heroSchema = z.object({
