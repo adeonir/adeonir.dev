@@ -4,7 +4,7 @@ notFound:
   headline:
     - text: 'Página '
     - text: 'não encontrada'
-      strong: true
+      highlight: true
     - text: '.'
   body:
     - 'O endereço que você procura não existe. Volte para a página inicial.'

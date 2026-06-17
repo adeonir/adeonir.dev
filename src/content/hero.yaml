@@ -7,10 +7,10 @@ hero:
     - text: 'Eu construo interfaces que são '
       break: true
     - text: 'bonitas'
-      strong: true
+      highlight: true
     - text: ' e rodam '
     - text: 'rápido'
-      strong: true
+      highlight: true
     - text: '.'
   description:
     - 'Sou design engineer: um desenvolvedor frontend com bagagem de designer.'

@@ -3,7 +3,7 @@ stack:
   headline:
     - text: 'As '
     - text: 'ferramentas '
-      strong: true
+      highlight: true
       break: true
     - text: 'que eu uso.'
   tools:
