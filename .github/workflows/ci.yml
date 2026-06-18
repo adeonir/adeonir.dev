@@ -21,6 +21,7 @@ jobs:
         task:
           - { cmd: lint, name: Lint }
           - { cmd: typecheck, name: Typecheck }
+          - { cmd: test, name: Unit Tests }
           - { cmd: build, name: Build }
     steps:
       - name: Checkout

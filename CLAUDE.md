@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 The Astro app has its **document-shell, metadata/SEO, and analytics baseline wired, but the content pages are not built out**: tooling, runtime integrations, the routing skeleton, the full design-token + font layer (`src/styles/global.css`), and a shared base layout (`src/layouts/base.astro`) — which emits the per-page head (page-first title template, Open Graph, X card, canonical, icons) and mounts config-gated cookieless analytics — are in place, plus the crawl files (generated sitemap + `robots.txt`) and the content-layer scaffolding (a `settings` metadata collection plus per-section copy collections). The landing's identity sections — `hero`, `about`, and `stack` — render at the site root, composed through the shell from typed copy collections; the work/project routes and the `projects` collection do not exist yet. The landing is the production home (`/`); the former holding page survives as a `noindex` maintenance route (`/maintenance`), and a global `noindex` not-found page (`/404`) renders the `notFound` copy collection — all three render through the base layout. The contact path is wired end-to-end on the home: a React island runs the form (client-side Zod validation, inline success/error states, UTM forwarding) and posts to a server-side Action — Zod validation, honeypot + KV rate-limit guards, two Resend emails, and a privacy-safe conversion count — which is the app's only on-demand surface (the standalone `/contact` route was removed). The stack, architecture, design system, and product scope remain fully locked in `docs/` — `docs/tech/design-doc.md` §3.7–§3.8 is authoritative for the toolchain; do not invent alternatives.
 
-Package manager is **pnpm** (`pnpm-lock.yaml`). No test runner is configured yet — there are no test commands.
+Package manager is **pnpm** (`pnpm-lock.yaml`). The unit-test runner is **Vitest** (`vitest.config.ts` — a plain `vitest/config` `defineConfig` with `vite-tsconfig-paths`; run via `pnpm test`): co-located `*.test.ts(x)` specs, **node** by default, with DOM-dependent specs opting into happy-dom per file via a `// @vitest-environment happy-dom` docblock. Component (browser-mode), e2e, and a11y suites are not configured yet.
 
 ## Commands
 
@@ -14,6 +14,7 @@ Package manager is **pnpm** (`pnpm-lock.yaml`). No test runner is configured yet
 - `pnpm build` — production build. `/` is the landing home; the former holding page builds at `/maintenance`.
 - `pnpm preview` — serve the production build locally.
 - `pnpm typecheck` — `astro check` (TS + `.astro` diagnostics).
+- `pnpm test` — `vitest run`: the unit suite (co-located `*.test.ts(x)`; node + happy-dom per spec). Also gates pre-push and the CI `Unit Tests` check.
 - `pnpm lint` — CI-style, no writes: `biome check` (JS/TS/CSS/JSON) + `prettier --check` (`.astro`/`.yaml`). Run before committing.
 - `pnpm lint:fix` — autofix: `biome check --write` (JS/TS/CSS/JSON) + `prettier --write` (`.astro`/`.yaml`).
 - `pnpm lighthouse` — local budget gate: `astro build` then `npx -y @lhci/cli autorun` (the **scoped** `@lhci/cli`, reads `lighthouserc.json`, mirrors the CI `Lighthouse` job). Append `--collect.settings.preset=desktop` for a desktop pass. Never run `npx lhci` — the unscoped `lhci` package is an unrelated typosquat.
