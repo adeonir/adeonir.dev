@@ -20,4 +20,13 @@ describe('interpolate', () => {
   it('leaves a placeholder with no matching token intact', () => {
     expect(interpolate('Hello {name}', {})).toBe('Hello {name}')
   })
+
+  it('inserts values with $ substitution patterns literally', () => {
+    expect(interpolate('{subject}', { subject: 'A $& B' })).toBe('A $& B')
+    expect(interpolate('{name}', { name: '50% off $$' })).toBe('50% off $$')
+    expect(interpolate('{name}', { name: "back $` and $' tick" })).toBe(
+      "back $` and $' tick",
+    )
+    expect(interpolate('Hi {name}', { name: '$1 $2' })).toBe('Hi $1 $2')
+  })
 })
