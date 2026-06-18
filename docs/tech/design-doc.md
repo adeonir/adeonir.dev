@@ -1,7 +1,7 @@
 ---
 name: adeonir-dev-portfolio
 created: 2026-06-06
-updated: 2026-06-13
+updated: 2026-06-18
 status: accepted
 sources:
   - docs/product/prd.md
@@ -228,7 +228,7 @@ erDiagram
 
 | Type | Scope | Tools | Coverage Target |
 |------|-------|-------|-----------------|
-| Unit | Zod schemas, theme/locale utilities | Vitest (node) | Core logic |
+| Unit | Input validation, email template helper, form hook, theme store | Vitest — plain config + `vite-tsconfig-paths`; node default, happy-dom per spec | Core logic |
 | Component | React islands (toggle, form, switcher) in a real browser | Vitest browser mode (Playwright provider) | Each island |
 | E2E | Contact flow + EC-2 fallback, routing, 404 (EC-3) | Playwright | Critical flows |
 | A11y | Rendered pages, WCAG AA | `@axe-core/playwright` | All pages |
@@ -238,6 +238,9 @@ erDiagram
 - **Flake handling:** Playwright retries on CI; deterministic selectors.
 - **CI integration:** all suites run in GitHub Actions on every PR as required
   status checks; branch protection blocks merge to `main` on failure (see §3.8).
+- **Unit suite (built):** `pnpm test` (`vitest run`) covers the units above in node +
+  happy-dom; it runs locally, on pre-push (lefthook), and as the required `Unit Tests` CI
+  check. The Component, E2E, and A11y rows remain planned.
 
 ### 3.8 Deployment
 
@@ -291,6 +294,7 @@ erDiagram
 | i18n strategy | Routing-based: pt bare, en `/en`, no auto-detect | Client-side (react-i18next style); both-locales-prefixed; browser detection | Keeps the perf budget and SEO/hreflang intact; clean prefix-free URL for the primary (BR) audience | — |
 | Analytics | PostHog US Cloud (cookieless) | Umami Cloud; Cloudflare Web Analytics | Privacy-first is the driver: PostHog's cookieless mode (daily-salt hash identity, memory persistence, autocapture + session recording off, DNT respected) delivers custom events and UTM in one privacy-first config, plus server-side `contact-submission` capture (server-authoritative, no client double-count) — which CF Web Analytics lacks and Umami does not cover. Umami ships lighter, but client weight is held down by manual-only capture; measure the real bundle before locking the lib | — |
 | E2E testing | Keep Playwright (scoped) | Drop it | Component tests can't exercise the contact Action, routing, or 404 — the only places that can actually break | — |
+| Unit test runner config | Plain `vitest/config` + `vite-tsconfig-paths` | Astro `getViteConfig` | `getViteConfig` loads the full Astro config, whose Cloudflare adapter registers a Vite plugin Vitest rejects at startup; the covered units import no `astro:*` virtuals, so a plain config with the tsconfig `~/` alias suffices | — |
 | Pre-commit hook manager | lefthook | husky; simple-git-hooks; native git hooks | Single YAML config, parallel hook execution, language-agnostic Go binary with no Node runtime in the hook path; husky needs more wiring, simple-git-hooks is leaner but less capable, native hooks aren't shareable | — |
 
 **Record column:** `—` means the design doc is the only record. Rows with an
