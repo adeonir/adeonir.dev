@@ -23,9 +23,16 @@ describe('cn', () => {
     expect(cn('px-5', 'px-5')).toBe('px-5')
   })
 
-  it('keeps custom composites alongside framework utilities', () => {
-    expect(cn('text-display', 'text-sm')).toBe('text-display text-sm')
+  it('keeps a text composite alongside a color and an unknown utility', () => {
+    expect(cn('text-button', 'text-primary-foreground')).toBe(
+      'text-button text-primary-foreground',
+    )
     expect(cn('wrapper', 'mx-4')).toBe('wrapper mx-4')
+  })
+
+  it('treats text composites as font sizes that conflict with other text sizes', () => {
+    expect(cn('text-display', 'text-sm')).toBe('text-sm')
+    expect(cn('text-display', 'text-heading')).toBe('text-heading')
   })
 
   it('returns an empty string for empty or entirely falsy input', () => {
