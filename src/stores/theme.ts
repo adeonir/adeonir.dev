@@ -2,7 +2,7 @@ import { atom } from 'nanostores'
 
 type Theme = 'dark' | 'light'
 
-function readTheme(): Theme {
+export function readTheme(): Theme {
   if (typeof document === 'undefined') {
     return 'dark'
   }
