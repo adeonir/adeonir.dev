@@ -7,6 +7,7 @@ import { createElement } from 'react'
 
 import { Confirmation } from '~/emails/confirmation'
 import { Notification } from '~/emails/notification'
+import { interpolate } from '~/helpers/interpolate'
 
 export class ContactDeliveryError extends Error {
   reason: 'resend_error' | 'missing_content'
@@ -35,13 +36,6 @@ type ResendPayload = {
 
 const RESEND_ENDPOINT = 'https://api.resend.com/emails'
 const OWNER = 'contato@adeonir.dev'
-
-function fill(template: string, tokens: Record<string, string>) {
-  return Object.entries(tokens).reduce(
-    (text, [token, value]) => text.replaceAll(`{${token}}`, value),
-    template,
-  )
-}
 
 function formatReceivedAt(date: Date) {
   return formatInTimeZone(date, 'America/Sao_Paulo', 'dd MMM yyyy, HH:mm', {
@@ -92,11 +86,11 @@ export async function sendContactEmails({
     createElement(Notification, {
       ...data,
       copy: {
-        preview: fill(notification.preview, { name: firstName }),
+        preview: interpolate(notification.preview, { name: firstName }),
         badge: notification.badge,
         heading: notification.heading,
-        received: fill(notification.received, { date: receivedAt }),
-        footer: fill(notification.footer, { name: firstName }),
+        received: interpolate(notification.received, { date: receivedAt }),
+        footer: interpolate(notification.footer, { name: firstName }),
         fields,
       },
     }),
@@ -108,7 +102,7 @@ export async function sendContactEmails({
       copy: {
         preview: confirmation.preview,
         heading: confirmation.heading,
-        body: fill(confirmation.body, { name: firstName }),
+        body: interpolate(confirmation.body, { name: firstName }),
         recapLabel: confirmation.recapLabel,
         footer: confirmation.footer,
         fields,
@@ -119,7 +113,7 @@ export async function sendContactEmails({
   await send({
     from: sender,
     to: OWNER,
-    subject: fill(notification.subject, { subject }),
+    subject: interpolate(notification.subject, { subject }),
     html: notificationHtml,
     reply_to: email,
   })
