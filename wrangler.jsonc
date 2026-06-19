@@ -15,11 +15,14 @@
   "observability": {
     "enabled": true
   },
-  "kv_namespaces": [
+  "ratelimits": [
     {
-      "binding": "RATE_LIMIT",
-      "id": "25c418925dcb4e14889f7f7e7388174c",
-      "preview_id": "f581417346124ecbad438cd2cf30d4cd"
+      "name": "CONTACT_LIMIT",
+      "namespace_id": "1001",
+      "simple": {
+        "limit": 5,
+        "period": 60
+      }
     }
   ]
 }
