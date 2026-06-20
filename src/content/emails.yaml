@@ -7,7 +7,7 @@ emails:
     message: 'mensagem'
   confirmation:
     subject: 'Recebi sua mensagem'
-    preview: 'Recebi sua mensagem, respondo assim que possível.'
+    preview: 'Respondo assim que possível.'
     heading: 'Sua mensagem foi enviada'
     body: 'Olá, {name}! Obrigado por entrar em contato. Recebi sua mensagem e respondo assim que possível.'
     recapLabel: 'Resumo do envio'

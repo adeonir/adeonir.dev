@@ -1,7 +1,7 @@
 metadata:
   source: 'docs/product/brief.md, docs/product/prd.md, docs/design/blueprint.md, conversation'
   created: '2026-06-06'
-  version: '1.0.2'
+  version: '1.0.3'
   status: 'draft'
 
 project:
@@ -10,7 +10,7 @@ project:
   industry: 'portfolio'
   title: 'Adeonir Kohl | Portfólio'
   description: 'Portfólio pessoal de Adeonir Kohl, um design engineer focado em estética e performance.'
-  meta_description: 'Design engineer criando interfaces que são bonitas e rodam rápido'
+  meta_description: 'Design engineer criando interfaces focadas em performance'
 
 # The content tree mirrors docs/design/blueprint.md: surfaces home, work, project,
 # plus a global not-found (404) error surface.
@@ -35,10 +35,10 @@ content:
     hero:
       eyebrow: 'Design Engineer'
       display: 'Olá, sou Adeonir Kohl'
-      tagline: 'Eu construo interfaces que são bonitas e rodam rápido.'
+      tagline: 'Eu construo interfaces focadas em estética e performance.'
       description:
         - 'Sou design engineer: um desenvolvedor frontend com bagagem de designer.'
-        - 'Isso me faz pensar no produto inteiro, não só na interface, sempre buscando soluções que entregam valor sem perseguir a perfeição.'
+        - 'Isso me faz pensar no produto inteiro, não só na interface, sempre buscando a solução certa sem perseguir a perfeição.'
       actions:
         primary: 'Ver os projetos'
         secondary: 'Entrar em contato'
@@ -47,9 +47,9 @@ content:
       eyebrow: 'Sobre mim'
       headline: 'Do design ao código.'
       bio:
-        - 'Depois de anos como designer gráfico, migrei para o desenvolvimento numa evolução natural que me colocou exatamente onde design e código se encontram. Sou desenvolvedor frontend há mais de 6 anos, trabalhando para empresas no Brasil, na Europa e, mais recentemente, nos EUA. Nos projetos que toco sozinho, cuido do código de ponta a ponta, e também do design quando preciso.'
-        - 'Atualmente estou me aprofundando em product engineering e levando esse conhecimento para os meus projetos, indo além da interface.'
-        - 'Eu uso ferramentas de IA e fluxos agênticos para o trabalho pesado, sempre sob minha supervisão (HITL - Human in the loop). Isso me permite avançar rápido sem abrir mão de qualidade e bom senso.'
+        - 'Depois de anos como designer gráfico, migrei para o desenvolvimento, sem perder o olhar de designer. Sou desenvolvedor frontend há mais de 6 anos, trabalhando para empresas no Brasil, na Europa e, mais recentemente, nos EUA. Nos projetos que toco sozinho, cuido do código de ponta a ponta, e também do design quando preciso.'
+        - 'Atualmente estou me aprofundando em product engineering e levando esse conhecimento para os meus projetos.'
+        - 'Uso ferramentas de IA e fluxos agênticos para o trabalho pesado, sempre sob minha supervisão (HITL: human in the loop). Isso me permite avançar rápido sem abrir mão de qualidade e bom senso.'
       code-block:
         language: 'ts'
         code: |
@@ -64,7 +64,7 @@ content:
           }
 
     stack:
-      eyebrow: 'Tech Stack'
+      eyebrow: 'Tecnologias'
       headline: 'As ferramentas que eu uso.'
       tools:
         - title: 'frontend'
@@ -97,7 +97,7 @@ content:
 
     projects:
       eyebrow: 'Projetos em destaque'
-      headline: 'Algumas coisas que desenhei e publiquei.'
+      headline: 'Alguns projetos que desenhei e construí.'
       # list -> top-level `projects` collection, filtered to featured: true
       see-all: 'Ver todos os projetos'
 
@@ -105,7 +105,7 @@ content:
       eyebrow: 'Vamos conversar'
       headline: 'Tem um projeto em mente?'
       body:
-        - 'Adoro conhecer gente nova, trocar experiências e colaborar em projetos interessantes. Se você quer bater um papo sobre desenvolvimento ou tem uma ideia que precisa de uma mão para sair do papel, me manda uma mensagem.'
+        - 'Adoro conhecer gente nova, trocar experiências e colaborar em projetos. Se você quer bater um papo sobre desenvolvimento ou tem uma ideia que precisa de ajuda para sair do papel, me manda uma mensagem.'
       social:
         - platform: 'email'
           label: 'contato@adeonir.dev'
@@ -150,14 +150,14 @@ content:
       brand:
         text: 'adeonir.dev'
         copyright: '© 2026 Adeonir Kohl'
-      tagline: 'Feito com cuidado, paixão e café.'
+      tagline: 'Feito com cuidado, café e cerveja.'
 
   work:
     header: *header
     page-header:
       eyebrow: 'Projetos'
-      headline: 'Coisas que desenhei e construí.'
-      subheadline: 'Uma seleção do que construí ou ajudei a construir.'
+      headline: 'Projetos que desenhei e construí.'
+      subheadline: 'Uma seleção do que fiz ou ajudei a desenvolver.'
     # list -> top-level `projects` collection (all, in order)
     states:
       empty: 'Nenhum projeto por aqui ainda, volte em breve.' # EC-1
@@ -192,7 +192,7 @@ content:
     display: '404'
     headline: 'Página não encontrada.'
     body:
-      - 'O endereço que você procura não existe. Volte para a página inicial.'
+      - 'O endereço que você procura não existe.'
     cta: 'Voltar ao início'
     footer: *footer
 
@@ -203,7 +203,7 @@ emails:
   from: 'Adeonir'
   confirmation:
     subject: 'Recebi sua mensagem'
-    preview: 'Recebi sua mensagem, respondo assim que possível.'
+    preview: 'Respondo assim que possível.'
     heading: 'Sua mensagem foi enviada'
     body: 'Olá, {name}! Obrigado por entrar em contato. Recebi sua mensagem e respondo assim que possível.'
     recap:

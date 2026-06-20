@@ -4,17 +4,17 @@ hero:
     greeting: 'Olá, sou'
     name: 'Adeonir Kohl'
   tagline:
-    - text: 'Eu construo interfaces que são '
+    - text: 'Eu construo interfaces focadas em '
       break: true
-    - text: 'bonitas'
+    - text: 'estética'
       highlight: true
-    - text: ' e rodam '
-    - text: 'rápido'
+    - text: ' e '
+    - text: 'performance'
       highlight: true
     - text: '.'
   description:
     - 'Sou design engineer: um desenvolvedor frontend com bagagem de designer.'
-    - 'Isso me faz pensar no produto inteiro, não só na interface, sempre buscando soluções que entregam valor sem perseguir a perfeição.'
+    - 'Isso me faz pensar no produto inteiro, não só na interface, sempre buscando a solução certa sem perseguir a perfeição.'
   actions:
     secondary:
       label: 'Entrar em contato'
