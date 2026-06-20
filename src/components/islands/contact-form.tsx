@@ -37,6 +37,8 @@ type ContactFormProps = {
 export function ContactForm({ content }: ContactFormProps) {
   const formRef = useRef<HTMLFormElement>(null)
 
+  const [nameField, emailField, ...stackedFields] = content.fields
+
   const { errors, isSubmitting, handleSubmit, handleInput } = useForm({
     validate: (formData) => {
       const schema = createContactSchema(content.validation)
@@ -86,7 +88,7 @@ export function ContactForm({ content }: ContactFormProps) {
       onSubmit={handleSubmit}
       onInput={handleInput}
       noValidate
-      className="flex flex-col gap-6"
+      className="@container flex flex-col gap-6"
     >
       <input
         type="text"
@@ -96,13 +98,27 @@ export function ContactForm({ content }: ContactFormProps) {
         aria-hidden="true"
         className="sr-only"
       />
-      {content.fields.map((field) => (
+      <div className="grid @md:grid-cols-2 gap-6">
+        {[nameField, emailField].map((field) => (
+          <Field
+            key={field.name}
+            label={field.label}
+            name={field.name}
+            placeholder={field.placeholder}
+            type={field.name === 'email' ? 'email' : 'text'}
+            required
+            invalid={!!errors[field.name]}
+            error={errors[field.name]}
+          />
+        ))}
+      </div>
+      {stackedFields.map((field) => (
         <Field
           key={field.name}
           label={field.label}
           name={field.name}
           placeholder={field.placeholder}
-          type={field.name === 'email' ? 'email' : 'text'}
+          type="text"
           multiline={field.name === 'message'}
           required
           invalid={!!errors[field.name]}
@@ -113,7 +129,7 @@ export function ContactForm({ content }: ContactFormProps) {
         type="submit"
         variant="primary"
         disabled={isSubmitting}
-        className="w-fit"
+        className="self-end"
       >
         {content.submit}
       </Button>
