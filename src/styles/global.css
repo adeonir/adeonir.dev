@@ -82,7 +82,7 @@
   --destructive: var(--color-red-500);
   --destructive-foreground: var(--ink);
   --border: var(--mocha-800); /* surface-0 */
-  --input: var(--mocha-800); /* surface-0 */
+  --input: var(--mocha-700); /* surface-1 */
   --ring: var(--ocean-600);
   --success: var(--color-green-500);
   --success-foreground: var(--ink);
@@ -117,7 +117,7 @@
   --destructive: var(--color-red-500);
   --destructive-foreground: var(--ink);
   --border: var(--latte-200); /* surface-0 */
-  --input: var(--latte-200); /* surface-0 */
+  --input: var(--latte-300); /* surface-1 */
   --ring: var(--ocean-600);
 }
 
