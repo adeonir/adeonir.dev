@@ -15,6 +15,8 @@ type FooterTaglineProps = {
 function RevealString({ text, phrase }: { text: string; phrase: string }) {
   return (
     <Popover.Root
+      lazyMount
+      unmountOnExit
       autoFocus={false}
       positioning={{ placement: 'top', gutter: 8 }}
     >
