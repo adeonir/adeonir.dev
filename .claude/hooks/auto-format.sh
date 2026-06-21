@@ -10,7 +10,7 @@ case "$f" in
     pnpm exec prettier --write "$f" >/dev/null 2>&1
     ;;
   */src/*.js | */src/*.mjs | */src/*.cjs | */src/*.ts | */src/*.tsx | */src/*.jsx | */src/*.json | */src/*.jsonc | */src/*.css)
-    pnpm exec biome format --write "$f" >/dev/null 2>&1
+    pnpm exec biome check --write "$f" >/dev/null 2>&1
     ;;
 esac
 
