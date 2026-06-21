@@ -1,0 +1,15 @@
+---
+import { getEntry } from 'astro:content'
+
+const entry = await getEntry('console', 'content')
+
+if (!entry) {
+  throw new Error('Missing console/content entry')
+}
+
+const { greeting } = entry.data
+---
+
+<script is:inline define:vars={{ greeting }}>
+  console.log(greeting)
+</script>
