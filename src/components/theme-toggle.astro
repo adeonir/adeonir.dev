@@ -1,7 +1,7 @@
 ---
 import { getEntry } from 'astro:content'
 
-import { ThemeToggle } from '~/components/islands/theme-toggle'
+import { ThemeToggle as ThemeToggleIsland } from '~/components/islands/theme-toggle'
 
 const labels = await getEntry('themeToggle', 'labels')
 
@@ -10,4 +10,4 @@ if (!labels) {
 }
 ---
 
-<ThemeToggle client:load labels={labels.data} />
+<ThemeToggleIsland client:load labels={labels.data} />
