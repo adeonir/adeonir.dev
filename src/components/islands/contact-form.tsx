@@ -125,12 +125,7 @@ export function ContactForm({ content }: ContactFormProps) {
           error={errors[field.name]}
         />
       ))}
-      <Button
-        type="submit"
-        variant="primary"
-        disabled={isSubmitting}
-        className="self-end"
-      >
+      <Button type="submit" disabled={isSubmitting} className="self-end">
         {content.submit}
       </Button>
     </form>

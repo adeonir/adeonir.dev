@@ -8,8 +8,8 @@ export const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary:
-          'bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/12',
+        default:
+          'bg-action text-action-foreground hover:bg-action/90 hover:shadow-action/12 hover:shadow-lg',
         outline:
           'border border-border bg-transparent text-muted-foreground hover:border-primary/30 hover:bg-muted/20 hover:text-primary hover:shadow-lg hover:shadow-primary/8 focus:border-primary',
       },
@@ -19,7 +19,7 @@ export const buttonVariants = cva(
       },
     },
     defaultVariants: {
-      variant: 'outline',
+      variant: 'default',
       size: 'default',
     },
   },
