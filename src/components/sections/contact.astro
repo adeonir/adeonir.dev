@@ -14,68 +14,73 @@ if (!contact) {
 const { eyebrow, title, body, social, form } = contact.data
 ---
 
-<section id="contact">
-  <Eyebrow variant="muted">{eyebrow}</Eyebrow>
-  <div class="mt-6 grid grid-cols-1 gap-12 md:grid-cols-5">
-    <div class="col-span-2 flex flex-col gap-6">
-      <h2 class="text-display text-pretty text-foreground">
-        {
-          title.map((segment) => (
-            <>
-              {segment.highlight ? (
-                <span class="text-secondary">{segment.text}</span>
-              ) : (
-                segment.text
-              )}
-              {segment.break && <br class="hidden md:block" />}
-            </>
-          ))
-        }
-      </h2>
-      <div class="flex flex-col gap-4">
-        {
-          body.map((paragraph) => (
-            <p class="text-body leading-relaxed text-pretty text-muted-foreground">
-              {paragraph}
-            </p>
-          ))
-        }
-      </div>
-      <div class="mt-6 flex flex-col gap-2">
-        <p class="inline-flex items-center gap-2 text-code text-foreground">
-          <IconFolder className="size-4 shrink-0 text-action" />
-          <span>contact/</span>
-        </p>
-        <ul
-          aria-label="Canais de contato"
-          class="relative flex flex-col gap-1 pl-5 before:absolute before:top-0 before:bottom-2.5 before:left-1.5 before:w-2 before:rounded-bl-lg before:border-b before:border-l before:border-border"
-        >
+<section
+  id="contact"
+  class="full-bleed -mb-16 border-t border-border bg-card md:-mb-24"
+>
+  <div class="wrapper py-16 md:py-24">
+    <Eyebrow variant="muted">{eyebrow}</Eyebrow>
+    <div class="mt-6 grid grid-cols-1 gap-12 md:grid-cols-5">
+      <div class="col-span-2 flex flex-col gap-6">
+        <h2 class="text-display text-pretty text-foreground">
           {
-            social.map((channel) => {
-              const external = channel.platform !== 'email'
-              return (
-                <li class="flex gap-2 text-code">
-                  <span class="text-secondary" aria-hidden="true">
-                    -
-                  </span>
-                  <a
-                    href={channel.link}
-                    class="-mx-1 rounded-sm px-1 text-muted-foreground transition hover:text-action focus-visible:ring-4 focus-visible:ring-ring/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
-                    {...(external
-                      ? { target: '_blank', rel: 'noopener noreferrer' }
-                      : {})}
-                  >
-                    {channel.label}
-                  </a>
-                </li>
-              )
-            })
+            title.map((segment) => (
+              <>
+                {segment.highlight ? (
+                  <span class="text-secondary">{segment.text}</span>
+                ) : (
+                  segment.text
+                )}
+                {segment.break && <br class="hidden md:block" />}
+              </>
+            ))
           }
-        </ul>
+        </h2>
+        <div class="flex flex-col gap-4">
+          {
+            body.map((paragraph) => (
+              <p class="text-body leading-relaxed text-pretty text-muted-foreground">
+                {paragraph}
+              </p>
+            ))
+          }
+        </div>
+        <div class="mt-6 flex flex-col gap-2">
+          <p class="inline-flex items-center gap-2 text-code text-foreground">
+            <IconFolder className="size-4 shrink-0 text-action" />
+            <span>contact/</span>
+          </p>
+          <ul
+            aria-label="Canais de contato"
+            class="relative flex flex-col gap-1 pl-5 before:absolute before:top-0 before:bottom-2.5 before:left-1.5 before:w-2 before:rounded-bl-lg before:border-b before:border-l before:border-border"
+          >
+            {
+              social.map((channel) => {
+                const external = channel.platform !== 'email'
+                return (
+                  <li class="flex gap-2 text-code">
+                    <span class="text-secondary" aria-hidden="true">
+                      -
+                    </span>
+                    <a
+                      href={channel.link}
+                      class="-mx-1 rounded-sm px-1 text-muted-foreground transition hover:text-action focus-visible:ring-4 focus-visible:ring-ring/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+                      {...(external
+                        ? { target: '_blank', rel: 'noopener noreferrer' }
+                        : {})}
+                    >
+                      {channel.label}
+                    </a>
+                  </li>
+                )
+              })
+            }
+          </ul>
+        </div>
       </div>
-    </div>
-    <div class="col-span-3">
-      <ContactForm content={form} client:visible />
+      <div class="col-span-3">
+        <ContactForm content={form} client:visible />
+      </div>
     </div>
   </div>
 </section>

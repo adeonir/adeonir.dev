@@ -260,6 +260,10 @@
   @apply mx-auto w-full max-w-6xl px-6;
 }
 
+@utility full-bleed {
+  @apply relative left-1/2 w-screen -translate-x-1/2;
+}
+
 @utility text-display {
   @apply text-4xl font-extrabold tracking-tight xs:text-5xl;
 }
