@@ -1,6 +1,7 @@
 ---
 import { getEntry } from 'astro:content'
 
+import { FooterTagline } from '~/components/islands/footer-tagline'
 import Logo from '~/components/logo.astro'
 
 const footer = await getEntry('footer', 'footer')
@@ -27,16 +28,6 @@ const { brand, tagline } = footer.data
         {brand.copyright}
       </p>
     </div>
-    <p class="text-code text-muted-foreground">
-      {
-        tagline.map((segment) =>
-          segment.emphasis ? (
-            <span class="text-emphasis">{segment.text}</span>
-          ) : (
-            segment.text
-          ),
-        )
-      }
-    </p>
+    <FooterTagline segments={tagline} client:visible />
   </div>
 </footer>

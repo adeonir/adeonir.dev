@@ -1,6 +1,7 @@
 import { defineCollection } from 'astro:content'
 import { file } from 'astro/loaders'
 import { aboutSchema } from '~/schemas/about'
+import { consoleSchema } from '~/schemas/console'
 import { contactSchema } from '~/schemas/contact'
 import { emailsSchema } from '~/schemas/emails'
 import { footerSchema } from '~/schemas/footer'
@@ -67,6 +68,11 @@ const emails = defineCollection({
   schema: emailsSchema,
 })
 
+const console = defineCollection({
+  loader: file('src/content/console.yaml'),
+  schema: consoleSchema,
+})
+
 export const collections = {
   settings,
   header,
@@ -79,4 +85,5 @@ export const collections = {
   contact,
   notFound,
   emails,
+  console,
 }

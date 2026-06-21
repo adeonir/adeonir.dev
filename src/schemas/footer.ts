@@ -10,6 +10,7 @@ export const footerSchema = z.object({
       z.object({
         text: z.string().min(1),
         emphasis: z.boolean().optional(),
+        reveal: z.string().min(1).optional(),
       }),
     )
     .min(1),

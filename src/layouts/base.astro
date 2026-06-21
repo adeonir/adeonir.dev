@@ -4,6 +4,7 @@ import { getEntry } from 'astro:content'
 import { ClientRouter } from 'astro:transitions'
 import { SEO } from 'astro-seo'
 import Analytics from '~/components/analytics.astro'
+import ConsoleGreeting from '~/components/console-greeting.astro'
 import Footer from '~/components/sections/footer.astro'
 import Header from '~/components/sections/header.astro'
 import Theme from '~/components/theme.astro'
@@ -83,6 +84,7 @@ const ogImageURL = new URL(
 
     <ClientRouter />
     <Analytics />
+    <ConsoleGreeting />
   </head>
   <body
     class="flex min-h-dvh flex-col bg-background text-foreground antialiased"
