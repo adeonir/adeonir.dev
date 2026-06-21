@@ -1,7 +1,7 @@
 metadata:
   source: 'docs/product/brief.md, docs/product/prd.md, docs/design/blueprint.md, conversation'
   created: '2026-06-06'
-  version: '1.0.3'
+  version: '1.0.4'
   status: 'draft'
 
 project:
@@ -151,6 +151,11 @@ content:
         text: 'adeonir.dev'
         copyright: '© 2026 Adeonir Kohl'
       tagline: 'Feito com cuidado, café e cerveja.'
+      reveals:
+        - word: 'café'
+          phrase: 'Coffee to work'
+        - word: 'cerveja'
+          phrase: 'Beer to celebrate'
 
   work:
     header: *header
@@ -195,6 +200,10 @@ content:
       - 'O endereço que você procura não existe.'
     cta: 'Voltar ao início'
     footer: *footer
+
+# Hidden dev-console greeting — logged once per page load, not a routed surface.
+console:
+  greeting: 'Bem-vindo aos bastidores. Avisa se encontrar um bug.'
 
 # Transactional emails — not a routed surface. Sent on contact form submit.
 # Tokens: {name} = sender's name (first name in body), {date} = received timestamp, {subject} = submitted subject (notification subject line).
