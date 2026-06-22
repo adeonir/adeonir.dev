@@ -19,6 +19,10 @@ export function toggleTheme() {
   root.setAttribute('data-theme-switching', '')
   root.dataset.theme = next
 
+  document
+    .querySelector('meta[name="theme-color"]')
+    ?.setAttribute('content', next === 'light' ? '#eff1f5' : '#1e1e2e')
+
   try {
     localStorage.setItem('theme', next)
   } catch {}
