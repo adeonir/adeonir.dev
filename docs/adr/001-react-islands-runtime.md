@@ -1,7 +1,7 @@
 ---
 name: 001-react-islands-runtime
 created: 2026-06-10
-updated: 2026-06-10
+updated: 2026-06-21
 status: accepted
 supersedes: []
 superseded-by: []
@@ -86,7 +86,7 @@ removed; `jsxImportSource` is `react`.
 | Option | Reason Rejected | Record |
 |--------|-----------------|--------|
 | Preact + `@ark-ui/react` over `preact/compat` | Failed the smoke test: Ark's SSR path reads `document` under `preact-render-to-string`; compat behavior is outside Ark's support surface, so each upgrade would re-roll the dice | — |
-| Preact + hand-rolled primitives | Reimplements focus trap, dismissable-layer, and ARIA machinery per island; high accessibility-regression risk against WCAG 2.1 AA for code Ark already maintains | — |
+| Preact + hand-rolled primitives | Reimplements focus trap, dismissable-layer, and ARIA machinery per island; high accessibility-regression risk against WCAG 2.2 AA for code Ark already maintains | — |
 | Preact + another primitives library with a Preact flavor | No equivalent maintained option verified; Zag.js (Ark's machine layer) ships no Preact adapter either | — |
 
 ## References
