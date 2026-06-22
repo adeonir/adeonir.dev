@@ -35,6 +35,7 @@ export function MobileMenu({ nav, content, children }: MobileMenuProps) {
       <Popover.Trigger asChild>
         <Button
           aria-label={open ? content.trigger.close : content.trigger.open}
+          variant="outline"
           className="border-border!"
           size="icon"
         >

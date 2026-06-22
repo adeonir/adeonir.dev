@@ -1,7 +1,7 @@
 ---
 name: adeonir-dev-portfolio
 created: 2026-06-06
-updated: 2026-06-07
+updated: 2026-06-21
 status: draft
 sources: []
 ---
@@ -181,7 +181,7 @@ graded against a KPI.
 | ID | Requirement | Target |
 |----|------------|--------|
 | NFR-1 | Performance — the differentiator must be evident | Fast load on mobile and desktop (concrete budget TBD in design) |
-| NFR-2 | Accessibility | WCAG 2.1 AA |
+| NFR-2 | Accessibility | WCAG 2.2 AA |
 | NFR-3 | Responsiveness | Usable from small mobile to large desktop |
 | NFR-4 | Shareability | Correct title, description, and preview metadata for links, localized per language with hreflang annotations |
 

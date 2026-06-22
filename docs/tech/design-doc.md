@@ -1,7 +1,7 @@
 ---
 name: adeonir-dev-portfolio
 created: 2026-06-06
-updated: 2026-06-18
+updated: 2026-06-21
 status: accepted
 sources:
   - docs/product/prd.md
@@ -40,7 +40,7 @@ handling.
   INP < 200ms. Builds fail when a budget regresses (NFR-1).
 - **Near-zero baseline JS:** pages prerender to static HTML; only interactive
   islands hydrate (theme toggle, contact form, language switcher, mobile nav).
-- **Accessibility:** WCAG 2.1 AA across all pages, asserted automatically
+- **Accessibility:** WCAG 2.2 AA across all pages, asserted automatically
   (NFR-2).
 - **Bilingual-ready delivery:** routing-based i18n (pt at `/`, en at `/en`) with
   localized metadata and `hreflang`. Portuguese ships first; English is a later

@@ -3,7 +3,7 @@ import { Field as ArkField } from '@ark-ui/react/field'
 import { cn } from '~/helpers/classnames'
 
 const fieldClasses =
-  'w-full rounded-lg border bg-transparent px-4 text-body text-foreground transition-all placeholder:text-muted-foreground focus-visible:ring-4 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-60'
+  'w-full rounded-lg border bg-input/10 px-4 text-body text-foreground transition-[border-color,box-shadow,opacity] placeholder:text-muted-foreground focus-visible:ring-4 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-60'
 
 export type FieldProps = {
   label: string
@@ -48,7 +48,7 @@ export function Field({
             'min-h-32 resize-y py-3',
             invalid
               ? 'border-destructive focus-visible:ring-destructive/30'
-              : 'border-border focus:border-primary focus-visible:ring-ring/40',
+              : 'border-input focus:border-primary focus-visible:ring-ring/40',
           )}
         />
       ) : (
@@ -61,7 +61,7 @@ export function Field({
             'h-11',
             invalid
               ? 'border-destructive focus-visible:ring-destructive/30'
-              : 'border-border focus:border-primary focus-visible:ring-ring/40',
+              : 'border-input focus:border-primary focus-visible:ring-ring/40',
           )}
         />
       )}

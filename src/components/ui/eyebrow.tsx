@@ -1,16 +1,30 @@
 import { ark, type HTMLArkProps } from '@ark-ui/react/factory'
+import { cva, type VariantProps } from 'class-variance-authority'
 
 import { cn } from '~/helpers/classnames'
 
-export type EyebrowProps = HTMLArkProps<'span'>
+export const eyebrowVariants = cva(
+  'inline-flex w-fit rounded-full border-2 px-3 py-1 font-semibold text-xs uppercase tracking-widest',
+  {
+    variants: {
+      variant: {
+        default: 'border-action text-action',
+        muted: 'border-border text-muted-foreground',
+      },
+    },
+    defaultVariants: {
+      variant: 'default',
+    },
+  },
+)
 
-export function Eyebrow({ className, ...props }: EyebrowProps) {
+export type EyebrowProps = HTMLArkProps<'span'> &
+  VariantProps<typeof eyebrowVariants>
+
+export function Eyebrow({ variant, className, ...props }: EyebrowProps) {
   return (
     <ark.span
-      className={cn(
-        'inline-flex w-fit rounded-full border-2 border-primary px-3 py-1 font-semibold text-action text-xs uppercase tracking-widest',
-        className,
-      )}
+      className={cn(eyebrowVariants({ variant }), className)}
       {...props}
     />
   )

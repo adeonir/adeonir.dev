@@ -53,6 +53,7 @@ const ogImageURL = new URL(
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#1e1e2e" />
 
     <Theme />
 
@@ -87,7 +88,7 @@ const ogImageURL = new URL(
     <ConsoleGreeting />
   </head>
   <body
-    class="flex min-h-dvh flex-col bg-background text-foreground antialiased"
+    class="flex min-h-dvh flex-col overflow-x-clip bg-background text-foreground antialiased"
   >
     {
       shell ? (
