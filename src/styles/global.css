@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
 :root {
+  color-scheme: dark;
+
   --mocha-50: oklch(87.87% 0.0426 272.28); /* text */
   --mocha-100: oklch(81.68% 0.0403 272.86); /* subtext-1 */
   --mocha-200: oklch(75.10% 0.0396 273.93); /* subtext-0 */
@@ -95,6 +97,8 @@
 }
 
 [data-theme="light"] {
+  color-scheme: light;
+
   --primary: var(--ocean-500);
   --primary-foreground: var(--ink);
   --secondary: var(--azalea-600);
