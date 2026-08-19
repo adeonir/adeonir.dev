@@ -28,8 +28,6 @@ The document shell, metadata and SEO, analytics baseline, design-token layer, ge
 
 ```text
 ├── .github/workflows/        # CI quality and Lighthouse jobs
-├── .artifacts/               # Scratch artifacts; not authoritative or shipped
-├── .claude/rules/            # Project-specific agent rules
 ├── docs/                     # Product, design, architecture, and ADR documents
 ├── public/                   # Static icons, manifest, and OG assets
 ├── src/
@@ -101,6 +99,17 @@ Before planning or building a feature, read the documents that apply to the work
 
 When a project document and this file disagree, the dedicated document takes precedence. Change feature specifications with the `spec-driven` skill. The `.artifacts/` directory is scratch space and is not a source of truth.
 
+## Project rules
+
+Read the matching rule before making the change:
+
+| When | Read |
+|---|---|
+| Creating or renaming source files under `src/` | `.agents/rules/kebab-case-filenames.md` |
+| Choosing Tailwind utility classes in source files | `.agents/rules/tailwind-canonical-classes.md` |
+| Naming highlight fields or rendering highlighted text | `.agents/rules/text-highlight-segments.md` |
+| Importing modules across `src/` directories | `.agents/rules/tilde-alias-imports.md` |
+
 ## Runtime architecture
 
 - **Astro and Cloudflare:** The site runs on the Cloudflare Workers `workerd` runtime through `@astrojs/cloudflare`. Content pages prerender to static HTML. The contact Action is the only on-demand server surface; there is no standalone `/contact` page and no `prerender = false` page route.
@@ -132,7 +141,6 @@ No contact data is stored. Typed Action errors use `TOO_MANY_REQUESTS` and `INTE
 - Each section reads its own typed collection with `getEntry`. The `file()` loader can return `undefined`, so guard entries before reading `.data`. Editing `content.config.ts` or schemas usually requires a dev-server restart.
 - Current collections include `settings`, `header`, `hero`, `about`, `stack`, `footer`, `contact`, `not-found`, `console`, `mobile-menu`, `theme-toggle`, and `emails`.
 - `docs/design/copy.yaml` is the canonical prose. Collection files carry rendering markup. Headline emphasis and controlled breaks come from the design frame, not from `copy.yaml` when that file omits them.
-- Headline segment flags render as `strong` → `text-secondary`, `emphasis` → `text-emphasis`, and `break` → `<br>`, often gated with `hidden md:block` according to `.claude/rules/text-highlight-segments.md`.
 - Portuguese routes are bare: `/`, `/work`, `/work/[slug]`, and `/404`. English mirrors them under `/en/...` when English content ships. `i18n.routing.prefixDefaultLocale` is `false`.
 - Locale keys are `pt` and `en`, while emitted `lang` and `hreflang` values are `pt-BR` and `en`. Build localized links with `getRelativeLocaleUrl()`. Do not add client-side language switching or browser-language auto-detection.
 - Default-locale files use names such as `*.yaml` and `index.mdx`; English files use `*.en.yaml` and `index.en.mdx`. Cover and gallery images are shared between locales.
@@ -179,7 +187,6 @@ Use the repository's component scaffolding workflow when creating a new componen
 - `biome.json` owns JS/TS/CSS/JSON. Astro is excluded. CSS uses the Tailwind directives parser and double-quoted formatting.
 - `.prettierrc` and `prettier-plugin-astro`/`prettier-plugin-tailwindcss` own `.astro` and YAML. `**/*.css` is ignored by Prettier.
 - `.mcp.json` declares the `ark-ui` and `posthog` MCP servers.
-- Read the applicable files in `.claude/rules/` before large edits. They cover kebab-case filenames, `~/` imports, canonical Tailwind classes, text highlight segments, and commit conventions.
 
 ## Environment and security
 
