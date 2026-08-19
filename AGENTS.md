@@ -110,6 +110,14 @@ Read the matching rule before making the change:
 | Naming highlight fields or rendering highlighted text | `.agents/rules/text-highlight-segments.md` |
 | Importing modules across `src/` directories | `.agents/rules/tilde-alias-imports.md` |
 
+## Agent hooks
+
+- `.agents/hooks/` is the source of truth for project agent hooks.
+- `.claude/settings.json` registers these hooks for Claude Code.
+- `.codex/hooks.json` registers these hooks for Codex.
+- Edit hook logic only in `.agents/hooks/`.
+- After adding or changing a Codex hook, review and trust it with `/hooks`.
+
 ## Runtime architecture
 
 - **Astro and Cloudflare:** The site runs on the Cloudflare Workers `workerd` runtime through `@astrojs/cloudflare`. Content pages prerender to static HTML. The contact Action is the only on-demand server surface; there is no standalone `/contact` page and no `prerender = false` page route.

@@ -1,0 +1,31 @@
+{
+  "description": "Project lifecycle hooks shared with Claude Code.",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash|apply_patch",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$(git rev-parse --show-toplevel)/.agents/hooks/block-protected-files.sh\"",
+            "statusMessage": "Checking protected files",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "apply_patch",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$(git rev-parse --show-toplevel)/.agents/hooks/auto-format.sh\"",
+            "statusMessage": "Formatting changed source files",
+            "timeout": 60
+          }
+        ]
+      }
+    ]
+  }
+}
