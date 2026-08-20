@@ -4,8 +4,8 @@ about:
     - text: 'Do '
     - text: 'design '
       highlight: true
-      break: true
     - text: 'ao '
+      break: true
     - text: 'código'
       highlight: true
     - text: '.'
