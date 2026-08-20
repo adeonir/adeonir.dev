@@ -61,11 +61,13 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build
-        run: pnpm build
-
       - name: Run Lighthouse
-        uses: treosh/lighthouse-ci-action@v12
+        run: pnpm lighthouse
+
+      - name: Upload reports
+        if: always()
+        uses: actions/upload-artifact@v7
         with:
-          configPath: ./lighthouserc.json
-          uploadArtifacts: true
+          name: lighthouse-results
+          path: .lighthouseci
+          retention-days: 7
