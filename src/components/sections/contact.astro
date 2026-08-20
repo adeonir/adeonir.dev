@@ -2,7 +2,6 @@
 import { getEntry } from 'astro:content'
 
 import { ContactForm } from '~/components/islands/contact-form'
-import { Eyebrow } from '~/components/ui/eyebrow'
 import IconFolder from '~icons/tabler/folder'
 
 const contact = await getEntry('contact', 'contact')
@@ -11,7 +10,7 @@ if (!contact) {
   throw new Error('Missing contact/contact entry')
 }
 
-const { eyebrow, title, body, social, form } = contact.data
+const { title, body, social, form } = contact.data
 ---
 
 <section
@@ -19,7 +18,6 @@ const { eyebrow, title, body, social, form } = contact.data
   class="full-bleed -mb-16 border-t border-border bg-card md:-mb-24"
 >
   <div class="wrapper py-16 md:py-24">
-    <Eyebrow variant="muted">{eyebrow}</Eyebrow>
     <div class="mt-6 grid grid-cols-1 gap-12 md:grid-cols-5">
       <div class="col-span-2 flex flex-col gap-6">
         <h2 class="text-display text-pretty text-foreground">
