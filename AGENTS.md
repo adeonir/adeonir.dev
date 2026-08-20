@@ -91,7 +91,7 @@ Before planning or building a feature, read the documents that apply to the work
 - `docs/tech/design-doc.md` — architecture, runtime boundaries, conventions, contact flow, security, testing, CI/CD, and alternatives. It is the technical authority.
 - `docs/product/prd.md` — scope, FR/NFR identifiers, personas, journeys, business rules, edge cases, and milestones.
 - `docs/product/brief.md` — one-page product summary.
-- `DESIGN.md` — visual identity and design tokens. Frontmatter contains token values, including dual `{ hex, oklch }` colors; the body contains design rules and do/don'ts.
+- `DESIGN.md` — visual identity and design tokens. Frontmatter contains token values, with colors as flat OKLCH strings; the body contains design rules and do/don'ts.
 - `docs/design/blueprint.md` — layout region trees and screen flows.
 - `docs/design/copy.yaml` — canonical site copy.
 - `docs/design/wireframe.html` and `docs/design/styleguide.html` — rendered low-fidelity wireframe and token styleguide.
