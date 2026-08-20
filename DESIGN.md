@@ -290,172 +290,176 @@ components:
 
 ## Overview
 
-This is a calm, low-glare workspace rendered as a portfolio: the visual language of a code editor at rest, where the eye settles before it reads. The atmosphere is pastel-dark. A deep, slightly violet charcoal carries the page and never reaches pure black, layered with surfaces that recede rather than pop. Nothing glows. Nothing shouts. The mood is competence at ease, a craftsperson's desk lit by a single cool lamp.
+The site is a personal portfolio for a frontend developer. Its register is brand, not product: the design itself is the deliverable, and what a visitor takes away is the thing being made.
 
-The register is brand, not product. The site is a portfolio: the design itself is the deliverable, and the visitor's impression is the thing being made. The direction is a two-skin pastel-dark developer identity drawn from the Catppuccin palette family, an existing open-source color heritage that the identity adopts on purpose instead of inventing a private grey ramp.
+The identity is a quiet, dark developer workspace built on the Catppuccin palette. The identity adopts that open-source palette on purpose instead of deriving a private neutral scale. The default surface is a deep charcoal with a slight violet cast. That surface is never pure black, and the surfaces layered on it sit close to it in lightness, so a panel recedes instead of standing out.
 
-Contrast is deliberate restraint. Primary text is a soft lavender-white, never clinical white, so long passages stay gentle across an evening of reading. Against that muted field, two chromatic accents do all the expressive work. Blue owns every interactive moment: the call to action, the link, the focus ring, the hover that wakes a project row. It reads as "this responds to you." Warm magenta-pink never acts; it only emphasizes the second word of a heading, the marker before a skill, the keyword that earns weight. One color moves, one color points, and the rest of the surface stays neutral so both register instantly.
+Primary text is a soft lavender-white rather than pure white, so a long passage stays comfortable to read. Two accent hues carry every expressive decision against those neutrals. Blue marks every interactive element: the call to action, the link, the focus ring, and the hover state. Pink marks static emphasis only: the second word of a heading, the marker before a skill, a single keyword. One hue responds to the reader, the other points at text, and the rest of the interface stays neutral, so a reader learns both rules at once.
 
-Density is editorial, not enterprise. Generous vertical rhythm separates major sections, and content breathes in a single readable column rather than packing a dashboard grid. Depth comes almost entirely from tone and hairline borders rather than heavy shadow. Surfaces are told apart by how light or dark they sit, the way a well-organized terminal separates panes with a single rule.
+Density is editorial rather than dense. Large gaps separate the sections, and content runs in one readable column instead of a dashboard grid. Depth comes from lightness and hairline borders, not from heavy shadow. A reader tells two surfaces apart by how light or dark each one is.
 
-The signature is the split accent contract: one hue that may act and one hue that may never act. The explicit sacrifice is expressive range. No gradients, no third accent, no decorative illustration, and a shape language that stays inside one narrow radius band. The system trades visual variety for a page that reads as one calm surface.
+The signature of this identity is the split between the two accents: one hue may act, the other may never act. The stated sacrifice is expressive range. The identity has no gradients, no third accent, no decorative illustration, and one narrow band of corner radii. It trades visual variety for an interface that reads as a single calm surface.
 
-The identity ships two skins of one soul: a default dark canvas and a light daytime counterpart, both drawn from the same pastel heritage so the personality survives the toggle. The dark skin is the resting state; the light skin is the same room with the blinds open.
+The identity ships two skins, which are two sets of values for the same roles. The dark skin is the default, and the light skin is its daytime counterpart. Both skins draw from the same palette family, so the personality survives the switch.
 
 ## Colors
 
-The palette has two layers. The neutrals are two Catppuccin scales, `mocha` for the dark skin and `latte` for the light skin, each numbered 50 (lightest) through 950 (darkest) and labelled by its Catppuccin role. Because the two flavors run opposite in lightness, the same semantic role lands on a different step per skin: `background` is `mocha-850` (base) in the dark skin and `latte-50` (base) in the light skin. The accents are two full ramps: `ocean`, the blue that acts, and `azalea`, the pink that points. Each skin selects the accent steps that clear WCAG AA against its own field. Tone separation rather than shadow builds depth, so neighbouring surface roles sit one narrow step apart.
+The palette has two layers. The neutrals are two Catppuccin scales: `mocha` for the dark skin and `latte` for the light skin. Each scale is numbered from 50, the lightest step, to 950, the darkest step, and each step is labelled with its Catppuccin role. The two scales run opposite in lightness, so the same semantic role takes a different step in each skin. For example, `background` is `mocha-850` in the dark skin and `latte-50` in the light skin, and both steps are the Catppuccin base role.
 
-The referent behind the accents is water and bloom: `ocean` is the blue of deep water under a clear sky, and `azalea` is the pink of the flower the ramp is named after. Both are ramps built in OKLCH with tapered chroma, so the light steps stay pastel and the dark steps stay saturated without turning muddy.
+The accents are two more scales: `ocean` is the blue that marks interactive elements, and `azalea` is the pink that marks static emphasis. Each skin selects the accent step that meets WCAG AA against its own surfaces. Depth comes from a change in lightness rather than from shadow, so neighbouring surface roles sit one step apart.
 
-### Raw ramps
+Both accent scales name a real referent. `ocean` is the blue of deep water under a clear sky. `azalea` is the pink of the flower it is named after. Both scales are built in OKLCH, and chroma falls off toward each end, so the light steps stay pale and the dark steps stay saturated without turning muddy.
 
-The primitive layer. Every semantic role aliases a step of the active skin's neutral scale, an accent-ramp step, or the skin-neutral ink and paper pair.
+### Raw scales
 
-- **mocha** — Catppuccin dark flavor, role-numbered light to dark: `mocha-50` text, `-100` subtext-1, `-200` subtext-0, `-300` overlay-2, `-400` overlay-1, `-500` overlay-0, `-600` surface-2, `-700` surface-1, `-750` surface-0/1 blend, `-800` surface-0, `-850` base, `-875` base/mantle blend, `-900` mantle, `-950` crust.
-- **latte** — Catppuccin light flavor, role-numbered light to dark: `latte-50` base, `-75` base/mantle blend, `-100` mantle, `-150` crust, `-200` surface-0, `-250` surface-0/1 blend, `-300` surface-1, `-400` surface-2, `-500` overlay-0, `-600` overlay-1, `-700` overlay-2, `-800` subtext-0, `-900` subtext-1, `-950` text.
-- **ocean** — the blue that acts: `ocean-500` for bright fills and dark-skin action text, `ocean-600` for the focus ring in both skins, `ocean-700` for light-skin action text.
-- **azalea** — the pink that points: `azalea-500` for dark-skin emphasis and fills, `azalea-600` for the light-skin secondary fill, `azalea-750` for light-skin emphasis text.
-- **ink** — skin-neutral near-black; dark text on any bright accent fill, in both skins.
-- **paper** — skin-neutral near-white; the light counterpart to ink, for light text on a dark accent fill.
+The raw scales are the primitive layer. Every semantic role points at a step of the active skin's neutral scale, at an accent step, or at the `ink` and `paper` pair, which holds the same value in both skins.
+
+- **mocha** — Catppuccin dark scale, numbered from light to dark: `mocha-50` text, `-100` subtext-1, `-200` subtext-0, `-300` overlay-2, `-400` overlay-1, `-500` overlay-0, `-600` surface-2, `-700` surface-1, `-750` surface-0/1 blend, `-800` surface-0, `-850` base, `-875` base/mantle blend, `-900` mantle, `-950` crust.
+- **latte** — Catppuccin light scale, numbered from light to dark: `latte-50` base, `-75` base/mantle blend, `-100` mantle, `-150` crust, `-200` surface-0, `-250` surface-0/1 blend, `-300` surface-1, `-400` surface-2, `-500` overlay-0, `-600` overlay-1, `-700` overlay-2, `-800` subtext-0, `-900` subtext-1, `-950` text.
+- **ocean** — the blue that marks interactive elements: `ocean-500` for bright fills and for action text in the dark skin, `ocean-600` for the focus ring in both skins, `ocean-700` for action text in the light skin.
+- **azalea** — the pink that marks static emphasis: `azalea-500` for emphasis and fills in the dark skin, `azalea-600` for the secondary fill in the light skin, `azalea-750` for emphasis text in the light skin.
+- **ink** — a near-black held in both skins. Use it for dark text on a bright accent fill.
+- **paper** — a near-white held in both skins. Use it for light text on a dark accent fill.
 
 ### Semantic roles
 
-The frontmatter carries the dark skin, which is the default. Each role below states its dark step first and its light step second.
+The frontmatter carries the values of the dark skin, which is the default. Each role below names its dark step first and its light step second.
 
-- **primary** — `ocean-500` in both skins. Interactive fills: the bright blue that acts. Fills and logos are exempt from text contrast rules, so the brightness holds across both skins.
+- **primary** — `ocean-500` in both skins. Interactive fills, such as the call to action. A fill carries no text contrast requirement of its own, so the same bright step works in both skins.
 - **primary-foreground** — `ink` in both skins. Dark text on the blue fill.
-- **action** — `ocean-500` dark, `ocean-700` light. Primary rendered as text and as the control fill: links, nav hover, the eyebrow outline, the solid button. The light skin steps deeper so text clears AA on a near-white field.
+- **action** — `ocean-500` dark, `ocean-700` light. The blue rendered as text and as the control fill: links, the hover state in navigation, the eyebrow outline, and the solid button. The light skin takes a deeper step so the text meets AA against a near-white surface.
 - **action-foreground** — `ink` dark, `paper` light. The text that sits on the solid action fill.
-- **secondary** — `azalea-500` dark, `azalea-600` light. Emphasis fills, tints, and headline-scale pink text. Never interactive.
-- **secondary-foreground** — `ink` in both skins. Dark text on a pink chip. On the light-skin solid pink fill this clears 3:1 for large text and UI text only, so small labels use the pink tint with `emphasis` instead.
-- **emphasis** — `azalea-500` dark, `azalea-750` light. The AA-safe step for small pink text. Large pink text uses `secondary` directly. In the dark skin both roles resolve to the same step, so they diverge only in the light skin.
-- **accent** — `mocha-750` dark, `latte-250` light. The neutral hover surface, a half-step lift so a hovered row reads while body text on it still clears AA.
+- **secondary** — `azalea-500` dark, `azalea-600` light. Emphasis fills, pink tints, and pink text at headline size. Never interactive.
+- **secondary-foreground** — `ink` in both skins. Dark text on a pink chip. On the solid pink fill of the light skin this pair meets 3:1, which covers large text and user interface components only. For a small label, use the pink tint with `emphasis` instead.
+- **emphasis** — `azalea-500` dark, `azalea-750` light. The step that meets AA for small pink text. Pink text at headline size uses `secondary` directly. Both roles resolve to the same step in the dark skin, so they differ only in the light skin.
+- **accent** — `mocha-750` dark, `latte-250` light. The neutral hover surface. It sits half a step from the surface below it, so a hovered row is visible and body text on it still meets AA.
 - **accent-foreground** — `mocha-50` dark, `latte-950` light. Text on the neutral hover surface.
-- **background** — `mocha-850` dark, `latte-50` light. The main resting field, a deep violet-charcoal in the dark skin, never pure black.
-- **foreground** — `mocha-50` dark, `latte-950` light. Primary text and headings, soft and never clinical white.
-- **card** — `mocha-875` dark, `latte-75` light. A gentle half-step from the canvas, the ambient grouping container.
-- **card-foreground** — `mocha-50` dark, `latte-950` light.
-- **popover** — `mocha-900` dark, `latte-100` light. Transient floating panels take the firmer full-step tone drop so a menu reads clear of the card it overlays.
-- **popover-foreground** — `mocha-50` dark, `latte-950` light.
-- **sunken** — `mocha-950` dark, `latte-150` light. The deepest well, for inset or brand-immersive panels such as the footer.
-- **sunken-foreground** — `mocha-50` dark, `latte-950` light.
-- **muted** — `mocha-800` dark, `latte-200` light. Muted fills and inert surfaces, one step below the accent hover.
-- **muted-foreground** — `mocha-200` dark, `latte-900` light. Secondary text, captions, and supporting copy. Each skin takes the deepest step that still clears the 4.5:1 floor against its own surfaces, which is subtext-0 in the dark skin and subtext-1 in the light one. The gap to `foreground` is 1.54:1 in the dark skin and 1.28:1 in the light skin: the light skin has less room between readable secondary text and primary text, so weight and placement carry more of the distinction there.
-- **border** — `mocha-800` dark, `latte-200` light. Hairline dividers and edges, the primary depth cue in place of shadow.
-- **input** — `mocha-700` dark, `latte-300` light. Input strokes sit one step firmer than a plain divider so a field edge reads as an affordance rather than a rule.
-- **ring** — `ocean-600` in both skins. The focus ring, which clears 3:1 against either field.
+- **background** — `mocha-850` dark, `latte-50` light. The main surface. In the dark skin it is a deep violet-charcoal, never pure black.
+- **foreground** — `mocha-50` dark, `latte-950` light. Primary text and headings. In the dark skin it is a soft lavender-white, never pure white.
+- **card** — `mocha-875` dark, `latte-75` light. Half a step from `background`. Use it to group related content.
+- **card-foreground** — `mocha-50` dark, `latte-950` light. Text on a card.
+- **popover** — `mocha-900` dark, `latte-100` light. A full step from `background`, so a floating panel reads clear of the card it covers.
+- **popover-foreground** — `mocha-50` dark, `latte-950` light. Text on a popover.
+- **sunken** — `mocha-950` dark, `latte-150` light. The deepest surface. Use it for an inset panel or a closing section such as the footer.
+- **sunken-foreground** — `mocha-50` dark, `latte-950` light. Text on the deepest surface.
+- **muted** — `mocha-800` dark, `latte-200` light. Muted fills and inactive surfaces, one step below the hover surface.
+- **muted-foreground** — `mocha-200` dark, `latte-900` light. Secondary text, captions, and supporting copy. Each skin takes the deepest step that still meets 4.5:1 against its own surfaces: subtext-0 in the dark skin, subtext-1 in the light skin. The difference from `foreground` is 1.54:1 in the dark skin and 1.28:1 in the light skin. The light skin has less room between readable secondary text and primary text, so weight and position carry more of that distinction there.
+- **border** — `mocha-800` dark, `latte-200` light. Dividers and edges, drawn one pixel wide. This is the main depth cue in place of shadow.
+- **input** — `mocha-700` dark, `latte-300` light. The border of a form field sits one step firmer than a plain divider, so an edge reads as a control rather than as a rule.
+- **ring** — `ocean-600` in both skins. The focus ring. This step meets 3:1 against the surfaces of either skin.
 
 ### Destructive and status
 
-`destructive` is the danger intent on form controls: the invalid-field border, its focus ring, and the error message. It is only ever a stroke or a line of text, never a fill, so it follows the same rule the other two chromatic text roles follow and steps per skin. The dark skin takes a lighter red and the light skin a deeper one, because contrast is distance in lightness and a single red would have to sit between the two fields, far from neither. The dark step clears 5.67:1 against the background and 5.88:1 against a card; the light step clears 5.68:1 and 5.48:1. Both are above the 4.5:1 floor for small text, which is the size the error message is set at.
+`destructive` is the danger role on form controls: the border of an invalid field, its focus ring, and its error message. It is always a border or a line of text and never a fill, so it follows the same rule as the other two accent text roles and takes a different step in each skin. The dark skin takes a lighter red and the light skin a deeper one. Contrast is a distance in lightness, so a single red would have to sit between the two skins and would be far from neither. The dark step meets 5.67:1 against `background` and 5.88:1 against `card`. The light step meets 5.68:1 and 5.48:1. All four values are above the 4.5:1 minimum for small text, which is the size of the error message.
 
-The status roles are functional feedback fills for toasts. They report state and never act, so they hold the same step in both skins while the neutrals around them flip. All four carry `ink` text and clear AA: `success` is a green, `error` a red, `warning` an orange, and `info` a cyan chosen to stay distinct from the action blue. `error` and `destructive` are the same hue at different jobs and therefore at different steps: `error` is the fill that reports, held at one step for both skins because `ink` sits on top of it; `destructive` is the stroke and text that marks an invalid control, and it steps per skin because the field behind it flips.
+The status roles are feedback fills for toasts. They report state and never act, so each one holds the same step in both skins while the neutrals around it change. All four carry `ink` text and meet AA: `success` is a green, `error` a red, `warning` an orange, and `info` a cyan chosen to stay distinct from the action blue.
+
+`error` and `destructive` are the same hue at different jobs, and therefore at different steps. `error` is the fill that reports state. It holds one step for both skins, because `ink` sits on top of it. `destructive` is the border and text that mark an invalid control. It takes a different step in each skin, because the surface behind it changes.
 
 ## Typography
 
-Geist carries the whole interface, from the hero name to running body copy, so the page reads as a single engineered voice. Its fallback stack is `system-ui, -apple-system, sans-serif`. Fira Code carries the apparatus: code snippets, navigation links, and the uppercase label role, with the fallback stack `ui-monospace, "SF Mono", Consolas, monospace`. The pairing splits by classification and job, a neo-grotesque for the voice and a monospace for the technical layer, so the two never compete at the same size.
+Geist carries the whole interface, from the largest heading to running body copy, so the page reads in one voice. Its fallback stack is `system-ui, -apple-system, sans-serif`. Fira Code carries the technical layer: code snippets, navigation links, and the uppercase label role. Its fallback stack is `ui-monospace, "SF Mono", Consolas, monospace`. The two faces differ by classification and by job, a neo-grotesque against a monospace, so they never compete at the same size.
 
-The size ramp adopts the conventional step scale on purpose instead of deriving a private modular ratio, and each role keeps the line height that scale pairs with its step. The argument is fit. This identity's type does ordinary jobs — a headline, a section title, running copy, a caption, a control label — and a ramp that readers and builders already parse correctly serves those jobs better than nine values tuned by hand. The scale also already moves in the direction good typesetting wants, tightening the line height as the size grows, so adopting it costs nothing the identity would have set differently. What the identity authors is what the scale leaves open: which role takes which step, which face carries it, and the two tracking exceptions. Letter-spacing departs from normal exactly twice: the display tightens, and the uppercase label widens.
+The size scale is the conventional step scale, adopted on purpose instead of a private modular ratio, and each role keeps the line height that the scale pairs with its step. The reason is fit. The type here does ordinary jobs: a headline, a section title, running copy, a caption, a control label. A scale that readers and builders already read correctly serves those jobs better than nine values tuned by hand. The scale also already tightens the line height as the size grows, which is what good typesetting asks for, so adopting it costs nothing this identity would have set differently. What the identity decides is what the scale leaves open: which role takes which step, which face carries it, and the two exceptions in letter-spacing. Letter-spacing departs from normal exactly twice: the display role tightens, and the uppercase label role widens.
 
-- **display** — Geist 2.25rem, weight 800, line-height 1.111, letter-spacing -0.025em. Section headlines, set large and confident. The hero name is an exception, sized larger with its own raw steps.
-- **heading** — Geist 1.5rem, weight 700, line-height 1.333. Section titles, where the second word may take the pink emphasis.
+- **display** — Geist 2.25rem, weight 800, line-height 1.111, letter-spacing -0.025em. Section headlines. The name in the opening section is an exception and uses larger raw steps.
+- **heading** — Geist 1.5rem, weight 700, line-height 1.333. Section titles. The second word may take the pink emphasis.
 - **title** — Geist 1.25rem, weight 600, line-height 1.4. Card titles and project names.
 - **subtitle** — Geist 1rem, weight 500, line-height 1.5. Lead-in copy and sub-headings, one weight above body.
 - **body** — Geist 1rem, weight 400, line-height 1.5. Primary reading copy.
 - **caption** — Geist 0.75rem, weight 400, line-height 1.333. Small print, metadata, and supporting descriptions.
-- **label** — Fira Code 0.75rem, weight 500, line-height 1.333, letter-spacing 0.05em, rendered uppercase. Eyebrows, form-field labels, and chips. The monospace face and the added tracking keep the caps legible at this size.
-- **button** — Geist 0.875rem, weight 600, line-height 1.428. Control text, sentence case.
-- **code** — Fira Code 0.875rem, weight 400, line-height 1.428. Monospace snippets, technical captions, and navigation links.
+- **label** — Fira Code 0.75rem, weight 500, line-height 1.333, letter-spacing 0.05em, set in uppercase. Eyebrows, form-field labels, and chips. The monospace face and the added letter-spacing keep uppercase legible at this size.
+- **button** — Geist 0.875rem, weight 600, line-height 1.428. Control text, in sentence case.
+- **code** — Fira Code 0.875rem, weight 400, line-height 1.428. Code snippets, technical captions, and navigation links.
 
-The four heading roles step up one size at the 32rem breakpoint, described in Responsive Behavior. Body and the smaller roles hold one size at every width.
+The four heading roles take the next size up at the 32rem breakpoint, described in Responsive Behavior. Body and the smaller roles hold one size at every width.
 
-Three principles hold the type system together. Weight and size carry hierarchy, never a third family. The conventional step scale is adopted whole, size and line height together, so the ramp stays even and predictable rather than hand-tuned. Fira Code appears only where the content is genuinely technical, so the monospace signals engineering craft without theming the whole page.
+Three rules hold the type system together. Weight and size carry hierarchy, and no third family is added. The conventional step scale is adopted whole, size and line height together, so the scale stays even and predictable. Fira Code appears only where the content is technical, so the monospace signals engineering work without setting the tone of the whole page.
 
 ## Layout
 
-The spacing base unit is 0.25rem, and the whole rhythm runs on that grid. Spacing inside a component stays in the 0.5rem to 1.5rem band. Separation between major sections jumps to 4rem and 6rem, which is where the editorial breathing room comes from.
+The base spacing unit is 0.25rem, and every measurement is a multiple of it. Spacing inside a component stays between 0.5rem and 1.5rem. Spacing between major sections rises to 4rem and 6rem, which is what makes the page read as editorial.
 
-The page is a single readable column rather than a wide dashboard, with a content measure of roughly 60 to 75 characters and generous side gutters. The hero is left-aligned and anchored to the start, with open space to its right. Feature groups render as vertical lists of rows, each row a hover target, rather than a dense card grid. Brand-immersive regions such as contact and the footer may invert to a deeper surface for a quiet close, and may run full-bleed while their content stays inside the same column.
+The page is one readable column rather than a wide dashboard. A line of body text runs about 60 to 75 characters, with wide margins on both sides. The opening section aligns left and leaves open space to its right. A group of items renders as a vertical list of rows, and each row is a hover target, rather than as a dense grid of cards. A closing section such as contact or the footer may take a deeper surface, and may run the full width of the viewport while its content stays inside the same column.
 
-Whitespace carries structure. Surfaces are told apart by luminance and a single hairline, so the large section gaps quarantine each idea and the eye knows where one ends and the next begins.
+Whitespace carries the structure. A reader tells two surfaces apart by lightness and by a hairline border, so the large gaps between sections mark where one idea ends and the next begins.
 
 ## Elevation & Depth
 
-Depth is carried first by tone, second by hairline, and only last by shadow. The surface roles step through a narrow luminance band: `card` sits a half-step from the canvas as the ambient grouping container, `popover` a full step further so a floating menu clears the card it overlays, and `sunken` sits deepest. Layering reads through color, not lift, so most of the interface is flat.
+Depth comes first from lightness, second from a hairline border, and last from shadow. The surface roles sit within a narrow band of lightness: `card` sits half a step from `background` and groups related content, `popover` sits a full step further so a floating menu reads clear of the card it covers, and `sunken` sits deepest. Layering reads through color rather than through lift, so most of the interface is flat.
 
-Shadows are reserved for surfaces that genuinely float above other surfaces. Popovers, menus, and toasts take a soft shadow tinted from the palette's dark end rather than neutral black. Static cards take none and rely on their tone drop and hairline.
+Use a shadow only for a surface that floats above another surface. Popovers, menus, and toasts take a soft shadow tinted from the dark end of the palette rather than neutral black. A card at rest takes no shadow and relies on its lightness and its border.
 
-One named exception applies to interactive controls. On hover, a button may carry a wide, low-opacity shadow tinted with its own accent, at roughly 8 to 12 percent. The tint reads as the control lifting toward the pointer, not as a decorative halo, and it exists only in the hover state. Outside that exception the ban on glows holds: no gradients, no halos, no vignettes, and no colored shadow on a resting element.
+One exception applies to interactive controls. On hover, a button may carry a wide shadow tinted with its own accent at roughly 8 to 12 percent opacity. That tint marks the control rising toward the pointer, and it exists only in the hover state. Outside this exception the rule against glows holds: no gradients, no halos, no vignettes, and no colored shadow on an element at rest.
 
 ## Shapes
 
-The radius scale is hierarchical, not uniform. The smallest steps are for inline chips and small inner elements, 0.375rem for compact controls, 0.5rem for buttons, inputs, popovers, and toasts, 0.75rem and 1rem for large framed containers and cards, and the full pill for eyebrows and avatar masks.
+The radius scale is graded, not uniform. The smallest steps are for inline chips and small inner elements. 0.375rem is for compact controls. 0.5rem is for buttons, form fields, popovers, and toasts. 0.75rem and 1rem are for large framed containers and cards. The full pill radius is for eyebrows and avatar masks.
 
-Border width has three levels with distinct jobs. The hairline is the workhorse stroke for dividers, card edges, and input borders. The double-width stroke marks the eyebrow pill and other outlined emphasis edges. The heaviest step is reserved for rare structural accents.
+Border width has three levels with distinct jobs. The hairline is the default stroke for dividers, card edges, and field borders. The two-pixel border marks the eyebrow pill and other outlined emphasis edges. The heaviest step is reserved for rare structural accents.
 
-Corners are gently rounded and consistent: soft enough to feel approachable, tight enough to read as precise. Nothing is fully sharp and nothing is pill-soft except true pills. The radius says considered software, not playful toy.
+Corners are rounded consistently: enough to feel approachable, and little enough to read as precise. Nothing is fully square, and nothing takes the pill radius except a true pill.
 
 ## Components
 
-**Buttons.** The solid button fills with `action` and takes `action-foreground` text at the 0.5rem radius, 1.25rem of horizontal padding, and a 2.75rem control height. It is the loudest element on any view. On hover the fill deepens one accent step and the control takes the tinted hover shadow described in Elevation & Depth. The outline button is transparent with a hairline `border` edge and `muted-foreground` text at the same radius and height. On hover its border and text both adopt the blue and its fill takes a barely-there muted wash, so the control lights up without filling. Disabled controls dim to half opacity and drop their pointer affordance rather than swapping color. A loading control keeps its label in place, hides it from view, and centers a spinner over it, so the button never changes width mid-action. The icon-only variant is a 2.25rem square with the same radius and no fill.
+**Buttons.** The solid button fills with `action` and takes `action-foreground` text, at the 0.5rem radius, 1.25rem of horizontal padding, and a control height of 2.75rem. It is the most prominent element on any view. On hover the fill takes the next accent step down and the control takes the tinted shadow described in Elevation & Depth. The outline button has no fill, a hairline `border` edge, and `muted-foreground` text, at the same radius and height. On hover its border and its text both take the blue, and its fill takes a faint muted wash, so the control brightens without filling. A disabled control drops to half opacity and loses its pointer cursor rather than changing color. A control in its loading state keeps its label in place, hides the label from view, and centers a spinner over it, so the button keeps its width. The icon-only variant is a 2.25rem square at the same radius, with no fill.
 
-**Inputs and forms.** A field is a translucent `input` wash with a hairline `input` border at the 0.5rem radius, 1rem of horizontal padding, 2.75rem high for a single line, and `body` text. On focus the border adopts the blue and a wide, low-opacity ring in `ring` appears around it, which is the same interactive signal buttons and links use. An invalid field swaps its border to `destructive` and its ring to a destructive tint, and its message renders in `destructive` in the `caption` role beneath the control, sized down from the field's own text so the correction reads as an annotation rather than a second input. Labels sit above their field in the uppercase `label` role in `muted-foreground`.
+**Inputs and forms.** A form field has a translucent `input` wash, a hairline `input` border, the 0.5rem radius, 1rem of horizontal padding, `body` text, and a height of 2.75rem for a single line. On focus the border takes the blue and a wide `ring` appears around the field at low opacity, which is the same signal that buttons and links use. An invalid field changes its border to `destructive` and its ring to a destructive tint. Its message renders in `destructive` in the `caption` role below the control, one size down from the text of the field itself, so the correction reads as a note rather than as a second field. A label sits above its field in the uppercase `label` role, in `muted-foreground`.
 
-**Cards and containers.** A card is the `card` fill wrapped in a hairline `border` at the 1rem radius with 1.5rem of padding, and carries no shadow. Depth comes from the tone drop and the rule line. Containers stack with generous gaps and rely on the same hairline to separate, never on heavy dividers. The divider itself is a one-pixel `border` rule, horizontal or vertical.
+**Cards and containers.** A card is the `card` fill inside a hairline `border`, at the 1rem radius, with 1.5rem of padding and no shadow. Its depth comes from the change in lightness and from the border. Containers stack with large gaps and rely on that same border to separate, never on a heavy divider. The divider itself is a hairline `border` rule, horizontal or vertical.
 
-**Floating surfaces.** A popover drops to the `popover` tone, keeps the hairline and the 0.5rem radius, and floats with a soft tinted shadow. It backs the language and theme menus and any transient panel. A toast shares that surface with a double-width border and a round status indicator: a filled circle in the matching status color with `ink` glyph, ringed by a translucent halo of the same hue.
+**Floating surfaces.** A popover takes the `popover` surface, keeps the hairline border and the 0.5rem radius, and carries a soft tinted shadow. It backs the language menu, the theme menu, and any other transient panel. A toast takes the same surface with a two-pixel border and a round status indicator: a filled circle in the matching status color, with an `ink` glyph and a translucent halo of the same hue.
 
-**Navigation.** A minimal sticky header carries the wordmark on the left and a sparse link set with the language switch and theme toggle on the right. Links rest in `muted-foreground` in the monospace `code` role, prefixed by a pink hash mark that points without acting, and rise to the blue on hover. Focus draws the same ring as every other control, offset from the background.
+**Navigation.** A sticky header carries the wordmark on the left, and a small set of links with the language switch and the theme toggle on the right. A link rests in `muted-foreground` in the monospace `code` role, carries a pink hash mark before it, and takes the blue on hover. The hash mark is static emphasis and never responds to the pointer. Focus draws the same ring as every other control, offset from the surface behind it.
 
-**Distinctive components.** The eyebrow is a pill with a double-width blue border, blue text, no fill, and the uppercase `label` role: the role tag above the hero name. Static pink emphasis appears two ways: as pink text inside a running line, and as a pink chip with `ink` text at the full-pill radius. Both are static markers, never controls.
+**Distinctive components.** The eyebrow is a pill with a two-pixel blue border, blue text, no fill, and the uppercase `label` role. It carries the role tag above the name in the opening section. Static pink emphasis appears in two forms: as pink text inside a running line, and as a pink chip with `ink` text at the full pill radius. Both forms are static markers and never controls.
 
 ## Motion & Interaction
 
-Motion has one job here: confirm a state change. Nothing animates for decoration, and no section fades up on scroll.
+Motion has one job: to confirm a change of state. Nothing animates for decoration, and no section fades in on scroll.
 
-Three durations cover the system. Around 150ms handles hover color shifts, focus rings, and small state changes. Around 200ms handles element entrances such as a menu opening or an icon swapping. Around 400ms handles the largest reversible transitions, such as a toast settling into its stack. Exits run faster than their entrances, near 100ms, because a dismissal should not hold the user. Entrances decelerate to rest, exits accelerate away, and looping or reversible motion uses a symmetric curve.
+Three durations cover the system. About 150ms covers hover color changes, the focus ring, and other small changes of state. About 200ms covers an element entering, such as a menu opening or an icon changing. About 400ms covers the largest reversible transition, such as a toast settling into its stack. An exit runs faster than its entrance, at about 100ms, because a dismissal should not hold the user. An entrance decelerates to rest, an exit accelerates away, and a looping or reversible transition uses a symmetric curve.
 
-The theme toggle is the one place with a signature move: the icon swaps with a short flip while a switching flag suppresses transitions everywhere else, so the whole page repaints its skin at once instead of racing through a hundred separate color animations.
+The theme toggle is the one signature transition. The icon changes with a short flip, and a switching flag suppresses transitions everywhere else, so the whole page repaints its skin at once instead of running a separate color transition on every element.
 
-Hover wakes interactive elements in blue. A link recolors, a row tints to the accent surface, and its title shifts to blue. Focus is always the ring, never a browser default. Pressed states deepen the fill. Pink emphasis is static and never animates, because it points rather than responds.
+Hover marks an interactive element in blue. A link changes color, a row takes the accent surface, and the title of that row changes to blue. Focus always draws the ring, never the browser default. A pressed control takes a deeper fill. Pink emphasis is static and never animates, because it points at text rather than responding to the reader.
 
-Under `prefers-reduced-motion`, entrance and reveal animations are removed and state changes resolve instantly through color alone. Hover, focus, and active still recolor, just without the transition. No parallax or autoplay exists to disable.
+If the reader sets `prefers-reduced-motion`, entrance and reveal animations are removed and a change of state resolves through color alone. Hover, focus, and active states still change color, without the transition. The site has no parallax and no autoplay to disable.
 
 ## Responsive Behavior
 
-The breakpoint ladder starts narrower than the framework default because the identity has a real one-hand layout: 24rem for the smallest phones, 32rem for compact, 40rem for large phones, 48rem for tablet, 64rem for desktop, 80rem for wide, and 96rem for ultra-wide. The reading measure is reached well before the widest steps, so those exist for gutters, not for more columns.
+The breakpoints start narrower than the framework default, because the layout is designed for one-hand use at the smallest sizes: 24rem for the smallest phones, 32rem for compact, 40rem for large phones, 48rem for tablet, 64rem for desktop, 80rem for wide, and 96rem for ultra-wide. The reading measure is reached well before the widest steps, so those steps add margin rather than columns.
 
-The four heading roles step up one size at 32rem, which is the only typographic change across the ladder. Everything else holds one size at every width.
+The four heading roles take the next size up at 32rem. That is the only change to type across the breakpoints, and every other role holds one size at every width.
 
-The single-column layout maps cleanly to small screens. Section rhythm compresses from 4rem toward 2rem, hero actions stack, list rows drop their trailing metadata below the title, and the header collapses its link set behind a menu while the language and theme controls stay visible. Nothing reflows into multiple columns at desktop except optional two-up groupings.
+The single-column layout carries over to small screens directly. Spacing between sections drops from 4rem toward 2rem, the actions in the opening section stack, a list row moves its trailing metadata below its title, and the header moves its links behind a menu while the language and theme controls stay visible. Nothing splits into more than one column at desktop, apart from optional two-column groupings.
 
-Images hold a consistent aspect ratio near 16:10 with cover cropping and the card radius. There are no art-directed crops across breakpoints: the same asset scales. Decorative imagery is avoided, because visuals here are content, not ornament.
+An image holds an aspect ratio near 16:10, is cropped to fill, and takes the card radius. There are no art-directed crops between breakpoints, so the same asset scales. The site avoids decorative imagery, because an image here is content rather than ornament.
 
 ## Do's and Don'ts
 
-- Do let the blue own every interactive cue, so "it responds" is always the same color.
+- Do give the blue every interactive cue, so one color always means "this responds to you".
 - Do use pink only to emphasize static text: the second word of a heading, a list marker, one keyword.
-- Do build depth from tone drops and hairlines, and keep most surfaces flat.
-- Do keep content in one calm reading column with large section gaps.
-- Do use the monospace face only for genuinely technical content: code, navigation links, and uppercase labels.
-- Don't introduce a gradient, a glow, or a third accent. The system is two chromatic voices and neutrals.
-- Don't let pink act. No pink buttons, links, or focus rings.
-- Don't reach for a colored shadow outside the button hover exception, and never on a resting element.
-- Don't reach for heavy shadows to separate surfaces when a tone drop and a hairline will do.
-- Don't pack content into a dense dashboard grid. The identity is editorial, single-column, and unhurried.
-- Don't use pure black or pure white. The neutrals are pastel-charcoal and lavender-white by design.
+- Do build depth from lightness and hairline borders, and keep most surfaces flat.
+- Do keep content in one reading column with large gaps between sections.
+- Do use the monospace face only for technical content: code, navigation links, and uppercase labels.
+- Don't add a gradient, a glow, or a third accent. The system is two accent hues and the neutrals.
+- Don't let pink act. It is never a button, a link, or a focus ring.
+- Don't use a colored shadow outside the hover state of a button, and never on an element at rest.
+- Don't use a heavy shadow to separate two surfaces when a change in lightness and a border will do.
+- Don't pack content into a dense dashboard grid. This layout is editorial and single-column.
+- Don't use pure black or pure white. The neutrals are a pastel charcoal and a lavender-white.
 
 ## Agent Prompt Guide
 
 ### Token quick reference
 
-- Control fill and action text: `action`, with `action-foreground` on top of it. The light skin steps the blue deeper for contrast.
+- Control fill and action text: `action`, with `action-foreground` on top of it. The light skin takes a deeper blue for contrast.
 - Bright accent fill: `primary`, with `primary-foreground` on top of it.
-- Static pink text: `emphasis` for small text, `secondary` for headline-scale text and fills.
-- Surfaces from shallow to deep: `background`, `card`, `popover`, `sunken`, with `accent` as the hover lift.
-- Text: `foreground` for primary, `muted-foreground` for supporting copy.
-- Edges: `border` for rules and card edges, `input` for field strokes, `ring` for focus.
+- Static pink text: `emphasis` for small text, `secondary` for headline-size text and for fills.
+- Surfaces from shallow to deep: `background`, `card`, `popover`, `sunken`. `accent` is the hover surface.
+- Text: `foreground` for primary text, `muted-foreground` for supporting copy.
+- Edges: `border` for dividers and card edges, `input` for field borders, `ring` for focus.
 
 ### Example component prompts
 
@@ -468,10 +472,10 @@ Images hold a consistent aspect ratio near 16:10 with cover cropping and the car
 
 ### Iteration guide
 
-1. Lock the neutral foundation first: `background`, `card`, `foreground`, and `border`. The dark canvas and its tone steps are the identity's bedrock.
-2. Only the blue may act. If an element responds to the user, it is blue and nothing else.
+1. Set the neutrals first: `background`, `card`, `foreground`, and `border`. The dark surfaces and their steps are the base of the identity.
+2. Only the blue may act. If an element responds to the reader, it is blue and nothing else.
 3. Only the pink may emphasize. If it is not pointing at static text, it does not belong.
-4. No gradients, no glows, and no third accent. Added chroma is almost always wrong here.
-5. Separate surfaces with a tone drop and a hairline before reaching for any shadow.
-6. Keep pure black and pure white out. Pull from the pastel neutrals so the calm survives.
-7. For the light skin, map the roles onto the latte scale and step the accents deeper. Never reuse a dark-skin accent step on a light field.
+4. Add no gradient, no glow, and no third accent. More chroma is almost always wrong here.
+5. Separate two surfaces with a change in lightness and a border before using any shadow.
+6. Use no pure black and no pure white. Take the neutrals from the two Catppuccin scales.
+7. For the light skin, map the roles onto the `latte` scale and take the deeper accent steps. Never reuse a dark-skin accent step on a light surface.
