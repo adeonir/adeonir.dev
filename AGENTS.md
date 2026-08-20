@@ -12,17 +12,17 @@ The document shell, metadata and SEO, analytics baseline, design-token layer, ge
 
 ## Technology stack
 
-- **Framework:** Astro 6.4.8 with `@astrojs/cloudflare` 13.7.0
-- **UI islands:** React 19.2.7 through `@astrojs/react`, hydrated with `client:*` directives
-- **Styling:** Tailwind CSS 4.3.1 with CSS-first configuration in `src/styles/global.css`
-- **UI primitives:** Ark UI React 5.37.2, using the Ark factory where a primitive must support `asChild`
-- **Type safety:** TypeScript 6.0.3 with Astro's strict configuration
-- **Tests:** Vitest 4.1.9, Testing Library, and happy-dom; unit tests are co-located with source files. `vitest.config.ts` uses plain `vitest/config` with `vite-tsconfig-paths`.
+- **Framework:** Astro with `@astrojs/cloudflare`
+- **UI islands:** React through `@astrojs/react`, hydrated with `client:*` directives
+- **Styling:** Tailwind CSS with CSS-first configuration in `src/styles/global.css`
+- **UI primitives:** Ark UI React, using the Ark factory where a primitive must support `asChild`
+- **Type safety:** TypeScript with Astro's strict configuration
+- **Tests:** Vitest, Testing Library, and happy-dom; unit tests are co-located with source files. `vitest.config.ts` uses plain `vitest/config` with `vite-tsconfig-paths`.
 - **Icons:** `unplugin-icons` and `@iconify-json/tabler`, compiled to React JSX with `@svgr/core`
 - **Fonts:** Geist for the main typeface and Fira Code for technical content, loaded with Astro's `Font` component
 - **Email:** `@react-email/components`, `@react-email/render`, and the Resend API
 - **Analytics:** PostHog in cookieless mode, gated by `POSTHOG_KEY`
-- **Package manager:** pnpm 11.5.2, pinned by `packageManager` in `package.json`
+- **Package manager:** pnpm, pinned by `packageManager` in `package.json`
 
 ## Project structure
 
@@ -189,7 +189,7 @@ Use the repository's component scaffolding workflow when creating a new componen
 
 ## Configuration and formatting
 
-- `package.json` pins pnpm with `packageManager: pnpm@11.5.2`. `wrangler` is a direct dev dependency so its binary is available in the Workers Builds environment.
+- `package.json` pins the pnpm version with the `packageManager` field. `wrangler` is a direct dev dependency so its binary is available in the Workers Builds environment.
 - `astro.config.mjs` sets `site` to `https://adeonir.dev`, configures Cloudflare, React, sitemap, robots, fonts, the env schema, Tailwind, icons, and optimized server dependencies.
 - `tsconfig.json` uses Astro's strict base settings, React JSX, and the `~/*` alias to `src/*`.
 - `biome.json` owns JS/TS/CSS/JSON. Astro is excluded. CSS uses the Tailwind directives parser and double-quoted formatting.
