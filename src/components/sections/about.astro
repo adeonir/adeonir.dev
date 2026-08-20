@@ -14,29 +14,27 @@ const { eyebrow, headline, bio } = about.data
 
 <section id="about">
   <Eyebrow variant="muted">{eyebrow}</Eyebrow>
-  <div class="mt-6 grid grid-cols-1 gap-12 md:grid-cols-5">
-    <h2 class="col-span-2 flex-1 text-display text-pretty text-foreground">
-      {
-        headline.map((segment) => (
-          <>
-            {segment.highlight ? (
-              <span class="text-secondary">{segment.text}</span>
-            ) : (
-              segment.text
-            )}
-            {segment.break && <br class="hidden md:block" />}
-          </>
-        ))
-      }
-    </h2>
-    <div class="col-span-3 flex flex-1 flex-col gap-4">
-      {
-        bio.map((paragraph) => (
-          <p class="text-body leading-relaxed text-pretty text-muted-foreground">
-            {paragraph}
-          </p>
-        ))
-      }
-    </div>
+  <h2 class="mt-6 text-display text-pretty text-foreground">
+    {
+      headline.map((segment) => (
+        <>
+          {segment.highlight ? (
+            <span class="text-secondary">{segment.text}</span>
+          ) : (
+            segment.text
+          )}
+          {segment.break && <br class="hidden md:block" />}
+        </>
+      ))
+    }
+  </h2>
+  <div class="mt-12 flex max-w-2xl flex-col gap-4">
+    {
+      bio.map((paragraph) => (
+        <p class="text-body leading-relaxed text-pretty text-muted-foreground">
+          {paragraph}
+        </p>
+      ))
+    }
   </div>
 </section>
