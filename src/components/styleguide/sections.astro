@@ -134,9 +134,19 @@ const widths = [
 ]
 
 const shadows = [
-  { cls: '', label: 'resting · none' },
-  { cls: 'shadow-foreground/5 shadow-lg', label: 'floating · popover, toast' },
-  { cls: 'shadow-action/12 shadow-lg', label: 'button hover · tinted' },
+  { cls: 'shadow-2xs', label: '2xs' },
+  { cls: 'shadow-xs', label: 'xs' },
+  { cls: 'shadow-sm', label: 'sm' },
+  { cls: 'shadow-md', label: 'md' },
+  { cls: 'shadow-lg', label: 'lg' },
+  { cls: 'shadow-xl', label: 'xl' },
+  { cls: 'shadow-2xl', label: '2xl' },
+]
+
+const elevations = [
+  { cls: '', label: 'none' },
+  { cls: 'shadow-foreground/5 shadow-lg', label: 'floating' },
+  { cls: 'shadow-action/12 shadow-lg', label: 'tinted' },
 ]
 
 const breakpoints = [
@@ -278,6 +288,21 @@ const breakpoints = [
               ]}
             />
             <span class="text-caption text-muted-foreground">{s.label}</span>
+          </div>
+        ))
+      }
+    </div>
+    <div class="flex flex-wrap gap-4">
+      {
+        elevations.map((e) => (
+          <div class="flex flex-col items-center gap-1">
+            <div
+              class:list={[
+                'size-14 rounded-lg border border-border bg-card',
+                e.cls,
+              ]}
+            />
+            <span class="text-caption text-muted-foreground">{e.label}</span>
           </div>
         ))
       }
