@@ -8,7 +8,7 @@ export const eyebrowVariants = cva(
   {
     variants: {
       variant: {
-        default: 'border-action text-action',
+        default: 'border-action/30 text-action',
         muted: 'border-border text-muted-foreground',
       },
     },
