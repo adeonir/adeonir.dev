@@ -14,7 +14,6 @@ const { eyebrow, headline, tools } = stack.data
 ---
 
 <section id="stack">
-  <Eyebrow variant="muted">{eyebrow}</Eyebrow>
   <div class="mt-6 grid grid-cols-1 gap-12 md:grid-cols-5">
     <h2 class="text-display text-pretty text-foreground md:col-span-2">
       {
@@ -31,6 +30,7 @@ const { eyebrow, headline, tools } = stack.data
       }
     </h2>
     <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-3 md:col-span-3">
+      <Eyebrow className="col-span-full" variant="muted">{eyebrow}</Eyebrow>
       {
         tools.map((group) => (
           <div class="flex flex-col gap-2">
