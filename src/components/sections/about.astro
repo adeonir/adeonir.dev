@@ -20,10 +20,8 @@ const { eyebrow, headline, bio } = about.data
           <>
             {segment.highlight ? (
               <span class="text-secondary">{segment.text}</span>
-            ) : segment.highlight ? (
-              <span class="text-muted-foreground">{segment.text}</span>
             ) : (
-              segment.text
+              <span class="text-muted-foreground">{segment.text}</span>
             )}
             {segment.break && <br class="hidden md:block" />}
           </>
