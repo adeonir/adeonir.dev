@@ -1,5 +1,4 @@
 ---
-import { ToastDemo } from '~/components/styleguide/toast'
 import StyleguideSections from '~/components/styleguide/sections.astro'
 import '~/styles/global.css'
 import { ThemeToggle } from '~/components/islands/theme-toggle'
@@ -22,8 +21,7 @@ import { ThemeToggle } from '~/components/islands/theme-toggle'
         />
       </div>
       <div class="mx-auto min-h-screen max-w-5xl space-y-8 p-8">
-        <StyleguideSections skin="dark" />
-        <ToastDemo client:load />
+        <StyleguideSections />
       </div>
     </main>
   </body>
