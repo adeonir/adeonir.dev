@@ -8,7 +8,7 @@ This file is the canonical guide for coding agents working on `adeonir.dev`. Rea
 
 The site is an Astro application deployed as an SSR Worker on Cloudflare. Pages are content-driven and prerendered to static HTML. The production home (`/`) currently renders the Hero, About, Stack, and Contact sections. The contact form is a React island on the home and submits to the server-side contact Action. The work index and project case-study routes are not implemented yet.
 
-The document shell, metadata and SEO, analytics baseline, design-token layer, generated crawl files, and content-layer scaffolding are implemented. The `/maintenance` and `/404` routes are wired through the base layout. The `/styleguide` route renders both skins in a separate shell and is excluded from indexing.
+The document shell, metadata and SEO, analytics baseline, design-token layer, generated crawl files, and content-layer scaffolding are implemented. The `/maintenance` and `/404` routes are wired through the base layout. The `/styleguide` route renders the token grid in a separate shell, with a theme toggle to switch skins, and is excluded from indexing.
 
 ## Technology stack
 
@@ -238,7 +238,7 @@ The repository tracks delivery in GitHub Issues for `adeonir/adeonir.dev`, using
 - `src/pages/index.astro` — production home with `title="Portfólio"` and the `shell` prop.
 - `src/pages/maintenance.astro` — centered noindex holding page using semantic tokens and `public/logo.svg`.
 - `src/pages/404.astro` — global noindex not-found page with the `not-found` collection, an oversized `404` mark, highlighted headline, body, and back-home action. The static-assets Worker serves it with a 404 status for unmatched routes.
-- `src/pages/styleguide.astro` — noindex token styleguide that renders dark and light skins side by side without the base layout.
+- `src/pages/styleguide.astro` — noindex token styleguide that renders one token grid without the base layout; a theme toggle switches between the dark and light skins.
 - `src/content.config.ts`, `src/content/`, and `src/schemas/` — content loaders, YAML entries, and Zod schemas. Do not recreate the content-layer scaffolding.
 - `src/components/scripts/analytics.astro` — config-gated PostHog array stub and async client loader.
 - `src/actions/index.ts` — contact Action and typed error paths.

@@ -1,139 +1,122 @@
 ---
+version: alpha
 name: adeonir.dev
 description: Calm pastel-dark developer identity where a single blue accent carries every action and a warm pink punctuates emphasis
 colors:
-  # ── Mocha: official Catppuccin dark scale, role-numbered (text→crust) ──
-  mocha-50: { hex: "#cdd6f4", oklch: "oklch(87.87% 0.0426 272.28)" } # text
-  mocha-100: { hex: "#bac2de", oklch: "oklch(81.68% 0.0403 272.86)" } # subtext-1
-  mocha-200: { hex: "#a6adc8", oklch: "oklch(75.10% 0.0396 273.93)" } # subtext-0
-  mocha-300: { hex: "#9399b2", oklch: "oklch(68.65% 0.0374 274.73)" } # overlay-2
-  mocha-400: { hex: "#7f849c", oklch: "oklch(61.76% 0.0367 276.00)" } # overlay-1
-  mocha-500: { hex: "#6c7086", oklch: "oklch(54.97% 0.0345 277.10)" } # overlay-0
-  mocha-600: { hex: "#585b70", oklch: "oklch(47.65% 0.0340 278.64)" } # surface-2
-  mocha-700: { hex: "#45475a", oklch: "oklch(40.37% 0.0320 280.15)" } # surface-1
-  mocha-750: { hex: "#3b3c4f", oklch: "oklch(36.38% 0.0319 281.06)" } # surface-0/1 blend
-  mocha-800: { hex: "#313244", oklch: "oklch(32.40% 0.0319 281.98)" } # surface-0
-  mocha-850: { hex: "#1e1e2e", oklch: "oklch(24.29% 0.0304 283.91)" } # base
-  mocha-875: { hex: "#1b1b29", oklch: "oklch(22.92% 0.0279 283.99)" } # base/mantle blend
-  mocha-900: { hex: "#181825", oklch: "oklch(21.55% 0.0254 284.06)" } # mantle
-  mocha-950: { hex: "#11111b", oklch: "oklch(18.28% 0.0204 284.20)" } # crust
-  # ── Latte: official Catppuccin light scale, role-numbered (base→text) ──
-  latte-50: { hex: "#eff1f5", oklch: "oklch(95.78% 0.0058 264.53)" } # base
-  latte-75: { hex: "#ebedf2", oklch: "oklch(94.57% 0.0073 264.53)" } # base/mantle blend
-  latte-100: { hex: "#e6e9ef", oklch: "oklch(93.35% 0.0087 264.52)" } # mantle
-  latte-150: { hex: "#dce0e8", oklch: "oklch(90.60% 0.0117 264.51)" } # crust
-  latte-200: { hex: "#ccd0da", oklch: "oklch(85.75% 0.0145 268.48)" } # surface-0
-  latte-250: { hex: "#c4c8d3", oklch: "oklch(83.29% 0.0159 269.84)" } # surface-0/1 blend
-  latte-300: { hex: "#bcc0cc", oklch: "oklch(80.83% 0.0174 271.20)" } # surface-1
-  latte-400: { hex: "#acb0be", oklch: "oklch(75.84% 0.0205 273.15)" } # surface-2
-  latte-500: { hex: "#9ca0b0", oklch: "oklch(70.77% 0.0237 274.60)" } # overlay-0
-  latte-600: { hex: "#8c8fa1", oklch: "oklch(65.36% 0.0269 278.12)" } # overlay-1
-  latte-700: { hex: "#7c7f93", oklch: "oklch(60.09% 0.0305 278.69)" } # overlay-2
-  latte-800: { hex: "#6c6f85", oklch: "oklch(54.71% 0.0343 279.08)" } # subtext-0
-  latte-900: { hex: "#5c5f77", oklch: "oklch(49.20% 0.0385 279.30)" } # subtext-1
-  latte-925: { hex: "#545770", oklch: "oklch(46.40% 0.0408 279.30)" } # subtext-1/text blend
-  latte-950: { hex: "#4c4f69", oklch: "oklch(43.55% 0.0430 279.33)" } # text
-  # ── Brand accents: two full ramps (blue waters + pink flowers); the skin selects steps ──
-  ocean-50: { hex: "#f0f9ff", oklch: "oklch(97.7% 0.012 236.62)" }
-  ocean-100: { hex: "#e0f2fe", oklch: "oklch(95.1% 0.025 236.82)" }
-  ocean-200: { hex: "#bae6fd", oklch: "oklch(90.1% 0.055 230.90)" }
-  ocean-300: { hex: "#7cd2fc", oklch: "oklch(82.5% 0.102 231.23)" }
-  ocean-400: { hex: "#36bcf9", oklch: "oklch(75.1% 0.141 233.62)" }
-  ocean-500: { hex: "#0ea2e7", oklch: "oklch(67.7% 0.148 238.14)" }
-  ocean-600: { hex: "#0183c8", oklch: "oklch(58.6% 0.141 242.85)" }
-  ocean-700: { hex: "#0168a2", oklch: "oklch(49.8% 0.122 243.78)" }
-  ocean-800: { hex: "#075885", oklch: "oklch(44.1% 0.101 241.65)" }
-  ocean-900: { hex: "#0d496e", oklch: "oklch(38.9% 0.085 241.95)" }
-  ocean-950: { hex: "#082f49", oklch: "oklch(29.3% 0.063 243.16)" }
-  azalea-50: { hex: "#fef1f7", oklch: "oklch(97.0% 0.016 347.63)" }
-  azalea-100: { hex: "#fee5f1", oklch: "oklch(94.6% 0.031 347.06)" }
-  azalea-200: { hex: "#ffcae3", oklch: "oklch(89.3% 0.068 348.58)" }
-  azalea-300: { hex: "#ff9fca", oklch: "oklch(81.2% 0.125 351.86)" }
-  azalea-400: { hex: "#ff63a5", oklch: "oklch(71.6% 0.199 357.08)" }
-  azalea-500: { hex: "#ff3d8a", oklch: "oklch(67.2% 0.233 2.27)" }
-  azalea-600: { hex: "#f0115f", oklch: "oklch(61.4% 0.240 11.26)" }
-  azalea-700: { hex: "#d10646", oklch: "oklch(54.8% 0.217 15.02)" }
-  azalea-750: { hex: "#bf0540", oklch: "oklch(51.3% 0.203 14.82)" }
-  azalea-800: { hex: "#ad073a", oklch: "oklch(47.8% 0.188 14.62)" }
-  azalea-900: { hex: "#8f0d34", oklch: "oklch(42.0% 0.160 12.52)" }
-  azalea-950: { hex: "#58001a", oklch: "oklch(29.3% 0.117 13.61)" }
-  # ── Skin-neutral pair: dark ink on bright fills / light paper on dark fills ──
-  ink: { hex: "#11111b", oklch: "oklch(18.3% 0.020 284.20)" }
-  paper: { hex: "#f8fafe", oklch: "oklch(98.5% 0.005 264.50)" }
-  # ── Semantic (flat = default Mocha/dark skin; aliases the scales above) ──
-  primary: { hex: "#0ea2e7", oklch: "oklch(67.7% 0.148 238.14)" }
-  primary-foreground: { hex: "#11111b", oklch: "oklch(18.3% 0.020 284.20)" }
-  secondary: { hex: "#ff3d8a", oklch: "oklch(67.2% 0.233 2.27)" }
-  secondary-foreground: { hex: "#11111b", oklch: "oklch(18.3% 0.020 284.20)" }
-  action: { hex: "#0ea2e7", oklch: "oklch(67.7% 0.148 238.14)" } # primary as text
-  emphasis: { hex: "#ff3d8a", oklch: "oklch(67.2% 0.233 2.27)" } # secondary as text
-  accent: { hex: "#3b3c4f", oklch: "oklch(36.38% 0.0319 281.06)" } # surface-0/1 blend
-  accent-foreground: { hex: "#cdd6f4", oklch: "oklch(87.87% 0.0426 272.28)" }
-  muted: { hex: "#313244", oklch: "oklch(32.40% 0.0319 281.98)" } # surface-0
-  muted-foreground: { hex: "#bac2de", oklch: "oklch(81.68% 0.0403 272.86)" } # subtext-1
-  background: { hex: "#1e1e2e", oklch: "oklch(24.29% 0.0304 283.91)" } # base
-  foreground: { hex: "#cdd6f4", oklch: "oklch(87.87% 0.0426 272.28)" } # text
-  card: { hex: "#1b1b29", oklch: "oklch(22.92% 0.0279 283.99)" } # base/mantle blend
-  card-foreground: { hex: "#cdd6f4", oklch: "oklch(87.87% 0.0426 272.28)" }
-  popover: { hex: "#181825", oklch: "oklch(21.55% 0.0254 284.06)" } # mantle
-  popover-foreground: { hex: "#cdd6f4", oklch: "oklch(87.87% 0.0426 272.28)" }
-  sunken: { hex: "#11111b", oklch: "oklch(18.28% 0.0204 284.20)" } # crust
-  sunken-foreground: { hex: "#cdd6f4", oklch: "oklch(87.87% 0.0426 272.28)" }
-  destructive: { hex: "#fb2c36", oklch: "oklch(63.7% 0.237 25.331)" } # red-500
-  destructive-foreground: { hex: "#11111b", oklch: "oklch(18.3% 0.020 284.20)" } # ink
-  border: { hex: "#313244", oklch: "oklch(32.40% 0.0319 281.98)" } # surface-0
-  input: { hex: "#313244", oklch: "oklch(32.40% 0.0319 281.98)" }
-  ring: { hex: "#0183c8", oklch: "oklch(58.6% 0.141 242.85)" }
-  # ── Status feedback: skin-neutral filled chips with ink text; never interactive ──
-  success: { hex: "#00c950", oklch: "oklch(72.3% 0.219 149.579)" } # green-500
-  success-foreground: { hex: "#11111b", oklch: "oklch(18.3% 0.020 284.20)" } # ink
-  error: { hex: "#fb2c36", oklch: "oklch(63.7% 0.237 25.331)" } # red-500
-  error-foreground: { hex: "#11111b", oklch: "oklch(18.3% 0.020 284.20)" } # ink
-  warning: { hex: "#ff6900", oklch: "oklch(70.5% 0.213 47.604)" } # orange-500
-  warning-foreground: { hex: "#11111b", oklch: "oklch(18.3% 0.020 284.20)" } # ink
-  info: { hex: "#00b8db", oklch: "oklch(71.5% 0.143 215.221)" } # cyan-500
-  info-foreground: { hex: "#11111b", oklch: "oklch(18.3% 0.020 284.20)" } # ink
-  # ── Latte/light skin override: redefines only what changes; the rest inherits the flat dark token ──
-  light:
-    secondary: { hex: "#f0115f", oklch: "oklch(61.4% 0.240 11.26)" }
-    action: { hex: "#0168a2", oklch: "oklch(49.8% 0.122 243.78)" }
-    emphasis: { hex: "#bf0540", oklch: "oklch(51.3% 0.203 14.82)" }
-    accent: { hex: "#c4c8d3", oklch: "oklch(83.29% 0.0159 269.84)" }
-    accent-foreground: { hex: "#4c4f69", oklch: "oklch(43.55% 0.0430 279.33)" }
-    muted: { hex: "#ccd0da", oklch: "oklch(85.75% 0.0145 268.48)" }
-    muted-foreground: { hex: "#545770", oklch: "oklch(46.40% 0.0408 279.30)" }
-    background: { hex: "#eff1f5", oklch: "oklch(95.78% 0.0058 264.53)" }
-    foreground: { hex: "#4c4f69", oklch: "oklch(43.55% 0.0430 279.33)" }
-    card: { hex: "#ebedf2", oklch: "oklch(94.57% 0.0073 264.53)" }
-    card-foreground: { hex: "#4c4f69", oklch: "oklch(43.55% 0.0430 279.33)" }
-    popover: { hex: "#e6e9ef", oklch: "oklch(93.35% 0.0087 264.52)" }
-    popover-foreground: { hex: "#4c4f69", oklch: "oklch(43.55% 0.0430 279.33)" }
-    sunken: { hex: "#dce0e8", oklch: "oklch(90.60% 0.0117 264.51)" }
-    sunken-foreground: { hex: "#4c4f69", oklch: "oklch(43.55% 0.0430 279.33)" }
-    border: { hex: "#ccd0da", oklch: "oklch(85.75% 0.0145 268.48)" }
-    input: { hex: "#ccd0da", oklch: "oklch(85.75% 0.0145 268.48)" }
+  # Mocha: Catppuccin dark scale, role-numbered from text to crust
+  mocha-50: "oklch(87.87% 0.0426 272.28)"
+  mocha-100: "oklch(81.68% 0.0403 272.86)"
+  mocha-200: "oklch(75.10% 0.0396 273.93)"
+  mocha-300: "oklch(68.65% 0.0374 274.73)"
+  mocha-400: "oklch(61.76% 0.0367 276)"
+  mocha-500: "oklch(54.97% 0.0345 277.1)"
+  mocha-600: "oklch(47.65% 0.034 278.64)"
+  mocha-700: "oklch(40.37% 0.032 280.15)"
+  mocha-750: "oklch(36.38% 0.0319 281.06)"
+  mocha-800: "oklch(32.40% 0.0319 281.98)"
+  mocha-850: "oklch(24.29% 0.0304 283.91)"
+  mocha-875: "oklch(22.92% 0.0279 283.99)"
+  mocha-900: "oklch(21.55% 0.0254 284.06)"
+  mocha-950: "oklch(18.28% 0.0204 284.2)"
+  # Latte: Catppuccin light scale, role-numbered from base to text
+  latte-50: "oklch(95.78% 0.0058 264.53)"
+  latte-75: "oklch(94.57% 0.0073 264.53)"
+  latte-100: "oklch(93.35% 0.0087 264.52)"
+  latte-150: "oklch(90.60% 0.0117 264.51)"
+  latte-200: "oklch(85.75% 0.0145 268.48)"
+  latte-250: "oklch(83.29% 0.0159 269.84)"
+  latte-300: "oklch(80.83% 0.0174 271.2)"
+  latte-400: "oklch(75.84% 0.0205 273.15)"
+  latte-500: "oklch(70.77% 0.0237 274.6)"
+  latte-600: "oklch(65.36% 0.0269 278.12)"
+  latte-700: "oklch(60.09% 0.0305 278.69)"
+  latte-800: "oklch(54.71% 0.0343 279.08)"
+  latte-900: "oklch(49.20% 0.0385 279.3)"
+  latte-950: "oklch(43.55% 0.043 279.33)"
+  # Ocean: the blue ramp that acts
+  ocean-50: "oklch(97.7% 0.012 236.62)"
+  ocean-100: "oklch(95.1% 0.025 236.82)"
+  ocean-200: "oklch(90.1% 0.055 230.9)"
+  ocean-300: "oklch(82.5% 0.102 231.23)"
+  ocean-400: "oklch(75.1% 0.141 233.62)"
+  ocean-500: "oklch(67.7% 0.148 238.14)"
+  ocean-600: "oklch(58.6% 0.141 242.85)"
+  ocean-700: "oklch(49.8% 0.122 243.78)"
+  ocean-800: "oklch(44.1% 0.101 241.65)"
+  ocean-900: "oklch(38.9% 0.085 241.95)"
+  ocean-950: "oklch(29.3% 0.063 243.16)"
+  # Azalea: the pink ramp that points
+  azalea-50: "oklch(97% 0.016 347.63)"
+  azalea-100: "oklch(94.6% 0.031 347.06)"
+  azalea-200: "oklch(89.3% 0.068 348.58)"
+  azalea-300: "oklch(81.2% 0.125 351.86)"
+  azalea-400: "oklch(71.6% 0.199 357.08)"
+  azalea-500: "oklch(67.2% 0.233 2.27)"
+  azalea-600: "oklch(61.4% 0.24 11.26)"
+  azalea-700: "oklch(54.8% 0.217 15.02)"
+  azalea-750: "oklch(51.3% 0.203 14.82)"
+  azalea-800: "oklch(47.8% 0.188 14.62)"
+  azalea-900: "oklch(42% 0.16 12.52)"
+  azalea-950: "oklch(29.3% 0.117 13.61)"
+  # Skin-neutral pair
+  ink: "oklch(18.3% 0.02 284.2)"
+  paper: "oklch(98.5% 0.005 264.5)"
+  # Semantic roles, dark skin. The light skin remaps them in the Colors section.
+  primary: "oklch(67.7% 0.148 238.14)"
+  primary-foreground: "oklch(18.3% 0.02 284.2)"
+  secondary: "oklch(67.2% 0.233 2.27)"
+  secondary-foreground: "oklch(18.3% 0.02 284.2)"
+  action: "oklch(67.7% 0.148 238.14)"
+  action-foreground: "oklch(18.3% 0.02 284.2)"
+  emphasis: "oklch(67.2% 0.233 2.27)"
+  accent: "oklch(36.38% 0.0319 281.06)"
+  accent-foreground: "oklch(87.87% 0.0426 272.28)"
+  muted: "oklch(32.40% 0.0319 281.98)"
+  muted-foreground: "oklch(75.10% 0.0396 273.93)"
+  background: "oklch(24.29% 0.0304 283.91)"
+  foreground: "oklch(87.87% 0.0426 272.28)"
+  card: "oklch(22.92% 0.0279 283.99)"
+  card-foreground: "oklch(87.87% 0.0426 272.28)"
+  popover: "oklch(21.55% 0.0254 284.06)"
+  popover-foreground: "oklch(87.87% 0.0426 272.28)"
+  sunken: "oklch(18.28% 0.0204 284.2)"
+  sunken-foreground: "oklch(87.87% 0.0426 272.28)"
+  destructive: "oklch(70.4% 0.191 22.216)"
+  destructive-foreground: "oklch(18.3% 0.02 284.2)"
+  border: "oklch(32.40% 0.0319 281.98)"
+  input: "oklch(40.37% 0.032 280.15)"
+  ring: "oklch(58.6% 0.141 242.85)"
+  # Status feedback, skin-neutral in both skins
+  success: "oklch(72.3% 0.219 149.579)"
+  success-foreground: "oklch(18.3% 0.02 284.2)"
+  error: "oklch(63.7% 0.237 25.331)"
+  error-foreground: "oklch(18.3% 0.02 284.2)"
+  warning: "oklch(70.5% 0.213 47.604)"
+  warning-foreground: "oklch(18.3% 0.02 284.2)"
+  info: "oklch(71.5% 0.143 215.221)"
+  info-foreground: "oklch(18.3% 0.02 284.2)"
 typography:
   display:
     fontFamily: "Geist"
-    fontSize: { base: 2.25rem, sm: 3rem }
+    fontSize: 2.25rem
     fontWeight: 800
-    lineHeight: 1
+    lineHeight: 1.111
     letterSpacing: -0.025em
   heading:
     fontFamily: "Geist"
-    fontSize: { base: 1.5rem, sm: 1.875rem }
+    fontSize: 1.5rem
     fontWeight: 700
-    lineHeight: 1.2
+    lineHeight: 1.333
   title:
     fontFamily: "Geist"
-    fontSize: { base: 1.25rem, sm: 1.5rem }
+    fontSize: 1.25rem
     fontWeight: 600
-    lineHeight: 1.333
+    lineHeight: 1.4
   subtitle:
     fontFamily: "Geist"
-    fontSize: { base: 1rem, sm: 1.125rem }
+    fontSize: 1rem
     fontWeight: 500
-    lineHeight: 1.556
+    lineHeight: 1.5
   body:
     fontFamily: "Geist"
     fontSize: 1rem
@@ -145,11 +128,11 @@ typography:
     fontWeight: 400
     lineHeight: 1.333
   label:
-    fontFamily: "Geist"
+    fontFamily: "Fira Code"
     fontSize: 0.75rem
-    fontWeight: 600
+    fontWeight: 500
     lineHeight: 1.333
-    letterSpacing: 0.1em
+    letterSpacing: 0.05em
   button:
     fontFamily: "Geist"
     fontSize: 0.875rem
@@ -168,382 +151,327 @@ rounded:
   xl: 0.75rem
   2xl: 1rem
   full: 9999px
-borderWidth:
-  0: 0px
-  DEFAULT: 1px
-  2: 2px
-  4: 4px
 spacing:
   1: 0.25rem
   2: 0.5rem
   3: 0.75rem
   4: 1rem
+  5: 1.25rem
   6: 1.5rem
   8: 2rem
+  11: 2.75rem
   12: 3rem
   16: 4rem
   24: 6rem
 components:
-  button-primary:
-    backgroundColor: "{colors.primary}"
-    textColor: "{colors.primary-foreground}"
-    rounded: "{rounded.md}"
-    padding: "{spacing.3}"
-    typography: "{typography.button}"
-  button-primary-hover:
-    backgroundColor: "{colors.primary}/90"
-  button-primary-disabled:
-    backgroundColor: "{colors.muted}"
-    textColor: "{colors.muted-foreground}"
-  button-secondary:
-    backgroundColor: "transparent"
+  page:
+    backgroundColor: "{colors.background}"
     textColor: "{colors.foreground}"
-    borderColor: "{colors.border}"
-    borderWidth: "{borderWidth.DEFAULT}"
-    rounded: "{rounded.md}"
-    padding: "{spacing.3}"
+    typography: "{typography.body}"
+  button-primary:
+    backgroundColor: "{colors.action}"
+    textColor: "{colors.action-foreground}"
     typography: "{typography.button}"
+    rounded: "{rounded.lg}"
+    padding: "{spacing.5}"
+    height: "{spacing.11}"
+  button-primary-hover:
+    backgroundColor: "{colors.ring}"
+    textColor: "{colors.action-foreground}"
+  button-secondary:
+    backgroundColor: "{colors.background}"
+    textColor: "{colors.muted-foreground}"
+    typography: "{typography.button}"
+    rounded: "{rounded.lg}"
+    padding: "{spacing.5}"
+    height: "{spacing.11}"
   button-secondary-hover:
-    borderColor: "{colors.action}"
-    textColor: "{colors.action}"
+    backgroundColor: "{colors.background}"
+    textColor: "{colors.primary}"
+  button-icon:
+    backgroundColor: "{colors.background}"
+    textColor: "{colors.muted-foreground}"
+    rounded: "{rounded.lg}"
+    size: 2.25rem
+  input:
+    backgroundColor: "{colors.input}"
+    textColor: "{colors.foreground}"
+    typography: "{typography.body}"
+    rounded: "{rounded.lg}"
+    padding: "{spacing.4}"
+    height: "{spacing.11}"
+  input-label:
+    backgroundColor: "{colors.background}"
+    textColor: "{colors.muted-foreground}"
+    typography: "{typography.label}"
+  input-error:
+    backgroundColor: "{colors.background}"
+    textColor: "{colors.destructive}"
+    typography: "{typography.caption}"
   card:
     backgroundColor: "{colors.card}"
     textColor: "{colors.card-foreground}"
-    rounded: "{rounded.lg}"
+    typography: "{typography.body}"
+    rounded: "{rounded.2xl}"
     padding: "{spacing.6}"
-    borderColor: "{colors.border}"
-    borderWidth: "{borderWidth.DEFAULT}"
-    shadow: "{elevation.sm}"
-  input:
-    backgroundColor: "{colors.background}"
-    textColor: "{colors.foreground}"
-    rounded: "{rounded.md}"
-    padding: "{spacing.3}"
-    borderColor: "{colors.input}"
-    borderWidth: "{borderWidth.DEFAULT}"
-  input-focus:
-    borderColor: "{colors.ring}"
   popover:
     backgroundColor: "{colors.popover}"
     textColor: "{colors.popover-foreground}"
+    typography: "{typography.body}"
     rounded: "{rounded.lg}"
     padding: "{spacing.4}"
-    borderColor: "{colors.border}"
-    borderWidth: "{borderWidth.DEFAULT}"
-    shadow: "{elevation.lg}"
+  toast:
+    backgroundColor: "{colors.popover}"
+    textColor: "{colors.foreground}"
+    typography: "{typography.body}"
+    rounded: "{rounded.lg}"
+    padding: "{spacing.4}"
+  toast-success:
+    backgroundColor: "{colors.success}"
+    textColor: "{colors.success-foreground}"
+    rounded: "{rounded.full}"
+    size: "{spacing.8}"
+  toast-error:
+    backgroundColor: "{colors.error}"
+    textColor: "{colors.error-foreground}"
+    rounded: "{rounded.full}"
+    size: "{spacing.8}"
+  toast-warning:
+    backgroundColor: "{colors.warning}"
+    textColor: "{colors.warning-foreground}"
+    rounded: "{rounded.full}"
+    size: "{spacing.8}"
+  toast-info:
+    backgroundColor: "{colors.info}"
+    textColor: "{colors.info-foreground}"
+    rounded: "{rounded.full}"
+    size: "{spacing.8}"
   eyebrow:
-    backgroundColor: "transparent"
+    backgroundColor: "{colors.background}"
     textColor: "{colors.action}"
-    borderColor: "{colors.action}"
-    borderWidth: "{borderWidth.2}"
+    typography: "{typography.label}"
+    rounded: "{rounded.full}"
+    padding: "{spacing.3}"
+  emphasis-text:
+    backgroundColor: "{colors.background}"
+    textColor: "{colors.emphasis}"
+    typography: "{typography.body}"
+  emphasis-fill:
+    backgroundColor: "{colors.secondary}"
+    textColor: "{colors.secondary-foreground}"
+    typography: "{typography.label}"
     rounded: "{rounded.full}"
     padding: "{spacing.2}"
-    typography: "{typography.label}"
-  badge:
-    backgroundColor: "{colors.secondary}/7"
-    textColor: "{colors.emphasis}"
-    rounded: "{rounded.full}"
-    padding: "{spacing.1} {spacing.3}"
-    typography: "{typography.label}"
+  surface-accent:
+    backgroundColor: "{colors.accent}"
+    textColor: "{colors.accent-foreground}"
+    typography: "{typography.body}"
+    rounded: "{rounded.lg}"
+    padding: "{spacing.4}"
+  surface-sunken:
+    backgroundColor: "{colors.sunken}"
+    textColor: "{colors.sunken-foreground}"
+    typography: "{typography.body}"
+    padding: "{spacing.6}"
   nav-link:
+    backgroundColor: "{colors.background}"
     textColor: "{colors.muted-foreground}"
-    typography: "{typography.button}"
+    typography: "{typography.code}"
+    rounded: "{rounded.sm}"
   nav-link-hover:
+    backgroundColor: "{colors.background}"
     textColor: "{colors.action}"
-elevation:
-  2xs: "0 1px rgb(0 0 0 / 0.05)"
-  xs: "0 1px 2px 0 rgb(0 0 0 / 0.05)"
-  sm: "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)"
-  md: "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)"
-  lg: "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)"
-  xl: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)"
-  2xl: "0 25px 50px -12px rgb(0 0 0 / 0.25)"
-duration:
-  fast: 150ms
-  base: 300ms
-  slow: 400ms
-easing:
-  in: "cubic-bezier(0.4, 0, 1, 1)"
-  out: "cubic-bezier(0, 0, 0.2, 1)"
-  in-out: "cubic-bezier(0.4, 0, 0.2, 1)"
-breakpoints:
-  xs: 32rem
-  sm: 40rem
-  md: 48rem
-  lg: 64rem
-  xl: 80rem
-  2xl: 96rem
+  divider:
+    backgroundColor: "{colors.border}"
+    height: 1px
 ---
 
 # adeonir.dev
 
-## 1. Visual Theme & Atmosphere
+## Overview
 
-This is a calm, low-glare workspace rendered as a portfolio — the visual language of a code editor at rest, where the eye settles before it reads. The atmosphere is pastel-dark: a deep, slightly violet charcoal (`background`) that never reaches pure black, layered with surfaces that recede rather than pop (`card`, `popover` sit one shade deeper, like panels tucked behind the main canvas). Nothing glows. Nothing shouts. The mood is competence at ease — a craftsperson's desk lit by a single cool lamp.
+This is a calm, low-glare workspace rendered as a portfolio: the visual language of a code editor at rest, where the eye settles before it reads. The atmosphere is pastel-dark. A deep, slightly violet charcoal carries the page and never reaches pure black, layered with surfaces that recede rather than pop. Nothing glows. Nothing shouts. The mood is competence at ease, a craftsperson's desk lit by a single cool lamp.
 
-Contrast strategy is deliberate restraint. The foreground text (`foreground`) is a soft lavender-white, never clinical `#ffffff`, so long passages stay gentle across an evening of reading. Against that muted field, two chromatic accents do all the expressive work. The primary is a clear blue (`primary`) — it owns every interactive moment: the call-to-action, the link, the focus ring, the hover that wakes a project row. It reads as "this responds to you." The secondary is a warm magenta-pink (`secondary`) that never acts; it only emphasizes — the second word of a heading, the marker before a skill, the keyword that earns weight. One color moves, one color points, and the rest of the surface stays neutral so both register instantly.
+The register is brand, not product. The site is a portfolio: the design itself is the deliverable, and the visitor's impression is the thing being made. The direction is a two-skin pastel-dark developer identity drawn from the Catppuccin palette family, an existing open-source color heritage that the identity adopts on purpose instead of inventing a private grey ramp.
 
-Density is editorial, not enterprise. Generous vertical rhythm separates major sections; content breathes in a single readable column rather than packing a dashboard grid. Depth is communicated almost entirely through tone and hairline borders (`border`) rather than heavy shadow — surfaces are distinguished by how light or dark they sit, the way a well-organized terminal separates panes with a single rule, not a drop shadow. The overall category is a personal developer portfolio: an identity that signals taste, calm, and technical fluency without a single gradient or decorative flourish. Pure color, exact spacing, one accent that acts and one that points.
+Contrast is deliberate restraint. Primary text is a soft lavender-white, never clinical white, so long passages stay gentle across an evening of reading. Against that muted field, two chromatic accents do all the expressive work. Blue owns every interactive moment: the call to action, the link, the focus ring, the hover that wakes a project row. It reads as "this responds to you." Warm magenta-pink never acts; it only emphasizes the second word of a heading, the marker before a skill, the keyword that earns weight. One color moves, one color points, and the rest of the surface stays neutral so both register instantly.
 
-The system ships two skins of the same soul: a default dark canvas and a light daytime counterpart, both drawn from the same pastel heritage so the personality survives the toggle — the dark is the resting state, the light is the same room with the blinds open.
+Density is editorial, not enterprise. Generous vertical rhythm separates major sections, and content breathes in a single readable column rather than packing a dashboard grid. Depth comes almost entirely from tone and hairline borders rather than heavy shadow. Surfaces are told apart by how light or dark they sit, the way a well-organized terminal separates panes with a single rule.
 
-## 2. Color Palette & Roles
+The signature is the split accent contract: one hue that may act and one hue that may never act. The explicit sacrifice is expressive range. No gradients, no third accent, no decorative illustration, and a shape language that stays inside one narrow radius band. The system trades visual variety for a page that reads as one calm surface.
 
-The palette is two layers. The neutrals are two Catppuccin scales — `mocha` (dark skin) and `latte` (light skin) — each numbered 50 (lightest) → 950 (darkest) and labelled by Catppuccin role. Because the two flavors run opposite in lightness, the same role lands at a different step per skin: `background` is `mocha-850` (base) in the dark and `latte-50` (base) in the light. The accents are two full ramps — `ocean` (blue, the hue that acts) and `azalea` (pink, the hue that points) — each skin selecting the steps that clear WCAG AA against its field. Both skins live in one frontmatter: dark is the flat default; the `light:` group overrides only the tokens that change. Tone separation, not shadow, builds depth, so surface tokens sit a step apart.
+The identity ships two skins of one soul: a default dark canvas and a light daytime counterpart, both drawn from the same pastel heritage so the personality survives the toggle. The dark skin is the resting state; the light skin is the same room with the blinds open.
 
-### Brand Raw
+## Colors
 
-The primitive layer. Every semantic token below aliases a step of the active skin's scale, an accent-ramp step, or the skin-neutral ink/paper pair.
+The palette has two layers. The neutrals are two Catppuccin scales, `mocha` for the dark skin and `latte` for the light skin, each numbered 50 (lightest) through 950 (darkest) and labelled by its Catppuccin role. Because the two flavors run opposite in lightness, the same semantic role lands on a different step per skin: `background` is `mocha-850` (base) in the dark skin and `latte-50` (base) in the light skin. The accents are two full ramps: `ocean`, the blue that acts, and `azalea`, the pink that points. Each skin selects the accent steps that clear WCAG AA against its own field. Tone separation rather than shadow builds depth, so neighbouring surface roles sit one narrow step apart.
 
-- **mocha** — Catppuccin dark flavor, role-numbered light→dark: `mocha-50` text (#cdd6f4) · `-100` subtext-1 · `-200` subtext-0 · `-300` overlay-2 · `-400` overlay-1 · `-500` overlay-0 · `-600` surface-2 · `-700` surface-1 · `-800` surface-0 · `-850` base (#1e1e2e) · `-875` base/mantle blend · `-900` mantle · `-950` crust (#11111b)
-- **latte** — Catppuccin light flavor, role-numbered light→dark: `latte-50` base (#eff1f5) · `-75` base/mantle blend · `-100` mantle · `-150` crust · `-200` surface-0 · `-300` surface-1 · `-400` surface-2 · `-500` overlay-0 · `-600` overlay-1 · `-700` overlay-2 · `-800` subtext-0 · `-900` subtext-1 · `-925` subtext-1/text blend · `-950` text (#4c4f69)
-- **ocean** — blue water ramp, the hue that acts: `ocean-500` (#0ea2e7) bright fills + dark-skin text · `ocean-600` (#0183c8) focus ring · `ocean-700` (#0168a2) light-skin link text. Full ramp `ocean-50`…`ocean-950`.
-- **azalea** — pink bloom ramp, the hue that points: `azalea-500` (#ff3d8a) bright fills + dark-skin secondary/emphasis · `azalea-600` (#f0115f) light-skin secondary text · `azalea-750` (#bf0540) light-skin emphasis text. Full ramp `azalea-50`…`azalea-950`.
-- **ink** (oklch(18.3% 0.020 284.20) / #11111b) — skin-neutral near-black; dark text on bright accent fills.
-- **paper** (oklch(98.5% 0.005 264.50) / #f8fafe) — skin-neutral near-white; the light counterpart to ink, for light text on a dark accent fill.
+The referent behind the accents is water and bloom: `ocean` is the blue of deep water under a clear sky, and `azalea` is the pink of the flower the ramp is named after. Both are ramps built in OKLCH with tapered chroma, so the light steps stay pastel and the dark steps stay saturated without turning muddy.
 
-### Primary
+### Raw ramps
 
-- **Ocean** (oklch(67.7% 0.148 238.14) / #0ea2e7) → `primary` — interactive fills: CTA buttons, the bright blue that acts. Same `ocean-500` in both skins; logos and fills are WCAG-exempt so the brightness holds.
-- **Ink** (oklch(18.3% 0.020 284.20) / #11111b) → `primary-foreground` — skin-neutral dark text on the blue fill, both skins.
-- **Ocean deep** (oklch(49.8% 0.122 243.78) / #0168a2) → `action` — `primary` rendered as text (links, nav-hover, eyebrow). The dark skin keeps the bright `ocean-500`; the light skin steps to `ocean-700` so text clears AA on near-white.
-- **Ocean mid** (oklch(58.6% 0.141 242.85) / #0183c8) → `ring` — focus ring, both skins; `ocean-600` clears 3:1 against either field.
+The primitive layer. Every semantic role aliases a step of the active skin's neutral scale, an accent-ramp step, or the skin-neutral ink and paper pair.
 
-### Secondary & Accent
+- **mocha** — Catppuccin dark flavor, role-numbered light to dark: `mocha-50` text, `-100` subtext-1, `-200` subtext-0, `-300` overlay-2, `-400` overlay-1, `-500` overlay-0, `-600` surface-2, `-700` surface-1, `-750` surface-0/1 blend, `-800` surface-0, `-850` base, `-875` base/mantle blend, `-900` mantle, `-950` crust.
+- **latte** — Catppuccin light flavor, role-numbered light to dark: `latte-50` base, `-75` base/mantle blend, `-100` mantle, `-150` crust, `-200` surface-0, `-250` surface-0/1 blend, `-300` surface-1, `-400` surface-2, `-500` overlay-0, `-600` overlay-1, `-700` overlay-2, `-800` subtext-0, `-900` subtext-1, `-950` text.
+- **ocean** — the blue that acts: `ocean-500` for bright fills and dark-skin action text, `ocean-600` for the focus ring in both skins, `ocean-700` for light-skin action text.
+- **azalea** — the pink that points: `azalea-500` for dark-skin emphasis and fills, `azalea-600` for the light-skin secondary fill, `azalea-750` for light-skin emphasis text.
+- **ink** — skin-neutral near-black; dark text on any bright accent fill, in both skins.
+- **paper** — skin-neutral near-white; the light counterpart to ink, for light text on a dark accent fill.
 
-- **Azalea** (oklch(67.2% 0.233 2.27) / #ff3d8a) → `secondary` — emphasis fills and tints, and large pink text (the role for headline-scale emphasis); never interactive. Dark skin keeps `azalea-500`; the light skin steps to `azalea-600` (oklch(61.4% 0.240 11.26) / #f0115f) so it clears 3:1 on near-white.
-- **Ink** (oklch(18.3% 0.020 284.20) / #11111b) → `secondary-foreground` — skin-neutral dark text on a pink chip, both skins. On the light-skin solid `secondary` fill (`azalea-600`) this clears 3:1 for large/UI text only (4.43:1); for small labels use the `secondary/7` tint with `emphasis` instead.
-- **Azalea deep** (oklch(51.3% 0.203 14.82) / #bf0540) → `emphasis` — the AA-safe step for **small** pink text. Large pink text uses `secondary` directly; `emphasis` kicks in where small text must clear 4.5:1, stepping the light skin from `azalea-500` to `azalea-750`. In the dark skin both `secondary` and `emphasis` resolve to `azalea-500`, so they diverge only in the light skin.
-- **Surface 0/1 blend** (oklch(36.38% 0.0319 281.06) / #3b3c4f) → `accent` — neutral hover surface, a half-step lift between surface-0 and surface-1 so a hovered row reads while body text on it still clears AA. Light skin: `latte-250` (oklch(83.29% 0.0159 269.84) / #c4c8d3).
-- **Text** (oklch(87.87% 0.0426 272.28) / #cdd6f4) → `accent-foreground` — text on the neutral accent surface. Light skin: `latte-950` (oklch(43.55% 0.0430 279.33) / #4c4f69).
+### Semantic roles
 
-### Surface & Background
+The frontmatter carries the dark skin, which is the default. Each role below states its dark step first and its light step second.
 
-- **Base** (oklch(24.29% 0.0304 283.91) / #1e1e2e) → `background` — the main resting field, a deep violet-charcoal, never pure black. Light skin: `latte-50` (oklch(95.78% 0.0058 264.53) / #eff1f5).
-- **Base/mantle blend** (oklch(22.92% 0.0279 283.99) / #1b1b29) → `card` — a gentle half-step between base and mantle; the ambient grouping container, lifted just clear of the canvas. Light skin: `latte-75` (oklch(94.57% 0.0073 264.53) / #ebedf2).
-- **Mantle** (oklch(21.55% 0.0254 284.06) / #181825) → `popover` — transient floating panels take the firmer full-step tone drop so a menu reads clear of the `card` it overlays. Light skin: `latte-100` (oklch(93.35% 0.0087 264.52) / #e6e9ef).
-- **Crust** (oklch(18.28% 0.0204 284.20) / #11111b) → `sunken` — the deepest well, for inset or brand-immersive panels. Light skin: `latte-150` (oklch(90.60% 0.0117 264.51) / #dce0e8).
-- **Surface 0** (oklch(32.40% 0.0319 281.98) / #313244) → `border` — hairline dividers and edges; the primary depth cue in place of shadow. Light skin: `latte-200` (oklch(85.75% 0.0145 268.48) / #ccd0da).
-- **Surface 0** (oklch(32.40% 0.0319 281.98) / #313244) → `input` — input strokes share the surface-0 step at rest. Light skin: `latte-200` (oklch(85.75% 0.0145 268.48) / #ccd0da).
+- **primary** — `ocean-500` in both skins. Interactive fills: the bright blue that acts. Fills and logos are exempt from text contrast rules, so the brightness holds across both skins.
+- **primary-foreground** — `ink` in both skins. Dark text on the blue fill.
+- **action** — `ocean-500` dark, `ocean-700` light. Primary rendered as text and as the control fill: links, nav hover, the eyebrow outline, the solid button. The light skin steps deeper so text clears AA on a near-white field.
+- **action-foreground** — `ink` dark, `paper` light. The text that sits on the solid action fill.
+- **secondary** — `azalea-500` dark, `azalea-600` light. Emphasis fills, tints, and headline-scale pink text. Never interactive.
+- **secondary-foreground** — `ink` in both skins. Dark text on a pink chip. On the light-skin solid pink fill this clears 3:1 for large text and UI text only, so small labels use the pink tint with `emphasis` instead.
+- **emphasis** — `azalea-500` dark, `azalea-750` light. The AA-safe step for small pink text. Large pink text uses `secondary` directly. In the dark skin both roles resolve to the same step, so they diverge only in the light skin.
+- **accent** — `mocha-750` dark, `latte-250` light. The neutral hover surface, a half-step lift so a hovered row reads while body text on it still clears AA.
+- **accent-foreground** — `mocha-50` dark, `latte-950` light. Text on the neutral hover surface.
+- **background** — `mocha-850` dark, `latte-50` light. The main resting field, a deep violet-charcoal in the dark skin, never pure black.
+- **foreground** — `mocha-50` dark, `latte-950` light. Primary text and headings, soft and never clinical white.
+- **card** — `mocha-875` dark, `latte-75` light. A gentle half-step from the canvas, the ambient grouping container.
+- **card-foreground** — `mocha-50` dark, `latte-950` light.
+- **popover** — `mocha-900` dark, `latte-100` light. Transient floating panels take the firmer full-step tone drop so a menu reads clear of the card it overlays.
+- **popover-foreground** — `mocha-50` dark, `latte-950` light.
+- **sunken** — `mocha-950` dark, `latte-150` light. The deepest well, for inset or brand-immersive panels such as the footer.
+- **sunken-foreground** — `mocha-50` dark, `latte-950` light.
+- **muted** — `mocha-800` dark, `latte-200` light. Muted fills and inert surfaces, one step below the accent hover.
+- **muted-foreground** — `mocha-200` dark, `latte-900` light. Secondary text, captions, and supporting copy. Each skin takes the deepest step that still clears the 4.5:1 floor against its own surfaces, which is subtext-0 in the dark skin and subtext-1 in the light one. The gap to `foreground` is 1.54:1 in the dark skin and 1.28:1 in the light skin: the light skin has less room between readable secondary text and primary text, so weight and placement carry more of the distinction there.
+- **border** — `mocha-800` dark, `latte-200` light. Hairline dividers and edges, the primary depth cue in place of shadow.
+- **input** — `mocha-700` dark, `latte-300` light. Input strokes sit one step firmer than a plain divider so a field edge reads as an affordance rather than a rule.
+- **ring** — `ocean-600` in both skins. The focus ring, which clears 3:1 against either field.
 
-### Neutrals & Text
+### Destructive and status
 
-- **Text** (oklch(87.87% 0.0426 272.28) / #cdd6f4) → `foreground` — primary text and headings; soft, never clinical white. Light skin: `latte-950` (oklch(43.55% 0.0430 279.33) / #4c4f69).
-- **Text** (oklch(87.87% 0.0426 272.28) / #cdd6f4) → `card-foreground` — text on recessed panels. Light skin: `latte-950` (oklch(43.55% 0.0430 279.33) / #4c4f69).
-- **Text** (oklch(87.87% 0.0426 272.28) / #cdd6f4) → `popover-foreground` — text on popovers. Light skin: `latte-950` (oklch(43.55% 0.0430 279.33) / #4c4f69).
-- **Text** (oklch(87.87% 0.0426 272.28) / #cdd6f4) → `sunken-foreground` — text on the deepest panels. Light skin: `latte-950` (oklch(43.55% 0.0430 279.33) / #4c4f69).
-- **Subtext 1** (oklch(81.68% 0.0403 272.86) / #bac2de) → `muted-foreground` — secondary text, captions, supporting copy. The dark skin uses subtext-1 (`mocha-100`); the light skin steps to `latte-925` (oklch(46.40% 0.0408 279.30) / #545770) so supporting copy clears AA against background, card, and the solid `muted` fill alike.
-- **Surface 0** (oklch(32.40% 0.0319 281.98) / #313244) → `muted` — muted fills and disabled surfaces, one step below the accent hover. Light skin: `latte-200` (oklch(85.75% 0.0145 268.48) / #ccd0da).
+`destructive` is the danger intent on form controls: the invalid-field border, its focus ring, and the error message. It is only ever a stroke or a line of text, never a fill, so it follows the same rule the other two chromatic text roles follow and steps per skin. The dark skin takes a lighter red and the light skin a deeper one, because contrast is distance in lightness and a single red would have to sit between the two fields, far from neither. The dark step clears 5.67:1 against the background and 5.88:1 against a card; the light step clears 5.68:1 and 5.48:1. Both are above the 4.5:1 floor for small text, which is the size the error message is set at.
 
-### Destructive
+The status roles are functional feedback fills for toasts. They report state and never act, so they hold the same step in both skins while the neutrals around them flip. All four carry `ink` text and clear AA: `success` is a green, `error` a red, `warning` an orange, and `info` a cyan chosen to stay distinct from the action blue. `error` and `destructive` are the same hue at different jobs and therefore at different steps: `error` is the fill that reports, held at one step for both skins because `ink` sits on top of it; `destructive` is the stroke and text that marks an invalid control, and it steps per skin because the field behind it flips.
 
-- **Red 500** (oklch(63.7% 0.237 25.331) / #fb2c36) → `destructive` — the error/danger intent on form controls: invalid-field border and error text. Skin-neutral; an action cue, distinct from the `error` status fill.
-- **Ink** (oklch(18.3% 0.020 284.20) / #11111b) → `destructive-foreground` — dark text on a destructive fill, both skins.
+## Typography
 
-### Status
+Geist carries the whole interface, from the hero name to running body copy, so the page reads as a single engineered voice. Its fallback stack is `system-ui, -apple-system, sans-serif`. Fira Code carries the apparatus: code snippets, navigation links, and the uppercase label role, with the fallback stack `ui-monospace, "SF Mono", Consolas, monospace`. The pairing splits by classification and job, a neo-grotesque for the voice and a monospace for the technical layer, so the two never compete at the same size.
 
-Functional feedback fills (toasts), not brand accents — they report state, never act. Skin-neutral: each holds the same step in both skins, only the neutrals around them flip. All carry `ink` text and clear AA.
+The size ramp adopts the conventional step scale on purpose instead of deriving a private modular ratio, and each role keeps the line height that scale pairs with its step. The argument is fit. This identity's type does ordinary jobs — a headline, a section title, running copy, a caption, a control label — and a ramp that readers and builders already parse correctly serves those jobs better than nine values tuned by hand. The scale also already moves in the direction good typesetting wants, tightening the line height as the size grows, so adopting it costs nothing the identity would have set differently. What the identity authors is what the scale leaves open: which role takes which step, which face carries it, and the two tracking exceptions. Letter-spacing departs from normal exactly twice: the display tightens, and the uppercase label widens.
 
-- **Green 500** (oklch(72.3% 0.219 149.579) / #00c950) → `success` — positive feedback fill; `ink` text clears 8.46:1.
-- **Red 500** (oklch(63.7% 0.237 25.331) / #fb2c36) → `error` — error feedback fill; `ink` clears 4.93:1. Distinct from `destructive`, which is the action intent on form fields (same red, different role).
-- **Orange 500** (oklch(70.5% 0.213 47.604) / #ff6900) → `warning` — caution feedback fill; `ink` clears 6.49:1.
-- **Cyan 500** (oklch(71.5% 0.143 215.221) / #00b8db) → `info` — informational feedback fill, distinct from the `primary` action blue; `ink` clears 7.93:1.
-- **Ink** (oklch(18.3% 0.020 284.20) / #11111b) → `success`/`error`/`warning`/`info-foreground` — skin-neutral dark text on every status fill.
+- **display** — Geist 2.25rem, weight 800, line-height 1.111, letter-spacing -0.025em. Section headlines, set large and confident. The hero name is an exception, sized larger with its own raw steps.
+- **heading** — Geist 1.5rem, weight 700, line-height 1.333. Section titles, where the second word may take the pink emphasis.
+- **title** — Geist 1.25rem, weight 600, line-height 1.4. Card titles and project names.
+- **subtitle** — Geist 1rem, weight 500, line-height 1.5. Lead-in copy and sub-headings, one weight above body.
+- **body** — Geist 1rem, weight 400, line-height 1.5. Primary reading copy.
+- **caption** — Geist 0.75rem, weight 400, line-height 1.333. Small print, metadata, and supporting descriptions.
+- **label** — Fira Code 0.75rem, weight 500, line-height 1.333, letter-spacing 0.05em, rendered uppercase. Eyebrows, form-field labels, and chips. The monospace face and the added tracking keep the caps legible at this size.
+- **button** — Geist 0.875rem, weight 600, line-height 1.428. Control text, sentence case.
+- **code** — Fira Code 0.875rem, weight 400, line-height 1.428. Monospace snippets, technical captions, and navigation links.
 
-## 3. Typography Rules
+The four heading roles step up one size at the 32rem breakpoint, described in Responsive Behavior. Body and the smaller roles hold one size at every width.
 
-### Font Family
+Three principles hold the type system together. Weight and size carry hierarchy, never a third family. The conventional step scale is adopted whole, size and line height together, so the ramp stays even and predictable rather than hand-tuned. Fira Code appears only where the content is genuinely technical, so the monospace signals engineering craft without theming the whole page.
 
-- **Sans (display + body)**: Geist — a modern neo-grotesque used for everything from the hero name to running body copy. One family carries the whole interface for a coherent, engineered feel. Fallback: `system-ui, -apple-system, sans-serif`.
-- **Monospace**: Fira Code — code snippets, technical captions, coordinate-style metadata. Fallback: `ui-monospace, "SF Mono", Consolas, monospace`.
+## Layout
 
-### Hierarchy
+The spacing base unit is 0.25rem, and the whole rhythm runs on that grid. Spacing inside a component stays in the 0.5rem to 1.5rem band. Separation between major sections jumps to 4rem and 6rem, which is where the editorial breathing room comes from.
 
-Sizes follow the standard `text-*` step scale; line-heights are the scale's per-step defaults. The four heading roles (`display`, `heading`, `title`, `subtitle`) scale responsively — one step smaller below the `sm` breakpoint (40rem), their full size at and above it — while body and the smaller roles stay fixed. Letter-spacing departs from `normal` only twice: the display tightens, the label widens.
+The page is a single readable column rather than a wide dashboard, with a content measure of roughly 60 to 75 characters and generous side gutters. The hero is left-aligned and anchored to the start, with open space to its right. Feature groups render as vertical lists of rows, each row a hover target, rather than a dense card grid. Brand-immersive regions such as contact and the footer may invert to a deeper surface for a quiet close, and may run full-bleed while their content stays inside the same column.
 
-- **Display** (`display`): Geist 2.25rem→3rem (`4xl`→`5xl`, mobile→desktop) weight 800, line-height 1, letter-spacing -0.025em (`tight`) — section headlines, set large and confident. The hero name is an exception, sized larger with its own raw steps.
-- **Heading** (`heading`): Geist 1.5rem→1.875rem (`2xl`→`3xl`, mobile→desktop) weight 700, line-height 1.2 — section titles; the second word may take `secondary`.
-- **Title** (`title`): Geist 1.25rem→1.5rem (`xl`→`2xl`, mobile→desktop) weight 600, line-height 1.333 — card titles, project names.
-- **Subtitle** (`subtitle`): Geist 1rem→1.125rem (`base`→`lg`, mobile→desktop) weight 500, line-height 1.556 — lead-in copy and sub-headings, a step above body.
-- **Body** (`body`): Geist 1rem (`base`) weight 400, line-height 1.5 — primary reading copy.
-- **Caption** (`caption`): Geist 0.75rem (`xs`) weight 400, line-height 1.333 — small print, metadata, supporting descriptions.
-- **Label** (`label`): Geist 0.75rem (`xs`) weight 600, line-height 1.333, letter-spacing 0.1em (`widest`) — uppercase eyebrows and badges; tracked wide for caps legibility.
-- **Button** (`button`): Geist 0.875rem (`sm`) weight 600, line-height 1.428 — control text, sentence case.
-- **Code** (`code`): Fira Code 0.875rem (`sm`) weight 400, line-height 1.428 — monospace snippets and technical captions.
+Whitespace carries structure. Surfaces are told apart by luminance and a single hairline, so the large section gaps quarantine each idea and the eye knows where one ends and the next begins.
 
-### Principles
+## Elevation & Depth
 
-- **One sans does it all**: Geist spans display through caption so the interface reads as a single engineered voice; weight and size carry hierarchy, not family-switching.
-- **Standard step scale**: every size is a `text-*` step with its default line-height; the four heading roles shift one step at the `sm` breakpoint while the rest stay fixed, so the ramp is even and predictable rather than hand-tuned.
-- **Two deliberate tracking exceptions**: only the display tightens (`-0.025em`) for a compact headline mass, and only the uppercase label widens (`0.1em`) so caps don't crowd — everything else stays at `normal`.
-- **Mono as a technical accent**: Fira Code appears only where the content is genuinely code or coordinate-like metadata, signaling the engineering craft without theming the whole page.
+Depth is carried first by tone, second by hairline, and only last by shadow. The surface roles step through a narrow luminance band: `card` sits a half-step from the canvas as the ambient grouping container, `popover` a full step further so a floating menu clears the card it overlays, and `sunken` sits deepest. Layering reads through color, not lift, so most of the interface is flat.
 
-## 4. Component Stylings
+Shadows are reserved for surfaces that genuinely float above other surfaces. Popovers, menus, and toasts take a soft shadow tinted from the palette's dark end rather than neutral black. Static cards take none and rely on their tone drop and hairline.
 
-### Buttons
+One named exception applies to interactive controls. On hover, a button may carry a wide, low-opacity shadow tinted with its own accent, at roughly 8 to 12 percent. The tint reads as the control lifting toward the pointer, not as a decorative halo, and it exists only in the hover state. Outside that exception the ban on glows holds: no gradients, no halos, no vignettes, and no colored shadow on a resting element.
 
-- **Primary** (`button-primary`) — a solid `primary` fill with `primary-foreground` (dark ink) text, `rounded.md` corners, `spacing.3` padding, `button` typography. The single loudest element on any view. On hover (`button-primary-hover`) the fill drops to `{colors.primary}/90` — a gentle dim, no color shift, no gradient. Disabled (`button-primary-disabled`) falls to a `muted` fill with `muted-foreground` text, reading as inert.
-- **Secondary** (`button-secondary`) — transparent fill with a `border` hairline (`borderWidth.DEFAULT`) and `foreground` text, same radius and padding as primary. On hover (`button-secondary-hover`) the border and text both adopt `primary`, so the control lights up in `primary` without filling. The quiet partner to the primary CTA.
+## Shapes
 
-### Cards & Containers
+The radius scale is hierarchical, not uniform. The smallest steps are for inline chips and small inner elements, 0.375rem for compact controls, 0.5rem for buttons, inputs, popovers, and toasts, 0.75rem and 1rem for large framed containers and cards, and the full pill for eyebrows and avatar masks.
 
-The `card` is a `card` (recessed panel) fill set a half-step below the canvas, wrapped in a `border` hairline (`borderWidth.DEFAULT`) at `rounded.lg`, padded `spacing.6`, carrying only `elevation.sm`. Depth comes from the tone drop and the rule line, not the shadow — the shadow is a whisper. Containers stack with generous gaps and rely on the same hairline to separate, never on heavy dividers. The `popover` drops a deeper tone (mantle, a full step) and shares the hairline but floats higher with `elevation.lg` — used for the language and theme menus and any transient floating surface.
+Border width has three levels with distinct jobs. The hairline is the workhorse stroke for dividers, card edges, and input borders. The double-width stroke marks the eyebrow pill and other outlined emphasis edges. The heaviest step is reserved for rare structural accents.
 
-### Inputs & Forms
+Corners are gently rounded and consistent: soft enough to feel approachable, tight enough to read as precise. Nothing is fully sharp and nothing is pill-soft except true pills. The radius says considered software, not playful toy.
 
-The `input` uses a `background`-tone fill with an `input` hairline border at `rounded.md`, padded `spacing.3`, `foreground` text. On focus (`input-focus`) the border swaps to `ring` — the same interactive signal the buttons and links use, so focus is unmistakable. Labels sit above their field in `label` casing; helper and error text use `caption`.
+## Components
 
-### Navigation
+**Buttons.** The solid button fills with `action` and takes `action-foreground` text at the 0.5rem radius, 1.25rem of horizontal padding, and a 2.75rem control height. It is the loudest element on any view. On hover the fill deepens one accent step and the control takes the tinted hover shadow described in Elevation & Depth. The outline button is transparent with a hairline `border` edge and `muted-foreground` text at the same radius and height. On hover its border and text both adopt the blue and its fill takes a barely-there muted wash, so the control lights up without filling. Disabled controls dim to half opacity and drop their pointer affordance rather than swapping color. A loading control keeps its label in place, hides it from view, and centers a spinner over it, so the button never changes width mid-action. The icon-only variant is a 2.25rem square with the same radius and no fill.
 
-A minimal sticky header: wordmark left, a sparse set of links plus a language switch and theme toggle right, no full nav bar — section CTAs do the wayfinding. Links (`nav-link`) rest in `muted-foreground` and rise to `primary` on hover (`nav-link-hover`). The header sits on the `background` tone with an optional `border` hairline beneath when scrolled.
+**Inputs and forms.** A field is a translucent `input` wash with a hairline `input` border at the 0.5rem radius, 1rem of horizontal padding, 2.75rem high for a single line, and `body` text. On focus the border adopts the blue and a wide, low-opacity ring in `ring` appears around it, which is the same interactive signal buttons and links use. An invalid field swaps its border to `destructive` and its ring to a destructive tint, and its message renders in `destructive` in the `caption` role beneath the control, sized down from the field's own text so the correction reads as an annotation rather than a second input. Labels sit above their field in the uppercase `label` role in `muted-foreground`.
 
-### Distinctive Components
+**Cards and containers.** A card is the `card` fill wrapped in a hairline `border` at the 1rem radius with 1.5rem of padding, and carries no shadow. Depth comes from the tone drop and the rule line. Containers stack with generous gaps and rely on the same hairline to separate, never on heavy dividers. The divider itself is a one-pixel `border` rule, horizontal or vertical.
 
-- **Eyebrow** (`eyebrow`) — a pill with a `primary` hairline border (`borderWidth.2`) and `primary` text, transparent fill, `rounded.full`, `label` typography. The "role" tag above the hero name.
-- **Badge** (`badge`) — a status chip on a translucent `{colors.secondary}/15` (pink) wash with `secondary` text at `rounded.full`, `label` typography. Used for availability or category markers — pink because it points, never acts.
+**Floating surfaces.** A popover drops to the `popover` tone, keeps the hairline and the 0.5rem radius, and floats with a soft tinted shadow. It backs the language and theme menus and any transient panel. A toast shares that surface with a double-width border and a round status indicator: a filled circle in the matching status color with `ink` glyph, ringed by a translucent halo of the same hue.
 
-## 5. Layout Principles
+**Navigation.** A minimal sticky header carries the wordmark on the left and a sparse link set with the language switch and theme toggle on the right. Links rest in `muted-foreground` in the monospace `code` role, prefixed by a pink hash mark that points without acting, and rise to the blue on hover. Focus draws the same ring as every other control, offset from the background.
 
-### Spacing System
+**Distinctive components.** The eyebrow is a pill with a double-width blue border, blue text, no fill, and the uppercase `label` role: the role tag above the hero name. Static pink emphasis appears two ways: as pink text inside a running line, and as a pink chip with `ink` text at the full-pill radius. Both are static markers, never controls.
 
-- Base unit: 4px (`spacing.1`)
-- Scale highlights: `spacing.2`, `spacing.4`, `spacing.6`, `spacing.8`, `spacing.16`, `spacing.24`
-- The rhythm runs on a 4px grid; intra-component spacing stays in the `spacing.2`–`spacing.6` band, while major section separation jumps to `spacing.16`–`spacing.24` for editorial breathing room.
+## Motion & Interaction
 
-### Grid & Container
+Motion has one job here: confirm a state change. Nothing animates for decoration, and no section fades up on scroll.
 
-- Max content width: ~960–1100px, a single readable column rather than a wide dashboard
-- Hero: left-aligned, eyebrow + name + tagline + paired CTAs, anchored to the start with open space to the right
-- Feature sections: project index as a vertical list of rows (not a dense card grid), each row a hover target
-- Brand-immersive sections: contact and footer may invert to a deeper surface for a quiet close
+Three durations cover the system. Around 150ms handles hover color shifts, focus rings, and small state changes. Around 200ms handles element entrances such as a menu opening or an icon swapping. Around 400ms handles the largest reversible transitions, such as a toast settling into its stack. Exits run faster than their entrances, near 100ms, because a dismissal should not hold the user. Entrances decelerate to rest, exits accelerate away, and looping or reversible motion uses a symmetric curve.
 
-### Whitespace Philosophy
+The theme toggle is the one place with a signature move: the icon swaps with a short flip while a switching flag suppresses transitions everywhere else, so the whole page repaints its skin at once instead of racing through a hundred separate color animations.
 
-- **Tone as separation**: surfaces are told apart by luminance and a single hairline, so whitespace carries structure instead of borders doing all the work.
-- **Section isolation**: large `spacing.16`–`spacing.24` gaps quarantine each section so the eye knows where one idea ends and the next begins.
-- **Calm margins**: the single-column measure and generous side gutters keep the reading line short and unhurried.
+Hover wakes interactive elements in blue. A link recolors, a row tints to the accent surface, and its title shifts to blue. Focus is always the ring, never a browser default. Pressed states deepen the fill. Pink emphasis is static and never animates, because it points rather than responds.
 
-## 6. Shapes
+Under `prefers-reduced-motion`, entrance and reveal animations are removed and state changes resolve instantly through color alone. Hover, focus, and active still recolor, just without the transition. No parallax or autoplay exists to disable.
 
-### Radius Scale
+## Responsive Behavior
 
-- Micro (`rounded.xs`): inline chips, small inner elements
-- Standard (`rounded.sm`): tags, small controls
-- Comfortable (`rounded.md`): buttons, inputs
-- Card (`rounded.lg`): cards, panels, project rows
-- Panel (`rounded.xl`–`rounded.2xl`): large framed containers, hero cards
-- Full Pill (`rounded.full`): eyebrows, badges, avatar masks
+The breakpoint ladder starts narrower than the framework default because the identity has a real one-hand layout: 24rem for the smallest phones, 32rem for compact, 40rem for large phones, 48rem for tablet, 64rem for desktop, 80rem for wide, and 96rem for ultra-wide. The reading measure is reached well before the widest steps, so those exist for gutters, not for more columns.
 
-### Border Width
+The four heading roles step up one size at 32rem, which is the only typographic change across the ladder. Everything else holds one size at every width.
 
-- Hairline (`borderWidth.DEFAULT`): dividers, card and input borders — the workhorse stroke
-- Emphasis (`borderWidth.2`): the eyebrow pill outline and focused emphasis edges
-- Heavy (`borderWidth.4`): reserved for rare structural accents
+The single-column layout maps cleanly to small screens. Section rhythm compresses from 4rem toward 2rem, hero actions stack, list rows drop their trailing metadata below the title, and the header collapses its link set behind a menu while the language and theme controls stay visible. Nothing reflows into multiple columns at desktop except optional two-up groupings.
 
-### Corner Language
+Images hold a consistent aspect ratio near 16:10 with cover cropping and the card radius. There are no art-directed crops across breakpoints: the same asset scales. Decorative imagery is avoided, because visuals here are content, not ornament.
 
-Corners are gently rounded and consistent — soft enough to feel approachable and modern, tight enough to read as precise and engineered. Nothing is fully sharp (no brutalist edges) and nothing is pill-soft except true pills (eyebrows, badges). The radius says "considered software," not "playful toy."
+## Do's and Don'ts
 
-## 7. Elevation & Depth
+- Do let the blue own every interactive cue, so "it responds" is always the same color.
+- Do use pink only to emphasize static text: the second word of a heading, a list marker, one keyword.
+- Do build depth from tone drops and hairlines, and keep most surfaces flat.
+- Do keep content in one calm reading column with large section gaps.
+- Do use the monospace face only for genuinely technical content: code, navigation links, and uppercase labels.
+- Don't introduce a gradient, a glow, or a third accent. The system is two chromatic voices and neutrals.
+- Don't let pink act. No pink buttons, links, or focus rings.
+- Don't reach for a colored shadow outside the button hover exception, and never on a resting element.
+- Don't reach for heavy shadows to separate surfaces when a tone drop and a hairline will do.
+- Don't pack content into a dense dashboard grid. The identity is editorial, single-column, and unhurried.
+- Don't use pure black or pure white. The neutrals are pastel-charcoal and lavender-white by design.
 
-Depth is carried first by tone, second by hairline, and only last by shadow. Surfaces step through a narrow luminance band — `card` sits a half-step below `background` (a base/mantle blend, the ambient grouping container), `popover` a full step below (a mantle drop, so a floating menu clears the `card` it overlays), and `sunken` deepest at crust — so layering reads through color, not lift. Resting cards take `elevation.sm`, barely perceptible. Floating elements (menus, dropdowns) use `elevation.md`; popovers and the language/theme menus use `elevation.lg`; modals and dialogs reach `elevation.xl`. The shadow stack stays light and is applied sparingly — depth reads through tone and the `border` hairline, not lift, so most of the interface is flat.
+## Agent Prompt Guide
 
-### Decorative Depth
+### Token quick reference
 
-None. No gradients, glows, halos, or vignettes — the identity is explicitly flat-with-tone. Decorative depth is an anti-pattern here.
+- Control fill and action text: `action`, with `action-foreground` on top of it. The light skin steps the blue deeper for contrast.
+- Bright accent fill: `primary`, with `primary-foreground` on top of it.
+- Static pink text: `emphasis` for small text, `secondary` for headline-scale text and fills.
+- Surfaces from shallow to deep: `background`, `card`, `popover`, `sunken`, with `accent` as the hover lift.
+- Text: `foreground` for primary, `muted-foreground` for supporting copy.
+- Edges: `border` for rules and card edges, `input` for field strokes, `ring` for focus.
 
-## 8. Motion & Interaction
+### Example component prompts
 
-### Duration
+- "Hero with an eyebrow pill `[Eyebrow Label]` as `{components.eyebrow}`, the name `[Headline]` in `{typography.display}`, a tagline `[Subhead]` in `{typography.subtitle}` where one keyword takes `{colors.emphasis}`, and paired actions `[CTA Label]` as `{components.button-primary}` and `[CTA Label]` as `{components.button-secondary}`, over `{colors.background}`."
+- "Section heading `[Heading Word One] [Heading Word Two]` in `{typography.heading}` with the second word in `{colors.emphasis}`."
+- "List row as `{components.card}` holding `[Item Title]` in `{typography.title}` and `[Item Description]` in `{typography.caption}`, tinting to `{colors.accent}` on hover and shifting the title to `{colors.action}`."
+- "Form field as `{components.input}` with its label `[Field Label]` as `{components.input-label}`, its message as `{components.input-error}`, and a submit `[CTA Label]` as `{components.button-primary}`."
+- "Navigation entry `[Nav Label]` as `{components.nav-link}`, rising to `{components.nav-link-hover}` on hover."
+- "Confirmation toast as `{components.toast}` with a `{components.toast-success}` indicator and `[Body]` in `{typography.body}`."
 
-- Fast (`duration.fast`): 150ms — hover color shifts, focus ring appearance, small state changes
-- Base (`duration.base`): 300ms — most transitions, row hovers, button states
-- Slow (`duration.slow`): 400ms — section reveals, larger entrance transitions
+### Iteration guide
 
-### Easing
-
-- Ease In (`easing.in`): accelerating from rest — exits and dismissals
-- Ease Out (`easing.out`): settling to rest — entrances, the default for hover and focus
-- Ease In-Out (`easing.in-out`): symmetric — looping or reversible motion
-
-### Reduced Motion
-
-Under `prefers-reduced-motion`, entrance and reveal animations are removed; state changes resolve instantly via color only (hover, focus, and active still recolor, just without the transition). No parallax or autoplay exists to disable.
-
-### Interaction Patterns
-
-Hover wakes interactive elements in `primary` — a link recolors, a project row tints to the `accent` surface and its title shifts to `primary`. Focus is always the `ring`, never a browser default. Pressed states dim the fill (`{colors.primary}/90`). Emphasis via `secondary` is static — pink never animates, because it points rather than responds.
-
-## 9. Responsive Behavior
-
-### Breakpoints
-
-- Compact (`breakpoints.xs`): 32rem
-- Mobile (`breakpoints.sm`): 40rem
-- Tablet (`breakpoints.md`): 48rem
-- Desktop (`breakpoints.lg`): 64rem
-- Wide (`breakpoints.xl`): 80rem — primary reading width is reached well before this
-- Ultra-wide (`breakpoints.2xl`): 96rem
-
-### Collapsing Strategy
-
-The single-column layout already maps cleanly to mobile: section rhythm compresses (`spacing.16` toward `spacing.8`), the hero CTAs stack, project rows drop their right-hand metadata below the title, and the header collapses its link set behind the wordmark while keeping the language and theme toggles visible. Nothing reflows into multi-column at desktop except optional two-up project or skill groupings.
-
-### Image Behavior
-
-Project thumbnails hold a consistent aspect ratio (about 16:10) with cover cropping and `rounded.lg` corners. Images carry no art-directed crops across breakpoints — the same asset scales. Decorative imagery is avoided; visuals are content (project shots), not ornament.
-
-## 10. Do's and Don'ts
-
-### Do
-
-- Let `primary` own every interactive cue — links, CTAs, focus, hover — so "it responds" is always the same color
-- Use `secondary` (pink) only to emphasize static text: the second word of a heading, a list marker, one keyword
-- Build depth from tone drops and `border` hairlines; keep most surfaces flat
-- Keep the hero and content in one calm reading column with large section gaps
-- Use Fira Code only for genuinely technical content (code, coordinate metadata)
-
-### Don't
-
-- Don't introduce a gradient, glow, or third accent — the system is two chromatic voices and neutrals, full stop
-- Don't let pink act (no pink buttons, links, or focus rings) — it points, it never responds
-- Don't reach for heavy shadows to separate surfaces when a tone drop and a hairline will do
-- Don't pack content into a dense dashboard grid — the identity is editorial, single-column, unhurried
-- Don't use pure `#000` or pure `#fff` — the neutrals are pastel-charcoal and lavender-white by design
-
-## 11. Agent Prompt Guide
-
-### Quick Token Reference
-
-- Primary fill: Ocean (oklch(67.7% 0.148 238.14) / #0ea2e7) → `primary`
-- Action text: Ocean (oklch(67.7% 0.148 238.14) / #0ea2e7) → `action` — light skin steps to ocean-700 (oklch(49.8% 0.122 243.78) / #0168a2) for AA
-- Secondary fill: Azalea (oklch(67.2% 0.233 2.27) / #ff3d8a) → `secondary`
-- Emphasis text: Azalea (oklch(67.2% 0.233 2.27) / #ff3d8a) → `emphasis` — light skin steps to azalea-800 (oklch(47.8% 0.188 14.62) / #ad073a) for AA
-- Background: Base (oklch(24.29% 0.0304 283.91) / #1e1e2e) → `background`
-- Card surface: Base/mantle blend (oklch(22.92% 0.0279 283.99) / #1b1b29) → `card`
-- Popover surface: Mantle (oklch(21.55% 0.0254 284.06) / #181825) → `popover`
-- Sunken surface: Crust (oklch(18.28% 0.0204 284.20) / #11111b) → `sunken`
-- Hover surface: Surface 0/1 blend (oklch(36.38% 0.0319 281.06) / #3b3c4f) → `accent`
-- Heading & body text: Text (oklch(87.87% 0.0426 272.28) / #cdd6f4) → `foreground`
-- Muted text: Subtext 1 (oklch(81.68% 0.0403 272.86) / #bac2de) → `muted-foreground`
-- Border: Surface 0 (oklch(32.40% 0.0319 281.98) / #313244) → `border`
-- Focus ring: Ocean mid (oklch(58.6% 0.141 242.85) / #0183c8) → `ring`
-
-### Example Component Prompts
-
-- "Hero section with an eyebrow pill `[Eyebrow Label]` styled as `{components.eyebrow}`, the name `[Headline]` in `{typography.display}`, a tagline `[Subhead]` in `{typography.subtitle}` where one keyword takes `{colors.secondary}`, and paired CTAs `[CTA Label]` as `{components.button-primary}` and `[CTA Label]` as `{components.button-secondary}`, over `{colors.background}`."
-- "Section heading `[Heading Word One] [Heading Word Two]` in `{typography.heading}` with the second word in `{colors.secondary}`."
-- "Project row card as `{components.card}` containing `[Project Title]` in `{typography.title}`, `[Project Description]` in `{typography.caption}`, hovering to tint with `{colors.accent}` and shift the title to `{colors.primary}`."
-- "Availability badge `[Badge Text]` styled as `{components.badge}`."
-- "Contact input field as `{components.input}` with label `[Field Label]` in `{typography.label}`, focus border `{colors.ring}`, primary submit `[CTA Label]` as `{components.button-primary}`."
-- "Code snippet block `[Code Lorem]` in `{typography.code}` on `{colors.card}`."
-
-### Iteration Guide
-
-1. Lock the neutral pastel foundation first (`background`, `card`, `foreground`, `border`); the dark canvas and its tone steps are the identity's bedrock.
-2. Only `primary` may act; if an element responds to the user, it is `primary` — nothing else.
-3. Only `secondary` may emphasize; if it is not pointing at static text, it does not belong.
-4. No gradients, no glows, no third accent — added chroma is almost always wrong here.
-5. Separate surfaces with a tone drop plus a `border` hairline before reaching for any `elevation`.
-6. Keep `#000`/`#fff` out — pull from the pastel neutrals so the calm survives.
-7. For the light skin, map roles onto Latte and select the deeper accents (`ocean` #04a5e5, `hibiscus` #e0306f); never reuse the dark accents on a light field.
+1. Lock the neutral foundation first: `background`, `card`, `foreground`, and `border`. The dark canvas and its tone steps are the identity's bedrock.
+2. Only the blue may act. If an element responds to the user, it is blue and nothing else.
+3. Only the pink may emphasize. If it is not pointing at static text, it does not belong.
+4. No gradients, no glows, and no third accent. Added chroma is almost always wrong here.
+5. Separate surfaces with a tone drop and a hairline before reaching for any shadow.
+6. Keep pure black and pure white out. Pull from the pastel neutrals so the calm survives.
+7. For the light skin, map the roles onto the latte scale and step the accents deeper. Never reuse a dark-skin accent step on a light field.

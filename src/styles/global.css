@@ -109,7 +109,7 @@
   --accent: var(--latte-250); /* surface-0/1 blend */
   --accent-foreground: var(--latte-950); /* text */
   --muted: var(--latte-200); /* surface-0 */
-  --muted-foreground: var(--latte-925); /* subtext-1/text blend */
+  --muted-foreground: var(--latte-900); /* subtext-1 */
   --background: var(--latte-50); /* base */
   --foreground: var(--latte-950); /* text */
   --card: var(--latte-75); /* base/mantle blend */
