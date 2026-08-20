@@ -91,7 +91,7 @@ Before planning or building a feature, read the documents that apply to the work
 - `docs/tech/design-doc.md` — architecture, runtime boundaries, conventions, contact flow, security, testing, CI/CD, and alternatives. It is the technical authority.
 - `docs/product/prd.md` — scope, FR/NFR identifiers, personas, journeys, business rules, edge cases, and milestones.
 - `docs/product/brief.md` — one-page product summary.
-- `docs/design/DESIGN.md` — visual identity and design tokens. Frontmatter contains token values, including dual `{ hex, oklch }` colors; the body contains design rules and do/don'ts.
+- `DESIGN.md` — visual identity and design tokens. Frontmatter contains token values, including dual `{ hex, oklch }` colors; the body contains design rules and do/don'ts.
 - `docs/design/blueprint.md` — layout region trees and screen flows.
 - `docs/design/copy.yaml` — canonical site copy.
 - `docs/design/wireframe.html` and `docs/design/styleguide.html` — rendered low-fidelity wireframe and token styleguide.
@@ -188,7 +188,7 @@ Use the repository's component scaffolding workflow when creating a new componen
 - Do not add gradients, glows, or a third accent. Separate surfaces with a tone drop and hairline border before adding a shadow. Never use pure `#000` or `#fff`.
 - Use Geist for all type roles. Use Fira Code only for genuinely technical content.
 - `global.css` defines self-hosted fonts, raw oklch scales, dual-skin semantic roles, the skin-neutral `--ink` text color for accent fills, `destructive`, nine `text-*` type-role utilities, the `wrapper` utility, and the Tailwind v4 `@theme` configuration.
-- Ark UI primitives must use the dual-skin tokens and must not retain a default palette. Audit new primitives against `docs/design/DESIGN.md`.
+- Ark UI primitives must use the dual-skin tokens and must not retain a default palette. Audit new primitives against `DESIGN.md`.
 - Ark UI reference: https://ark-ui.com/llms.txt
 - Icons use `unplugin-icons` with Tabler, for example `import IconFolder from '~icons/tabler/folder'`. Render them statically in Astro; the JSX compiler requires `@svgr/core` and `@svgr/plugin-jsx`.
 
