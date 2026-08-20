@@ -118,6 +118,11 @@ Read the matching rule before making the change:
 - Edit hook logic only in `.agents/hooks/`.
 - After adding or changing a Codex hook, review and trust it with `/hooks`.
 
+## Agent skills
+
+- `.github/skills/code-review/SKILL.md` gives Copilot code review the project context it needs on a pull request: the conventions this repository enforces, the patterns that look like defects but are deliberate, and the checks Biome, Prettier, CI, and Lighthouse already own.
+- The skill is specific to the GitHub cloud reviewer. Claude Code and Codex read `AGENTS.md` and `.agents/rules/` instead.
+
 ## Runtime architecture
 
 - **Astro and Cloudflare:** The site runs on the Cloudflare Workers `workerd` runtime through `@astrojs/cloudflare`. Content pages prerender to static HTML. The contact Action is the only on-demand server surface; there is no standalone `/contact` page and no `prerender = false` page route.
