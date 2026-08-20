@@ -18,7 +18,7 @@ const colors = {
   card: 'oklch(93.35% 0.0087 264.52)', // latte-100
   sunken: 'oklch(90.6% 0.0117 264.51)', // latte-150
   foreground: 'oklch(43.55% 0.043 279.33)', // latte-950
-  muted: 'oklch(46.4% 0.0408 279.3)', // latte-925
+  muted: 'oklch(49.20% 0.0385 279.3)', // latte-900
   primary: 'oklch(67.7% 0.148 238.14)', // ocean-500
   ink: 'oklch(18.3% 0.02 284.2)', // dark on bright
   secondary: 'oklch(61.4% 0.24 11.26)', // azalea-600

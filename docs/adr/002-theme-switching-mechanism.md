@@ -6,7 +6,7 @@ status: accepted
 supersedes: []
 superseded-by: []
 sources:
-  - docs/design/DESIGN.md
+  - DESIGN.md
   - docs/tech/design-doc.md
   - https://github.com/adeonir/adeonir.dev/issues/79
 ---
@@ -90,7 +90,7 @@ first paint.
 ## References
 
 - `docs/tech/design-doc.md#4-alternatives-considered` — Styling row (Tailwind)
-- `docs/design/DESIGN.md` — two skins of one identity; dark default, latte light
+- `DESIGN.md` — two skins of one identity; dark default, latte light
 - `src/styles/global.css` — `@theme inline` semantic roles, `[data-theme=light]`
 - Theme toggle epic and story: https://github.com/adeonir/adeonir.dev/issues/78, https://github.com/adeonir/adeonir.dev/issues/79
 - ADR-001 (React islands runtime) — the island this control runs on

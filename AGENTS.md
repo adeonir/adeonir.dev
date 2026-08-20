@@ -8,7 +8,7 @@ This file is the canonical guide for coding agents working on `adeonir.dev`. Rea
 
 The site is an Astro application deployed as an SSR Worker on Cloudflare. Pages are content-driven and prerendered to static HTML. The production home (`/`) currently renders the Hero, About, Stack, and Contact sections. The contact form is a React island on the home and submits to the server-side contact Action. The work index and project case-study routes are not implemented yet.
 
-The document shell, metadata and SEO, analytics baseline, design-token layer, generated crawl files, and content-layer scaffolding are implemented. The `/maintenance` and `/404` routes are wired through the base layout. The `/styleguide` route renders both skins in a separate shell and is excluded from indexing.
+The document shell, metadata and SEO, analytics baseline, design-token layer, generated crawl files, and content-layer scaffolding are implemented. The `/maintenance` and `/404` routes are wired through the base layout. The `/styleguide` route renders the token grid in a separate shell, with a theme toggle to switch skins, and is excluded from indexing.
 
 ## Technology stack
 
@@ -91,7 +91,7 @@ Before planning or building a feature, read the documents that apply to the work
 - `docs/tech/design-doc.md` — architecture, runtime boundaries, conventions, contact flow, security, testing, CI/CD, and alternatives. It is the technical authority.
 - `docs/product/prd.md` — scope, FR/NFR identifiers, personas, journeys, business rules, edge cases, and milestones.
 - `docs/product/brief.md` — one-page product summary.
-- `docs/design/DESIGN.md` — visual identity and design tokens. Frontmatter contains token values, including dual `{ hex, oklch }` colors; the body contains design rules and do/don'ts.
+- `DESIGN.md` — visual identity and design tokens. Frontmatter contains token values, with colors as flat OKLCH strings; the body contains design rules and do/don'ts.
 - `docs/design/blueprint.md` — layout region trees and screen flows.
 - `docs/design/copy.yaml` — canonical site copy.
 - `docs/design/wireframe.html` and `docs/design/styleguide.html` — rendered low-fidelity wireframe and token styleguide.
@@ -188,7 +188,7 @@ Use the repository's component scaffolding workflow when creating a new componen
 - Do not add gradients, glows, or a third accent. Separate surfaces with a tone drop and hairline border before adding a shadow. Never use pure `#000` or `#fff`.
 - Use Geist for all type roles. Use Fira Code only for genuinely technical content.
 - `global.css` defines self-hosted fonts, raw oklch scales, dual-skin semantic roles, the skin-neutral `--ink` text color for accent fills, `destructive`, nine `text-*` type-role utilities, the `wrapper` utility, and the Tailwind v4 `@theme` configuration.
-- Ark UI primitives must use the dual-skin tokens and must not retain a default palette. Audit new primitives against `docs/design/DESIGN.md`.
+- Ark UI primitives must use the dual-skin tokens and must not retain a default palette. Audit new primitives against `DESIGN.md`.
 - Ark UI reference: https://ark-ui.com/llms.txt
 - Icons use `unplugin-icons` with Tabler, for example `import IconFolder from '~icons/tabler/folder'`. Render them statically in Astro; the JSX compiler requires `@svgr/core` and `@svgr/plugin-jsx`.
 
@@ -238,7 +238,7 @@ The repository tracks delivery in GitHub Issues for `adeonir/adeonir.dev`, using
 - `src/pages/index.astro` — production home with `title="Portfólio"` and the `shell` prop.
 - `src/pages/maintenance.astro` — centered noindex holding page using semantic tokens and `public/logo.svg`.
 - `src/pages/404.astro` — global noindex not-found page with the `not-found` collection, an oversized `404` mark, highlighted headline, body, and back-home action. The static-assets Worker serves it with a 404 status for unmatched routes.
-- `src/pages/styleguide.astro` — noindex token styleguide that renders dark and light skins side by side without the base layout.
+- `src/pages/styleguide.astro` — noindex token styleguide that renders one token grid without the base layout; a theme toggle switches between the dark and light skins.
 - `src/content.config.ts`, `src/content/`, and `src/schemas/` — content loaders, YAML entries, and Zod schemas. Do not recreate the content-layer scaffolding.
 - `src/components/scripts/analytics.astro` — config-gated PostHog array stub and async client loader.
 - `src/actions/index.ts` — contact Action and typed error paths.

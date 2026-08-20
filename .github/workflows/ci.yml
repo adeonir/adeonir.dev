@@ -25,13 +25,13 @@ jobs:
           - { cmd: build, name: Build }
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Set up pnpm
         uses: pnpm/action-setup@v6
 
       - name: Set up Node
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: lts/*
           cache: pnpm
@@ -47,13 +47,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Set up pnpm
         uses: pnpm/action-setup@v6
 
       - name: Set up Node
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: lts/*
           cache: pnpm
@@ -61,10 +61,13 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build
-        run: pnpm build
-
       - name: Run Lighthouse
-        uses: treosh/lighthouse-ci-action@v12
+        run: pnpm lighthouse
+
+      - name: Upload reports
+        if: always()
+        uses: actions/upload-artifact@v7
         with:
-          configPath: ./lighthouserc.json
+          name: lighthouse-results
+          path: .lighthouseci
+          retention-days: 7

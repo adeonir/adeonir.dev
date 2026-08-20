@@ -2,16 +2,11 @@
 import IconArrowRight from '~icons/tabler/arrow-right'
 
 import Logo from '~/components/logo.astro'
+import { ToastDemo } from '~/components/styleguide/toast'
 import { Button } from '~/components/ui/button'
 import { Eyebrow } from '~/components/ui/eyebrow'
 import { Field } from '~/components/ui/field'
 import { NavLink } from '~/components/ui/nav-link'
-
-interface Props {
-  skin: string
-}
-
-const { skin } = Astro.props
 
 const surfaces = [
   {
@@ -88,6 +83,14 @@ const lines = [
   { cls: 'border-ring', label: 'ring' },
 ]
 
+const inks = [
+  { cls: 'text-foreground', label: 'foreground' },
+  { cls: 'text-muted-foreground', label: 'muted-foreground' },
+  { cls: 'text-action', label: 'action' },
+  { cls: 'text-emphasis', label: 'emphasis' },
+  { cls: 'text-destructive', label: 'destructive' },
+]
+
 const types = [
   { cls: 'text-display', label: 'text-display' },
   { cls: 'text-heading', label: 'text-heading' },
@@ -105,8 +108,10 @@ const spacing = [
   { cls: 'w-2', label: '2 · 0.5rem' },
   { cls: 'w-3', label: '3 · 0.75rem' },
   { cls: 'w-4', label: '4 · 1rem' },
+  { cls: 'w-5', label: '5 · 1.25rem' },
   { cls: 'w-6', label: '6 · 1.5rem' },
   { cls: 'w-8', label: '8 · 2rem' },
+  { cls: 'w-11', label: '11 · 2.75rem' },
   { cls: 'w-12', label: '12 · 3rem' },
   { cls: 'w-16', label: '16 · 4rem' },
   { cls: 'w-24', label: '24 · 6rem' },
@@ -123,9 +128,9 @@ const radii = [
 ]
 
 const widths = [
-  { cls: 'border', label: 'border · 1px' },
-  { cls: 'border-2', label: 'border-2 · 2px' },
-  { cls: 'border-4', label: 'border-4 · 4px' },
+  { cls: 'border', label: 'border' },
+  { cls: 'border-2', label: 'border-2' },
+  { cls: 'border-4', label: 'border-4' },
 ]
 
 const shadows = [
@@ -136,6 +141,12 @@ const shadows = [
   { cls: 'shadow-lg', label: 'lg' },
   { cls: 'shadow-xl', label: 'xl' },
   { cls: 'shadow-2xl', label: '2xl' },
+]
+
+const elevations = [
+  { cls: '', label: 'none' },
+  { cls: 'shadow-foreground/5 shadow-lg', label: 'floating' },
+  { cls: 'shadow-action/12 shadow-lg', label: 'tinted' },
 ]
 
 const breakpoints = [
@@ -150,13 +161,13 @@ const breakpoints = [
 ---
 
 <div class="flex flex-col gap-12">
-  <header class="flex flex-col gap-1">
-    <p class="text-label text-secondary">{skin} skin</p>
-    <h2 class="text-heading">Styleguide</h2>
+  <header>
+    <h1 class="text-display">Styleguide</h1>
+    <hr class="mt-6 border-t border-border" />
   </header>
 
   <section class="flex flex-col gap-4">
-    <h3 class="text-title">Colors</h3>
+    <h2 class="text-title">Colors</h2>
     <div class="flex gap-3">
       {
         [surfaces, accents, status].map((group) => (
@@ -176,6 +187,10 @@ const breakpoints = [
         ))
       }
     </div>
+  </section>
+
+  <section class="flex flex-col gap-4">
+    <h2 class="text-title">Border colors</h2>
     <div class="flex gap-3">
       {
         lines.map((l) => (
@@ -189,7 +204,21 @@ const breakpoints = [
   </section>
 
   <section class="flex flex-col gap-4">
-    <h3 class="text-title">Type</h3>
+    <h2 class="text-title">Text colors</h2>
+    <div class="flex flex-wrap gap-6">
+      {
+        inks.map((i) => (
+          <div class="flex flex-col gap-1">
+            <span class:list={['text-body', i.cls]}>The quick brown fox</span>
+            <span class="text-caption text-muted-foreground">{i.label}</span>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="flex flex-col gap-4">
+    <h2 class="text-title">Type</h2>
     <div class="flex flex-col gap-3">
       {
         types.map((t) => (
@@ -203,7 +232,7 @@ const breakpoints = [
   </section>
 
   <section class="flex flex-col gap-4">
-    <h3 class="text-title">Spacing</h3>
+    <h2 class="text-title">Spacing</h2>
     <div class="flex flex-col gap-2">
       {
         spacing.map((s) => (
@@ -217,7 +246,7 @@ const breakpoints = [
   </section>
 
   <section class="flex flex-col gap-4">
-    <h3 class="text-title">Radius</h3>
+    <h2 class="text-title">Radius</h2>
     <div class="flex flex-wrap gap-3">
       {
         radii.map((r) => (
@@ -231,7 +260,7 @@ const breakpoints = [
   </section>
 
   <section class="flex flex-col gap-4">
-    <h3 class="text-title">Border width</h3>
+    <h2 class="text-title">Border width</h2>
     <div class="flex gap-3">
       {
         widths.map((w) => (
@@ -247,7 +276,7 @@ const breakpoints = [
   </section>
 
   <section class="flex flex-col gap-4">
-    <h3 class="text-title">Elevation</h3>
+    <h2 class="text-title">Elevation</h2>
     <div class="flex flex-wrap gap-4">
       {
         shadows.map((s) => (
@@ -263,10 +292,25 @@ const breakpoints = [
         ))
       }
     </div>
+    <div class="flex flex-wrap gap-4">
+      {
+        elevations.map((e) => (
+          <div class="flex flex-col items-center gap-1">
+            <div
+              class:list={[
+                'size-14 rounded-lg border border-border bg-card',
+                e.cls,
+              ]}
+            />
+            <span class="text-caption text-muted-foreground">{e.label}</span>
+          </div>
+        ))
+      }
+    </div>
   </section>
 
   <section class="flex flex-col gap-4">
-    <h3 class="text-title">Breakpoints</h3>
+    <h2 class="text-title">Breakpoints</h2>
     <div class="flex flex-col gap-2">
       {
         breakpoints.map((b) => (
@@ -280,7 +324,7 @@ const breakpoints = [
   </section>
 
   <section class="flex flex-col gap-4">
-    <h3 class="text-title">Components</h3>
+    <h2 class="text-title">Components</h2>
     <div class="flex flex-col gap-6">
       <div class="flex flex-col gap-2">
         <span class="text-caption text-muted-foreground">Logo</span>
@@ -315,6 +359,13 @@ const breakpoints = [
             multiline
           />
           <Field
+            label="Invalid"
+            name="sg-field-invalid"
+            placeholder="Placeholder"
+            invalid
+            error="This field is required."
+          />
+          <Field
             label="Disabled"
             name="sg-field-disabled"
             placeholder="Placeholder"
@@ -322,6 +373,7 @@ const breakpoints = [
           />
         </div>
       </div>
+      <ToastDemo client:load />
     </div>
   </section>
 </div>

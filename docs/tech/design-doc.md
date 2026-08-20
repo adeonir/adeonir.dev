@@ -6,7 +6,7 @@ status: accepted
 sources:
   - docs/product/prd.md
   - docs/design/copy.yaml
-  - docs/design/DESIGN.md
+  - DESIGN.md
   - docs/design/blueprint.md
 ---
 

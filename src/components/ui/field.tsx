@@ -47,8 +47,8 @@ export function Field({
             fieldClasses,
             'min-h-32 resize-y py-3',
             invalid
-              ? 'border-destructive focus-visible:ring-destructive/30'
-              : 'border-input focus:border-primary focus-visible:ring-ring/40',
+              ? 'border-destructive focus-visible:ring-destructive/20'
+              : 'border-input focus:border-primary focus-visible:ring-ring/20',
           )}
         />
       ) : (
@@ -60,13 +60,13 @@ export function Field({
             fieldClasses,
             'h-11',
             invalid
-              ? 'border-destructive focus-visible:ring-destructive/30'
-              : 'border-input focus:border-primary focus-visible:ring-ring/40',
+              ? 'border-destructive focus-visible:ring-destructive/20'
+              : 'border-input focus:border-primary focus-visible:ring-ring/20',
           )}
         />
       )}
       {invalid && error && (
-        <ArkField.ErrorText className="text-body text-destructive">
+        <ArkField.ErrorText className="text-caption text-destructive">
           {error}
         </ArkField.ErrorText>
       )}
