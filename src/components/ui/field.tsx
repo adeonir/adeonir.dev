@@ -15,6 +15,7 @@ export type FieldProps = {
   required?: boolean
   invalid?: boolean
   error?: string
+  autoComplete?: string
 }
 
 export function Field({
@@ -27,6 +28,7 @@ export function Field({
   required,
   invalid,
   error,
+  autoComplete,
 }: FieldProps) {
   return (
     <ArkField.Root
@@ -41,6 +43,7 @@ export function Field({
       {multiline ? (
         <ArkField.Textarea
           name={name}
+          autoComplete={autoComplete}
           placeholder={placeholder}
           rows={5}
           className={cn(
@@ -54,6 +57,7 @@ export function Field({
       ) : (
         <ArkField.Input
           name={name}
+          autoComplete={autoComplete}
           type={type}
           placeholder={placeholder}
           className={cn(

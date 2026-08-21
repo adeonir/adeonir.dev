@@ -104,6 +104,11 @@ export function ContactForm({ content }: ContactFormProps) {
             key={field.name}
             label={field.label}
             name={field.name}
+            autoComplete={
+              field.name === 'name' || field.name === 'email'
+                ? field.name
+                : undefined
+            }
             placeholder={field.placeholder}
             type={field.name === 'email' ? 'email' : 'text'}
             required
