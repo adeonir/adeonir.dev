@@ -416,15 +416,15 @@ Corners are rounded consistently: enough to feel approachable, and little enough
 
 ## Motion & Interaction
 
-Motion has one job: to confirm a change of state. Nothing animates for decoration, and no section fades in on scroll.
+Motion confirms a change of state. It may also bring content to rest as the reader scrolls into it. Nothing animates for decoration.
 
-Three durations cover the system. About 150ms covers hover color changes, the focus ring, and other small changes of state. About 200ms covers an element entering, such as a menu opening or an icon changing. About 400ms covers the largest reversible transition, such as a toast settling into its stack. An exit runs faster than its entrance, at about 100ms, because a dismissal should not hold the user. An entrance decelerates to rest, an exit accelerates away, and a looping or reversible transition uses a symmetric curve.
+Three durations cover the system. About 150ms covers hover color changes, the focus ring, and other small changes of state. About 200ms covers an element entering, such as a menu opening or an icon changing. About 400ms covers the largest reversible transition, such as a toast settling into its stack. An exit runs faster than its entrance, at about 100ms, because a dismissal should not hold the user. An entrance decelerates to rest. An exit accelerates away. A looping or reversible transition uses a symmetric curve.
 
 The theme toggle is the one signature transition. The icon changes with a short flip, and a switching flag suppresses transitions everywhere else, so the whole page repaints its skin at once instead of running a separate color transition on every element.
 
 Hover marks an interactive element in blue. A link changes color, a row takes the accent surface, and the title of that row changes to blue. Focus always draws the ring, never the browser default. A pressed control takes a deeper fill. Pink emphasis is static and never animates, because it points at text rather than responding to the reader.
 
-If the reader sets `prefers-reduced-motion`, entrance and reveal animations are removed and a change of state resolves through color alone. Hover, focus, and active states still change color, without the transition. The site has no parallax and no autoplay to disable.
+If the reader sets `prefers-reduced-motion`, entrance and reveal animations are removed, including an entrance tied to scroll. A change of state resolves through color alone. Hover, focus, and active states still change color, without the transition. The site has no parallax and no autoplay to disable.
 
 ## Responsive Behavior
 
