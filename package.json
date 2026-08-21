@@ -12,8 +12,8 @@
     "email": "email dev --dir src/emails",
     "typecheck": "astro check",
     "test": "vitest run",
-    "lint": "biome check && prettier --check \"src/**/*.{astro,yaml}\"",
-    "lint:fix": "biome check --write --unsafe && prettier --write \"src/**/*.{astro,yaml}\"",
+    "lint": "biome check --error-on-warnings && prettier --check \"src/**/*.{astro,yaml}\"",
+    "lint:fix": "biome check --write --unsafe --error-on-warnings && prettier --write \"src/**/*.{astro,yaml}\"",
     "lighthouse": "astro build && npx -y @lhci/cli autorun",
     "gates": "pnpm typecheck && pnpm lint:fix"
   },
