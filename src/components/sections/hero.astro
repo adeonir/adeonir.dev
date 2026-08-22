@@ -2,6 +2,7 @@
 import { getEntry } from 'astro:content'
 
 import { buttonVariants } from '~/components/ui/button'
+import { Eyebrow } from '~/components/ui/eyebrow'
 import { cn } from '~/helpers/classnames'
 
 const hero = await getEntry('hero', 'hero')
@@ -10,12 +11,13 @@ if (!hero) {
   throw new Error('Missing hero/hero entry')
 }
 
-const { display, tagline, description, actions } = hero.data
+const { eyebrow, display, tagline, description, actions } = hero.data
 ---
 
 <section>
+  <Eyebrow className="mt-6">{eyebrow}</Eyebrow>
   <h1
-    class="mt-6 text-5xl leading-none font-extrabold tracking-tight text-foreground sm:text-7xl lg:text-8xl"
+    class="mt-4 text-5xl leading-none font-extrabold tracking-tight text-foreground sm:text-7xl lg:text-8xl"
   >
     {display}
   </h1>
