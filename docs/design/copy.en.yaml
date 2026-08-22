@@ -9,8 +9,7 @@ project:
   language: 'en'
   industry: 'portfolio'
   title: 'Adeonir Kohl | Portfolio'
-  description: 'Personal portfolio for Adeonir Kohl, a design engineer focused on aesthetics and performance.'
-  meta_description: 'Design engineer building interfaces that look beautiful and run fast'
+  description: 'Design engineer building web interfaces that work.'
 
 # The content tree mirrors docs/design/blueprint.md: surfaces home, work, project,
 # plus a global not-found (404) error surface.
@@ -25,7 +24,7 @@ content:
         text: 'adeonir.dev'
       nav:
         - text: 'about'
-        - text: 'projects'
+        - text: 'work'
         - text: 'contact'
       menu:
         label: 'Menu'
@@ -34,34 +33,22 @@ content:
 
     hero:
       eyebrow: 'Design Engineer'
-      display: "Hi, I'm Adeonir Kohl"
-      tagline: 'I build interfaces that look beautiful and run fast.'
+      display: 'Adeonir Kohl'
+      tagline: 'I build web interfaces that work.'
       description:
-        - "I'm a design engineer: a frontend developer with a designer's background."
-        - 'That makes me think about the whole product, not just the UI, always seeking solutions that deliver value without chasing perfection.'
+        - 'I like giving things shape, bringing design to life on screen.'
       actions:
-        primary: 'See the work'
+        primary: 'See my work'
         secondary: 'Get in touch'
 
     about:
       eyebrow: 'About me'
       headline: 'From design to code.'
       bio:
-        - "After years as a graphic designer, I moved into development in a natural evolution that put me exactly where design and code meet. I've been a frontend developer for 6+ years, working for companies in Brazil, Europe, and recently the US. On the projects I run myself, I handle the code end to end, and the design too when needed."
-        - "These days I'm digging into product engineering and bringing that knowledge into my projects, going beyond the interface."
-        - 'I use AI tools and agentic workflows for the heavy lifting, always under my supervision (HITL - Human in the loop). It lets me move fast without trading away craft or judgment.'
-      code-block:
-        language: 'ts'
-        code: |
-          const developer = {
-            name: 'Adeonir Kohl',
-            role: 'Design Engineer',
-            based: 'Salvador do Sul, RS',
-            focus: 'Code + Design + Product',
-            stack: ['Figma', 'React', 'TypeScript', 'Tailwind CSS'],
-            available: 'Open to collaborations',
-            // Quality and delivery walk together.
-          }
+        - "Hi, I'm Adeonir, and I like building things for the web. I'm a design engineer who creates interfaces that look good and work well, with an eye for detail. I most enjoy working at the intersection of design and code."
+        - "Currently, I'm a Frontend Engineer at Jaya Tech, working with clients from the US. I work mainly with React and TypeScript. I maintain and evolve the design system library and the web platform, working with designers and developers to meet users' needs."
+        - 'After years as a graphic designer creating advertising materials, books, and magazines, I moved into development. In Brazil, I worked on financial products, business management platforms, and debt recovery systems. More recently, I worked at an agency in France. There, I rewrote a legacy Vue and Express project in React without taking the service offline, led two developers, and coordinated the UI Design team. Outside work, I also take on personal projects, mostly landing pages and e-commerce sites. All these experiences changed how I think about building an interface.'
+        - 'In my spare time, I like spending time with family, collecting Hot Wheels with my son, watching series and movies, and hanging out with friends.'
 
     stack:
       eyebrow: 'Tech Stack'
@@ -102,10 +89,9 @@ content:
       see-all: 'See all work'
 
     contact:
-      eyebrow: "Let's talk"
-      headline: 'Have a project in mind?'
+      headline: 'Send me a message'
       body:
-        - 'I love meeting new people, trading experiences, and collaborating on interesting projects. Whether you want to chat about development or have an idea that needs a hand getting off the ground, drop me a message.'
+        - 'You can write to talk about development, working together, or just say hi.'
       social:
         - platform: 'email'
           label: 'contato@adeonir.dev'
@@ -132,8 +118,8 @@ content:
             placeholder: 'What do you want to talk about?'
           - name: 'message'
             label: 'Message'
-            placeholder: 'Tell me more about your idea.'
-        submit: 'Send message'
+            placeholder: 'Tell me more about what you have in mind.'
+        submit: 'Send'
         states:
           success:
             title: 'Message sent'
@@ -142,15 +128,20 @@ content:
             title: 'Something went wrong'
             description: 'Try again or email me directly.'
         validation:
-          required: 'Please fill in this field.'
-          email: "That email doesn't look right. Could you double-check?"
-          maxLength: 'This field accepts up to {max} characters.'
+          required: 'You missed this one.'
+          email: 'Double-check this email.'
+          maxLength: "That's over {max} characters."
 
     footer: &footer
       brand:
         text: 'adeonir.dev'
         copyright: '© 2026 Adeonir Kohl'
-      tagline: 'Built with care, passion, and coffee.'
+      tagline: 'Built with care, coffee, and beer.'
+      reveals:
+        - word: 'coffee'
+          phrase: 'Coffee to work'
+        - word: 'beer'
+          phrase: 'Beer to celebrate'
 
   work:
     header: *header
@@ -160,7 +151,7 @@ content:
       subheadline: 'A selection of what I built or helped build.'
     # list -> top-level `projects` collection (all, in order)
     states:
-      empty: 'No projects to show yet, check back soon.' # EC-1
+      empty: 'No projects to show yet. Check back soon.' # EC-1
     footer: *footer
 
   project:
@@ -192,9 +183,13 @@ content:
     display: '404'
     headline: 'Page not found.'
     body:
-      - "The page you're looking for doesn't exist or has moved. Head back to the homepage and pick up from there."
+      - "This address doesn't exist, or it moved."
     cta: 'Back to home'
     footer: *footer
+
+# Hidden dev-console greeting — logged once per page load, not a routed surface.
+console:
+  greeting: 'Welcome backstage. Let me know if you find a bug.'
 
 # Transactional emails — not a routed surface. Sent on contact form submit.
 # Tokens: {name} = sender's name (first name in body), {date} = received timestamp, {subject} = submitted subject (notification subject line).
@@ -203,7 +198,7 @@ emails:
   from: 'Adeonir'
   confirmation:
     subject: 'Got your message'
-    preview: "Got your message, I'll reply as soon as I can."
+    preview: "I'll reply as soon as I can."
     heading: 'Your message was sent'
     body: "Hi, {name}! Thanks for reaching out. I got your message and I'll reply as soon as I can."
     recap:
@@ -237,7 +232,7 @@ projects:
   - slug: 'adeonir-kohl'
     name: 'Adeonir Kohl'
     featured: false
-    summary: 'This portfolio, crafted end to end with AI in the loop.'
+    summary: 'This portfolio was built with AI throughout the process.'
     role: 'Product engineer, UI designer & frontend developer'
     launch: '06/2026'
     link: 'https://adeonir.dev'
@@ -284,19 +279,17 @@ projects:
     gallery: [] # TODO
 
 notes: |
-  Voice: first person, present tense, confident, dry, proof outward (the work,
-  not adjectives). Positioning shorthand "design + code" (aesthetics +
-  performance); graphic-design → frontend arc, AI-assisted workflow under human
-  supervision.
+  Localization: copy.yaml (pt) and copy.en.yaml (en) are localized copy, not
+  translation. Each line reads native in its language, so wording may diverge
+  between the files on purpose.
 
   Projects: one top-level `projects` collection (always complete). The work
   index shows all in order; the landing shows the featured: true ones.
 
-  Placeholders to author (flagged, not invented — proof must stay outward):
+  Still to author (flagged, not invented):
   - Per-project case-study content: overview, body, gallery (images) are
-    null/empty for all entries; author per project before the project detail
-    surface has real content.
+    null/empty for all entries.
   - repo links are null — add if any project is open source.
+  - The about timeline (companies, roles, periods) has no key yet.
 
-  Design-blind: no colors, fonts, icons, or layout in this file. The about
-  code-block carries a content snippet (language + code only), not styling.
+  Design-blind: no colors, fonts, icons, or layout in this file.
