@@ -1,20 +1,16 @@
 hero:
   eyebrow: 'Design Engineer'
-  display:
-    greeting: 'Olá, sou'
-    name: 'Adeonir Kohl'
+  display: 'Adeonir Kohl'
   tagline:
-    - text: 'Eu construo interfaces focadas em '
-      break: true
-    - text: 'estética'
+    - text: 'Eu construo '
+    - text: 'interfaces web'
       highlight: true
-    - text: ' e '
-    - text: 'performance'
+    - text: ' que '
+    - text: 'funcionam'
       highlight: true
     - text: '.'
   description:
-    - 'Sou design engineer: um desenvolvedor frontend com bagagem de designer.'
-    - 'Isso me faz pensar no produto inteiro, não só na interface, sempre buscando a solução certa sem perseguir a perfeição.'
+    - 'Gosto de ver as coisas tomando forma, o design ganhando vida na tela.'
   actions:
     secondary:
       label: 'Entrar em contato'

@@ -1,7 +1,6 @@
 import { z } from 'astro/zod'
 
 export const contactSchema = z.object({
-  eyebrow: z.string().min(1),
   title: z
     .array(
       z.object({

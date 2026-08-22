@@ -2,10 +2,7 @@ import { z } from 'astro/zod'
 
 export const heroSchema = z.object({
   eyebrow: z.string().min(1),
-  display: z.object({
-    greeting: z.string().min(1),
-    name: z.string().min(1),
-  }),
+  display: z.string().min(1),
   tagline: z
     .array(
       z.object({
