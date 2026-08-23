@@ -77,7 +77,7 @@ export function Confirmation({
         <Body className="m-0 bg-background py-8 font-sans">
           <Container className="mx-auto max-w-120 overflow-hidden rounded-2xl border border-border border-solid bg-card">
             <Section className="bg-header-bg px-10 py-11 text-center">
-              <Text className="m-0 font-mono font-semibold text-header-fg text-lg leading-none tracking-tight">
+              <Text className="m-0 font-mono font-semibold text-header-fg text-lg leading-none">
                 <span className="text-header-accent">~/</span>
                 adeonir
                 <span className="text-header-accent">.</span>
@@ -132,7 +132,7 @@ export function Confirmation({
             </Section>
 
             <Section className="border-border border-t border-solid bg-sunken px-10 py-6">
-              <Text className="m-0 font-mono font-semibold text-base text-muted leading-none tracking-tight">
+              <Text className="m-0 font-mono font-semibold text-base text-muted leading-none">
                 <span className="text-secondary">~/</span>
                 adeonir
                 <span className="text-secondary">.</span>
