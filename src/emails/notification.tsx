@@ -84,7 +84,7 @@ export function Notification({
             <Section className="bg-header-bg px-10 py-7">
               <Row>
                 <Column>
-                  <Text className="m-0 font-mono font-semibold text-base text-header-fg leading-none tracking-tight">
+                  <Text className="m-0 font-mono font-semibold text-base text-header-fg leading-none">
                     <span className="text-header-accent">~/</span>
                     adeonir
                     <span className="text-header-accent">.</span>

@@ -301,7 +301,7 @@
 }
 
 @utility text-display {
-  @apply text-4xl font-extrabold tracking-tight xs:text-5xl;
+  @apply text-4xl font-extrabold xs:text-5xl;
 }
 
 @utility text-heading {
