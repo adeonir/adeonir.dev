@@ -8,11 +8,10 @@ export const heroSchema = z.object({
       z.object({
         text: z.string().min(1),
         highlight: z.boolean().optional(),
-        break: z.boolean().optional(),
       }),
     )
     .min(1),
-  description: z.array(z.string().min(1)).min(1),
+  description: z.string().min(1),
   actions: z.object({
     secondary: z.object({
       label: z.string().min(1),

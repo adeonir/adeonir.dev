@@ -4,7 +4,6 @@ stack:
     - text: 'As '
     - text: 'ferramentas '
       highlight: true
-      break: true
     - text: 'que eu uso.'
   tools:
     - title: 'frontend'

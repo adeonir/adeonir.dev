@@ -221,7 +221,7 @@ The `/styleguide` and `/maintenance` routes are noindex and are excluded from th
 
 - Unit tests cover validation, helpers, form hooks, rate limiting, and the theme store. The default environment is Node; DOM-dependent specs opt into happy-dom with a `// @vitest-environment happy-dom` docblock.
 - Browser component tests, E2E tests, and axe-based accessibility tests are planned but are not configured yet.
-- The target quality budget is mobile Lighthouse Performance ≥ 95, Accessibility/Best Practices/SEO = 100, LCP < 2.0s, CLS < 0.1, INP < 200ms, and WCAG AA. The current CI Lighthouse config hard-fails category scores and warns on LCP, CLS, and TBT (the lab proxy for INP).
+- The target quality budget is mobile Lighthouse Performance ≥ 95, Accessibility/Best Practices/SEO = 100, LCP < 2.5s, CLS < 0.1, INP < 200ms, and WCAG AA. The current CI Lighthouse config hard-fails category scores and warns on LCP, CLS, and TBT (the lab proxy for INP).
 - `.github/workflows/ci.yml` runs Lint, Typecheck, Unit Tests, and Build in a quality matrix, plus a Lighthouse job. Lighthouse audits only the home, runs three times with median aggregation, and uses `dist/client`.
 - The required `main` checks are Build, Lint, Typecheck, Workers Builds, and Lighthouse. The unit, E2E, browser, and accessibility checks grow as their suites are added.
 - Run `pnpm build` to verify the production landing at `dist/client/index.html`, or use `pnpm dev` for interactive verification.

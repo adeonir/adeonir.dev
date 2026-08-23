@@ -15,7 +15,7 @@ const { eyebrow, headline, bio } = about.data
 
 <section id="about">
   <div class="mt-6 grid grid-cols-1 gap-12 md:grid-cols-5">
-    <h2 class="col-span-2 flex-1 text-display text-pretty text-foreground">
+    <h2 class="text-display text-pretty text-foreground md:col-span-2">
       {
         headline.map((segment) => (
           <>
@@ -24,12 +24,11 @@ const { eyebrow, headline, bio } = about.data
             ) : (
               <span class="text-muted-foreground">{segment.text}</span>
             )}
-            {segment.break && <br class="hidden md:block" />}
           </>
         ))
       }
     </h2>
-    <div class="col-span-3 flex flex-1 flex-col gap-6">
+    <div class="flex flex-col gap-6 md:col-span-3">
       <Eyebrow variant="muted">{eyebrow}</Eyebrow>
       {
         bio.map((paragraph, index) => (
@@ -37,7 +36,7 @@ const { eyebrow, headline, bio } = about.data
             class={cn(
               'leading-relaxed text-pretty',
               index === 0
-                ? 'text-lg text-foreground'
+                ? 'text-subtitle text-foreground'
                 : 'text-body text-muted-foreground',
             )}
           >

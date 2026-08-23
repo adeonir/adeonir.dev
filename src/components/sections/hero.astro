@@ -35,20 +35,15 @@ const { eyebrow, display, tagline, description, actions, scroll } = hero.data
           ) : (
             segment.text
           )}
-          {segment.break && <br class="hidden sm:block" />}
         </>
       ))
     }
   </p>
-  <div class="mt-3 flex max-w-xl flex-col gap-2 sm:mt-4">
-    {
-      description.map((paragraph) => (
-        <p class="text-body leading-relaxed text-pretty text-muted-foreground">
-          {paragraph}
-        </p>
-      ))
-    }
-  </div>
+  <p
+    class="mt-3 max-w-3xl text-subtitle leading-relaxed text-pretty text-muted-foreground sm:mt-4"
+  >
+    {description}
+  </p>
   <a
     href={actions.secondary.href}
     class={cn(

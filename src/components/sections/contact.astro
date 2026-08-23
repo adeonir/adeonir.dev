@@ -19,7 +19,7 @@ const { title, body, social, form } = contact.data
 >
   <div class="wrapper section-inset">
     <div class="grid grid-cols-1 gap-12 md:grid-cols-5">
-      <div class="col-span-2 flex flex-col gap-6">
+      <div class="flex flex-col gap-6 md:col-span-2">
         <h2 class="text-display text-pretty text-foreground">
           {
             title.map((segment) => (
@@ -29,7 +29,6 @@ const { title, body, social, form } = contact.data
                 ) : (
                   segment.text
                 )}
-                {segment.break && <br class="hidden md:block" />}
               </>
             ))
           }
@@ -79,7 +78,7 @@ const { title, body, social, form } = contact.data
           </ul>
         </div>
       </div>
-      <div class="col-span-3">
+      <div class="md:col-span-3">
         <ContactForm content={form} client:visible />
       </div>
     </div>

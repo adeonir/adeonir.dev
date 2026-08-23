@@ -1,7 +1,7 @@
 ---
 name: adeonir-dev-portfolio
 created: 2026-06-06
-updated: 2026-06-21
+updated: 2026-08-23
 status: accepted
 sources:
   - docs/product/prd.md
@@ -36,8 +36,9 @@ handling.
 ### Goals
 
 - **Performance budget (enforced in CI):** mobile Lighthouse Performance ≥ 95,
-  Accessibility 100, Best Practices 100, SEO 100; LCP < 2.0s, CLS < 0.1,
-  INP < 200ms. Builds fail when a budget regresses (NFR-1).
+  Accessibility 100, Best Practices 100, SEO 100; LCP < 2.5s, CLS < 0.1,
+  INP < 200ms. Builds fail when a category score regresses; LCP, CLS, and the
+  blocking-time proxy for INP report as warnings (NFR-1).
 - **Near-zero baseline JS:** pages prerender to static HTML; only interactive
   islands hydrate (theme toggle, contact form, language switcher, mobile nav).
 - **Accessibility:** WCAG AA across all pages, asserted automatically
