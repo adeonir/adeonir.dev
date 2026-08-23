@@ -101,7 +101,6 @@ typography:
     fontSize: 2.25rem
     fontWeight: 800
     lineHeight: 1.111
-    letterSpacing: -0.025em
   heading:
     fontFamily: "Geist"
     fontSize: 1.5rem
@@ -114,19 +113,19 @@ typography:
     lineHeight: 1.4
   subtitle:
     fontFamily: "Geist"
-    fontSize: 1rem
+    fontSize: 1.125rem
     fontWeight: 500
-    lineHeight: 1.5
+    lineHeight: 1.556
   body:
     fontFamily: "Geist"
-    fontSize: 1rem
+    fontSize: 1.125rem
     fontWeight: 400
-    lineHeight: 1.5
+    lineHeight: 1.556
   caption:
     fontFamily: "Geist"
-    fontSize: 0.75rem
+    fontSize: 0.875rem
     fontWeight: 400
-    lineHeight: 1.333
+    lineHeight: 1.428
   label:
     fontFamily: "Fira Code"
     fontSize: 0.75rem
@@ -135,14 +134,14 @@ typography:
     letterSpacing: 0.05em
   button:
     fontFamily: "Geist"
-    fontSize: 0.875rem
+    fontSize: 1rem
     fontWeight: 600
-    lineHeight: 1.428
+    lineHeight: 1.5
   code:
     fontFamily: "Fira Code"
-    fontSize: 0.875rem
+    fontSize: 1rem
     fontWeight: 400
-    lineHeight: 1.428
+    lineHeight: 1.5
 rounded:
   xs: 0.125rem
   sm: 0.25rem
@@ -360,19 +359,19 @@ The status roles are feedback fills for toasts. They report state and never act,
 
 Geist carries the whole interface, from the largest heading to running body copy, so the page reads in one voice. Its fallback stack is `system-ui, -apple-system, sans-serif`. Fira Code carries the technical layer: code snippets, navigation links, and the uppercase label role. Its fallback stack is `ui-monospace, "SF Mono", Consolas, monospace`. The two faces differ by classification and by job, a neo-grotesque against a monospace, so they never compete at the same size.
 
-The size scale is the conventional step scale, adopted on purpose instead of a private modular ratio, and each role keeps the line height that the scale pairs with its step. The reason is fit. The type here does ordinary jobs: a headline, a section title, running copy, a caption, a control label. A scale that readers and builders already read correctly serves those jobs better than nine values tuned by hand. The scale also already tightens the line height as the size grows, which is what good typesetting asks for, so adopting it costs nothing this identity would have set differently. What the identity decides is what the scale leaves open: which role takes which step, which face carries it, and the two exceptions in letter-spacing. Letter-spacing departs from normal exactly twice: the display role tightens, and the uppercase label role widens.
+The size scale is the conventional step scale, adopted on purpose instead of a private modular ratio, and each role keeps the line height that the scale pairs with its step. The reason is fit. The type here does ordinary jobs: a headline, a section title, running copy, a caption, a control label. A scale that readers and builders already read correctly serves those jobs better than nine values tuned by hand. The scale also already tightens the line height as the size grows, which is what good typesetting asks for, so adopting it costs nothing this identity would have set differently. What the identity decides is what the scale leaves open: which role takes which step, which face carries it, and the one exception in letter-spacing. Letter-spacing departs from normal exactly once: the uppercase label role widens.
 
-- **display** — Geist 2.25rem, weight 800, line-height 1.111, letter-spacing -0.025em. Section headlines. The name in the opening section is an exception and uses larger raw steps.
+- **display** — Geist 2.25rem, weight 800, line-height 1.111. Section headlines. The name in the opening section is an exception and uses larger raw steps.
 - **heading** — Geist 1.5rem, weight 700, line-height 1.333. Section titles. The second word may take the pink emphasis.
 - **title** — Geist 1.25rem, weight 600, line-height 1.4. Card titles and project names.
-- **subtitle** — Geist 1rem, weight 500, line-height 1.5. Lead-in copy and sub-headings, one weight above body.
-- **body** — Geist 1rem, weight 400, line-height 1.5. Primary reading copy.
-- **caption** — Geist 0.75rem, weight 400, line-height 1.333. Small print, metadata, and supporting descriptions.
+- **subtitle** — Geist 1.125rem, weight 500, line-height 1.556. Lead-in copy and sub-headings, one weight above body.
+- **body** — Geist 1.125rem, weight 400, line-height 1.556. Primary reading copy.
+- **caption** — Geist 0.875rem, weight 400, line-height 1.428. Small print, metadata, and supporting descriptions.
 - **label** — Fira Code 0.75rem, weight 500, line-height 1.333, letter-spacing 0.05em, set in uppercase. Eyebrows, form-field labels, and chips. The monospace face and the added letter-spacing keep uppercase legible at this size.
-- **button** — Geist 0.875rem, weight 600, line-height 1.428. Control text, in sentence case.
-- **code** — Fira Code 0.875rem, weight 400, line-height 1.428. Code snippets, technical captions, and navigation links.
+- **button** — Geist 1rem, weight 600, line-height 1.5. Control text, in sentence case.
+- **code** — Fira Code 1rem, weight 400, line-height 1.5. Code snippets and technical captions.
 
-The four heading roles take the next size up at the 32rem breakpoint, described in Responsive Behavior. Body and the smaller roles hold one size at every width.
+The heading, title, and subtitle roles take the next size up at the 24rem breakpoint. The display role follows the width of its own column rather than a single step, described in Responsive Behavior. Body and the smaller roles hold one size at every width.
 
 Three rules hold the type system together. Weight and size carry hierarchy, and no third family is added. The conventional step scale is adopted whole, size and line height together, so the scale stays even and predictable. Fira Code appears only where the content is technical, so the monospace signals engineering work without setting the tone of the whole page.
 
@@ -428,9 +427,13 @@ If the reader sets `prefers-reduced-motion`, entrance and reveal animations are 
 
 ## Responsive Behavior
 
-The breakpoints start narrower than the framework default, because the layout is designed for one-hand use at the smallest sizes: 24rem for the smallest phones, 32rem for compact, 40rem for large phones, 48rem for tablet, 64rem for desktop, 80rem for wide, and 96rem for ultra-wide. The reading measure is reached well before the widest steps, so those steps add margin rather than columns.
+The breakpoints start narrower than the framework default: 24rem for the smallest phones, 32rem for compact, 40rem for large phones, 48rem for tablet, 64rem for desktop, 80rem for wide, and 96rem for ultra-wide. The reading measure is reached well before the widest steps, so those steps add margin rather than columns.
 
-The four heading roles take the next size up at 32rem. That is the only change to type across the breakpoints, and every other role holds one size at every width.
+The heading, title, and subtitle roles take the next size up at 24rem, so the scale steps within the widths a phone reaches.
+
+The display role follows the width available to it rather than growing once. It takes the larger step at 32rem, returns to the smaller step at 48rem, and takes the larger step again at 64rem. The reason is the section layout: a section headline holds the full content width while the layout is one column, and drops to a two-fifths column when the layout splits at 48rem. The role steps back down where its column narrows and returns where the column is wide enough again.
+
+Those are the only changes to type across the breakpoints, and every other role holds one size at every width. Headlines wrap on their own; no role carries a hand-placed line break.
 
 The single-column layout carries over to small screens directly. Spacing between sections drops from 4rem toward 2rem, the actions in the opening section stack, a list row moves its trailing metadata below its title, and the header moves its links behind a menu while the language and theme controls stay visible. Nothing splits into more than one column at desktop, apart from optional two-column groupings.
 

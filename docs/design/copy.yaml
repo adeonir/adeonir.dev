@@ -35,8 +35,7 @@ content:
       eyebrow: 'Design Engineer'
       display: 'Adeonir Kohl'
       tagline: 'Eu construo interfaces web que funcionam.'
-      description:
-        - 'Gosto de ver as coisas tomando forma, o design ganhando vida na tela.'
+      description: 'Gosto de ver as coisas tomando forma, o design ganhando vida na tela.'
       actions:
         primary: 'Ver meu trabalho'
         secondary: 'Entrar em contato'

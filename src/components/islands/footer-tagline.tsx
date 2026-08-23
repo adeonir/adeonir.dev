@@ -30,7 +30,9 @@ function RevealString({ text, phrase }: { text: string; phrase: string }) {
       </Popover.Trigger>
       <Portal>
         <Popover.Positioner>
-          <Popover.Content className="text-code">{phrase}</Popover.Content>
+          <Popover.Content className="font-mono text-sm">
+            {phrase}
+          </Popover.Content>
         </Popover.Positioner>
       </Portal>
     </Popover.Root>
@@ -39,7 +41,7 @@ function RevealString({ text, phrase }: { text: string; phrase: string }) {
 
 export function FooterTagline({ segments }: FooterTaglineProps) {
   return (
-    <p className="text-code text-muted-foreground">
+    <p className="font-mono text-muted-foreground text-sm">
       {segments.map((segment) => {
         if (segment.reveal) {
           return (

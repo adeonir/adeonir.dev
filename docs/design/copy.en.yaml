@@ -35,8 +35,7 @@ content:
       eyebrow: 'Design Engineer'
       display: 'Adeonir Kohl'
       tagline: 'I build web interfaces that work.'
-      description:
-        - 'I like giving things shape, bringing design to life on screen.'
+      description: 'I like giving things shape, bringing design to life on screen.'
       actions:
         primary: 'See my work'
         secondary: 'Get in touch'

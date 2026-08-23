@@ -5,7 +5,6 @@ about:
     - text: 'design '
       highlight: true
     - text: 'ao '
-      break: true
     - text: 'código'
       highlight: true
     - text: '.'

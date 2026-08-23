@@ -7,7 +7,6 @@ export const stackSchema = z.object({
       z.object({
         text: z.string().min(1),
         highlight: z.boolean().optional(),
-        break: z.boolean().optional(),
       }),
     )
     .min(1),

@@ -301,27 +301,27 @@
 }
 
 @utility text-display {
-  @apply text-4xl font-extrabold xs:text-5xl;
+  @apply text-4xl font-extrabold xs:text-5xl md:text-4xl lg:text-5xl;
 }
 
 @utility text-heading {
-  @apply text-2xl font-bold xs:text-3xl;
+  @apply text-2xl font-bold xxs:text-3xl;
 }
 
 @utility text-title {
-  @apply text-xl font-semibold xs:text-2xl;
+  @apply text-xl font-semibold xxs:text-2xl;
 }
 
 @utility text-subtitle {
-  @apply text-base font-medium xs:text-lg;
+  @apply text-lg font-medium xxs:text-xl;
 }
 
 @utility text-body {
-  @apply text-base;
+  @apply text-lg;
 }
 
 @utility text-caption {
-  @apply text-xs;
+  @apply text-sm;
 }
 
 @utility text-label {
@@ -329,9 +329,9 @@
 }
 
 @utility text-button {
-  @apply text-sm font-semibold;
+  @apply text-base font-semibold;
 }
 
 @utility text-code {
-  @apply font-mono text-sm;
+  @apply font-mono text-base;
 }
