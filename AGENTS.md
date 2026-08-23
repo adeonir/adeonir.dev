@@ -150,7 +150,7 @@ No contact data is stored. Typed Action errors use `TOO_MANY_REQUESTS` and `INTE
 
 - The home at `src/pages/index.astro` composes `<Hero />`, `<Divider />`, `<About />`, `<Divider />`, `<Stack />`, `<Divider />`, and `<Contact />` through `Layout` with the `shell` prop.
 - `src/components/sections/*.astro` contains section markup only. Sections do not own page width, gutters, or vertical rhythm.
-- `src/layouts/base.astro` owns the document shell, header, footer, content column, and inter-section spacing. Its `wrapper` utility is `mx-auto w-full max-w-6xl px-6`; the shell uses `gap-24 py-24 md:gap-32 md:py-32`.
+- `src/layouts/base.astro` owns the document shell, header, footer, content column, and inter-section spacing. Its `wrapper` utility is `mx-auto w-full max-w-6xl px-6`; the shell uses `section-rhythm`, which reads the `--section-gap` variable (6rem, 8rem from `md`). Sections that must break out of that rhythm use `section-escape`, `section-escape-bottom`, `section-inset`, and `section-anchor`, so the value lives in one place.
 - Each section reads its own typed collection with `getEntry`. The `file()` loader can return `undefined`, so guard entries before reading `.data`. Editing `content.config.ts` or schemas usually requires a dev-server restart.
 - Current collections include `settings`, `header`, `hero`, `about`, `stack`, `footer`, `contact`, `not-found`, `console`, `mobile-menu`, `theme-toggle`, and `emails`.
 - `docs/design/copy.yaml` is the canonical prose. Collection files carry rendering markup. Headline emphasis and controlled breaks come from the design frame, not from `copy.yaml` when that file omits them.
