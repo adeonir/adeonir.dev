@@ -4,7 +4,7 @@ contact:
     - text: 'mensagem'
       highlight: true
   body:
-    - 'Pode ser sobre desenvolvimento, trabalhar junto, ou só trocar ideia.'
+    - 'Pode ser sobre desenvolvimento, um projeto, ou só trocar ideia.'
   social:
     - platform: 'email'
       label: 'contato@adeonir.dev'
