@@ -14,15 +14,17 @@ if (!hero) {
 const { eyebrow, display, tagline, description, actions } = hero.data
 ---
 
-<section>
-  <Eyebrow className="mt-6">{eyebrow}</Eyebrow>
+<section
+  class="-mt-16 -mb-16 flex min-h-[calc(100dvh-4rem)] flex-col items-center justify-center text-center md:-mt-24 md:-mb-24"
+>
+  <Eyebrow>{eyebrow}</Eyebrow>
   <h1
-    class="mt-4 text-5xl leading-none font-extrabold tracking-tight text-foreground sm:text-7xl lg:text-8xl"
+    class="mt-4 text-5xl leading-[0.92] font-extrabold tracking-tight text-foreground sm:mt-5 sm:text-7xl lg:text-[7rem]"
   >
     {display}
   </h1>
   <p
-    class="mt-6 max-w-2xl text-2xl font-semibold text-pretty text-foreground sm:text-3xl lg:text-4xl"
+    class="mt-6 max-w-3xl text-2xl font-semibold text-balance text-foreground sm:mt-10 sm:text-3xl lg:text-4xl"
   >
     {
       tagline.map((segment) => (
@@ -37,26 +39,22 @@ const { eyebrow, display, tagline, description, actions } = hero.data
       ))
     }
   </p>
-  <div
-    class="mt-12 flex flex-col gap-8 md:flex-row md:items-end md:justify-between"
-  >
-    <div class="flex max-w-2xl flex-col gap-4">
-      {
-        description.map((paragraph) => (
-          <p class="text-body leading-relaxed text-pretty text-muted-foreground">
-            {paragraph}
-          </p>
-        ))
-      }
-    </div>
-    <a
-      href={actions.secondary.href}
-      class={cn(
-        buttonVariants({ variant: 'default', size: 'default' }),
-        'shrink-0',
-      )}
-    >
-      {actions.secondary.label}
-    </a>
+  <div class="mt-3 flex max-w-xl flex-col gap-2 sm:mt-4">
+    {
+      description.map((paragraph) => (
+        <p class="text-body leading-relaxed text-pretty text-muted-foreground">
+          {paragraph}
+        </p>
+      ))
+    }
   </div>
+  <a
+    href={actions.secondary.href}
+    class={cn(
+      buttonVariants({ variant: 'default', size: 'default' }),
+      'mt-10 sm:mt-14',
+    )}
+  >
+    {actions.secondary.label}
+  </a>
 </section>
