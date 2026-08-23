@@ -1,7 +1,7 @@
 metadata:
   source: 'docs/product/brief.md, docs/product/prd.md, docs/design/blueprint.md, conversation'
   created: '2026-06-06'
-  version: '1.0.4'
+  version: '1.0.5'
   status: 'draft'
 
 project:
@@ -40,6 +40,7 @@ content:
       actions:
         primary: 'Ver meu trabalho'
         secondary: 'Entrar em contato'
+      scroll: 'role para ver mais'
 
     about:
       eyebrow: 'Sobre mim'

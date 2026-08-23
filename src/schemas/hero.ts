@@ -19,4 +19,5 @@ export const heroSchema = z.object({
       href: z.string().min(1),
     }),
   }),
+  scroll: z.string().min(1),
 })

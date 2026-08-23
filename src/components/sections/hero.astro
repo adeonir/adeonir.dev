@@ -4,6 +4,7 @@ import { getEntry } from 'astro:content'
 import { buttonVariants } from '~/components/ui/button'
 import { Eyebrow } from '~/components/ui/eyebrow'
 import { cn } from '~/helpers/classnames'
+import IconArrowDown from '~icons/tabler/arrow-narrow-down'
 
 const hero = await getEntry('hero', 'hero')
 
@@ -11,11 +12,11 @@ if (!hero) {
   throw new Error('Missing hero/hero entry')
 }
 
-const { eyebrow, display, tagline, description, actions } = hero.data
+const { eyebrow, display, tagline, description, actions, scroll } = hero.data
 ---
 
 <section
-  class="-mt-16 -mb-16 flex min-h-[calc(100dvh-4rem)] flex-col items-center justify-center text-center md:-mt-24 md:-mb-24"
+  class="relative -mt-16 -mb-16 flex min-h-[calc(100dvh-4rem)] flex-col items-center justify-center text-center md:-mt-24 md:-mb-24"
 >
   <Eyebrow>{eyebrow}</Eyebrow>
   <h1
@@ -57,4 +58,10 @@ const { eyebrow, display, tagline, description, actions } = hero.data
   >
     {actions.secondary.label}
   </a>
+  <div
+    class="absolute bottom-8 hidden flex-col items-center gap-2 font-mono text-caption text-muted-foreground/73 sm:flex light:text-muted-foreground/91"
+  >
+    {scroll}
+    <IconArrowDown className="size-4 animate-bounce" aria-hidden="true" />
+  </div>
 </section>
