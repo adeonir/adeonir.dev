@@ -1,8 +1,8 @@
 import { Portal } from '@ark-ui/react/portal'
 import { type ReactNode, useEffect, useState } from 'react'
 import { Button } from '~/components/ui/button'
+import { Menu } from '~/components/ui/menu'
 import { NavLink } from '~/components/ui/nav-link'
-import { Popover } from '~/components/ui/popover'
 import { Swap } from '~/components/ui/swap'
 import IconMenu from '~icons/tabler/menu'
 import IconX from '~icons/tabler/x'
@@ -32,13 +32,20 @@ export function MobileMenu({ nav, content, children }: MobileMenuProps) {
   }, [])
 
   return (
-    <Popover.Root
+    <Menu.Root
       open={open}
       onOpenChange={(details) => setOpen(details.open)}
-      modal
       positioning={{ placement: 'bottom-end', gutter: 8 }}
+      navigate={({ node }) => {
+        // Zag's default navigate dispatches a non-bubbling click, which never
+        // reaches the handler that closes the menu. Send the same click a
+        // pointer would, so the keyboard and the mouse share one path.
+        node.dispatchEvent(
+          new MouseEvent('click', { bubbles: true, cancelable: true }),
+        )
+      }}
     >
-      <Popover.Trigger asChild>
+      <Menu.Trigger asChild>
         <Button
           aria-label={open ? content.trigger.close : content.trigger.open}
           variant="outline"
@@ -54,28 +61,24 @@ export function MobileMenu({ nav, content, children }: MobileMenuProps) {
             </Swap.Indicator>
           </Swap.Root>
         </Button>
-      </Popover.Trigger>
+      </Menu.Trigger>
       <Portal>
-        <Popover.Positioner>
-          <Popover.Content
+        <Menu.Positioner>
+          <Menu.Content
             aria-label={content.label}
             className="flex flex-col gap-4"
           >
-            <nav>
-              <ul className="flex flex-col gap-3">
-                {nav.map((item) => (
-                  <li key={item.href} className="px-1 py-px">
-                    <Popover.CloseTrigger asChild>
-                      <NavLink href={item.href}>{item.label}</NavLink>
-                    </Popover.CloseTrigger>
-                  </li>
-                ))}
-              </ul>
-            </nav>
+            {nav.map((item) => (
+              <Menu.Item key={item.href} value={item.href} asChild>
+                <NavLink href={item.href} tabIndex={-1}>
+                  {item.label}
+                </NavLink>
+              </Menu.Item>
+            ))}
             {children}
-          </Popover.Content>
-        </Popover.Positioner>
+          </Menu.Content>
+        </Menu.Positioner>
       </Portal>
-    </Popover.Root>
+    </Menu.Root>
   )
 }

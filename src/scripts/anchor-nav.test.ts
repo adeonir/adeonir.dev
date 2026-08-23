@@ -4,15 +4,7 @@ import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
 
 type ScrollIntoView = (arg?: boolean | ScrollIntoViewOptions) => void
 
-const SCROLL_LOCK_ATTRIBUTE = 'data-scroll-lock'
-
 let scrollIntoView: Mock<ScrollIntoView>
-
-const settle = async () => {
-  await new Promise((resolve) => setTimeout(resolve, 0))
-  await new Promise((resolve) => requestAnimationFrame(() => resolve(null)))
-  await new Promise((resolve) => setTimeout(resolve, 0))
-}
 
 const clickLink = (href: string) => {
   const link = document.createElement('a')
@@ -33,10 +25,7 @@ beforeAll(async () => {
   await import('./anchor-nav')
 })
 
-beforeEach(async () => {
-  document.body.removeAttribute(SCROLL_LOCK_ATTRIBUTE)
-  await settle()
-
+beforeEach(() => {
   document.body.innerHTML = ''
   scrollIntoView = vi.fn<ScrollIntoView>()
   Element.prototype.scrollIntoView = scrollIntoView
@@ -44,61 +33,27 @@ beforeEach(async () => {
   const target = document.createElement('section')
   target.id = 'about'
   document.body.appendChild(target)
+
+  history.replaceState(null, '', '/')
 })
 
 describe('anchor navigation', () => {
-  it('reaches component handlers before the event is cancelled', () => {
-    let seenByComponent: boolean | null = null
-
-    const link = document.createElement('a')
-    link.href = '#about'
-    link.addEventListener('click', (event) => {
-      seenByComponent = event.defaultPrevented
-    })
-    document.body.appendChild(link)
-
-    const event = new MouseEvent('click', {
-      bubbles: true,
-      cancelable: true,
-      button: 0,
-    })
-    link.dispatchEvent(event)
-
-    expect(seenByComponent).toBe(false)
-    expect(event.defaultPrevented).toBe(true)
-  })
-
-  it('scrolls to the target when nothing holds the page', () => {
+  it('scrolls to the section', () => {
     clickLink('#about')
 
     expect(scrollIntoView).toHaveBeenCalledTimes(1)
   })
 
-  it('leaves an unknown target alone', () => {
-    clickLink('#missing')
+  it('keeps the hash out of the url', () => {
+    clickLink('#about')
 
-    expect(scrollIntoView).not.toHaveBeenCalled()
+    expect(location.hash).toBe('')
   })
 
-  it('holds the scroll while an overlay locks the page', async () => {
-    document.body.setAttribute(SCROLL_LOCK_ATTRIBUTE, '')
+  it('leaves a link it cannot resolve to the browser', () => {
+    const { event } = clickLink('#missing')
 
-    clickLink('#about')
-    await settle()
-
+    expect(event.defaultPrevented).toBe(false)
     expect(scrollIntoView).not.toHaveBeenCalled()
-  })
-
-  it('scrolls once the overlay releases the page', async () => {
-    document.body.setAttribute(SCROLL_LOCK_ATTRIBUTE, '')
-
-    clickLink('#about')
-    await settle()
-    expect(scrollIntoView).not.toHaveBeenCalled()
-
-    document.body.removeAttribute(SCROLL_LOCK_ATTRIBUTE)
-    await settle()
-
-    expect(scrollIntoView).toHaveBeenCalledTimes(1)
   })
 })

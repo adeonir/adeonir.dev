@@ -1,85 +1,39 @@
-const prefersReducedMotion = () =>
-  window.matchMedia('(prefers-reduced-motion: reduce)').matches
+import { goToAnchor, scrollToTop } from '~/helpers/anchor'
 
-const behavior = (): ScrollBehavior =>
-  prefersReducedMotion() ? 'auto' : 'smooth'
+document.addEventListener(
+  'click',
+  (event) => {
+    if (event.defaultPrevented || event.button !== 0) return
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
 
-const scrollToId = (id: string): boolean => {
-  if (!id) return false
-  const target = document.getElementById(id)
-  if (!target) return false
-  target.scrollIntoView({ behavior: behavior() })
-  return true
-}
+    const node = event.target
+    if (!(node instanceof Element)) return
 
-const stripHash = () => {
-  history.replaceState(null, '', location.pathname + location.search)
-}
+    const link = node.closest<HTMLAnchorElement>('a[href]')
+    if (!link || (link.target && link.target !== '_self')) return
 
-// Owned by @zag-js/remove-scroll: present while a modal overlay holds the page,
-// removed only after it restores the scroll position it captured.
-const SCROLL_LOCK_ATTRIBUTE = 'data-scroll-lock'
+    const href = link.getAttribute('href')
+    if (!href) return
 
-const whenScrollUnlocked = (scroll: () => void) => {
-  if (!document.body.hasAttribute(SCROLL_LOCK_ATTRIBUTE)) {
-    scroll()
-    return
-  }
+    if (href.startsWith('#')) {
+      if (href === '#') return
+      if (goToAnchor(href.slice(1))) event.preventDefault()
+      return
+    }
 
-  const observer = new MutationObserver(() => {
-    if (document.body.hasAttribute(SCROLL_LOCK_ATTRIBUTE)) return
-    observer.disconnect()
-    requestAnimationFrame(scroll)
-  })
-
-  observer.observe(document.body, {
-    attributes: true,
-    attributeFilter: [SCROLL_LOCK_ATTRIBUTE],
-  })
-}
-
-// Bubble phase: Ark UI ignores a click already cancelled during capture.
-document.addEventListener('click', (event) => {
-  if (event.defaultPrevented || event.button !== 0) return
-  if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
-
-  const node = event.target
-  if (!(node instanceof Element)) return
-
-  const link = node.closest<HTMLAnchorElement>('a[href]')
-  if (!link || (link.target && link.target !== '_self')) return
-
-  const href = link.getAttribute('href')
-  if (!href) return
-
-  if (href.startsWith('#')) {
-    if (href === '#') return
-    event.preventDefault()
-    const id = href.slice(1)
-    whenScrollUnlocked(() => {
-      if (scrollToId(id)) stripHash()
-    })
-    return
-  }
-
-  const url = new URL(link.href)
-  if (
-    url.origin === location.origin &&
-    url.pathname === location.pathname &&
-    !url.hash
-  ) {
-    event.preventDefault()
-    whenScrollUnlocked(() => {
-      window.scrollTo({ top: 0, behavior: behavior() })
-    })
-  }
-})
+    const url = new URL(link.href)
+    if (
+      url.origin === location.origin &&
+      url.pathname === location.pathname &&
+      !url.hash
+    ) {
+      event.preventDefault()
+      scrollToTop()
+    }
+  },
+  { capture: true },
+)
 
 if (location.hash) {
-  const id = location.hash.slice(1)
-  requestAnimationFrame(() => {
-    if (scrollToId(id)) stripHash()
-  })
+  goToAnchor(location.hash.slice(1))
 }
-
-export {}
