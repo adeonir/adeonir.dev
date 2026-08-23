@@ -139,9 +139,9 @@ content:
       tagline: 'Feito com cuidado, café e cerveja.'
       reveals:
         - word: 'café'
-          phrase: 'Coffee to work'
+          phrase: 'Café pra trabalhar'
         - word: 'cerveja'
-          phrase: 'Beer to celebrate'
+          phrase: 'Cerveja pra comemorar'
 
   work:
     header: *header
