@@ -84,3 +84,5 @@ if (location.hash) {
     if (scrollToId(id)) stripHash()
   })
 }
+
+export {}
