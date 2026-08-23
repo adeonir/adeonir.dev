@@ -16,9 +16,8 @@ const stripHash = () => {
   history.replaceState(null, '', location.pathname + location.search)
 }
 
-// Set by @zag-js/remove-scroll while a modal overlay holds the page, and
-// removed only after it restores the original offset. On iOS the lock pins the
-// body with position: fixed, so a scroll started underneath it is discarded.
+// Owned by @zag-js/remove-scroll: present while a modal overlay holds the page,
+// removed only after it restores the scroll position it captured.
 const SCROLL_LOCK_ATTRIBUTE = 'data-scroll-lock'
 
 const whenScrollUnlocked = (scroll: () => void) => {
@@ -39,9 +38,7 @@ const whenScrollUnlocked = (scroll: () => void) => {
   })
 }
 
-// Bubble phase, never capture: a capture-phase preventDefault() reaches
-// component handlers as an already-cancelled event, and Ark UI declines to act
-// on those, so a link inside an open popover would never close it.
+// Bubble phase: Ark UI ignores a click already cancelled during capture.
 document.addEventListener('click', (event) => {
   if (event.defaultPrevented || event.button !== 0) return
   if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return

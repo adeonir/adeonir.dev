@@ -34,8 +34,6 @@ beforeAll(async () => {
 })
 
 beforeEach(async () => {
-  // A test that leaves the page locked also leaves an observer waiting on it.
-  // Release and drain it against the previous spy, before the fresh one lands.
   document.body.removeAttribute(SCROLL_LOCK_ATTRIBUTE)
   await settle()
 
