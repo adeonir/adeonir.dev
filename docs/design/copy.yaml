@@ -23,6 +23,7 @@ content:
       logo:
         text: 'adeonir.dev'
       nav:
+        - text: 'início'
         - text: 'sobre'
         - text: 'trabalho'
         - text: 'contato'

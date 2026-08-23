@@ -1,6 +1,15 @@
 // @vitest-environment happy-dom
 import { cleanup, fireEvent, render, waitFor } from '@testing-library/react'
-import { afterEach, describe, expect, it } from 'vitest'
+import type { Mock } from 'vitest'
+import {
+  afterEach,
+  beforeAll,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from 'vitest'
 
 import { MobileMenu } from '~/components/islands/mobile-menu'
 
@@ -9,47 +18,100 @@ const content = {
   trigger: { open: 'Abrir menu', close: 'Fechar menu' },
 }
 
-const nav = [{ label: 'sobre', href: '#about' }]
+const nav = [
+  { label: 'sobre', href: '#about' },
+  { label: 'contato', href: '#contact' },
+]
 
-const renderMenu = () =>
-  render(
+const openMenu = () => {
+  const view = render(
     <MobileMenu nav={nav} content={content}>
       <span>extra</span>
     </MobileMenu>,
   )
+  fireEvent.click(view.getByLabelText('Abrir menu'))
+  return view
+}
 
-const swap = () => document.dispatchEvent(new Event('astro:before-swap'))
+beforeAll(async () => {
+  await import('~/scripts/anchor-nav')
+})
 
-afterEach(cleanup)
+let scrollIntoView: Mock<() => void>
+
+beforeEach(() => {
+  scrollIntoView = vi.fn()
+  Element.prototype.scrollIntoView = scrollIntoView
+
+  const about = document.createElement('section')
+  about.id = 'about'
+  document.body.appendChild(about)
+})
+
+afterEach(() => {
+  cleanup()
+  document.body.innerHTML = ''
+})
 
 describe('MobileMenu', () => {
-  it('closes when the router swaps the page', async () => {
-    const { getByLabelText } = renderMenu()
+  it('takes each item to its section', async () => {
+    const { getByText } = openMenu()
 
-    fireEvent.click(getByLabelText('Abrir menu'))
+    await waitFor(() => {
+      expect(getByText('sobre').getAttribute('href')).toBe('#about')
+    })
+    expect(getByText('contato').getAttribute('href')).toBe('#contact')
+  })
+
+  it('closes when an item is chosen', async () => {
+    const { getByLabelText, getByText } = openMenu()
+
     await waitFor(() => {
       expect(getByLabelText('Fechar menu').dataset.state).toBe('open')
     })
 
-    swap()
+    const reachedTheBrowser = fireEvent.click(getByText('sobre'))
+    expect(reachedTheBrowser).toBe(false)
 
     await waitFor(() => {
       expect(getByLabelText('Abrir menu').dataset.state).toBe('closed')
     })
   })
 
-  it('releases the page it locked before the swap', async () => {
-    const { getByLabelText } = renderMenu()
+  it('closes when an item is reached by the keyboard', async () => {
+    const { getByLabelText, getByText } = openMenu()
 
-    fireEvent.click(getByLabelText('Abrir menu'))
     await waitFor(() => {
-      expect(document.body.hasAttribute('data-scroll-lock')).toBe(true)
+      expect(getByLabelText('Fechar menu').dataset.state).toBe('open')
     })
 
-    swap()
+    const menu = getByText('sobre').closest('[role="menu"]') as HTMLElement
+    fireEvent.keyDown(menu, { key: 'ArrowDown' })
+    await waitFor(() => {
+      expect(getByText('sobre').dataset.highlighted).toBeDefined()
+    })
+
+    fireEvent.keyDown(menu, { key: 'Enter' })
 
     await waitFor(() => {
-      expect(document.body.hasAttribute('data-scroll-lock')).toBe(false)
+      expect(scrollIntoView).toHaveBeenCalledTimes(1)
+    })
+    await waitFor(() => {
+      expect(getByLabelText('Abrir menu').dataset.state).toBe('closed')
+    })
+  })
+
+  it('closes when the router swaps the page', async () => {
+    const { getByLabelText } = openMenu()
+
+    await waitFor(() => {
+      expect(getByLabelText('Fechar menu').dataset.state).toBe('open')
+    })
+
+    document.dispatchEvent(new Event('astro:before-swap'))
+
+    await waitFor(() => {
+      expect(getByLabelText('Abrir menu').dataset.state).toBe('closed')
     })
   })
 })
