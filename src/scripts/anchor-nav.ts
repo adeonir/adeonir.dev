@@ -16,40 +16,67 @@ const stripHash = () => {
   history.replaceState(null, '', location.pathname + location.search)
 }
 
-document.addEventListener(
-  'click',
-  (event) => {
-    if (event.defaultPrevented || event.button !== 0) return
-    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+// Set by @zag-js/remove-scroll while a modal overlay holds the page, and
+// removed only after it restores the original offset. On iOS the lock pins the
+// body with position: fixed, so a scroll started underneath it is discarded.
+const SCROLL_LOCK_ATTRIBUTE = 'data-scroll-lock'
 
-    const node = event.target
-    if (!(node instanceof Element)) return
+const whenScrollUnlocked = (scroll: () => void) => {
+  if (!document.body.hasAttribute(SCROLL_LOCK_ATTRIBUTE)) {
+    scroll()
+    return
+  }
 
-    const link = node.closest<HTMLAnchorElement>('a[href]')
-    if (!link || (link.target && link.target !== '_self')) return
+  const observer = new MutationObserver(() => {
+    if (document.body.hasAttribute(SCROLL_LOCK_ATTRIBUTE)) return
+    observer.disconnect()
+    requestAnimationFrame(scroll)
+  })
 
-    const href = link.getAttribute('href')
-    if (!href) return
+  observer.observe(document.body, {
+    attributes: true,
+    attributeFilter: [SCROLL_LOCK_ATTRIBUTE],
+  })
+}
 
-    if (href.startsWith('#')) {
-      if (href === '#') return
-      event.preventDefault()
-      if (scrollToId(href.slice(1))) stripHash()
-      return
-    }
+// Bubble phase, never capture: a capture-phase preventDefault() reaches
+// component handlers as an already-cancelled event, and Ark UI declines to act
+// on those, so a link inside an open popover would never close it.
+document.addEventListener('click', (event) => {
+  if (event.defaultPrevented || event.button !== 0) return
+  if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
 
-    const url = new URL(link.href)
-    if (
-      url.origin === location.origin &&
-      url.pathname === location.pathname &&
-      !url.hash
-    ) {
-      event.preventDefault()
+  const node = event.target
+  if (!(node instanceof Element)) return
+
+  const link = node.closest<HTMLAnchorElement>('a[href]')
+  if (!link || (link.target && link.target !== '_self')) return
+
+  const href = link.getAttribute('href')
+  if (!href) return
+
+  if (href.startsWith('#')) {
+    if (href === '#') return
+    event.preventDefault()
+    const id = href.slice(1)
+    whenScrollUnlocked(() => {
+      if (scrollToId(id)) stripHash()
+    })
+    return
+  }
+
+  const url = new URL(link.href)
+  if (
+    url.origin === location.origin &&
+    url.pathname === location.pathname &&
+    !url.hash
+  ) {
+    event.preventDefault()
+    whenScrollUnlocked(() => {
       window.scrollTo({ top: 0, behavior: behavior() })
-    }
-  },
-  { capture: true },
-)
+    })
+  }
+})
 
 if (location.hash) {
   const id = location.hash.slice(1)
@@ -57,3 +84,5 @@ if (location.hash) {
     if (scrollToId(id)) stripHash()
   })
 }
+
+export {}
