@@ -1,12 +1,10 @@
 contact:
-  eyebrow: 'Vamos conversar'
   title:
-    - text: 'Tem um '
-    - text: 'projeto'
+    - text: 'Me manda uma '
+    - text: 'mensagem'
       highlight: true
-    - text: ' em mente?'
   body:
-    - 'Adoro conhecer gente nova, trocar experiências e colaborar em projetos. Se você quer bater um papo sobre desenvolvimento ou tem uma ideia que precisa de ajuda para sair do papel, me manda uma mensagem.'
+    - 'Pode ser sobre desenvolvimento, trabalhar junto, ou só trocar ideia.'
   social:
     - platform: 'email'
       label: 'contato@adeonir.dev'
@@ -33,8 +31,8 @@ contact:
         placeholder: 'Sobre o que você quer falar?'
       - name: 'message'
         label: 'Mensagem'
-        placeholder: 'Conta mais sobre a sua ideia.'
-    submit: 'Enviar mensagem'
+        placeholder: 'Conta mais sobre o que você tem em mente.'
+    submit: 'Enviar'
     states:
       success:
         title: 'Mensagem enviada'
@@ -43,6 +41,6 @@ contact:
         title: 'Deu algum problema'
         description: 'Tenta de novo ou me escreve direto no email.'
     validation:
-      required: 'Por favor, preencha este campo.'
-      email: 'Parece que esse email não está certo. Pode conferir?'
-      maxLength: 'Este campo aceita no máximo {max} caracteres.'
+      required: 'Esqueceu de preencher.'
+      email: 'Confere esse email.'
+      maxLength: 'Passou de {max} caracteres.'

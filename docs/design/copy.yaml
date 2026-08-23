@@ -9,8 +9,7 @@ project:
   language: 'pt'
   industry: 'portfolio'
   title: 'Adeonir Kohl | Portfólio'
-  description: 'Portfólio pessoal de Adeonir Kohl, um design engineer focado em estética e performance.'
-  meta_description: 'Design engineer criando interfaces focadas em performance'
+  description: 'Design engineer construindo interfaces web que funcionam.'
 
 # The content tree mirrors docs/design/blueprint.md: surfaces home, work, project,
 # plus a global not-found (404) error surface.
@@ -25,7 +24,7 @@ content:
         text: 'adeonir.dev'
       nav:
         - text: 'sobre'
-        - text: 'projetos'
+        - text: 'trabalho'
         - text: 'contato'
       menu:
         label: 'Menu'
@@ -34,34 +33,22 @@ content:
 
     hero:
       eyebrow: 'Design Engineer'
-      display: 'Olá, sou Adeonir Kohl'
-      tagline: 'Eu construo interfaces focadas em estética e performance.'
+      display: 'Adeonir Kohl'
+      tagline: 'Eu construo interfaces web que funcionam.'
       description:
-        - 'Sou design engineer: um desenvolvedor frontend com bagagem de designer.'
-        - 'Isso me faz pensar no produto inteiro, não só na interface, sempre buscando a solução certa sem perseguir a perfeição.'
+        - 'Gosto de ver as coisas tomando forma, o design ganhando vida na tela.'
       actions:
-        primary: 'Ver os projetos'
+        primary: 'Ver meu trabalho'
         secondary: 'Entrar em contato'
 
     about:
       eyebrow: 'Sobre mim'
       headline: 'Do design ao código.'
       bio:
-        - 'Depois de anos como designer gráfico, migrei para o desenvolvimento, sem perder o olhar de designer. Sou desenvolvedor frontend há mais de 6 anos, trabalhando para empresas no Brasil, na Europa e, mais recentemente, nos EUA. Nos projetos que toco sozinho, cuido do código de ponta a ponta, e também do design quando preciso.'
-        - 'Atualmente estou me aprofundando em product engineering e levando esse conhecimento para os meus projetos.'
-        - 'Uso ferramentas de IA e fluxos agênticos para o trabalho pesado, sempre sob minha supervisão (HITL: human in the loop). Isso me permite avançar rápido sem abrir mão de qualidade e bom senso.'
-      code-block:
-        language: 'ts'
-        code: |
-          const developer = {
-            name: 'Adeonir Kohl',
-            role: 'Design Engineer',
-            based: 'Salvador do Sul, RS',
-            focus: 'Code + Design + Product',
-            stack: ['Figma', 'React', 'TypeScript', 'Tailwind CSS'],
-            available: 'Aberto a colaborações',
-            // Qualidade e entrega andam juntas.
-          }
+        - 'Olá, sou Adeonir e gosto de desenvolver coisas para a internet. Eu sou design engineer e crio interfaces atraentes e funcionais, com atenção aos detalhes. Onde eu mais gosto de trabalhar é na interseção entre design e código.'
+        - 'Atualmente sou Frontend Engineer na Jaya Tech e trabalho com clientes norte-americanos. Trabalho principalmente com React e TypeScript. Mantenho e evoluo a biblioteca do design system e a plataforma web, em parceria com designers e desenvolvedores, para atender às necessidades dos usuários.'
+        - 'Depois de anos atuando como designer gráfico e criando materiais publicitários, livros e revistas, migrei para o desenvolvimento. No Brasil, trabalhei com produtos financeiros, plataformas de gestão para empresas e sistemas de recuperação de crédito. Mais recentemente, trabalhei em uma agência na França. Lá, reescrevi um projeto legado em Vue e Express para React sem tirar o serviço do ar, liderei dois desenvolvedores e coordenei o time de UI Design. Fora do trabalho, também faço alguns projetos pessoais, principalmente landing pages e sites de e-commerce. Todas essas experiências mudaram o jeito como penso em construir uma interface.'
+        - 'No meu tempo livre, gosto de ficar com a família, colecionar miniaturas de Hot Wheels com meu filho, assistir séries e filmes, e curtir com amigos.'
 
     stack:
       eyebrow: 'Tecnologias'
@@ -102,10 +89,9 @@ content:
       see-all: 'Ver todos os projetos'
 
     contact:
-      eyebrow: 'Vamos conversar'
-      headline: 'Tem um projeto em mente?'
+      headline: 'Me manda uma mensagem'
       body:
-        - 'Adoro conhecer gente nova, trocar experiências e colaborar em projetos. Se você quer bater um papo sobre desenvolvimento ou tem uma ideia que precisa de ajuda para sair do papel, me manda uma mensagem.'
+        - 'Pode ser sobre desenvolvimento, trabalhar junto, ou só trocar ideia.'
       social:
         - platform: 'email'
           label: 'contato@adeonir.dev'
@@ -132,8 +118,8 @@ content:
             placeholder: 'Sobre o que você quer falar?'
           - name: 'message'
             label: 'Mensagem'
-            placeholder: 'Conta mais sobre a sua ideia.'
-        submit: 'Enviar mensagem'
+            placeholder: 'Conta mais sobre o que você tem em mente.'
+        submit: 'Enviar'
         states:
           success:
             title: 'Mensagem enviada'
@@ -142,9 +128,9 @@ content:
             title: 'Deu algum problema'
             description: 'Tenta de novo ou me escreve direto no email.'
         validation:
-          required: 'Por favor, preencha este campo.'
-          email: 'Parece que esse email não está certo. Pode conferir?'
-          maxLength: 'Este campo aceita no máximo {max} caracteres.'
+          required: 'Esqueceu de preencher.'
+          email: 'Confere esse email.'
+          maxLength: 'Passou de {max} caracteres.'
 
     footer: &footer
       brand:
@@ -165,7 +151,7 @@ content:
       subheadline: 'Uma seleção do que fiz ou ajudei a desenvolver.'
     # list -> top-level `projects` collection (all, in order)
     states:
-      empty: 'Nenhum projeto por aqui ainda, volte em breve.' # EC-1
+      empty: 'Nenhum projeto por aqui ainda. Volte em breve.' # EC-1
     footer: *footer
 
   project:
@@ -197,7 +183,7 @@ content:
     display: '404'
     headline: 'Página não encontrada.'
     body:
-      - 'O endereço que você procura não existe.'
+      - 'Esse endereço não existe, ou mudou de lugar.'
     cta: 'Voltar ao início'
     footer: *footer
 
@@ -218,7 +204,7 @@ emails:
     recap:
       label: 'Resumo do envio'
       fields: ['nome', 'e-mail', 'assunto', 'mensagem']
-    footer: 'Precisa acrescentar alguma informação? É só responder a este e-mail, sua resposta chega direto para mim.'
+    footer: 'Precisa acrescentar alguma informação? É só responder a este e-mail. Sua resposta chega direto para mim.'
   notification:
     subject: 'Novo contato: {subject}'
     preview: 'Nova mensagem de {name} pelo formulário de contato.'
@@ -246,7 +232,7 @@ projects:
   - slug: 'adeonir-kohl'
     name: 'Adeonir Kohl'
     featured: false
-    summary: 'Este portfólio, criado de ponta a ponta com IA no processo.'
+    summary: 'Este portfólio foi criado com IA em todo o processo.'
     role: 'Product engineer, UI designer & frontend developer'
     launch: '06/2026'
     link: 'https://adeonir.dev'
@@ -293,19 +279,17 @@ projects:
     gallery: [] # TODO
 
 notes: |
-  Voice: first person, present tense, confident, dry, proof outward (the work,
-  not adjectives). Positioning shorthand "design + code" (aesthetics +
-  performance); graphic-design → frontend arc, AI-assisted workflow under human
-  supervision.
+  Localization: copy.yaml (pt) and copy.en.yaml (en) are localized copy, not
+  translation. Each line reads native in its language, so wording may diverge
+  between the files on purpose.
 
   Projects: one top-level `projects` collection (always complete). The work
   index shows all in order; the landing shows the featured: true ones.
 
-  Placeholders to author (flagged, not invented — proof must stay outward):
+  Still to author (flagged, not invented):
   - Per-project case-study content: overview, body, gallery (images) are
-    null/empty for all entries; author per project before the project detail
-    surface has real content.
+    null/empty for all entries.
   - repo links are null — add if any project is open source.
+  - The about timeline (companies, roles, periods) has no key yet.
 
-  Design-blind: no colors, fonts, icons, or layout in this file. The about
-  code-block carries a content snippet (language + code only), not styling.
+  Design-blind: no colors, fonts, icons, or layout in this file.
