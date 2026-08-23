@@ -25,6 +25,12 @@ export function MobileMenu({ nav, content, children }: MobileMenuProps) {
     return () => wide.removeEventListener('change', close)
   }, [])
 
+  useEffect(() => {
+    const close = () => setOpen(false)
+    document.addEventListener('astro:before-swap', close)
+    return () => document.removeEventListener('astro:before-swap', close)
+  }, [])
+
   return (
     <Popover.Root
       open={open}
