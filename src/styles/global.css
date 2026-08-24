@@ -98,14 +98,6 @@
   --warning-foreground: var(--ink);
   --info: var(--color-cyan-500);
   --info-foreground: var(--ink);
-
-  --section-gap: 6rem;
-}
-
-@media (width >= 48rem) {
-  :root {
-    --section-gap: 8rem;
-  }
 }
 
 [data-theme="light"] {
@@ -274,34 +266,6 @@
 
 @utility wrapper {
   @apply mx-auto w-full max-w-6xl px-6;
-}
-
-@utility full-bleed {
-  @apply relative left-1/2 w-screen -translate-x-1/2;
-}
-
-@utility section-rhythm {
-  @apply gap-(--section-gap) py-(--section-gap);
-}
-
-@utility section-inset {
-  @apply py-(--section-gap);
-}
-
-@utility section-escape {
-  @apply -my-(--section-gap);
-}
-
-@utility section-escape-top {
-  @apply -mt-(--section-gap);
-}
-
-@utility section-escape-bottom {
-  @apply -mb-(--section-gap);
-}
-
-@utility section-anchor {
-  @apply -scroll-mt-(--section-gap);
 }
 
 @utility text-display {
