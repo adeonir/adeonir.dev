@@ -291,13 +291,13 @@ components:
 
 The site is a personal portfolio for a frontend developer. Its register is brand, not product: the design itself is the deliverable, and what a visitor takes away is the thing being made.
 
-The identity is a quiet, dark developer workspace built on the Catppuccin palette. The identity adopts that open-source palette on purpose instead of deriving a private neutral scale. The default surface is a deep charcoal with a slight violet cast. That surface is never pure black, and the surfaces layered on it sit close to it in lightness, so a panel recedes instead of standing out.
+The identity is a quiet, dark developer workspace built on the Catppuccin palette, an open-source scale adopted whole. The default surface is a deep charcoal with a slight violet cast. That surface is never pure black, and the surfaces layered on it sit close to it in lightness, so a panel recedes instead of standing out.
 
 Primary text is a soft lavender-white rather than pure white, so a long passage stays comfortable to read. Two accent hues carry every expressive decision against those neutrals. Blue marks every interactive element: the call to action, the link, the focus ring, and the hover state. Pink marks static emphasis only: the second word of a heading, the marker before a skill, a single keyword. One hue responds to the reader, the other points at text, and the rest of the interface stays neutral, so a reader learns both rules at once.
 
 Density is editorial rather than dense. Large gaps separate the sections, and content runs in one readable column instead of a dashboard grid. Depth comes from lightness and hairline borders, not from heavy shadow. A reader tells two surfaces apart by how light or dark each one is.
 
-The signature of this identity is the split between the two accents: one hue may act, the other may never act. The stated sacrifice is expressive range. The identity has no gradients, no third accent, no decorative illustration, and one narrow band of corner radii. It trades visual variety for an interface that reads as a single calm surface.
+The signature of this identity is the split between the two accents: one hue may act, the other may never act. The system holds two accent hues, the neutrals, and one narrow band of corner radii. Colour carries meaning here, so the page reads as a single calm surface.
 
 The identity ships two skins, which are two sets of values for the same roles. The dark skin is the default, and the light skin is its daytime counterpart. Both skins draw from the same palette family, so the personality survives the switch.
 
@@ -305,7 +305,7 @@ The identity ships two skins, which are two sets of values for the same roles. T
 
 The palette has two layers. The neutrals are two Catppuccin scales: `mocha` for the dark skin and `latte` for the light skin. Each scale is numbered from 50, the lightest step, to 950, the darkest step, and each step is labelled with its Catppuccin role. The two scales run opposite in lightness, so the same semantic role takes a different step in each skin. For example, `background` is `mocha-850` in the dark skin and `latte-50` in the light skin, and both steps are the Catppuccin base role.
 
-The accents are two more scales: `ocean` is the blue that marks interactive elements, and `azalea` is the pink that marks static emphasis. Each skin selects the accent step that meets WCAG AA against its own surfaces. Depth comes from a change in lightness rather than from shadow, so neighbouring surface roles sit one step apart.
+The accents are two more scales: `ocean` is the blue that marks interactive elements, and `azalea` is the pink that marks static emphasis. Two is the whole count. Every other hue in the interface is a status role. Each skin selects the accent step that meets WCAG AA against its own surfaces. Depth comes from a change in lightness rather than from shadow, so neighbouring surface roles sit one step apart.
 
 Both accent scales name a real referent. `ocean` is the blue of deep water under a clear sky. `azalea` is the pink of the flower it is named after. Both scales are built in OKLCH, and chroma falls off toward each end, so the light steps stay pale and the dark steps stay saturated without turning muddy.
 
@@ -359,7 +359,7 @@ The status roles are feedback fills for toasts. They report state and never act,
 
 Geist carries the whole interface, from the largest heading to running body copy, so the page reads in one voice. Its fallback stack is `system-ui, -apple-system, sans-serif`. Fira Code carries the technical layer: code snippets, navigation links, and the uppercase label role. Its fallback stack is `ui-monospace, "SF Mono", Consolas, monospace`. The two faces differ by classification and by job, a neo-grotesque against a monospace, so they never compete at the same size.
 
-The size scale is the conventional step scale, adopted on purpose instead of a private modular ratio, and each role keeps the line height that the scale pairs with its step. The reason is fit. The type here does ordinary jobs: a headline, a section title, running copy, a caption, a control label. A scale that readers and builders already read correctly serves those jobs better than nine values tuned by hand. The scale also already tightens the line height as the size grows, which is what good typesetting asks for, so adopting it costs nothing this identity would have set differently. What the identity decides is what the scale leaves open: which role takes which step, which face carries it, and the one exception in letter-spacing. Letter-spacing departs from normal exactly once: the uppercase label role widens.
+The size scale is the conventional step scale, and each role keeps the line height that the scale pairs with its step, so the line height tightens as the size grows. What the identity decides is what the scale leaves open: which role takes which step, which face carries it, and the one exception in letter-spacing. Letter-spacing departs from normal exactly once: the uppercase label role widens.
 
 - **display** — Geist 2.25rem, weight 800, line-height 1.111. Section headlines. The name in the opening section is an exception and uses larger raw steps.
 - **heading** — Geist 1.5rem, weight 700, line-height 1.333. Section titles. The second word may take the pink emphasis.
@@ -389,7 +389,7 @@ Depth comes first from lightness, second from a hairline border, and last from s
 
 Use a shadow only for a surface that floats above another surface. Popovers, menus, and toasts take a soft shadow tinted from the dark end of the palette rather than neutral black. A card at rest takes no shadow and relies on its lightness and its border.
 
-One exception applies to interactive controls. On hover, a button may carry a wide shadow tinted with its own accent at roughly 8 to 12 percent opacity. That tint marks the control rising toward the pointer, and it exists only in the hover state. Outside this exception the rule against glows holds: no gradients, no halos, no vignettes, and no colored shadow on an element at rest.
+One exception applies to interactive controls. On hover, a button may carry a wide shadow tinted with its own accent at roughly 8 to 12 percent opacity. That tint marks the control rising toward the pointer, and it exists only in the hover state. An element at rest carries no colored shadow.
 
 ## Shapes
 
@@ -446,7 +446,6 @@ An image holds an aspect ratio near 16:10, is cropped to fill, and takes the car
 - Do build depth from lightness and hairline borders, and keep most surfaces flat.
 - Do keep content in one reading column with large gaps between sections.
 - Do use the monospace face only for technical content: code, navigation links, and uppercase labels.
-- Don't add a gradient, a glow, or a third accent. The system is two accent hues and the neutrals.
 - Don't let pink act. It is never a button, a link, or a focus ring.
 - Don't use a colored shadow outside the hover state of a button, and never on an element at rest.
 - Don't use a heavy shadow to separate two surfaces when a change in lightness and a border will do.
@@ -478,7 +477,7 @@ An image holds an aspect ratio near 16:10, is cropped to fill, and takes the car
 1. Set the neutrals first: `background`, `card`, `foreground`, and `border`. The dark surfaces and their steps are the base of the identity.
 2. Only the blue may act. If an element responds to the reader, it is blue and nothing else.
 3. Only the pink may emphasize. If it is not pointing at static text, it does not belong.
-4. Add no gradient, no glow, and no third accent. More chroma is almost always wrong here.
+4. Keep the palette at two accent hues and the neutrals. More chroma is almost always wrong here.
 5. Separate two surfaces with a change in lightness and a border before using any shadow.
 6. Use no pure black and no pure white. Take the neutrals from the two Catppuccin scales.
 7. For the light skin, map the roles onto the `latte` scale and take the deeper accent steps. Never reuse a dark-skin accent step on a light surface.
