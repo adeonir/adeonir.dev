@@ -50,9 +50,9 @@ Before planning or building a feature, read the documents that apply to the work
 - `docs/product/brief.md` — one-page product summary.
 - `DESIGN.md` — the authority on the visual identity and the design tokens.
 - `docs/design/blueprint.md` — layout region trees and screen flows.
-- `docs/design/copy.yaml` — canonical site copy.
+- `docs/design/copy.yaml` — canonical site copy. `docs/design/copy.en.yaml` holds the drafted English translation, which no route renders yet.
 - `docs/design/wireframe.html` and `docs/design/styleguide.html` — rendered wireframe and token styleguide.
-- `docs/adr/001-react-islands-runtime.md` — runtime decision for React islands.
+- `docs/adr/` — the accepted architecture decisions: the React island runtime, the theme-switching mechanism, the nanostores island state layer, and SSR-safe island rendering.
 
 When a project document and this file disagree, the dedicated document takes precedence. Change feature specifications with the `spec-driven` skill. The `.artifacts/` directory is scratch space and is not a source of truth.
 
@@ -113,6 +113,7 @@ No contact data is stored. There is no database, and contact PII is never logged
 - `src/components/scripts/` — Astro components that emit only inline script side effects.
 - `src/components/islands/` — React hydration boundaries mounted with `client:*` directives.
 - `src/components/sections/` — Astro files for page sections.
+- `src/components/styleguide/` — pieces rendered only by the `/styleguide` route.
 - `src/components/ui/` — styled, stateless primitives that use semantic tokens. Prefer the Ark `ark.<element>` factory so primitives remain polymorphic and accept `asChild`; use a bare element only for a trivial primitive that never needs `asChild`.
 - `src/scripts/` — client-side vanilla modules, loaded from a `<script>` tag.
 
@@ -151,7 +152,7 @@ The `/styleguide` and `/maintenance` routes are noindex and are excluded from th
 
 - The default Vitest environment is Node. A DOM-dependent spec opts into happy-dom with a `// @vitest-environment happy-dom` docblock.
 - The quality target is mobile Lighthouse Performance ≥ 95, Accessibility, Best Practices and SEO at 100, LCP < 2.5s, CLS < 0.1, INP < 200ms, and WCAG AA. `lighthouserc.json` holds what CI currently enforces, which is narrower than the target.
-- Lighthouse audits only the home. The required `main` checks are Build, Lint, Typecheck, Workers Builds, and Lighthouse.
+- Lighthouse audits only the home. The required `main` checks are Build, Lint, Typecheck, Unit Tests, Workers Builds, and Lighthouse.
 
 ## Deployment and tracking
 
