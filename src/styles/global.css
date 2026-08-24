@@ -292,6 +292,10 @@
   @apply -my-(--section-gap);
 }
 
+@utility section-escape-top {
+  @apply -mt-(--section-gap);
+}
+
 @utility section-escape-bottom {
   @apply -mb-(--section-gap);
 }
