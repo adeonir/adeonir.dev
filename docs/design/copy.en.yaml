@@ -137,7 +137,7 @@ content:
       brand:
         text: 'adeonir.dev'
         copyright: '© 2026 Adeonir Kohl'
-      tagline: 'Built with care, coffee, and beer.'
+      signoff: 'Built with care, coffee, and beer.'
       reveals:
         - word: 'coffee'
           phrase: 'Coffee to work'

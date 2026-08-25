@@ -2,14 +2,14 @@ import { Portal } from '@ark-ui/react/portal'
 
 import { Popover } from '~/components/ui/popover'
 
-type TaglineSegment = {
+type SignoffSegment = {
   text: string
   emphasis?: boolean
   reveal?: string
 }
 
-type FooterTaglineProps = {
-  segments: TaglineSegment[]
+type FooterSignoffProps = {
+  segments: SignoffSegment[]
 }
 
 function RevealString({ text, phrase }: { text: string; phrase: string }) {
@@ -39,7 +39,7 @@ function RevealString({ text, phrase }: { text: string; phrase: string }) {
   )
 }
 
-export function FooterTagline({ segments }: FooterTaglineProps) {
+export function FooterSignoff({ segments }: FooterSignoffProps) {
   return (
     <p className="font-mono text-muted-foreground text-sm">
       {segments.map((segment) => {

@@ -5,7 +5,7 @@ export const footerSchema = z.object({
     text: z.string().min(1),
     copyright: z.string().min(1),
   }),
-  tagline: z
+  signoff: z
     .array(
       z.object({
         text: z.string().min(1),
