@@ -66,7 +66,7 @@ colors:
   primary-foreground: "oklch(18.3% 0.02 284.2)"
   secondary: "oklch(67.2% 0.233 2.27)"
   secondary-foreground: "oklch(18.3% 0.02 284.2)"
-  emphasis: "oklch(67.2% 0.233 2.27)"
+  spot: "oklch(67.2% 0.233 2.27)"
   accent: "oklch(36.38% 0.0319 281.06)"
   accent-foreground: "oklch(87.87% 0.0426 272.28)"
   muted: "oklch(32.40% 0.0319 281.98)"
@@ -249,11 +249,11 @@ components:
     typography: "{typography.label}"
     rounded: "{rounded.full}"
     padding: "{spacing.3}"
-  emphasis-text:
+  spot-text:
     backgroundColor: "{colors.background}"
-    textColor: "{colors.emphasis}"
+    textColor: "{colors.spot}"
     typography: "{typography.body}"
-  emphasis-fill:
+  secondary-fill:
     backgroundColor: "{colors.secondary}"
     textColor: "{colors.secondary-foreground}"
     typography: "{typography.label}"
@@ -291,7 +291,7 @@ The site is a personal portfolio for a frontend developer. Its register is brand
 
 The identity is a quiet, dark developer workspace built on the Catppuccin palette, an open-source scale adopted whole. The default surface is a deep charcoal with a slight violet cast. That surface is never pure black, and the surfaces layered on it sit close to it in lightness, so a panel recedes instead of standing out.
 
-Primary text is a soft lavender-white rather than pure white, so a long passage stays comfortable to read. Two accent hues carry every expressive decision against those neutrals. Blue marks every interactive element: the call to action, the link, the focus ring, and the hover state. Pink marks static emphasis only: the second word of a heading, the marker before a skill, a single keyword. One hue responds to the reader, the other points at text, and the rest of the interface stays neutral, so a reader learns both rules at once.
+Primary text is a soft lavender-white rather than pure white, so a long passage stays comfortable to read. Two accent hues carry every expressive decision against those neutrals. Blue marks every interactive element: the call to action, the link, the focus ring, and the hover state. Pink marks static emphasis only: the second word of a heading, the marker before a skill, a single keyword. One hue responds to the reader, the other points at text, and the rest of the interface stays neutral, so a reader learns both rules at once. An emphasized word may carry a behavior about itself — a reveal, an expansion, a definition — and it stays pink. Pink loses that right when the gesture leaves the word and navigates, submits, or changes state elsewhere. That gesture is blue.
 
 Density is editorial rather than dense. Large gaps separate the sections, and content runs in one readable column instead of a dashboard grid. Depth comes from lightness and hairline borders, not from heavy shadow. A reader tells two surfaces apart by how light or dark each one is.
 
@@ -314,7 +314,7 @@ The raw scales are the primitive layer. Every semantic role points at a step of 
 - **mocha** — Catppuccin dark scale, numbered from light to dark: `mocha-50` text, `-100` subtext-1, `-200` subtext-0, `-300` overlay-2, `-400` overlay-1, `-500` overlay-0, `-600` surface-2, `-700` surface-1, `-750` surface-0/1 blend, `-800` surface-0, `-850` base, `-875` base/mantle blend, `-900` mantle, `-950` crust.
 - **latte** — Catppuccin light scale, numbered from light to dark: `latte-50` base, `-75` base/mantle blend, `-100` mantle, `-150` crust, `-200` surface-0, `-250` surface-0/1 blend, `-300` surface-1, `-400` surface-2, `-500` overlay-0, `-600` overlay-1, `-700` overlay-2, `-800` subtext-0, `-900` subtext-1, `-950` text.
 - **ocean** — the blue that marks interactive elements: `ocean-500` for blue text and blue fills in the dark skin, `ocean-600` for the focus ring in both skins, `ocean-700` for blue text and blue fills in the light skin.
-- **azalea** — the pink that marks static emphasis: `azalea-500` for emphasis and fills in the dark skin, `azalea-600` for the secondary fill in the light skin, `azalea-750` for emphasis text in the light skin.
+- **azalea** — the pink that marks static emphasis: `azalea-500` for emphasis and fills in the dark skin, `azalea-600` for the secondary fill in the light skin, `azalea-750` for spot text in the light skin.
 - **ink** — a near-black held in both skins. Use it for dark text on a bright accent fill.
 - **paper** — a near-white held in both skins. Use it for light text on a dark accent fill.
 
@@ -324,9 +324,9 @@ The frontmatter carries the values of the dark skin, which is the default. Each 
 
 - **primary** — `ocean-500` dark, `ocean-700` light. The only blue that acts, whether it renders as text, as a border, or as a fill: links, the hover state in navigation, the eyebrow outline, the focus border of a field, and the solid button. The light skin takes a deeper step so the blue meets AA as text against a near-white surface. One step serves text and fill alike, because a second, brighter step for fills alone would be a step no text could safely reuse.
 - **primary-foreground** — `ink` dark, `paper` light. The text that sits on the solid blue fill.
-- **secondary** — `azalea-500` dark, `azalea-600` light. Emphasis fills, pink tints, and pink text at headline size. Never interactive.
-- **secondary-foreground** — `ink` in both skins. Dark text on a pink chip. On the solid pink fill of the light skin this pair meets 3:1, which covers large text and user interface components only. For a small label, use the pink tint with `emphasis` instead.
-- **emphasis** — `azalea-500` dark, `azalea-750` light. The step that meets AA for small pink text. Pink text at headline size uses `secondary` directly. Both roles resolve to the same step in the dark skin, so they differ only in the light skin.
+- **secondary** — `azalea-500` dark, `azalea-600` light. Emphasis fills, pink tints, pink ornaments, and pink text at headline size. Never interactive.
+- **secondary-foreground** — `ink` in both skins. Dark text on a pink chip. On the solid pink fill of the light skin this pair meets 3:1, which covers large text and user interface components only. For a small label, use the pink tint with `spot` instead.
+- **spot** — `azalea-500` dark, `azalea-750` light. The step that meets AA for pink text below headline size. It governs the text a reader reads; a pink ornament carries no reading content, so the size rule never reaches it. Pink text at headline size uses `secondary` directly. Both roles resolve to the same step in the dark skin, so they differ only in the light skin.
 - **accent** — `mocha-750` dark, `latte-250` light. The neutral hover surface. It sits half a step from the surface below it, so a hovered row is visible and body text on it still meets AA.
 - **accent-foreground** — `mocha-50` dark, `latte-950` light. Text on the neutral hover surface.
 - **background** — `mocha-850` dark, `latte-50` light. The main surface. In the dark skin it is a deep violet-charcoal, never pure black.
@@ -455,15 +455,15 @@ An image holds an aspect ratio near 16:10, is cropped to fill, and takes the car
 ### Token quick reference
 
 - Anything blue that acts, as text, border, or fill: `primary`, with `primary-foreground` on top of a solid fill. The light skin takes a deeper blue for contrast.
-- Static pink text: `emphasis` for small text, `secondary` for headline-size text and for fills.
+- Static pink text: `spot` for small text, `secondary` for headline-size text and for fills.
 - Surfaces from shallow to deep: `background`, `card`, `popover`, `sunken`. `accent` is the hover surface.
 - Text: `foreground` for primary text, `muted-foreground` for supporting copy.
 - Edges: `border` for dividers and card edges, `input` for field borders, `ring` for focus.
 
 ### Example component prompts
 
-- "Hero with an eyebrow pill `[Eyebrow Label]` as `{components.eyebrow}`, the name `[Headline]` in `{typography.display}`, a tagline `[Subhead]` in `{typography.subtitle}` where one keyword takes `{colors.emphasis}`, and paired actions `[CTA Label]` as `{components.button-primary}` and `[CTA Label]` as `{components.button-secondary}`, over `{colors.background}`."
-- "Section heading `[Heading Word One] [Heading Word Two]` in `{typography.heading}` with the second word in `{colors.emphasis}`."
+- "Hero with an eyebrow pill `[Eyebrow Label]` as `{components.eyebrow}`, the name `[Headline]` in `{typography.display}`, a tagline `[Subhead]` in `{typography.subtitle}` where one keyword takes `{colors.spot}`, and paired actions `[CTA Label]` as `{components.button-primary}` and `[CTA Label]` as `{components.button-secondary}`, over `{colors.background}`."
+- "Section heading `[Heading Word One] [Heading Word Two]` in `{typography.heading}` with the second word in `{colors.spot}`."
 - "List row as `{components.card}` holding `[Item Title]` in `{typography.title}` and `[Item Description]` in `{typography.caption}`, tinting to `{colors.accent}` on hover and shifting the title to `{colors.primary}`."
 - "Form field as `{components.input}` with its label `[Field Label]` as `{components.input-label}`, its message as `{components.input-error}`, and a submit `[CTA Label]` as `{components.button-primary}`."
 - "Navigation entry `[Nav Label]` as `{components.nav-link}`, rising to `{components.nav-link-hover}` on hover."

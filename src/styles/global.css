@@ -70,7 +70,7 @@
   --primary-foreground: var(--ink);
   --secondary: var(--azalea-500);
   --secondary-foreground: var(--ink);
-  --emphasis: var(--azalea-500); /* secondary as text */
+  --spot: var(--azalea-500); /* secondary as text */
   --accent: var(--mocha-750); /* surface-0/1 blend */
   --accent-foreground: var(--mocha-50); /* text */
   --muted: var(--mocha-800); /* surface-0 */
@@ -105,7 +105,7 @@
   --primary-foreground: var(--paper);
   --secondary: var(--azalea-600);
   --secondary-foreground: var(--ink);
-  --emphasis: var(--azalea-750); /* secondary as text */
+  --spot: var(--azalea-750); /* secondary as text */
   --accent: var(--latte-250); /* surface-0/1 blend */
   --accent-foreground: var(--latte-950); /* text */
   --muted: var(--latte-200); /* surface-0 */
@@ -136,7 +136,7 @@
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
-  --color-emphasis: var(--emphasis);
+  --color-spot: var(--spot);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-muted: var(--muted);
