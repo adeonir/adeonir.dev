@@ -243,19 +243,12 @@ components:
   eyebrow:
     backgroundColor: "{colors.background}"
     textColor: "{colors.primary}"
-    typography: "{typography.label}"
     rounded: "{rounded.full}"
     padding: "{spacing.3}"
   spot-text:
     backgroundColor: "{colors.background}"
     textColor: "{colors.spot}"
     typography: "{typography.body}"
-  secondary-fill:
-    backgroundColor: "{colors.secondary}"
-    textColor: "{colors.secondary-foreground}"
-    typography: "{typography.label}"
-    rounded: "{rounded.full}"
-    padding: "{spacing.2}"
   surface-accent:
     backgroundColor: "{colors.accent}"
     textColor: "{colors.accent-foreground}"
@@ -321,8 +314,8 @@ The frontmatter carries the values of the dark skin, which is the default. Each 
 
 - **primary** — `ocean-500` dark, `ocean-700` light. The only blue that acts, whether it renders as text, as a border, or as a fill: links, the hover state in navigation, the eyebrow outline, the focus border of a field, and the solid button. The light skin takes a deeper step, and that one step serves text and fill alike rather than splitting into a brighter fill-only twin.
 - **primary-foreground** — `ink` dark, `paper` light. The text that sits on the solid blue fill.
-- **secondary** — `azalea-500` dark, `azalea-600` light. Emphasis fills, pink tints, pink ornaments, and pink text at headline size. Never interactive.
-- **secondary-foreground** — `ink` in both skins. Dark text on a pink chip. Keep this pair to large text and to interface parts; for a small label, use the pink tint with `spot` instead.
+- **secondary** — `azalea-500` dark, `azalea-600` light. Pink ornaments and pink text at headline size. Never interactive.
+- **secondary-foreground** — `ink` in both skins. The dark text that pairs with `secondary` wherever the pink is used as a fill.
 - **spot** — `azalea-500` dark, `azalea-750` light. The pink for text below headline size. It governs the text a reader reads; a pink ornament carries no reading content, so the size rule never reaches it. Pink text at headline size uses `secondary` directly. Both roles resolve to the same step in the dark skin, so they differ only in the light skin.
 - **accent** — `mocha-750` dark, `latte-250` light. The neutral hover surface. It sits half a step from the surface below it, so a hovered row shows without becoming a surface of its own.
 - **accent-foreground** — `mocha-50` dark, `latte-950` light. Text on the neutral hover surface.
@@ -354,7 +347,7 @@ These four are the one place the identity keeps the stock hues of the framework 
 
 Geist carries the whole interface, from the largest heading to running body copy, so the page reads in one voice. Fira Code carries the technical layer: code snippets, navigation links, and the uppercase label role. The two faces differ by classification and by job, a neo-grotesque against a monospace, so they never compete at the same size. Geist is chosen for its drawing. Fira Code comes from the same place as the neutrals — it is the face the code is written in — so the technical layer on the page matches the tools behind it. Each falls back to a face matched on its metrics, so a page holds its layout while the web font loads, and ends on the matching generic — sans for one, monospace for the other. The metric target is a delivery decision and lives with the font config, not here.
 
-The size scale is the conventional step scale, and each role keeps the line height that the scale pairs with its step, so the line height tightens as the size grows. What the identity decides is what the scale leaves open: which role takes which step, which face carries it, and the one exception in letter-spacing. Letter-spacing departs from normal exactly once: the uppercase label role widens.
+The size scale is the conventional step scale, and each role keeps the line height that the scale pairs with its step, so the line height tightens as the size grows. What the identity decides is what the scale leaves open: which role takes which step, which face carries it, and where letter-spacing widens. Letter-spacing follows the case: text set in uppercase widens, and nothing else departs from normal. How far it widens depends on the face, since a monospace already carries its own air and a grotesque does not.
 
 - **display** — Geist 2.25rem, weight 800, line-height 1.111. Section headlines. The name in the opening section is an exception and uses larger raw steps.
 - **heading** — Geist 1.5rem, weight 700, line-height 1.333. Section titles. The second word may take the pink emphasis.
@@ -362,7 +355,7 @@ The size scale is the conventional step scale, and each role keeps the line heig
 - **subtitle** — Geist 1.125rem, weight 500, line-height 1.556. Lead-in copy and sub-headings, one weight above body.
 - **body** — Geist 1.125rem, weight 400, line-height 1.556. Primary reading copy.
 - **caption** — Geist 0.875rem, weight 400, line-height 1.428. Small print, metadata, and supporting descriptions.
-- **label** — Fira Code 0.75rem, weight 500, line-height 1.333, letter-spacing 0.05em, set in uppercase. Eyebrows, form-field labels, and chips. The monospace face and the added letter-spacing keep uppercase legible at this size.
+- **label** — Fira Code 0.75rem, weight 500, line-height 1.333, letter-spacing 0.05em, set in uppercase. Form-field labels. The monospace face and the added letter-spacing keep uppercase legible at this size.
 - **button** — Geist 1rem, weight 600, line-height 1.5. Control text, in sentence case.
 - **code** — Fira Code 1rem, weight 400, line-height 1.5. Code snippets and technical captions.
 
@@ -388,7 +381,7 @@ Opacity does the rest of the work, and it is what changes between the skins. The
 
 ## Shapes
 
-The radius scale is graded, not uniform. The smallest steps are for inline chips and small inner elements. 0.375rem is for compact controls. 0.5rem is for buttons, form fields, popovers, and toasts. 0.75rem and 1rem are for large framed containers and cards. The full pill radius is for eyebrows and avatar masks.
+The radius scale is graded, not uniform. The smallest steps are for small inner elements. 0.375rem is for compact controls. 0.5rem is for buttons, form fields, popovers, and toasts. 0.75rem and 1rem are for large framed containers and cards. The full pill radius is for eyebrows and avatar masks.
 
 Border width has two levels. The hairline is the default stroke for dividers, card edges, and field borders. The two-pixel border marks the eyebrow pill and the toast, where an edge carries emphasis instead of only separating.
 
@@ -406,7 +399,7 @@ Corners are rounded consistently: enough to feel approachable, and little enough
 
 **Navigation.** A sticky header carries the wordmark on the left, and a small set of links with the language switch and the theme toggle on the right. A link rests in `muted-foreground` in the monospace `code` role, carries a pink hash mark before it, and takes the blue on hover. The hash mark is static emphasis and never responds to the pointer. Focus draws the same ring as every other control, offset from the surface behind it.
 
-**Distinctive components.** The eyebrow is a pill with a two-pixel blue border, blue text, no fill, and the uppercase `label` role. It carries the role tag above the name in the opening section. Static pink emphasis appears in two forms: as pink text inside a running line, and as a pink chip with `ink` text at the full pill radius. Both forms are static markers and never controls.
+**Distinctive components.** The eyebrow is a pill with a two-pixel blue border, blue text, and no fill. It sets its text in uppercase Geist at the smallest step, one weight above the `label` role and with wider letter-spacing, because a grotesque needs more air in uppercase than the monospace does. It is the one place a small uppercase run is not `label`. It carries the role tag above the name in the opening section. Static pink emphasis appears as pink text inside a running line. It is a marker and never a control.
 
 ## Motion & Interaction
 
