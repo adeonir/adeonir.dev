@@ -18,8 +18,18 @@ const settings = defineCollection({
   schema: settingsSchema,
 })
 
+const settingsEn = defineCollection({
+  loader: file('src/content/settings.en.yaml'),
+  schema: settingsSchema,
+})
+
 const header = defineCollection({
   loader: file('src/content/header.yaml'),
+  schema: headerSchema,
+})
+
+const headerEn = defineCollection({
+  loader: file('src/content/header.en.yaml'),
   schema: headerSchema,
 })
 
@@ -28,8 +38,18 @@ const mobileMenu = defineCollection({
   schema: mobileMenuSchema,
 })
 
+const mobileMenuEn = defineCollection({
+  loader: file('src/content/mobile-menu.en.yaml'),
+  schema: mobileMenuSchema,
+})
+
 const themeToggle = defineCollection({
   loader: file('src/content/theme-toggle.yaml'),
+  schema: themeToggleSchema,
+})
+
+const themeToggleEn = defineCollection({
+  loader: file('src/content/theme-toggle.en.yaml'),
   schema: themeToggleSchema,
 })
 
@@ -38,8 +58,18 @@ const hero = defineCollection({
   schema: heroSchema,
 })
 
+const heroEn = defineCollection({
+  loader: file('src/content/hero.en.yaml'),
+  schema: heroSchema,
+})
+
 const about = defineCollection({
   loader: file('src/content/about.yaml'),
+  schema: aboutSchema,
+})
+
+const aboutEn = defineCollection({
+  loader: file('src/content/about.en.yaml'),
   schema: aboutSchema,
 })
 
@@ -48,8 +78,18 @@ const footer = defineCollection({
   schema: footerSchema,
 })
 
+const footerEn = defineCollection({
+  loader: file('src/content/footer.en.yaml'),
+  schema: footerSchema,
+})
+
 const stack = defineCollection({
   loader: file('src/content/stack.yaml'),
+  schema: stackSchema,
+})
+
+const stackEn = defineCollection({
+  loader: file('src/content/stack.en.yaml'),
   schema: stackSchema,
 })
 
@@ -58,8 +98,18 @@ const contact = defineCollection({
   schema: contactSchema,
 })
 
+const contactEn = defineCollection({
+  loader: file('src/content/contact.en.yaml'),
+  schema: contactSchema,
+})
+
 const notFound = defineCollection({
   loader: file('src/content/not-found.yaml'),
+  schema: notFoundSchema,
+})
+
+const notFoundEn = defineCollection({
+  loader: file('src/content/not-found.en.yaml'),
   schema: notFoundSchema,
 })
 
@@ -68,22 +118,44 @@ const emails = defineCollection({
   schema: emailsSchema,
 })
 
+const emailsEn = defineCollection({
+  loader: file('src/content/emails.en.yaml'),
+  schema: emailsSchema,
+})
+
 const console = defineCollection({
   loader: file('src/content/console.yaml'),
   schema: consoleSchema,
 })
 
+const consoleEn = defineCollection({
+  loader: file('src/content/console.en.yaml'),
+  schema: consoleSchema,
+})
+
 export const collections = {
   settings,
+  settingsEn,
   header,
+  headerEn,
   mobileMenu,
+  mobileMenuEn,
   themeToggle,
+  themeToggleEn,
   footer,
+  footerEn,
   hero,
+  heroEn,
   about,
+  aboutEn,
   stack,
+  stackEn,
   contact,
+  contactEn,
   notFound,
+  notFoundEn,
   emails,
+  emailsEn,
   console,
+  consoleEn,
 }
