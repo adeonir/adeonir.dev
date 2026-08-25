@@ -66,6 +66,26 @@ it('releases each visit once', async () => {
   expect(release).toHaveBeenCalledTimes(2)
 })
 
+it('releases the rest when one release throws', async () => {
+  const { onVisit } = await loadVisit()
+  const release = vi.fn()
+
+  onVisit(() => () => {
+    throw new Error('release failed')
+  })
+  onVisit(() => release)
+
+  load()
+  document.dispatchEvent(new Event('astro:before-swap'))
+
+  expect(release).toHaveBeenCalledTimes(1)
+
+  document.dispatchEvent(new Event('astro:page-load'))
+  document.dispatchEvent(new Event('astro:before-swap'))
+
+  expect(release).toHaveBeenCalledTimes(2)
+})
+
 it('keeps a bind without a release', async () => {
   const { onVisit } = await loadVisit()
   const bind = vi.fn()

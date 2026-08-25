@@ -98,14 +98,6 @@
   --warning-foreground: var(--ink);
   --info: var(--color-cyan-500);
   --info-foreground: var(--ink);
-
-  --section-gap: 6rem;
-}
-
-@media (width >= 48rem) {
-  :root {
-    --section-gap: 8rem;
-  }
 }
 
 [data-theme="light"] {
@@ -196,6 +188,10 @@
   --animate-blur-in: blur-in 200ms ease-out;
   --animate-blur-out: blur-out 100ms ease-in;
 
+  --animate-enter: blur-in 700ms var(--ease-out-cubic) backwards;
+
+  --ease-out-cubic: cubic-bezier(0.33, 1, 0.68, 1);
+
   @keyframes fade-in {
     from {
       opacity: 0;
@@ -253,7 +249,8 @@
   @keyframes blur-in {
     from {
       opacity: 0;
-      filter: blur(2px);
+      filter: blur(var(--blur-in, 2px));
+      scale: var(--scale-in, 1);
     }
   }
 
@@ -274,30 +271,6 @@
 
 @utility wrapper {
   @apply mx-auto w-full max-w-6xl px-6;
-}
-
-@utility full-bleed {
-  @apply relative left-1/2 w-screen -translate-x-1/2;
-}
-
-@utility section-rhythm {
-  @apply gap-(--section-gap) py-(--section-gap);
-}
-
-@utility section-inset {
-  @apply py-(--section-gap);
-}
-
-@utility section-escape {
-  @apply -my-(--section-gap);
-}
-
-@utility section-escape-bottom {
-  @apply -mb-(--section-gap);
-}
-
-@utility section-anchor {
-  @apply -scroll-mt-(--section-gap);
 }
 
 @utility text-display {

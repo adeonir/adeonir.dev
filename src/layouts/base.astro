@@ -48,7 +48,7 @@ const ogImageURL = new URL(
 <html
   lang={settings.data.locale}
   data-theme="dark"
-  class="h-full scroll-pt-32 scroll-smooth font-sans motion-reduce:scroll-auto md:scroll-pt-40"
+  class="h-full scroll-pt-24 scroll-smooth font-sans motion-reduce:scroll-auto"
 >
   <head>
     <meta charset="utf-8" />
@@ -88,13 +88,13 @@ const ogImageURL = new URL(
     <ConsoleGreeting />
   </head>
   <body
-    class="flex min-h-dvh flex-col overflow-x-clip bg-background text-foreground antialiased"
+    class="flex min-h-dvh flex-col overflow-x-clip bg-background bg-linear-to-b from-sunken/50 to-transparent bg-size-[auto_400px] bg-no-repeat text-foreground antialiased"
   >
     {
       shell ? (
         <>
           <Header />
-          <main class="wrapper flex flex-1 flex-col section-rhythm">
+          <main class="flex flex-1 flex-col">
             <slot />
           </main>
           <Footer />
@@ -106,6 +106,8 @@ const ogImageURL = new URL(
     <Toaster client:load transition:persist />
     <script>
       import '~/scripts/anchor-nav'
+      import '~/scripts/header-scroll'
+      import '~/scripts/motion'
     </script>
   </body>
 </html>

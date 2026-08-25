@@ -1,7 +1,7 @@
 ---
 name: adeonir-dev-portfolio
 created: 2026-06-06
-updated: 2026-08-23
+updated: 2026-08-24
 status: accepted
 sources:
   - docs/product/prd.md
@@ -36,9 +36,10 @@ handling.
 ### Goals
 
 - **Performance budget (enforced in CI):** mobile Lighthouse Performance ≥ 95,
-  Accessibility 100, Best Practices 100, SEO 100; LCP < 2.5s, CLS < 0.1,
-  INP < 200ms. Builds fail when a category score regresses; LCP, CLS, and the
-  blocking-time proxy for INP report as warnings (NFR-1).
+  Accessibility 100, Best Practices 100, SEO 100; CLS < 0.1, INP < 200ms.
+  Builds fail when a category score regresses; CLS and the blocking-time proxy
+  for INP report as warnings (NFR-1). LCP under 3s is a nice to have and only
+  warns.
 - **Near-zero baseline JS:** pages prerender to static HTML; only interactive
   islands hydrate (theme toggle, contact form, language switcher, mobile nav).
 - **Accessibility:** WCAG AA across all pages, asserted automatically
@@ -82,20 +83,20 @@ flowchart TD
   subgraph Content[src/content - build time]
     MDX[projects MDX collection]
     Copy[per-section yaml copy collections]
-    Schemas[schemas.ts - zod]
+    Schemas[src/schemas - zod]
   end
   Pages --> Content
   Schemas -. validates .-> MDX
   Schemas -. validates .-> Copy
   Islands -. hydrate .-> Pages
   Action --> Zod[Zod input validation]
-  Action --> RL[KV rate-limit counter]
+  Action --> RL[Workers Rate Limiting binding]
   Action --> Resend[Resend HTTP API]
   Action -. waitUntil .-> PostHog[PostHog capture - contact-submission]
 ```
 
 - **Components:** Astro app (prerendered pages + one on-demand Action), React
-  islands, content layer (MDX projects + per-section yaml copy), shared `schemas.ts`.
+  islands, content layer (MDX projects + per-section yaml copy), shared `src/schemas/`.
 - **Runtime boundaries:** everything prerenders to static assets except the
   contact Action, which executes on the Cloudflare Worker runtime (workerd).
 
@@ -184,10 +185,11 @@ erDiagram
   written to logs. The visitor's email is set as `Reply-To` on the notification
   so replies route back to them.
 - **Auth / Authz:** N/A — no accounts, no protected resources.
-- **Spam / abuse:** honeypot field + KV rate-limit counter (5 requests / 10 min
-  per IP, keyed on `CF-Connecting-IP`, 600s TTL) + Zod validation. The Workers
-  Rate Limiting binding was ruled out: its maximum period (60s) cannot express
-  the 10-minute window, which a KV counter with a 600s TTL can.
+- **Spam / abuse:** honeypot field + the native Workers Rate Limiting binding
+  (`CONTACT_LIMIT`, 5 requests / 60s per IP, keyed on `Astro.clientAddress`) +
+  Zod validation. The binding supports only 10- or 60-second periods, so 60s is
+  the longest window it can express. It fails open: when the binding throws, the
+  request is admitted rather than rejected.
   Cloudflare Turnstile is held in reserve and added only if spam gets through.
 - **Audit log:** N/A — no sensitive or stateful operations to audit.
 - **Regulatory (LGPD/GDPR):** analytics is cookieless and aggregate and nothing
@@ -231,25 +233,23 @@ erDiagram
 |------|-------|-------|-----------------|
 | Unit | Input validation, email template helper, form hook, theme store | Vitest — plain config + `vite-tsconfig-paths`; node default, happy-dom per spec | Core logic |
 | Component | React islands (toggle, form, switcher) in a real browser | Vitest browser mode (Playwright provider) | Each island |
-| E2E | Contact flow + EC-2 fallback, routing, 404 (EC-3) | Playwright | Critical flows |
-| A11y | Rendered pages, WCAG AA | `@axe-core/playwright` | All pages |
+| A11y | Rendered pages, WCAG AA, both skins | `@axe-core/playwright` | All pages |
 | Perf / budget | Quality budgets (see §2) | Lighthouse CI | Key pages |
 
 - **Test environments:** local, plus per-PR Cloudflare preview deployments.
-- **Flake handling:** Playwright retries on CI; deterministic selectors.
 - **CI integration:** all suites run in GitHub Actions on every PR as required
   status checks; branch protection blocks merge to `main` on failure (see §3.8).
 - **Unit suite (built):** `pnpm test` (`vitest run`) covers the units above in node +
   happy-dom; it runs locally, on pre-push (lefthook), and as the required `Unit Tests` CI
-  check. The Component, E2E, and A11y rows remain planned.
+  check. The Component and A11y rows remain planned.
 
 ### 3.8 Deployment
 
 - **CI (quality gates):** GitHub Actions on every PR — install → lint (Biome) →
-  typecheck → Vitest (+ browser mode) → Playwright → Lighthouse CI → build. The
-  jobs are required status checks and grow as tooling lands: lint, typecheck, and
-  build first; the unit, e2e, a11y, and budget suites as the pages and suites
-  exist. No deploy step runs in Actions.
+  typecheck → Vitest (+ browser mode) → Lighthouse CI → build. The
+  jobs are required status checks and grow as tooling lands: lint, typecheck,
+  build, and the unit suite first; the component, a11y, and budget suites as the
+  pages and suites exist. No deploy step runs in Actions.
 - **Deploy:** Cloudflare Workers Builds git integration builds and publishes — a
   push to `main` runs `pnpm build` then `npx wrangler deploy` for production, with
   an automatic preview deployment per branch/PR. No Cloudflare credentials live
@@ -285,7 +285,7 @@ erDiagram
 | Host / rendering | Cloudflare Workers (static assets today, on-demand contact Action planned) | Vercel / Netlify; fully static | Free edge hosting on the workerd runtime with a native ecosystem (KV, per-branch preview URLs); ships as static assets now, with the contact Action the one planned on-demand route while everything else prerenders. Vercel/Netlify are equally capable; fully static would force the form onto a third party | — |
 | Deploy pipeline | Cloudflare Workers Builds git integration | Wrangler deploy job in GitHub Actions | Solo, deterministic static build: the git integration runs `pnpm build` + `wrangler deploy` on push, giving automatic per-branch previews, dashboard rollback, and per-environment vars with zero deploy credentials in GitHub. Quality gates run in Actions as required checks and branch protection keeps `main` green, so red never reaches production — the artifact-parity edge of an in-pipeline deploy job doesn't justify rebuilding that DX by hand | — |
 | Contact delivery | Resend (2 emails) | CF Email Routing send-binding; D1 persistence | The flow must email the _visitor_ (arbitrary address) — the send-binding can only reach verified self-addresses; no DB needed since emails are the record | — |
-| Spam defense | Honeypot + KV rate-limit counter | Workers Rate Limiting binding; Turnstile from day one | The binding's max period (60s) cannot express the 5 req / 10 min rule — a KV counter with 600s TTL can, and eventual consistency is acceptable for a low-volume personal form. Turnstile adds a script + widget that costs perf — reserved until spam is proven | — |
+| Spam defense | Honeypot + Workers Rate Limiting binding | KV rate-limit counter; Turnstile from day one | The binding needs no read-modify-write and no TTL bookkeeping, and 5 req / 60s is enough for a low-volume personal form; its 10s/60s period limit is the cost. Turnstile adds a script + widget that costs perf — reserved until spam is proven | — |
 | UI runtime | React 19 (`@astrojs/react`) | Preact; Preact + `preact/compat` shim | Ark UI is the primitives layer and ships no Preact flavor; the compat route failed SSR in practice (`document` access under `preact-render-to-string`). Runtime cost (~50kb gzip on hydrating viewports) is deferred via `client:*` and guarded by the Lighthouse CI budget | ADR-001 |
 | Styling | Tailwind | Vanilla CSS; CSS Modules | Existing dual-skin tokens map cleanly to generated utilities; first-class Astro integration | — |
 | Theme switching | `data-theme` attribute (dark default) | `.dark` class + Tailwind `dark:` variant; `@media (prefers-color-scheme)` only | Tokens already resolve from `[data-theme=light]`; `.dark` inverts the dark-first identity and forces a token-layer rewrite, and media-query-only theming can't express an explicit user override | ADR-002 |
@@ -294,7 +294,7 @@ erDiagram
 | Content model | Single-source MDX + per-section yaml collections | Split metadata (yaml) from body (MDX) | One source of truth per project; schema-validated; no slug duplication or join logic | — |
 | i18n strategy | Routing-based: pt bare, en `/en`, no auto-detect | Client-side (react-i18next style); both-locales-prefixed; browser detection | Keeps the perf budget and SEO/hreflang intact; clean prefix-free URL for the primary (BR) audience | — |
 | Analytics | PostHog US Cloud (cookieless) | Umami Cloud; Cloudflare Web Analytics | Privacy-first is the driver: PostHog's cookieless mode (daily-salt hash identity, memory persistence, autocapture + session recording off, DNT respected) delivers custom events and UTM in one privacy-first config, plus server-side `contact-submission` capture (server-authoritative, no client double-count) — which CF Web Analytics lacks and Umami does not cover. Umami ships lighter, but client weight is held down by manual-only capture; measure the real bundle before locking the lib | — |
-| E2E testing | Keep Playwright (scoped) | Drop it | Component tests can't exercise the contact Action, routing, or 404 — the only places that can actually break | — |
+| E2E testing | Drop it | Keep Playwright (scoped) | Three content pages and one form; the form's failure paths are covered by the unit suite, and a browser installation in CI does not pay for what is left | — |
 | Unit test runner config | Plain `vitest/config` + `vite-tsconfig-paths` | Astro `getViteConfig` | `getViteConfig` loads the full Astro config, whose Cloudflare adapter registers a Vite plugin Vitest rejects at startup; the covered units import no `astro:*` virtuals, so a plain config with the tsconfig `~/` alias suffices | — |
 | Pre-commit hook manager | lefthook | husky; simple-git-hooks; native git hooks | Single YAML config, parallel hook execution, language-agnostic Go binary with no Node runtime in the hook path; husky needs more wiring, simple-git-hooks is leaner but less capable, native hooks aren't shareable | — |
 
