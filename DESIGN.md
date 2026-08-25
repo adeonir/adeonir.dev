@@ -286,7 +286,7 @@ components:
 
 The site is a personal portfolio for a frontend developer. Its register is brand, not product: the design itself is the deliverable, and what a visitor takes away is the thing being made.
 
-The identity is a quiet, dark developer workspace built on the Catppuccin palette, an open-source scale adopted whole. The default surface is a deep charcoal with a slight violet cast. That surface is never pure black, and the surfaces layered on it sit close to it in lightness, so a panel recedes instead of standing out.
+The identity is a quiet, dark developer workspace built on the Catppuccin palette, an open-source scale adopted whole because it is the palette the work already happens in. The site and the terminal behind it hold the same neutrals. The default surface is a deep charcoal with a slight violet cast. That surface is never pure black, and the surfaces layered on it sit close to it in lightness, so a panel recedes instead of standing out.
 
 Primary text is a soft lavender-white rather than pure white, so a long passage stays comfortable to read. Two accent hues carry every expressive decision against those neutrals. Blue marks every interactive element: the call to action, the link, the focus ring, and the hover state. Pink marks static emphasis only: the second word of a heading, the marker before a skill, a single keyword. One hue responds to the reader, the other points at text, and the rest of the interface stays neutral, so a reader learns both rules at once. An emphasized word may carry a behavior about itself — a reveal, an expansion, a definition — and it stays pink. Pink loses that right when the gesture leaves the word and navigates, submits, or changes state elsewhere. That gesture is blue.
 
@@ -300,9 +300,9 @@ The identity ships two skins, which are two sets of values for the same roles. T
 
 The palette has two layers. The neutrals are two Catppuccin scales: `mocha` for the dark skin and `latte` for the light skin. Each scale is numbered from 50, the lightest step, to 950, the darkest step, and each step is labelled with its Catppuccin role. The two scales run opposite in lightness, so the same semantic role takes a different step in each skin. For example, `background` is `mocha-850` in the dark skin and `latte-50` in the light skin, and both steps are the Catppuccin base role.
 
-The accents are two more scales: `ocean` is the blue that marks interactive elements, and `azalea` is the pink that marks static emphasis. Two is the whole count. Every other hue in the interface is a status role. Each skin selects the accent step that meets WCAG AA against its own surfaces. Depth comes from a change in lightness rather than from shadow, so neighbouring surface roles sit one step apart.
+The accents are two more scales: `ocean` is the blue that marks interactive elements, and `azalea` is the pink that marks static emphasis. Two is the whole count. Every other hue in the interface is a status role. Depth comes from a change in lightness rather than from shadow, so neighbouring surface roles sit one step apart.
 
-Both accent scales name a real referent. `ocean` is the blue of deep water under a clear sky. `azalea` is the pink of the flower it is named after. Both scales are built in OKLCH, and chroma falls off toward each end, so the light steps stay pale and the dark steps stay saturated without turning muddy.
+Both accent scales name a real referent. `ocean` is the blue of the water. `azalea` is the pink of the flower. Both scales are built in OKLCH, and chroma falls off toward each end, so the light steps stay pale and the dark steps stay saturated without turning muddy.
 
 ### Raw scales
 
@@ -319,12 +319,12 @@ The raw scales are the primitive layer. Every semantic role points at a step of 
 
 The frontmatter carries the values of the dark skin, which is the default. Each role below names its dark step first and its light step second.
 
-- **primary** — `ocean-500` dark, `ocean-700` light. The only blue that acts, whether it renders as text, as a border, or as a fill: links, the hover state in navigation, the eyebrow outline, the focus border of a field, and the solid button. The light skin takes a deeper step so the blue meets AA as text against a near-white surface. One step serves text and fill alike, because a second, brighter step for fills alone would be a step no text could safely reuse.
+- **primary** — `ocean-500` dark, `ocean-700` light. The only blue that acts, whether it renders as text, as a border, or as a fill: links, the hover state in navigation, the eyebrow outline, the focus border of a field, and the solid button. The light skin takes a deeper step, and that one step serves text and fill alike rather than splitting into a brighter fill-only twin.
 - **primary-foreground** — `ink` dark, `paper` light. The text that sits on the solid blue fill.
 - **secondary** — `azalea-500` dark, `azalea-600` light. Emphasis fills, pink tints, pink ornaments, and pink text at headline size. Never interactive.
-- **secondary-foreground** — `ink` in both skins. Dark text on a pink chip. On the solid pink fill of the light skin this pair meets 3:1, which covers large text and user interface components only. For a small label, use the pink tint with `spot` instead.
-- **spot** — `azalea-500` dark, `azalea-750` light. The step that meets AA for pink text below headline size. It governs the text a reader reads; a pink ornament carries no reading content, so the size rule never reaches it. Pink text at headline size uses `secondary` directly. Both roles resolve to the same step in the dark skin, so they differ only in the light skin.
-- **accent** — `mocha-750` dark, `latte-250` light. The neutral hover surface. It sits half a step from the surface below it, so a hovered row is visible and body text on it still meets AA.
+- **secondary-foreground** — `ink` in both skins. Dark text on a pink chip. Keep this pair to large text and to interface parts; for a small label, use the pink tint with `spot` instead.
+- **spot** — `azalea-500` dark, `azalea-750` light. The pink for text below headline size. It governs the text a reader reads; a pink ornament carries no reading content, so the size rule never reaches it. Pink text at headline size uses `secondary` directly. Both roles resolve to the same step in the dark skin, so they differ only in the light skin.
+- **accent** — `mocha-750` dark, `latte-250` light. The neutral hover surface. It sits half a step from the surface below it, so a hovered row shows without becoming a surface of its own.
 - **accent-foreground** — `mocha-50` dark, `latte-950` light. Text on the neutral hover surface.
 - **background** — `mocha-850` dark, `latte-50` light. The main surface. In the dark skin it is a deep violet-charcoal, never pure black.
 - **foreground** — `mocha-50` dark, `latte-950` light. Primary text and headings. In the dark skin it is a soft lavender-white, never pure white.
@@ -335,22 +335,24 @@ The frontmatter carries the values of the dark skin, which is the default. Each 
 - **sunken** — `mocha-950` dark, `latte-150` light. The deepest surface. Use it for an inset panel or a closing section such as the footer.
 - **sunken-foreground** — `mocha-50` dark, `latte-950` light. Text on the deepest surface.
 - **muted** — `mocha-800` dark, `latte-200` light. Muted fills and inactive surfaces, one step below the hover surface.
-- **muted-foreground** — `mocha-200` dark, `latte-900` light. Secondary text, captions, and supporting copy. Each skin takes the deepest step that still meets 4.5:1 against its own surfaces: subtext-0 in the dark skin, subtext-1 in the light skin. The difference from `foreground` is 1.54:1 in the dark skin and 1.28:1 in the light skin. The light skin has less room between readable secondary text and primary text, so weight and position carry more of that distinction there.
+- **muted-foreground** — `mocha-200` dark, `latte-900` light. Secondary text, captions, and supporting copy. Each skin takes its deepest step: subtext-0 in the dark skin, subtext-1 in the light skin. The light skin leaves less distance between secondary text and primary text, so weight and position carry more of that distinction there.
 - **border** — `mocha-800` dark, `latte-200` light. The edge of a surface and the line of a divider, one pixel wide. A surface at rest separates by this edge and by its lightness, not by a shadow.
 - **input** — `mocha-700` dark, `latte-300` light. The edge of a form control, and the same colour at one tenth opacity for the fill behind it. It carries one step more contrast against the surface than `border` does, so the edge of a control is stronger than the line of a divider.
-- **ring** — `ocean-600` in both skins. The focus ring. This step meets 3:1 against the surfaces of either skin.
+- **ring** — `ocean-600` in both skins. The focus ring, one value for both skins.
 
 ### Destructive and status
 
-`destructive` is the danger role on form controls: the border of an invalid field, its focus ring, and its error message. It is always a border or a line of text and never a fill, so it follows the same rule as the other two accent text roles and takes a different step in each skin. The dark skin takes a lighter red and the light skin a deeper one. Contrast is a distance in lightness, so a single red would have to sit between the two skins and would be far from neither. The dark step meets 5.67:1 against `background` and 5.88:1 against `card`. The light step meets 5.68:1 and 5.48:1. All four values are above the 4.5:1 minimum for small text, which is the size of the error message.
+`destructive` is the danger role on form controls: the border of an invalid field, its focus ring, and its error message. It is always a border or a line of text and never a fill, so it follows the same rule as the other two accent text roles and takes a different step in each skin. The dark skin takes a lighter red and the light skin a deeper one. Contrast is a distance in lightness, so a single red would have to sit between the two skins and would be far from neither.
 
-The status roles are feedback fills for toasts. They report state and never act, so each one holds the same step in both skins while the neutrals around it change. All four carry `ink` text and meet AA: `success` is a green, `error` a red, `warning` an orange, and `info` a cyan chosen to stay distinct from the action blue.
+The status roles are feedback fills for toasts. They report state and never act, so each one holds the same step in both skins while the neutrals around it change. All four carry `ink` text.
+
+These four are the one place the identity keeps the stock hues of the framework palette, and that is deliberate. A status colour works by being the colour a reader already expects, so a green that is nobody's green costs recognition and buys nothing. The invention stays with the accents and the neutrals. `info` is the only one that carried a constraint of its own: a cyan far enough from the blue that a notice is never mistaken for a control.
 
 `error` and `destructive` are the same hue at different jobs, and therefore at different steps. `error` is the fill that reports state. It holds one step for both skins, because `ink` sits on top of it. `destructive` is the border and text that mark an invalid control. It takes a different step in each skin, because the surface behind it changes.
 
 ## Typography
 
-Geist carries the whole interface, from the largest heading to running body copy, so the page reads in one voice. Fira Code carries the technical layer: code snippets, navigation links, and the uppercase label role. The two faces differ by classification and by job, a neo-grotesque against a monospace, so they never compete at the same size. Each falls back to a face matched on its metrics, so a page holds its layout while the web font loads, and ends on the matching generic — sans for one, monospace for the other. The metric target is a delivery decision and lives with the font config, not here.
+Geist carries the whole interface, from the largest heading to running body copy, so the page reads in one voice. Fira Code carries the technical layer: code snippets, navigation links, and the uppercase label role. The two faces differ by classification and by job, a neo-grotesque against a monospace, so they never compete at the same size. Geist is chosen for its drawing. Fira Code comes from the same place as the neutrals — it is the face the code is written in — so the technical layer on the page matches the tools behind it. Each falls back to a face matched on its metrics, so a page holds its layout while the web font loads, and ends on the matching generic — sans for one, monospace for the other. The metric target is a delivery decision and lives with the font config, not here.
 
 The size scale is the conventional step scale, and each role keeps the line height that the scale pairs with its step, so the line height tightens as the size grows. What the identity decides is what the scale leaves open: which role takes which step, which face carries it, and the one exception in letter-spacing. Letter-spacing departs from normal exactly once: the uppercase label role widens.
 
