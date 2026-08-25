@@ -172,14 +172,14 @@ components:
     rounded: "{rounded.lg}"
     padding: "{spacing.5}"
     height: "{spacing.11}"
-  button-secondary:
+  button-outline:
     backgroundColor: "{colors.background}"
     textColor: "{colors.muted-foreground}"
     typography: "{typography.button}"
     rounded: "{rounded.lg}"
     padding: "{spacing.5}"
     height: "{spacing.11}"
-  button-secondary-hover:
+  button-outline-hover:
     backgroundColor: "{colors.background}"
     textColor: "{colors.primary}"
   button-icon:
@@ -214,6 +214,17 @@ components:
     typography: "{typography.body}"
     rounded: "{rounded.lg}"
     padding: "{spacing.4}"
+  menu:
+    backgroundColor: "{colors.popover}"
+    textColor: "{colors.popover-foreground}"
+    rounded: "{rounded.lg}"
+    padding: "{spacing.4}"
+  menu-item:
+    backgroundColor: "{colors.popover}"
+    textColor: "{colors.muted-foreground}"
+  menu-item-highlighted:
+    backgroundColor: "{colors.popover}"
+    textColor: "{colors.primary}"
   toast:
     backgroundColor: "{colors.popover}"
     textColor: "{colors.foreground}"
@@ -263,7 +274,6 @@ components:
   nav-link:
     backgroundColor: "{colors.background}"
     textColor: "{colors.muted-foreground}"
-    typography: "{typography.code}"
     rounded: "{rounded.sm}"
   nav-link-hover:
     backgroundColor: "{colors.background}"
@@ -359,7 +369,7 @@ The size scale is the conventional step scale, and each role keeps the line heig
 - **button** — Geist 1rem, weight 600, line-height 1.5. Control text, in sentence case.
 - **code** — Fira Code 1rem, weight 400, line-height 1.5. Code snippets and technical captions.
 
-The heading, title, and subtitle roles take the next size up at the 24rem breakpoint. The display role follows the width of its own column rather than a single step, described in Responsive Behavior. Body and the smaller roles hold one size at every width.
+The heading, title, and subtitle roles take the next size up at the 24rem breakpoint. The display role follows the width available to it rather than growing once: it takes the larger step at 32rem, returns to the smaller step at 48rem, and takes the larger step again at 64rem. It steps back down where its column narrows and returns where the column is wide enough again, so a headline is sized by the space it has and not by the size of the screen. Body and the smaller roles hold one size at every width, and no role carries a hand-placed line break. A headline balances its own wrapping.
 
 Three rules hold the type system together. Weight and size climb together as one ladder — a role never takes a heavier weight without taking a larger step — and no third family is added. The conventional step scale is adopted whole, size and line height together, so the scale stays even and predictable. Fira Code appears only where the content is technical, so the monospace signals engineering work without setting the tone of the whole page.
 
@@ -385,6 +395,8 @@ The radius scale is graded, not uniform. The smallest steps are for small inner 
 
 Border width has two levels. The hairline is the default stroke for dividers, card edges, and field borders. The two-pixel border marks the eyebrow pill and the toast, where an edge carries emphasis instead of only separating.
 
+An image holds an aspect ratio near 16:10, is cropped to fill, and takes the card radius. There are no art-directed crops between breakpoints, so the same asset scales. The site avoids decorative imagery, because an image here is content rather than ornament.
+
 Corners are rounded consistently: enough to feel approachable, and little enough to read as precise. Nothing is fully square, and nothing takes the pill radius except a true pill.
 
 ## Components
@@ -395,39 +407,11 @@ Corners are rounded consistently: enough to feel approachable, and little enough
 
 **Cards and containers.** A card is the `card` fill inside a hairline `border`, at the 1rem radius, with 1.5rem of padding and no shadow. Its depth comes from the change in lightness and from the border. Containers stack with large gaps and rely on that same border to separate, never on a heavy divider. The divider itself is a hairline `border` rule, horizontal or vertical.
 
-**Floating surfaces.** A popover takes the `popover` surface, keeps the hairline border and the 0.5rem radius, and carries a soft shadow. It backs any transient panel. A toast takes the same surface with a two-pixel border and a round status indicator: a filled circle in the matching status color, with an `ink` glyph and a translucent halo of the same hue.
+**Floating surfaces.** A popover takes the `popover` surface, keeps the hairline border and the 0.5rem radius, and carries a soft shadow. It backs any transient panel. A menu takes the same surface, border, and radius, and a deeper shadow, because it sits higher. Its rows are navigation links, and the highlighted row turns blue and draws the shared focus ring, so the pointer and the keyboard mark a row the same way. A toast takes the same surface with a two-pixel border and a round status indicator: a filled circle in the matching status color, with an `ink` glyph and a translucent halo of the same hue.
 
-**Navigation.** A link rests in `muted-foreground` in the monospace `code` role, carries a pink hash mark before it, and takes the blue on hover. The hash mark is static emphasis and never responds to the pointer. Focus draws the one ring the whole interface shares, offset from the surface behind it.
+**Navigation.** A link rests in `muted-foreground`, set in the monospace face at 0.875rem and weight 600. No typography role carries that combination, so the link composes it directly. It carries a pink hash mark before it and takes the blue on hover. The hash mark is static emphasis and never responds to the pointer. Focus draws the one ring the whole interface shares, offset from the surface behind it.
 
 **Distinctive components.** The eyebrow is a pill with a two-pixel blue border, blue text, and no fill. It sets its text in uppercase Geist at the smallest step, one weight above the `label` role and with wider letter-spacing, because a grotesque needs more air in uppercase than the monospace does. It is the one place a small uppercase run is not `label`. Static pink emphasis appears as pink text inside a running line. It is a marker and never a control.
-
-## Motion & Interaction
-
-Motion confirms a change of state. It may also settle content as the reader scrolls into it. Nothing animates for decoration.
-
-Three durations cover a change of state. About 150ms covers hover color changes, the focus ring, and other small changes of state. About 200ms covers an element entering, such as a menu opening or an icon changing. About 400ms covers the largest reversible transition, such as a toast settling into its stack. An exit runs faster than its enter animation, at about 100ms, because a dismissal should not hold the user. An enter animation decelerates as it settles. An exit accelerates away. A looping or reversible transition uses a symmetric curve.
-
-A scroll enter animation runs on its own timing, because it settles a whole block rather than confirming a change of state. A section block runs 400ms and rises 16px. A block inside a block, such as an item inside a list, runs the same 400ms, rises 8px, and starts 70ms after the block before it, so a sequence of neighbors does not add up to one large movement. The opening section runs 700ms and does not travel: a blur resolves, graded by type size, over a scale that starts just under 1. Every scroll enter animation decelerates as it settles, on `cubic-bezier(0.33, 1, 0.68, 1)`. No spring, because a spring carries a bounce that reads against content settling.
-
-The theme toggle is the one signature transition. The icon changes with a short flip, and a switching flag suppresses transitions everywhere else, so the whole page repaints its skin at once instead of running a separate color transition on every element.
-
-Hover marks an interactive element in blue. A link changes color, a row takes the accent surface, and the title of that row changes to blue. Focus always draws the ring, never the browser default. A pressed control takes a deeper fill. Pink emphasis is static and never animates, because it points at text rather than responding to the reader.
-
-If the reader sets `prefers-reduced-motion`, enter and exit animations are removed, including an enter animation tied to scroll. A change of state resolves through color alone. Hover, focus, and active states still change color, without the transition. The site has no parallax and no autoplay to disable.
-
-## Responsive Behavior
-
-The breakpoints start narrower than the framework default: 24rem for the smallest phones, 32rem for compact, 40rem for large phones, 48rem for tablet, 64rem for desktop, 80rem for wide, and 96rem for ultra-wide. The reading measure is reached well before the widest steps, so those steps add margin rather than columns.
-
-The heading, title, and subtitle roles take the next size up at 24rem, so the scale steps within the widths a phone reaches.
-
-The display role follows the width available to it rather than growing once. It takes the larger step at 32rem, returns to the smaller step at 48rem, and takes the larger step again at 64rem. It steps back down where its column narrows and returns where the column is wide enough again, so a headline is sized by the space it has and not by the size of the screen.
-
-Those are the only changes to type across the breakpoints, and every other role holds one size at every width. Headlines wrap on their own; no role carries a hand-placed line break.
-
-Spacing between sections drops from 4rem toward 2rem on a narrow screen, so the editorial rhythm holds without pushing content off the fold.
-
-An image holds an aspect ratio near 16:10, is cropped to fill, and takes the card radius. There are no art-directed crops between breakpoints, so the same asset scales. The site avoids decorative imagery, because an image here is content rather than ornament.
 
 ## Do's and Don'ts
 
@@ -454,7 +438,7 @@ An image holds an aspect ratio near 16:10, is cropped to fill, and takes the car
 
 ### Example component prompts
 
-- "Hero with an eyebrow pill `[Eyebrow Label]` as `{components.eyebrow}`, the name `[Headline]` in `{typography.display}`, a tagline `[Subhead]` in `{typography.subtitle}` where one keyword takes `{colors.spot}`, and paired actions `[CTA Label]` as `{components.button-primary}` and `[CTA Label]` as `{components.button-secondary}`, over `{colors.background}`."
+- "Hero with an eyebrow pill `[Eyebrow Label]` as `{components.eyebrow}`, the name `[Headline]` in `{typography.display}`, a tagline `[Subhead]` in `{typography.subtitle}` where one keyword takes `{colors.spot}`, and paired actions `[CTA Label]` as `{components.button-primary}` and `[CTA Label]` as `{components.button-outline}`, over `{colors.background}`."
 - "Section heading `[Heading Word One] [Heading Word Two]` in `{typography.heading}` with the second word in `{colors.spot}`."
 - "List row as `{components.card}` holding `[Item Title]` in `{typography.title}` and `[Item Description]` in `{typography.caption}`, tinting to `{colors.accent}` on hover and shifting the title to `{colors.primary}`."
 - "Form field as `{components.input}` with its label `[Field Label]` as `{components.input-label}`, its message as `{components.input-error}`, and a submit `[CTA Label]` as `{components.button-primary}`."
