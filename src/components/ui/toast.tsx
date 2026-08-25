@@ -37,7 +37,7 @@ function Root({ className, ...props }: ComponentProps<typeof ArkToast.Root>) {
   return (
     <ArkToast.Root
       className={cn(
-        'flex min-w-84 items-center gap-6 rounded-lg border-2 border-border bg-popover p-4 pl-6 text-foreground shadow-lg',
+        'flex min-w-84 items-center gap-6 rounded-lg border-2 border-border bg-popover p-4 pl-6 text-foreground light:shadow-black/25 shadow-black/50 shadow-xl',
         'z-(--z-index) h-(--height) translate-x-(--x) translate-y-(--y) scale-(--scale) opacity-(--opacity)',
         'transition-[translate,scale,opacity,height,box-shadow] duration-400 ease-out will-change-[translate,opacity,scale]',
         className,

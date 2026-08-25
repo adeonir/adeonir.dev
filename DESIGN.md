@@ -383,9 +383,9 @@ Whitespace carries the structure. A reader tells two surfaces apart by lightness
 
 Depth comes first from lightness, second from a hairline border, and last from shadow. The surface roles sit within a narrow band of lightness: `card` sits half a step from `background` and groups related content, `popover` sits a full step further so a floating menu reads clear of the card it covers, and `sunken` sits deepest. Layering reads through color rather than through lift, so most of the interface is flat.
 
-Use a shadow only for a surface that floats above another surface. Popovers, menus, and toasts take a soft shadow tinted from the dark end of the palette rather than neutral black. A card at rest takes no shadow and relies on its lightness and its border.
+Use a shadow only for a surface that floats above another surface, or for a control lifting toward the pointer. Every shadow in the system is black. It is the one place the palette gives way, because a shadow is blocked light rather than a colour, and a tinted shadow on these surfaces reads as a stain. Size follows how far the surface sits above the page: a hovered button lifts least, a popover a step above it, a menu or a toast highest. A card at rest takes no shadow and relies on its lightness and its border.
 
-One exception applies to interactive controls. On hover, a button may carry a wide shadow tinted with its own accent at roughly 8 to 12 percent opacity. That tint marks the control rising toward the pointer, and it exists only in the hover state. An element at rest carries no colored shadow.
+Opacity does the rest of the work, and it is what changes between the skins. The dark skin takes roughly twice the opacity of the light one, because a shadow has to darken a ground that is already dark before it registers at all. Within one skin a solid control carries more opacity than an outlined one, so the weight of the shadow tracks the prominence of the control. A button carries its shadow only while hovered; at rest it has none, and no shadow anywhere takes the control's own accent.
 
 ## Shapes
 
@@ -397,13 +397,13 @@ Corners are rounded consistently: enough to feel approachable, and little enough
 
 ## Components
 
-**Buttons.** The solid button fills with `primary` and takes `primary-foreground` text, at the 0.5rem radius, 1.25rem of horizontal padding, and a control height of 2.75rem. It is the most prominent element on any view. On hover the fill takes the next accent step down and the control takes the tinted shadow described in Elevation & Depth. The outline button has no fill, a hairline `border` edge, and `muted-foreground` text, at the same radius and height. On hover its border and its text both take the blue, and its fill takes a faint muted wash, so the control brightens without filling. A disabled control drops to half opacity and loses its pointer cursor rather than changing color. A control in its loading state keeps its label in place, hides the label from view, and centers a spinner over it, so the button keeps its width. The icon-only variant is a 2.25rem square at the same radius, with no fill.
+**Buttons.** The solid button fills with `primary` and takes `primary-foreground` text, at the 0.5rem radius, 1.25rem of horizontal padding, and a control height of 2.75rem. It is the most prominent element on any view. On hover the fill takes the next accent step down and the control takes the shadow described in Elevation & Depth. The outline button has no fill, a hairline `border` edge, and `muted-foreground` text, at the same radius and height. On hover its border and its text both take the blue, and its fill takes a faint muted wash, so the control brightens without filling. A disabled control drops to half opacity and loses its pointer cursor rather than changing color. A control in its loading state keeps its label in place, hides the label from view, and centers a spinner over it, so the button keeps its width. The icon-only variant is a 2.25rem square at the same radius, with no fill.
 
 **Inputs and forms.** A form field has a translucent `input` wash, a hairline `input` border, the 0.5rem radius, 1rem of horizontal padding, `body` text, and a height of 2.75rem for a single line. On focus the border takes the blue and a wide `ring` appears around the field at low opacity, which is the same signal that buttons and links use. An invalid field changes its border to `destructive` and its ring to a destructive tint. Its message renders in `destructive` in the `caption` role below the control, one size down from the text of the field itself, so the correction reads as a note rather than as a second field. A label sits above its field in the uppercase `label` role, in `muted-foreground`.
 
 **Cards and containers.** A card is the `card` fill inside a hairline `border`, at the 1rem radius, with 1.5rem of padding and no shadow. Its depth comes from the change in lightness and from the border. Containers stack with large gaps and rely on that same border to separate, never on a heavy divider. The divider itself is a hairline `border` rule, horizontal or vertical.
 
-**Floating surfaces.** A popover takes the `popover` surface, keeps the hairline border and the 0.5rem radius, and carries a soft tinted shadow. It backs the language menu, the theme menu, and any other transient panel. A toast takes the same surface with a two-pixel border and a round status indicator: a filled circle in the matching status color, with an `ink` glyph and a translucent halo of the same hue.
+**Floating surfaces.** A popover takes the `popover` surface, keeps the hairline border and the 0.5rem radius, and carries a soft shadow. It backs the language menu, the theme menu, and any other transient panel. A toast takes the same surface with a two-pixel border and a round status indicator: a filled circle in the matching status color, with an `ink` glyph and a translucent halo of the same hue.
 
 **Navigation.** A sticky header carries the wordmark on the left, and a small set of links with the language switch and the theme toggle on the right. A link rests in `muted-foreground` in the monospace `code` role, carries a pink hash mark before it, and takes the blue on hover. The hash mark is static emphasis and never responds to the pointer. Focus draws the same ring as every other control, offset from the surface behind it.
 
@@ -445,7 +445,7 @@ An image holds an aspect ratio near 16:10, is cropped to fill, and takes the car
 - Do keep content in one reading column with large gaps between sections.
 - Do use the monospace face only for technical content: code, navigation links, and uppercase labels.
 - Don't let pink act. It is never a button, a link, or a focus ring.
-- Don't use a colored shadow outside the hover state of a button, and never on an element at rest.
+- Don't tint a shadow. Every shadow in the system is black, and a surface at rest carries none.
 - Don't use a heavy shadow to separate two surfaces when a change in lightness and a border will do.
 - Don't pack content into a dense dashboard grid. This layout is editorial and single-column.
 - Don't use pure black or pure white. The neutrals are a pastel charcoal and a lavender-white.
