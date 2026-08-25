@@ -19,7 +19,10 @@ const { eyebrow, headline, bio } = about.data
 >
   <div class="wrapper">
     <div class="mt-6 grid grid-cols-1 gap-12 md:grid-cols-5">
-      <h2 class="text-display text-pretty text-foreground md:col-span-2">
+      <h2
+        data-enter="block"
+        class="text-display text-pretty text-foreground md:col-span-2"
+      >
         {
           headline.map((segment) => (
             <>
@@ -33,10 +36,11 @@ const { eyebrow, headline, bio } = about.data
         }
       </h2>
       <div class="flex flex-col gap-6 md:col-span-3">
-        <Eyebrow variant="muted">{eyebrow}</Eyebrow>
+        <Eyebrow data-enter="block" variant="muted">{eyebrow}</Eyebrow>
         {
           bio.map((paragraph, index) => (
             <p
+              data-enter="block"
               class={cn(
                 'leading-relaxed text-pretty',
                 index === 0

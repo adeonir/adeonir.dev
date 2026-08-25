@@ -20,7 +20,7 @@ const { title, body, social, form } = contact.data
   <div class="wrapper">
     <div class="grid grid-cols-1 gap-12 md:grid-cols-5">
       <div class="flex flex-col gap-6 md:col-span-2">
-        <h2 class="text-display text-pretty text-foreground">
+        <h2 data-enter="block" class="text-display text-pretty text-foreground">
           {
             title.map((segment) => (
               <>
@@ -36,13 +36,16 @@ const { title, body, social, form } = contact.data
         <div class="flex flex-col gap-4">
           {
             body.map((paragraph) => (
-              <p class="text-body leading-relaxed text-pretty text-muted-foreground">
+              <p
+                data-enter="block"
+                class="text-body leading-relaxed text-pretty text-muted-foreground"
+              >
                 {paragraph}
               </p>
             ))
           }
         </div>
-        <div class="mt-6 flex flex-col gap-2">
+        <div data-enter="block" class="mt-6 flex flex-col gap-2">
           <p class="inline-flex items-center gap-2 text-code text-foreground">
             <IconFolder
               className="size-4 shrink-0 text-action"
@@ -58,7 +61,7 @@ const { title, body, social, form } = contact.data
               social.map((channel) => {
                 const external = channel.platform !== 'email'
                 return (
-                  <li class="flex gap-2 text-code">
+                  <li data-enter="row" class="flex gap-2 text-code">
                     <span class="text-secondary" aria-hidden="true">
                       -
                     </span>
@@ -78,7 +81,7 @@ const { title, body, social, form } = contact.data
           </ul>
         </div>
       </div>
-      <div class="md:col-span-3">
+      <div data-enter="block" class="md:col-span-3">
         <ContactForm content={form} client:visible />
       </div>
     </div>
