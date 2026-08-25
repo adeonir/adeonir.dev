@@ -2,7 +2,7 @@ metadata:
   source: 'docs/product/brief.md, docs/product/prd.md, docs/design/blueprint.md, conversation'
   created: '2026-06-06'
   version: '1.0.6'
-  status: 'draft'
+  status: 'ready'
 
 project:
   name: 'adeonir.dev'
