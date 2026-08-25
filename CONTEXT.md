@@ -8,23 +8,27 @@ Personal portfolio for a design engineer. The visual identity is the product. It
 A frontend professional who turns design decisions into working interfaces, preserving the visual intent through implementation and resolving technical constraints without degrading the experience. Their scope is the interface itself: layout, typography, interaction, and composition, worked out in code and browser prototypes and delivered as responsive, accessible, performant, and reusable patterns. Sometimes, in their own projects, they can own design and frontend end to end. They are not a Product Designer: the role carries no user research, no product strategy, and no ownership of discovery.
 _Avoid_: Designer and developer in equal parts, full Product Designer, product engineer
 
-**Entrance**:
-Content coming to rest as the reader scrolls it into view.
-_Avoid_: Reveal, scroll reveal
+**Enter**:
+The animation that carries content from its starting values to its settled values.
+_Avoid_: Entrance, arrival, reveal, scroll reveal
 
-**Rest**:
-The final visual state of content, with no entrance running.
-_Avoid_: Hidden, pending
+**Exit**:
+The animation that carries content away from its settled values.
+_Avoid_: Leave, dismissal, outro
+
+**Settled**:
+The state of content with no enter or exit animation running.
+_Avoid_: Rest, at rest, hidden, pending
 
 **Visit**:
-One full page load or one client navigation that replaces the page content. An entrance runs at most once per visit.
+One full page load or one client navigation that replaces the page content. Content enters at most once per visit.
 _Avoid_: Session, view
 
 ## Stakes
 
 - A public personal portfolio whose visual identity is the product. It holds no accounts, no payments, and no stored personal data: the contact form sends email and keeps nothing, so a failure costs no data and no money.
 - Every page — a broken frame costs the impression the site exists to make, and a reader reads that frame as the work.
-- Entrance — content that never reaches its resting position leaves an empty page instead of a rough one, with no error to explain it. This is the one failure here that is not cosmetic, and anything that hides content before showing it is weighed against it.
+- Enter — content that never reaches its settled values leaves an empty page instead of a rough one, with no error to explain it. This is the one failure here that is not cosmetic, and anything that hides content before showing it is weighed against it.
 
 ## Conventions
 
