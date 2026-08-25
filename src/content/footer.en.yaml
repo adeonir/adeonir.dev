@@ -1,0 +1,17 @@
+footer:
+  brand:
+    text: 'adeonir.dev'
+    copyright: '© 2026 Adeonir Kohl'
+  signoff:
+    - text: 'Built with '
+    - text: 'care'
+      emphasis: true
+    - text: ', '
+    - text: 'coffee'
+      emphasis: true
+      reveal: 'Coffee to work'
+    - text: ' and '
+    - text: 'beer'
+      emphasis: true
+      reveal: 'Beer to celebrate'
+    - text: '.'
