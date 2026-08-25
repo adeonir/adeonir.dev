@@ -281,7 +281,7 @@ The site is a personal portfolio for a frontend developer. Its register is brand
 
 The identity is a quiet, dark developer workspace built on the Catppuccin palette, an open-source scale adopted whole because it is the palette the work already happens in. The site and the terminal behind it hold the same neutrals. The default surface is a deep charcoal with a slight violet cast. That surface is never pure black, and the surfaces layered on it sit close to it in lightness, so a panel recedes instead of standing out.
 
-Primary text is a soft lavender-white rather than pure white, so a long passage stays comfortable to read. Two accent hues carry every expressive decision against those neutrals. Blue marks every interactive element: the call to action, the link, the focus ring, and the hover state. Pink marks static emphasis only: the second word of a heading, the marker before a skill, a single keyword. One hue responds to the reader, the other points at text, and the rest of the interface stays neutral, so a reader learns both rules at once. An emphasized word may carry a behavior about itself — a reveal, an expansion, a definition — and it stays pink. Pink loses that right when the gesture leaves the word and navigates, submits, or changes state elsewhere. That gesture is blue.
+Primary text is a soft lavender-white rather than pure white, so a long passage stays comfortable to read. Two accent hues carry every expressive decision against those neutrals. Blue marks every interactive element: the call to action, the link, the focus ring, and the hover state. Pink marks static emphasis only: the second word of a heading, a list marker, a single keyword. One hue responds to the reader, the other points at text, and the rest of the interface stays neutral, so a reader learns both rules at once. An emphasized word may carry a behavior about itself — a reveal, an expansion, a definition — and it stays pink. Pink loses that right when the gesture leaves the word and navigates, submits, or changes state elsewhere. That gesture is blue.
 
 Density is editorial rather than dense. Large gaps separate the sections, and content runs in one readable column instead of a dashboard grid. Depth comes from lightness and hairline borders, not from heavy shadow. A reader tells two surfaces apart by how light or dark each one is.
 
@@ -325,7 +325,7 @@ The frontmatter carries the values of the dark skin, which is the default. Each 
 - **card-foreground** — `mocha-50` dark, `latte-950` light. Text on a card.
 - **popover** — `mocha-900` dark, `latte-100` light. A full step from `background`, so a floating panel reads clear of the card it covers.
 - **popover-foreground** — `mocha-50` dark, `latte-950` light. Text on a popover.
-- **sunken** — `mocha-950` dark, `latte-150` light. The deepest surface. Use it for an inset panel or a closing section such as the footer.
+- **sunken** — `mocha-950` dark, `latte-150` light. The deepest surface, for anything set below the page rather than on it.
 - **sunken-foreground** — `mocha-50` dark, `latte-950` light. Text on the deepest surface.
 - **muted** — `mocha-800` dark, `latte-200` light. Muted fills and inactive surfaces, one step below the hover surface.
 - **muted-foreground** — `mocha-200` dark, `latte-900` light. Secondary text, captions, and supporting copy. Each skin takes its deepest step: subtext-0 in the dark skin, subtext-1 in the light skin. The light skin leaves less distance between secondary text and primary text, so weight and position carry more of that distinction there.
@@ -349,9 +349,9 @@ Geist carries the whole interface, from the largest heading to running body copy
 
 The size scale is the conventional step scale, and each role keeps the line height that the scale pairs with its step, so the line height tightens as the size grows. What the identity decides is what the scale leaves open: which role takes which step, which face carries it, and where letter-spacing widens. Letter-spacing follows the case: text set in uppercase widens, and nothing else departs from normal. How far it widens depends on the face, since a monospace already carries its own air and a grotesque does not.
 
-- **display** — Geist 2.25rem, weight 800, line-height 1.111. Section headlines. The name in the opening section is an exception and uses larger raw steps.
+- **display** — Geist 2.25rem, weight 800, line-height 1.111. Headlines.
 - **heading** — Geist 1.5rem, weight 700, line-height 1.333. Section titles. The second word may take the pink emphasis.
-- **title** — Geist 1.25rem, weight 600, line-height 1.4. Card titles and project names.
+- **title** — Geist 1.25rem, weight 600, line-height 1.4. Card titles and the title of a list row.
 - **subtitle** — Geist 1.125rem, weight 500, line-height 1.556. Lead-in copy and sub-headings, one weight above body.
 - **body** — Geist 1.125rem, weight 400, line-height 1.556. Primary reading copy.
 - **caption** — Geist 0.875rem, weight 400, line-height 1.428. Small print, metadata, and supporting descriptions.
@@ -367,7 +367,7 @@ Three rules hold the type system together. Weight and size climb together as one
 
 The base spacing unit is 0.25rem, and every measurement is a multiple of it. Spacing inside a component stays between 0.5rem and 1.5rem. Spacing between major sections rises to 4rem and 6rem, which is what makes the page read as editorial.
 
-The page is one readable column rather than a wide dashboard. A line of body text runs about 60 to 75 characters, with wide margins on both sides. The opening section aligns left and leaves open space to its right. A group of items renders as a vertical list of rows, and each row is a hover target, rather than as a dense grid of cards. A closing section such as contact or the footer may take a deeper surface, and may run the full width of the viewport while its content stays inside the same column.
+Density is generous rather than packed. A line of body text runs about 60 to 75 characters, so type sets at a reading measure rather than filling whatever width it is given. A group of items reads as a list of rows, each row a hover target, rather than as a dense grid of cards.
 
 Whitespace carries the structure. A reader tells two surfaces apart by lightness and by a hairline border, so the large gaps between sections mark where one idea ends and the next begins.
 
@@ -395,11 +395,11 @@ Corners are rounded consistently: enough to feel approachable, and little enough
 
 **Cards and containers.** A card is the `card` fill inside a hairline `border`, at the 1rem radius, with 1.5rem of padding and no shadow. Its depth comes from the change in lightness and from the border. Containers stack with large gaps and rely on that same border to separate, never on a heavy divider. The divider itself is a hairline `border` rule, horizontal or vertical.
 
-**Floating surfaces.** A popover takes the `popover` surface, keeps the hairline border and the 0.5rem radius, and carries a soft shadow. It backs the language menu, the theme menu, and any other transient panel. A toast takes the same surface with a two-pixel border and a round status indicator: a filled circle in the matching status color, with an `ink` glyph and a translucent halo of the same hue.
+**Floating surfaces.** A popover takes the `popover` surface, keeps the hairline border and the 0.5rem radius, and carries a soft shadow. It backs any transient panel. A toast takes the same surface with a two-pixel border and a round status indicator: a filled circle in the matching status color, with an `ink` glyph and a translucent halo of the same hue.
 
-**Navigation.** A sticky header carries the wordmark on the left, and a small set of links with the language switch and the theme toggle on the right. A link rests in `muted-foreground` in the monospace `code` role, carries a pink hash mark before it, and takes the blue on hover. The hash mark is static emphasis and never responds to the pointer. Focus draws the one ring the whole interface shares, offset from the surface behind it.
+**Navigation.** A link rests in `muted-foreground` in the monospace `code` role, carries a pink hash mark before it, and takes the blue on hover. The hash mark is static emphasis and never responds to the pointer. Focus draws the one ring the whole interface shares, offset from the surface behind it.
 
-**Distinctive components.** The eyebrow is a pill with a two-pixel blue border, blue text, and no fill. It sets its text in uppercase Geist at the smallest step, one weight above the `label` role and with wider letter-spacing, because a grotesque needs more air in uppercase than the monospace does. It is the one place a small uppercase run is not `label`. It carries the role tag above the name in the opening section. Static pink emphasis appears as pink text inside a running line. It is a marker and never a control.
+**Distinctive components.** The eyebrow is a pill with a two-pixel blue border, blue text, and no fill. It sets its text in uppercase Geist at the smallest step, one weight above the `label` role and with wider letter-spacing, because a grotesque needs more air in uppercase than the monospace does. It is the one place a small uppercase run is not `label`. Static pink emphasis appears as pink text inside a running line. It is a marker and never a control.
 
 ## Motion & Interaction
 
@@ -421,11 +421,11 @@ The breakpoints start narrower than the framework default: 24rem for the smalles
 
 The heading, title, and subtitle roles take the next size up at 24rem, so the scale steps within the widths a phone reaches.
 
-The display role follows the width available to it rather than growing once. It takes the larger step at 32rem, returns to the smaller step at 48rem, and takes the larger step again at 64rem. The reason is the section layout: a section headline holds the full content width while the layout is one column, and drops to a two-fifths column when the layout splits at 48rem. The role steps back down where its column narrows and returns where the column is wide enough again.
+The display role follows the width available to it rather than growing once. It takes the larger step at 32rem, returns to the smaller step at 48rem, and takes the larger step again at 64rem. It steps back down where its column narrows and returns where the column is wide enough again, so a headline is sized by the space it has and not by the size of the screen.
 
 Those are the only changes to type across the breakpoints, and every other role holds one size at every width. Headlines wrap on their own; no role carries a hand-placed line break.
 
-The single-column layout carries over to small screens directly. Spacing between sections drops from 4rem toward 2rem, the actions in the opening section stack, a list row moves its trailing metadata below its title, and the header moves its links behind a menu while the language and theme controls stay visible. Nothing splits into more than one column at desktop, apart from optional two-column groupings.
+Spacing between sections drops from 4rem toward 2rem on a narrow screen, so the editorial rhythm holds without pushing content off the fold.
 
 An image holds an aspect ratio near 16:10, is cropped to fill, and takes the card radius. There are no art-directed crops between breakpoints, so the same asset scales. The site avoids decorative imagery, because an image here is content rather than ornament.
 
@@ -439,7 +439,7 @@ An image holds an aspect ratio near 16:10, is cropped to fill, and takes the car
 - Don't let pink act. It is never a button, a link, or a focus ring.
 - Don't tint a shadow. Every shadow in the system is black, and a surface at rest carries none.
 - Don't use a heavy shadow to separate two surfaces when a change in lightness and a border will do.
-- Don't pack content into a dense dashboard grid. This layout is editorial and single-column.
+- Don't pack content into a dense grid. The density here is editorial.
 - Don't use pure black or pure white. The neutrals are a pastel charcoal and a lavender-white.
 
 ## Agent Prompt Guide
