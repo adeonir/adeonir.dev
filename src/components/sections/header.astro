@@ -18,7 +18,7 @@ const { logo, nav } = header.data
 
 <header
   transition:persist="header"
-  class="sticky top-0 z-50 bg-sunken/10 backdrop-blur-md reduce-transparency:bg-sunken reduce-transparency:backdrop-blur-none"
+  class="sticky top-0 z-50 bg-sunken/10 backdrop-blur-md data-[state=scrolled]:bg-sunken/70 motion-safe:data-[transition=open]:transition-colors reduce-transparency:bg-sunken reduce-transparency:backdrop-blur-none"
 >
   <div class="wrapper flex h-24 items-center justify-between">
     <a
