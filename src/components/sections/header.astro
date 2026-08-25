@@ -1,19 +1,22 @@
 ---
-import { getEntry } from 'astro:content'
+import { getRelativeLocaleUrl } from 'astro:i18n'
 
 import Logo from '~/components/logo.astro'
 import MobileMenu from '~/components/mobile-menu.astro'
 import ThemeToggle from '~/components/theme-toggle.astro'
 import { Divider } from '~/components/ui/divider'
 import { NavLink } from '~/components/ui/nav-link'
+import { parseLocale } from '~/helpers/content'
+import { getLocalizedEntry } from '~/services/localized'
 
-const header = await getEntry('header', 'header')
-
-if (!header) {
-  throw new Error('Missing header/header entry')
-}
+const locale = parseLocale(Astro.currentLocale)
+const header = await getLocalizedEntry('header', 'header', locale)
+const homeURL = getRelativeLocaleUrl(locale)
 
 const { logo, nav } = header.data
+const localizedNav = nav.map((item) =>
+  item.href === '/' || item.href === '/en/' ? { ...item, href: homeURL } : item,
+)
 ---
 
 <header
@@ -22,7 +25,7 @@ const { logo, nav } = header.data
 >
   <div class="wrapper flex h-24 items-center justify-between">
     <a
-      href="/"
+      href={homeURL}
       class="-mx-1.5 -my-0.5 shrink-0 rounded-sm px-1.5 py-0.5 transition focus-visible:ring-4 focus-visible:ring-ring/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
     >
       <Logo class="w-32" label={logo} />
@@ -31,7 +34,7 @@ const { logo, nav } = header.data
       <nav class="hidden md:block">
         <ul class="flex items-center gap-6">
           {
-            nav.map((item) => (
+            localizedNav.map((item) => (
               <li>
                 <NavLink href={item.href}>{item.label}</NavLink>
               </li>
@@ -44,7 +47,7 @@ const { logo, nav } = header.data
         <ThemeToggle />
       </div>
       <div class="md:hidden">
-        <MobileMenu nav={nav}>
+        <MobileMenu nav={localizedNav}>
           <Divider className="block xxs:hidden" />
           <div class="flex items-center gap-4 xxs:hidden">
             <ThemeToggle />

@@ -1,14 +1,16 @@
 ---
 import { Font } from 'astro:assets'
-import { getEntry } from 'astro:content'
 import { ClientRouter } from 'astro:transitions'
 import { SEO } from 'astro-seo'
+
 import Analytics from '~/components/scripts/analytics.astro'
 import ConsoleGreeting from '~/components/scripts/console-greeting.astro'
 import Footer from '~/components/sections/footer.astro'
 import Header from '~/components/sections/header.astro'
 import Theme from '~/components/scripts/theme.astro'
 import { Toaster } from '~/components/islands/toaster'
+import { parseLocale } from '~/helpers/content'
+import { getLocalizedEntry } from '~/services/localized'
 import '~/styles/global.css'
 
 interface Props {
@@ -19,11 +21,8 @@ interface Props {
   shell?: boolean
 }
 
-const settings = await getEntry('settings', 'metadata')
-
-if (!settings) {
-  throw new Error('Missing settings/metadata entry')
-}
+const locale = parseLocale(Astro.currentLocale)
+const settings = await getLocalizedEntry('settings', 'metadata', locale)
 
 const {
   title,

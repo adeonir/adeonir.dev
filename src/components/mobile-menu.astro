@@ -1,17 +1,14 @@
 ---
-import { getEntry } from 'astro:content'
-
 import { MobileMenu } from '~/components/islands/mobile-menu'
+import { parseLocale } from '~/helpers/content'
+import { getLocalizedEntry } from '~/services/localized'
 
 interface Props {
   nav: { label: string; href: string }[]
 }
 
-const content = await getEntry('mobileMenu', 'content')
-
-if (!content) {
-  throw new Error('Missing mobileMenu/content entry')
-}
+const locale = parseLocale(Astro.currentLocale)
+const content = await getLocalizedEntry('mobileMenu', 'content', locale)
 
 const { nav } = Astro.props
 ---

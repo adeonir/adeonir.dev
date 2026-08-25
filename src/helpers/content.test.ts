@@ -4,6 +4,7 @@ import {
   contentCollections,
   getLocalizedCollectionName,
   isLocale,
+  parseLocale,
 } from '~/helpers/content'
 
 describe('content locale mapping', () => {
@@ -30,6 +31,16 @@ describe('content locale mapping', () => {
   it('rejects an unsupported locale before selecting content', () => {
     expect(() => getLocalizedCollectionName('hero', 'es')).toThrow(
       'Unsupported locale: es',
+    )
+  })
+
+  it('parses a supported current locale', () => {
+    expect(parseLocale('en')).toBe('en')
+  })
+
+  it('rejects a missing current locale', () => {
+    expect(() => parseLocale(undefined)).toThrow(
+      'Unsupported locale: undefined',
     )
   })
 })

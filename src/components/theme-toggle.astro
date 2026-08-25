@@ -1,13 +1,10 @@
 ---
-import { getEntry } from 'astro:content'
-
 import { ThemeToggle as ThemeToggleIsland } from '~/components/islands/theme-toggle'
+import { parseLocale } from '~/helpers/content'
+import { getLocalizedEntry } from '~/services/localized'
 
-const labels = await getEntry('themeToggle', 'labels')
-
-if (!labels) {
-  throw new Error('Missing themeToggle/labels entry')
-}
+const locale = parseLocale(Astro.currentLocale)
+const labels = await getLocalizedEntry('themeToggle', 'labels', locale)
 ---
 
 <ThemeToggleIsland client:load labels={labels.data} />

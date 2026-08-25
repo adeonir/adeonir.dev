@@ -1,11 +1,9 @@
 ---
-import { getEntry } from 'astro:content'
+import { parseLocale } from '~/helpers/content'
+import { getLocalizedEntry } from '~/services/localized'
 
-const entry = await getEntry('console', 'content')
-
-if (!entry) {
-  throw new Error('Missing console/content entry')
-}
+const locale = parseLocale(Astro.currentLocale)
+const entry = await getLocalizedEntry('console', 'content', locale)
 
 const { greeting } = entry.data
 ---

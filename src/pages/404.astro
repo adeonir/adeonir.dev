@@ -1,16 +1,16 @@
 ---
-import { getEntry } from 'astro:content'
+import { getRelativeLocaleUrl } from 'astro:i18n'
 
 import { buttonVariants } from '~/components/ui/button-variants'
 import { Eyebrow } from '~/components/ui/eyebrow'
 import { cn } from '~/helpers/classnames'
+import { parseLocale } from '~/helpers/content'
+import { getLocalizedEntry } from '~/services/localized'
 import Layout from '~/layouts/base.astro'
 
-const notFound = await getEntry('notFound', 'notFound')
-
-if (!notFound) {
-  throw new Error('Missing notFound/notFound entry')
-}
+const locale = parseLocale(Astro.currentLocale)
+const notFound = await getLocalizedEntry('notFound', 'notFound', locale)
+const homeURL = getRelativeLocaleUrl(locale)
 
 const { eyebrow, display, headline, body, action } = notFound.data
 ---
@@ -49,7 +49,7 @@ const { eyebrow, display, headline, body, action } = notFound.data
         }
       </div>
       <a
-        href={action.href}
+        href={homeURL}
         class={cn(
           buttonVariants({ variant: 'outline', size: 'default' }),
           'shrink-0',

@@ -1,14 +1,11 @@
 ---
-import { getEntry } from 'astro:content'
-
 import { Eyebrow } from '~/components/ui/eyebrow'
 import IconFolder from '~icons/tabler/folder'
+import { parseLocale } from '~/helpers/content'
+import { getLocalizedEntry } from '~/services/localized'
 
-const stack = await getEntry('stack', 'stack')
-
-if (!stack) {
-  throw new Error('Missing stack/stack entry')
-}
+const locale = parseLocale(Astro.currentLocale)
+const stack = await getLocalizedEntry('stack', 'stack', locale)
 
 const { eyebrow, headline, tools } = stack.data
 ---

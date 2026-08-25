@@ -59,6 +59,14 @@ export function isLocale(value: string): value is Locale {
   return supportedLocales.includes(value as Locale)
 }
 
+export function parseLocale(value: string | undefined): Locale {
+  if (!value || !isLocale(value)) {
+    throw new Error(`Unsupported locale: ${value ?? 'undefined'}`)
+  }
+
+  return value
+}
+
 export function getLocalizedCollectionName<
   TCollection extends ContentCollection,
   TLocale extends Locale,

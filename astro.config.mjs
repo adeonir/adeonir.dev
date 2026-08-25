@@ -36,6 +36,11 @@ function optimizeServerDeps() {
 export default defineConfig({
   site: 'https://adeonir.dev',
   adapter: cloudflare(),
+  i18n: {
+    locales: ['pt', 'en'],
+    defaultLocale: 'pt',
+    routing: { prefixDefaultLocale: false },
+  },
   fonts: [
     {
       name: 'Geist',
