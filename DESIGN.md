@@ -303,6 +303,8 @@ The identity ships two skins, which are two sets of values for the same roles. T
 
 The palette has two layers. The neutrals are two Catppuccin scales: `mocha` for the dark skin and `latte` for the light skin. Each scale is numbered from 50, the lightest step, to 950, the darkest step, and each step is labelled with its Catppuccin role. The two scales run opposite in lightness, so the same semantic role takes a different step in each skin. For example, `background` is `mocha-850` in the dark skin and `latte-50` in the light skin, and both steps are the Catppuccin base role.
 
+Catppuccin is a deliberate choice and not an inherited default. It is the scale the work already happens in: the terminal and the editor the code is written in run it too, so the site and the tools behind it hold the same neutrals. Every step is written out in the frontmatter, so the identity names its source but depends on nothing outside this file.
+
 The accents are two more scales: `ocean` is the blue that marks interactive elements, and `azalea` is the pink that marks static emphasis. Two is the whole count. Every other hue in the interface is a status role. Depth comes from a change in lightness rather than from shadow, so neighbouring surface roles sit one step apart.
 
 Both accent scales name a real referent. `ocean` is the blue of the water. `azalea` is the pink of the flower. Both scales are built in OKLCH, and chroma falls off toward each end, so the light steps stay pale and the dark steps stay saturated without turning muddy.
