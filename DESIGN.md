@@ -353,7 +353,7 @@ The status roles are feedback fills for toasts. They report state and never act,
 
 ## Typography
 
-Geist carries the whole interface, from the largest heading to running body copy, so the page reads in one voice. Its fallback stack is `system-ui, -apple-system, sans-serif`. Fira Code carries the technical layer: code snippets, navigation links, and the uppercase label role. Its fallback stack is `ui-monospace, "SF Mono", Consolas, monospace`. The two faces differ by classification and by job, a neo-grotesque against a monospace, so they never compete at the same size.
+Geist carries the whole interface, from the largest heading to running body copy, so the page reads in one voice. Fira Code carries the technical layer: code snippets, navigation links, and the uppercase label role. The two faces differ by classification and by job, a neo-grotesque against a monospace, so they never compete at the same size. Each falls back to a face matched on its metrics, so a page holds its layout while the web font loads, and ends on the matching generic — sans for one, monospace for the other. The metric target is a delivery decision and lives with the font config, not here.
 
 The size scale is the conventional step scale, and each role keeps the line height that the scale pairs with its step, so the line height tightens as the size grows. What the identity decides is what the scale leaves open: which role takes which step, which face carries it, and the one exception in letter-spacing. Letter-spacing departs from normal exactly once: the uppercase label role widens.
 

@@ -165,8 +165,8 @@
 }
 
 @theme {
-  --font-sans: var(--font-geist), sans-serif;
-  --font-mono: var(--font-fira-code), monospace;
+  --font-sans: var(--font-geist);
+  --font-mono: var(--font-fira-code);
 
   --breakpoint-xxs: 24rem;
   --breakpoint-xs: 32rem;
