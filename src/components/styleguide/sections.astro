@@ -2,6 +2,7 @@
 import IconArrowRight from '~icons/tabler/arrow-right'
 
 import Logo from '~/components/logo.astro'
+import { FloatingDemo } from '~/components/styleguide/floating'
 import { ToastDemo } from '~/components/styleguide/toast'
 import { Button } from '~/components/ui/button'
 import { Eyebrow } from '~/components/ui/eyebrow'
@@ -143,12 +144,6 @@ const shadows = [
   { cls: 'shadow-2xl', label: '2xl' },
 ]
 
-const elevations = [
-  { cls: '', label: 'none' },
-  { cls: 'shadow-foreground/5 shadow-lg', label: 'floating' },
-  { cls: 'shadow-primary/12 shadow-lg', label: 'tinted' },
-]
-
 const breakpoints = [
   { name: 'xxs', value: '24rem / 384px' },
   { name: 'xs', value: '32rem / 512px' },
@@ -160,7 +155,7 @@ const breakpoints = [
 ]
 ---
 
-<div class="flex flex-col gap-12">
+<div class="flex flex-col gap-24">
   <header>
     <h1 class="text-display">Styleguide</h1>
     <hr class="mt-6 border-t border-border" />
@@ -292,21 +287,6 @@ const breakpoints = [
         ))
       }
     </div>
-    <div class="flex flex-wrap gap-4">
-      {
-        elevations.map((e) => (
-          <div class="flex flex-col items-center gap-1">
-            <div
-              class:list={[
-                'size-14 rounded-lg border border-border bg-card',
-                e.cls,
-              ]}
-            />
-            <span class="text-caption text-muted-foreground">{e.label}</span>
-          </div>
-        ))
-      }
-    </div>
   </section>
 
   <section class="flex flex-col gap-4">
@@ -325,15 +305,17 @@ const breakpoints = [
 
   <section class="flex flex-col gap-4">
     <h2 class="text-title">Components</h2>
-    <div class="flex flex-col gap-6">
+    <div class="flex flex-col gap-16">
       <div class="flex flex-col gap-2">
         <span class="text-caption text-muted-foreground">Logo</span>
         <Logo class="w-40" />
       </div>
+
       <div class="flex flex-col gap-2">
         <span class="text-caption text-muted-foreground">Eyebrow</span>
         <Eyebrow>Label</Eyebrow>
       </div>
+
       <div class="flex flex-col gap-2">
         <span class="text-caption text-muted-foreground">Button</span>
         <div class="flex flex-wrap items-center gap-3">
@@ -344,10 +326,22 @@ const breakpoints = [
           </Button>
         </div>
       </div>
+
+      <div class="flex flex-col gap-2">
+        <span class="text-caption text-muted-foreground">Popover / Menu</span>
+        <FloatingDemo client:load />
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <span class="text-caption text-muted-foreground">Toast</span>
+        <ToastDemo client:load />
+      </div>
+
       <div class="flex flex-col gap-2">
         <span class="text-caption text-muted-foreground">NavLink</span>
         <NavLink href="#">nav link</NavLink>
       </div>
+
       <div class="flex flex-col gap-2">
         <span class="text-caption text-muted-foreground">Field</span>
         <div class="flex flex-col gap-4">
@@ -373,7 +367,6 @@ const breakpoints = [
           />
         </div>
       </div>
-      <ToastDemo client:load />
     </div>
   </section>
 </div>
