@@ -415,17 +415,17 @@ Corners are rounded consistently: enough to feel approachable, and little enough
 
 ## Motion & Interaction
 
-Motion confirms a change of state. It may also bring content to rest as the reader scrolls into it. Nothing animates for decoration.
+Motion confirms a change of state. It may also settle content as the reader scrolls into it. Nothing animates for decoration.
 
-Three durations cover a change of state. About 150ms covers hover color changes, the focus ring, and other small changes of state. About 200ms covers an element entering, such as a menu opening or an icon changing. About 400ms covers the largest reversible transition, such as a toast settling into its stack. An exit runs faster than its entrance, at about 100ms, because a dismissal should not hold the user. An entrance decelerates to rest. An exit accelerates away. A looping or reversible transition uses a symmetric curve.
+Three durations cover a change of state. About 150ms covers hover color changes, the focus ring, and other small changes of state. About 200ms covers an element entering, such as a menu opening or an icon changing. About 400ms covers the largest reversible transition, such as a toast settling into its stack. An exit runs faster than its enter animation, at about 100ms, because a dismissal should not hold the user. An enter animation decelerates as it settles. An exit accelerates away. A looping or reversible transition uses a symmetric curve.
 
-A scroll entrance runs on its own timing, because it brings a whole block to rest rather than confirming a change of state. A section block runs 400ms and rises 16px. A part inside a block, such as a list item or a form field, runs the same 400ms, rises 8px, and starts 70ms after the part before it, so a sequence of neighbors does not add up to one large movement. The opening section runs 700ms and does not travel: a blur resolves, graded by type size, over a scale that starts just under 1. Every scroll entrance decelerates to rest on `cubic-bezier(0.33, 1, 0.68, 1)`. No spring, because a spring carries a bounce that reads against content coming to rest.
+A scroll enter animation runs on its own timing, because it settles a whole block rather than confirming a change of state. A section block runs 400ms and rises 16px. A block inside a block, such as an item inside a list, runs the same 400ms, rises 8px, and starts 70ms after the block before it, so a sequence of neighbors does not add up to one large movement. The opening section runs 700ms and does not travel: a blur resolves, graded by type size, over a scale that starts just under 1. Every scroll enter animation decelerates as it settles, on `cubic-bezier(0.33, 1, 0.68, 1)`. No spring, because a spring carries a bounce that reads against content settling.
 
 The theme toggle is the one signature transition. The icon changes with a short flip, and a switching flag suppresses transitions everywhere else, so the whole page repaints its skin at once instead of running a separate color transition on every element.
 
 Hover marks an interactive element in blue. A link changes color, a row takes the accent surface, and the title of that row changes to blue. Focus always draws the ring, never the browser default. A pressed control takes a deeper fill. Pink emphasis is static and never animates, because it points at text rather than responding to the reader.
 
-If the reader sets `prefers-reduced-motion`, entrance and reveal animations are removed, including an entrance tied to scroll. A change of state resolves through color alone. Hover, focus, and active states still change color, without the transition. The site has no parallax and no autoplay to disable.
+If the reader sets `prefers-reduced-motion`, enter and exit animations are removed, including an enter animation tied to scroll. A change of state resolves through color alone. Hover, focus, and active states still change color, without the transition. The site has no parallax and no autoplay to disable.
 
 ## Responsive Behavior
 
