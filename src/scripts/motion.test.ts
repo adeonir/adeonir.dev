@@ -110,13 +110,13 @@ it('leaves an unmarked element and a section with no id alone', async () => {
   expect(at('loose').style.opacity).toBe('')
 })
 
-it('watches each section with an id from a quarter above its top', async () => {
+it('watches each section with an id from half above its top', async () => {
   const { bindEnter } = await loadEnter()
 
   bindEnter()
 
   expect(entries.map(({ section }) => section.id)).toEqual(['about', 'stack'])
-  expect(entries[0].options.margin).toBe('0px 0px -25% 0px')
+  expect(entries[0].options.margin).toBe('0px 0px -50% 0px')
 })
 
 it('starts each block of a section after the block before it', async () => {

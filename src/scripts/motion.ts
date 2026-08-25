@@ -9,7 +9,7 @@ const ROW_RISE = 8
 const DURATION = 0.4
 const STEP = 0.07
 const EASE: [number, number, number, number] = [0.33, 1, 0.68, 1]
-const MARGIN = '0px 0px -25% 0px'
+const MARGIN = '0px 0px -50% 0px'
 
 type Step = { element: HTMLElement; rise: number; delay: number }
 
