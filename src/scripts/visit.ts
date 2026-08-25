@@ -17,8 +17,13 @@ document.addEventListener('astro:page-load', () => {
 
 document.addEventListener('astro:before-swap', () => {
   bound = false
-  for (const release of releases) release()
+  const pending = releases
   releases = []
+  for (const release of pending) {
+    try {
+      release()
+    } catch {}
+  }
 })
 
 export const onVisit = (bind: Bind) => {
