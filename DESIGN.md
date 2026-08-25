@@ -339,8 +339,8 @@ The frontmatter carries the values of the dark skin, which is the default. Each 
 - **sunken-foreground** — `mocha-50` dark, `latte-950` light. Text on the deepest surface.
 - **muted** — `mocha-800` dark, `latte-200` light. Muted fills and inactive surfaces, one step below the hover surface.
 - **muted-foreground** — `mocha-200` dark, `latte-900` light. Secondary text, captions, and supporting copy. Each skin takes the deepest step that still meets 4.5:1 against its own surfaces: subtext-0 in the dark skin, subtext-1 in the light skin. The difference from `foreground` is 1.54:1 in the dark skin and 1.28:1 in the light skin. The light skin has less room between readable secondary text and primary text, so weight and position carry more of that distinction there.
-- **border** — `mocha-800` dark, `latte-200` light. Dividers and edges, drawn one pixel wide. This is the main depth cue in place of shadow.
-- **input** — `mocha-700` dark, `latte-300` light. The border of a form field sits one step firmer than a plain divider, so an edge reads as a control rather than as a rule.
+- **border** — `mocha-800` dark, `latte-200` light. The edge of a surface and the line of a divider, one pixel wide. A surface at rest separates by this edge and by its lightness, not by a shadow.
+- **input** — `mocha-700` dark, `latte-300` light. The edge of a form control, and the same colour at one tenth opacity for the fill behind it. It carries one step more contrast against the surface than `border` does, so the edge of a control is stronger than the line of a divider.
 - **ring** — `ocean-600` in both skins. The focus ring. This step meets 3:1 against the surfaces of either skin.
 
 ### Destructive and status
@@ -391,7 +391,7 @@ Opacity does the rest of the work, and it is what changes between the skins. The
 
 The radius scale is graded, not uniform. The smallest steps are for inline chips and small inner elements. 0.375rem is for compact controls. 0.5rem is for buttons, form fields, popovers, and toasts. 0.75rem and 1rem are for large framed containers and cards. The full pill radius is for eyebrows and avatar masks.
 
-Border width has three levels with distinct jobs. The hairline is the default stroke for dividers, card edges, and field borders. The two-pixel border marks the eyebrow pill and other outlined emphasis edges. The heaviest step is reserved for rare structural accents.
+Border width has two levels. The hairline is the default stroke for dividers, card edges, and field borders. The two-pixel border marks the eyebrow pill and the toast, where an edge carries emphasis instead of only separating.
 
 Corners are rounded consistently: enough to feel approachable, and little enough to read as precise. Nothing is fully square, and nothing takes the pill radius except a true pill.
 
@@ -399,7 +399,7 @@ Corners are rounded consistently: enough to feel approachable, and little enough
 
 **Buttons.** The solid button fills with `primary` and takes `primary-foreground` text, at the 0.5rem radius, 1.25rem of horizontal padding, and a control height of 2.75rem. It is the most prominent element on any view. On hover the fill takes the next accent step down and the control takes the shadow described in Elevation & Depth. The outline button has no fill, a hairline `border` edge, and `muted-foreground` text, at the same radius and height. On hover its border and its text both take the blue, and its fill takes a faint muted wash, so the control brightens without filling. A disabled control drops to half opacity and loses its pointer cursor rather than changing color. A control in its loading state keeps its label in place, hides the label from view, and centers a spinner over it, so the button keeps its width. The icon-only variant is a 2.25rem square at the same radius, with no fill.
 
-**Inputs and forms.** A form field has a translucent `input` wash, a hairline `input` border, the 0.5rem radius, 1rem of horizontal padding, `body` text, and a height of 2.75rem for a single line. On focus the border takes the blue and a wide `ring` appears around the field at low opacity, which is the same signal that buttons and links use. An invalid field changes its border to `destructive` and its ring to a destructive tint. Its message renders in `destructive` in the `caption` role below the control, one size down from the text of the field itself, so the correction reads as a note rather than as a second field. A label sits above its field in the uppercase `label` role, in `muted-foreground`.
+**Inputs and forms.** A form field fills with `input` at one tenth opacity, takes a hairline `input` border at full strength, the 0.5rem radius, 1rem of horizontal padding, `body` text, and a height of 2.75rem for a single line. One colour serves both jobs, so the field reads as a single piece of material rather than a box drawn on a surface. On focus the border takes the blue and a wide `ring` appears around the field at low opacity, which is the same signal that buttons and links use. An invalid field changes its border to `destructive` and its ring to a destructive tint. Its message renders in `destructive` in the `caption` role below the control, one size down from the text of the field itself, so the correction reads as a note rather than as a second field. A label sits above its field in the uppercase `label` role, in `muted-foreground`.
 
 **Cards and containers.** A card is the `card` fill inside a hairline `border`, at the 1rem radius, with 1.5rem of padding and no shadow. Its depth comes from the change in lightness and from the border. Containers stack with large gaps and rely on that same border to separate, never on a heavy divider. The divider itself is a hairline `border` rule, horizontal or vertical.
 
