@@ -3,6 +3,7 @@ import { useRef } from 'react'
 import { toaster } from '~/components/islands/toaster'
 import { Button } from '~/components/ui/button'
 import { Field } from '~/components/ui/field'
+import type { Locale } from '~/helpers/content'
 import { useForm } from '~/hooks/use-form'
 import {
   type ContactValidationMessages,
@@ -32,9 +33,10 @@ type ContactFormContent = {
 
 type ContactFormProps = {
   content: ContactFormContent
+  locale: Locale
 }
 
-export function ContactForm({ content }: ContactFormProps) {
+export function ContactForm({ content, locale }: ContactFormProps) {
   const formRef = useRef<HTMLFormElement>(null)
 
   const [nameField, emailField, ...stackedFields] = content.fields
@@ -98,6 +100,7 @@ export function ContactForm({ content }: ContactFormProps) {
         aria-hidden="true"
         className="sr-only"
       />
+      <input type="hidden" name="locale" value={locale} />
       <div className="grid @md:grid-cols-2 gap-6">
         {[nameField, emailField].map((field) => (
           <Field

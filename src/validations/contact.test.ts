@@ -7,6 +7,7 @@ const validInput = {
   email: 'ada@example.com',
   subject: 'Saying hello',
   message: 'Just reaching out about a project.',
+  locale: 'en',
 }
 
 const messages = {
@@ -42,6 +43,19 @@ describe('contact validation', () => {
     expect(
       contactInputSchema.safeParse({ ...validInput, email: 'not-an-email' })
         .success,
+    ).toBe(false)
+  })
+
+  it('rejects a missing locale', () => {
+    const inputWithoutLocale = { ...validInput }
+    Reflect.deleteProperty(inputWithoutLocale, 'locale')
+
+    expect(contactInputSchema.safeParse(inputWithoutLocale).success).toBe(false)
+  })
+
+  it('rejects an unsupported locale', () => {
+    expect(
+      contactInputSchema.safeParse({ ...validInput, locale: 'es' }).success,
     ).toBe(false)
   })
 
