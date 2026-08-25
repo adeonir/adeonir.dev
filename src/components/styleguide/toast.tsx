@@ -5,33 +5,32 @@ const samples = [
   {
     type: 'success',
     label: 'Success',
-    title: 'Tudo certo!',
-    description: 'A ação foi concluída com sucesso.',
+    title: 'All good!',
+    description: 'The action was completed successfully.',
   },
   {
     type: 'error',
     label: 'Error',
-    title: 'Algo deu errado',
-    description: 'Não foi possível concluir a ação.',
+    title: 'Something went wrong',
+    description: 'The action could not be completed.',
   },
   {
     type: 'warning',
     label: 'Warning',
-    title: 'Atenção',
-    description: 'Revise as informações antes de continuar.',
+    title: 'Heads up',
+    description: 'Review the information before continuing.',
   },
   {
     type: 'info',
     label: 'Info',
-    title: 'Informação',
-    description: 'Aqui vai um aviso informativo.',
+    title: 'Information',
+    description: 'Here goes an informative notice.',
   },
 ] as const
 
 export function ToastDemo() {
   return (
-    <div className="flex flex-col gap-2">
-      <span className="text-caption text-muted-foreground">Toast</span>
+    <>
       <div className="flex flex-wrap gap-3">
         {samples.map(({ type, label, title, description }) => (
           <Button
@@ -43,6 +42,6 @@ export function ToastDemo() {
         ))}
       </div>
       <Toaster />
-    </div>
+    </>
   )
 }

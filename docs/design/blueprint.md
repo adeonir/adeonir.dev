@@ -248,7 +248,7 @@ The landing page, top to bottom:
    see-all link routes to the full work index.
 6. **contact** — split: an info column (eyebrow, title, text, social links)
    beside a form.
-7. **footer** — split: brand and copyright on one side, a tagline on the
+7. **footer** — split: brand and copyright on one side, a signoff on the
    other.
 
 ## work

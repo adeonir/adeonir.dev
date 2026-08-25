@@ -2,7 +2,7 @@ footer:
   brand:
     text: 'adeonir.dev'
     copyright: '© 2026 Adeonir Kohl'
-  tagline:
+  signoff:
     - text: 'Feito com '
     - text: 'cuidado'
       emphasis: true

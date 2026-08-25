@@ -137,7 +137,7 @@ content:
       brand:
         text: 'adeonir.dev'
         copyright: '© 2026 Adeonir Kohl'
-      tagline: 'Feito com cuidado, café e cerveja.'
+      signoff: 'Feito com cuidado, café e cerveja.'
       reveals:
         - word: 'café'
           phrase: 'Café pra trabalhar'

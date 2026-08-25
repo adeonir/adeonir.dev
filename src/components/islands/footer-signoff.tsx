@@ -2,14 +2,14 @@ import { Portal } from '@ark-ui/react/portal'
 
 import { Popover } from '~/components/ui/popover'
 
-type TaglineSegment = {
+type SignoffSegment = {
   text: string
   emphasis?: boolean
   reveal?: string
 }
 
-type FooterTaglineProps = {
-  segments: TaglineSegment[]
+type FooterSignoffProps = {
+  segments: SignoffSegment[]
 }
 
 function RevealString({ text, phrase }: { text: string; phrase: string }) {
@@ -23,7 +23,7 @@ function RevealString({ text, phrase }: { text: string; phrase: string }) {
       <Popover.Trigger asChild>
         <button
           type="button"
-          className="cursor-pointer rounded-sm text-emphasis transition focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+          className="cursor-pointer rounded-sm text-spot transition focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
         >
           {text}
         </button>
@@ -39,7 +39,7 @@ function RevealString({ text, phrase }: { text: string; phrase: string }) {
   )
 }
 
-export function FooterTagline({ segments }: FooterTaglineProps) {
+export function FooterSignoff({ segments }: FooterSignoffProps) {
   return (
     <p className="font-mono text-muted-foreground text-sm">
       {segments.map((segment) => {
@@ -56,7 +56,7 @@ export function FooterTagline({ segments }: FooterTaglineProps) {
         return (
           <span
             key={segment.text}
-            className={segment.emphasis ? 'text-emphasis' : undefined}
+            className={segment.emphasis ? 'text-spot' : undefined}
           >
             {segment.text}
           </span>

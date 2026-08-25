@@ -51,7 +51,7 @@ Before planning or building a feature, read the documents that apply to the work
 - `DESIGN.md` — the authority on the visual identity and the design tokens.
 - `docs/design/blueprint.md` — layout region trees and screen flows.
 - `docs/design/copy.yaml` — canonical site copy. `docs/design/copy.en.yaml` holds the drafted English translation, which no route renders yet.
-- `docs/design/wireframe.html` and `docs/design/styleguide.html` — rendered wireframe and token styleguide.
+- `docs/design/wireframe.html` — rendered wireframe. The token styleguide is the live `/styleguide` route, built from `src/pages/styleguide.astro`.
 - `docs/adr/` — the accepted architecture decisions: the React island runtime, the theme-switching mechanism, the nanostores island state layer, and SSR-safe island rendering.
 
 When a project document and this file disagree, the dedicated document takes precedence. Change feature specifications with the `spec-driven` skill. The `.artifacts/` directory is scratch space and is not a source of truth.
@@ -123,8 +123,8 @@ Use the repository's component scaffolding workflow when creating a new componen
 
 - Style against the semantic utilities in `src/styles/global.css`. Never hardcode hex colors in components.
 - Dark is the default `mocha` skin; light uses the corresponding `latte` scale. Both skins use position-matched roles.
-- `primary` is the `ocean` blue in both skins and owns interactive cues: CTA, links, focus rings, and hover states.
-- `secondary` is the `azalea` pink in both skins and owns static emphasis only. Pink must never be a button, link, or focus state.
+- `primary` is the `ocean` blue and owns every interactive cue: CTA, links, hover states, and the focus border of a control. It is the only blue that acts, whether it renders as text, as a border, or as a fill. It remaps per skin — `ocean-500` on dark, `ocean-700` on light — so blue text meets AA against either surface. The focus ring itself is the separate `ring` step.
+- `secondary` is the `azalea` pink and owns static emphasis only. Pink must never be a button, link, or focus state.
 - Keep the palette at two accent hues and the neutrals; do not add a third accent. Separate surfaces with a tone drop before adding a shadow. Never use pure `#000` or `#fff`. `DESIGN.md` is the authority on what the identity allows.
 - Use Geist for all type roles. Use Fira Code only for genuinely technical content.
 - Ark UI primitives must use the dual-skin tokens and must not retain a default palette. Audit new primitives against `DESIGN.md`. Reference: https://ark-ui.com/llms.txt
