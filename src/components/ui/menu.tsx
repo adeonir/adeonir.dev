@@ -22,7 +22,7 @@ function Item({ className, ...props }: ComponentProps<typeof ArkMenu.Item>) {
   return (
     <ArkMenu.Item
       className={cn(
-        'focus-visible:outline-none data-[highlighted]:text-action data-[highlighted]:ring-4 data-[highlighted]:ring-ring/50 data-[highlighted]:ring-offset-2 data-[highlighted]:ring-offset-background',
+        'focus-visible:outline-none data-[highlighted]:text-primary data-[highlighted]:ring-4 data-[highlighted]:ring-ring/50 data-[highlighted]:ring-offset-2 data-[highlighted]:ring-offset-background',
         className,
       )}
       {...props}

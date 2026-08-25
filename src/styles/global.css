@@ -70,8 +70,6 @@
   --primary-foreground: var(--ink);
   --secondary: var(--azalea-500);
   --secondary-foreground: var(--ink);
-  --action: var(--ocean-500); /* primary as text */
-  --action-foreground: var(--ink);
   --emphasis: var(--azalea-500); /* secondary as text */
   --accent: var(--mocha-750); /* surface-0/1 blend */
   --accent-foreground: var(--mocha-50); /* text */
@@ -103,12 +101,10 @@
 [data-theme="light"] {
   color-scheme: light;
 
-  --primary: var(--ocean-500);
-  --primary-foreground: var(--ink);
+  --primary: var(--ocean-700);
+  --primary-foreground: var(--paper);
   --secondary: var(--azalea-600);
   --secondary-foreground: var(--ink);
-  --action: var(--ocean-700); /* primary as text */
-  --action-foreground: var(--paper);
   --emphasis: var(--azalea-750); /* secondary as text */
   --accent: var(--latte-250); /* surface-0/1 blend */
   --accent-foreground: var(--latte-950); /* text */
@@ -140,8 +136,6 @@
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
-  --color-action: var(--action);
-  --color-action-foreground: var(--action-foreground);
   --color-emphasis: var(--emphasis);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);

@@ -66,8 +66,6 @@ colors:
   primary-foreground: "oklch(18.3% 0.02 284.2)"
   secondary: "oklch(67.2% 0.233 2.27)"
   secondary-foreground: "oklch(18.3% 0.02 284.2)"
-  action: "oklch(67.7% 0.148 238.14)"
-  action-foreground: "oklch(18.3% 0.02 284.2)"
   emphasis: "oklch(67.2% 0.233 2.27)"
   accent: "oklch(36.38% 0.0319 281.06)"
   accent-foreground: "oklch(87.87% 0.0426 272.28)"
@@ -168,15 +166,15 @@ components:
     textColor: "{colors.foreground}"
     typography: "{typography.body}"
   button-primary:
-    backgroundColor: "{colors.action}"
-    textColor: "{colors.action-foreground}"
+    backgroundColor: "{colors.primary}"
+    textColor: "{colors.primary-foreground}"
     typography: "{typography.button}"
     rounded: "{rounded.lg}"
     padding: "{spacing.5}"
     height: "{spacing.11}"
   button-primary-hover:
     backgroundColor: "{colors.ring}"
-    textColor: "{colors.action-foreground}"
+    textColor: "{colors.primary-foreground}"
   button-secondary:
     backgroundColor: "{colors.background}"
     textColor: "{colors.muted-foreground}"
@@ -247,7 +245,7 @@ components:
     size: "{spacing.8}"
   eyebrow:
     backgroundColor: "{colors.background}"
-    textColor: "{colors.action}"
+    textColor: "{colors.primary}"
     typography: "{typography.label}"
     rounded: "{rounded.full}"
     padding: "{spacing.3}"
@@ -279,7 +277,7 @@ components:
     rounded: "{rounded.sm}"
   nav-link-hover:
     backgroundColor: "{colors.background}"
-    textColor: "{colors.action}"
+    textColor: "{colors.primary}"
   divider:
     backgroundColor: "{colors.border}"
     height: 1px
@@ -315,7 +313,7 @@ The raw scales are the primitive layer. Every semantic role points at a step of 
 
 - **mocha** — Catppuccin dark scale, numbered from light to dark: `mocha-50` text, `-100` subtext-1, `-200` subtext-0, `-300` overlay-2, `-400` overlay-1, `-500` overlay-0, `-600` surface-2, `-700` surface-1, `-750` surface-0/1 blend, `-800` surface-0, `-850` base, `-875` base/mantle blend, `-900` mantle, `-950` crust.
 - **latte** — Catppuccin light scale, numbered from light to dark: `latte-50` base, `-75` base/mantle blend, `-100` mantle, `-150` crust, `-200` surface-0, `-250` surface-0/1 blend, `-300` surface-1, `-400` surface-2, `-500` overlay-0, `-600` overlay-1, `-700` overlay-2, `-800` subtext-0, `-900` subtext-1, `-950` text.
-- **ocean** — the blue that marks interactive elements: `ocean-500` for bright fills and for action text in the dark skin, `ocean-600` for the focus ring in both skins, `ocean-700` for action text in the light skin.
+- **ocean** — the blue that marks interactive elements: `ocean-500` for blue text and blue fills in the dark skin, `ocean-600` for the focus ring in both skins, `ocean-700` for blue text and blue fills in the light skin.
 - **azalea** — the pink that marks static emphasis: `azalea-500` for emphasis and fills in the dark skin, `azalea-600` for the secondary fill in the light skin, `azalea-750` for emphasis text in the light skin.
 - **ink** — a near-black held in both skins. Use it for dark text on a bright accent fill.
 - **paper** — a near-white held in both skins. Use it for light text on a dark accent fill.
@@ -324,10 +322,8 @@ The raw scales are the primitive layer. Every semantic role points at a step of 
 
 The frontmatter carries the values of the dark skin, which is the default. Each role below names its dark step first and its light step second.
 
-- **primary** — `ocean-500` in both skins. Interactive fills, such as the call to action. A fill carries no text contrast requirement of its own, so the same bright step works in both skins.
-- **primary-foreground** — `ink` in both skins. Dark text on the blue fill.
-- **action** — `ocean-500` dark, `ocean-700` light. The blue rendered as text and as the control fill: links, the hover state in navigation, the eyebrow outline, and the solid button. The light skin takes a deeper step so the text meets AA against a near-white surface.
-- **action-foreground** — `ink` dark, `paper` light. The text that sits on the solid action fill.
+- **primary** — `ocean-500` dark, `ocean-700` light. The only blue that acts, whether it renders as text, as a border, or as a fill: links, the hover state in navigation, the eyebrow outline, the focus border of a field, and the solid button. The light skin takes a deeper step so the blue meets AA as text against a near-white surface. One step serves text and fill alike, because a second, brighter step for fills alone would be a step no text could safely reuse.
+- **primary-foreground** — `ink` dark, `paper` light. The text that sits on the solid blue fill.
 - **secondary** — `azalea-500` dark, `azalea-600` light. Emphasis fills, pink tints, and pink text at headline size. Never interactive.
 - **secondary-foreground** — `ink` in both skins. Dark text on a pink chip. On the solid pink fill of the light skin this pair meets 3:1, which covers large text and user interface components only. For a small label, use the pink tint with `emphasis` instead.
 - **emphasis** — `azalea-500` dark, `azalea-750` light. The step that meets AA for small pink text. Pink text at headline size uses `secondary` directly. Both roles resolve to the same step in the dark skin, so they differ only in the light skin.
@@ -401,7 +397,7 @@ Corners are rounded consistently: enough to feel approachable, and little enough
 
 ## Components
 
-**Buttons.** The solid button fills with `action` and takes `action-foreground` text, at the 0.5rem radius, 1.25rem of horizontal padding, and a control height of 2.75rem. It is the most prominent element on any view. On hover the fill takes the next accent step down and the control takes the tinted shadow described in Elevation & Depth. The outline button has no fill, a hairline `border` edge, and `muted-foreground` text, at the same radius and height. On hover its border and its text both take the blue, and its fill takes a faint muted wash, so the control brightens without filling. A disabled control drops to half opacity and loses its pointer cursor rather than changing color. A control in its loading state keeps its label in place, hides the label from view, and centers a spinner over it, so the button keeps its width. The icon-only variant is a 2.25rem square at the same radius, with no fill.
+**Buttons.** The solid button fills with `primary` and takes `primary-foreground` text, at the 0.5rem radius, 1.25rem of horizontal padding, and a control height of 2.75rem. It is the most prominent element on any view. On hover the fill takes the next accent step down and the control takes the tinted shadow described in Elevation & Depth. The outline button has no fill, a hairline `border` edge, and `muted-foreground` text, at the same radius and height. On hover its border and its text both take the blue, and its fill takes a faint muted wash, so the control brightens without filling. A disabled control drops to half opacity and loses its pointer cursor rather than changing color. A control in its loading state keeps its label in place, hides the label from view, and centers a spinner over it, so the button keeps its width. The icon-only variant is a 2.25rem square at the same radius, with no fill.
 
 **Inputs and forms.** A form field has a translucent `input` wash, a hairline `input` border, the 0.5rem radius, 1rem of horizontal padding, `body` text, and a height of 2.75rem for a single line. On focus the border takes the blue and a wide `ring` appears around the field at low opacity, which is the same signal that buttons and links use. An invalid field changes its border to `destructive` and its ring to a destructive tint. Its message renders in `destructive` in the `caption` role below the control, one size down from the text of the field itself, so the correction reads as a note rather than as a second field. A label sits above its field in the uppercase `label` role, in `muted-foreground`.
 
@@ -458,8 +454,7 @@ An image holds an aspect ratio near 16:10, is cropped to fill, and takes the car
 
 ### Token quick reference
 
-- Control fill and action text: `action`, with `action-foreground` on top of it. The light skin takes a deeper blue for contrast.
-- Bright accent fill: `primary`, with `primary-foreground` on top of it.
+- Anything blue that acts, as text, border, or fill: `primary`, with `primary-foreground` on top of a solid fill. The light skin takes a deeper blue for contrast.
 - Static pink text: `emphasis` for small text, `secondary` for headline-size text and for fills.
 - Surfaces from shallow to deep: `background`, `card`, `popover`, `sunken`. `accent` is the hover surface.
 - Text: `foreground` for primary text, `muted-foreground` for supporting copy.
@@ -469,7 +464,7 @@ An image holds an aspect ratio near 16:10, is cropped to fill, and takes the car
 
 - "Hero with an eyebrow pill `[Eyebrow Label]` as `{components.eyebrow}`, the name `[Headline]` in `{typography.display}`, a tagline `[Subhead]` in `{typography.subtitle}` where one keyword takes `{colors.emphasis}`, and paired actions `[CTA Label]` as `{components.button-primary}` and `[CTA Label]` as `{components.button-secondary}`, over `{colors.background}`."
 - "Section heading `[Heading Word One] [Heading Word Two]` in `{typography.heading}` with the second word in `{colors.emphasis}`."
-- "List row as `{components.card}` holding `[Item Title]` in `{typography.title}` and `[Item Description]` in `{typography.caption}`, tinting to `{colors.accent}` on hover and shifting the title to `{colors.action}`."
+- "List row as `{components.card}` holding `[Item Title]` in `{typography.title}` and `[Item Description]` in `{typography.caption}`, tinting to `{colors.accent}` on hover and shifting the title to `{colors.primary}`."
 - "Form field as `{components.input}` with its label `[Field Label]` as `{components.input-label}`, its message as `{components.input-error}`, and a submit `[CTA Label]` as `{components.button-primary}`."
 - "Navigation entry `[Nav Label]` as `{components.nav-link}`, rising to `{components.nav-link-hover}` on hover."
 - "Confirmation toast as `{components.toast}` with a `{components.toast-success}` indicator and `[Body]` in `{typography.body}`."
