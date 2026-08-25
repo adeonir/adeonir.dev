@@ -38,6 +38,7 @@ function Root({ className, ...props }: ComponentProps<typeof ArkToast.Root>) {
     <ArkToast.Root
       className={cn(
         'flex min-w-84 items-center gap-6 rounded-lg border-2 border-border bg-popover p-4 pl-6 text-foreground light:shadow-black/25 shadow-black/50 shadow-xl',
+        'focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background',
         'z-(--z-index) h-(--height) translate-x-(--x) translate-y-(--y) scale-(--scale) opacity-(--opacity)',
         'transition-[translate,scale,opacity,height,box-shadow] duration-400 ease-out will-change-[translate,opacity,scale]',
         className,
@@ -93,7 +94,7 @@ function CloseTrigger({
   return (
     <ArkToast.CloseTrigger
       className={cn(
-        'inline-flex size-8 shrink-0 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary',
+        'inline-flex size-8 shrink-0 items-center justify-center rounded-md text-muted-foreground transition-[color,background-color,box-shadow] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background',
         className,
       )}
       {...props}

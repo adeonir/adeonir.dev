@@ -23,7 +23,7 @@ function RevealString({ text, phrase }: { text: string; phrase: string }) {
       <Popover.Trigger asChild>
         <button
           type="button"
-          className="cursor-pointer rounded-sm text-spot transition focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+          className="cursor-pointer rounded-sm text-spot transition focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
         >
           {text}
         </button>
