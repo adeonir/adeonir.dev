@@ -36,9 +36,10 @@ handling.
 ### Goals
 
 - **Performance budget (enforced in CI):** mobile Lighthouse Performance ≥ 95,
-  Accessibility 100, Best Practices 100, SEO 100; LCP < 2.5s, CLS < 0.1,
-  INP < 200ms. Builds fail when a category score regresses; LCP, CLS, and the
-  blocking-time proxy for INP report as warnings (NFR-1).
+  Accessibility 100, Best Practices 100, SEO 100; CLS < 0.1, INP < 200ms.
+  Builds fail when a category score regresses; CLS and the blocking-time proxy
+  for INP report as warnings (NFR-1). LCP under 3s is a nice to have and only
+  warns.
 - **Near-zero baseline JS:** pages prerender to static HTML; only interactive
   islands hydrate (theme toggle, contact form, language switcher, mobile nav).
 - **Accessibility:** WCAG AA across all pages, asserted automatically
