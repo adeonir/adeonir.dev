@@ -172,9 +172,6 @@ components:
     rounded: "{rounded.lg}"
     padding: "{spacing.5}"
     height: "{spacing.11}"
-  button-primary-hover:
-    backgroundColor: "{colors.ring}"
-    textColor: "{colors.primary-foreground}"
   button-secondary:
     backgroundColor: "{colors.background}"
     textColor: "{colors.muted-foreground}"
@@ -397,7 +394,7 @@ Corners are rounded consistently: enough to feel approachable, and little enough
 
 ## Components
 
-**Buttons.** The solid button fills with `primary` and takes `primary-foreground` text, at the 0.5rem radius, 1.25rem of horizontal padding, and a control height of 2.75rem. It is the most prominent element on any view. On hover the fill takes the next accent step down and the control takes the shadow described in Elevation & Depth. The outline button has no fill, a hairline `border` edge, and `muted-foreground` text, at the same radius and height. On hover its border and its text both take the blue, and its fill takes a faint muted wash, so the control brightens without filling. A disabled control drops to half opacity and loses its pointer cursor rather than changing color. A control in its loading state keeps its label in place, hides the label from view, and centers a spinner over it, so the button keeps its width. The icon-only variant is a 2.25rem square at the same radius, with no fill.
+**Buttons.** The solid button fills with `primary` and takes `primary-foreground` text, at the 0.5rem radius, 1.25rem of horizontal padding, and a control height of 2.75rem. It is the most prominent element on any view. On hover the fill dims a little and the control takes the shadow described in Elevation & Depth. The outline button has no fill, a hairline `border` edge, and `muted-foreground` text, at the same radius and height. On hover its border and its text both take the blue, and its fill takes a faint muted wash, so the control brightens without filling. A disabled control drops to half opacity and loses its pointer cursor rather than changing color. A control in its loading state keeps its label in place, hides the label from view, and centers a spinner over it, so the button keeps its width. The icon-only variant is a 2.25rem square at the same radius, with no fill.
 
 **Inputs and forms.** A form field fills with `input` at one tenth opacity, takes a hairline `input` border at full strength, the 0.5rem radius, 1rem of horizontal padding, `body` text, and a height of 2.75rem for a single line. One colour serves both jobs, so the field reads as a single piece of material rather than a box drawn on a surface. On focus the border takes the blue and a wide `ring` appears around the field at low opacity, which is the same signal that buttons and links use. An invalid field changes its border to `destructive` and its ring to a destructive tint. Its message renders in `destructive` in the `caption` role below the control, one size down from the text of the field itself, so the correction reads as a note rather than as a second field. A label sits above its field in the uppercase `label` role, in `muted-foreground`.
 
