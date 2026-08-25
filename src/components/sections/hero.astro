@@ -16,17 +16,19 @@ const { eyebrow, display, tagline, description, actions, scroll } = hero.data
 ---
 
 <section
-  class="relative flex min-h-[calc(100dvh-6rem)] flex-col items-center justify-center pb-16 text-center md:pb-24"
+  class="relative flex min-h-[calc(100dvh-6rem)] flex-col items-center justify-center pb-16 text-center [--scale-in:0.98] md:pb-24"
 >
   <div class="wrapper flex flex-col items-center">
-    <Eyebrow>{eyebrow}</Eyebrow>
+    <Eyebrow className="[--blur-in:var(--blur-xs)] motion-safe:animate-enter"
+      >{eyebrow}</Eyebrow
+    >
     <h1
-      class="mt-4 text-5xl leading-[0.92] font-extrabold text-foreground sm:mt-5 sm:text-7xl lg:text-[7rem]"
+      class="mt-4 text-5xl leading-[0.92] font-extrabold text-foreground [--blur-in:var(--blur-lg)] motion-safe:animate-enter motion-safe:[animation-delay:70ms] sm:mt-5 sm:text-7xl lg:text-[7rem]"
     >
       {display}
     </h1>
     <p
-      class="mt-6 max-w-3xl text-2xl font-semibold text-balance text-foreground sm:mt-10 sm:text-3xl lg:text-4xl"
+      class="mt-6 max-w-3xl text-2xl font-semibold text-balance text-foreground [--blur-in:var(--blur-sm)] motion-safe:animate-enter motion-safe:[animation-delay:140ms] sm:mt-10 sm:text-3xl lg:text-4xl"
     >
       {
         tagline.map((segment) => (
@@ -41,7 +43,7 @@ const { eyebrow, display, tagline, description, actions, scroll } = hero.data
       }
     </p>
     <p
-      class="mt-3 max-w-3xl text-subtitle leading-relaxed text-pretty text-muted-foreground sm:mt-4"
+      class="mt-3 max-w-3xl text-subtitle leading-relaxed text-pretty text-muted-foreground [--blur-in:var(--blur-xs)] motion-safe:animate-enter motion-safe:[animation-delay:210ms] sm:mt-4"
     >
       {description}
     </p>
@@ -49,14 +51,14 @@ const { eyebrow, display, tagline, description, actions, scroll } = hero.data
       href={actions.secondary.href}
       class={cn(
         buttonVariants({ variant: 'default', size: 'default' }),
-        'mt-10 sm:mt-14',
+        'mt-10 [--blur-in:0px] motion-safe:animate-enter motion-safe:[animation-delay:280ms] sm:mt-14',
       )}
     >
       {actions.secondary.label}
     </a>
   </div>
   <div
-    class="absolute bottom-8 hidden flex-col items-center gap-2 font-mono text-caption text-muted-foreground/73 sm:flex light:text-muted-foreground/91"
+    class="absolute bottom-8 hidden flex-col items-center gap-2 font-mono text-caption text-muted-foreground/73 [--blur-in:var(--blur-xs)] motion-safe:animate-enter motion-safe:[animation-delay:350ms] sm:flex light:text-muted-foreground/91"
   >
     {scroll}
     <IconArrowDown className="size-4 animate-bounce" aria-hidden="true" />
