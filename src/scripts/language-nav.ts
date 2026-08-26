@@ -41,9 +41,7 @@ export const restoreScrollPosition = () => {
 
   const top = pendingScrollY
   pendingScrollY = null
-  // The router scrolls to the top before this event, and the document scrolls
-  // smoothly, so restoring the position must not animate.
-  window.scrollTo({ top, behavior: 'instant' })
+  window.scrollTo({ top, behavior: 'auto' })
 }
 
 document.addEventListener('click', rememberScrollPosition, { capture: true })
