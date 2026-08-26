@@ -1,0 +1,17 @@
+hero:
+  eyebrow: 'Design Engineer'
+  display: 'Adeonir Kohl'
+  tagline:
+    - text: 'I build '
+    - text: 'web interfaces'
+      highlight: true
+    - text: ' that '
+    - text: 'work'
+      highlight: true
+    - text: '.'
+  description: 'I like giving things shape, bringing design to life on screen.'
+  actions:
+    secondary:
+      label: 'Get in touch'
+      href: '#contact'
+  scroll: 'scroll for more'

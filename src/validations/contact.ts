@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { supportedLocales } from '~/helpers/content'
 
 export const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign'] as const
 
@@ -23,6 +24,7 @@ export function createContactSchema(messages?: ContactValidationMessages) {
       .string()
       .min(1, messages?.required)
       .max(2000, messages?.maxLength?.replace('{max}', '2000')),
+    locale: z.enum(supportedLocales),
     website: z.string().optional(),
     utm_source: z.string().optional(),
     utm_medium: z.string().optional(),

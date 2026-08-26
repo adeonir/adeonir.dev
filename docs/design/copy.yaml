@@ -2,7 +2,7 @@ metadata:
   source: 'docs/product/brief.md, docs/product/prd.md, docs/design/blueprint.md, conversation'
   created: '2026-06-06'
   version: '1.0.6'
-  status: 'draft'
+  status: 'ready'
 
 project:
   name: 'adeonir.dev'
@@ -10,6 +10,14 @@ project:
   industry: 'portfolio'
   title: 'Adeonir Kohl | Portfólio'
   description: 'Design engineer construindo interfaces web que funcionam.'
+
+routes:
+  home:
+    title: 'Portfólio'
+  not-found:
+    title: 'Página não encontrada'
+  maintenance:
+    title: 'Manutenção'
 
 # The content tree mirrors docs/design/blueprint.md: surfaces home, work, project,
 # plus a global not-found (404) error surface.
@@ -180,7 +188,6 @@ content:
 
   not-found:
     header: *header
-    eyebrow: 'Erro 404'
     display: '404'
     headline: 'Página não encontrada.'
     body:

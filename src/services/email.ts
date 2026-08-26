@@ -1,13 +1,14 @@
-import { getEntry } from 'astro:content'
 import { RESEND_API_KEY } from 'astro:env/server'
 import { render } from '@react-email/render'
-import { ptBR } from 'date-fns/locale'
+import { enUS, ptBR } from 'date-fns/locale'
 import { formatInTimeZone } from 'date-fns-tz'
 import { createElement } from 'react'
 
 import { Confirmation } from '~/emails/confirmation'
 import { Notification } from '~/emails/notification'
+import type { Locale } from '~/helpers/content'
 import { interpolate } from '~/helpers/interpolate'
+import { getLocalizedEntry } from '~/services/localized'
 
 export class ContactDeliveryError extends Error {
   reason: 'resend_error' | 'missing_content'
@@ -24,6 +25,7 @@ type ContactEmailInput = {
   email: string
   subject: string
   message: string
+  locale: Locale
 }
 
 type ResendPayload = {
@@ -37,9 +39,14 @@ type ResendPayload = {
 const RESEND_ENDPOINT = 'https://api.resend.com/emails'
 const OWNER = 'contato@adeonir.dev'
 
-function formatReceivedAt(date: Date) {
+const dateLocales = {
+  pt: ptBR,
+  en: enUS,
+} as const
+
+function formatReceivedAt(date: Date, locale: Locale) {
   return formatInTimeZone(date, 'America/Sao_Paulo', 'dd MMM yyyy, HH:mm', {
-    locale: ptBR,
+    locale: dateLocales[locale],
   })
 }
 
@@ -66,19 +73,24 @@ export async function sendContactEmails({
   email,
   subject,
   message,
+  locale,
 }: ContactEmailInput) {
-  const entry = await getEntry('emails', 'emails')
+  const entry = await getLocalizedEntry('emails', 'emails', locale).catch(
+    (error) => {
+      if (
+        error instanceof Error &&
+        error.message.startsWith('Missing localized content:')
+      ) {
+        throw new ContactDeliveryError('missing_content', error.message)
+      }
 
-  if (!entry) {
-    throw new ContactDeliveryError(
-      'missing_content',
-      'Missing emails/emails entry',
-    )
-  }
+      throw error
+    },
+  )
 
   const { from, fields, confirmation, notification } = entry.data
   const firstName = name.split(' ')[0]
-  const receivedAt = formatReceivedAt(new Date())
+  const receivedAt = formatReceivedAt(new Date(), locale)
   const sender = `${from} <${OWNER}>`
   const data = { name, email, subject, message }
 

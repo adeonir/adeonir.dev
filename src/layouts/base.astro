@@ -1,39 +1,46 @@
 ---
 import { Font } from 'astro:assets'
-import { getEntry } from 'astro:content'
 import { ClientRouter } from 'astro:transitions'
 import { SEO } from 'astro-seo'
+
 import Analytics from '~/components/scripts/analytics.astro'
 import ConsoleGreeting from '~/components/scripts/console-greeting.astro'
 import Footer from '~/components/sections/footer.astro'
 import Header from '~/components/sections/header.astro'
 import Theme from '~/components/scripts/theme.astro'
 import { Toaster } from '~/components/islands/toaster'
+import { parseLocale } from '~/helpers/content'
+import { getLocalizedEntry } from '~/services/localized'
 import '~/styles/global.css'
 
 interface Props {
-  title: string
+  title?: string
+  titleKey?: 'home' | 'notFound' | 'maintenance'
   description?: string
   image?: string
   noindex?: boolean
   shell?: boolean
 }
 
-const settings = await getEntry('settings', 'metadata')
-
-if (!settings) {
-  throw new Error('Missing settings/metadata entry')
-}
+const locale = parseLocale(Astro.currentLocale)
+const settings = await getLocalizedEntry('settings', 'metadata', locale)
 
 const {
   title,
+  titleKey,
   description,
   image,
   noindex = false,
   shell = false,
 } = Astro.props
 
-const fullTitle = `${title} | ${settings.data.siteName}`
+const resolvedTitle = titleKey ? settings.data.pageTitles[titleKey] : title
+
+if (!resolvedTitle) {
+  throw new Error('A page title or title key is required')
+}
+
+const fullTitle = `${resolvedTitle} | ${settings.data.siteName}`
 const resolvedDescription = description?.trim()
   ? description
   : settings.data.description
@@ -61,7 +68,7 @@ const ogImageURL = new URL(
     <Font cssVariable="--font-fira-code" />
 
     <SEO
-      title={title}
+      title={resolvedTitle}
       titleTemplate={`%s | ${settings.data.siteName}`}
       description={resolvedDescription}
       canonical={canonicalURL}

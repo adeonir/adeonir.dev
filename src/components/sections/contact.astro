@@ -1,14 +1,11 @@
 ---
-import { getEntry } from 'astro:content'
-
 import { ContactForm } from '~/components/islands/contact-form'
+import { parseLocale } from '~/helpers/content'
+import { getLocalizedEntry } from '~/services/localized'
 import IconFolder from '~icons/tabler/folder'
 
-const contact = await getEntry('contact', 'contact')
-
-if (!contact) {
-  throw new Error('Missing contact/contact entry')
-}
+const locale = parseLocale(Astro.currentLocale)
+const contact = await getLocalizedEntry('contact', 'contact', locale)
 
 const { title, body, social, form } = contact.data
 ---
@@ -82,7 +79,7 @@ const { title, body, social, form } = contact.data
         </div>
       </div>
       <div data-enter="block" class="md:col-span-3">
-        <ContactForm content={form} client:visible />
+        <ContactForm content={form} locale={locale} client:visible />
       </div>
     </div>
   </div>

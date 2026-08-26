@@ -1,0 +1,55 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n'
+
+import { buttonVariants } from '~/components/ui/button-variants'
+import { cn } from '~/helpers/classnames'
+import { parseLocale } from '~/helpers/content'
+import { getLocalizedEntry } from '~/services/localized'
+
+const locale = parseLocale(Astro.currentLocale)
+const notFound = await getLocalizedEntry('notFound', 'notFound', locale)
+const homeURL = getRelativeLocaleUrl(locale)
+
+const { display, headline, body, action } = notFound.data
+---
+
+<section
+  class="flex min-h-[calc(100dvh-14rem)] flex-col items-center justify-center text-center"
+>
+  <h1 class="text-8xl leading-none font-extrabold text-foreground sm:text-9xl">
+    {display}
+  </h1>
+  <p class="mt-6 text-display text-pretty text-foreground">
+    {
+      headline.map((segment) => (
+        <>
+          {segment.highlight ? (
+            <span class="text-secondary">{segment.text}</span>
+          ) : (
+            segment.text
+          )}
+        </>
+      ))
+    }
+  </p>
+  <div class="mt-3 flex flex-col items-center">
+    <div class="flex max-w-3xl flex-col gap-4">
+      {
+        body.map((paragraph) => (
+          <p class="text-body leading-relaxed text-pretty text-muted-foreground">
+            {paragraph}
+          </p>
+        ))
+      }
+    </div>
+    <a
+      href={homeURL}
+      class={cn(
+        buttonVariants({ variant: 'outline', size: 'default' }),
+        'mt-10 shrink-0',
+      )}
+    >
+      {action.label}
+    </a>
+  </div>
+</section>

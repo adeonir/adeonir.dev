@@ -6,7 +6,7 @@ import robotsTxt from 'astro-robots-txt'
 import { defineConfig, envField, fontProviders } from 'astro/config'
 import icons from 'unplugin-icons/vite'
 
-const noIndexRoutes = ['/styleguide', '/maintenance']
+const noIndexRoutes = ['/styleguide', '/maintenance', '/en/maintenance']
 
 const serverDeps = [
   'react',
@@ -36,6 +36,11 @@ function optimizeServerDeps() {
 export default defineConfig({
   site: 'https://adeonir.dev',
   adapter: cloudflare(),
+  i18n: {
+    locales: ['pt', 'en'],
+    defaultLocale: 'pt',
+    routing: { prefixDefaultLocale: false },
+  },
   fonts: [
     {
       name: 'Geist',

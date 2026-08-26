@@ -1,16 +1,13 @@
 ---
-import { getEntry } from 'astro:content'
-
 import { buttonVariants } from '~/components/ui/button-variants'
 import { Eyebrow } from '~/components/ui/eyebrow'
 import { cn } from '~/helpers/classnames'
+import { parseLocale } from '~/helpers/content'
+import { getLocalizedEntry } from '~/services/localized'
 import IconArrowDown from '~icons/tabler/arrow-narrow-down'
 
-const hero = await getEntry('hero', 'hero')
-
-if (!hero) {
-  throw new Error('Missing hero/hero entry')
-}
+const locale = parseLocale(Astro.currentLocale)
+const hero = await getLocalizedEntry('hero', 'hero', locale)
 
 const { eyebrow, display, tagline, description, actions, scroll } = hero.data
 ---

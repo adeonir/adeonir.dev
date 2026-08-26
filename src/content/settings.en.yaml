@@ -1,0 +1,9 @@
+metadata:
+  siteName: 'Adeonir Kohl'
+  description: 'Design engineer building web interfaces that work.'
+  ogImage: '/og-image.png'
+  locale: 'en'
+  pageTitles:
+    home: 'Portfolio'
+    notFound: 'Page not found'
+    maintenance: 'Maintenance'

@@ -1,0 +1,46 @@
+contact:
+  title:
+    - text: 'Send me a '
+    - text: 'message'
+      highlight: true
+  body:
+    - 'You can write to talk about development, a project, or just say hi.'
+  social:
+    - platform: 'email'
+      label: 'contato@adeonir.dev'
+      link: 'mailto:contato@adeonir.dev'
+    - platform: 'github'
+      label: 'github.com/adeonir'
+      link: 'https://github.com/adeonir'
+    - platform: 'linkedin'
+      label: 'linkedin.com/in/adeonir'
+      link: 'https://www.linkedin.com/in/adeonir'
+    - platform: 'x'
+      label: 'x.com/adeonir'
+      link: 'https://x.com/adeonir'
+  form:
+    fields:
+      - name: 'name'
+        label: 'Name'
+        placeholder: 'Your name'
+      - name: 'email'
+        label: 'Email'
+        placeholder: 'you@example.com'
+      - name: 'subject'
+        label: 'Subject'
+        placeholder: 'What do you want to talk about?'
+      - name: 'message'
+        label: 'Message'
+        placeholder: 'Tell me more about what you have in mind.'
+    submit: 'Send'
+    states:
+      success:
+        title: 'Message sent'
+        description: "Thanks! I'll be in touch soon."
+      error:
+        title: 'Something went wrong'
+        description: 'Try again or email me directly.'
+    validation:
+      required: 'You missed this one.'
+      email: 'Double-check this email.'
+      maxLength: "That's over {max} characters."

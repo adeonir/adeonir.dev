@@ -5,4 +5,9 @@ export const settingsSchema = z.object({
   description: z.string(),
   ogImage: z.string(),
   locale: z.string(),
+  pageTitles: z.object({
+    home: z.string(),
+    notFound: z.string(),
+    maintenance: z.string(),
+  }),
 })

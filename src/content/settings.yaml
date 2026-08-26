@@ -3,3 +3,7 @@ metadata:
   description: 'Design engineer construindo interfaces web que funcionam.'
   ogImage: '/og-image.png'
   locale: 'pt-BR'
+  pageTitles:
+    home: 'Portfólio'
+    notFound: 'Página não encontrada'
+    maintenance: 'Manutenção'

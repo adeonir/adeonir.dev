@@ -1,0 +1,12 @@
+notFound:
+  display: '404'
+  headline:
+    - text: 'Page '
+    - text: 'not found'
+      highlight: true
+    - text: '.'
+  body:
+    - "This address doesn't exist, or it moved."
+  action:
+    label: 'Back to home'
+    href: '/en/'
