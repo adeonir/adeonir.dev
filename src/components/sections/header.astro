@@ -2,6 +2,7 @@
 import { getRelativeLocaleUrl } from 'astro:i18n'
 
 import Logo from '~/components/logo.astro'
+import LanguageToggle from '~/components/language-toggle.astro'
 import MobileMenu from '~/components/mobile-menu.astro'
 import ThemeToggle from '~/components/theme-toggle.astro'
 import { Divider } from '~/components/ui/divider'
@@ -9,6 +10,13 @@ import { NavLink } from '~/components/ui/nav-link'
 import { parseLocale } from '~/helpers/content'
 import { getLocalizedEntry } from '~/services/localized'
 
+type Surface = 'home' | 'notFound'
+
+interface Props {
+  surface?: Surface
+}
+
+const { surface } = Astro.props
 const locale = parseLocale(Astro.currentLocale)
 const header = await getLocalizedEntry('header', 'header', locale)
 const homeURL = getRelativeLocaleUrl(locale)
@@ -43,7 +51,12 @@ const localizedNav = nav.map((item) =>
         </ul>
       </nav>
       <Divider orientation="vertical" className="hidden h-5 md:block" />
-      <div class="hidden xxs:block">
+      <div class="hidden items-center gap-4 xxs:flex">
+        {
+          surface && locale === 'pt' && (
+            <LanguageToggle locale={locale} surface={surface} />
+          )
+        }
         <ThemeToggle />
       </div>
       <div class="md:hidden">
