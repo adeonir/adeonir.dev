@@ -21,7 +21,7 @@ portfolio for a frontend developer positioned on "design + code". It is a
 content-first static site — a landing surface, a work index, and per-project
 case studies — with a single server touchpoint: a contact form. Performance is
 the explicit differentiator: the site itself is the proof of craft, so the
-architecture optimizes for near-zero shipped JavaScript and top quality scores.
+architecture uses Astro's static rendering and a deliberate client-JavaScript budget to reach top quality scores.
 
 The home, not-found fallback, and maintenance surfaces are published in both locales.
 Portuguese keeps the bare URLs and English uses explicit `/en/` entrypoints.
@@ -45,9 +45,7 @@ handling.
   Builds fail when a category score regresses; CLS and the blocking-time proxy
   for INP report as warnings (NFR-1). LCP under 3s is a nice to have and only
   warns.
-- **Near-zero baseline JS:** normal pages prerender to static HTML; only interactive
-  islands hydrate (theme toggle, contact form, mobile nav, and footer signoff). The
-  localized not-found catch-all remains server-rendered without a client translation layer.
+- **Client JavaScript budget:** Astro prerenders normal pages to static HTML. Use client-side JavaScript when an interaction needs it, and keep React hydration limited to the theme toggle, contact form, mobile nav, and footer signoff. This budget is not a ban on JavaScript. The localized not-found catch-all remains server-rendered without a client translation layer.
 - **Accessibility:** WCAG AA across all pages, asserted automatically
   (NFR-2).
 - **Bilingual delivery:** routing-based i18n (pt at `/`, en at `/en`) with

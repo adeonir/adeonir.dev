@@ -80,7 +80,7 @@ Read the matching rule before making the change:
 ## Runtime architecture
 
 - **Astro and Cloudflare:** the site runs on the `workerd` runtime through `@astrojs/cloudflare`. Content pages prerender to static HTML, while the localized not-found catch-all handles arbitrary missing paths at runtime. There is no standalone `/contact` page.
-- **React islands:** keep hydration limited to the theme toggle, contact form, mobile navigation, and footer tagline. Use deferred `client:*` directives.
+- **Client JavaScript budget:** Astro's static rendering keeps normal pages light. Use client-side JavaScript when an interaction needs it. Keep React hydration limited to the theme toggle, contact form, mobile navigation, and footer tagline. This is a boundary, not a ban on JavaScript. Use deferred `client:*` directives for React islands.
 - **Content layer:** the collections are `file()`-loaded YAML.
 - **External services:** Resend sends outbound email, the hosted `contato@adeonir.dev` mailbox receives owner notifications, and PostHog collects cookieless analytics.
 - **Bindings and context:** read Cloudflare bindings through `import { env } from 'cloudflare:workers'`. Use `Astro.locals.cfContext.waitUntil` for non-blocking work and `Astro.clientAddress` for the client IP.
