@@ -1,5 +1,4 @@
 notFound:
-  eyebrow: 'Erro 404'
   display: '404'
   headline:
     - text: 'Página '

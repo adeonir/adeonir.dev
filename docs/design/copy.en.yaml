@@ -188,7 +188,6 @@ content:
 
   not-found:
     header: *header
-    eyebrow: 'Error 404'
     display: '404'
     headline: 'Page not found.'
     body:
