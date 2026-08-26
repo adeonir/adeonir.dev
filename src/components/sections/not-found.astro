@@ -19,7 +19,7 @@ const { display, headline, body, action } = notFound.data
   <h1 class="text-8xl leading-none font-extrabold text-foreground sm:text-9xl">
     {display}
   </h1>
-  <h1 class="mt-6 text-display text-pretty text-foreground">
+  <p class="mt-6 text-display text-pretty text-foreground">
     {
       headline.map((segment) => (
         <>
@@ -31,7 +31,7 @@ const { display, headline, body, action } = notFound.data
         </>
       ))
     }
-  </h1>
+  </p>
   <div class="mt-3 flex flex-col items-center">
     <div class="flex max-w-3xl flex-col gap-4">
       {
