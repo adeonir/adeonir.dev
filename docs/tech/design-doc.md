@@ -1,25 +1,30 @@
 ---
 name: adeonir-dev-portfolio
 created: 2026-06-06
-updated: 2026-08-24
+updated: 2026-08-25
 status: accepted
 sources:
   - docs/product/prd.md
   - docs/design/copy.yaml
+  - docs/design/copy.en.yaml
   - DESIGN.md
   - docs/design/blueprint.md
+  - .artifacts/research/i18n-research.md
 ---
 
 # Design Doc: adeonir.dev Personal Portfolio
 
 ## 1. Context & Scope
 
-adeonir.dev is a bilingual (Portuguese default, English secondary) personal
+adeonir.dev is a bilingual (Portuguese default, English under `/en/`) personal
 portfolio for a frontend developer positioned on "design + code". It is a
 content-first static site — a landing surface, a work index, and per-project
 case studies — with a single server touchpoint: a contact form. Performance is
 the explicit differentiator: the site itself is the proof of craft, so the
 architecture optimizes for near-zero shipped JavaScript and top quality scores.
+
+The home, not-found, and maintenance surfaces are published in both locales.
+Portuguese keeps the bare URLs and English uses explicit `/en/` entrypoints.
 
 The surrounding landscape is intentionally small: Cloudflare hosts and runs the
 one on-demand route, Resend delivers transactional email, a Plesk-hosted
@@ -41,13 +46,12 @@ handling.
   for INP report as warnings (NFR-1). LCP under 3s is a nice to have and only
   warns.
 - **Near-zero baseline JS:** pages prerender to static HTML; only interactive
-  islands hydrate (theme toggle, contact form, language switcher, mobile nav).
+  islands hydrate (theme toggle, contact form, mobile nav, and footer signoff).
 - **Accessibility:** WCAG AA across all pages, asserted automatically
   (NFR-2).
-- **Bilingual-ready delivery:** routing-based i18n (pt at `/`, en at `/en`) with
-  localized metadata and `hreflang`. Portuguese ships first; English is a later
-  phase (FR-12 is Could Have), so the architecture is built i18n-aware but the en
-  locale is enabled once its content is ready (NFR-4).
+- **Bilingual delivery:** routing-based i18n (pt at `/`, en at `/en`) with
+  localized content and document metadata. `hreflang` and localized sitemap
+  alternates remain outside this implementation and belong to issue #128 (NFR-4).
 - **Contact path integrity:** server-side validated submission, two
   transactional emails per submit, spam-guarded, zero persistence; on failure
   the UI surfaces a direct fallback channel (FR-5, EC-2).
@@ -64,8 +68,8 @@ handling.
 - **Authentication / sessions:** no logged-in experience.
 - **SSR for content pages:** content pages are prerendered; only the contact
   route renders on demand.
-- **Browser-language auto-detection:** default is pt; language is changed via an
-  explicit switcher.
+- **Browser-language auto-detection:** the default locale is pt; the current
+  route determines the rendered locale.
 
 ---
 
@@ -76,16 +80,18 @@ handling.
 ```mermaid
 flowchart TD
   subgraph App[Astro app - Cloudflare Worker runtime]
-    Pages[Prerendered pages: pt and en]
+    Pages[Prerendered routes: pt and en]
     Action[Contact Action - on-demand, prerender=false]
-    Islands[React islands: toggle, form, switcher, nav]
+    Islands[React islands: toggle, form, nav]
   end
   subgraph Content[src/content - build time]
     MDX[projects MDX collection]
-    Copy[per-section yaml copy collections]
+    Copy[per-locale yaml copy collections]
+    Registry[Localized content registry]
     Schemas[src/schemas - zod]
   end
-  Pages --> Content
+  Pages --> Registry
+  Registry --> Copy
   Schemas -. validates .-> MDX
   Schemas -. validates .-> Copy
   Islands -. hydrate .-> Pages
@@ -96,7 +102,8 @@ flowchart TD
 ```
 
 - **Components:** Astro app (prerendered pages + one on-demand Action), React
-  islands, content layer (MDX projects + per-section yaml copy), shared `src/schemas/`.
+  islands, content layer (MDX projects + per-locale yaml copy and localized
+  registry), shared `src/schemas/`.
 - **Runtime boundaries:** everything prerenders to static assets except the
   contact Action, which executes on the Cloudflare Worker runtime (workerd).
 
@@ -127,38 +134,49 @@ flowchart LR
 - **Files / naming:** all files `kebab-case`; component default export is
   `PascalCase` (`project-card.astro` → `ProjectCard`). Slugs and folders
   `kebab-case`. Routes lowercase.
-- **Routing:** `/` (pt home), `/work`, `/work/[slug]`, `/404`; English mirrors
-  under `/en/...`. `i18n.routing.prefixDefaultLocale = false`.
-- **i18n keys vs tags:** locale keys are `pt` (default, bare) and `en`; emitted
-  `lang`/`hreflang` are `pt-BR` and `en` (decoupled from the key). Localized
-  links built via `getRelativeLocaleUrl()`.
+- **Routing:** `/`, `/404`, and `/maintenance` are Portuguese routes. English
+  counterparts are explicit files at `/en/`, `/en/404/`, and
+  `/en/maintenance/`. `/styleguide` remains an internal noindex route outside
+  the localized route tree. `i18n.routing.prefixDefaultLocale = false`.
+- **i18n keys vs tags:** locale keys are `pt` (default, bare) and `en`; the
+  document `lang` values are `pt-BR` and `en` (decoupled from the key). Astro
+  does not emit `hreflang`; that and localized sitemap alternates are deferred
+  to issue #128. Localized links use `getRelativeLocaleUrl()`.
 - **Content layout:** per-section yaml copy collections and a `projects` MDX
-  collection live under `src/content/`; default locale is bare (`*.yaml`,
-  `index.mdx`), English carries an `.en` suffix (`*.en.yaml`, `index.en.mdx`);
-  cover and gallery images are shared across locales.
-- **Action contract:** Zod input schema; typed, structured errors; the form posts
-  to the on-demand `/contact` route, which runs the Action server-side (Resend,
-  secrets, KV) and renders server-side success/error states; the island enhances
-  submit UX.
+  collection live under `src/content/`; Portuguese uses bare files (`*.yaml`,
+  `index.mdx`) and English uses `.en` files (`*.en.yaml`, `index.en.mdx`). The
+  localized registry maps a base collection to its locale-specific collection
+  and fails when the required entry is missing. Settings content also holds
+  locale-specific document metadata and route titles. Cover and gallery images
+  are shared across locales.
+- **Action contract:** Zod input schema; typed, structured errors; the form
+  submits through `actions.contact()` to the on-demand Action. A required hidden
+  `locale` field accepts only `pt` or `en`. The Action passes that locale to the
+  email service, which selects the matching copy and date format; the island
+  enhances submit UX.
+- **Crawl policy:** the layout marks the 404 and maintenance documents as
+  `noindex`. The sitemap and `robots.txt` filter `/styleguide`, `/maintenance`,
+  and `/en/maintenance` through the shared `noIndexRoutes` list.
 - **Styling:** Tailwind consuming the existing dual-skin design tokens.
 - **Versioning:** N/A — no public API to version.
 
 ### 3.4 Domain
 
-- **Bounded contexts:** two — _content_ (projects + section copy, build-time,
-  read-only) and _contact_ (transient inbound message, runtime, write-only to
-  email).
+- **Bounded contexts:** two — _content_ (projects + localized section copy,
+  build-time, read-only) and _contact_ (transient inbound message, runtime,
+  write-only to email).
 
 | Entity | Purpose | Key Invariants | Storage |
 |--------|---------|----------------|---------|
 | Project | A case study | `slug` = folder name (unique); pt body (`index.mdx`) required, `index.en.mdx` for en; `cover` present | MDX + colocated images in `src/content/projects/<slug>/` (git, build-time) |
-| Section copy | UI text per section per locale | each section has a bare pt file and an `.en` variant; shape validated by its own schema | yaml data collections in `src/content/` (git, build-time) |
+| Section copy | UI text per section per locale | each section has a bare pt file and an `.en` variant; shape validated by its own schema; no locale fallback | yaml data collections in `src/content/` (git, build-time) |
 | Featured selection | Ordered curation for the home page | references existing project slugs; order is preserved | ordered list in `featured.yaml` (copy) |
-| Contact submission | Inbound visitor message | `name`/`email`/`message` validated; rate-limited per IP; never stored or logged | none — transient, delivered via Resend |
+| Contact submission | Inbound visitor message | `name`/`email`/`message` and `locale` (`pt` or `en`) validated; rate-limited per IP; never stored or logged | none — transient, delivered via Resend |
 
 - **Lifecycle:** projects are shown everywhere on the work index and on the home
   page when present in the featured list — no stored state. A contact submission
-  flows: validate → honeypot + rate-limit check → send two emails → discard.
+  flows: validate fields and locale → honeypot + rate-limit check → select
+  localized email copy and date format → send two emails → discard.
 - **Business rules:** see PRD BR-1 (work is the primary action), BR-2 (every
   shown project routes to a detail surface), BR-3 (contact offers a direct
   channel besides the form).
@@ -172,9 +190,11 @@ erDiagram
   PROJECT }|--|| LOCALE : "body authored per"
 ```
 
-- **Ubiquitous glossary:** _locale_ (pt | en), _island_ (a hydrated React
-  component), _section copy_ (UI text for one section, per locale), _project
-  entry_ (one MDX case study), _featured_ (ordered home curation).
+- **Ubiquitous glossary:** _locale_ (pt | en), _localized content registry_
+  (the required mapping from a base collection to its locale-specific
+  collection), _island_ (a hydrated React component), _section copy_ (UI text
+  for one section, per locale), _project entry_ (one MDX case study), _featured_
+  (ordered home curation).
 
 ### 3.5 Security & Compliance
 
@@ -231,8 +251,8 @@ erDiagram
 
 | Type | Scope | Tools | Coverage Target |
 |------|-------|-------|-----------------|
-| Unit | Input validation, email template helper, form hook, theme store | Vitest — plain config + `vite-tsconfig-paths`; node default, happy-dom per spec | Core logic |
-| Component | React islands (toggle, form, switcher) in a real browser | Vitest browser mode (Playwright provider) | Each island |
+| Unit | Input validation, localized email rendering, form hook, theme store | Vitest — plain config + `vite-tsconfig-paths`; node default, happy-dom per spec | Core logic |
+| Component | React islands (toggle, form, nav) in a real browser | Vitest browser mode (Playwright provider) | Each island |
 | A11y | Rendered pages, WCAG AA, both skins | `@axe-core/playwright` | All pages |
 | Perf / budget | Quality budgets (see §2) | Lighthouse CI | Key pages |
 
@@ -240,8 +260,9 @@ erDiagram
 - **CI integration:** all suites run in GitHub Actions on every PR as required
   status checks; branch protection blocks merge to `main` on failure (see §3.8).
 - **Unit suite (built):** `pnpm test` (`vitest run`) covers the units above in node +
-  happy-dom; it runs locally, on pre-push (lefthook), and as the required `Unit Tests` CI
-  check. The Component and A11y rows remain planned.
+  happy-dom, including the locale validation and English email contract; it runs locally,
+  on pre-push (lefthook), and as the required `Unit Tests` CI check. The Component and
+  A11y rows remain planned.
 
 ### 3.8 Deployment
 
@@ -262,8 +283,8 @@ erDiagram
   lint/format step so a red tree never reaches CI.
 - **Release strategy:** production deploys from `main`; every PR/branch gets an
   automatic preview deployment via the git integration.
-- **Rendering:** static prerender for all content pages; the contact route is
-  `export const prerender = false` and runs on the Cloudflare Worker runtime.
+- **Rendering:** all content pages prerender to static assets. The contact Action
+  runs on the Cloudflare Worker runtime when `actions.contact()` is called.
 - **Migrations:** N/A — no database.
 - **Backups:** all content (MDX + yaml + images) is versioned in git; there is
   no separate data store to back up.
@@ -291,8 +312,8 @@ erDiagram
 | Theme switching | `data-theme` attribute (dark default) | `.dark` class + Tailwind `dark:` variant; `@media (prefers-color-scheme)` only | Tokens already resolve from `[data-theme=light]`; `.dark` inverts the dark-first identity and forces a token-layer rewrite, and media-query-only theming can't express an explicit user override | ADR-002 |
 | Island state | Nano Stores (`@nanostores/react`) | React Context; prop drilling; Zustand/Jotai/Redux | Context can't cross island hydration roots (separate React trees); nanostores is ~1kb, framework-agnostic, and the Astro-recommended cross-island state layer | ADR-003 |
 | SSR-safe islands | Ark `ClientOnly` + CSS fallback + DOM-seeded atom | useEffect-after-hydration; pure-CSS icon; SSR from a theme cookie | An island's first paint can't read client-resolved state at build time; the fallback paints the resolved UI before hydration while the stateful primitive (Swap + rotate) loads on the client | ADR-004 |
-| Content model | Single-source MDX + per-section yaml collections | Split metadata (yaml) from body (MDX) | One source of truth per project; schema-validated; no slug duplication or join logic | — |
-| i18n strategy | Routing-based: pt bare, en `/en`, no auto-detect | Client-side (react-i18next style); both-locales-prefixed; browser detection | Keeps the perf budget and SEO/hreflang intact; clean prefix-free URL for the primary (BR) audience | — |
+| Content model | Single-source MDX + per-locale section yaml collections | Split metadata (yaml) from body (MDX); nested locale fields | One source of truth per project; each locale has a schema-validated collection; the registry selects the required locale without fallback | — |
+| i18n strategy | Routing-based: pt bare, en `/en`, explicit route files, no auto-detect or fallback | Client-side (react-i18next style); both-locales-prefixed; browser detection; Astro `i18n.fallback` | Keeps the perf budget and prevents Portuguese content at English URLs. Explicit files make the small supported route set visible. `hreflang`, localized sitemap alternates, and the language control remain deferred to issues #128 and #127 | — |
 | Analytics | PostHog US Cloud (cookieless) | Umami Cloud; Cloudflare Web Analytics | Privacy-first is the driver: PostHog's cookieless mode (daily-salt hash identity, memory persistence, autocapture + session recording off, DNT respected) delivers custom events and UTM in one privacy-first config, plus server-side `contact-submission` capture (server-authoritative, no client double-count) — which CF Web Analytics lacks and Umami does not cover. Umami ships lighter, but client weight is held down by manual-only capture; measure the real bundle before locking the lib | — |
 | E2E testing | Drop it | Keep Playwright (scoped) | Three content pages and one form; the form's failure paths are covered by the unit suite, and a browser installation in CI does not pay for what is left | — |
 | Unit test runner config | Plain `vitest/config` + `vite-tsconfig-paths` | Astro `getViteConfig` | `getViteConfig` loads the full Astro config, whose Cloudflare adapter registers a Vite plugin Vitest rejects at startup; the covered units import no `astro:*` virtuals, so a plain config with the tsconfig `~/` alias suffices | — |
@@ -312,5 +333,11 @@ erDiagram
 ## 6. References
 
 - PRD: `docs/product/prd.md`
+- Portuguese editorial source: `docs/design/copy.yaml`
+- English editorial source: `docs/design/copy.en.yaml`
+- i18n research: `.artifacts/research/i18n-research.md`
 - Astro i18n routing: https://docs.astro.build/en/guides/internationalization/
+- GitHub issue #126: https://github.com/adeonir/adeonir.dev/issues/126
+- GitHub issue #127 (language control): https://github.com/adeonir/adeonir.dev/issues/127
+- GitHub issue #128 (hreflang and sitemap alternates): https://github.com/adeonir/adeonir.dev/issues/128
 - ADRs: `docs/adr/001-react-islands-runtime.md`
