@@ -8,7 +8,7 @@ It holds what the code cannot answer: the decisions, the prohibitions, the place
 
 `adeonir.dev` is a personal portfolio for a frontend developer positioned around design and code. The site is in Portuguese. An English locale and the work case studies are planned but not built; `docs/product/prd.md` carries that scope.
 
-The site is an Astro application deployed as an SSR Worker on Cloudflare. Pages are content-driven and prerendered to static HTML. The contact Action is the only on-demand server surface.
+The site is an Astro application deployed as an SSR Worker on Cloudflare. Most content pages are prerendered to static HTML; the localized not-found catch-all and contact Action run on demand.
 
 ## Technology stack
 
@@ -79,7 +79,7 @@ Read the matching rule before making the change:
 
 ## Runtime architecture
 
-- **Astro and Cloudflare:** the site runs on the `workerd` runtime through `@astrojs/cloudflare`. Content pages prerender to static HTML. There is no standalone `/contact` page and no `prerender = false` page route.
+- **Astro and Cloudflare:** the site runs on the `workerd` runtime through `@astrojs/cloudflare`. Content pages prerender to static HTML, while the localized not-found catch-all handles arbitrary missing paths at runtime. There is no standalone `/contact` page.
 - **React islands:** keep hydration limited to the theme toggle, contact form, mobile navigation, and footer tagline. Use deferred `client:*` directives.
 - **Content layer:** the collections are `file()`-loaded YAML.
 - **External services:** Resend sends outbound email, the hosted `contato@adeonir.dev` mailbox receives owner notifications, and PostHog collects cookieless analytics.
