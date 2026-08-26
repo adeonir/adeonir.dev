@@ -10,6 +10,7 @@ import Header from '~/components/sections/header.astro'
 import Theme from '~/components/scripts/theme.astro'
 import { Toaster } from '~/components/islands/toaster'
 import { parseLocale } from '~/helpers/content'
+import { getLocalizedPath } from '~/helpers/locale-path'
 import { getLocalizedEntry } from '~/services/localized'
 import '~/styles/global.css'
 
@@ -24,6 +25,8 @@ interface Props {
 
 const locale = parseLocale(Astro.currentLocale)
 const settings = await getLocalizedEntry('settings', 'metadata', locale)
+const openGraphLocale = locale === 'pt' ? 'pt_BR' : 'en_US'
+const alternateOpenGraphLocale = locale === 'pt' ? 'en_US' : 'pt_BR'
 
 const {
   title,
@@ -45,6 +48,10 @@ const resolvedDescription = description?.trim()
   ? description
   : settings.data.description
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
+const portuguesePath = getLocalizedPath(Astro.url.pathname, 'pt')
+const englishPath = getLocalizedPath(portuguesePath, 'en')
+const portugueseURL = new URL(portuguesePath, Astro.site)
+const englishURL = new URL(englishPath, Astro.site)
 const ogImageURL = new URL(
   image?.trim() ? image : settings.data.ogImage,
   Astro.site,
@@ -73,6 +80,11 @@ const ogImageURL = new URL(
       description={resolvedDescription}
       canonical={canonicalURL}
       noindex={noindex}
+      languageAlternates={[
+        { href: portugueseURL, hrefLang: 'pt-BR' },
+        { href: englishURL, hrefLang: 'en' },
+        { href: portugueseURL, hrefLang: 'x-default' },
+      ]}
       openGraph={{
         basic: {
           title: fullTitle,
@@ -80,7 +92,11 @@ const ogImageURL = new URL(
           image: ogImageURL,
           url: canonicalURL,
         },
-        optional: { description: resolvedDescription },
+        optional: {
+          description: resolvedDescription,
+          locale: openGraphLocale,
+          localeAlternate: [alternateOpenGraphLocale],
+        },
         image: { alt: fullTitle, width: 1200, height: 630 },
       }}
       twitter={{ card: 'summary_large_image' }}
