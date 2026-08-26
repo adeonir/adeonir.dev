@@ -62,6 +62,7 @@ export default defineConfig({
   integrations: [
     react(),
     sitemap({
+      i18n: { defaultLocale: 'pt', locales: { pt: 'pt-BR', en: 'en' } },
       filter: (page) =>
         !noIndexRoutes.includes(new URL(page).pathname.replace(/\/+$/, '')),
     }),
