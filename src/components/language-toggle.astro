@@ -1,0 +1,33 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n'
+
+import { buttonVariants } from '~/components/ui/button-variants'
+import { cn } from '~/helpers/classnames'
+import type { Locale } from '~/helpers/content'
+import { getLocalizedEntry } from '~/services/localized'
+
+type Surface = 'home' | 'notFound'
+
+interface Props {
+  surface: Surface
+  locale: Locale
+}
+
+const { locale, surface } = Astro.props
+const targetLocale: Locale = locale === 'pt' ? 'en' : 'pt'
+const labels = await getLocalizedEntry('languageToggle', 'labels', locale)
+const href =
+  surface === 'home'
+    ? getRelativeLocaleUrl(targetLocale)
+    : getRelativeLocaleUrl(targetLocale, '404')
+---
+
+<a
+  href={href}
+  data-astro-reload
+  data-language-link
+  aria-label={labels.data.name}
+  class={cn(buttonVariants({ variant: 'outline', size: 'icon' }), 'font-mono')}
+>
+  {labels.data.code}
+</a>
