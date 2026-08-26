@@ -8,7 +8,7 @@ export const buttonVariants = cva(
         default:
           'bg-primary text-primary-foreground hover:bg-primary/95 hover:shadow-black/75 light:hover:shadow-black/25',
         outline:
-          'border border-border bg-transparent text-muted-foreground hover:border-primary/30 hover:bg-muted/10 hover:text-primary hover:shadow-black/25 light:hover:shadow-black/10 focus:border-primary',
+          'border border-border bg-transparent text-muted-foreground hover:border-primary/30 hover:bg-muted/10 hover:text-primary hover:shadow-black/25 light:hover:shadow-black/10 focus:border-primary/50',
       },
       size: {
         default: 'h-11 gap-2 px-5 text-button',
