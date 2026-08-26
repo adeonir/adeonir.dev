@@ -21,9 +21,9 @@ portfolio for a frontend developer positioned on "design + code". It is a
 content-first static site — a landing surface, a work index, and per-project
 case studies — with a single server touchpoint: a contact form. Performance is
 the explicit differentiator: the site itself is the proof of craft, so the
-architecture optimizes for near-zero shipped JavaScript and top quality scores.
+architecture uses Astro's static rendering and a deliberate client-JavaScript budget to reach top quality scores.
 
-The home, not-found, and maintenance surfaces are published in both locales.
+The home, not-found fallback, and maintenance surfaces are published in both locales.
 Portuguese keeps the bare URLs and English uses explicit `/en/` entrypoints.
 
 The surrounding landscape is intentionally small: Cloudflare hosts and runs the
@@ -45,8 +45,7 @@ handling.
   Builds fail when a category score regresses; CLS and the blocking-time proxy
   for INP report as warnings (NFR-1). LCP under 3s is a nice to have and only
   warns.
-- **Near-zero baseline JS:** pages prerender to static HTML; only interactive
-  islands hydrate (theme toggle, contact form, mobile nav, and footer signoff).
+- **Client JavaScript budget:** Astro prerenders normal pages to static HTML. Use client-side JavaScript when an interaction needs it, and keep React hydration limited to the theme toggle, contact form, mobile nav, and footer signoff. This budget is not a ban on JavaScript. The localized not-found catch-all remains server-rendered without a client translation layer.
 - **Accessibility:** WCAG AA across all pages, asserted automatically
   (NFR-2).
 - **Bilingual delivery:** routing-based i18n (pt at `/`, en at `/en`) with
@@ -66,8 +65,8 @@ handling.
   the performance budget and SEO/hreflang.
 - **Persistence layer:** no database; contact submissions are transient.
 - **Authentication / sessions:** no logged-in experience.
-- **SSR for content pages:** content pages are prerendered; only the contact
-  route renders on demand.
+- **SSR for content pages:** normal content pages are prerendered; the localized
+  not-found catch-all and contact route render on demand.
 - **Browser-language auto-detection:** the default locale is pt; the current
   route determines the rendered locale.
 
@@ -81,6 +80,7 @@ handling.
 flowchart TD
   subgraph App[Astro app - Cloudflare Worker runtime]
     Pages[Prerendered routes: pt and en]
+    NotFound[Localized not-found catch-all]
     Action[Contact Action - on-demand, prerender=false]
     Islands[React islands: toggle, form, nav]
   end
@@ -91,6 +91,7 @@ flowchart TD
     Schemas[src/schemas - zod]
   end
   Pages --> Registry
+  NotFound --> Registry
   Registry --> Copy
   Schemas -. validates .-> MDX
   Schemas -. validates .-> Copy
@@ -101,11 +102,12 @@ flowchart TD
   Action -. waitUntil .-> PostHog[PostHog capture - contact-submission]
 ```
 
-- **Components:** Astro app (prerendered pages + one on-demand Action), React
+- **Components:** Astro app (prerendered pages + localized not-found fallback + one on-demand Action), React
   islands, content layer (MDX projects + per-locale yaml copy and localized
   registry), shared `src/schemas/`.
-- **Runtime boundaries:** everything prerenders to static assets except the
-  contact Action, which executes on the Cloudflare Worker runtime (workerd).
+- **Runtime boundaries:** normal pages prerender to static assets. The localized
+  not-found catch-all and contact Action execute on the Cloudflare Worker runtime
+  (workerd).
 
 ### 3.2 System Context
 
@@ -134,10 +136,11 @@ flowchart LR
 - **Files / naming:** all files `kebab-case`; component default export is
   `PascalCase` (`project-card.astro` → `ProjectCard`). Slugs and folders
   `kebab-case`. Routes lowercase.
-- **Routing:** `/`, `/404`, and `/maintenance` are Portuguese routes. English
-  counterparts are explicit files at `/en/`, `/en/404/`, and
-  `/en/maintenance/`. `/styleguide` remains an internal noindex route outside
-  the localized route tree. `i18n.routing.prefixDefaultLocale = false`.
+- **Routing:** `/` and `/maintenance` are Portuguese routes. English
+  counterparts are explicit files at `/en/` and `/en/maintenance/`. Missing
+  paths use the localized catch-all fallback; there is no dedicated `/en/404`
+  route. `/styleguide` remains an internal noindex route outside the localized
+  route tree. `i18n.routing.prefixDefaultLocale = false`.
 - **i18n keys vs tags:** locale keys are `pt` (default, bare) and `en`; the
   document `lang` values are `pt-BR` and `en` (decoupled from the key). Astro
   does not emit `hreflang`; that and localized sitemap alternates are deferred
@@ -283,8 +286,8 @@ erDiagram
   lint/format step so a red tree never reaches CI.
 - **Release strategy:** production deploys from `main`; every PR/branch gets an
   automatic preview deployment via the git integration.
-- **Rendering:** all content pages prerender to static assets. The contact Action
-  runs on the Cloudflare Worker runtime when `actions.contact()` is called.
+- **Rendering:** normal content pages prerender to static assets. The localized
+  not-found catch-all and contact Action run on the Cloudflare Worker runtime.
 - **Migrations:** N/A — no database.
 - **Backups:** all content (MDX + yaml + images) is versioned in git; there is
   no separate data store to back up.

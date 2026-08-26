@@ -7,6 +7,7 @@ import { emailsSchema } from '~/schemas/emails'
 import { footerSchema } from '~/schemas/footer'
 import { headerSchema } from '~/schemas/header'
 import { heroSchema } from '~/schemas/hero'
+import { languageToggleSchema } from '~/schemas/language-toggle'
 import { mobileMenuSchema } from '~/schemas/mobile-menu'
 import { notFoundSchema } from '~/schemas/not-found'
 import { settingsSchema } from '~/schemas/settings'
@@ -51,6 +52,16 @@ const themeToggle = defineCollection({
 const themeToggleEn = defineCollection({
   loader: file('src/content/theme-toggle.en.yaml'),
   schema: themeToggleSchema,
+})
+
+const languageToggle = defineCollection({
+  loader: file('src/content/language-toggle.yaml'),
+  schema: languageToggleSchema,
+})
+
+const languageToggleEn = defineCollection({
+  loader: file('src/content/language-toggle.en.yaml'),
+  schema: languageToggleSchema,
 })
 
 const hero = defineCollection({
@@ -142,6 +153,8 @@ export const collections = {
   mobileMenuEn,
   themeToggle,
   themeToggleEn,
+  languageToggle,
+  languageToggleEn,
   footer,
   footerEn,
   hero,

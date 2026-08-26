@@ -44,7 +44,7 @@ describe('anchor navigation', () => {
     expect(scrollIntoView).toHaveBeenCalledTimes(1)
   })
 
-  it('keeps the hash out of the url', () => {
+  it('keeps the active section hash out of the url', () => {
     clickLink('#about')
 
     expect(location.hash).toBe('')

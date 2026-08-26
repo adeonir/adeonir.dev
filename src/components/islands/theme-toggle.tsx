@@ -22,7 +22,6 @@ export function ThemeToggle({ labels }: ThemeToggleProps) {
       variant="outline"
       aria-label={isLight ? labels.light : labels.dark}
       aria-pressed={isLight}
-      className="border-border!"
       onClick={toggleTheme}
       suppressHydrationWarning
     >
