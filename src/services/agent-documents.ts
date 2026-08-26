@@ -1,5 +1,6 @@
 import {
   type AgentDocumentSection,
+  agentDocumentSections,
   getAgentDocumentPath,
 } from '~/helpers/agent-documents'
 import { type Locale, parseLocale } from '~/helpers/content'
@@ -143,27 +144,42 @@ ${serializeSocialLinks(content.contact.social)}
 
 function serializeLlms(content: AgentDocumentContent, locale: Locale): string {
   const titles = sectionTitles[locale]
-  const links = [
-    [
-      titles.hero,
-      content.hero.display,
-      `${content.hero.tagline} ${content.hero.description}`,
-      'hero',
-    ],
-    [titles.about, titles.about, content.about.bio[0], 'about'],
-    [titles.stack, titles.stack, content.stack.body, 'stack'],
-    [titles.contact, titles.contact, content.contact.body, 'contact'],
-  ] as const
+  const linksBySection: Record<
+    AgentDocumentSection,
+    { title: string; linkTitle: string; description: string }
+  > = {
+    hero: {
+      title: titles.hero,
+      linkTitle: content.hero.display,
+      description: `${content.hero.tagline} ${content.hero.description}`,
+    },
+    about: {
+      title: titles.about,
+      linkTitle: titles.about,
+      description: content.about.bio[0],
+    },
+    stack: {
+      title: titles.stack,
+      linkTitle: titles.stack,
+      description: content.stack.body,
+    },
+    contact: {
+      title: titles.contact,
+      linkTitle: titles.contact,
+      description: content.contact.body,
+    },
+  }
 
   return `# ${content.hero.display}
 
 > ${content.hero.tagline} ${content.hero.description}
 
-${links
-  .map(
-    ([title, linkTitle, description, section]) =>
-      `## ${title}\n\n- [${linkTitle}](${getSectionURL(locale, section)}): ${description}`,
-  )
+${agentDocumentSections
+  .map((section) => {
+    const { title, linkTitle, description } = linksBySection[section]
+
+    return `## ${title}\n\n- [${linkTitle}](${getSectionURL(locale, section)}): ${description}`
+  })
   .join('\n\n')}
 `
 }
