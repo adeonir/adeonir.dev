@@ -1,8 +1,24 @@
 import { goToAnchor } from '~/helpers/anchor'
+import type { Locale } from '~/helpers/content'
+import { getLocalizedPath } from '~/helpers/locale-path'
 
 import { onVisit } from './visit'
 
 const currentSectionKey = 'language-control:current-section'
+
+const targetLocaleForPath = (pathname: string): Locale =>
+  pathname === '/en' || pathname.startsWith('/en/') ? 'pt' : 'en'
+
+export const syncLanguageLinks = () => {
+  const targetLocale = targetLocaleForPath(location.pathname)
+  const href = `${getLocalizedPath(location.pathname, targetLocale)}${location.search}`
+
+  document
+    .querySelectorAll<HTMLAnchorElement>('[data-language-link]')
+    .forEach((link) => {
+      link.setAttribute('href', href)
+    })
+}
 
 export const rememberCurrentSection = (id: string) => {
   if (!id) return
@@ -39,6 +55,7 @@ const rememberAnchorClick = (event: MouseEvent) => {
 }
 
 onVisit(() => {
+  syncLanguageLinks()
   restoreCurrentSection()
   document.addEventListener('click', rememberAnchorClick, { capture: true })
 

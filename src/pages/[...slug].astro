@@ -1,6 +1,10 @@
 ---
 import NotFound from '~/components/sections/not-found.astro'
 import Layout from '~/layouts/base.astro'
+
+export const prerender = false
+
+Astro.response.status = 404
 ---
 
 <Layout titleKey="notFound" noindex shell>

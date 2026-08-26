@@ -10,13 +10,31 @@ beforeAll(async () => {
 })
 
 beforeEach(() => {
-  document.body.innerHTML = '<a href="#about"></a>'
+  document.body.innerHTML = `
+    <a data-language-link href="/en/stale-path"></a>
+    <a href="#about"></a>
+  `
   sessionStorage.clear()
   history.replaceState(null, '', '/')
   document.dispatchEvent(new Event('astro:before-swap'))
 })
 
 describe('language navigation', () => {
+  it('updates persisted language links after the pathname changes', () => {
+    const languageLink = document.querySelector<HTMLAnchorElement>(
+      '[data-language-link]',
+    )
+
+    visit()
+    expect(languageLink?.getAttribute('href')).toBe('/en/')
+
+    history.replaceState(null, '', '/en/nested/missing-page')
+    document.dispatchEvent(new Event('astro:before-swap'))
+    visit()
+
+    expect(languageLink?.getAttribute('href')).toBe('/nested/missing-page')
+  })
+
   it('restores the stored section after a language visit and consumes it', () => {
     const target = document.createElement('section')
     target.id = 'about'
