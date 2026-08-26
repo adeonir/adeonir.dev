@@ -5,6 +5,14 @@ const visit = () => {
   document.dispatchEvent(new Event('astro:page-load'))
 }
 
+const swap = () => {
+  document.dispatchEvent(new Event('astro:after-swap'))
+}
+
+const setScrollY = (value: number) => {
+  Object.defineProperty(window, 'scrollY', { value, configurable: true })
+}
+
 beforeAll(async () => {
   await import('./language-nav')
 })
@@ -14,8 +22,8 @@ beforeEach(() => {
     <a data-language-link href="/en/stale-path"></a>
     <a href="#about"></a>
   `
-  sessionStorage.clear()
   history.replaceState(null, '', '/')
+  setScrollY(0)
   document.dispatchEvent(new Event('astro:before-swap'))
 })
 
@@ -35,31 +43,38 @@ describe('language navigation', () => {
     expect(languageLink?.getAttribute('href')).toBe('/nested/missing-page')
   })
 
-  it('restores the stored section after a language visit and consumes it', () => {
-    const target = document.createElement('section')
-    target.id = 'about'
-    const scrollIntoView = vi.fn()
-    target.scrollIntoView = scrollIntoView
-    document.body.appendChild(target)
-
-    visit()
-    document.querySelector<HTMLAnchorElement>('a[href="#about"]')?.click()
-
-    expect(sessionStorage.getItem('language-control:current-section')).toBe(
-      'about',
+  it('restores the scroll position after a language swap and consumes it', () => {
+    const scrollTo = vi.spyOn(window, 'scrollTo').mockImplementation(() => {})
+    const languageLink = document.querySelector<HTMLAnchorElement>(
+      '[data-language-link]',
     )
+    languageLink?.addEventListener('click', (event) => event.preventDefault())
 
-    document.body.innerHTML = '<section id="about"></section>'
-    const restoredTarget = document.getElementById('about') as HTMLElement
-    restoredTarget.scrollIntoView = scrollIntoView
-    history.replaceState(null, '', '/en/')
-    document.dispatchEvent(new Event('astro:before-swap'))
     visit()
+    setScrollY(1280)
+    languageLink?.click()
+    swap()
 
-    expect(scrollIntoView).toHaveBeenCalledTimes(1)
-    expect(
-      sessionStorage.getItem('language-control:current-section'),
-    ).toBeNull()
-    expect(location.hash).toBe('')
+    expect(scrollTo).toHaveBeenCalledWith({ top: 1280, behavior: 'instant' })
+
+    swap()
+    expect(scrollTo).toHaveBeenCalledTimes(1)
+
+    scrollTo.mockRestore()
+  })
+
+  it('ignores swaps that do not come from the language control', () => {
+    const scrollTo = vi.spyOn(window, 'scrollTo').mockImplementation(() => {})
+    const anchor = document.querySelector<HTMLAnchorElement>('a[href="#about"]')
+    anchor?.addEventListener('click', (event) => event.preventDefault())
+
+    visit()
+    setScrollY(1280)
+    anchor?.click()
+    swap()
+
+    expect(scrollTo).not.toHaveBeenCalled()
+
+    scrollTo.mockRestore()
   })
 })

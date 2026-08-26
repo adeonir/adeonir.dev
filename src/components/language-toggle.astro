@@ -17,7 +17,6 @@ const href = `${getLocalizedPath(Astro.url.pathname, targetLocale)}${Astro.url.s
 
 <a
   href={href}
-  data-astro-reload
   data-language-link
   aria-label={labels.data.name}
   class={cn(buttonVariants({ variant: 'outline', size: 'icon' }), 'font-mono')}
