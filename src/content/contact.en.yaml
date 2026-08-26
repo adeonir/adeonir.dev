@@ -3,8 +3,7 @@ contact:
     - text: 'Send me a '
     - text: 'message'
       highlight: true
-  body:
-    - 'You can write to talk about development, a project, or just say hi.'
+  body: 'You can write to talk about development, a project, or just say hi.'
   social:
     - platform: 'email'
       label: 'contato@adeonir.dev'

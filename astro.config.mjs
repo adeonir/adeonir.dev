@@ -7,6 +7,12 @@ import { defineConfig, envField, fontProviders } from 'astro/config'
 import icons from 'unplugin-icons/vite'
 
 const noIndexRoutes = ['/styleguide', '/maintenance', '/en/maintenance']
+const agentDocumentRoutes = [
+  '/llms.txt',
+  '/en/llms.txt',
+  '/index.md',
+  '/en/index.md',
+]
 
 const serverDeps = [
   'react',
@@ -63,8 +69,14 @@ export default defineConfig({
     react(),
     sitemap({
       i18n: { defaultLocale: 'pt', locales: { pt: 'pt-BR', en: 'en' } },
-      filter: (page) =>
-        !noIndexRoutes.includes(new URL(page).pathname.replace(/\/+$/, '')),
+      filter: (page) => {
+        const pathname = new URL(page).pathname.replace(/\/+$/, '')
+
+        return (
+          !noIndexRoutes.includes(pathname) &&
+          !agentDocumentRoutes.includes(pathname)
+        )
+      },
     }),
     robotsTxt({
       policy: [{ userAgent: '*', allow: '/', disallow: noIndexRoutes }],

@@ -10,6 +10,7 @@ export const stackSchema = z.object({
       }),
     )
     .min(1),
+  body: z.string().min(1),
   tools: z
     .array(
       z.object({

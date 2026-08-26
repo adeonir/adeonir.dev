@@ -9,6 +9,7 @@ import Footer from '~/components/sections/footer.astro'
 import Header from '~/components/sections/header.astro'
 import Theme from '~/components/scripts/theme.astro'
 import { Toaster } from '~/components/islands/toaster'
+import { getAgentDocumentPath } from '~/helpers/agent-documents'
 import { parseLocale } from '~/helpers/content'
 import { getLocalizedPath } from '~/helpers/locale-path'
 import { getLocalizedEntry } from '~/services/localized'
@@ -52,6 +53,11 @@ const portuguesePath = getLocalizedPath(Astro.url.pathname, 'pt')
 const englishPath = getLocalizedPath(portuguesePath, 'en')
 const portugueseURL = new URL(portuguesePath, Astro.site)
 const englishURL = new URL(englishPath, Astro.site)
+const agentMarkdownURL = new URL(
+  getAgentDocumentPath(locale, 'markdown'),
+  Astro.site,
+)
+const agentLlmsURL = new URL(getAgentDocumentPath(locale, 'llms'), Astro.site)
 const ogImageURL = new URL(
   image?.trim() ? image : settings.data.ogImage,
   Astro.site,
@@ -105,6 +111,14 @@ const ogImageURL = new URL(
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
+    {
+      titleKey === 'home' && (
+        <>
+          <link rel="alternate" type="text/markdown" href={agentMarkdownURL} />
+          <link rel="describedby" href={agentLlmsURL} />
+        </>
+      )
+    }
 
     <ClientRouter />
     <Analytics />

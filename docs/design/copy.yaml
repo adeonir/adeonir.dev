@@ -27,6 +27,12 @@ routes:
 
 content:
   home:
+    agentDocument:
+      sections:
+        hero: 'Hero'
+        about: 'Sobre mim'
+        stack: 'Tecnologias'
+        contact: 'Contato'
     header: &header
       logo:
         text: 'adeonir.dev'
@@ -62,6 +68,7 @@ content:
     stack:
       eyebrow: 'Tecnologias'
       headline: 'As ferramentas que eu uso.'
+      body: 'Tecnologias e ferramentas usadas em diferentes projetos, escolhidas conforme cada problema e contexto.'
       tools:
         - title: 'frontend'
           items:
@@ -99,8 +106,7 @@ content:
 
     contact:
       headline: 'Me manda uma mensagem'
-      body:
-        - 'Pode ser sobre desenvolvimento, um projeto, ou só trocar ideia.'
+      body: 'Pode ser sobre desenvolvimento, um projeto, ou só trocar ideia.'
       social:
         - platform: 'email'
           label: 'contato@adeonir.dev'

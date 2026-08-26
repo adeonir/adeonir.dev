@@ -9,7 +9,7 @@ export const contactSchema = z.object({
       }),
     )
     .min(1),
-  body: z.array(z.string().min(1)).min(1),
+  body: z.string().min(1),
   social: z
     .array(
       z.object({

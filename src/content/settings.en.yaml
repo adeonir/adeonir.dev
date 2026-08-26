@@ -3,6 +3,12 @@ metadata:
   description: 'Design engineer building web interfaces that work.'
   ogImage: '/og-image.en.png'
   locale: 'en'
+  agentDocument:
+    sections:
+      hero: 'Hero'
+      about: 'About me'
+      stack: 'Tech Stack'
+      contact: 'Contact'
   pageTitles:
     home: 'Portfolio'
     notFound: 'Page not found'

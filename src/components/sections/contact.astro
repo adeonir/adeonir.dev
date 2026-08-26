@@ -31,16 +31,12 @@ const { title, body, social, form } = contact.data
           }
         </h2>
         <div class="flex flex-col gap-4">
-          {
-            body.map((paragraph) => (
-              <p
-                data-enter="block"
-                class="text-body leading-relaxed text-pretty text-muted-foreground"
-              >
-                {paragraph}
-              </p>
-            ))
-          }
+          <p
+            data-enter="block"
+            class="text-body leading-relaxed text-pretty text-muted-foreground"
+          >
+            {body}
+          </p>
         </div>
         <div data-enter="block" class="mt-6 flex flex-col gap-2">
           <p class="inline-flex items-center gap-2 text-code text-foreground">
