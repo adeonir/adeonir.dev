@@ -1,7 +1,7 @@
 metadata:
   siteName: 'Adeonir Kohl'
   description: 'Design engineer building web interfaces that work.'
-  ogImage: '/og-image.png'
+  ogImage: '/og-image.en.png'
   locale: 'en'
   pageTitles:
     home: 'Portfolio'
