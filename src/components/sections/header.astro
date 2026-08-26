@@ -52,11 +52,7 @@ const localizedNav = nav.map((item) =>
       </nav>
       <Divider orientation="vertical" className="hidden h-5 md:block" />
       <div class="hidden items-center gap-4 xxs:flex">
-        {
-          surface && locale === 'pt' && (
-            <LanguageToggle locale={locale} surface={surface} />
-          )
-        }
+        {surface && <LanguageToggle locale={locale} surface={surface} />}
         <ThemeToggle />
       </div>
       <div class="md:hidden">
