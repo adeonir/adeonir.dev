@@ -1,62 +1,8 @@
 ---
-import { getRelativeLocaleUrl } from 'astro:i18n'
-
-import { buttonVariants } from '~/components/ui/button-variants'
-import { Eyebrow } from '~/components/ui/eyebrow'
-import { cn } from '~/helpers/classnames'
-import { parseLocale } from '~/helpers/content'
-import { getLocalizedEntry } from '~/services/localized'
+import NotFound from '~/components/sections/not-found.astro'
 import Layout from '~/layouts/base.astro'
-
-const locale = parseLocale(Astro.currentLocale)
-const notFound = await getLocalizedEntry('notFound', 'notFound', locale)
-const homeURL = getRelativeLocaleUrl(locale)
-
-const { eyebrow, display, headline, body, action } = notFound.data
 ---
 
 <Layout titleKey="notFound" noindex shell>
-  <section class="flex flex-1 flex-col justify-center">
-    <Eyebrow>{eyebrow}</Eyebrow>
-    <p
-      class="mt-6 text-8xl leading-none font-extrabold text-foreground sm:text-9xl"
-    >
-      {display}
-    </p>
-    <h1 class="mt-6 text-display text-pretty text-foreground">
-      {
-        headline.map((segment) => (
-          <>
-            {segment.highlight ? (
-              <span class="text-secondary">{segment.text}</span>
-            ) : (
-              segment.text
-            )}
-          </>
-        ))
-      }
-    </h1>
-    <div
-      class="mt-12 flex flex-col gap-8 md:flex-row md:items-end md:justify-between"
-    >
-      <div class="flex max-w-2xl flex-col gap-4">
-        {
-          body.map((paragraph) => (
-            <p class="text-body leading-relaxed text-pretty text-muted-foreground">
-              {paragraph}
-            </p>
-          ))
-        }
-      </div>
-      <a
-        href={homeURL}
-        class={cn(
-          buttonVariants({ variant: 'outline', size: 'default' }),
-          'shrink-0',
-        )}
-      >
-        {action.label}
-      </a>
-    </div>
-  </section>
+  <NotFound />
 </Layout>
