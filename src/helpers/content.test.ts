@@ -22,6 +22,15 @@ describe('content locale mapping', () => {
     }
   })
 
+  it('maps the language-toggle collection to both locale-specific names', () => {
+    expect(getLocalizedCollectionName('languageToggle', 'pt')).toBe(
+      'languageToggle',
+    )
+    expect(getLocalizedCollectionName('languageToggle', 'en')).toBe(
+      'languageToggleEn',
+    )
+  })
+
   it('recognizes only supported locales', () => {
     expect(isLocale('pt')).toBe(true)
     expect(isLocale('en')).toBe(true)
