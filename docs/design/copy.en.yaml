@@ -62,6 +62,7 @@ content:
     stack:
       eyebrow: 'Tech Stack'
       headline: 'The tools I build with.'
+      body: 'Technologies and tools I use across projects, chosen for each problem and context.'
       tools:
         - title: 'frontend'
           items:
@@ -99,8 +100,7 @@ content:
 
     contact:
       headline: 'Send me a message'
-      body:
-        - 'You can write to talk about development, a project, or just say hi.'
+      body: 'You can write to talk about development, a project, or just say hi.'
       social:
         - platform: 'email'
           label: 'contato@adeonir.dev'

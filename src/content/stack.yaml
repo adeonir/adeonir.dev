@@ -5,6 +5,7 @@ stack:
     - text: 'ferramentas '
       highlight: true
     - text: 'que eu uso.'
+  body: 'Tecnologias e ferramentas que uso em diferentes projetos, escolhidas conforme cada problema e contexto.'
   tools:
     - title: 'frontend'
       items:

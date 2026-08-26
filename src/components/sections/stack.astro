@@ -7,7 +7,7 @@ import { getLocalizedEntry } from '~/services/localized'
 const locale = parseLocale(Astro.currentLocale)
 const stack = await getLocalizedEntry('stack', 'stack', locale)
 
-const { eyebrow, headline, tools } = stack.data
+const { eyebrow, headline, body, tools } = stack.data
 ---
 
 <section id="stack" class="py-16 md:py-24">
@@ -35,6 +35,12 @@ const { eyebrow, headline, tools } = stack.data
         <Eyebrow data-enter="block" className="col-span-full" variant="muted">
           {eyebrow}
         </Eyebrow>
+        <p
+          data-enter="block"
+          class="col-span-full text-body leading-relaxed text-pretty text-muted-foreground"
+        >
+          {body}
+        </p>
         {
           tools.map((group) => (
             <div data-enter="block" class="flex flex-col gap-2">
