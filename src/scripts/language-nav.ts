@@ -19,12 +19,21 @@ export const syncLanguageLinks = () => {
 
 let pendingScrollY: number | null = null
 
+const opensInThisTab = (event: MouseEvent) =>
+  event.button === 0 &&
+  !event.metaKey &&
+  !event.ctrlKey &&
+  !event.shiftKey &&
+  !event.altKey
+
 const rememberScrollPosition = (event: MouseEvent) => {
   const node = event.target
   if (!(node instanceof Element)) return
-  if (!node.closest('[data-language-link]')) return
 
-  pendingScrollY = window.scrollY
+  const startsLanguageVisit =
+    opensInThisTab(event) && Boolean(node.closest('[data-language-link]'))
+
+  pendingScrollY = startsLanguageVisit ? window.scrollY : null
 }
 
 export const restoreScrollPosition = () => {

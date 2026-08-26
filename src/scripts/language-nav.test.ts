@@ -63,6 +63,24 @@ describe('language navigation', () => {
     scrollTo.mockRestore()
   })
 
+  it('ignores a language click that opens another tab', () => {
+    const scrollTo = vi.spyOn(window, 'scrollTo').mockImplementation(() => {})
+    const languageLink = document.querySelector<HTMLAnchorElement>(
+      '[data-language-link]',
+    )
+
+    visit()
+    setScrollY(1280)
+    languageLink?.dispatchEvent(
+      new MouseEvent('click', { bubbles: true, metaKey: true }),
+    )
+    swap()
+
+    expect(scrollTo).not.toHaveBeenCalled()
+
+    scrollTo.mockRestore()
+  })
+
   it('ignores swaps that do not come from the language control', () => {
     const scrollTo = vi.spyOn(window, 'scrollTo').mockImplementation(() => {})
     const anchor = document.querySelector<HTMLAnchorElement>('a[href="#about"]')
