@@ -59,6 +59,7 @@ const localizedNav = nav.map((item) =>
         <MobileMenu nav={localizedNav}>
           <Divider className="block xxs:hidden" />
           <div class="flex items-center gap-4 xxs:hidden">
+            {surface && <LanguageToggle locale={locale} surface={surface} />}
             <ThemeToggle />
           </div>
         </MobileMenu>
