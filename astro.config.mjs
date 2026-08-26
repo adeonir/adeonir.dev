@@ -6,7 +6,7 @@ import robotsTxt from 'astro-robots-txt'
 import { defineConfig, envField, fontProviders } from 'astro/config'
 import icons from 'unplugin-icons/vite'
 
-const noIndexRoutes = ['/styleguide', '/maintenance']
+const noIndexRoutes = ['/styleguide', '/maintenance', '/en/maintenance']
 
 const serverDeps = [
   'react',
