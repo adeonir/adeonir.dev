@@ -27,6 +27,12 @@ routes:
 
 content:
   home:
+    agentDocument:
+      sections:
+        hero: 'Hero'
+        about: 'About me'
+        stack: 'Tech Stack'
+        contact: 'Contact'
     header: &header
       logo:
         text: 'adeonir.dev'

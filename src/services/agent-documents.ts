@@ -17,6 +17,9 @@ type StackGroup = {
 }
 
 type AgentDocumentContent = {
+  agentDocument: {
+    sections: Record<AgentDocumentSection, string>
+  }
   hero: {
     display: string
     eyebrow: string
@@ -48,19 +51,11 @@ export type AgentDocuments = {
 
 const siteURL = import.meta.env.SITE ?? 'https://adeonir.dev'
 
-const sectionTitles: Record<Locale, Record<AgentDocumentSection, string>> = {
-  pt: {
-    hero: 'Hero',
-    about: 'Sobre mim',
-    stack: 'Tecnologias',
-    contact: 'Contato',
-  },
-  en: {
-    hero: 'Hero',
-    about: 'About me',
-    stack: 'Tech Stack',
-    contact: 'Contact',
-  },
+function getSectionTitle(
+  content: AgentDocumentContent,
+  section: AgentDocumentSection,
+): string {
+  return content.agentDocument.sections[section]
 }
 
 function joinSegments(segments: TextSegment[]): string {
@@ -92,18 +87,13 @@ function serializeSocialLinks(
     .join('\n')
 }
 
-function serializeMarkdown(
-  content: AgentDocumentContent,
-  locale: Locale,
-): string {
-  const titles = sectionTitles[locale]
-
+function serializeMarkdown(content: AgentDocumentContent): string {
   return `# ${content.hero.display}
 
 > ${content.hero.tagline} ${content.hero.description}
 
 <a id="hero"></a>
-## ${titles.hero}
+## ${getSectionTitle(content, 'hero')}
 
 ${content.hero.eyebrow}
 
@@ -112,7 +102,7 @@ ${content.hero.tagline}
 ${content.hero.description}
 
 <a id="about"></a>
-## ${titles.about}
+## ${getSectionTitle(content, 'about')}
 
 ${content.about.eyebrow}
 
@@ -121,7 +111,7 @@ ${content.about.eyebrow}
 ${content.about.bio.join('\n\n')}
 
 <a id="stack"></a>
-## ${titles.stack}
+## ${getSectionTitle(content, 'stack')}
 
 ${content.stack.eyebrow}
 
@@ -132,7 +122,7 @@ ${content.stack.body}
 ${serializeStackTools(content.stack.tools)}
 
 <a id="contact"></a>
-## ${titles.contact}
+## ${getSectionTitle(content, 'contact')}
 
 ${content.contact.title}
 
@@ -143,29 +133,28 @@ ${serializeSocialLinks(content.contact.social)}
 }
 
 function serializeLlms(content: AgentDocumentContent, locale: Locale): string {
-  const titles = sectionTitles[locale]
   const linksBySection: Record<
     AgentDocumentSection,
     { title: string; linkTitle: string; description: string }
   > = {
     hero: {
-      title: titles.hero,
+      title: getSectionTitle(content, 'hero'),
       linkTitle: content.hero.display,
       description: `${content.hero.tagline} ${content.hero.description}`,
     },
     about: {
-      title: titles.about,
-      linkTitle: titles.about,
+      title: getSectionTitle(content, 'about'),
+      linkTitle: getSectionTitle(content, 'about'),
       description: content.about.bio[0],
     },
     stack: {
-      title: titles.stack,
-      linkTitle: titles.stack,
+      title: getSectionTitle(content, 'stack'),
+      linkTitle: getSectionTitle(content, 'stack'),
       description: content.stack.body,
     },
     contact: {
-      title: titles.contact,
-      linkTitle: titles.contact,
+      title: getSectionTitle(content, 'contact'),
+      linkTitle: getSectionTitle(content, 'contact'),
       description: content.contact.body,
     },
   }
@@ -201,6 +190,7 @@ async function getAgentDocumentContent(
   const contactData = contact.data
 
   return {
+    agentDocument: settings.data.agentDocument,
     hero: {
       display: settings.data.siteName,
       eyebrow: heroData.eyebrow,
@@ -234,6 +224,6 @@ export async function getAgentDocuments(
 
   return {
     llms: serializeLlms(content, normalizedLocale),
-    markdown: serializeMarkdown(content, normalizedLocale),
+    markdown: serializeMarkdown(content),
   }
 }
