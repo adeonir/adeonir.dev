@@ -44,8 +44,6 @@ const fullTitle = `${resolvedTitle} | ${settings.data.siteName}`
 const resolvedDescription = description?.trim()
   ? description
   : settings.data.description
-const surface =
-  titleKey === 'home' || titleKey === 'notFound' ? titleKey : undefined
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 const ogImageURL = new URL(
   image?.trim() ? image : settings.data.ogImage,
@@ -102,7 +100,7 @@ const ogImageURL = new URL(
     {
       shell ? (
         <>
-          <Header surface={surface} />
+          <Header />
           <main class="flex flex-1 flex-col">
             <slot />
           </main>

@@ -10,13 +10,6 @@ import { NavLink } from '~/components/ui/nav-link'
 import { parseLocale } from '~/helpers/content'
 import { getLocalizedEntry } from '~/services/localized'
 
-type Surface = 'home' | 'notFound'
-
-interface Props {
-  surface?: Surface
-}
-
-const { surface } = Astro.props
 const locale = parseLocale(Astro.currentLocale)
 const header = await getLocalizedEntry('header', 'header', locale)
 const homeURL = getRelativeLocaleUrl(locale)
@@ -52,14 +45,14 @@ const localizedNav = nav.map((item) =>
       </nav>
       <Divider orientation="vertical" className="hidden h-5 md:block" />
       <div class="hidden items-center gap-4 xxs:flex">
-        {surface && <LanguageToggle locale={locale} surface={surface} />}
+        <LanguageToggle locale={locale} />
         <ThemeToggle />
       </div>
       <div class="md:hidden">
         <MobileMenu nav={localizedNav}>
           <Divider className="block xxs:hidden" />
           <div class="flex items-center gap-4 xxs:hidden">
-            {surface && <LanguageToggle locale={locale} surface={surface} />}
+            <LanguageToggle locale={locale} />
             <ThemeToggle />
           </div>
         </MobileMenu>
