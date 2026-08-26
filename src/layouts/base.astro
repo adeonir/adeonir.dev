@@ -14,7 +14,8 @@ import { getLocalizedEntry } from '~/services/localized'
 import '~/styles/global.css'
 
 interface Props {
-  title: string
+  title?: string
+  titleKey?: 'home' | 'notFound' | 'maintenance'
   description?: string
   image?: string
   noindex?: boolean
@@ -26,13 +27,20 @@ const settings = await getLocalizedEntry('settings', 'metadata', locale)
 
 const {
   title,
+  titleKey,
   description,
   image,
   noindex = false,
   shell = false,
 } = Astro.props
 
-const fullTitle = `${title} | ${settings.data.siteName}`
+const resolvedTitle = titleKey ? settings.data.pageTitles[titleKey] : title
+
+if (!resolvedTitle) {
+  throw new Error('A page title or title key is required')
+}
+
+const fullTitle = `${resolvedTitle} | ${settings.data.siteName}`
 const resolvedDescription = description?.trim()
   ? description
   : settings.data.description
@@ -60,7 +68,7 @@ const ogImageURL = new URL(
     <Font cssVariable="--font-fira-code" />
 
     <SEO
-      title={title}
+      title={resolvedTitle}
       titleTemplate={`%s | ${settings.data.siteName}`}
       description={resolvedDescription}
       canonical={canonicalURL}

@@ -11,6 +11,14 @@ project:
   title: 'Adeonir Kohl | Portfólio'
   description: 'Design engineer construindo interfaces web que funcionam.'
 
+routes:
+  home:
+    title: 'Portfólio'
+  not-found:
+    title: 'Página não encontrada'
+  maintenance:
+    title: 'Manutenção'
+
 # The content tree mirrors docs/design/blueprint.md: surfaces home, work, project,
 # plus a global not-found (404) error surface.
 # header and footer are persistent across every surface — defined once on
