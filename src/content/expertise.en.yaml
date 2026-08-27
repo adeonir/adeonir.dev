@@ -1,0 +1,20 @@
+expertise:
+  eyebrow: 'Capabilities'
+  headline:
+    - text: 'What I '
+    - text: 'do'
+      highlight: true
+  body: 'What I do day to day, and what the team gets from it.'
+  items:
+    - title: 'Accessible interfaces'
+      description: 'I make interfaces that work well across screen sizes, with proper semantics and accessibility from the start.'
+    - title: 'Design systems'
+      description: 'I keep components organized so the team can build new screens that feel consistent without rewriting what’s already there.'
+    - title: 'State and data'
+      description: 'I handle API integration and state management, with caching and shared data across screens.'
+    - title: 'Quality and testing'
+      description: "I use automated tests to cover how the product behaves and keep an eye on errors and performance once it's live."
+    - title: 'Metrics and experimentation'
+      description: 'I add events and experiments to see whether a change made a difference.'
+    - title: 'AI-assisted development'
+      description: 'I develop with AI agents that help me think, build, test, evaluate, and adjust the work throughout the process.'
