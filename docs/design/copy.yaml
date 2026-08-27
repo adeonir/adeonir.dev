@@ -1,7 +1,7 @@
 metadata:
   source: 'docs/product/brief.md, docs/product/prd.md, docs/design/blueprint.md, conversation'
   created: '2026-06-06'
-  version: '1.0.7'
+  version: '1.0.8'
   status: 'ready'
 
 project:
@@ -54,6 +54,7 @@ content:
       sections:
         hero: 'Hero'
         about: 'Sobre mim'
+        expertise: 'Especialidades'
         stack: 'Tecnologias'
         contact: 'Contato'
     header: &header
@@ -89,6 +90,24 @@ content:
         - 'Trabalhei por um período na Joyjet, uma agência na França. Como UI Engineer, coordenei a equipe de UI Design e liderei dois desenvolvedores juniores. Mais tarde, como Frontend Developer, assumi um projeto legado em Vue e Express e reescrevi em React.'
         - 'Fora do trabalho, também desenvolvo projetos pessoais, principalmente landing pages. Essas experiências moldaram o jeito como penso ao construir interfaces.'
         - 'No meu tempo livre, gosto de ficar com a família, colecionar miniaturas de Hot Wheels com meu filho, assistir a séries e filmes e curtir com amigos.'
+
+    expertise:
+      eyebrow: 'Especialidades'
+      headline: 'O que eu faço'
+      body: 'O que eu faço no dia a dia, e o que o time ganha com isso.'
+      items:
+        - title: 'Interfaces acessíveis'
+          description: 'Faço interfaces que funcionam bem em diferentes tamanhos, com semântica correta e acessibilidade desde o começo.'
+        - title: 'Design systems'
+          description: 'Deixo componentes organizados para o time montar novas telas com o mesmo padrão, sem reescrever o que já existe.'
+        - title: 'Estado e dados'
+          description: 'Faço integração de API e gerenciamento de estado, com cache e dados compartilhados entre as telas.'
+        - title: 'Qualidade e testes'
+          description: 'Uso testes automatizados para cobrir o comportamento do produto e acompanho erros e performance depois que ele está no ar.'
+        - title: 'Métricas e experimentação'
+          description: 'Adiciono eventos e experimentos para verificar se uma mudança fez diferença.'
+        - title: 'Desenvolvimento assistido por IA'
+          description: 'Desenvolvo usando agentes de IA que me ajudam a pensar, executar, testar, avaliar e ajustar o trabalho ao longo do processo.'
 
     stack:
       eyebrow: 'Tecnologias'

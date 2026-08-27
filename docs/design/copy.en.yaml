@@ -1,7 +1,7 @@
 metadata:
   source: 'docs/product/brief.md, docs/product/prd.md, docs/design/blueprint.md, conversation'
   created: '2026-06-06'
-  version: '1.0.7'
+  version: '1.0.8'
   status: 'ready'
 
 project:
@@ -54,6 +54,7 @@ content:
       sections:
         hero: 'Hero'
         about: 'About me'
+        expertise: 'Capabilities'
         stack: 'Tech Stack'
         contact: 'Contact'
     header: &header
@@ -89,6 +90,24 @@ content:
         - "I worked for a while at Joyjet, an agency in France. As a UI Engineer, I coordinated the UI Design team and led two junior developers. Later, as a Frontend Developer, I took over a legacy Vue and Express project and rewrote it in React."
         - "Outside of work, I also build personal projects, mostly landing pages. These experiences shaped how I think about building interfaces."
         - 'In my spare time, I like spending time with family, collecting Hot Wheels with my son, watching TV shows and movies, and hanging out with friends.'
+
+    expertise:
+      eyebrow: 'Capabilities'
+      headline: 'What I do'
+      body: 'What I do day to day, and what the team gets from it.'
+      items:
+        - title: 'Accessible interfaces'
+          description: 'I make interfaces that work well across screen sizes, with proper semantics and accessibility from the start.'
+        - title: 'Design systems'
+          description: 'I keep components organized so the team can build new screens that feel consistent without rewriting what’s already there.'
+        - title: 'State and data'
+          description: 'I handle API integration and state management, with caching and shared data across screens.'
+        - title: 'Quality and testing'
+          description: "I use automated tests to cover how the product behaves and keep an eye on errors and performance once it's live."
+        - title: 'Metrics and experimentation'
+          description: 'I add events and experiments to see whether a change made a difference.'
+        - title: 'AI-assisted development'
+          description: 'I develop with AI agents that help me think, build, test, evaluate, and adjust the work throughout the process.'
 
     stack:
       eyebrow: 'Tech Stack'
