@@ -41,7 +41,7 @@ export const restoreScrollPosition = () => {
 
   const top = pendingScrollY
   pendingScrollY = null
-  window.scrollTo({ top, behavior: 'auto' })
+  window.scrollTo({ top, behavior: 'instant' })
 }
 
 document.addEventListener('click', rememberScrollPosition, { capture: true })
