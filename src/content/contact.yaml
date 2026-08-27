@@ -3,7 +3,7 @@ contact:
     - text: 'Me manda uma '
     - text: 'mensagem'
       highlight: true
-  body: 'Pode ser sobre desenvolvimento, um projeto, ou só trocar ideia.'
+  body: 'Podemos conversar sobre desenvolvimento, um projeto ou só dar um oi.'
   social:
     - platform: 'email'
       label: 'contato@adeonir.dev'
@@ -30,16 +30,16 @@ contact:
         placeholder: 'Sobre o que você quer falar?'
       - name: 'message'
         label: 'Mensagem'
-        placeholder: 'Conta mais sobre o que você tem em mente.'
+        placeholder: 'Me conta mais sobre o que você tem em mente.'
     submit: 'Enviar'
     states:
       success:
         title: 'Mensagem enviada'
-        description: 'Obrigado! Logo eu entro em contato.'
+        description: 'Obrigado! Vou responder em breve.'
       error:
-        title: 'Deu algum problema'
+        title: 'Não foi possível enviar sua mensagem'
         description: 'Tenta de novo ou me escreve direto no email.'
     validation:
-      required: 'Esqueceu de preencher.'
+      required: 'Esqueceu de preencher esse campo.'
       email: 'Confere esse email.'
       maxLength: 'Passou de {max} caracteres.'

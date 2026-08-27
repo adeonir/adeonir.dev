@@ -9,7 +9,7 @@ footer:
     - text: ', '
     - text: 'coffee'
       emphasis: true
-      reveal: 'Coffee to work'
+      reveal: 'Coffee to get things done'
     - text: ' and '
     - text: 'beer'
       emphasis: true

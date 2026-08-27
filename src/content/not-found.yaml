@@ -6,7 +6,7 @@ notFound:
       highlight: true
     - text: '.'
   body:
-    - 'Esse endereço não existe, ou mudou de lugar.'
+    - 'Essa página não existe, ou mudou de lugar.'
   action:
     label: 'Voltar ao início'
     href: '/'

@@ -9,7 +9,7 @@ hero:
     - text: 'funcionam'
       highlight: true
     - text: '.'
-  description: 'Gosto de ver as coisas tomando forma, o design ganhando vida na tela.'
+  description: 'Gosto de ver ideias tomarem forma e o design ganhar vida na tela.'
   actions:
     secondary:
       label: 'Entrar em contato'

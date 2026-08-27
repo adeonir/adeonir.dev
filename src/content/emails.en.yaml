@@ -11,11 +11,11 @@ emails:
     heading: 'Your message was sent'
     body: "Hi, {name}! Thanks for reaching out. I got your message and I'll reply as soon as I can."
     recapLabel: 'What you sent'
-    footer: 'Need to add anything? Just reply to this email and it comes straight to me.'
+    footer: 'Want to add anything? Just reply to this email. Your reply comes straight to me.'
   notification:
     subject: 'New contact: {subject}'
     preview: 'New message from {name} via the contact form.'
     badge: 'New contact'
     heading: 'New contact message'
     received: 'Received on {date}'
-    footer: 'Automatic notification from the site contact form. Reply to this email to talk directly with {name}.'
+    footer: 'This is an automatic notification from the site contact form. Reply to this email to talk directly with {name}.'
