@@ -9,6 +9,7 @@ export const settingsSchema = z.object({
     sections: z.object({
       hero: z.string(),
       about: z.string(),
+      expertise: z.string(),
       stack: z.string(),
       contact: z.string(),
     }),

@@ -2,7 +2,7 @@ emails:
   from: 'Adeonir'
   fields:
     name: 'nome'
-    email: 'e-mail'
+    email: 'email'
     subject: 'assunto'
     message: 'mensagem'
   confirmation:
@@ -11,11 +11,11 @@ emails:
     heading: 'Sua mensagem foi enviada'
     body: 'Olá, {name}! Obrigado por entrar em contato. Recebi sua mensagem e respondo assim que puder.'
     recapLabel: 'Resumo do envio'
-    footer: 'Quer acrescentar alguma coisa? É só responder a este e-mail. Sua resposta chega direto para mim.'
+    footer: 'Quer acrescentar alguma coisa? É só responder a este email. Sua resposta chega direto para mim.'
   notification:
     subject: 'Novo contato: {subject}'
     preview: 'Nova mensagem de {name} pelo formulário de contato.'
     badge: 'Novo contato'
     heading: 'Nova mensagem de contato'
     received: 'Recebido em {date}'
-    footer: 'Esta é uma notificação automática enviada pelo formulário de contato do site. Responda a este e-mail para falar diretamente com {name}.'
+    footer: 'Esta é uma notificação automática enviada pelo formulário de contato do site. Responda a este email para falar diretamente com {name}.'

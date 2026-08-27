@@ -4,7 +4,6 @@ notFound:
     - text: 'Página '
     - text: 'não encontrada'
       highlight: true
-    - text: '.'
   body:
     - 'Essa página não existe, ou mudou de lugar.'
   action:

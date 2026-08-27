@@ -1,0 +1,20 @@
+expertise:
+  eyebrow: 'Especialidades'
+  headline:
+    - text: 'O que eu '
+    - text: 'faço'
+      highlight: true
+  body: 'O que eu faço no dia a dia, e o que o time ganha com isso.'
+  items:
+    - title: 'Interfaces acessíveis'
+      description: 'Faço interfaces que funcionam bem em diferentes tamanhos, com semântica correta e acessibilidade desde o começo.'
+    - title: 'Design systems'
+      description: 'Deixo componentes organizados para o time montar novas telas com o mesmo padrão, sem reescrever o que já existe.'
+    - title: 'Estado e dados'
+      description: 'Faço integração de API e gerenciamento de estado, com cache e dados compartilhados entre as telas.'
+    - title: 'Qualidade e testes'
+      description: 'Uso testes automatizados para cobrir o comportamento do produto e acompanho erros e performance depois que ele está no ar.'
+    - title: 'Métricas e experimentação'
+      description: 'Adiciono eventos e experimentos para verificar se uma mudança fez diferença.'
+    - title: 'Desenvolvimento assistido por IA'
+      description: 'Desenvolvo usando agentes de IA que me ajudam a pensar, executar, testar, avaliar e ajustar o trabalho ao longo do processo.'

@@ -4,6 +4,7 @@ import { aboutSchema } from '~/schemas/about'
 import { consoleSchema } from '~/schemas/console'
 import { contactSchema } from '~/schemas/contact'
 import { emailsSchema } from '~/schemas/emails'
+import { expertiseSchema } from '~/schemas/expertise'
 import { footerSchema } from '~/schemas/footer'
 import { headerSchema } from '~/schemas/header'
 import { heroSchema } from '~/schemas/hero'
@@ -84,6 +85,16 @@ const aboutEn = defineCollection({
   schema: aboutSchema,
 })
 
+const expertise = defineCollection({
+  loader: file('src/content/expertise.yaml'),
+  schema: expertiseSchema,
+})
+
+const expertiseEn = defineCollection({
+  loader: file('src/content/expertise.en.yaml'),
+  schema: expertiseSchema,
+})
+
 const footer = defineCollection({
   loader: file('src/content/footer.yaml'),
   schema: footerSchema,
@@ -161,6 +172,8 @@ export const collections = {
   heroEn,
   about,
   aboutEn,
+  expertise,
+  expertiseEn,
   stack,
   stackEn,
   contact,

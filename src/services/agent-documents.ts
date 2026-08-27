@@ -17,6 +17,11 @@ type StackGroup = {
   items: string[]
 }
 
+type ExpertiseItem = {
+  title: string
+  description: string
+}
+
 type AgentDocumentContent = {
   agentDocument: {
     sections: Record<AgentDocumentSection, string>
@@ -31,6 +36,12 @@ type AgentDocumentContent = {
     eyebrow: string
     headline: string
     bio: TextSegment[][]
+  }
+  expertise: {
+    eyebrow: string
+    headline: string
+    body: string
+    items: ExpertiseItem[]
   }
   stack: {
     eyebrow: string
@@ -79,6 +90,12 @@ function getSectionURL(locale: Locale, section: AgentDocumentSection): string {
   return `${getAbsoluteDocumentURL(locale, 'markdown')}#${section}`
 }
 
+function serializeExpertiseItems(items: ExpertiseItem[]): string {
+  return items
+    .map((item) => `### ${item.title}\n\n${item.description}`)
+    .join('\n\n')
+}
+
 function serializeStackTools(tools: StackGroup[]): string {
   return tools
     .map(
@@ -119,6 +136,17 @@ ${content.about.eyebrow}
 
 ${content.about.bio.map(serializeBioParagraph).join('\n\n')}
 
+<a id="expertise"></a>
+## ${getSectionTitle(content, 'expertise')}
+
+${content.expertise.eyebrow}
+
+### ${content.expertise.headline}
+
+${content.expertise.body}
+
+${serializeExpertiseItems(content.expertise.items)}
+
 <a id="stack"></a>
 ## ${getSectionTitle(content, 'stack')}
 
@@ -156,6 +184,11 @@ function serializeLlms(content: AgentDocumentContent, locale: Locale): string {
       linkTitle: getSectionTitle(content, 'about'),
       description: joinSegments(content.about.bio[0]),
     },
+    expertise: {
+      title: getSectionTitle(content, 'expertise'),
+      linkTitle: getSectionTitle(content, 'expertise'),
+      description: content.expertise.body,
+    },
     stack: {
       title: getSectionTitle(content, 'stack'),
       linkTitle: getSectionTitle(content, 'stack'),
@@ -185,16 +218,18 @@ ${agentDocumentSections
 async function getAgentDocumentContent(
   locale: Locale,
 ): Promise<AgentDocumentContent> {
-  const [settings, hero, about, stack, contact] = await Promise.all([
+  const [settings, hero, about, expertise, stack, contact] = await Promise.all([
     getLocalizedEntry('settings', 'metadata', locale),
     getLocalizedEntry('hero', 'hero', locale),
     getLocalizedEntry('about', 'about', locale),
+    getLocalizedEntry('expertise', 'expertise', locale),
     getLocalizedEntry('stack', 'stack', locale),
     getLocalizedEntry('contact', 'contact', locale),
   ])
 
   const heroData = hero.data
   const aboutData = about.data
+  const expertiseData = expertise.data
   const stackData = stack.data
   const contactData = contact.data
 
@@ -210,6 +245,12 @@ async function getAgentDocumentContent(
       eyebrow: aboutData.eyebrow,
       headline: joinSegments(aboutData.headline),
       bio: aboutData.bio,
+    },
+    expertise: {
+      eyebrow: expertiseData.eyebrow,
+      headline: joinSegments(expertiseData.headline),
+      body: expertiseData.body,
+      items: expertiseData.items,
     },
     stack: {
       eyebrow: stackData.eyebrow,

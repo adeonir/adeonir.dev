@@ -40,6 +40,6 @@ contact:
         title: 'Não foi possível enviar sua mensagem'
         description: 'Tenta de novo ou me escreve direto no email.'
     validation:
-      required: 'Esqueceu de preencher esse campo.'
-      email: 'Confere esse email.'
-      maxLength: 'Passou de {max} caracteres.'
+      required: 'Preencha este campo.'
+      email: 'Digite um email válido.'
+      maxLength: 'Use no máximo {max} caracteres.'

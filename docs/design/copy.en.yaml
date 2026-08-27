@@ -1,7 +1,7 @@
 metadata:
   source: 'docs/product/brief.md, docs/product/prd.md, docs/design/blueprint.md, conversation'
   created: '2026-06-06'
-  version: '1.0.6'
+  version: '1.0.9'
   status: 'ready'
 
 project:
@@ -9,7 +9,30 @@ project:
   language: 'en'
   industry: 'portfolio'
   title: 'Adeonir Kohl | Portfolio'
-  description: "I'm a design engineer who builds web interfaces that work."
+  description: "I'm a design engineer who brings design decisions into code to build accessible, responsive, fast web interfaces."
+
+intent:
+  status: confirmed
+  purpose: 'Present Adeonir, his work, and how he builds interfaces so clients, recruiters, and peers can evaluate him and get in touch.'
+  reader_goal: 'Understand who Adeonir is, evaluate his work, and find a way to get in touch.'
+  function: 'brand/editorial'
+  constraints:
+    - 'Lead with the work; contact is a secondary action.'
+    - 'Use a personal, casual, clear voice without marketing language.'
+    - 'Back the combination of design and code with specific facts, not adjectives. Proof through the work arrives with the timeline and projects sections.'
+    - 'Forms, states, and navigation may use clear product/UX language while keeping the personal, informal tone.'
+
+voice:
+  status: confirmed
+  line: 'Personal, casual, clear, and warm, with understated humor.'
+  axes:
+    formal_casual: casual
+    reserved_bold: measured
+    earnest_dry: earnest
+    plain_playful: plain with occasional playfulness
+  avoid:
+    - 'Marketing language and generic adjectives.'
+    - 'Designer and developer in equal parts.'
 
 routes:
   home:
@@ -31,6 +54,7 @@ content:
       sections:
         hero: 'Hero'
         about: 'About me'
+        expertise: 'Capabilities'
         stack: 'Tech Stack'
         contact: 'Contact'
     header: &header
@@ -58,18 +82,36 @@ content:
 
     about:
       eyebrow: 'About me'
-      headline: 'From design to code.'
+      headline: 'From design to code'
       bio:
-        - "Hi, I'm Adeonir, and I like building things for the internet. I'm a design engineer who creates polished, functional interfaces with close attention to detail. I particularly enjoy working at the intersection of design and code."
+        - "Hi, I'm Adeonir, and I like building things for the internet. As a design engineer, I create functional, accessible interfaces, always keeping an eye on the details. I particularly enjoy working at the intersection of design and code."
         - "I'm currently a Frontend Engineer at Jaya Tech, working with clients in the US. I work mainly with React and TypeScript, developing the design system library and web platform. I work alongside designers and developers to meet users' needs."
         - "After years as a graphic designer creating advertising materials, books, and magazines, I moved into frontend development. Since then, I've worked on financial products, business management platforms, and debt recovery systems."
         - "I worked for a while at Joyjet, an agency in France. As a UI Engineer, I coordinated the UI Design team and led two junior developers. Later, as a Frontend Developer, I took over a legacy Vue and Express project and rewrote it in React."
         - "Outside of work, I also build personal projects, mostly landing pages. These experiences shaped how I think about building interfaces."
         - 'In my spare time, I like spending time with family, collecting Hot Wheels with my son, watching TV shows and movies, and hanging out with friends.'
 
+    expertise:
+      eyebrow: 'Capabilities'
+      headline: 'What I do'
+      body: 'What I do day to day, and what the team gets from it.'
+      items:
+        - title: 'Accessible interfaces'
+          description: 'I make interfaces that work well across screen sizes, with proper semantics and accessibility from the start.'
+        - title: 'Design systems'
+          description: 'I keep components organized so the team can build new screens that feel consistent without rewriting what’s already there.'
+        - title: 'State and data'
+          description: 'I handle API integration and state management, with caching and shared data across screens.'
+        - title: 'Quality and testing'
+          description: "I use automated tests to cover how the product behaves and keep an eye on errors and performance once it's live."
+        - title: 'Metrics and experimentation'
+          description: 'I add events and experiments to see whether a change made a difference.'
+        - title: 'AI-assisted development'
+          description: 'I develop with AI agents that help me think, build, test, evaluate, and adjust the work throughout the process.'
+
     stack:
       eyebrow: 'Tech Stack'
-      headline: 'The tools I build with.'
+      headline: 'The tools I build with'
       body: 'Tools and technologies I use across projects.'
       tools:
         - title: 'frontend'
@@ -102,7 +144,7 @@ content:
 
     projects:
       eyebrow: 'Featured work'
-      headline: "A few projects I've designed and built."
+      headline: "A few projects I've designed and built"
       # list -> top-level `projects` collection, filtered to featured: true
       see-all: 'See all work'
 
@@ -145,9 +187,9 @@ content:
             title: "We couldn't send your message"
             description: 'Try again or email me directly.'
         validation:
-          required: 'You missed this one.'
-          email: 'Double-check this email.'
-          maxLength: "That's over {max} characters."
+          required: 'This field is required.'
+          email: 'Enter a valid email address.'
+          maxLength: 'Use {max} characters or fewer.'
 
     footer: &footer
       brand:
@@ -164,8 +206,8 @@ content:
     header: *header
     page-header:
       eyebrow: 'Work'
-      headline: "Projects I've designed and built."
-      subheadline: 'A selection of projects I developed or worked on.'
+      headline: "Projects I've designed and built"
+      subheadline: 'A selection of projects I developed or helped build.'
     # list -> top-level `projects` collection (all, in order)
     states:
       empty: "There aren't any projects here yet. Check back soon."
@@ -197,7 +239,7 @@ content:
   not-found:
     header: *header
     display: '404'
-    headline: 'Page not found.'
+    headline: 'Page not found'
     body:
       - "This page doesn't exist or has moved."
     cta: 'Back to home'
@@ -248,7 +290,7 @@ projects:
   - slug: 'adeonir-kohl'
     name: 'Adeonir Kohl'
     featured: false
-    summary: 'This portfolio was created with AI throughout the process.'
+    summary: 'I planned and built this portfolio with AI-assisted development.'
     role: 'Product engineer, UI designer & frontend developer'
     launch: '06/2026'
     link: 'https://adeonir.dev'

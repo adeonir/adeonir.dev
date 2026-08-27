@@ -1,12 +1,13 @@
 metadata:
   siteName: 'Adeonir Kohl'
-  description: 'Sou design engineer e construo interfaces web que funcionam.'
+  description: 'Sou design engineer e levo decisões de design para o código, criando interfaces web acessíveis, responsivas e rápidas.'
   ogImage: '/og-image.png'
   locale: 'pt-BR'
   agentDocument:
     sections:
       hero: 'Hero'
       about: 'Sobre mim'
+      expertise: 'Especialidades'
       stack: 'Tecnologias'
       contact: 'Contato'
   pageTitles:
