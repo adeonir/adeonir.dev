@@ -4,7 +4,6 @@ expertise:
     - text: 'O que eu '
     - text: 'faço'
       highlight: true
-    - text: '.'
   body: 'O que eu faço no dia a dia, e o que o time ganha com isso.'
   items:
     - title: 'Interfaces acessíveis'

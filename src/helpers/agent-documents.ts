@@ -7,6 +7,7 @@ export type AgentDocumentKind = (typeof agentDocumentKinds)[number]
 export const agentDocumentSections = [
   'hero',
   'about',
+  'expertise',
   'stack',
   'contact',
 ] as const

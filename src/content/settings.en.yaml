@@ -7,6 +7,7 @@ metadata:
     sections:
       hero: 'Hero'
       about: 'About me'
+      expertise: 'Capabilities'
       stack: 'Tech Stack'
       contact: 'Contact'
   pageTitles:
