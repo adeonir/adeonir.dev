@@ -1,7 +1,7 @@
 metadata:
   source: 'docs/product/brief.md, docs/product/prd.md, docs/design/blueprint.md, conversation'
   created: '2026-06-06'
-  version: '1.0.6'
+  version: '1.0.7'
   status: 'ready'
 
 project:
@@ -10,6 +10,29 @@ project:
   industry: 'portfolio'
   title: 'Adeonir Kohl | Portfólio'
   description: 'Sou design engineer e construo interfaces web que funcionam.'
+
+intent:
+  status: confirmed
+  purpose: 'Apresentar Adeonir, seu trabalho e sua forma de construir interfaces para que clientes, recrutadores e pares possam avaliá-lo e entrar em contato.'
+  reader_goal: 'Entender quem Adeonir é, avaliar seu trabalho e encontrar uma forma de contato.'
+  function: 'brand/editorial'
+  constraints:
+    - 'Priorizar o trabalho; contato é uma ação secundária.'
+    - 'Usar voz pessoal, casual e clara, sem linguagem de marketing.'
+    - 'Sustentar a combinação de design e código com fatos específicos, não com adjetivos. A prova pelo trabalho entra com as seções de trajetória e projetos.'
+    - 'Formulário, estados e navegação podem usar linguagem clara de product/UX, mantendo o tom pessoal e informal.'
+
+voice:
+  status: confirmed
+  line: 'Pessoal, casual, clara e calorosa, com humor discreto.'
+  axes:
+    formal_casual: casual
+    reserved_bold: measured
+    earnest_dry: earnest
+    plain_playful: plain with occasional playfulness
+  avoid:
+    - 'Linguagem de marketing e adjetivos genéricos.'
+    - 'Designer e desenvolvedor em partes iguais.'
 
 routes:
   home:

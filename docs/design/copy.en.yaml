@@ -1,7 +1,7 @@
 metadata:
   source: 'docs/product/brief.md, docs/product/prd.md, docs/design/blueprint.md, conversation'
   created: '2026-06-06'
-  version: '1.0.6'
+  version: '1.0.7'
   status: 'ready'
 
 project:
@@ -10,6 +10,29 @@ project:
   industry: 'portfolio'
   title: 'Adeonir Kohl | Portfolio'
   description: "I'm a design engineer who builds web interfaces that work."
+
+intent:
+  status: confirmed
+  purpose: 'Present Adeonir, his work, and how he builds interfaces so clients, recruiters, and peers can evaluate him and get in touch.'
+  reader_goal: 'Understand who Adeonir is, evaluate his work, and find a way to get in touch.'
+  function: 'brand/editorial'
+  constraints:
+    - 'Lead with the work; contact is a secondary action.'
+    - 'Use a personal, casual, clear voice without marketing language.'
+    - 'Back the combination of design and code with specific facts, not adjectives. Proof through the work arrives with the timeline and projects sections.'
+    - 'Forms, states, and navigation may use clear product/UX language while keeping the personal, informal tone.'
+
+voice:
+  status: confirmed
+  line: 'Personal, casual, clear, and warm, with understated humor.'
+  axes:
+    formal_casual: casual
+    reserved_bold: measured
+    earnest_dry: earnest
+    plain_playful: plain with occasional playfulness
+  avoid:
+    - 'Marketing language and generic adjectives.'
+    - 'Designer and developer in equal parts.'
 
 routes:
   home:
