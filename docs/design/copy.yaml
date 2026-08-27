@@ -1,7 +1,7 @@
 metadata:
   source: 'docs/product/brief.md, docs/product/prd.md, docs/design/blueprint.md, conversation'
   created: '2026-06-06'
-  version: '1.0.8'
+  version: '1.0.9'
   status: 'ready'
 
 project:
@@ -9,7 +9,7 @@ project:
   language: 'pt'
   industry: 'portfolio'
   title: 'Adeonir Kohl | Portfólio'
-  description: 'Sou design engineer e construo interfaces web que funcionam.'
+  description: 'Sou design engineer e levo decisões de design para o código, criando interfaces web acessíveis, responsivas e rápidas.'
 
 intent:
   status: confirmed
@@ -82,9 +82,9 @@ content:
 
     about:
       eyebrow: 'Sobre mim'
-      headline: 'Do design ao código.'
+      headline: 'Do design ao código'
       bio:
-        - 'Olá, sou Adeonir e gosto de criar coisas para a internet. Sou design engineer e crio interfaces atraentes e funcionais, com atenção aos detalhes. Gosto especialmente de trabalhar na interseção entre design e código.'
+        - 'Olá, sou Adeonir e gosto de criar coisas para a internet. Como design engineer, crio interfaces funcionais e acessíveis, sempre de olho nos detalhes. Gosto especialmente de trabalhar na interseção entre design e código.'
         - 'Atualmente sou Frontend Engineer na Jaya Tech, trabalhando com clientes nos Estados Unidos. Trabalho principalmente com React e TypeScript, desenvolvendo a biblioteca do design system e a plataforma web. Trabalho ao lado de designers e desenvolvedores para atender às necessidades dos usuários.'
         - 'Depois de anos como designer gráfico, criando materiais publicitários, livros e revistas, migrei para o desenvolvimento frontend. Desde então, trabalhei com produtos financeiros, plataformas de gestão empresarial e sistemas de recuperação de crédito.'
         - 'Trabalhei por um período na Joyjet, uma agência na França. Como UI Engineer, coordenei a equipe de UI Design e liderei dois desenvolvedores juniores. Mais tarde, como Frontend Developer, assumi um projeto legado em Vue e Express e reescrevi em React.'
@@ -111,7 +111,7 @@ content:
 
     stack:
       eyebrow: 'Tecnologias'
-      headline: 'As ferramentas que eu uso.'
+      headline: 'As ferramentas que eu uso'
       body: 'Ferramentas e tecnologias que uso em diferentes projetos.'
       tools:
         - title: 'frontend'
@@ -144,7 +144,7 @@ content:
 
     projects:
       eyebrow: 'Projetos em destaque'
-      headline: 'Alguns projetos que desenhei e construí.'
+      headline: 'Alguns projetos que desenhei e construí'
       # list -> top-level `projects` collection, filtered to featured: true
       see-all: 'Ver todos os projetos'
 
@@ -187,9 +187,9 @@ content:
             title: 'Não foi possível enviar sua mensagem'
             description: 'Tenta de novo ou me escreve direto no email.'
         validation:
-          required: 'Esqueceu de preencher esse campo.'
-          email: 'Confere esse email.'
-          maxLength: 'Passou de {max} caracteres.'
+          required: 'Preencha este campo.'
+          email: 'Digite um email válido.'
+          maxLength: 'Use no máximo {max} caracteres.'
 
     footer: &footer
       brand:
@@ -206,8 +206,8 @@ content:
     header: *header
     page-header:
       eyebrow: 'Projetos'
-      headline: 'Projetos que desenhei e construí.'
-      subheadline: 'Uma seleção de projetos que desenvolvi ou em que trabalhei.'
+      headline: 'Projetos que desenhei e construí'
+      subheadline: 'Uma seleção de projetos que desenvolvi ou ajudei a construir.'
     # list -> top-level `projects` collection (all, in order)
     states:
       empty: 'Ainda não tem projetos por aqui. Volte em breve.'
@@ -239,7 +239,7 @@ content:
   not-found:
     header: *header
     display: '404'
-    headline: 'Página não encontrada.'
+    headline: 'Página não encontrada'
     body:
       - 'Essa página não existe, ou mudou de lugar.'
     cta: 'Voltar ao início'
@@ -261,15 +261,15 @@ emails:
     body: 'Olá, {name}! Obrigado por entrar em contato. Recebi sua mensagem e respondo assim que puder.'
     recap:
       label: 'Resumo do envio'
-      fields: ['nome', 'e-mail', 'assunto', 'mensagem']
-    footer: 'Quer acrescentar alguma coisa? É só responder a este e-mail. Sua resposta chega direto para mim.'
+      fields: ['nome', 'email', 'assunto', 'mensagem']
+    footer: 'Quer acrescentar alguma coisa? É só responder a este email. Sua resposta chega direto para mim.'
   notification:
     subject: 'Novo contato: {subject}'
     preview: 'Nova mensagem de {name} pelo formulário de contato.'
     badge: 'Novo contato'
     heading: 'Nova mensagem de contato'
     received: 'Recebido em {date}'
-    footer: 'Esta é uma notificação automática enviada pelo formulário de contato do site. Responda a este e-mail para falar diretamente com {name}.'
+    footer: 'Esta é uma notificação automática enviada pelo formulário de contato do site. Responda a este email para falar diretamente com {name}.'
 
 # Projects — single source of truth (always complete). The work index renders
 # every entry in order; the landing renders the featured: true ones (same order).
@@ -290,7 +290,7 @@ projects:
   - slug: 'adeonir-kohl'
     name: 'Adeonir Kohl'
     featured: false
-    summary: 'Este portfólio foi criado com IA em todo o processo.'
+    summary: 'Planejei e construí este portfólio com desenvolvimento assistido por IA.'
     role: 'Product engineer, UI designer & frontend developer'
     launch: '06/2026'
     link: 'https://adeonir.dev'

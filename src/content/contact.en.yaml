@@ -40,6 +40,6 @@ contact:
         title: "We couldn't send your message"
         description: 'Try again or email me directly.'
     validation:
-      required: 'You missed this one.'
-      email: 'Double-check this email.'
-      maxLength: "That's over {max} characters."
+      required: 'This field is required.'
+      email: 'Enter a valid email address.'
+      maxLength: 'Use {max} characters or fewer.'
