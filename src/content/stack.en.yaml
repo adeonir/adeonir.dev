@@ -5,7 +5,7 @@ stack:
     - text: 'tools '
       highlight: true
     - text: 'I build with.'
-  body: 'Technologies and tools used across projects, chosen for each problem and context.'
+  body: 'Tools and technologies I use across projects.'
   tools:
     - title: 'frontend'
       items:

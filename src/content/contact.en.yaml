@@ -3,7 +3,7 @@ contact:
     - text: 'Send me a '
     - text: 'message'
       highlight: true
-  body: 'You can write to talk about development, a project, or just say hi.'
+  body: 'We can talk about development, a project, or just say hi.'
   social:
     - platform: 'email'
       label: 'contato@adeonir.dev'
@@ -37,7 +37,7 @@ contact:
         title: 'Message sent'
         description: "Thanks! I'll be in touch soon."
       error:
-        title: 'Something went wrong'
+        title: "We couldn't send your message"
         description: 'Try again or email me directly.'
     validation:
       required: 'You missed this one.'

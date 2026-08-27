@@ -9,6 +9,7 @@ import { getLocalizedEntry } from '~/services/localized'
 type TextSegment = {
   text: string
   highlight?: boolean
+  href?: string
 }
 
 type StackGroup = {
@@ -29,7 +30,7 @@ type AgentDocumentContent = {
   about: {
     eyebrow: string
     headline: string
-    bio: string[]
+    bio: TextSegment[][]
   }
   stack: {
     eyebrow: string
@@ -60,6 +61,14 @@ function getSectionTitle(
 
 function joinSegments(segments: TextSegment[]): string {
   return segments.map((segment) => segment.text).join('')
+}
+
+function serializeBioParagraph(segments: TextSegment[]): string {
+  return segments
+    .map((segment) =>
+      segment.href ? `[${segment.text}](${segment.href})` : segment.text,
+    )
+    .join('')
 }
 
 function getAbsoluteDocumentURL(locale: Locale, kind: 'markdown' | 'llms') {
@@ -108,7 +117,7 @@ ${content.about.eyebrow}
 
 ### ${content.about.headline}
 
-${content.about.bio.join('\n\n')}
+${content.about.bio.map(serializeBioParagraph).join('\n\n')}
 
 <a id="stack"></a>
 ## ${getSectionTitle(content, 'stack')}
@@ -145,7 +154,7 @@ function serializeLlms(content: AgentDocumentContent, locale: Locale): string {
     about: {
       title: getSectionTitle(content, 'about'),
       linkTitle: getSectionTitle(content, 'about'),
-      description: content.about.bio[0],
+      description: joinSegments(content.about.bio[0]),
     },
     stack: {
       title: getSectionTitle(content, 'stack'),

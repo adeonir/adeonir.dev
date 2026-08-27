@@ -9,7 +9,7 @@ hero:
     - text: 'work'
       highlight: true
     - text: '.'
-  description: 'I like giving things shape, bringing design to life on screen.'
+  description: 'I like seeing ideas take shape and design come to life on screen.'
   actions:
     secondary:
       label: 'Get in touch'

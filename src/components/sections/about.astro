@@ -1,5 +1,6 @@
 ---
 import { Eyebrow } from '~/components/ui/eyebrow'
+import { buttonVariants } from '~/components/ui/button-variants'
 import { cn } from '~/helpers/classnames'
 import { parseLocale } from '~/helpers/content'
 import { getLocalizedEntry } from '~/services/localized'
@@ -45,7 +46,20 @@ const { eyebrow, headline, bio } = about.data
                   : 'text-body text-muted-foreground',
               )}
             >
-              {paragraph}
+              {paragraph.map((segment) =>
+                segment.href ? (
+                  <a
+                    href={segment.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class={buttonVariants({ variant: 'link', size: 'inline' })}
+                  >
+                    {segment.text}
+                  </a>
+                ) : (
+                  segment.text
+                ),
+              )}
             </p>
           ))
         }

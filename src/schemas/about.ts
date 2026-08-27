@@ -1,5 +1,10 @@
 import { z } from 'astro/zod'
 
+const bioSegmentSchema = z.object({
+  text: z.string().min(1),
+  href: z.url().optional(),
+})
+
 export const aboutSchema = z.object({
   eyebrow: z.string().min(1),
   headline: z
@@ -10,5 +15,5 @@ export const aboutSchema = z.object({
       }),
     )
     .min(1),
-  bio: z.array(z.string().min(1)).min(1),
+  bio: z.array(z.array(bioSegmentSchema).min(1)).min(1),
 })
