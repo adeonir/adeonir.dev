@@ -55,7 +55,7 @@ describe('language navigation', () => {
     languageLink?.click()
     swap()
 
-    expect(scrollTo).toHaveBeenCalledWith({ top: 1280, behavior: 'auto' })
+    expect(scrollTo).toHaveBeenCalledWith({ top: 1280, behavior: 'instant' })
 
     swap()
     expect(scrollTo).toHaveBeenCalledTimes(1)
