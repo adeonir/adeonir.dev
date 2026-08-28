@@ -112,7 +112,7 @@ content:
     stack:
       eyebrow: 'Tech Stack'
       headline: 'The tools I build with'
-      body: 'Tools and technologies I use across projects.'
+      body: 'Some of the tools and technologies I use across projects.'
       tools:
         - title: 'frontend'
           items:

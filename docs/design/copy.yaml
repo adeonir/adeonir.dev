@@ -112,7 +112,7 @@ content:
     stack:
       eyebrow: 'Tecnologias'
       headline: 'As ferramentas que eu uso'
-      body: 'Ferramentas e tecnologias que uso em diferentes projetos.'
+      body: 'Algumas das ferramentas e tecnologias que uso em diferentes projetos.'
       tools:
         - title: 'frontend'
           items:
