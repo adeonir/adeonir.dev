@@ -88,7 +88,7 @@ content:
         - "I'm currently a Frontend Engineer at Jaya Tech, working with clients in the US. I work mainly with React and TypeScript, developing the design system library and web platform. I work alongside designers and developers to meet users' needs."
         - "After years as a graphic designer creating advertising materials, books, and magazines, I moved into frontend development. Since then, I've worked on financial products, business management platforms, and debt recovery systems."
         - "I worked for a while at Joyjet, an agency in France. As a UI Engineer, I coordinated the UI Design team and led two junior developers. Later, as a Frontend Developer, I took over a legacy Vue and Express project and rewrote it in React."
-        - "Outside of work, I also build personal projects, mostly landing pages. These experiences shaped how I think about building interfaces."
+        - 'Outside of work, I build a few personal projects where I also apply my knowledge of backend and mobile development. These experiences shaped how I think about building interfaces.'
         - 'In my spare time, I like spending time with family, collecting Hot Wheels with my son, watching TV shows and movies, and hanging out with friends.'
 
     expertise:
@@ -118,29 +118,29 @@ content:
           items:
             - 'react'
             - 'next.js'
-            - 'astro'
             - 'tanstack-start'
             - 'typescript'
             - 'tailwindcss'
             - 'zustand'
+            - 'react-native'
         - title: 'backend'
           items:
             - 'node.js'
-            - 'hono'
             - 'fastify'
+            - 'hono'
             - 'drizzle'
             - 'prisma'
             - 'sqlite'
             - 'postgresql'
         - title: 'tooling'
           items:
-            - 'vite'
-            - 'biome'
             - 'figma'
             - 'vscode'
-            - 'claude-code'
+            - 'vite'
+            - 'vitest'
+            - 'claude'
             - 'cloudflare'
-            - 'posthog'
+            - 'codex'
 
     projects:
       eyebrow: 'Featured work'
