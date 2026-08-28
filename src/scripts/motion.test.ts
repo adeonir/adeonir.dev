@@ -133,7 +133,7 @@ it('starts each block of a section after the block before it', async () => {
   ])
 })
 
-it('starts the rows of a list after the block that holds them', async () => {
+it('starts a list block on its own beat while the rows before it arrive', async () => {
   document.body.innerHTML = `
     <main>
       <section id="stack">
@@ -152,8 +152,8 @@ it('starts the rows of a list after the block that holds them', async () => {
     ['headline', 'translateY(0px)', 0],
     ['first', 'translateY(0px)', 0.07],
     ['first-row', 'translateY(0px)', 0.14],
-    ['second', 'translateY(0px)', 0.14],
-    ['second-row', 'translateY(0px)', 0.21],
+    ['second', 'translateY(0px)', 0.28],
+    ['second-row', 'translateY(0px)', 0.35],
   ])
 })
 
