@@ -149,8 +149,9 @@ content:
       see-all: 'See all work'
 
     contact:
+      eyebrow: "Let's talk"
       headline: 'Send me a message'
-      body: 'We can talk about development, a project, or just say hi.'
+      body: 'It can be about development, a project, or just to say hi.'
       social:
         - platform: 'email'
           label: 'contato@adeonir.dev'

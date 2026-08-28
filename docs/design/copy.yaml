@@ -149,8 +149,9 @@ content:
       see-all: 'Ver todos os projetos'
 
     contact:
+      eyebrow: 'Vamos conversar'
       headline: 'Me manda uma mensagem'
-      body: 'Podemos conversar sobre desenvolvimento, um projeto ou só dar um oi.'
+      body: 'Pode ser sobre desenvolvimento, um projeto ou só dar um oi.'
       social:
         - platform: 'email'
           label: 'contato@adeonir.dev'
