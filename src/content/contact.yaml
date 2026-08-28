@@ -1,9 +1,10 @@
 contact:
+  eyebrow: 'Vamos conversar'
   title:
     - text: 'Me manda uma '
     - text: 'mensagem'
       highlight: true
-  body: 'Podemos conversar sobre desenvolvimento, um projeto ou só dar um oi.'
+  body: 'Pode ser sobre desenvolvimento, um projeto ou só dar um oi.'
   social:
     - platform: 'email'
       label: 'contato@adeonir.dev'

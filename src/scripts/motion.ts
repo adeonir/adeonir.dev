@@ -9,7 +9,10 @@ const ROW_RISE = 8
 const DURATION = 0.4
 const STEP = 0.07
 const EASE: [number, number, number, number] = [0.33, 1, 0.68, 1]
-const MARGIN = '0px 0px -50% 0px'
+// A block that holds rows hands over after this many steps, so the next block
+// starts on its own beat while the rows before it are still arriving.
+const GROUP_LEAD = 3
+const MARGIN = '0px 0px -35% 0px'
 
 type Step = { element: HTMLElement; rise: number; delay: number }
 
@@ -19,8 +22,10 @@ const planSection = (section: HTMLElement) => {
   const steps: Step[] = []
   const blocks = section.querySelectorAll<HTMLElement>('[data-enter="block"]')
 
-  blocks.forEach((block, blockIndex) => {
-    steps.push({ element: block, rise: BLOCK_RISE, delay: stepAt(blockIndex) })
+  let cursor = 0
+
+  blocks.forEach((block) => {
+    steps.push({ element: block, rise: BLOCK_RISE, delay: stepAt(cursor) })
 
     const rows = block.querySelectorAll<HTMLElement>('[data-enter="row"]')
 
@@ -28,9 +33,11 @@ const planSection = (section: HTMLElement) => {
       steps.push({
         element: row,
         rise: ROW_RISE,
-        delay: stepAt(blockIndex + rowIndex + 1),
+        delay: stepAt(cursor + rowIndex + 1),
       })
     })
+
+    cursor += rows.length > 0 ? GROUP_LEAD : 1
   })
 
   return steps

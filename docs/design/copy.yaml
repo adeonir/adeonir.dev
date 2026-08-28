@@ -88,7 +88,7 @@ content:
         - 'Atualmente sou Frontend Engineer na Jaya Tech, trabalhando com clientes nos Estados Unidos. Trabalho principalmente com React e TypeScript, desenvolvendo a biblioteca do design system e a plataforma web. Trabalho ao lado de designers e desenvolvedores para atender às necessidades dos usuários.'
         - 'Depois de anos como designer gráfico, criando materiais publicitários, livros e revistas, migrei para o desenvolvimento frontend. Desde então, trabalhei com produtos financeiros, plataformas de gestão empresarial e sistemas de recuperação de crédito.'
         - 'Trabalhei por um período na Joyjet, uma agência na França. Como UI Engineer, coordenei a equipe de UI Design e liderei dois desenvolvedores juniores. Mais tarde, como Frontend Developer, assumi um projeto legado em Vue e Express e reescrevi em React.'
-        - 'Fora do trabalho, também desenvolvo projetos pessoais, principalmente landing pages. Essas experiências moldaram o jeito como penso ao construir interfaces.'
+        - 'Fora do trabalho, desenvolvo alguns projetos pessoais, aplicando também meus conhecimentos em backend e desenvolvimento mobile. Essas experiências moldaram o jeito como penso ao construir interfaces.'
         - 'No meu tempo livre, gosto de ficar com a família, colecionar miniaturas de Hot Wheels com meu filho, assistir a séries e filmes e curtir com amigos.'
 
     expertise:
@@ -112,35 +112,35 @@ content:
     stack:
       eyebrow: 'Tecnologias'
       headline: 'As ferramentas que eu uso'
-      body: 'Ferramentas e tecnologias que uso em diferentes projetos.'
+      body: 'Algumas das ferramentas e tecnologias que uso em diferentes projetos.'
       tools:
         - title: 'frontend'
           items:
             - 'react'
             - 'next.js'
-            - 'astro'
             - 'tanstack-start'
             - 'typescript'
             - 'tailwindcss'
             - 'zustand'
+            - 'react-native'
         - title: 'backend'
           items:
             - 'node.js'
-            - 'hono'
             - 'fastify'
+            - 'hono'
             - 'drizzle'
             - 'prisma'
             - 'sqlite'
             - 'postgresql'
         - title: 'tooling'
           items:
-            - 'vite'
-            - 'biome'
             - 'figma'
             - 'vscode'
-            - 'claude-code'
+            - 'vite'
+            - 'vitest'
+            - 'claude'
+            - 'codex'
             - 'cloudflare'
-            - 'posthog'
 
     projects:
       eyebrow: 'Projetos em destaque'
@@ -149,8 +149,9 @@ content:
       see-all: 'Ver todos os projetos'
 
     contact:
+      eyebrow: 'Vamos conversar'
       headline: 'Me manda uma mensagem'
-      body: 'Podemos conversar sobre desenvolvimento, um projeto ou só dar um oi.'
+      body: 'Pode ser sobre desenvolvimento, um projeto ou só dar um oi.'
       social:
         - platform: 'email'
           label: 'contato@adeonir.dev'

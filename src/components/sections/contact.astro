@@ -1,5 +1,6 @@
 ---
 import { ContactForm } from '~/components/islands/contact-form'
+import { Eyebrow } from '~/components/ui/eyebrow'
 import { parseLocale } from '~/helpers/content'
 import { getLocalizedEntry } from '~/services/localized'
 import IconFolder from '~icons/tabler/folder'
@@ -7,7 +8,7 @@ import IconFolder from '~icons/tabler/folder'
 const locale = parseLocale(Astro.currentLocale)
 const contact = await getLocalizedEntry('contact', 'contact', locale)
 
-const { title, body, social, form } = contact.data
+const { eyebrow, title, body, social, form } = contact.data
 ---
 
 <section
@@ -30,14 +31,6 @@ const { title, body, social, form } = contact.data
             ))
           }
         </h2>
-        <div class="flex flex-col gap-4">
-          <p
-            data-enter="block"
-            class="text-body leading-relaxed text-pretty text-muted-foreground"
-          >
-            {body}
-          </p>
-        </div>
         <div data-enter="block" class="mt-6 flex flex-col gap-2">
           <p class="inline-flex items-center gap-2 text-code text-foreground">
             <IconFolder
@@ -74,8 +67,17 @@ const { title, body, social, form } = contact.data
           </ul>
         </div>
       </div>
-      <div data-enter="block" class="md:col-span-3">
-        <ContactForm content={form} locale={locale} client:visible />
+      <div class="flex flex-col gap-6 md:col-span-3">
+        <Eyebrow data-enter="block" variant="muted">{eyebrow}</Eyebrow>
+        <p
+          data-enter="block"
+          class="text-body leading-relaxed text-pretty text-muted-foreground"
+        >
+          {body}
+        </p>
+        <div data-enter="block">
+          <ContactForm content={form} locale={locale} client:visible />
+        </div>
       </div>
     </div>
   </div>
