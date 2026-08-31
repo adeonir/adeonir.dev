@@ -8,7 +8,6 @@ import ConsoleGreeting from '~/components/scripts/console-greeting.astro'
 import Footer from '~/components/sections/footer.astro'
 import Header from '~/components/sections/header.astro'
 import Theme from '~/components/scripts/theme.astro'
-import { Toaster } from '~/components/islands/toaster'
 import { getAgentDocumentPath } from '~/helpers/agent-documents'
 import { parseLocale } from '~/helpers/content'
 import { getLocalizedPath } from '~/helpers/locale-path'
@@ -140,7 +139,6 @@ const ogImageURL = new URL(
         <slot />
       )
     }
-    <Toaster client:load transition:persist />
     <script>
       import '~/scripts/anchor-nav'
       import '~/scripts/header-scroll'
