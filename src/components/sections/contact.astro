@@ -1,5 +1,6 @@
 ---
 import { ContactForm } from '~/components/islands/contact-form'
+import { Toaster } from '~/components/islands/toaster'
 import { Eyebrow } from '~/components/ui/eyebrow'
 import { parseLocale } from '~/helpers/content'
 import { getLocalizedEntry } from '~/services/localized'
@@ -13,7 +14,7 @@ const { eyebrow, title, body, social, form } = contact.data
 
 <section
   id="contact"
-  class="bg-linear-to-b from-background to-popover to-50% py-16 md:py-24"
+  class="bg-linear-to-b from-background/0 to-popover to-50% py-16 md:py-24"
 >
   <div class="wrapper">
     <div class="grid grid-cols-1 gap-12 md:grid-cols-5">
@@ -78,6 +79,7 @@ const { eyebrow, title, body, social, form } = contact.data
         <div data-enter="block">
           <ContactForm content={form} locale={locale} client:visible />
         </div>
+        <Toaster client:visible />
       </div>
     </div>
   </div>
