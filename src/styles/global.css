@@ -242,7 +242,7 @@
 
   @keyframes blur-in {
     from {
-      opacity: 0;
+      opacity: var(--enter-opacity, 0);
       filter: blur(var(--blur-in, 2px));
       scale: var(--scale-in, 1);
     }
