@@ -13,34 +13,31 @@ const { eyebrow, headline, body, tools } = stack.data
 <section id="stack" class="py-16 md:py-24">
   <div class="wrapper">
     <div class="mt-6 grid grid-cols-1 gap-12 md:grid-cols-5">
-      <h2
-        data-enter="block"
-        class="text-display text-pretty text-foreground md:col-span-2"
-      >
-        {
-          headline.map((segment) => (
-            <>
-              {segment.highlight ? (
-                <span class="text-secondary">{segment.text}</span>
-              ) : (
-                segment.text
-              )}
-            </>
-          ))
-        }
-      </h2>
-      <div
-        class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-3 md:col-span-3"
-      >
-        <Eyebrow data-enter="block" className="col-span-full" variant="muted">
-          {eyebrow}
-        </Eyebrow>
+      <div class="flex flex-col gap-6 md:col-span-2">
+        <Eyebrow data-enter="block" variant="muted">{eyebrow}</Eyebrow>
+        <h2 data-enter="block" class="text-display text-pretty text-foreground">
+          {
+            headline.map((segment) => (
+              <>
+                {segment.highlight ? (
+                  <span class="text-secondary">{segment.text}</span>
+                ) : (
+                  segment.text
+                )}
+              </>
+            ))
+          }
+        </h2>
         <p
           data-enter="block"
-          class="col-span-full text-body leading-relaxed text-pretty text-muted-foreground"
+          class="text-body leading-relaxed text-pretty text-muted-foreground"
         >
           {body}
         </p>
+      </div>
+      <div
+        class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-3 md:col-span-3 md:pt-14"
+      >
         {
           tools.map((group) => (
             <div data-enter="block" class="flex flex-col gap-2">

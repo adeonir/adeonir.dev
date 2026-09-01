@@ -35,6 +35,7 @@ type AgentDocumentContent = {
   about: {
     eyebrow: string
     headline: string
+    body: string
     bio: TextSegment[][]
   }
   expertise: {
@@ -134,6 +135,8 @@ ${content.about.eyebrow}
 
 ### ${content.about.headline}
 
+${content.about.body}
+
 ${content.about.bio.map(serializeBioParagraph).join('\n\n')}
 
 <a id="expertise"></a>
@@ -182,7 +185,7 @@ function serializeLlms(content: AgentDocumentContent, locale: Locale): string {
     about: {
       title: getSectionTitle(content, 'about'),
       linkTitle: getSectionTitle(content, 'about'),
-      description: joinSegments(content.about.bio[0]),
+      description: content.about.body,
     },
     expertise: {
       title: getSectionTitle(content, 'expertise'),
@@ -244,6 +247,7 @@ async function getAgentDocumentContent(
     about: {
       eyebrow: aboutData.eyebrow,
       headline: joinSegments(aboutData.headline),
+      body: aboutData.body,
       bio: aboutData.bio,
     },
     expertise: {
