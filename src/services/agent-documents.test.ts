@@ -30,6 +30,7 @@ const entriesByLocale = {
     about: {
       eyebrow: 'Sobre',
       headline: [{ text: 'Quem eu sou' }],
+      body: 'De onde eu venho e no que trabalho hoje.',
       bio: [[{ text: 'Trabalho com frontend há anos.' }]],
     },
     expertise: {
@@ -80,6 +81,7 @@ const entriesByLocale = {
     about: {
       eyebrow: 'About',
       headline: [{ text: 'Who I am' }],
+      body: 'Where I come from and what I work on today.',
       bio: [[{ text: 'I have worked on frontend for years.' }]],
     },
     expertise: {
@@ -146,6 +148,16 @@ describe('getAgentDocuments', () => {
       expect(english.markdown).toContain(`### ${item.title}`)
       expect(english.markdown).toContain(item.description)
     }
+  })
+
+  it('carries the about body in both documents for each locale', async () => {
+    const portuguese = await getAgentDocuments('pt')
+    const english = await getAgentDocuments('en')
+
+    expect(portuguese.markdown).toContain(entriesByLocale.pt.about.body)
+    expect(portuguese.llms).toContain(entriesByLocale.pt.about.body)
+    expect(english.markdown).toContain(entriesByLocale.en.about.body)
+    expect(english.llms).toContain(entriesByLocale.en.about.body)
   })
 
   it('places the expertise section between about and stack', async () => {
