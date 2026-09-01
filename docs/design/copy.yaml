@@ -9,7 +9,7 @@ project:
   language: 'pt'
   industry: 'portfolio'
   title: 'Adeonir Kohl | Portfólio'
-  description: 'Sou design engineer e levo decisões de design para o código, criando interfaces web acessíveis, responsivas e rápidas.'
+  description: 'Sou frontend engineer e trabalho com design engineering, levando decisões de design para o código em interfaces web acessíveis, responsivas e rápidas.'
 
 intent:
   status: confirmed
@@ -71,7 +71,7 @@ content:
         close: 'Fechar menu'
 
     hero:
-      eyebrow: 'Design Engineer'
+      eyebrow: 'Frontend Engineer'
       display: 'Adeonir Kohl'
       tagline: 'Eu construo interfaces web que funcionam.'
       description: 'Gosto de ver ideias tomarem forma e o design ganhar vida na tela.'
@@ -84,11 +84,11 @@ content:
       eyebrow: 'Sobre mim'
       headline: 'Do design ao código'
       bio:
-        - 'Olá, sou Adeonir e gosto de criar coisas para a internet. Como design engineer, crio interfaces funcionais e acessíveis, sempre de olho nos detalhes. Gosto especialmente de trabalhar na interseção entre design e código.'
-        - 'Atualmente sou Frontend Engineer na Jaya Tech, trabalhando com clientes nos Estados Unidos. Trabalho principalmente com React e TypeScript, desenvolvendo a biblioteca do design system e a plataforma web. Trabalho ao lado de designers e desenvolvedores para atender às necessidades dos usuários.'
-        - 'Depois de anos como designer gráfico, criando materiais publicitários, livros e revistas, migrei para o desenvolvimento frontend. Desde então, trabalhei com produtos financeiros, plataformas de gestão empresarial e sistemas de recuperação de crédito.'
-        - 'Trabalhei por um período na Joyjet, uma agência na França. Como UI Engineer, coordenei a equipe de UI Design e liderei dois desenvolvedores juniores. Mais tarde, como Frontend Developer, assumi um projeto legado em Vue e Express e reescrevi em React.'
-        - 'Fora do trabalho, desenvolvo alguns projetos pessoais, aplicando também meus conhecimentos em backend e desenvolvimento mobile. Essas experiências moldaram o jeito como penso ao construir interfaces.'
+        - 'Olá, sou Adeonir e gosto de criar coisas para a internet. Como frontend engineer, a área que mais me interessa é o design engineering: testo ideias em protótipo e crio interfaces funcionais e acessíveis, sempre de olho nos detalhes. Gosto especialmente de trabalhar na interseção entre design e código.'
+        - 'Atualmente sou Frontend Engineer na Jaya Tech e faço parte do time de produto da The Zebra, uma empresa americana de seguros de automóveis, onde trabalho na biblioteca do design system e na plataforma web. Uso principalmente React e TypeScript, e trabalho junto com designers, desenvolvedores e product managers.'
+        - 'Depois de anos como designer gráfico, criando materiais publicitários, livros e revistas, migrei para o desenvolvimento frontend. Desde então, trabalhei com produtos financeiros, plataformas de gestão empresarial e sistemas de investigação de credores e recuperação de ativos.'
+        - 'Trabalhei por um período na Joyjet, uma agência na França. Comecei como UI Engineer e depois como Lead UI Engineer, liderando as decisões de implementação de UI e mentorando um desenvolvedor júnior. Como Senior Frontend Developer, assumi um projeto legado em Vue e Express e defini a arquitetura do frontend para a migração progressiva de Vue para React.'
+        - 'Fora do trabalho, desenvolvo alguns projetos pessoais, onde decido o design visual e a arquitetura, e aplico também meus conhecimentos em backend e desenvolvimento mobile. Essas experiências moldaram o jeito como penso ao construir interfaces.'
         - 'No meu tempo livre, gosto de ficar com a família, colecionar miniaturas de Hot Wheels com meu filho, assistir a séries e filmes e curtir com amigos.'
 
     expertise:
@@ -99,15 +99,13 @@ content:
         - title: 'Interfaces acessíveis'
           description: 'Faço interfaces que funcionam bem em diferentes tamanhos, com semântica correta e acessibilidade desde o começo.'
         - title: 'Design systems'
-          description: 'Deixo componentes organizados para o time montar novas telas com o mesmo padrão, sem reescrever o que já existe.'
+          description: 'Deixo a biblioteca organizada e documentada para o time montar novas telas com o mesmo padrão, sem reescrever o que já existe.'
         - title: 'Estado e dados'
           description: 'Faço integração de API e gerenciamento de estado, com cache e dados compartilhados entre as telas.'
         - title: 'Qualidade e testes'
           description: 'Uso testes automatizados para cobrir o comportamento do produto e acompanho erros e performance depois que ele está no ar.'
-        - title: 'Métricas e experimentação'
-          description: 'Adiciono eventos e experimentos para verificar se uma mudança fez diferença.'
         - title: 'Desenvolvimento assistido por IA'
-          description: 'Programo com agentes de IA que me ajudam a pensar, executar, testar, avaliar e ajustar o trabalho ao longo do processo.'
+          description: 'Uso agentes de IA em processos estruturados: pesquisa, definição da intenção, especificação, planejamento, implementação e testes. Avalio e ajusto o trabalho ao longo do caminho.'
 
     stack:
       eyebrow: 'Tecnologias'
