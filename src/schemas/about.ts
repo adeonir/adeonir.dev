@@ -15,5 +15,6 @@ export const aboutSchema = z.object({
       }),
     )
     .min(1),
+  body: z.string().min(1),
   bio: z.array(z.array(bioSegmentSchema).min(1)).min(1),
 })

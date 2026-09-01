@@ -8,7 +8,7 @@ import { getLocalizedEntry } from '~/services/localized'
 const locale = parseLocale(Astro.currentLocale)
 const about = await getLocalizedEntry('about', 'about', locale)
 
-const { eyebrow, headline, bio } = about.data
+const { eyebrow, headline, body, bio } = about.data
 ---
 
 <section
@@ -17,24 +17,29 @@ const { eyebrow, headline, bio } = about.data
 >
   <div class="wrapper">
     <div class="mt-6 grid grid-cols-1 gap-12 md:grid-cols-5">
-      <h2
-        data-enter="block"
-        class="text-display text-pretty text-foreground md:col-span-2"
-      >
-        {
-          headline.map((segment) => (
-            <>
-              {segment.highlight ? (
-                <span class="text-secondary">{segment.text}</span>
-              ) : (
-                <span class="text-muted-foreground">{segment.text}</span>
-              )}
-            </>
-          ))
-        }
-      </h2>
-      <div class="flex flex-col gap-6 md:col-span-3">
+      <div class="flex flex-col gap-6 md:col-span-2">
         <Eyebrow data-enter="block" variant="muted">{eyebrow}</Eyebrow>
+        <h2 data-enter="block" class="text-display text-pretty text-foreground">
+          {
+            headline.map((segment) => (
+              <>
+                {segment.highlight ? (
+                  <span class="text-secondary">{segment.text}</span>
+                ) : (
+                  <span class="text-muted-foreground">{segment.text}</span>
+                )}
+              </>
+            ))
+          }
+        </h2>
+        <p
+          data-enter="block"
+          class="text-body leading-relaxed text-pretty text-muted-foreground"
+        >
+          {body}
+        </p>
+      </div>
+      <div class="flex flex-col gap-6 md:col-span-3 md:pt-14">
         {
           bio.map((paragraph, index) => (
             <p
