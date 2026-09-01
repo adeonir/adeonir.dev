@@ -7,8 +7,9 @@ about:
     - text: 'ao '
     - text: 'código'
       highlight: true
+  body: 'De onde eu venho, no que trabalho hoje e o que faço além disso.'
   bio:
-    - - text: 'Olá, sou Adeonir e gosto de criar coisas para a internet. Como frontend engineer, a área que mais me interessa é o design engineering: testo ideias em protótipo e crio interfaces funcionais e acessíveis, sempre de olho nos detalhes. Gosto especialmente de trabalhar na interseção entre design e código.'
+    - - text: 'Olá, sou Adeonir e gosto de criar coisas para a internet. Trabalho como frontend engineer, e a parte que mais me interessa é o design engineering. Testo ideias em protótipo e crio interfaces funcionais e acessíveis, sempre de olho nos detalhes. Gosto especialmente de trabalhar na interseção entre design e código.'
     - - text: 'Atualmente sou Frontend Engineer na '
       - text: 'Jaya Tech'
         href: 'https://jaya.tech/'
