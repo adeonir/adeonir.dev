@@ -11,12 +11,9 @@ const about = await getLocalizedEntry('about', 'about', locale)
 const { eyebrow, headline, body, bio } = about.data
 ---
 
-<section
-  id="about"
-  class="-scroll-mt-12 pt-24 pb-16 md:-scroll-mt-20 md:pt-32 md:pb-24"
->
+<section id="about" class="pt-16 pb-4 md:pt-20 md:pb-8">
   <div class="wrapper">
-    <div class="mt-6 grid grid-cols-1 gap-12 md:grid-cols-5">
+    <div class="mt-12 grid grid-cols-1 gap-12 md:grid-cols-5">
       <div class="flex flex-col gap-6 md:col-span-2">
         <Eyebrow data-enter="block" variant="muted">{eyebrow}</Eyebrow>
         <h2 data-enter="block" class="text-display text-pretty text-foreground">
