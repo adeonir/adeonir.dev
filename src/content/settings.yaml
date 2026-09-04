@@ -6,8 +6,8 @@ metadata:
   agentDocument:
     sections:
       hero: 'Hero'
-      projects: 'Projetos'
       about: 'Sobre mim'
+      projects: 'Projetos'
       expertise: 'Especialidades'
       stack: 'Tecnologias'
       contact: 'Contato'

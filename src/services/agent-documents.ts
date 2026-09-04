@@ -134,17 +134,6 @@ ${content.hero.tagline}
 
 ${content.hero.description}
 
-<a id="projects"></a>
-## ${getSectionTitle(content, 'projects')}
-
-${content.projects.eyebrow}
-
-### ${content.projects.headline}
-
-${content.projects.body}
-
-${serializeLinkedSegments(content.projects.holding)}
-
 <a id="about"></a>
 ## ${getSectionTitle(content, 'about')}
 
@@ -155,6 +144,17 @@ ${content.about.eyebrow}
 ${content.about.body}
 
 ${content.about.bio.map(serializeLinkedSegments).join('\n\n')}
+
+<a id="projects"></a>
+## ${getSectionTitle(content, 'projects')}
+
+${content.projects.eyebrow}
+
+### ${content.projects.headline}
+
+${content.projects.body}
+
+${serializeLinkedSegments(content.projects.holding)}
 
 <a id="expertise"></a>
 ## ${getSectionTitle(content, 'expertise')}
@@ -199,15 +199,15 @@ function serializeLlms(content: AgentDocumentContent, locale: Locale): string {
       linkTitle: content.hero.display,
       description: `${content.hero.tagline} ${content.hero.description}`,
     },
-    projects: {
-      title: getSectionTitle(content, 'projects'),
-      linkTitle: getSectionTitle(content, 'projects'),
-      description: `${content.projects.body} ${joinSegments(content.projects.holding)}`,
-    },
     about: {
       title: getSectionTitle(content, 'about'),
       linkTitle: getSectionTitle(content, 'about'),
       description: content.about.body,
+    },
+    projects: {
+      title: getSectionTitle(content, 'projects'),
+      linkTitle: getSectionTitle(content, 'projects'),
+      description: `${content.projects.body} ${joinSegments(content.projects.holding)}`,
     },
     expertise: {
       title: getSectionTitle(content, 'expertise'),

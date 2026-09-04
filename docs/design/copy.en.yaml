@@ -53,8 +53,8 @@ content:
     agentDocument:
       sections:
         hero: 'Hero'
-        projects: 'Projects'
         about: 'About me'
+        projects: 'Projects'
         expertise: 'Capabilities'
         stack: 'Tech Stack'
         contact: 'Contact'
@@ -80,13 +80,6 @@ content:
         secondary: 'Get in touch'
       scroll: 'scroll for more'
 
-    projects:
-      eyebrow: 'Featured projects'
-      headline: 'Ideas that went live'
-      body: 'A few projects I helped build over the last years.'
-      holding: "I don't have a featured project published here yet. If you want to know what I'm working on, send me a message."
-      see-all: 'See all projects'
-
     about:
       eyebrow: 'About me'
       headline: 'From design to code'
@@ -98,6 +91,13 @@ content:
         - "I worked for a while at Joyjet, an agency in France. I started as a UI Engineer, then as Lead UI Engineer, leading UI implementation decisions and mentoring a junior developer. As a Senior Frontend Developer, I took over a legacy Vue and Express project and defined the frontend architecture for its progressive migration from Vue to React."
         - 'Outside of work, I build a few personal projects where I decide the visual design and the architecture, and also apply my knowledge of backend and mobile development. These experiences shaped how I think about building interfaces.'
         - 'In my spare time, I like spending time with family, collecting Hot Wheels with my son, watching TV shows and movies, and hanging out with friends.'
+
+    projects:
+      eyebrow: 'Featured projects'
+      headline: 'Ideas that went live'
+      body: 'A few projects I helped build over the last years.'
+      holding: "I don't have a featured project published here yet. If you want to know what I'm working on, send me a message."
+      see-all: 'See all projects'
 
     expertise:
       eyebrow: 'Capabilities'

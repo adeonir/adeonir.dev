@@ -195,18 +195,18 @@ describe('getAgentDocuments', () => {
     )
   })
 
-  it('places the projects section between hero and about', async () => {
+  it('places the projects section between about and expertise', async () => {
     const { llms, markdown } = await getAgentDocuments('en')
 
     const markdownOrder = [
-      markdown.indexOf('## Hero'),
-      markdown.indexOf('## Projects'),
       markdown.indexOf('## About me'),
+      markdown.indexOf('## Projects'),
+      markdown.indexOf('## Capabilities'),
     ]
     const llmsOrder = [
-      llms.indexOf('## Hero'),
-      llms.indexOf('## Projects'),
       llms.indexOf('## About me'),
+      llms.indexOf('## Projects'),
+      llms.indexOf('## Capabilities'),
     ]
 
     expect(markdownOrder.every((position) => position >= 0)).toBe(true)
