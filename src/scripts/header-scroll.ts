@@ -1,32 +1,42 @@
 import { onVisit } from '~/scripts/visit'
 
+// Trackpads and touch report a few pixels of movement in both directions
+// while the finger is still; anything under this is ignored.
+const THRESHOLD = 8
+
 export const bindHeaderScroll = () => {
   const header = document.querySelector('header')
   if (!header) return
 
-  const sentinel = document.createElement('div')
-  sentinel.setAttribute('aria-hidden', 'true')
-  sentinel.style.cssText = 'position:absolute;top:0;width:1px;height:8px'
-  document.body.insertBefore(sentinel, document.body.firstChild)
+  header.dataset.state = 'visible'
 
-  let opened = false
+  let lastY = window.scrollY
 
-  const observer = new IntersectionObserver(([entry]) => {
-    header.dataset.state = entry.isIntersecting ? 'top' : 'scrolled'
+  const onScroll = () => {
+    const y = window.scrollY
+    const delta = y - lastY
 
-    if (!opened) {
-      opened = true
-      requestAnimationFrame(() => {
-        header.dataset.transition = 'open'
-      })
+    if (y <= 0) {
+      header.dataset.state = 'visible'
+    } else if (delta > THRESHOLD) {
+      header.dataset.state = 'hidden'
+    } else if (-delta > THRESHOLD) {
+      header.dataset.state = 'visible'
     }
-  })
 
-  observer.observe(sentinel)
+    if (Math.abs(delta) > THRESHOLD) lastY = y
+  }
+
+  const onFocusIn = () => {
+    header.dataset.state = 'visible'
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true })
+  header.addEventListener('focusin', onFocusIn)
 
   return () => {
-    observer.disconnect()
-    sentinel.remove()
+    window.removeEventListener('scroll', onScroll)
+    header.removeEventListener('focusin', onFocusIn)
   }
 }
 
