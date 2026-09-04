@@ -4,11 +4,19 @@ const prefersReducedMotion = () =>
 const behavior = (): ScrollBehavior =>
   prefersReducedMotion() ? 'auto' : 'smooth'
 
+// Tells listeners that the next scroll is the site's own, not the visitor's.
+export const ANCHOR_SCROLL_EVENT = 'anchor-scroll'
+
+const announce = () => {
+  document.dispatchEvent(new Event(ANCHOR_SCROLL_EVENT))
+}
+
 const stripHash = () => {
   history.replaceState(null, '', location.pathname + location.search)
 }
 
 export const scrollToTop = () => {
+  announce()
   window.scrollTo({ top: 0, behavior: behavior() })
 }
 
@@ -18,6 +26,7 @@ export const goToAnchor = (id: string): boolean => {
   if (!target) return false
 
   stripHash()
+  announce()
   target.scrollIntoView({ behavior: behavior() })
   return true
 }

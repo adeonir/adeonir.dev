@@ -74,6 +74,25 @@ it('shows the header when focus enters it', async () => {
   expect(header.dataset.state).toBe('visible')
 })
 
+it('keeps the header while the page scrolls to an anchor', async () => {
+  vi.useFakeTimers()
+  const { bindHeaderScroll } = await loadHeaderScroll()
+  const header = render()
+
+  bindHeaderScroll()
+  document.dispatchEvent(new Event('anchor-scroll'))
+  scrollTo(300)
+  scrollTo(600)
+
+  expect(header.dataset.state).toBe('visible')
+
+  vi.advanceTimersByTime(200)
+  scrollTo(700)
+
+  expect(header.dataset.state).toBe('hidden')
+  vi.useRealTimers()
+})
+
 it('stops listening to scroll and focus when the visit releases', async () => {
   const { bindHeaderScroll } = await loadHeaderScroll()
   const header = render()
