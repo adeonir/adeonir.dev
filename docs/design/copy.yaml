@@ -53,6 +53,7 @@ content:
     agentDocument:
       sections:
         hero: 'Hero'
+        projects: 'Projetos'
         about: 'Sobre mim'
         expertise: 'Especialidades'
         stack: 'Tecnologias'
@@ -61,9 +62,8 @@ content:
       logo:
         text: 'adeonir.dev'
       nav:
-        - text: 'início'
+        - text: 'projetos'
         - text: 'sobre'
-        - text: 'trabalho'
         - text: 'contato'
       menu:
         label: 'Menu'
@@ -79,6 +79,16 @@ content:
         primary: 'Ver meu trabalho'
         secondary: 'Entrar em contato'
       scroll: 'role para ver mais'
+
+    projects:
+      eyebrow: 'Projetos em destaque'
+      headline: 'Ideias que saíram do papel'
+      body: 'Alguns projetos que ajudei a construir e estão no ar.'
+      # holding message — shown while no project is published; "me manda uma
+      # mensagem" links to the contact section.
+      holding: 'Ainda não tenho nenhum projeto em destaque publicado aqui. Se quiser saber no que estou trabalhando, me manda uma mensagem.'
+      # list -> top-level `projects` collection, filtered to featured: true
+      see-all: 'Ver todos os projetos'
 
     about:
       eyebrow: 'Sobre mim'
@@ -140,12 +150,6 @@ content:
             - 'claude'
             - 'codex'
             - 'cloudflare'
-
-    projects:
-      eyebrow: 'Projetos em destaque'
-      headline: 'Alguns projetos que desenhei e construí'
-      # list -> top-level `projects` collection, filtered to featured: true
-      see-all: 'Ver todos os projetos'
 
     contact:
       eyebrow: 'Vamos conversar'
