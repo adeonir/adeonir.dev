@@ -28,17 +28,17 @@ export function ThemeToggle({ labels }: ThemeToggleProps) {
       <ClientOnly
         fallback={
           <>
-            <IconMoon className="in-data-[theme=light]:hidden size-5" />
-            <IconSun className="in-data-[theme=dark]:hidden size-5" />
+            <IconMoon className="in-data-[theme=light]:hidden size-4.5" />
+            <IconSun className="in-data-[theme=dark]:hidden size-4.5" />
           </>
         }
       >
-        <Swap.Root className="size-5" swap={isLight}>
+        <Swap.Root className="size-4.5" swap={isLight}>
           <Swap.Indicator type="off" variant="rotate">
-            <IconMoon className="size-5" />
+            <IconMoon className="size-4.5" />
           </Swap.Indicator>
           <Swap.Indicator type="on" variant="rotate">
-            <IconSun className="size-5" />
+            <IconSun className="size-4.5" />
           </Swap.Indicator>
         </Swap.Root>
       </ClientOnly>
