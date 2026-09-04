@@ -11,6 +11,7 @@ import { heroSchema } from '~/schemas/hero'
 import { languageToggleSchema } from '~/schemas/language-toggle'
 import { mobileMenuSchema } from '~/schemas/mobile-menu'
 import { notFoundSchema } from '~/schemas/not-found'
+import { projectsSchema } from '~/schemas/projects'
 import { settingsSchema } from '~/schemas/settings'
 import { stackSchema } from '~/schemas/stack'
 import { themeToggleSchema } from '~/schemas/theme-toggle'
@@ -73,6 +74,16 @@ const hero = defineCollection({
 const heroEn = defineCollection({
   loader: file('src/content/hero.en.yaml'),
   schema: heroSchema,
+})
+
+const projects = defineCollection({
+  loader: file('src/content/projects.yaml'),
+  schema: projectsSchema,
+})
+
+const projectsEn = defineCollection({
+  loader: file('src/content/projects.en.yaml'),
+  schema: projectsSchema,
 })
 
 const about = defineCollection({
@@ -170,6 +181,8 @@ export const collections = {
   footerEn,
   hero,
   heroEn,
+  projects,
+  projectsEn,
   about,
   aboutEn,
   expertise,

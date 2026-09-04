@@ -84,7 +84,7 @@ flowchart TD
     Islands[React islands: toggle, form, nav]
   end
   subgraph Content[src/content - build time]
-    MDX[projects MDX collection]
+    MDX[case study MDX collection]
     Copy[per-locale yaml copy collections]
     Registry[Localized content registry]
     Schemas[src/schemas - zod]
@@ -102,7 +102,7 @@ flowchart TD
 ```
 
 - **Components:** Astro app (prerendered pages + localized not-found fallback + one on-demand Action), React
-  islands, content layer (MDX projects + per-locale yaml copy and localized
+  islands, content layer (MDX case studies + per-locale yaml copy and localized
   registry), shared `src/schemas/`.
 - **Runtime boundaries:** normal pages prerender to static assets. The localized
   not-found catch-all and contact Action execute on the Cloudflare Worker runtime
@@ -144,8 +144,8 @@ flowchart LR
   document `lang` values are `pt-BR` and `en` (decoupled from the key). Astro
   does not emit `hreflang`; that and localized sitemap alternates are deferred
   to issue #128. Localized links use `getRelativeLocaleUrl()`.
-- **Content layout:** per-section yaml copy collections and a `projects` MDX
-  collection live under `src/content/`; Portuguese uses bare files (`*.yaml`,
+- **Content layout:** per-section yaml copy collections and an MDX collection of
+  case studies live under `src/content/`; Portuguese uses bare files (`*.yaml`,
   `index.mdx`) and English uses `.en` files (`*.en.yaml`, `index.en.mdx`). The
   localized registry maps a base collection to its locale-specific collection
   and fails when the required entry is missing. Settings content also holds
@@ -170,7 +170,7 @@ flowchart LR
 
 | Entity | Purpose | Key Invariants | Storage |
 |--------|---------|----------------|---------|
-| Project | A case study | `slug` = folder name (unique); pt body (`index.mdx`) required, `index.en.mdx` for en; `cover` present | MDX + colocated images in `src/content/projects/<slug>/` (git, build-time) |
+| Project | A case study | `slug` = folder name (unique); pt body (`index.mdx`) required, `index.en.mdx` for en; `cover` present | MDX + colocated images in a per-slug folder under `src/content/` (git, build-time) |
 | Section copy | UI text per section per locale | each section has a bare pt file and an `.en` variant; shape validated by its own schema; no locale fallback | yaml data collections in `src/content/` (git, build-time) |
 | Featured selection | Ordered curation for the home page | references existing project slugs; order is preserved | ordered list in `featured.yaml` (copy) |
 | Contact submission | Inbound visitor message | `name`/`email`/`message` and `locale` (`pt` or `en`) validated; rate-limited per IP; never stored or logged | none — transient, delivered via Resend |

@@ -1,0 +1,12 @@
+projects:
+  eyebrow: 'Projetos em destaque'
+  headline:
+    - text: 'Ideias '
+      highlight: true
+    - text: 'que saíram do papel'
+  body: 'Alguns projetos que ajudei a construir nos últimos anos.'
+  holding:
+    - text: 'Ainda não tenho nenhum projeto em destaque publicado aqui. Se quiser saber no que estou trabalhando, '
+    - text: 'me manda uma mensagem'
+      href: '#contact'
+    - text: '.'

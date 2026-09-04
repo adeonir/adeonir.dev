@@ -11,6 +11,9 @@ hero:
     - text: '.'
   description: 'I like seeing ideas take shape and design come to life on screen.'
   actions:
+    primary:
+      label: 'See my projects'
+      href: '#projects'
     secondary:
       label: 'Get in touch'
       href: '#contact'

@@ -9,9 +9,9 @@ const expertise = await getLocalizedEntry('expertise', 'expertise', locale)
 const { eyebrow, headline, body, items } = expertise.data
 ---
 
-<section id="expertise" class="py-16 md:py-24">
+<section id="expertise" class="pt-16 pb-4 md:pt-20 md:pb-8">
   <div class="wrapper">
-    <div class="mt-6 grid grid-cols-1 gap-12 md:grid-cols-5">
+    <div class="mt-12 grid grid-cols-1 gap-12 md:grid-cols-5">
       <div class="flex flex-col gap-6 md:col-span-2">
         <Eyebrow data-enter="block" variant="muted">{eyebrow}</Eyebrow>
         <h2 data-enter="block" class="text-display text-pretty text-foreground">

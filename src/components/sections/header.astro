@@ -17,9 +17,6 @@ const homeURL = getRelativeLocaleUrl(locale)
 const isNotFound = Astro.response.status === 404
 
 const { logo, nav } = header.data
-const localizedNav = nav.map((item) =>
-  item.href === '/' || item.href === '/en/' ? { ...item, href: homeURL } : item,
-)
 ---
 
 <header
@@ -42,7 +39,7 @@ const localizedNav = nav.map((item) =>
             <>
               <nav class="hidden md:block">
                 <ul class="flex items-center gap-6">
-                  {localizedNav.map((item) => (
+                  {nav.map((item) => (
                     <li>
                       <NavLink href={item.href}>{item.label}</NavLink>
                     </li>
@@ -69,7 +66,7 @@ const localizedNav = nav.map((item) =>
                 <LanguageToggle locale={locale} />
               </div>
               <div class="md:hidden">
-                <MobileMenu nav={localizedNav}>
+                <MobileMenu nav={nav}>
                   <Divider className="block xxs:hidden" />
                   <div class="flex items-center gap-4 xxs:hidden">
                     <ThemeToggle />

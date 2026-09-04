@@ -54,6 +54,7 @@ content:
       sections:
         hero: 'Hero'
         about: 'Sobre mim'
+        projects: 'Projetos'
         expertise: 'Especialidades'
         stack: 'Tecnologias'
         contact: 'Contato'
@@ -61,9 +62,8 @@ content:
       logo:
         text: 'adeonir.dev'
       nav:
-        - text: 'início'
+        - text: 'projetos'
         - text: 'sobre'
-        - text: 'trabalho'
         - text: 'contato'
       menu:
         label: 'Menu'
@@ -91,6 +91,13 @@ content:
         - 'Trabalhei por um período na Joyjet, uma agência na França. Comecei como UI Engineer e depois como Lead UI Engineer, liderando as decisões de implementação de UI e mentorando um desenvolvedor júnior. Como Senior Frontend Developer, assumi um projeto legado em Vue e Express e defini a arquitetura do frontend para a migração progressiva de Vue para React.'
         - 'Fora do trabalho, desenvolvo alguns projetos pessoais, onde decido o design visual e a arquitetura, e aplico também meus conhecimentos em backend e desenvolvimento mobile. Essas experiências moldaram o jeito como penso ao construir interfaces.'
         - 'No meu tempo livre, gosto de ficar com a família, colecionar miniaturas de Hot Wheels com meu filho, assistir a séries e filmes e curtir com amigos.'
+
+    projects:
+      eyebrow: 'Projetos em destaque'
+      headline: 'Ideias que saíram do papel'
+      body: 'Alguns projetos que ajudei a construir nos últimos anos.'
+      holding: 'Ainda não tenho nenhum projeto em destaque publicado aqui. Se quiser saber no que estou trabalhando, me manda uma mensagem.'
+      see-all: 'Ver todos projetos'
 
     expertise:
       eyebrow: 'Especialidades'
@@ -140,12 +147,6 @@ content:
             - 'claude'
             - 'codex'
             - 'cloudflare'
-
-    projects:
-      eyebrow: 'Projetos em destaque'
-      headline: 'Alguns projetos que desenhei e construí'
-      # list -> top-level `projects` collection, filtered to featured: true
-      see-all: 'Ver todos os projetos'
 
     contact:
       eyebrow: 'Vamos conversar'

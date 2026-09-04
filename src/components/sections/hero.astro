@@ -45,15 +45,22 @@ const { eyebrow, display, tagline, description, actions, scroll } = hero.data
     >
       {description}
     </p>
-    <a
-      href={actions.secondary.href}
-      class={cn(
-        buttonVariants({ variant: 'default', size: 'default' }),
-        'mt-10 [--blur-in:0px] motion-safe:animate-enter motion-safe:[animation-delay:280ms] sm:mt-14',
-      )}
+    <div
+      class="mt-10 flex flex-wrap items-center justify-center gap-4 [--blur-in:0px] motion-safe:animate-enter motion-safe:[animation-delay:280ms] sm:mt-14"
     >
-      {actions.secondary.label}
-    </a>
+      <a
+        href={actions.primary.href}
+        class={cn(buttonVariants({ variant: 'default', size: 'default' }))}
+      >
+        {actions.primary.label}
+      </a>
+      <a
+        href={actions.secondary.href}
+        class={cn(buttonVariants({ variant: 'outline', size: 'default' }))}
+      >
+        {actions.secondary.label}
+      </a>
+    </div>
   </div>
   <div
     class="absolute bottom-8 flex flex-col items-center gap-2 font-mono text-caption text-muted-foreground/73 [--blur-in:var(--blur-xs)] motion-safe:animate-enter motion-safe:[animation-delay:350ms] light:text-muted-foreground/91"

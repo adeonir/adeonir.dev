@@ -1,9 +1,9 @@
 header:
   logo: 'adeonir.dev'
   nav:
-    - label: 'início'
-      href: '/'
     - label: 'sobre'
       href: '#about'
+    - label: 'projetos'
+      href: '#projects'
     - label: 'contato'
       href: '#contact'

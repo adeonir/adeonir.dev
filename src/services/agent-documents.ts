@@ -32,6 +32,12 @@ type AgentDocumentContent = {
     tagline: string
     description: string
   }
+  projects: {
+    eyebrow: string
+    headline: string
+    body: string
+    holding: TextSegment[]
+  }
   about: {
     eyebrow: string
     headline: string
@@ -75,7 +81,7 @@ function joinSegments(segments: TextSegment[]): string {
   return segments.map((segment) => segment.text).join('')
 }
 
-function serializeBioParagraph(segments: TextSegment[]): string {
+function serializeLinkedSegments(segments: TextSegment[]): string {
   return segments
     .map((segment) =>
       segment.href ? `[${segment.text}](${segment.href})` : segment.text,
@@ -137,7 +143,18 @@ ${content.about.eyebrow}
 
 ${content.about.body}
 
-${content.about.bio.map(serializeBioParagraph).join('\n\n')}
+${content.about.bio.map(serializeLinkedSegments).join('\n\n')}
+
+<a id="projects"></a>
+## ${getSectionTitle(content, 'projects')}
+
+${content.projects.eyebrow}
+
+### ${content.projects.headline}
+
+${content.projects.body}
+
+${serializeLinkedSegments(content.projects.holding)}
 
 <a id="expertise"></a>
 ## ${getSectionTitle(content, 'expertise')}
@@ -187,6 +204,11 @@ function serializeLlms(content: AgentDocumentContent, locale: Locale): string {
       linkTitle: getSectionTitle(content, 'about'),
       description: content.about.body,
     },
+    projects: {
+      title: getSectionTitle(content, 'projects'),
+      linkTitle: getSectionTitle(content, 'projects'),
+      description: `${content.projects.body} ${joinSegments(content.projects.holding)}`,
+    },
     expertise: {
       title: getSectionTitle(content, 'expertise'),
       linkTitle: getSectionTitle(content, 'expertise'),
@@ -221,16 +243,19 @@ ${agentDocumentSections
 async function getAgentDocumentContent(
   locale: Locale,
 ): Promise<AgentDocumentContent> {
-  const [settings, hero, about, expertise, stack, contact] = await Promise.all([
-    getLocalizedEntry('settings', 'metadata', locale),
-    getLocalizedEntry('hero', 'hero', locale),
-    getLocalizedEntry('about', 'about', locale),
-    getLocalizedEntry('expertise', 'expertise', locale),
-    getLocalizedEntry('stack', 'stack', locale),
-    getLocalizedEntry('contact', 'contact', locale),
-  ])
+  const [settings, hero, projects, about, expertise, stack, contact] =
+    await Promise.all([
+      getLocalizedEntry('settings', 'metadata', locale),
+      getLocalizedEntry('hero', 'hero', locale),
+      getLocalizedEntry('projects', 'projects', locale),
+      getLocalizedEntry('about', 'about', locale),
+      getLocalizedEntry('expertise', 'expertise', locale),
+      getLocalizedEntry('stack', 'stack', locale),
+      getLocalizedEntry('contact', 'contact', locale),
+    ])
 
   const heroData = hero.data
+  const projectsData = projects.data
   const aboutData = about.data
   const expertiseData = expertise.data
   const stackData = stack.data
@@ -243,6 +268,12 @@ async function getAgentDocumentContent(
       eyebrow: heroData.eyebrow,
       tagline: joinSegments(heroData.tagline),
       description: heroData.description,
+    },
+    projects: {
+      eyebrow: projectsData.eyebrow,
+      headline: joinSegments(projectsData.headline),
+      body: projectsData.body,
+      holding: projectsData.holding,
     },
     about: {
       eyebrow: aboutData.eyebrow,

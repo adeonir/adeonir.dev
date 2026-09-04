@@ -13,6 +13,10 @@ export const heroSchema = z.object({
     .min(1),
   description: z.string().min(1),
   actions: z.object({
+    primary: z.object({
+      label: z.string().min(1),
+      href: z.string().min(1),
+    }),
     secondary: z.object({
       label: z.string().min(1),
       href: z.string().min(1),

@@ -1,17 +1,17 @@
 ---
-import { Eyebrow } from '~/components/ui/eyebrow'
 import { buttonVariants } from '~/components/ui/button-variants'
-import { cn } from '~/helpers/classnames'
+import { Eyebrow } from '~/components/ui/eyebrow'
 import { parseLocale } from '~/helpers/content'
 import { getLocalizedEntry } from '~/services/localized'
+import IconFolder from '~icons/tabler/folder'
 
 const locale = parseLocale(Astro.currentLocale)
-const about = await getLocalizedEntry('about', 'about', locale)
+const projects = await getLocalizedEntry('projects', 'projects', locale)
 
-const { eyebrow, headline, body, bio } = about.data
+const { eyebrow, headline, body, holding } = projects.data
 ---
 
-<section id="about" class="pt-16 pb-4 md:pt-20 md:pb-8">
+<section id="projects" class="pt-16 pb-4 md:pt-20 md:pb-8">
   <div class="wrapper">
     <div class="mt-12 grid grid-cols-1 gap-12 md:grid-cols-5">
       <div class="flex flex-col gap-6 md:col-span-2">
@@ -23,7 +23,7 @@ const { eyebrow, headline, body, bio } = about.data
                 {segment.highlight ? (
                   <span class="text-secondary">{segment.text}</span>
                 ) : (
-                  <span class="text-muted-foreground">{segment.text}</span>
+                  segment.text
                 )}
               </>
             ))
@@ -36,35 +36,37 @@ const { eyebrow, headline, body, bio } = about.data
           {body}
         </p>
       </div>
-      <div class="flex flex-col gap-6 md:col-span-3 md:pt-14">
-        {
-          bio.map((paragraph, index) => (
-            <p
-              data-enter="block"
-              class={cn(
-                'leading-relaxed text-pretty',
-                index === 0
-                  ? 'text-subtitle text-foreground'
-                  : 'text-body text-muted-foreground',
-              )}
-            >
-              {paragraph.map((segment) =>
+      <div class="md:col-span-3 md:pt-14">
+        <div
+          data-enter="block"
+          class="flex aspect-21/9 flex-col items-center justify-center gap-4 rounded-2xl border border-border bg-card p-6 text-center"
+        >
+          <IconFolder
+            className="size-7 shrink-0 text-muted-foreground opacity-70"
+            aria-hidden="true"
+          />
+          <p
+            class="max-w-[40ch] text-base leading-normal text-pretty text-muted-foreground"
+          >
+            {
+              holding.map((segment) =>
                 segment.href ? (
                   <a
                     href={segment.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class={buttonVariants({ variant: 'link', size: 'inline' })}
+                    class={buttonVariants({
+                      variant: 'link',
+                      size: 'inline',
+                    })}
                   >
                     {segment.text}
                   </a>
                 ) : (
                   segment.text
                 ),
-              )}
-            </p>
-          ))
-        }
+              )
+            }
+          </p>
+        </div>
       </div>
     </div>
   </div>
