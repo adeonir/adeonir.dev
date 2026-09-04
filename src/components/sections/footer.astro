@@ -13,21 +13,23 @@ const homeURL = getRelativeLocaleUrl(locale)
 const { brand, signoff } = footer.data
 ---
 
-<footer class="bg-sunken">
-  <div
-    class="wrapper flex min-h-32 flex-col justify-center gap-6 py-8 md:flex-row md:items-center md:justify-between md:py-0"
-  >
-    <div class="flex flex-col gap-2">
-      <a
-        href={homeURL}
-        class="-mx-1.5 -my-0.5 shrink-0 self-start rounded-sm px-1.5 py-0.5 transition focus-visible:ring-4 focus-visible:ring-ring/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
-      >
-        <Logo class="w-28" label={brand.text} />
-      </a>
-      <p class="font-mono text-xs text-muted-foreground">
-        {brand.copyright}
-      </p>
+<footer class="bg-popover">
+  <div class="wrapper">
+    <div
+      class="flex flex-col gap-6 border-t border-border py-12 md:flex-row md:items-center md:justify-between"
+    >
+      <div class="flex flex-col gap-2">
+        <a
+          href={homeURL}
+          class="-mx-1.5 -my-0.5 shrink-0 self-start rounded-sm px-1.5 py-0.5 transition focus-visible:ring-4 focus-visible:ring-ring/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+        >
+          <Logo class="w-28" label={brand.text} />
+        </a>
+        <p class="font-mono text-xs text-muted-foreground">
+          {brand.copyright}
+        </p>
+      </div>
+      <FooterSignoff segments={signoff} client:visible />
     </div>
-    <FooterSignoff segments={signoff} client:visible />
   </div>
 </footer>
