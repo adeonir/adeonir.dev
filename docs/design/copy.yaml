@@ -84,11 +84,8 @@ content:
       eyebrow: 'Projetos em destaque'
       headline: 'Ideias que saíram do papel'
       body: 'Alguns projetos que ajudei a construir e estão no ar.'
-      # holding message — shown while no project is published; "me manda uma
-      # mensagem" links to the contact section.
       holding: 'Ainda não tenho nenhum projeto em destaque publicado aqui. Se quiser saber no que estou trabalhando, me manda uma mensagem.'
-      # list -> top-level `projects` collection, filtered to featured: true
-      see-all: 'Ver todos os projetos'
+      see-all: 'Ver todos projetos'
 
     about:
       eyebrow: 'Sobre mim'

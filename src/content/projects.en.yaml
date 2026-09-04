@@ -1,5 +1,5 @@
 projects:
-  eyebrow: 'Featured work'
+  eyebrow: 'Featured projects'
   headline:
     - text: 'Ideas '
       highlight: true

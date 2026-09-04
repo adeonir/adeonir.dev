@@ -76,19 +76,16 @@ content:
       tagline: 'I build web interfaces that work.'
       description: 'I like seeing ideas take shape and design come to life on screen.'
       actions:
-        primary: 'See my work'
+        primary: 'See my projects'
         secondary: 'Get in touch'
       scroll: 'scroll for more'
 
     projects:
-      eyebrow: 'Featured work'
+      eyebrow: 'Featured projects'
       headline: 'Ideas that made it to the screen'
       body: 'A few projects I helped build that are live today.'
-      # holding message — shown while no project is published; "send me a
-      # message" links to the contact section.
       holding: "I don't have a featured project published here yet. If you want to know what I'm working on, send me a message."
-      # list -> top-level `projects` collection, filtered to featured: true
-      see-all: 'See all work'
+      see-all: 'See all projects'
 
     about:
       eyebrow: 'About me'
