@@ -4,7 +4,6 @@ const prefersReducedMotion = () =>
 const behavior = (): ScrollBehavior =>
   prefersReducedMotion() ? 'auto' : 'smooth'
 
-// Tells listeners that the next scroll is the site's own, not the visitor's.
 export const ANCHOR_SCROLL_EVENT = 'anchor-scroll'
 
 const announce = () => {
