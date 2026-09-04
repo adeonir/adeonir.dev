@@ -19,7 +19,7 @@ export function ThemeToggle({ labels }: ThemeToggleProps) {
     <Button
       type="button"
       size="icon"
-      variant="outline"
+      variant="ghost"
       aria-label={isLight ? labels.light : labels.dark}
       aria-pressed={isLight}
       onClick={toggleTheme}

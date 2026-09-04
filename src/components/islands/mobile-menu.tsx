@@ -48,8 +48,7 @@ export function MobileMenu({ nav, content, children }: MobileMenuProps) {
       <Menu.Trigger asChild>
         <Button
           aria-label={open ? content.trigger.close : content.trigger.open}
-          variant="outline"
-          className="border-border!"
+          variant="ghost"
           size="icon"
         >
           <Swap.Root className="size-5" swap={open}>
