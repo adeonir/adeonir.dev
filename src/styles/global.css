@@ -260,6 +260,11 @@
   html {
     scrollbar-width: thin;
     scrollbar-color: var(--border) transparent;
+    scrollbar-gutter: stable;
+  }
+
+  html[data-menu="open"] {
+    overflow: hidden;
   }
 }
 

@@ -31,6 +31,14 @@ export function MobileMenu({ nav, content, children }: MobileMenuProps) {
     return () => document.removeEventListener('astro:before-swap', close)
   }, [])
 
+  useEffect(() => {
+    if (!open) return
+    document.documentElement.dataset.menu = 'open'
+    return () => {
+      delete document.documentElement.dataset.menu
+    }
+  }, [open])
+
   return (
     <Menu.Root
       open={open}
