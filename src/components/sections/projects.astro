@@ -42,21 +42,24 @@ const { eyebrow, headline, body, holding } = projects.data
       <div class="md:col-span-3 md:pt-14">
         <div
           data-enter="block"
-          class="flex flex-col gap-4 rounded-lg border border-border bg-sunken p-6 sm:p-8"
+          class="flex aspect-21/9 flex-col items-center justify-center gap-4 rounded-2xl border border-border bg-card p-6 text-center"
         >
           <IconFolder
-            className="size-6 shrink-0 text-primary"
+            className="size-7 shrink-0 text-muted-foreground opacity-70"
             aria-hidden="true"
           />
           <p
-            class="text-body leading-relaxed text-pretty text-muted-foreground"
+            class="max-w-[40ch] text-base leading-normal text-pretty text-muted-foreground"
           >
             {
               holding.map((segment) =>
                 segment.href ? (
                   <a
                     href={segment.href}
-                    class={buttonVariants({ variant: 'link', size: 'inline' })}
+                    class={buttonVariants({
+                      variant: 'link',
+                      size: 'inline',
+                    })}
                   >
                     {segment.text}
                   </a>
