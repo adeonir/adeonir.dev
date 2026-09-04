@@ -3,8 +3,8 @@ projects:
   headline:
     - text: 'Ideas '
       highlight: true
-    - text: 'that made it to the screen'
-  body: 'A few projects I helped build that are live today.'
+    - text: 'that went live'
+  body: 'A few projects I helped build over the last years.'
   holding:
     - text: "I don't have a featured project published here yet. If you want to know what I'm working on, "
     - text: 'send me a message'
