@@ -8,6 +8,7 @@ export const settingsSchema = z.object({
   agentDocument: z.object({
     sections: z.object({
       hero: z.string(),
+      projects: z.string(),
       about: z.string(),
       expertise: z.string(),
       stack: z.string(),
