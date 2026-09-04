@@ -2,102 +2,110 @@
 
 import { beforeEach, expect, it, vi } from 'vitest'
 
-type ObserverCallback = (entries: { isIntersecting: boolean }[]) => void
-
-let notify: ObserverCallback
-const disconnect = vi.fn()
-
 const loadHeaderScroll = async () => {
   vi.resetModules()
   return import('./header-scroll')
 }
 
 const render = () => {
-  document.body.innerHTML = '<header></header>'
+  document.body.innerHTML = '<header><a href="#about">sobre</a></header>'
   return document.querySelector('header') as HTMLElement
+}
+
+const scrollTo = (value: number) => {
+  Object.defineProperty(window, 'scrollY', { value, configurable: true })
+  window.dispatchEvent(new Event('scroll'))
 }
 
 beforeEach(() => {
   vi.restoreAllMocks()
-  disconnect.mockClear()
-
-  vi.stubGlobal(
-    'IntersectionObserver',
-    class {
-      constructor(callback: ObserverCallback) {
-        notify = callback
-      }
-      observe() {}
-      disconnect = disconnect
-    },
-  )
-
-  vi.stubGlobal('requestAnimationFrame', (callback: FrameRequestCallback) => {
-    callback(0)
-    return 0
-  })
+  scrollTo(0)
 })
 
-it('reads the sentinel as the top of the page', async () => {
+it('hides the header on a downward scroll away from the top', async () => {
   const { bindHeaderScroll } = await loadHeaderScroll()
   const header = render()
 
   bindHeaderScroll()
-  notify([{ isIntersecting: true }])
+  expect(header.dataset.state).toBe('visible')
 
-  expect(header.dataset.state).toBe('top')
+  scrollTo(120)
+
+  expect(header.dataset.state).toBe('hidden')
 })
 
-it('marks the header once the sentinel leaves the viewport', async () => {
+it('shows the header on an upward scroll', async () => {
   const { bindHeaderScroll } = await loadHeaderScroll()
   const header = render()
 
   bindHeaderScroll()
-  notify([{ isIntersecting: false }])
+  scrollTo(400)
+  expect(header.dataset.state).toBe('hidden')
 
-  expect(header.dataset.state).toBe('scrolled')
+  scrollTo(380)
+
+  expect(header.dataset.state).toBe('visible')
 })
 
-it('returns to the top reading when the sentinel comes back', async () => {
+it('shows the header at scroll position zero', async () => {
   const { bindHeaderScroll } = await loadHeaderScroll()
   const header = render()
 
   bindHeaderScroll()
-  notify([{ isIntersecting: false }])
-  notify([{ isIntersecting: true }])
+  scrollTo(400)
+  expect(header.dataset.state).toBe('hidden')
 
-  expect(header.dataset.state).toBe('top')
+  scrollTo(0)
+
+  expect(header.dataset.state).toBe('visible')
 })
 
-it('holds transitions closed until after the first reading', async () => {
-  const frames: FrameRequestCallback[] = []
-  vi.stubGlobal('requestAnimationFrame', (callback: FrameRequestCallback) => {
-    frames.push(callback)
-    return frames.length
-  })
-
+it('shows the header when focus enters it', async () => {
   const { bindHeaderScroll } = await loadHeaderScroll()
   const header = render()
 
   bindHeaderScroll()
-  notify([{ isIntersecting: false }])
+  scrollTo(400)
+  expect(header.dataset.state).toBe('hidden')
 
-  expect(header.dataset.transition).toBeUndefined()
+  const link = header.querySelector('a') as HTMLElement
+  link.dispatchEvent(new FocusEvent('focusin', { bubbles: true }))
 
-  for (const frame of frames) frame(0)
-
-  expect(header.dataset.transition).toBe('open')
+  expect(header.dataset.state).toBe('visible')
 })
 
-it('stops observing and takes its sentinel with it when the visit releases', async () => {
+it('keeps the header while the page scrolls to an anchor', async () => {
+  vi.useFakeTimers()
   const { bindHeaderScroll } = await loadHeaderScroll()
-  render()
+  const header = render()
+
+  bindHeaderScroll()
+  document.dispatchEvent(new Event('anchor-scroll'))
+  scrollTo(300)
+  scrollTo(600)
+
+  expect(header.dataset.state).toBe('visible')
+
+  vi.advanceTimersByTime(200)
+  scrollTo(700)
+
+  expect(header.dataset.state).toBe('hidden')
+  vi.useRealTimers()
+})
+
+it('stops listening to scroll and focus when the visit releases', async () => {
+  const { bindHeaderScroll } = await loadHeaderScroll()
+  const header = render()
 
   const release = bindHeaderScroll()
-  expect(document.body.children.length).toBe(2)
-
   release?.()
 
-  expect(disconnect).toHaveBeenCalledTimes(1)
-  expect(document.body.children.length).toBe(1)
+  scrollTo(400)
+  expect(header.dataset.state).toBe('visible')
+
+  header.dataset.state = 'hidden'
+  const link = header.querySelector('a') as HTMLElement
+  link.dispatchEvent(new FocusEvent('focusin', { bubbles: true }))
+
+  expect(header.dataset.state).toBe('hidden')
 })

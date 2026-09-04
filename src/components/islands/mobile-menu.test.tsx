@@ -101,6 +101,20 @@ describe('MobileMenu', () => {
     })
   })
 
+  it('marks the root element while open so the page scroll locks', async () => {
+    const { getByLabelText } = openMenu()
+
+    await waitFor(() => {
+      expect(document.documentElement.dataset.menu).toBe('open')
+    })
+
+    fireEvent.click(getByLabelText('Fechar menu'))
+
+    await waitFor(() => {
+      expect(document.documentElement.dataset.menu).toBeUndefined()
+    })
+  })
+
   it('closes when the router swaps the page', async () => {
     const { getByLabelText } = openMenu()
 

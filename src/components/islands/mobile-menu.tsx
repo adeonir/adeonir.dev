@@ -4,7 +4,7 @@ import { Button } from '~/components/ui/button'
 import { Menu } from '~/components/ui/menu'
 import { NavLink } from '~/components/ui/nav-link'
 import { Swap } from '~/components/ui/swap'
-import IconMenu from '~icons/tabler/menu'
+import IconMenu from '~icons/tabler/menu-2'
 import IconX from '~icons/tabler/x'
 
 type MobileMenuProps = {
@@ -31,6 +31,14 @@ export function MobileMenu({ nav, content, children }: MobileMenuProps) {
     return () => document.removeEventListener('astro:before-swap', close)
   }, [])
 
+  useEffect(() => {
+    if (!open) return
+    document.documentElement.dataset.menu = 'open'
+    return () => {
+      delete document.documentElement.dataset.menu
+    }
+  }, [open])
+
   return (
     <Menu.Root
       open={open}
@@ -48,16 +56,15 @@ export function MobileMenu({ nav, content, children }: MobileMenuProps) {
       <Menu.Trigger asChild>
         <Button
           aria-label={open ? content.trigger.close : content.trigger.open}
-          variant="outline"
-          className="border-border!"
+          variant="ghost"
           size="icon"
         >
-          <Swap.Root className="size-5" swap={open}>
-            <Swap.Indicator type="off" variant="fade">
-              <IconMenu className="size-5" />
+          <Swap.Root className="size-4.5" swap={open}>
+            <Swap.Indicator type="off" variant="rotate">
+              <IconMenu className="size-4.5" />
             </Swap.Indicator>
-            <Swap.Indicator type="on" variant="fade">
-              <IconX className="size-5" />
+            <Swap.Indicator type="on" variant="rotate">
+              <IconX className="size-4.5" />
             </Swap.Indicator>
           </Swap.Root>
         </Button>
