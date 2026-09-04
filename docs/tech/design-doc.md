@@ -8,7 +8,6 @@ sources:
   - docs/design/copy.yaml
   - docs/design/copy.en.yaml
   - DESIGN.md
-  - docs/design/blueprint.md
   - .artifacts/research/i18n-research.md
 ---
 

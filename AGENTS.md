@@ -50,7 +50,6 @@ Before planning or building a feature, read the documents that apply to the work
 - `docs/product/prd.md` — scope, FR/NFR identifiers, personas, journeys, business rules, and edge cases.
 - `docs/product/brief.md` — one-page product summary.
 - `DESIGN.md` — the authority on the visual identity and the design tokens.
-- `docs/design/blueprint.md` — layout region trees and screen flows.
 - `docs/design/copy.yaml` — canonical site copy. `docs/design/copy.en.yaml` holds the drafted English translation, which no route renders yet.
 - `docs/design/wireframe.html` — rendered wireframe. The token styleguide is the live `/styleguide` route, built from `src/pages/styleguide.astro`.
 - `docs/adr/` — the accepted architecture decisions: the React island runtime, the theme-switching mechanism, the nanostores island state layer, and SSR-safe island rendering.
