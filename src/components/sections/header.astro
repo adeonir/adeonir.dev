@@ -59,21 +59,21 @@ const localizedNav = nav.map((item) =>
         {
           isNotFound ? (
             <div class="flex items-center gap-4">
-              <LanguageToggle locale={locale} />
               <ThemeToggle />
+              <LanguageToggle locale={locale} />
             </div>
           ) : (
             <>
               <div class="hidden items-center gap-4 xxs:flex">
-                <LanguageToggle locale={locale} />
                 <ThemeToggle />
+                <LanguageToggle locale={locale} />
               </div>
               <div class="md:hidden">
                 <MobileMenu nav={localizedNav}>
                   <Divider className="block xxs:hidden" />
                   <div class="flex items-center gap-4 xxs:hidden">
-                    <LanguageToggle locale={locale} />
                     <ThemeToggle />
+                    <LanguageToggle locale={locale} />
                   </div>
                 </MobileMenu>
               </div>
