@@ -119,6 +119,9 @@ export default defineConfig({
       warmup: {
         ssrFiles: ['./src/pages/index.astro'],
       },
+      watch: {
+        ignored: ['**/docs/**'],
+      },
     },
   },
 })
