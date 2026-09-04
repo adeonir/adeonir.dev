@@ -51,7 +51,7 @@ Before planning or building a feature, read the documents that apply to the work
 - `docs/product/brief.md` — one-page product summary.
 - `DESIGN.md` — the authority on the visual identity and the design tokens.
 - `docs/design/copy.yaml` — canonical site copy. `docs/design/copy.en.yaml` holds the drafted English translation, which no route renders yet.
-- `docs/design/wireframe.html` — rendered wireframe. The token styleguide is the live `/styleguide` route, built from `src/pages/styleguide.astro`.
+- The token styleguide is the live `/styleguide` route, built from `src/pages/styleguide.astro`.
 - `docs/adr/` — the accepted architecture decisions: the React island runtime, the theme-switching mechanism, the nanostores island state layer, and SSR-safe island rendering.
 
 When a project document and this file disagree, the dedicated document takes precedence. Change feature specifications with the `spec-driven` skill. The `.artifacts/` directory is scratch space and is not a source of truth.
