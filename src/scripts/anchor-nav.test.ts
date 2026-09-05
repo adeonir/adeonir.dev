@@ -56,4 +56,13 @@ describe('anchor navigation', () => {
     expect(event.defaultPrevented).toBe(false)
     expect(scrollIntoView).not.toHaveBeenCalled()
   })
+
+  it('lands on the section and clears the hash on every visit', () => {
+    history.replaceState(null, '', '/#about')
+
+    document.dispatchEvent(new Event('astro:page-load'))
+
+    expect(scrollIntoView).toHaveBeenCalledTimes(1)
+    expect(location.hash).toBe('')
+  })
 })
