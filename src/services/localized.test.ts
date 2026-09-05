@@ -1,8 +1,8 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { getEntry } from '~/test-utils/mock-astro-content'
+import { getCollection, getEntry } from '~/test-utils/mock-astro-content'
 
-vi.mock('astro:content', () => ({ getEntry }))
+vi.mock('astro:content', () => ({ getCollection, getEntry }))
 
 import { getLocalizedEntry } from '~/services/localized'
 
