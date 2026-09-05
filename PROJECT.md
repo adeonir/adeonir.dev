@@ -9,7 +9,7 @@
 ## Conventions
 
 - Do not add a `prepare` script that installs lefthook on `pnpm install` — CI and production installs, which must not need that binary; source: lefthook.yml and package.json
-- Do not use Astro's `getViteConfig` in `vitest.config.ts` — the test runner config, where it is incompatible with the Cloudflare Vite plugin; source: vitest.config.ts
+- Astro's `getViteConfig` is allowed in `vitest.config.ts`, but only with `configFile: false` and no Cloudflare adapter in the inline config passed to it — that combination builds the test runner's Vite config without pulling in the Cloudflare adapter; source: vitest.config.ts
 - Import `z` from `astro/zod`, never from `astro:content` — every content schema; source: src/schemas/
 - Keep pure helpers importable without runtime-coupled services, framework virtual modules, or email templates — shared helpers, so they stay unit-testable; source: src/helpers/
 - Keep an Ark `Field`'s label and control in one component tree — every form field, so Ark context connects the label to the input during SSR; source: src/components/ui/field.tsx
@@ -42,3 +42,4 @@
 - Astro Actions reject cross-origin form POSTs before the handler runs — direct scripts that exercise an Action endpoint must send a matching `Origin` header
 - Resend can throttle concurrent sends independently of the contact rate limiter — a concurrent load test can therefore produce a provider error even when the application limiter admits the request
 - The collection key `projects` holds the projects section's own copy, not project entries — a collection of those needs another key, and the copy documents still describe a top-level `projects` collection; source: src/helpers/content.ts and docs/design/copy.yaml
+- Vitest reads the content layer's data store the same way the dev server does, so a stale or missing store returns an empty collection with no thrown error — a section test that reads a collection needs `astro sync` to run before the suite; source: package.json and src/components/sections/hero.test.ts
