@@ -8,3 +8,10 @@ body:
 action:
   label: 'Voltar ao início'
   href: '/'
+paths:
+  projects:
+    body:
+      - 'Esse projeto não existe. Volte para os projetos.'
+    action:
+      label: 'Voltar aos projetos'
+      href: '/#projects'

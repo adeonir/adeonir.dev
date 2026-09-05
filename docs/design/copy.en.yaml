@@ -237,6 +237,11 @@ content:
     body:
       - "This page doesn't exist or has moved."
     cta: 'Back to home'
+    paths:
+      projects:
+        body:
+          - "That project doesn't exist. Go back to all projects."
+        cta: 'Back to projects'
     footer: *footer
 
 # Hidden dev-console greeting — logged once per page load, not a routed surface.

@@ -1,16 +1,18 @@
 ---
-import { getRelativeLocaleUrl } from 'astro:i18n'
-
 import { buttonVariants } from '~/components/ui/button-variants'
 import { cn } from '~/helpers/classnames'
 import { parseLocale } from '~/helpers/content'
+import { getLocalizedPath } from '~/helpers/locale-path'
 import { getLocalizedEntry } from '~/services/localized'
 
 const locale = parseLocale(Astro.currentLocale)
 const notFound = await getLocalizedEntry('sharedNotFound', locale)
-const homeURL = getRelativeLocaleUrl(locale)
+const [segment] = getLocalizedPath(Astro.url.pathname, 'pt')
+  .split('/')
+  .filter(Boolean)
 
-const { display, headline, body, action } = notFound.data
+const { display, headline, paths } = notFound.data
+const { body, action } = paths[segment] ?? notFound.data
 ---
 
 <section
@@ -43,7 +45,7 @@ const { display, headline, body, action } = notFound.data
       }
     </div>
     <a
-      href={homeURL}
+      href={action.href}
       class={cn(
         buttonVariants({ variant: 'default', size: 'default' }),
         'mt-10 shrink-0',

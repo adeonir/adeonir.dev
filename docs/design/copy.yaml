@@ -237,6 +237,11 @@ content:
     body:
       - 'Essa página não existe, ou mudou de lugar.'
     cta: 'Voltar ao início'
+    paths:
+      projects:
+        body:
+          - 'Esse projeto não existe. Volte para os projetos.'
+        cta: 'Voltar aos projetos'
     footer: *footer
 
 # Hidden dev-console greeting — logged once per page load, not a routed surface.
