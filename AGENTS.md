@@ -35,8 +35,9 @@ pnpm lint         # Read-only Biome and Prettier checks
 pnpm lint:fix     # Apply Biome and Prettier fixes
 pnpm lighthouse   # Build and run the budget gate
 pnpm email        # Start the React Email development server
-pnpm gates        # Run typecheck and the write-enabled lint task
 ```
+
+Before considering a change done, run the gate: `pnpm typecheck && pnpm lint:fix`.
 
 Add `--collect.settings.preset=desktop` to `pnpm lighthouse` for a desktop pass. Install the git hooks with `lefthook install`.
 
