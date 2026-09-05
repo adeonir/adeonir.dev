@@ -1,10 +1,10 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { getCollection, getEntry } from '~/test-utils/mock-astro-content'
-
 const fetchMock = vi.hoisted(() => vi.fn())
 
-vi.mock('astro:content', () => ({ getCollection, getEntry }))
+const getEntry = vi.hoisted(() => vi.fn())
+
+vi.mock('astro:content', () => ({ getEntry }))
 vi.mock('astro:env/server', () => ({ RESEND_API_KEY: 'test-key' }))
 
 import { sendContactEmails } from '~/services/email'
