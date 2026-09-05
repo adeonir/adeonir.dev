@@ -25,16 +25,20 @@ One full page load or one client navigation that replaces the page content. Cont
 _Avoid_: Session, view
 
 **Published project**:
-A project present in the site's list of projects. Its case study content is the project's own and does not decide whether it is published.
+A project present in the site's list of projects. Having a project page does not decide whether it is published.
 _Avoid_: Live project, real project
 
 **Featured projects**:
 The ordered set of published projects the home shows. Chosen and ordered by hand, one list for both languages.
 _Avoid_: Selection, curated selection, highlights
 
+**Project page**:
+The page a published project can have. Not every published project has one, and its content is the project's own and free in form.
+_Avoid_: Case study page, project detail, detail page
+
 **Case study**:
-The page of one published project.
-_Avoid_: Project page, project detail, detail page
+One kind of content a project page can carry: the account of how the project was designed and built. Not every project page carries one.
+_Avoid_: Project page, project content
 
 **Empty state**:
 What a section shows while it has nothing to list.
