@@ -11,7 +11,7 @@ interface Props {
 
 const { locale } = Astro.props
 const targetLocale: Locale = locale === 'pt' ? 'en' : 'pt'
-const labels = await getLocalizedEntry('languageToggle', 'labels', locale)
+const labels = await getLocalizedEntry('languageToggle', locale)
 const href = `${getLocalizedPath(Astro.url.pathname, targetLocale)}${Astro.url.search}`
 ---
 

@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-const getEntry = vi.hoisted(() => vi.fn())
+import { getEntry } from '~/test-utils/mock-astro-content'
+
 const fetchMock = vi.hoisted(() => vi.fn())
 
 vi.mock('astro:content', () => ({ getEntry }))
@@ -9,8 +10,8 @@ vi.mock('astro:env/server', () => ({ RESEND_API_KEY: 'test-key' }))
 import { sendContactEmails } from '~/services/email'
 
 const englishEmailEntry = {
-  id: 'emails',
-  collection: 'emailsEn',
+  id: 'en/emails',
+  collection: 'emails',
   data: {
     from: 'Adeonir',
     fields: {
@@ -65,7 +66,7 @@ describe('sendContactEmails', () => {
       locale: 'en',
     })
 
-    expect(getEntry).toHaveBeenCalledWith('emailsEn', 'emails')
+    expect(getEntry).toHaveBeenCalledWith('emails', 'en/emails')
 
     const payloads = fetchMock.mock.calls.map(([, request]) =>
       JSON.parse(request.body as string),

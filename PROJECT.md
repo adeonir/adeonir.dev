@@ -23,6 +23,7 @@
 - Contact rate limiting uses the native Workers Rate Limiting binding rather than a KV read-modify-write counter or a global Durable Object — the binding covers the need, and it supports only 10- or 60-second periods; source: wrangler.jsonc and src/services/rate-limit.ts; scope: contact flow
 - Server-side PostHog capture sends raw ingest requests through the shared analytics service — the browser snippet is not available inside the Cloudflare Worker; source: src/services/analytics.ts; scope: server-side analytics
 - Tailwind conflict merging uses `tailwind-merge` around the project's class concatenation helper, with the custom `text-*` type utilities registered as font-size entries — otherwise they collide with the semantic text-color tokens; source: src/helpers/classnames.ts and src/styles/global.css; scope: type utilities
+- A copy collection holds both locales together: one YAML file per locale under `src/content/<surface>/<locale>/<name>.yaml` (`home` for the six home-section types, `shared` for the rest), loaded through `glob()` with an explicit `generateId` returning `${locale}/<collectionKey>`. A new collection needs no separate per-locale registration — its id already carries the locale; source: src/content.config.ts; scope: content layer
 
 ## Gotchas
 

@@ -1,27 +1,21 @@
-import { type CollectionEntry, getEntry } from 'astro:content'
 import {
-  type ContentCollection,
-  getLocalizedCollectionName,
-  type Locale,
-  type LocalizedCollectionName,
-} from '~/helpers/content'
+  type CollectionEntry,
+  type CollectionKey,
+  getEntry,
+} from 'astro:content'
 
-export type LocalizedEntry<TCollection extends ContentCollection> =
-  CollectionEntry<LocalizedCollectionName<TCollection, Locale>>
+import type { Locale } from '~/helpers/content'
 
-export async function getLocalizedEntry<TCollection extends ContentCollection>(
+export async function getLocalizedEntry<TCollection extends CollectionKey>(
   collection: TCollection,
-  entryId: string,
   locale: Locale,
-): Promise<LocalizedEntry<TCollection>> {
-  const localizedCollectionName = getLocalizedCollectionName(collection, locale)
-  const entry = await getEntry(localizedCollectionName, entryId)
+): Promise<CollectionEntry<TCollection>> {
+  const id = `${locale}/${collection}`
+  const entry = await getEntry(collection, id)
 
   if (!entry) {
-    throw new Error(
-      `Missing localized content: ${localizedCollectionName}/${entryId}`,
-    )
+    throw new Error(`Missing localized content: ${id}`)
   }
 
-  return entry as LocalizedEntry<TCollection>
+  return entry as CollectionEntry<TCollection>
 }

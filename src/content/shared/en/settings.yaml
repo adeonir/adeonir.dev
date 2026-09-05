@@ -1,0 +1,16 @@
+siteName: 'Adeonir Kohl'
+description: "I'm a frontend engineer working in design engineering, bringing design decisions into code to build accessible, responsive, fast web interfaces."
+ogImage: '/og-image.en.png'
+locale: 'en'
+agentDocument:
+  sections:
+    hero: 'Hero'
+    about: 'About me'
+    projects: 'Projects'
+    expertise: 'Capabilities'
+    stack: 'Tech Stack'
+    contact: 'Contact'
+pageTitles:
+  home: 'Portfolio'
+  notFound: 'Page not found'
+  maintenance: 'Maintenance'

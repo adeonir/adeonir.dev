@@ -1,0 +1,10 @@
+display: '404'
+headline:
+  - text: 'Página '
+  - text: 'não encontrada'
+    highlight: true
+body:
+  - 'Essa página não existe, ou mudou de lugar.'
+action:
+  label: 'Voltar ao início'
+  href: '/'

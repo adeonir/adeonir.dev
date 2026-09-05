@@ -4,7 +4,7 @@ import { parseLocale } from '~/helpers/content'
 import { getLocalizedEntry } from '~/services/localized'
 
 const locale = parseLocale(Astro.currentLocale)
-const labels = await getLocalizedEntry('themeToggle', 'labels', locale)
+const labels = await getLocalizedEntry('themeToggle', locale)
 ---
 
 <ThemeToggleIsland client:load labels={labels.data} />

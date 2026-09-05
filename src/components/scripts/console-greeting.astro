@@ -3,7 +3,7 @@ import { parseLocale } from '~/helpers/content'
 import { getLocalizedEntry } from '~/services/localized'
 
 const locale = parseLocale(Astro.currentLocale)
-const entry = await getLocalizedEntry('console', 'content', locale)
+const entry = await getLocalizedEntry('console', locale)
 
 const { greeting } = entry.data
 ---

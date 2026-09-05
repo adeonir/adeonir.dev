@@ -1,0 +1,8 @@
+logo: 'adeonir.dev'
+nav:
+  - label: 'about'
+    href: '#about'
+  - label: 'projects'
+    href: '#projects'
+  - label: 'contact'
+    href: '#contact'

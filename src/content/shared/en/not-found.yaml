@@ -1,0 +1,10 @@
+display: '404'
+headline:
+  - text: 'Page '
+  - text: 'not found'
+    highlight: true
+body:
+  - "This page doesn't exist or has moved."
+action:
+  label: 'Back to home'
+  href: '/en/'
