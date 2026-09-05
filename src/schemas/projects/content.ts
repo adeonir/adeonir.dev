@@ -1,7 +1,7 @@
 import type { SchemaContext } from 'astro:content'
 import { z } from 'astro/zod'
 
-export const projectsDetailsSchema = ({ image }: SchemaContext) =>
+export const projectsContentSchema = ({ image }: SchemaContext) =>
   z.object({
     name: z.string().min(1),
     category: z.string().min(1),
