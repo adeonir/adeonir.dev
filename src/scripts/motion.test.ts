@@ -1,6 +1,6 @@
 // @vitest-environment happy-dom
 
-import { beforeEach, expect, it, vi } from 'vitest'
+import { afterEach, beforeEach, expect, it, vi } from 'vitest'
 
 const mocks = vi.hoisted(() => ({
   inView: vi.fn(),
@@ -52,6 +52,10 @@ const at = (id: string) =>
 const allowMotion = (reduce: boolean) => {
   vi.stubGlobal('matchMedia', () => ({ matches: reduce }))
 }
+
+afterEach(() => {
+  vi.unstubAllGlobals()
+})
 
 const settledBy = (enter: Enter) => {
   enter()
