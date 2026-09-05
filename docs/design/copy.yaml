@@ -42,11 +42,7 @@ routes:
   maintenance:
     title: 'Manutenção'
 
-# The content tree covers the surfaces home, work, project,
-# plus a global not-found (404) error surface.
-# header and footer are persistent across every surface — defined once on
-# home and aliased. Projects live in one top-level `projects` collection (always
-# complete); the work index shows all, the landing shows featured: true.
+# The content tree covers the surfaces home, work, project, plus a global not-found (404) error surface. Header and footer are persistent across every surface — defined once on home and aliased. Projects live in one top-level `projects` collection (always complete); the work index shows all, the landing shows featured: true.
 
 content:
   home:
@@ -216,13 +212,10 @@ content:
 
   project:
     header: *header
-    # Per-project detail. Page content is keyed by slug in the top-level
-    # `projects` collection (overview / body / gallery / launch). The labels below
-    # are the static chrome shared by every project detail surface.
+    # Per-project detail. Page content is keyed by slug in the top-level `projects` collection (overview / body / gallery / launch). The labels below are the static chrome shared by every project detail surface.
     page-header:
       eyebrow: 'Projeto'
-      # title and meta resolve from the matching projects entry:
-      #   title -> name, meta -> "{role} · {launch}"
+      # title and meta resolve from the matching projects entry: title -> name, meta -> "{role} · {launch}"
     overview:
       # text -> entry.overview, meta -> stack used + links (live: entry.link, repo: entry.repo)
       meta-label: 'Links'
@@ -272,8 +265,7 @@ emails:
     received: 'Recebido em {date}'
     footer: 'Esta é uma notificação automática enviada pelo formulário de contato do site. Responda a este email para falar diretamente com {name}.'
 
-# Projects — single source of truth (always complete). The work index renders
-# every entry in order; the landing renders the featured: true ones (same order).
+# Projects — single source of truth (always complete). The work index renders every entry in order; the landing renders the featured: true ones (same order).
 projects:
   - slug: 'charas-beer'
     name: 'Charas Beer'

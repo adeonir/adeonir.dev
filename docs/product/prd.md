@@ -10,27 +10,17 @@ sources: []
 
 ## 1. Problem Statement
 
-Adeonir Kohl — frontend developer with 6+ years building web interfaces
-(primarily React and TypeScript), with a prior career in graphic design — has no
-personal web presence that represents him professionally. Without a portfolio,
-three audiences have no single place to evaluate him: prospective clients have no
-path to engage him, recruiters cannot see his work, and peers cannot gauge his
-credibility. The evidence is direct: no site exists today — this is a founding
-need, not a fix. The cost of not solving it is missed client and recruiter
-opportunities and weaker positioning as he moves toward product engineering.
+Adeonir Kohl — frontend developer with 6+ years building web interfaces (primarily React and TypeScript), with a prior career in graphic design — has no personal web presence that represents him professionally. Without a portfolio, three audiences have no single place to evaluate him: prospective clients have no path to engage him, recruiters cannot see his work, and peers cannot gauge his credibility. The evidence is direct: no site exists today — this is a founding need, not a fix. The cost of not solving it is missed client and recruiter opportunities and weaker positioning as he moves toward product engineering.
 
 ## 2. Goals & Success Metrics
 
-The owner's goal is qualitative: the site should represent him well. That is the
-only success metric.
+The owner's goal is qualitative: the site should represent him well. That is the only success metric.
 
 | Goal | Metric | Target |
-|------|--------|--------|
+| --- | --- | --- |
 | Site authentically represents Adeonir | Owner self-assessment | Owner agrees it represents him well |
 
-Separately, lightweight privacy-respecting analytics collect usage statistics
-(work views, contact submissions) for insight only — not goals, not targets, not
-graded against a KPI.
+Separately, lightweight privacy-respecting analytics collect usage statistics (work views, contact submissions) for insight only — not goals, not targets, not graded against a KPI.
 
 ## 3. User Personas
 
@@ -57,7 +47,7 @@ graded against a KPI.
 ### Must Have
 
 | ID | Requirement | Notes |
-|----|------------|-------|
+| --- | --- | --- |
 | FR-1 | A landing surface that establishes identity and positioning (who he is, proof, differentiation) | First impression for all three personas |
 | FR-2 | A curated selection of work on the landing that leads into the full index | Primary action is to view work |
 | FR-3 | A full work index listing every project | Browsable entry to project detail |
@@ -68,7 +58,7 @@ graded against a KPI.
 ### Should Have
 
 | ID | Requirement | Notes |
-|----|------------|-------|
+| --- | --- | --- |
 | FR-7 | An about narrative (graphic design → frontend → product engineering) | Carries the differentiation story |
 | FR-8 | A tools / stack overview | Supports peer credibility |
 | FR-9 | Lightweight, privacy-respecting usage analytics | Observe work views and contact submissions; no audience targets |
@@ -76,7 +66,7 @@ graded against a KPI.
 ### Could Have
 
 | ID | Requirement | Notes |
-|----|------------|-------|
+| --- | --- | --- |
 | FR-10 | Previous / next navigation between projects | Keeps visitors moving through the work |
 | FR-11 | Light / dark presentation | Owner preference; not launch-blocking |
 | FR-12 | Portuguese / English bilingual presentation | Default Portuguese; visitor switches to English via a language control |
@@ -84,7 +74,7 @@ graded against a KPI.
 ### Won't Have
 
 | ID | Requirement | Notes |
-|----|------------|-------|
+| --- | --- | --- |
 | FR-N1 | Blog or CMS | Out of scope for launch; deferred candidate for a future phase, not a permanent exclusion |
 | FR-N2 | Authentication / user accounts | No logged-in experience |
 | FR-N3 | E-commerce or payments | Not a transactional product |
@@ -99,8 +89,7 @@ graded against a KPI.
 
 ### Client looks to hire
 
-**Actor:** Prospective client
-**Goal:** Start a conversation
+**Actor:** Prospective client **Goal:** Start a conversation
 
 **Pre-conditions:**
 
@@ -122,8 +111,7 @@ graded against a KPI.
 
 ### Recruiter evaluates the work
 
-**Actor:** Recruiter
-**Goal:** Decide whether to reach out
+**Actor:** Recruiter **Goal:** Decide whether to reach out
 
 **Pre-conditions:**
 
@@ -147,8 +135,7 @@ graded against a KPI.
 
 ### Peer checks credibility
 
-**Actor:** Peer developer
-**Goal:** Assess craft and taste
+**Actor:** Peer developer **Goal:** Assess craft and taste
 
 **Main Flow:**
 
@@ -163,7 +150,7 @@ graded against a KPI.
 ## 6. Business Rules
 
 | ID | Rule | Scope |
-|----|------|-------|
+| --- | --- | --- |
 | BR-1 | The primary action across the landing is to view the work; contact is secondary | Landing, navigation |
 | BR-2 | Every project shown — curated or indexed — routes to a project detail surface | Work index, curated selection |
 | BR-3 | Contact must offer at least one direct channel in addition to the form | Contact surface |
@@ -171,7 +158,7 @@ graded against a KPI.
 ## 7. Edge Cases
 
 | ID | Scenario | Expected Behavior |
-|----|----------|-------------------|
+| --- | --- | --- |
 | EC-1 | No projects available yet | Show a meaningful empty state rather than a blank index |
 | EC-2 | Contact form submission fails | Show an error and surface a direct fallback channel |
 | EC-3 | A project detail is requested for a project that does not exist | Show a not-found state with a path back to the work index |
@@ -179,7 +166,7 @@ graded against a KPI.
 ## 8. Non-Functional Requirements
 
 | ID | Requirement | Target |
-|----|------------|--------|
+| --- | --- | --- |
 | NFR-1 | Performance — the differentiator must be evident | Fast load on mobile and desktop (concrete budget TBD in design) |
 | NFR-2 | Accessibility | WCAG AA |
 | NFR-3 | Responsiveness | Usable from small mobile to large desktop |
@@ -188,7 +175,7 @@ graded against a KPI.
 ## 9. Milestones
 
 | Milestone | Deliverables |
-|-----------|-------------|
+| --- | --- |
 | M1 — Landing | Identity, positioning, contact path, persistent navigation |
 | M2 — Work | Curated work on the landing, full work index, per-project detail, previous / next navigation |
 | M3 — Theme & Locale | Light/dark presentation, English presentation, language control, hreflang annotations |
@@ -205,7 +192,7 @@ Non-functional requirements (performance, accessibility, responsiveness, shareab
 ## 11. Risks
 
 | Risk | Impact | Likelihood | Mitigation |
-|------|--------|------------|------------|
+| --- | --- | --- | --- |
 | Success is qualitative and self-assessed | Medium | High | Accept as owner judgment; lightweight analytics observe usage for insight |
 | Positioning leans on craft, a common claim | Medium | Medium | Decided: craft leads, 6 years anchors credibility; prove the craft through the work and the site, not assertions |
 | "Designer's eye" is a common claim | Medium | High | Prove it through the work and the site itself, not assertions |
