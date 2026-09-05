@@ -26,6 +26,16 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "biomejs.biome"
   },
-  "prettier.documentSelectors": ["**/*.astro", "**/*.yaml"],
-  "tailwindCSS.classFunctions": ["cn", "clsx", "cva", "tv"]
+  "prettier.documentSelectors": [
+    "**/*.astro",
+    "**/*.yaml"
+  ],
+  "tailwindCSS.classFunctions": [
+    "cn",
+    "clsx",
+    "cva",
+    "tv"
+  ],
+  "js/ts.tsdk.path": "node_modules/typescript/lib",
+  "js/ts.experimental.useTsgo": false
 }

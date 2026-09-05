@@ -42,6 +42,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "0.9.10",
+    "@astrojs/ts-plugin": "1.10.11",
     "@biomejs/biome": "2.5.12",
     "@iconify-json/tabler": "1.2.38",
     "@react-email/ui": "6.9.3",
