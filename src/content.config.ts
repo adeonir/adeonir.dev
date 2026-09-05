@@ -6,6 +6,7 @@ import { expertiseSchema } from '~/schemas/home/expertise'
 import { heroSchema } from '~/schemas/home/hero'
 import { projectsSchema } from '~/schemas/home/projects'
 import { stackSchema } from '~/schemas/home/stack'
+import { projectsDetailsSchema } from '~/schemas/projects/details'
 import { consoleSchema } from '~/schemas/shared/console'
 import { emailsSchema } from '~/schemas/shared/emails'
 import { footerSchema } from '~/schemas/shared/footer'
@@ -156,6 +157,14 @@ const sharedConsole = defineCollection({
   schema: consoleSchema,
 })
 
+const projects = defineCollection({
+  loader: glob({
+    pattern: '*/*.mdx',
+    base: 'src/content/projects',
+  }),
+  schema: projectsDetailsSchema,
+})
+
 export const collections = {
   sharedSettings,
   sharedHeader,
@@ -172,4 +181,5 @@ export const collections = {
   sharedNotFound,
   sharedEmails,
   sharedConsole,
+  projects,
 }

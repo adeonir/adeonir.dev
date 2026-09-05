@@ -265,11 +265,10 @@ emails:
     received: 'Recebido em {date}'
     footer: 'Esta é uma notificação automática enviada pelo formulário de contato do site. Responda a este email para falar diretamente com {name}.'
 
-# Projects — single source of truth (always complete). The work index renders every entry in order; the landing renders the featured: true ones (same order).
+# Projects — draft list only. Each project's data lives in the frontmatter of its own file under `src/content/projects/<locale>/`; there, `featured` is a position that sets the home order.
 projects:
   - slug: 'charas-beer'
     name: 'Charas Beer'
-    featured: true
     summary: 'Uma loja online para uma marca de cerveja artesanal.'
     role: 'Product engineer, UI designer & frontend developer'
     launch: '12/2026'
@@ -282,7 +281,6 @@ projects:
     gallery: [] # TODO: project images (description/url/alt)
   - slug: 'adeonir-kohl'
     name: 'Adeonir Kohl'
-    featured: false
     summary: 'Planejei e construí este portfólio com desenvolvimento assistido por IA.'
     role: 'Product engineer, UI designer & frontend developer'
     launch: '06/2026'
@@ -294,7 +292,6 @@ projects:
     gallery: [] # TODO
   - slug: 'uira-muller'
     name: 'Uirá Müller Design'
-    featured: true
     summary: 'Um portfólio apresentando o trabalho de um designer gráfico.'
     role: 'UI designer & frontend developer'
     launch: '05/2026'
@@ -306,7 +303,6 @@ projects:
     gallery: [] # TODO
   - slug: 'reisenthal'
     name: 'Reisenthal Turismo'
-    featured: true
     summary: 'Uma agência de viagens com destinos pela Europa, Brasil e além.'
     role: 'UI designer & frontend developer'
     launch: '07/2025'
@@ -318,7 +314,6 @@ projects:
     gallery: [] # TODO
   - slug: 'atio'
     name: 'Atio'
-    featured: false
     summary: 'Normas, certificação e treinamento em segurança de alimentos para a indústria.'
     role: 'UI designer & frontend developer'
     launch: '02/2024'

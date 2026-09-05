@@ -265,11 +265,10 @@ emails:
     received: 'Received on {date}'
     footer: 'This is an automatic notification from the site contact form. Reply to this email to talk directly with {name}.'
 
-# Projects — single source of truth (always complete). The work index renders every entry in order; the landing renders the featured: true ones (same order).
+# Projects — draft list only. Each project's data lives in the frontmatter of its own file under `src/content/projects/<locale>/`; there, `featured` is a position that sets the home order.
 projects:
   - slug: 'charas-beer'
     name: 'Charas Beer'
-    featured: true
     summary: 'An online store for a craft beer brand.'
     role: 'Product engineer, UI designer & frontend developer'
     launch: '12/2026'
@@ -282,7 +281,6 @@ projects:
     gallery: [] # TODO: project images (description/url/alt)
   - slug: 'adeonir-kohl'
     name: 'Adeonir Kohl'
-    featured: false
     summary: 'I planned and built this portfolio with AI-assisted development.'
     role: 'Product engineer, UI designer & frontend developer'
     launch: '06/2026'
@@ -294,7 +292,6 @@ projects:
     gallery: [] # TODO
   - slug: 'uira-muller'
     name: 'Uirá Müller Design'
-    featured: true
     summary: "A portfolio showcasing a graphic designer's work."
     role: 'UI designer & frontend developer'
     launch: '05/2026'
@@ -306,7 +303,6 @@ projects:
     gallery: [] # TODO
   - slug: 'reisenthal'
     name: 'Reisenthal Turismo'
-    featured: true
     summary: 'A travel agency offering trips to Europe, Brazil, and beyond.'
     role: 'UI designer & frontend developer'
     launch: '07/2025'
@@ -318,7 +314,6 @@ projects:
     gallery: [] # TODO
   - slug: 'atio'
     name: 'Atio'
-    featured: false
     summary: 'Food safety standards, certification, and training for industry.'
     role: 'UI designer & frontend developer'
     launch: '02/2024'
