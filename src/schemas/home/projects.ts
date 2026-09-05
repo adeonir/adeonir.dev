@@ -5,7 +5,7 @@ const emptySegmentSchema = z.object({
   href: z.string().min(1).optional(),
 })
 
-export const projectsSchema = z.object({
+export const homeProjectsSchema = z.object({
   eyebrow: z.string().min(1),
   headline: z
     .array(

@@ -5,7 +5,7 @@ const bioSegmentSchema = z.object({
   href: z.url().optional(),
 })
 
-export const aboutSchema = z.object({
+export const homeAboutSchema = z.object({
   eyebrow: z.string().min(1),
   headline: z
     .array(

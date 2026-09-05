@@ -1,6 +1,6 @@
 import { z } from 'astro/zod'
 
-export const notFoundSchema = z.object({
+export const sharedNotFoundSchema = z.object({
   display: z.string().min(1),
   headline: z
     .array(

@@ -1,21 +1,21 @@
 import { defineCollection } from 'astro:content'
 import { glob } from 'astro/loaders'
-import { aboutSchema } from '~/schemas/home/about'
-import { contactSchema } from '~/schemas/home/contact'
-import { expertiseSchema } from '~/schemas/home/expertise'
-import { heroSchema } from '~/schemas/home/hero'
-import { projectsSchema } from '~/schemas/home/projects'
-import { stackSchema } from '~/schemas/home/stack'
+import { homeAboutSchema } from '~/schemas/home/about'
+import { homeContactSchema } from '~/schemas/home/contact'
+import { homeExpertiseSchema } from '~/schemas/home/expertise'
+import { homeHeroSchema } from '~/schemas/home/hero'
+import { homeProjectsSchema } from '~/schemas/home/projects'
+import { homeStackSchema } from '~/schemas/home/stack'
 import { projectsDetailsSchema } from '~/schemas/projects/details'
-import { consoleSchema } from '~/schemas/shared/console'
-import { emailsSchema } from '~/schemas/shared/emails'
-import { footerSchema } from '~/schemas/shared/footer'
-import { headerSchema } from '~/schemas/shared/header'
-import { languageToggleSchema } from '~/schemas/shared/language-toggle'
-import { mobileMenuSchema } from '~/schemas/shared/mobile-menu'
-import { notFoundSchema } from '~/schemas/shared/not-found'
-import { settingsSchema } from '~/schemas/shared/settings'
-import { themeToggleSchema } from '~/schemas/shared/theme-toggle'
+import { sharedConsoleSchema } from '~/schemas/shared/console'
+import { sharedEmailsSchema } from '~/schemas/shared/emails'
+import { sharedFooterSchema } from '~/schemas/shared/footer'
+import { sharedHeaderSchema } from '~/schemas/shared/header'
+import { sharedLanguageToggleSchema } from '~/schemas/shared/language-toggle'
+import { sharedMobileMenuSchema } from '~/schemas/shared/mobile-menu'
+import { sharedNotFoundSchema } from '~/schemas/shared/not-found'
+import { sharedSettingsSchema } from '~/schemas/shared/settings'
+import { sharedThemeToggleSchema } from '~/schemas/shared/theme-toggle'
 
 function localeId(collection: string) {
   return ({ entry }: { entry: string }) =>
@@ -28,7 +28,7 @@ const homeHero = defineCollection({
     base: 'src/content/home',
     generateId: localeId('homeHero'),
   }),
-  schema: heroSchema,
+  schema: homeHeroSchema,
 })
 
 const homeProjects = defineCollection({
@@ -37,7 +37,7 @@ const homeProjects = defineCollection({
     base: 'src/content/home',
     generateId: localeId('homeProjects'),
   }),
-  schema: projectsSchema,
+  schema: homeProjectsSchema,
 })
 
 const homeAbout = defineCollection({
@@ -46,7 +46,7 @@ const homeAbout = defineCollection({
     base: 'src/content/home',
     generateId: localeId('homeAbout'),
   }),
-  schema: aboutSchema,
+  schema: homeAboutSchema,
 })
 
 const homeExpertise = defineCollection({
@@ -55,7 +55,7 @@ const homeExpertise = defineCollection({
     base: 'src/content/home',
     generateId: localeId('homeExpertise'),
   }),
-  schema: expertiseSchema,
+  schema: homeExpertiseSchema,
 })
 
 const homeStack = defineCollection({
@@ -64,7 +64,7 @@ const homeStack = defineCollection({
     base: 'src/content/home',
     generateId: localeId('homeStack'),
   }),
-  schema: stackSchema,
+  schema: homeStackSchema,
 })
 
 const homeContact = defineCollection({
@@ -73,7 +73,7 @@ const homeContact = defineCollection({
     base: 'src/content/home',
     generateId: localeId('homeContact'),
   }),
-  schema: contactSchema,
+  schema: homeContactSchema,
 })
 
 const sharedSettings = defineCollection({
@@ -82,7 +82,7 @@ const sharedSettings = defineCollection({
     base: 'src/content/shared',
     generateId: localeId('sharedSettings'),
   }),
-  schema: settingsSchema,
+  schema: sharedSettingsSchema,
 })
 
 const sharedHeader = defineCollection({
@@ -91,7 +91,7 @@ const sharedHeader = defineCollection({
     base: 'src/content/shared',
     generateId: localeId('sharedHeader'),
   }),
-  schema: headerSchema,
+  schema: sharedHeaderSchema,
 })
 
 const sharedMobileMenu = defineCollection({
@@ -100,7 +100,7 @@ const sharedMobileMenu = defineCollection({
     base: 'src/content/shared',
     generateId: localeId('sharedMobileMenu'),
   }),
-  schema: mobileMenuSchema,
+  schema: sharedMobileMenuSchema,
 })
 
 const sharedThemeToggle = defineCollection({
@@ -109,7 +109,7 @@ const sharedThemeToggle = defineCollection({
     base: 'src/content/shared',
     generateId: localeId('sharedThemeToggle'),
   }),
-  schema: themeToggleSchema,
+  schema: sharedThemeToggleSchema,
 })
 
 const sharedLanguageToggle = defineCollection({
@@ -118,7 +118,7 @@ const sharedLanguageToggle = defineCollection({
     base: 'src/content/shared',
     generateId: localeId('sharedLanguageToggle'),
   }),
-  schema: languageToggleSchema,
+  schema: sharedLanguageToggleSchema,
 })
 
 const sharedFooter = defineCollection({
@@ -127,7 +127,7 @@ const sharedFooter = defineCollection({
     base: 'src/content/shared',
     generateId: localeId('sharedFooter'),
   }),
-  schema: footerSchema,
+  schema: sharedFooterSchema,
 })
 
 const sharedNotFound = defineCollection({
@@ -136,7 +136,7 @@ const sharedNotFound = defineCollection({
     base: 'src/content/shared',
     generateId: localeId('sharedNotFound'),
   }),
-  schema: notFoundSchema,
+  schema: sharedNotFoundSchema,
 })
 
 const sharedEmails = defineCollection({
@@ -145,7 +145,7 @@ const sharedEmails = defineCollection({
     base: 'src/content/shared',
     generateId: localeId('sharedEmails'),
   }),
-  schema: emailsSchema,
+  schema: sharedEmailsSchema,
 })
 
 const sharedConsole = defineCollection({
@@ -154,7 +154,7 @@ const sharedConsole = defineCollection({
     base: 'src/content/shared',
     generateId: localeId('sharedConsole'),
   }),
-  schema: consoleSchema,
+  schema: sharedConsoleSchema,
 })
 
 const projects = defineCollection({

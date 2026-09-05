@@ -1,6 +1,6 @@
 import { z } from 'astro/zod'
 
-export const mobileMenuSchema = z.object({
+export const sharedMobileMenuSchema = z.object({
   label: z.string().min(1),
   trigger: z.object({
     open: z.string().min(1),

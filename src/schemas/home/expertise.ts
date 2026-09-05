@@ -1,6 +1,6 @@
 import { z } from 'astro/zod'
 
-export const expertiseSchema = z.object({
+export const homeExpertiseSchema = z.object({
   eyebrow: z.string().min(1),
   headline: z
     .array(
