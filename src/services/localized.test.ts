@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-const getEntry = vi.hoisted(() => vi.fn())
+import { getEntry } from '~/test-utils/mock-astro-content'
 
 vi.mock('astro:content', () => ({ getEntry }))
 
