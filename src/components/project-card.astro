@@ -10,22 +10,31 @@ interface Props {
   launch: string
   summary: string
   cover: ImageMetadata
-  href: string
+  href?: string
 }
 
 const { name, category, launch, summary, cover, href } = Astro.props
 
 const year = launch.slice(-4)
+
+const Wrapper = href ? 'a' : Fragment
+const wrapperAttrs = href
+  ? {
+      href,
+      'aria-label': name,
+      class:
+        'block rounded-2xl transition-shadow duration-200 focus-visible:ring-4 focus-visible:ring-ring/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none',
+    }
+  : {}
 ---
 
-<a
-  href={href}
-  aria-label={name}
-  class="block rounded-2xl transition-shadow duration-200 focus-visible:ring-4 focus-visible:ring-ring/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
->
+<Wrapper {...wrapperAttrs}>
   <article
     data-enter="block"
-    class="group relative isolate flex aspect-21/9 overflow-hidden rounded-2xl border border-border"
+    class:list={[
+      'relative isolate flex aspect-21/9 overflow-hidden rounded-2xl border border-border',
+      href && 'group',
+    ]}
   >
     <Image
       src={cover}
@@ -39,10 +48,14 @@ const year = launch.slice(-4)
     <div
       class="flex h-full w-46/100 flex-col justify-end gap-2 bg-sunken/50 bg-linear-to-t from-sunken to-sunken/0 to-50% p-6 backdrop-blur-sm"
     >
-      <IconArrowRight
-        className="absolute top-6 right-6 size-5 text-foreground group-focus-within:translate-x-1 group-hover:translate-x-2 group-hover:text-primary motion-safe:transition-[color,transform,translate] motion-safe:duration-200"
-        aria-hidden="true"
-      />
+      {
+        href && (
+          <IconArrowRight
+            className="absolute top-6 right-6 size-5 text-foreground group-focus-within:translate-x-1 group-hover:translate-x-2 group-hover:text-primary motion-safe:transition-[color,transform,translate] motion-safe:duration-200"
+            aria-hidden="true"
+          />
+        )
+      }
       <p
         class="font-mono text-xs tracking-widest text-muted-foreground uppercase"
       >
@@ -53,5 +66,5 @@ const year = launch.slice(-4)
         {summary}
       </p>
     </div>
-  </article></a
->
+  </article>
+</Wrapper>
