@@ -59,7 +59,6 @@
     "react-email": "6.9.3",
     "typescript": "6.0.3",
     "unplugin-icons": "23.0.1",
-    "vite-tsconfig-paths": "6.1.1",
     "vitest": "5.0.0",
     "wrangler": "4.129.0"
   }
