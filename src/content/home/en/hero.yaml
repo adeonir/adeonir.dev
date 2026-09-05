@@ -1,0 +1,19 @@
+eyebrow: 'Frontend Engineer'
+display: 'Adeonir Kohl'
+tagline:
+  - text: 'I build '
+  - text: 'web interfaces'
+    highlight: true
+  - text: ' that '
+  - text: 'work'
+    highlight: true
+  - text: '.'
+description: 'I like seeing ideas take shape and design come to life on screen.'
+actions:
+  primary:
+    label: 'See my projects'
+    href: '#projects'
+  secondary:
+    label: 'Get in touch'
+    href: '#contact'
+scroll: 'scroll for more'

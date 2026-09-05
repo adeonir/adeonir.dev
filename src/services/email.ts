@@ -75,18 +75,16 @@ export async function sendContactEmails({
   message,
   locale,
 }: ContactEmailInput) {
-  const entry = await getLocalizedEntry('emails', 'emails', locale).catch(
-    (error) => {
-      if (
-        error instanceof Error &&
-        error.message.startsWith('Missing localized content:')
-      ) {
-        throw new ContactDeliveryError('missing_content', error.message)
-      }
+  const entry = await getLocalizedEntry('emails', locale).catch((error) => {
+    if (
+      error instanceof Error &&
+      error.message.startsWith('Missing localized content:')
+    ) {
+      throw new ContactDeliveryError('missing_content', error.message)
+    }
 
-      throw error
-    },
-  )
+    throw error
+  })
 
   const { from, fields, confirmation, notification } = entry.data
   const firstName = name.split(' ')[0]

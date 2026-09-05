@@ -6,7 +6,7 @@ import { parseLocale } from '~/helpers/content'
 import { getLocalizedEntry } from '~/services/localized'
 
 const locale = parseLocale(Astro.currentLocale)
-const about = await getLocalizedEntry('about', 'about', locale)
+const about = await getLocalizedEntry('about', locale)
 
 const { eyebrow, headline, body, bio } = about.data
 ---

@@ -139,15 +139,15 @@ describe('getAgentDocuments', () => {
   beforeEach(() => {
     getLocalizedEntry.mockReset()
     getLocalizedEntry.mockImplementation(
-      async (collection: string, entryId: string, locale: Locale) => {
+      async (collection: string, locale: Locale) => {
         const entries = entriesByLocale[locale]
         const data = entries[collection as keyof typeof entries]
 
         if (!data) {
-          throw new Error(`Missing test entry: ${collection}/${entryId}`)
+          throw new Error(`Missing test entry: ${locale}/${collection}`)
         }
 
-        return { id: entryId, collection, data }
+        return { id: `${locale}/${collection}`, collection, data }
       },
     )
   })

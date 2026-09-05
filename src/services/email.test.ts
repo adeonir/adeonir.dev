@@ -9,8 +9,8 @@ vi.mock('astro:env/server', () => ({ RESEND_API_KEY: 'test-key' }))
 import { sendContactEmails } from '~/services/email'
 
 const englishEmailEntry = {
-  id: 'emails',
-  collection: 'emailsEn',
+  id: 'en/emails',
+  collection: 'emails',
   data: {
     from: 'Adeonir',
     fields: {
@@ -65,7 +65,7 @@ describe('sendContactEmails', () => {
       locale: 'en',
     })
 
-    expect(getEntry).toHaveBeenCalledWith('emailsEn', 'emails')
+    expect(getEntry).toHaveBeenCalledWith('emails', 'en/emails')
 
     const payloads = fetchMock.mock.calls.map(([, request]) =>
       JSON.parse(request.body as string),

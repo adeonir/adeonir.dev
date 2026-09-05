@@ -7,7 +7,7 @@ import { parseLocale } from '~/helpers/content'
 import { getLocalizedEntry } from '~/services/localized'
 
 const locale = parseLocale(Astro.currentLocale)
-const footer = await getLocalizedEntry('footer', 'footer', locale)
+const footer = await getLocalizedEntry('footer', locale)
 const homeURL = getRelativeLocaleUrl(locale)
 
 const { brand, signoff } = footer.data

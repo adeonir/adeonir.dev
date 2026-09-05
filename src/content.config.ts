@@ -1,5 +1,5 @@
 import { defineCollection } from 'astro:content'
-import { file } from 'astro/loaders'
+import { glob } from 'astro/loaders'
 import { aboutSchema } from '~/schemas/about'
 import { consoleSchema } from '~/schemas/console'
 import { contactSchema } from '~/schemas/contact'
@@ -16,185 +16,160 @@ import { settingsSchema } from '~/schemas/settings'
 import { stackSchema } from '~/schemas/stack'
 import { themeToggleSchema } from '~/schemas/theme-toggle'
 
-const settings = defineCollection({
-  loader: file('src/content/settings.yaml'),
-  schema: settingsSchema,
-})
-
-const settingsEn = defineCollection({
-  loader: file('src/content/settings.en.yaml'),
-  schema: settingsSchema,
-})
-
-const header = defineCollection({
-  loader: file('src/content/header.yaml'),
-  schema: headerSchema,
-})
-
-const headerEn = defineCollection({
-  loader: file('src/content/header.en.yaml'),
-  schema: headerSchema,
-})
-
-const mobileMenu = defineCollection({
-  loader: file('src/content/mobile-menu.yaml'),
-  schema: mobileMenuSchema,
-})
-
-const mobileMenuEn = defineCollection({
-  loader: file('src/content/mobile-menu.en.yaml'),
-  schema: mobileMenuSchema,
-})
-
-const themeToggle = defineCollection({
-  loader: file('src/content/theme-toggle.yaml'),
-  schema: themeToggleSchema,
-})
-
-const themeToggleEn = defineCollection({
-  loader: file('src/content/theme-toggle.en.yaml'),
-  schema: themeToggleSchema,
-})
-
-const languageToggle = defineCollection({
-  loader: file('src/content/language-toggle.yaml'),
-  schema: languageToggleSchema,
-})
-
-const languageToggleEn = defineCollection({
-  loader: file('src/content/language-toggle.en.yaml'),
-  schema: languageToggleSchema,
-})
+function localeId(collection: string) {
+  return ({ entry }: { entry: string }) =>
+    `${entry.split('/')[0]}/${collection}`
+}
 
 const hero = defineCollection({
-  loader: file('src/content/hero.yaml'),
-  schema: heroSchema,
-})
-
-const heroEn = defineCollection({
-  loader: file('src/content/hero.en.yaml'),
+  loader: glob({
+    pattern: '*/hero.yaml',
+    base: 'src/content/home',
+    generateId: localeId('hero'),
+  }),
   schema: heroSchema,
 })
 
 const projects = defineCollection({
-  loader: file('src/content/projects.yaml'),
-  schema: projectsSchema,
-})
-
-const projectsEn = defineCollection({
-  loader: file('src/content/projects.en.yaml'),
+  loader: glob({
+    pattern: '*/projects.yaml',
+    base: 'src/content/home',
+    generateId: localeId('projects'),
+  }),
   schema: projectsSchema,
 })
 
 const about = defineCollection({
-  loader: file('src/content/about.yaml'),
-  schema: aboutSchema,
-})
-
-const aboutEn = defineCollection({
-  loader: file('src/content/about.en.yaml'),
+  loader: glob({
+    pattern: '*/about.yaml',
+    base: 'src/content/home',
+    generateId: localeId('about'),
+  }),
   schema: aboutSchema,
 })
 
 const expertise = defineCollection({
-  loader: file('src/content/expertise.yaml'),
+  loader: glob({
+    pattern: '*/expertise.yaml',
+    base: 'src/content/home',
+    generateId: localeId('expertise'),
+  }),
   schema: expertiseSchema,
-})
-
-const expertiseEn = defineCollection({
-  loader: file('src/content/expertise.en.yaml'),
-  schema: expertiseSchema,
-})
-
-const footer = defineCollection({
-  loader: file('src/content/footer.yaml'),
-  schema: footerSchema,
-})
-
-const footerEn = defineCollection({
-  loader: file('src/content/footer.en.yaml'),
-  schema: footerSchema,
 })
 
 const stack = defineCollection({
-  loader: file('src/content/stack.yaml'),
-  schema: stackSchema,
-})
-
-const stackEn = defineCollection({
-  loader: file('src/content/stack.en.yaml'),
+  loader: glob({
+    pattern: '*/stack.yaml',
+    base: 'src/content/home',
+    generateId: localeId('stack'),
+  }),
   schema: stackSchema,
 })
 
 const contact = defineCollection({
-  loader: file('src/content/contact.yaml'),
+  loader: glob({
+    pattern: '*/contact.yaml',
+    base: 'src/content/home',
+    generateId: localeId('contact'),
+  }),
   schema: contactSchema,
 })
 
-const contactEn = defineCollection({
-  loader: file('src/content/contact.en.yaml'),
-  schema: contactSchema,
+const settings = defineCollection({
+  loader: glob({
+    pattern: '*/settings.yaml',
+    base: 'src/content/shared',
+    generateId: localeId('settings'),
+  }),
+  schema: settingsSchema,
+})
+
+const header = defineCollection({
+  loader: glob({
+    pattern: '*/header.yaml',
+    base: 'src/content/shared',
+    generateId: localeId('header'),
+  }),
+  schema: headerSchema,
+})
+
+const mobileMenu = defineCollection({
+  loader: glob({
+    pattern: '*/mobile-menu.yaml',
+    base: 'src/content/shared',
+    generateId: localeId('mobileMenu'),
+  }),
+  schema: mobileMenuSchema,
+})
+
+const themeToggle = defineCollection({
+  loader: glob({
+    pattern: '*/theme-toggle.yaml',
+    base: 'src/content/shared',
+    generateId: localeId('themeToggle'),
+  }),
+  schema: themeToggleSchema,
+})
+
+const languageToggle = defineCollection({
+  loader: glob({
+    pattern: '*/language-toggle.yaml',
+    base: 'src/content/shared',
+    generateId: localeId('languageToggle'),
+  }),
+  schema: languageToggleSchema,
+})
+
+const footer = defineCollection({
+  loader: glob({
+    pattern: '*/footer.yaml',
+    base: 'src/content/shared',
+    generateId: localeId('footer'),
+  }),
+  schema: footerSchema,
 })
 
 const notFound = defineCollection({
-  loader: file('src/content/not-found.yaml'),
-  schema: notFoundSchema,
-})
-
-const notFoundEn = defineCollection({
-  loader: file('src/content/not-found.en.yaml'),
+  loader: glob({
+    pattern: '*/not-found.yaml',
+    base: 'src/content/shared',
+    generateId: localeId('notFound'),
+  }),
   schema: notFoundSchema,
 })
 
 const emails = defineCollection({
-  loader: file('src/content/emails.yaml'),
-  schema: emailsSchema,
-})
-
-const emailsEn = defineCollection({
-  loader: file('src/content/emails.en.yaml'),
+  loader: glob({
+    pattern: '*/emails.yaml',
+    base: 'src/content/shared',
+    generateId: localeId('emails'),
+  }),
   schema: emailsSchema,
 })
 
 const console = defineCollection({
-  loader: file('src/content/console.yaml'),
-  schema: consoleSchema,
-})
-
-const consoleEn = defineCollection({
-  loader: file('src/content/console.en.yaml'),
+  loader: glob({
+    pattern: '*/console.yaml',
+    base: 'src/content/shared',
+    generateId: localeId('console'),
+  }),
   schema: consoleSchema,
 })
 
 export const collections = {
   settings,
-  settingsEn,
   header,
-  headerEn,
   mobileMenu,
-  mobileMenuEn,
   themeToggle,
-  themeToggleEn,
   languageToggle,
-  languageToggleEn,
   footer,
-  footerEn,
   hero,
-  heroEn,
   projects,
-  projectsEn,
   about,
-  aboutEn,
   expertise,
-  expertiseEn,
   stack,
-  stackEn,
   contact,
-  contactEn,
   notFound,
-  notFoundEn,
   emails,
-  emailsEn,
   console,
-  consoleEn,
 }

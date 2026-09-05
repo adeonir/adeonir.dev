@@ -1,0 +1,35 @@
+eyebrow: 'Tech Stack'
+headline:
+  - text: 'The '
+  - text: 'tools '
+    highlight: true
+  - text: 'I build with'
+body: 'Some of the tools and technologies I use across projects.'
+tools:
+  - title: 'frontend'
+    items:
+      - 'react'
+      - 'next.js'
+      - 'tanstack-start'
+      - 'typescript'
+      - 'tailwindcss'
+      - 'zustand'
+      - 'react-native'
+  - title: 'backend'
+    items:
+      - 'node.js'
+      - 'fastify'
+      - 'hono'
+      - 'drizzle'
+      - 'prisma'
+      - 'sqlite'
+      - 'postgresql'
+  - title: 'tooling'
+    items:
+      - 'figma'
+      - 'vscode'
+      - 'vite'
+      - 'vitest'
+      - 'claude'
+      - 'codex'
+      - 'cloudflare'

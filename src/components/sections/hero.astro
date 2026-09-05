@@ -7,7 +7,7 @@ import { getLocalizedEntry } from '~/services/localized'
 import IconArrowDown from '~icons/tabler/arrow-narrow-down'
 
 const locale = parseLocale(Astro.currentLocale)
-const hero = await getLocalizedEntry('hero', 'hero', locale)
+const hero = await getLocalizedEntry('hero', locale)
 
 const { eyebrow, display, tagline, description, actions, scroll } = hero.data
 ---

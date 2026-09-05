@@ -38,7 +38,7 @@ describe('hero section', () => {
   beforeEach(() => {
     getLocalizedEntry.mockReset()
     getLocalizedEntry.mockImplementation(
-      async (_collection, _entryId, locale: Locale) => ({
+      async (_collection, locale: Locale) => ({
         data: heroDataByLocale[locale],
       }),
     )

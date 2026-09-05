@@ -1,0 +1,16 @@
+brand:
+  text: 'adeonir.dev'
+  copyright: '© 2026 Adeonir Kohl'
+signoff:
+  - text: 'Feito com '
+  - text: 'cuidado'
+    emphasis: true
+  - text: ', '
+  - text: 'café'
+    emphasis: true
+    reveal: 'Café pra trabalhar'
+  - text: ' e '
+  - text: 'cerveja'
+    emphasis: true
+    reveal: 'Cerveja pra comemorar'
+  - text: '.'

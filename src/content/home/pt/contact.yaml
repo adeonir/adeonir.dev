@@ -1,0 +1,45 @@
+eyebrow: 'Vamos conversar'
+title:
+  - text: 'Me manda uma '
+  - text: 'mensagem'
+    highlight: true
+body: 'Pode ser sobre desenvolvimento, um projeto ou só dar um oi.'
+social:
+  - platform: 'email'
+    label: 'contato@adeonir.dev'
+    link: 'mailto:contato@adeonir.dev'
+  - platform: 'github'
+    label: 'github.com/adeonir'
+    link: 'https://github.com/adeonir'
+  - platform: 'linkedin'
+    label: 'linkedin.com/in/adeonir'
+    link: 'https://www.linkedin.com/in/adeonir'
+  - platform: 'x'
+    label: 'x.com/adeonir'
+    link: 'https://x.com/adeonir'
+form:
+  fields:
+    - name: 'name'
+      label: 'Nome'
+      placeholder: 'Seu nome'
+    - name: 'email'
+      label: 'Email'
+      placeholder: 'voce@exemplo.com'
+    - name: 'subject'
+      label: 'Assunto'
+      placeholder: 'Sobre o que você quer falar?'
+    - name: 'message'
+      label: 'Mensagem'
+      placeholder: 'Me conta mais sobre o que você tem em mente.'
+  submit: 'Enviar'
+  states:
+    success:
+      title: 'Mensagem enviada'
+      description: 'Obrigado! Vou responder em breve.'
+    error:
+      title: 'Não foi possível enviar sua mensagem'
+      description: 'Tenta de novo ou me escreve direto no email.'
+  validation:
+    required: 'Preencha este campo.'
+    email: 'Digite um email válido.'
+    maxLength: 'Use no máximo {max} caracteres.'
