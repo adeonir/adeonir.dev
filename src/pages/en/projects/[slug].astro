@@ -1,0 +1,34 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content'
+
+import Layout from '~/layouts/base.astro'
+
+interface Props {
+  entry: CollectionEntry<'projectsContent'>
+}
+
+export async function getStaticPaths() {
+  const entries = await getCollection('projectsContent', (entry) =>
+    entry.id.startsWith('en/'),
+  )
+
+  return entries.map((entry) => ({
+    params: { slug: entry.id.slice('en/'.length) },
+    props: { entry },
+  }))
+}
+
+const { entry } = Astro.props
+const { name, summary } = entry.data
+---
+
+<Layout title={name} description={summary} shell>
+  <section class="pt-16 pb-4 md:pt-20 md:pb-8">
+    <div class="wrapper flex flex-col gap-6">
+      <h1 class="text-display text-pretty text-foreground">{name}</h1>
+      <p class="text-body leading-relaxed text-pretty text-muted-foreground">
+        {summary}
+      </p>
+    </div>
+  </section>
+</Layout>
