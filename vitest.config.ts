@@ -8,6 +8,7 @@ export default getViteConfig(
   {
     plugins: [icons({ compiler: 'jsx', jsx: 'react' })],
     resolve: { tsconfigPaths: true },
+    test: { fsModuleCache: true },
   },
   {
     configFile: false,
