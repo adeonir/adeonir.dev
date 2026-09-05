@@ -7,7 +7,7 @@ import { parseLocale } from '~/helpers/content'
 import { getLocalizedEntry } from '~/services/localized'
 
 const locale = parseLocale(Astro.currentLocale)
-const notFound = await getLocalizedEntry('notFound', locale)
+const notFound = await getLocalizedEntry('sharedNotFound', locale)
 const homeURL = getRelativeLocaleUrl(locale)
 
 const { display, headline, body, action } = notFound.data

@@ -44,4 +44,3 @@
 - The PostHog array stub derives the script host by replacing `.i.posthog.com` — with the project's reverse-proxy host that replacement is a no-op, so the proxy must serve `/static/array.js` as well as ingestion; source: src/components/scripts/analytics.astro
 - Astro Actions reject cross-origin form POSTs before the handler runs — direct scripts that exercise an Action endpoint must send a matching `Origin` header
 - Resend can throttle concurrent sends independently of the contact rate limiter — a concurrent load test can therefore produce a provider error even when the application limiter admits the request
-- The collection key `projects` holds the projects section's own copy, not project entries — a collection of those needs another key, and the copy documents still describe a top-level `projects` collection; source: src/helpers/content.ts and docs/design/copy.yaml

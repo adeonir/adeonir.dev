@@ -8,7 +8,7 @@ interface Props {
 }
 
 const locale = parseLocale(Astro.currentLocale)
-const content = await getLocalizedEntry('mobileMenu', locale)
+const content = await getLocalizedEntry('sharedMobileMenu', locale)
 
 const { nav } = Astro.props
 ---

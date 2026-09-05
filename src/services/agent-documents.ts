@@ -245,13 +245,13 @@ async function getAgentDocumentContent(
 ): Promise<AgentDocumentContent> {
   const [settings, hero, projects, about, expertise, stack, contact] =
     await Promise.all([
-      getLocalizedEntry('settings', locale),
-      getLocalizedEntry('hero', locale),
-      getLocalizedEntry('projects', locale),
-      getLocalizedEntry('about', locale),
-      getLocalizedEntry('expertise', locale),
-      getLocalizedEntry('stack', locale),
-      getLocalizedEntry('contact', locale),
+      getLocalizedEntry('sharedSettings', locale),
+      getLocalizedEntry('homeHero', locale),
+      getLocalizedEntry('homeProjects', locale),
+      getLocalizedEntry('homeAbout', locale),
+      getLocalizedEntry('homeExpertise', locale),
+      getLocalizedEntry('homeStack', locale),
+      getLocalizedEntry('homeContact', locale),
     ])
 
   const heroData = hero.data

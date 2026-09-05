@@ -199,7 +199,7 @@ content:
         - word: 'beer'
           phrase: 'Beer to celebrate'
 
-  work:
+  projects:
     header: *header
     page-header:
       eyebrow: 'Work'
