@@ -36,6 +36,7 @@
 - The header's `backdrop-blur` creates a containing block for fixed descendants — full-viewport overlays rendered under the header must be portaled to `body` and layered above the header; source: src/components/sections/header.astro
 - `String.prototype.replaceAll` treats `$` sequences in string replacements as substitution patterns — use a function replacement when inserting user-controlled text; source: src/helpers/interpolate.ts
 - Astro 6 does not render `.astro` components in `jsdom` or `happy-dom` — those tests must use Node or a browser-backed suite
+- `typescript` stays pinned at 6.x — TypeScript 7's native compiler (`tsgo`) does not yet expose the programmatic API `astro check` depends on, so upgrading breaks `pnpm typecheck`; source: package.json
 - Vitest's `happy-dom` environment does not expose a working `localStorage` global by default — DOM tests that exercise storage must inject one from a happy-dom `Window`; source: src/stores/theme.test.ts
 - The PostHog array stub derives the script host by replacing `.i.posthog.com` — with the project's reverse-proxy host that replacement is a no-op, so the proxy must serve `/static/array.js` as well as ingestion; source: src/components/scripts/analytics.astro
 - Astro Actions reject cross-origin form POSTs before the handler runs — direct scripts that exercise an Action endpoint must send a matching `Origin` header
