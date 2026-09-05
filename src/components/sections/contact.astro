@@ -7,7 +7,7 @@ import { getLocalizedEntry } from '~/services/localized'
 import IconFolder from '~icons/tabler/folder'
 
 const locale = parseLocale(Astro.currentLocale)
-const contact = await getLocalizedEntry('contact', locale)
+const contact = await getLocalizedEntry('homeContact', locale)
 
 const { eyebrow, title, body, social, form } = contact.data
 ---

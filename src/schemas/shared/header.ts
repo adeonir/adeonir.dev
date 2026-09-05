@@ -1,6 +1,6 @@
 import { z } from 'astro/zod'
 
-export const headerSchema = z.object({
+export const sharedHeaderSchema = z.object({
   logo: z.string().min(1),
   nav: z
     .array(

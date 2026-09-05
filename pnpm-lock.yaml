@@ -75,6 +75,9 @@ importers:
       '@astrojs/check':
         specifier: 0.9.10
         version: 0.9.10(prettier-plugin-astro@0.14.1)(prettier@3.9.6)(typescript@6.0.3)
+      '@astrojs/ts-plugin':
+        specifier: 1.10.11
+        version: 1.10.11(typescript@6.0.3)
       '@biomejs/biome':
         specifier: 2.5.12
         version: 2.5.12
@@ -261,6 +264,9 @@ packages:
   '@astrojs/telemetry@3.3.3':
     resolution: {integrity: sha512-C1TLn5sPJr0x4vk56piHWKbnqlEB8BKyte5Y45V02U+D7BGO5eMqZDH5aPjnkXQWJggvmsTXxH03QMZ9NgWLzQ==}
     engines: {node: 18.20.8 || ^20.3.0 || >=22.0.0}
+
+  '@astrojs/ts-plugin@1.10.11':
+    resolution: {integrity: sha512-W7Fmbaw81mcecFgJWgfY8FX7G7nCiooiakgd8ZAVprglEo81W2HzXh2I+okmAorCZLICl4PeEELkpGzrEXze4g==}
 
   '@astrojs/underscore-redirects@1.0.4':
     resolution: {integrity: sha512-sD3bn7i2yC+ocxlhCTshdg3gUM471Nag3wgyHilA+kpmufokvmUu1p5Mw5GT5Xp8SPC1Nlq0BJAgV/lslnWvRw==}
@@ -4422,6 +4428,18 @@ snapshots:
       dset: 3.1.4
       is-docker: 4.0.0
       package-manager-detector: 1.8.0
+
+  '@astrojs/ts-plugin@1.10.11(typescript@6.0.3)':
+    dependencies:
+      '@astrojs/compiler': 2.13.1
+      '@astrojs/yaml2ts': 0.2.4
+      '@jridgewell/sourcemap-codec': 1.6.0
+      '@volar/language-core': 2.4.28
+      '@volar/typescript': 2.4.28(typescript@6.0.3)
+      semver: 7.8.5
+      vscode-languageserver-textdocument: 1.0.14
+    transitivePeerDependencies:
+      - typescript
 
   '@astrojs/underscore-redirects@1.0.4': {}
 

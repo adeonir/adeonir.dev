@@ -36,7 +36,7 @@ type AgentDocumentContent = {
     eyebrow: string
     headline: string
     body: string
-    holding: TextSegment[]
+    empty: TextSegment[]
   }
   about: {
     eyebrow: string
@@ -154,7 +154,7 @@ ${content.projects.eyebrow}
 
 ${content.projects.body}
 
-${serializeLinkedSegments(content.projects.holding)}
+${serializeLinkedSegments(content.projects.empty)}
 
 <a id="expertise"></a>
 ## ${getSectionTitle(content, 'expertise')}
@@ -207,7 +207,7 @@ function serializeLlms(content: AgentDocumentContent, locale: Locale): string {
     projects: {
       title: getSectionTitle(content, 'projects'),
       linkTitle: getSectionTitle(content, 'projects'),
-      description: `${content.projects.body} ${joinSegments(content.projects.holding)}`,
+      description: `${content.projects.body} ${joinSegments(content.projects.empty)}`,
     },
     expertise: {
       title: getSectionTitle(content, 'expertise'),
@@ -245,13 +245,13 @@ async function getAgentDocumentContent(
 ): Promise<AgentDocumentContent> {
   const [settings, hero, projects, about, expertise, stack, contact] =
     await Promise.all([
-      getLocalizedEntry('settings', locale),
-      getLocalizedEntry('hero', locale),
-      getLocalizedEntry('projects', locale),
-      getLocalizedEntry('about', locale),
-      getLocalizedEntry('expertise', locale),
-      getLocalizedEntry('stack', locale),
-      getLocalizedEntry('contact', locale),
+      getLocalizedEntry('sharedSettings', locale),
+      getLocalizedEntry('homeHero', locale),
+      getLocalizedEntry('homeProjects', locale),
+      getLocalizedEntry('homeAbout', locale),
+      getLocalizedEntry('homeExpertise', locale),
+      getLocalizedEntry('homeStack', locale),
+      getLocalizedEntry('homeContact', locale),
     ])
 
   const heroData = hero.data
@@ -273,7 +273,7 @@ async function getAgentDocumentContent(
       eyebrow: projectsData.eyebrow,
       headline: joinSegments(projectsData.headline),
       body: projectsData.body,
-      holding: projectsData.holding,
+      empty: projectsData.empty,
     },
     about: {
       eyebrow: aboutData.eyebrow,

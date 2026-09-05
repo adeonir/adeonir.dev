@@ -1,175 +1,185 @@
 import { defineCollection } from 'astro:content'
 import { glob } from 'astro/loaders'
-import { aboutSchema } from '~/schemas/about'
-import { consoleSchema } from '~/schemas/console'
-import { contactSchema } from '~/schemas/contact'
-import { emailsSchema } from '~/schemas/emails'
-import { expertiseSchema } from '~/schemas/expertise'
-import { footerSchema } from '~/schemas/footer'
-import { headerSchema } from '~/schemas/header'
-import { heroSchema } from '~/schemas/hero'
-import { languageToggleSchema } from '~/schemas/language-toggle'
-import { mobileMenuSchema } from '~/schemas/mobile-menu'
-import { notFoundSchema } from '~/schemas/not-found'
-import { projectsSchema } from '~/schemas/projects'
-import { settingsSchema } from '~/schemas/settings'
-import { stackSchema } from '~/schemas/stack'
-import { themeToggleSchema } from '~/schemas/theme-toggle'
+import { homeAboutSchema } from '~/schemas/home/about'
+import { homeContactSchema } from '~/schemas/home/contact'
+import { homeExpertiseSchema } from '~/schemas/home/expertise'
+import { homeHeroSchema } from '~/schemas/home/hero'
+import { homeProjectsSchema } from '~/schemas/home/projects'
+import { homeStackSchema } from '~/schemas/home/stack'
+import { projectsContentSchema } from '~/schemas/projects/content'
+import { sharedConsoleSchema } from '~/schemas/shared/console'
+import { sharedEmailsSchema } from '~/schemas/shared/emails'
+import { sharedFooterSchema } from '~/schemas/shared/footer'
+import { sharedHeaderSchema } from '~/schemas/shared/header'
+import { sharedLanguageToggleSchema } from '~/schemas/shared/language-toggle'
+import { sharedMobileMenuSchema } from '~/schemas/shared/mobile-menu'
+import { sharedNotFoundSchema } from '~/schemas/shared/not-found'
+import { sharedSettingsSchema } from '~/schemas/shared/settings'
+import { sharedThemeToggleSchema } from '~/schemas/shared/theme-toggle'
 
 function localeId(collection: string) {
   return ({ entry }: { entry: string }) =>
     `${entry.split('/')[0]}/${collection}`
 }
 
-const hero = defineCollection({
+const homeHero = defineCollection({
   loader: glob({
     pattern: '*/hero.yaml',
     base: 'src/content/home',
-    generateId: localeId('hero'),
+    generateId: localeId('homeHero'),
   }),
-  schema: heroSchema,
+  schema: homeHeroSchema,
 })
 
-const projects = defineCollection({
+const homeProjects = defineCollection({
   loader: glob({
     pattern: '*/projects.yaml',
     base: 'src/content/home',
-    generateId: localeId('projects'),
+    generateId: localeId('homeProjects'),
   }),
-  schema: projectsSchema,
+  schema: homeProjectsSchema,
 })
 
-const about = defineCollection({
+const homeAbout = defineCollection({
   loader: glob({
     pattern: '*/about.yaml',
     base: 'src/content/home',
-    generateId: localeId('about'),
+    generateId: localeId('homeAbout'),
   }),
-  schema: aboutSchema,
+  schema: homeAboutSchema,
 })
 
-const expertise = defineCollection({
+const homeExpertise = defineCollection({
   loader: glob({
     pattern: '*/expertise.yaml',
     base: 'src/content/home',
-    generateId: localeId('expertise'),
+    generateId: localeId('homeExpertise'),
   }),
-  schema: expertiseSchema,
+  schema: homeExpertiseSchema,
 })
 
-const stack = defineCollection({
+const homeStack = defineCollection({
   loader: glob({
     pattern: '*/stack.yaml',
     base: 'src/content/home',
-    generateId: localeId('stack'),
+    generateId: localeId('homeStack'),
   }),
-  schema: stackSchema,
+  schema: homeStackSchema,
 })
 
-const contact = defineCollection({
+const homeContact = defineCollection({
   loader: glob({
     pattern: '*/contact.yaml',
     base: 'src/content/home',
-    generateId: localeId('contact'),
+    generateId: localeId('homeContact'),
   }),
-  schema: contactSchema,
+  schema: homeContactSchema,
 })
 
-const settings = defineCollection({
+const sharedSettings = defineCollection({
   loader: glob({
     pattern: '*/settings.yaml',
     base: 'src/content/shared',
-    generateId: localeId('settings'),
+    generateId: localeId('sharedSettings'),
   }),
-  schema: settingsSchema,
+  schema: sharedSettingsSchema,
 })
 
-const header = defineCollection({
+const sharedHeader = defineCollection({
   loader: glob({
     pattern: '*/header.yaml',
     base: 'src/content/shared',
-    generateId: localeId('header'),
+    generateId: localeId('sharedHeader'),
   }),
-  schema: headerSchema,
+  schema: sharedHeaderSchema,
 })
 
-const mobileMenu = defineCollection({
+const sharedMobileMenu = defineCollection({
   loader: glob({
     pattern: '*/mobile-menu.yaml',
     base: 'src/content/shared',
-    generateId: localeId('mobileMenu'),
+    generateId: localeId('sharedMobileMenu'),
   }),
-  schema: mobileMenuSchema,
+  schema: sharedMobileMenuSchema,
 })
 
-const themeToggle = defineCollection({
+const sharedThemeToggle = defineCollection({
   loader: glob({
     pattern: '*/theme-toggle.yaml',
     base: 'src/content/shared',
-    generateId: localeId('themeToggle'),
+    generateId: localeId('sharedThemeToggle'),
   }),
-  schema: themeToggleSchema,
+  schema: sharedThemeToggleSchema,
 })
 
-const languageToggle = defineCollection({
+const sharedLanguageToggle = defineCollection({
   loader: glob({
     pattern: '*/language-toggle.yaml',
     base: 'src/content/shared',
-    generateId: localeId('languageToggle'),
+    generateId: localeId('sharedLanguageToggle'),
   }),
-  schema: languageToggleSchema,
+  schema: sharedLanguageToggleSchema,
 })
 
-const footer = defineCollection({
+const sharedFooter = defineCollection({
   loader: glob({
     pattern: '*/footer.yaml',
     base: 'src/content/shared',
-    generateId: localeId('footer'),
+    generateId: localeId('sharedFooter'),
   }),
-  schema: footerSchema,
+  schema: sharedFooterSchema,
 })
 
-const notFound = defineCollection({
+const sharedNotFound = defineCollection({
   loader: glob({
     pattern: '*/not-found.yaml',
     base: 'src/content/shared',
-    generateId: localeId('notFound'),
+    generateId: localeId('sharedNotFound'),
   }),
-  schema: notFoundSchema,
+  schema: sharedNotFoundSchema,
 })
 
-const emails = defineCollection({
+const sharedEmails = defineCollection({
   loader: glob({
     pattern: '*/emails.yaml',
     base: 'src/content/shared',
-    generateId: localeId('emails'),
+    generateId: localeId('sharedEmails'),
   }),
-  schema: emailsSchema,
+  schema: sharedEmailsSchema,
 })
 
-const console = defineCollection({
+const sharedConsole = defineCollection({
   loader: glob({
     pattern: '*/console.yaml',
     base: 'src/content/shared',
-    generateId: localeId('console'),
+    generateId: localeId('sharedConsole'),
   }),
-  schema: consoleSchema,
+  schema: sharedConsoleSchema,
+})
+
+const projectsContent = defineCollection({
+  loader: glob({
+    pattern: '*/*.mdx',
+    base: 'src/content/projects',
+  }),
+  schema: projectsContentSchema,
 })
 
 export const collections = {
-  settings,
-  header,
-  mobileMenu,
-  themeToggle,
-  languageToggle,
-  footer,
-  hero,
-  projects,
-  about,
-  expertise,
-  stack,
-  contact,
-  notFound,
-  emails,
-  console,
+  sharedSettings,
+  sharedHeader,
+  sharedMobileMenu,
+  sharedThemeToggle,
+  sharedLanguageToggle,
+  sharedFooter,
+  homeHero,
+  homeProjects,
+  homeAbout,
+  homeExpertise,
+  homeStack,
+  homeContact,
+  sharedNotFound,
+  sharedEmails,
+  sharedConsole,
+  projectsContent,
 }

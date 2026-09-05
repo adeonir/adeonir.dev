@@ -1,4 +1,5 @@
 import { goToAnchor, scrollToTop } from '~/helpers/anchor'
+import { onVisit } from '~/scripts/visit'
 
 document.addEventListener(
   'click',
@@ -34,6 +35,7 @@ document.addEventListener(
   { capture: true },
 )
 
-if (location.hash) {
-  goToAnchor(location.hash.slice(1))
-}
+onVisit(() => {
+  if (location.hash) goToAnchor(location.hash.slice(1))
+  return undefined
+})

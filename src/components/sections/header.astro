@@ -11,7 +11,7 @@ import { parseLocale } from '~/helpers/content'
 import { getLocalizedEntry } from '~/services/localized'
 
 const locale = parseLocale(Astro.currentLocale)
-const header = await getLocalizedEntry('header', locale)
+const header = await getLocalizedEntry('sharedHeader', locale)
 const homeURL = getRelativeLocaleUrl(locale)
 
 const isNotFound = Astro.response.status === 404

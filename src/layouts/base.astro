@@ -24,7 +24,7 @@ interface Props {
 }
 
 const locale = parseLocale(Astro.currentLocale)
-const settings = await getLocalizedEntry('settings', locale)
+const settings = await getLocalizedEntry('sharedSettings', locale)
 const openGraphLocale = locale === 'pt' ? 'pt_BR' : 'en_US'
 const alternateOpenGraphLocale = locale === 'pt' ? 'en_US' : 'pt_BR'
 

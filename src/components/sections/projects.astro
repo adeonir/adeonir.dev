@@ -1,4 +1,8 @@
 ---
+import { getCollection } from 'astro:content'
+import { getRelativeLocaleUrl } from 'astro:i18n'
+
+import ProjectCard from '~/components/project-card.astro'
 import { buttonVariants } from '~/components/ui/button-variants'
 import { Eyebrow } from '~/components/ui/eyebrow'
 import { parseLocale } from '~/helpers/content'
@@ -6,9 +10,24 @@ import { getLocalizedEntry } from '~/services/localized'
 import IconFolder from '~icons/tabler/folder'
 
 const locale = parseLocale(Astro.currentLocale)
-const projects = await getLocalizedEntry('projects', locale)
+const projects = await getLocalizedEntry('homeProjects', locale)
 
-const { eyebrow, headline, body, holding } = projects.data
+const { eyebrow, headline, body, empty } = projects.data
+
+const entries = await getCollection('projectsContent', (entry) =>
+  entry.id.startsWith(`${locale}/`),
+)
+
+const featured = entries
+  .filter((entry) => entry.data.featured !== undefined)
+  .sort((a, b) => (a.data.featured ?? 0) - (b.data.featured ?? 0))
+  .map((entry) => ({
+    ...entry.data,
+    href: getRelativeLocaleUrl(
+      locale,
+      `/projects/${entry.id.slice(locale.length + 1)}`,
+    ),
+  }))
 ---
 
 <section id="projects" class="pt-16 pb-4 md:pt-20 md:pb-8">
@@ -37,36 +56,42 @@ const { eyebrow, headline, body, holding } = projects.data
         </p>
       </div>
       <div class="md:col-span-3 md:pt-14">
-        <div
-          data-enter="block"
-          class="flex aspect-21/9 flex-col items-center justify-center gap-4 rounded-2xl border border-border bg-card p-6 text-center"
-        >
-          <IconFolder
-            className="size-7 shrink-0 text-muted-foreground opacity-70"
-            aria-hidden="true"
-          />
-          <p
-            class="max-w-[40ch] text-base leading-normal text-pretty text-muted-foreground"
-          >
-            {
-              holding.map((segment) =>
-                segment.href ? (
-                  <a
-                    href={segment.href}
-                    class={buttonVariants({
-                      variant: 'link',
-                      size: 'inline',
-                    })}
-                  >
-                    {segment.text}
-                  </a>
-                ) : (
-                  segment.text
-                ),
-              )
-            }
-          </p>
-        </div>
+        {
+          featured.length > 0 ? (
+            <div class="flex flex-col gap-8">
+              {featured.map((project) => (
+                <ProjectCard {...project} />
+              ))}
+            </div>
+          ) : (
+            <div
+              data-enter="block"
+              class="flex aspect-21/9 flex-col items-center justify-center gap-4 rounded-2xl border border-border bg-card p-6 text-center"
+            >
+              <IconFolder
+                className="size-7 shrink-0 text-muted-foreground opacity-70"
+                aria-hidden="true"
+              />
+              <p class="max-w-[40ch] text-base leading-normal text-pretty text-muted-foreground">
+                {empty.map((segment) =>
+                  segment.href ? (
+                    <a
+                      href={segment.href}
+                      class={buttonVariants({
+                        variant: 'link',
+                        size: 'inline',
+                      })}
+                    >
+                      {segment.text}
+                    </a>
+                  ) : (
+                    segment.text
+                  ),
+                )}
+              </p>
+            </div>
+          )
+        }
       </div>
     </div>
   </div>

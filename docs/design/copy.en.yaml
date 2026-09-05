@@ -42,11 +42,7 @@ routes:
   maintenance:
     title: 'Maintenance'
 
-# The content tree covers the surfaces home, work, project,
-# plus a global not-found (404) error surface.
-# header and footer are persistent across every surface — defined once on
-# home and aliased. Projects live in one top-level `projects` collection (always
-# complete); the work index shows all, the landing shows featured: true.
+# The content tree covers the surfaces home, work, project, plus a global not-found (404) error surface. Header and footer are persistent across every surface — defined once on home and aliased. Projects live in one top-level `projects` collection (always complete); the work index shows all, the landing shows featured: true.
 
 content:
   home:
@@ -96,7 +92,7 @@ content:
       eyebrow: 'Featured projects'
       headline: 'Ideas that went live'
       body: 'A few projects I helped build over the last years.'
-      holding: "I don't have a featured project published here yet. If you want to know what I'm working on, send me a message."
+      empty: "I don't have a featured project published here yet. If you want to know what I'm working on, send me a message."
       see-all: 'See all projects'
 
     expertise:
@@ -203,7 +199,7 @@ content:
         - word: 'beer'
           phrase: 'Beer to celebrate'
 
-  work:
+  projects:
     header: *header
     page-header:
       eyebrow: 'Work'
@@ -216,13 +212,10 @@ content:
 
   project:
     header: *header
-    # Per-project detail. Page content is keyed by slug in the top-level
-    # `projects` collection (overview / body / gallery / launch). The labels below
-    # are the static chrome shared by every project detail surface.
+    # Per-project detail. Page content is keyed by slug in the top-level `projects` collection (overview / body / gallery / launch). The labels below are the static chrome shared by every project detail surface.
     page-header:
       eyebrow: 'Project'
-      # title and meta resolve from the matching projects entry:
-      #   title -> name, meta -> "{role} · {launch}"
+      # title and meta resolve from the matching projects entry: title -> name, meta -> "{role} · {launch}"
     overview:
       # text -> entry.overview, meta -> stack used + links (live: entry.link, repo: entry.repo)
       meta-label: 'Links'
@@ -244,6 +237,11 @@ content:
     body:
       - "This page doesn't exist or has moved."
     cta: 'Back to home'
+    paths:
+      projects:
+        body:
+          - "That project doesn't exist. Go back to all projects."
+        cta: 'Back to projects'
     footer: *footer
 
 # Hidden dev-console greeting — logged once per page load, not a routed surface.
@@ -272,12 +270,10 @@ emails:
     received: 'Received on {date}'
     footer: 'This is an automatic notification from the site contact form. Reply to this email to talk directly with {name}.'
 
-# Projects — single source of truth (always complete). The work index renders
-# every entry in order; the landing renders the featured: true ones (same order).
+# Projects — draft list only. Each project's data lives in the frontmatter of its own file under `src/content/projects/<locale>/`; there, `featured` is a position that sets the home order.
 projects:
   - slug: 'charas-beer'
     name: 'Charas Beer'
-    featured: true
     summary: 'An online store for a craft beer brand.'
     role: 'Product engineer, UI designer & frontend developer'
     launch: '12/2026'
@@ -290,7 +286,6 @@ projects:
     gallery: [] # TODO: project images (description/url/alt)
   - slug: 'adeonir-kohl'
     name: 'Adeonir Kohl'
-    featured: false
     summary: 'I planned and built this portfolio with AI-assisted development.'
     role: 'Product engineer, UI designer & frontend developer'
     launch: '06/2026'
@@ -302,7 +297,6 @@ projects:
     gallery: [] # TODO
   - slug: 'uira-muller'
     name: 'Uirá Müller Design'
-    featured: true
     summary: "A portfolio showcasing a graphic designer's work."
     role: 'UI designer & frontend developer'
     launch: '05/2026'
@@ -314,7 +308,6 @@ projects:
     gallery: [] # TODO
   - slug: 'reisenthal'
     name: 'Reisenthal Turismo'
-    featured: true
     summary: 'A travel agency offering trips to Europe, Brazil, and beyond.'
     role: 'UI designer & frontend developer'
     launch: '07/2025'
@@ -326,7 +319,6 @@ projects:
     gallery: [] # TODO
   - slug: 'atio'
     name: 'Atio'
-    featured: false
     summary: 'Food safety standards, certification, and training for industry.'
     role: 'UI designer & frontend developer'
     launch: '02/2024'

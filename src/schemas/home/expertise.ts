@@ -1,6 +1,6 @@
 import { z } from 'astro/zod'
 
-export const stackSchema = z.object({
+export const homeExpertiseSchema = z.object({
   eyebrow: z.string().min(1),
   headline: z
     .array(
@@ -11,11 +11,11 @@ export const stackSchema = z.object({
     )
     .min(1),
   body: z.string().min(1),
-  tools: z
+  items: z
     .array(
       z.object({
         title: z.string().min(1),
-        items: z.array(z.string().min(1)).min(1),
+        description: z.string().min(1),
       }),
     )
     .min(1),

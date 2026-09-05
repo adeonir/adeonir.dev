@@ -10,7 +10,7 @@ import { getAgentDocuments } from '~/services/agent-documents'
 
 const entriesByLocale = {
   pt: {
-    settings: {
+    sharedSettings: {
       siteName: 'Adeonir Kohl',
       agentDocument: {
         sections: {
@@ -23,28 +23,28 @@ const entriesByLocale = {
         },
       },
     },
-    hero: {
+    homeHero: {
       eyebrow: 'Design engineer',
       tagline: [{ text: 'Interfaces que ' }, { text: 'funcionam' }],
       description: 'Construo produtos web.',
     },
-    projects: {
+    homeProjects: {
       eyebrow: 'Projetos em destaque',
       headline: [{ text: 'Ideias ', highlight: true }, { text: 'no ar' }],
       body: 'Alguns projetos que ajudei a construir.',
-      holding: [
+      empty: [
         { text: 'Ainda não publiquei nenhum projeto aqui. ' },
         { text: 'me manda uma mensagem', href: '#contact' },
         { text: '.' },
       ],
     },
-    about: {
+    homeAbout: {
       eyebrow: 'Sobre',
       headline: [{ text: 'Quem eu sou' }],
       body: 'De onde eu venho e no que trabalho hoje.',
       bio: [[{ text: 'Trabalho com frontend há anos.' }]],
     },
-    expertise: {
+    homeExpertise: {
       eyebrow: 'Especialidades',
       headline: [{ text: 'O que eu ' }, { text: 'faço', highlight: true }],
       body: 'O que eu faço no dia a dia.',
@@ -59,20 +59,20 @@ const entriesByLocale = {
         },
       ],
     },
-    stack: {
+    homeStack: {
       eyebrow: 'Stack',
       headline: [{ text: 'Com o que eu trabalho' }],
       body: 'Ferramentas do dia a dia.',
       tools: [{ title: 'Frontend', items: ['React', 'Astro'] }],
     },
-    contact: {
+    homeContact: {
       title: [{ text: 'Vamos conversar' }],
       body: 'Me escreva.',
       social: [{ label: 'GitHub', link: 'https://github.com/adeonir' }],
     },
   },
   en: {
-    settings: {
+    sharedSettings: {
       siteName: 'Adeonir Kohl',
       agentDocument: {
         sections: {
@@ -85,28 +85,28 @@ const entriesByLocale = {
         },
       },
     },
-    hero: {
+    homeHero: {
       eyebrow: 'Design engineer',
       tagline: [{ text: 'Interfaces that ' }, { text: 'work' }],
       description: 'I build web products.',
     },
-    projects: {
+    homeProjects: {
       eyebrow: 'Featured work',
       headline: [{ text: 'Ideas ', highlight: true }, { text: 'that shipped' }],
       body: 'A few projects I helped build.',
-      holding: [
+      empty: [
         { text: "I haven't published a project here yet. " },
         { text: 'send me a message', href: '#contact' },
         { text: '.' },
       ],
     },
-    about: {
+    homeAbout: {
       eyebrow: 'About',
       headline: [{ text: 'Who I am' }],
       body: 'Where I come from and what I work on today.',
       bio: [[{ text: 'I have worked on frontend for years.' }]],
     },
-    expertise: {
+    homeExpertise: {
       eyebrow: 'Capabilities',
       headline: [{ text: 'What I ' }, { text: 'do', highlight: true }],
       body: 'What I do day to day.',
@@ -121,13 +121,13 @@ const entriesByLocale = {
         },
       ],
     },
-    stack: {
+    homeStack: {
       eyebrow: 'Stack',
       headline: [{ text: 'What I work with' }],
       body: 'Day-to-day tools.',
       tools: [{ title: 'Frontend', items: ['React', 'Astro'] }],
     },
-    contact: {
+    homeContact: {
       title: [{ text: "Let's talk" }],
       body: 'Write to me.',
       social: [{ label: 'GitHub', link: 'https://github.com/adeonir' }],
@@ -161,18 +161,18 @@ describe('getAgentDocuments', () => {
     expect(english.markdown).toContain('## Capabilities')
     expect(english.llms).toContain('## Capabilities')
 
-    for (const item of entriesByLocale.pt.expertise.items) {
+    for (const item of entriesByLocale.pt.homeExpertise.items) {
       expect(portuguese.markdown).toContain(`### ${item.title}`)
       expect(portuguese.markdown).toContain(item.description)
     }
 
-    for (const item of entriesByLocale.en.expertise.items) {
+    for (const item of entriesByLocale.en.homeExpertise.items) {
       expect(english.markdown).toContain(`### ${item.title}`)
       expect(english.markdown).toContain(item.description)
     }
   })
 
-  it('carries the projects holding message in both documents for each locale', async () => {
+  it('carries the projects empty state in both documents for each locale', async () => {
     const portuguese = await getAgentDocuments('pt')
     const english = await getAgentDocuments('en')
 
@@ -221,10 +221,10 @@ describe('getAgentDocuments', () => {
     const portuguese = await getAgentDocuments('pt')
     const english = await getAgentDocuments('en')
 
-    expect(portuguese.markdown).toContain(entriesByLocale.pt.about.body)
-    expect(portuguese.llms).toContain(entriesByLocale.pt.about.body)
-    expect(english.markdown).toContain(entriesByLocale.en.about.body)
-    expect(english.llms).toContain(entriesByLocale.en.about.body)
+    expect(portuguese.markdown).toContain(entriesByLocale.pt.homeAbout.body)
+    expect(portuguese.llms).toContain(entriesByLocale.pt.homeAbout.body)
+    expect(english.markdown).toContain(entriesByLocale.en.homeAbout.body)
+    expect(english.llms).toContain(entriesByLocale.en.homeAbout.body)
   })
 
   it('places the expertise section between about and stack', async () => {

@@ -8,3 +8,10 @@ body:
 action:
   label: 'Back to home'
   href: '/en/'
+paths:
+  projects:
+    body:
+      - "That project doesn't exist. Go back to all projects."
+    action:
+      label: 'Back to projects'
+      href: '/en/#projects'

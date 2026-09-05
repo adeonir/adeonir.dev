@@ -1,6 +1,6 @@
 import { z } from 'astro/zod'
 
-export const settingsSchema = z.object({
+export const sharedSettingsSchema = z.object({
   siteName: z.string(),
   description: z.string(),
   ogImage: z.string(),

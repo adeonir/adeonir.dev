@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { getEntry } from '~/test-utils/mock-astro-content'
+const getEntry = vi.hoisted(() => vi.fn())
 
 vi.mock('astro:content', () => ({ getEntry }))
 
@@ -12,30 +12,34 @@ describe('getLocalizedEntry', () => {
   })
 
   it('resolves the entry matching the requested locale for a given collection', async () => {
-    getEntry.mockResolvedValue({ id: 'pt/hero', collection: 'hero', data: {} })
+    getEntry.mockResolvedValue({
+      id: 'pt/homeHero',
+      collection: 'homeHero',
+      data: {},
+    })
 
-    await getLocalizedEntry('hero', 'pt')
+    await getLocalizedEntry('homeHero', 'pt')
 
-    expect(getEntry).toHaveBeenCalledWith('hero', 'pt/hero')
+    expect(getEntry).toHaveBeenCalledWith('homeHero', 'pt/homeHero')
   })
 
   it('builds the same locale-slash-collection id for any collection name, with no per-collection lookup', async () => {
     getEntry.mockResolvedValue({
-      id: 'en/settings',
-      collection: 'settings',
+      id: 'en/sharedSettings',
+      collection: 'sharedSettings',
       data: {},
     })
 
-    await getLocalizedEntry('settings', 'en')
+    await getLocalizedEntry('sharedSettings', 'en')
 
-    expect(getEntry).toHaveBeenCalledWith('settings', 'en/settings')
+    expect(getEntry).toHaveBeenCalledWith('sharedSettings', 'en/sharedSettings')
   })
 
   it('throws naming the collection and locale when the entry is missing', async () => {
     getEntry.mockResolvedValue(undefined)
 
-    await expect(getLocalizedEntry('hero', 'en')).rejects.toThrow(
-      'Missing localized content: en/hero',
+    await expect(getLocalizedEntry('homeHero', 'en')).rejects.toThrow(
+      'Missing localized content: en/homeHero',
     )
   })
 })

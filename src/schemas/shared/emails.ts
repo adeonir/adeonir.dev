@@ -1,6 +1,6 @@
 import { z } from 'astro/zod'
 
-export const emailsSchema = z.object({
+export const sharedEmailsSchema = z.object({
   from: z.string().min(1),
   fields: z.object({
     name: z.string().min(1),
