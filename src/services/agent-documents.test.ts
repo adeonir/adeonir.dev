@@ -32,7 +32,7 @@ const entriesByLocale = {
       eyebrow: 'Projetos em destaque',
       headline: [{ text: 'Ideias ', highlight: true }, { text: 'no ar' }],
       body: 'Alguns projetos que ajudei a construir.',
-      holding: [
+      empty: [
         { text: 'Ainda não publiquei nenhum projeto aqui. ' },
         { text: 'me manda uma mensagem', href: '#contact' },
         { text: '.' },
@@ -94,7 +94,7 @@ const entriesByLocale = {
       eyebrow: 'Featured work',
       headline: [{ text: 'Ideas ', highlight: true }, { text: 'that shipped' }],
       body: 'A few projects I helped build.',
-      holding: [
+      empty: [
         { text: "I haven't published a project here yet. " },
         { text: 'send me a message', href: '#contact' },
         { text: '.' },
@@ -172,7 +172,7 @@ describe('getAgentDocuments', () => {
     }
   })
 
-  it('carries the projects holding message in both documents for each locale', async () => {
+  it('carries the projects empty state in both documents for each locale', async () => {
     const portuguese = await getAgentDocuments('pt')
     const english = await getAgentDocuments('en')
 

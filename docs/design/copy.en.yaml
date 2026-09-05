@@ -92,7 +92,7 @@ content:
       eyebrow: 'Featured projects'
       headline: 'Ideas that went live'
       body: 'A few projects I helped build over the last years.'
-      holding: "I don't have a featured project published here yet. If you want to know what I'm working on, send me a message."
+      empty: "I don't have a featured project published here yet. If you want to know what I'm working on, send me a message."
       see-all: 'See all projects'
 
     expertise:

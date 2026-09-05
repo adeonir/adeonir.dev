@@ -8,7 +8,7 @@ import IconFolder from '~icons/tabler/folder'
 const locale = parseLocale(Astro.currentLocale)
 const projects = await getLocalizedEntry('homeProjects', locale)
 
-const { eyebrow, headline, body, holding } = projects.data
+const { eyebrow, headline, body, empty } = projects.data
 ---
 
 <section id="projects" class="pt-16 pb-4 md:pt-20 md:pb-8">
@@ -49,7 +49,7 @@ const { eyebrow, headline, body, holding } = projects.data
             class="max-w-[40ch] text-base leading-normal text-pretty text-muted-foreground"
           >
             {
-              holding.map((segment) =>
+              empty.map((segment) =>
                 segment.href ? (
                   <a
                     href={segment.href}

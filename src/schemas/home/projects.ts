@@ -1,6 +1,6 @@
 import { z } from 'astro/zod'
 
-const holdingSegmentSchema = z.object({
+const emptySegmentSchema = z.object({
   text: z.string().min(1),
   href: z.string().min(1).optional(),
 })
@@ -16,5 +16,5 @@ export const projectsSchema = z.object({
     )
     .min(1),
   body: z.string().min(1),
-  holding: z.array(holdingSegmentSchema).min(1),
+  empty: z.array(emptySegmentSchema).min(1),
 })
