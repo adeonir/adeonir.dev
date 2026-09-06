@@ -6,7 +6,7 @@ It holds what the code cannot answer: the decisions, the prohibitions, the place
 
 ## Repository overview
 
-`adeonir.dev` is a personal portfolio for a frontend developer positioned around design and code. It ships in Portuguese and English: `pt` is the default locale and serves from the root, `en` serves under `/en/`. The work case studies are planned but not built; `docs/product/prd.md` carries that scope.
+`adeonir.dev` is a personal portfolio for a frontend developer positioned around design and code. It ships in Portuguese and English: `pt` is the default locale and serves from the root, `en` serves under `/en/`. The work case studies are planned but not built; `docs/product/PRD.md` carries that scope.
 
 The site is an Astro application deployed as an SSR Worker on Cloudflare. Most content pages are prerendered to static HTML; the localized not-found catch-all and contact Action run on demand.
 
@@ -48,8 +48,8 @@ Before planning or building a feature, read the documents that apply to the work
 - `CONTEXT.md` — the project's language: the domain terms and the words to avoid for each one.
 - `PROJECT.md` — the project's shared memory: what a silent failure costs, the durable conventions and decisions, and the traps this codebase has already hit.
 - `docs/tech/design-doc.md` — the technical authority: architecture, runtime boundaries, contact flow, security, testing, and CI/CD.
-- `docs/product/prd.md` — scope, FR/NFR identifiers, personas, journeys, business rules, and edge cases.
-- `docs/product/brief.md` — one-page product summary.
+- `docs/product/PRD.md` — scope, FR/NFR identifiers, personas, journeys, business rules, and edge cases.
+- `docs/product/PRODUCT.md` — strategic positioning: register, audience relationship, brand personality, anti-references, design principles.
 - `DESIGN.md` — the authority on the visual identity and the design tokens.
 - `docs/design/copy.yaml` — canonical site copy. `docs/design/copy.en.yaml` holds the English translation. Every content collection has a `.en.yaml` pair, and sections read the pair for the current locale through `getLocalizedEntry`.
 - The token styleguide is the live `/styleguide` route, built from `src/pages/styleguide.astro`.
