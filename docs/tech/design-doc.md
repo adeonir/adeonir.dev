@@ -1,10 +1,10 @@
 ---
 name: adeonir-dev-portfolio
 created: 2026-06-06
-updated: 2026-08-25
+updated: 2026-09-06
 status: accepted
 sources:
-  - docs/product/prd.md
+  - docs/product/PRD.md
   - docs/design/copy.yaml
   - docs/design/copy.en.yaml
   - DESIGN.md
@@ -21,7 +21,7 @@ The home, not-found fallback, and maintenance surfaces are published in both loc
 
 The surrounding landscape is intentionally small: Cloudflare hosts and runs the one on-demand route, Resend delivers transactional email, a Plesk-hosted mailbox on the domain receives the branded inbox, and PostHog collects cookieless, privacy-first analytics. There is no database and no backend beyond contact handling.
 
-> See PRD: `docs/product/prd.md`
+> See PRD: `docs/product/PRD.md`
 
 ---
 
@@ -32,7 +32,7 @@ The surrounding landscape is intentionally small: Cloudflare hosts and runs the 
 - **Performance budget (enforced in CI):** mobile Lighthouse Performance ≥ 95, Accessibility 100, Best Practices 100, SEO 100; CLS < 0.1, INP < 200ms. Builds fail when a category score regresses; CLS and the blocking-time proxy for INP report as warnings (NFR-1). LCP under 3s is a nice to have and only warns.
 - **Client JavaScript budget:** Astro prerenders normal pages to static HTML. Use client-side JavaScript when an interaction needs it, and keep React hydration limited to the theme toggle, contact form, mobile nav, and footer signoff. This budget is not a ban on JavaScript. The localized not-found catch-all remains server-rendered without a client translation layer.
 - **Accessibility:** WCAG AA across all pages, asserted automatically (NFR-2).
-- **Bilingual delivery:** routing-based i18n (pt at `/`, en at `/en`) with localized content and document metadata. `hreflang` and localized sitemap alternates remain outside this implementation and belong to issue #128 (NFR-4).
+- **Bilingual delivery:** routing-based i18n (pt at `/`, en at `/en`) with localized content and document metadata, `hreflang` alternates, and localized sitemap entries (NFR-4).
 - **Contact path integrity:** server-side validated submission, two transactional emails per submit, spam-guarded, zero persistence; on failure the UI surfaces a direct fallback channel (FR-5, EC-2).
 - **Safe delivery:** production publishes only from a green, branch-protected `main` (CI quality gates are required checks); every PR gets an automatic preview deployment.
 
@@ -99,8 +99,8 @@ flowchart LR
 ### 3.3 Conventions
 
 - **Files / naming:** all files `kebab-case`; component default export is `PascalCase` (`project-card.astro` → `ProjectCard`). Slugs and folders `kebab-case`. Routes lowercase.
-- **Routing:** `/` and `/maintenance` are Portuguese routes. English counterparts are explicit files at `/en/` and `/en/maintenance/`. Missing paths use the localized catch-all fallback; there is no dedicated `/en/404` route. `/styleguide` remains an internal noindex route outside the localized route tree. `i18n.routing.prefixDefaultLocale = false`.
-- **i18n keys vs tags:** locale keys are `pt` (default, bare) and `en`; the document `lang` values are `pt-BR` and `en` (decoupled from the key). Astro does not emit `hreflang`; that and localized sitemap alternates are deferred to issue #128. Localized links use `getRelativeLocaleUrl()`.
+- **Routing:** `/` and `/maintenance` are Portuguese routes. English counterparts are explicit files at `/en/` and `/en/maintenance/`. Missing paths use the localized catch-all fallback; there is no dedicated `/en/404` route. `/styleguide` remains an internal noindex route outside the localized route tree. `i18n.routing.prefixDefaultLocale = false`. The not-found copy carries a `paths` map keyed by the first path segment (for example `projects`), each entry holding its own `body` and `action`, so a future surface adds a block without touching the catch-all handler itself.
+- **i18n keys vs tags:** locale keys are `pt` (default, bare) and `en`; the document `lang` values are `pt-BR` and `en` (decoupled from the key). `astro-seo`'s `languageAlternates` emits the `hreflang` links (`pt-BR`, `en`, and `x-default` pointing to the Portuguese address) in every page's `<head>`; `@astrojs/sitemap`'s `i18n` option emits the matching localized alternates in the sitemap. Localized links use `getRelativeLocaleUrl()`.
 - **Content layout:** per-section yaml copy collections and an MDX collection of case studies live under `src/content/`; Portuguese uses bare files (`*.yaml`, `index.mdx`) and English uses `.en` files (`*.en.yaml`, `index.en.mdx`). The localized registry maps a base collection to its locale-specific collection and fails when the required entry is missing. Settings content also holds locale-specific document metadata and route titles. Cover and gallery images are shared across locales.
 - **Action contract:** Zod input schema; typed, structured errors; the form submits through `actions.contact()` to the on-demand Action. A required hidden `locale` field accepts only `pt` or `en`. The Action passes that locale to the email service, which selects the matching copy and date format; the island enhances submit UX.
 - **Crawl policy:** the layout marks the 404 and maintenance documents as `noindex`. The sitemap and `robots.txt` filter `/styleguide`, `/maintenance`, and `/en/maintenance` through the shared `noIndexRoutes` list.
@@ -154,14 +154,14 @@ erDiagram
 
 | Type | Scope | Tools | Coverage Target |
 | --- | --- | --- | --- |
-| Unit | Input validation, localized email rendering, form hook, theme store | Vitest — plain config + `vite-tsconfig-paths`; node default, happy-dom per spec | Core logic |
-| Component | React islands (toggle, form, nav) in a real browser | Vitest browser mode (Playwright provider) | Each island |
-| A11y | Rendered pages, WCAG AA, both skins | `@axe-core/playwright` | All pages |
+| Unit | Input validation, localized email rendering, hooks, scripts, services | Vitest — plain config + `vite-tsconfig-paths`; node default, happy-dom per spec | Pure logic only |
 | Perf / budget | Quality budgets (see §2) | Lighthouse CI | Key pages |
+
+Sections and pages carry no automated test — the owner checks them in the browser instead. An earlier attempt rendered Astro sections and React islands through Vitest browser mode and the Astro Container API; both were dropped because a rendered assertion never caught more than a manual pass already would, for the cost of a container setup and a browser runner. Unit coverage stays on pure logic: helpers, hooks, scripts, and services.
 
 - **Test environments:** local, plus per-PR Cloudflare preview deployments.
 - **CI integration:** all suites run in GitHub Actions on every PR as required status checks; branch protection blocks merge to `main` on failure (see §3.8).
-- **Unit suite (built):** `pnpm test` (`vitest run`) covers the units above in node + happy-dom, including the locale validation and English email contract; it runs locally, on pre-push (lefthook), and as the required `Unit Tests` CI check. The Component and A11y rows remain planned.
+- **Unit suite (built):** `pnpm test` (`vitest run`) covers the units above in node + happy-dom, including the locale validation and English email contract; it runs locally, on pre-push (lefthook), and as the required `Unit Tests` CI check.
 
 ### 3.8 Deployment
 
@@ -194,9 +194,10 @@ erDiagram
 | Island state | Nano Stores (`@nanostores/react`) | React Context; prop drilling; Zustand/Jotai/Redux | Context can't cross island hydration roots (separate React trees); nanostores is ~1kb, framework-agnostic, and the Astro-recommended cross-island state layer | ADR-003 |
 | SSR-safe islands | Ark `ClientOnly` + CSS fallback + DOM-seeded atom | useEffect-after-hydration; pure-CSS icon; SSR from a theme cookie | An island's first paint can't read client-resolved state at build time; the fallback paints the resolved UI before hydration while the stateful primitive (Swap + rotate) loads on the client | ADR-004 |
 | Content model | Single-source MDX + per-locale section yaml collections | Split metadata (yaml) from body (MDX); nested locale fields | One source of truth per project; each locale has a schema-validated collection; the registry selects the required locale without fallback | — |
-| i18n strategy | Routing-based: pt bare, en `/en`, explicit route files, no auto-detect or fallback | Client-side (react-i18next style); both-locales-prefixed; browser detection; Astro `i18n.fallback` | Keeps the perf budget and prevents Portuguese content at English URLs. Explicit files make the small supported route set visible. `hreflang`, localized sitemap alternates, and the language control remain deferred to issues #128 and #127 | — |
+| i18n strategy | Routing-based: pt bare, en `/en`, explicit route files, no auto-detect or fallback | Client-side (react-i18next style); both-locales-prefixed; browser detection; Astro `i18n.fallback` | Keeps the perf budget and prevents Portuguese content at English URLs. Explicit files make the small supported route set visible | — |
 | Analytics | PostHog US Cloud (cookieless) | Umami Cloud; Cloudflare Web Analytics | Privacy-first is the driver: PostHog's cookieless mode (daily-salt hash identity, memory persistence, autocapture + session recording off, DNT respected) delivers custom events and UTM in one privacy-first config, plus server-side `contact-submission` capture (server-authoritative, no client double-count) — which CF Web Analytics lacks and Umami does not cover. Umami ships lighter, but client weight is held down by manual-only capture; measure the real bundle before locking the lib | — |
 | E2E testing | Drop it | Keep Playwright (scoped) | Three content pages and one form; the form's failure paths are covered by the unit suite, and a browser installation in CI does not pay for what is left | — |
+| Section / page testing | Manual browser verification by the owner | Vitest browser mode + Astro Container API rendering assertions | The rendered assertions never caught more than a manual pass already would, for the cost of a container setup and a browser runner; unit coverage stays on pure logic instead | — |
 | Unit test runner config | Plain `vitest/config` + `vite-tsconfig-paths` | Astro `getViteConfig` | `getViteConfig` loads the full Astro config, whose Cloudflare adapter registers a Vite plugin Vitest rejects at startup; the covered units import no `astro:*` virtuals, so a plain config with the tsconfig `~/` alias suffices | — |
 | Pre-commit hook manager | lefthook | husky; simple-git-hooks; native git hooks | Single YAML config, parallel hook execution, language-agnostic Go binary with no Node runtime in the hook path; husky needs more wiring, simple-git-hooks is leaner but less capable, native hooks aren't shareable | — |
 
@@ -212,12 +213,9 @@ erDiagram
 
 ## 6. References
 
-- PRD: `docs/product/prd.md`
+- PRD: `docs/product/PRD.md`
 - Portuguese editorial source: `docs/design/copy.yaml`
 - English editorial source: `docs/design/copy.en.yaml`
 - i18n research: `.artifacts/research/i18n-research.md`
 - Astro i18n routing: https://docs.astro.build/en/guides/internationalization/
-- GitHub issue #126: https://github.com/adeonir/adeonir.dev/issues/126
-- GitHub issue #127 (language control): https://github.com/adeonir/adeonir.dev/issues/127
-- GitHub issue #128 (hreflang and sitemap alternates): https://github.com/adeonir/adeonir.dev/issues/128
-- ADRs: `docs/adr/001-react-islands-runtime.md`
+- ADRs: `docs/adr/001-react-islands-runtime.md`, `docs/adr/002-theme-switching-mechanism.md`, `docs/adr/003-nanostores-island-state.md`, `docs/adr/004-ssr-safe-island-rendering.md`
