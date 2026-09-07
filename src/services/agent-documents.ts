@@ -1,10 +1,24 @@
+import { getCollection } from 'astro:content'
+
 import {
   type AgentDocumentSection,
   agentDocumentSections,
   getAgentDocumentPath,
 } from '~/helpers/agent-documents'
 import { type Locale, parseLocale } from '~/helpers/content'
+import {
+  getLaunchYear,
+  getProjectDestination,
+  sortByLaunch,
+} from '~/helpers/projects'
 import { getLocalizedEntry } from '~/services/localized'
+
+type AgentDocumentProject = {
+  name: string
+  summary: string
+  year: string
+  href?: string
+}
 
 type TextSegment = {
   text: string
@@ -36,7 +50,10 @@ type AgentDocumentContent = {
     eyebrow: string
     headline: string
     body: string
+    seeAll: string
     empty: TextSegment[]
+    index: string
+    items: AgentDocumentProject[]
   }
   about: {
     eyebrow: string
@@ -97,6 +114,22 @@ function getSectionURL(locale: Locale, section: AgentDocumentSection): string {
   return `${getAbsoluteDocumentURL(locale, 'markdown')}#${section}`
 }
 
+function getProjectsIndexURL(locale: Locale): string {
+  return new URL(locale === 'en' ? '/en/projects' : '/projects', siteURL).href
+}
+
+function serializeProjects(projects: AgentDocumentProject[]): string {
+  return projects
+    .map((project) => {
+      const name = project.href
+        ? `[${project.name}](${project.href})`
+        : project.name
+
+      return `- ${name} (${project.year}): ${project.summary}`
+    })
+    .join('\n')
+}
+
 function serializeExpertiseItems(items: ExpertiseItem[]): string {
   return items
     .map((item) => `### ${item.title}\n\n${item.description}`)
@@ -154,7 +187,9 @@ ${content.projects.eyebrow}
 
 ${content.projects.body}
 
-${serializeLinkedSegments(content.projects.empty)}
+${content.projects.items.length > 0 ? serializeProjects(content.projects.items) : serializeLinkedSegments(content.projects.empty)}
+
+[${content.projects.seeAll}](${content.projects.index})
 
 <a id="expertise"></a>
 ## ${getSectionTitle(content, 'expertise')}
@@ -207,7 +242,10 @@ function serializeLlms(content: AgentDocumentContent, locale: Locale): string {
     projects: {
       title: getSectionTitle(content, 'projects'),
       linkTitle: getSectionTitle(content, 'projects'),
-      description: `${content.projects.body} ${joinSegments(content.projects.empty)}`,
+      description:
+        content.projects.items.length > 0
+          ? `${content.projects.body} ${content.projects.items.map((project) => project.name).join(', ')}.`
+          : `${content.projects.body} ${joinSegments(content.projects.empty)}`,
     },
     expertise: {
       title: getSectionTitle(content, 'expertise'),
@@ -234,7 +272,13 @@ ${agentDocumentSections
   .map((section) => {
     const { title, linkTitle, description } = linksBySection[section]
 
-    return `## ${title}\n\n- [${linkTitle}](${getSectionURL(locale, section)}): ${description}`
+    const link = `- [${linkTitle}](${getSectionURL(locale, section)}): ${description}`
+
+    if (section !== 'projects') {
+      return `## ${title}\n\n${link}`
+    }
+
+    return `## ${title}\n\n${link}\n- [${content.projects.seeAll}](${content.projects.index}): ${content.projects.body}`
   })
   .join('\n\n')}
 `
@@ -243,16 +287,27 @@ ${agentDocumentSections
 async function getAgentDocumentContent(
   locale: Locale,
 ): Promise<AgentDocumentContent> {
-  const [settings, hero, projects, about, expertise, stack, contact] =
-    await Promise.all([
-      getLocalizedEntry('sharedSettings', locale),
-      getLocalizedEntry('homeHero', locale),
-      getLocalizedEntry('homeProjects', locale),
-      getLocalizedEntry('homeAbout', locale),
-      getLocalizedEntry('homeExpertise', locale),
-      getLocalizedEntry('homeStack', locale),
-      getLocalizedEntry('homeContact', locale),
-    ])
+  const [
+    settings,
+    hero,
+    projects,
+    about,
+    expertise,
+    stack,
+    contact,
+    projectEntries,
+  ] = await Promise.all([
+    getLocalizedEntry('sharedSettings', locale),
+    getLocalizedEntry('homeHero', locale),
+    getLocalizedEntry('homeProjects', locale),
+    getLocalizedEntry('homeAbout', locale),
+    getLocalizedEntry('homeExpertise', locale),
+    getLocalizedEntry('homeStack', locale),
+    getLocalizedEntry('homeContact', locale),
+    getCollection('projectsContent', (entry: { id: string }) =>
+      entry.id.startsWith(`${locale}/`),
+    ),
+  ])
 
   const heroData = hero.data
   const projectsData = projects.data
@@ -273,7 +328,24 @@ async function getAgentDocumentContent(
       eyebrow: projectsData.eyebrow,
       headline: joinSegments(projectsData.headline),
       body: projectsData.body,
+      seeAll: projectsData.seeAll,
       empty: projectsData.empty,
+      index: getProjectsIndexURL(locale),
+      items: sortByLaunch(projectEntries).map((entry) => {
+        const slug = entry.id.slice(locale.length + 1)
+        const detailURL = new URL(
+          locale === 'en' ? `/en/projects/${slug}` : `/projects/${slug}`,
+          siteURL,
+        ).href
+        const destination = getProjectDestination(entry, detailURL)
+
+        return {
+          name: entry.data.name,
+          summary: entry.data.summary,
+          year: getLaunchYear(entry.data.launch),
+          href: destination.kind === 'offline' ? undefined : destination.href,
+        }
+      }),
     },
     about: {
       eyebrow: aboutData.eyebrow,
