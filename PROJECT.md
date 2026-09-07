@@ -12,7 +12,6 @@
 - Import `z` from `astro/zod`, never from `astro:content` — every content schema; source: src/schemas/
 - Keep pure helpers importable without runtime-coupled services, framework virtual modules, or email templates — shared helpers, so they stay unit-testable; source: src/helpers/
 - Keep an Ark `Field`'s label and control in one component tree — every form field, so Ark context connects the label to the input during SSR; source: src/components/ui/field.tsx
-- Gate optional animations with `motion-safe:` — every animated primitive, including the theme toggle's Ark Swap, which animates only after hydration and stays instant when motion is disabled; source: src/components/ui/popover.tsx and src/components/ui/swap.tsx
 
 ## Decisions
 
