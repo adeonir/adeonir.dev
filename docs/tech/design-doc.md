@@ -15,7 +15,7 @@ sources:
 
 ## 1. Context & Scope
 
-adeonir.dev is a bilingual (Portuguese default, English under `/en/`) personal portfolio for a frontend developer positioned on "design + code". It is a content-first static site — a landing surface, a work index, and per-project case studies — with a single server touchpoint: a contact form. Performance is the explicit differentiator: the site itself is the proof of craft, so the architecture uses Astro's static rendering and a deliberate client-JavaScript budget to reach top quality scores.
+adeonir.dev is a bilingual (Portuguese default, English under `/en/`) personal portfolio for a frontend developer positioned on "design + code". It is a content-first static site — a landing surface, a work index, and project pages that can contain case studies — with a single server touchpoint: a contact form. Performance is the explicit differentiator: the site itself is the proof of craft, so the architecture uses Astro's static rendering and a deliberate client-JavaScript budget to reach top quality scores.
 
 The home, not-found fallback, and maintenance surfaces are published in both locales. Portuguese keeps the bare URLs and English uses explicit `/en/` entrypoints.
 
@@ -59,7 +59,7 @@ flowchart TD
     Islands[React islands: toggle, form, nav]
   end
   subgraph Content[src/content - build time]
-    MDX[case study MDX collection]
+    MDX[project page MDX collection]
     Copy[per-locale yaml copy collections]
     Registry[Localized content registry]
     Schemas[src/schemas - zod]
@@ -76,7 +76,7 @@ flowchart TD
   Action -. waitUntil .-> PostHog[PostHog capture - contact-submission]
 ```
 
-- **Components:** Astro app (prerendered pages + localized not-found fallback + one on-demand Action), React islands, content layer (MDX case studies + per-locale yaml copy and localized registry), shared `src/schemas/`.
+- **Components:** Astro app (prerendered pages + localized not-found fallback + one on-demand Action), React islands, content layer (MDX project pages + per-locale yaml copy and localized registry), shared `src/schemas/`.
 - **Runtime boundaries:** normal pages prerender to static assets. The localized not-found catch-all and contact Action execute on the Cloudflare Worker runtime (workerd).
 
 ### 3.2 System Context
@@ -101,7 +101,7 @@ flowchart LR
 - **Files / naming:** all files `kebab-case`; component default export is `PascalCase` (`project-card.astro` → `ProjectCard`). Slugs and folders `kebab-case`. Routes lowercase.
 - **Routing:** `/` and `/maintenance` are Portuguese routes. English counterparts are explicit files at `/en/` and `/en/maintenance/`. Missing paths use the localized catch-all fallback; there is no dedicated `/en/404` route. `/styleguide` remains an internal noindex route outside the localized route tree. `i18n.routing.prefixDefaultLocale = false`. The not-found copy carries a `paths` map keyed by the first path segment (for example `projects`), each entry holding its own `body` and `action`, so a future surface adds a block without touching the catch-all handler itself.
 - **i18n keys vs tags:** locale keys are `pt` (default, bare) and `en`; the document `lang` values are `pt-BR` and `en` (decoupled from the key). `astro-seo`'s `languageAlternates` emits the `hreflang` links (`pt-BR`, `en`, and `x-default` pointing to the Portuguese address) in every page's `<head>`; `@astrojs/sitemap`'s `i18n` option emits the matching localized alternates in the sitemap. Localized links use `getRelativeLocaleUrl()`.
-- **Content layout:** per-section yaml copy collections and an MDX collection of case studies live under `src/content/`; Portuguese uses bare files (`*.yaml`, `index.mdx`) and English uses `.en` files (`*.en.yaml`, `index.en.mdx`). The localized registry maps a base collection to its locale-specific collection and fails when the required entry is missing. Settings content also holds locale-specific document metadata and route titles. Cover and gallery images are shared across locales.
+- **Content layout:** per-section yaml copy collections and an MDX collection of project pages live under `src/content/`. Each project entry lives at `src/content/projects/<locale>/<slug>/index.mdx`; images shared by both locales live at `src/assets/projects/<slug>/images/`. The localized registry maps a base collection to its locale-specific collection and fails when the required entry is missing. Settings content also holds locale-specific document metadata and route titles.
 - **Action contract:** Zod input schema; typed, structured errors; the form submits through `actions.contact()` to the on-demand Action. A required hidden `locale` field accepts only `pt` or `en`. The Action passes that locale to the email service, which selects the matching copy and date format; the island enhances submit UX.
 - **Crawl policy:** the layout marks the 404 and maintenance documents as `noindex`. The sitemap and `robots.txt` filter `/styleguide`, `/maintenance`, and `/en/maintenance` through the shared `noIndexRoutes` list.
 - **Styling:** Tailwind consuming the existing dual-skin design tokens.
@@ -113,7 +113,7 @@ flowchart LR
 
 | Entity | Purpose | Key Invariants | Storage |
 | --- | --- | --- | --- |
-| Project | A case study | `slug` = folder name (unique); pt body (`index.mdx`) required, `index.en.mdx` for en; `cover` present | MDX + colocated images in a per-slug folder under `src/content/` (git, build-time) |
+| Project | A project page that can contain a case study | `slug` = folder name (unique); one `index.mdx` per locale; `cover` present | Localized MDX under `src/content/projects/<locale>/<slug>/`; shared images under `src/assets/projects/<slug>/images/` (git, build-time) |
 | Section copy | UI text per section per locale | each section has a bare pt file and an `.en` variant; shape validated by its own schema; no locale fallback | yaml data collections in `src/content/` (git, build-time) |
 | Featured selection | Ordered curation for the home page | references existing project slugs; order is preserved | ordered list in `featured.yaml` (copy) |
 | Contact submission | Inbound visitor message | `name`/`email`/`message` and `locale` (`pt` or `en`) validated; rate-limited per IP; never stored or logged | none — transient, delivered via Resend |
@@ -130,7 +130,7 @@ erDiagram
   PROJECT }|--|| LOCALE : "body authored per"
 ```
 
-- **Ubiquitous glossary:** _locale_ (pt | en), _localized content registry_ (the required mapping from a base collection to its locale-specific collection), _island_ (a hydrated React component), _section copy_ (UI text for one section, per locale), _project entry_ (one MDX case study), _featured_ (ordered home curation).
+- **Ubiquitous glossary:** _locale_ (pt | en), _localized content registry_ (the required mapping from a base collection to its locale-specific collection), _island_ (a hydrated React component), _section copy_ (UI text for one section, per locale), _project entry_ (one MDX project page, which can contain a case study), _featured_ (ordered home curation).
 
 ### 3.5 Security & Compliance
 
@@ -193,7 +193,7 @@ Sections and pages carry no automated test — the owner checks them in the brow
 | Theme switching | `data-theme` attribute (dark default) | `.dark` class + Tailwind `dark:` variant; `@media (prefers-color-scheme)` only | Tokens already resolve from `[data-theme=light]`; `.dark` inverts the dark-first identity and forces a token-layer rewrite, and media-query-only theming can't express an explicit user override | ADR-002 |
 | Island state | Nano Stores (`@nanostores/react`) | React Context; prop drilling; Zustand/Jotai/Redux | Context can't cross island hydration roots (separate React trees); nanostores is ~1kb, framework-agnostic, and the Astro-recommended cross-island state layer | ADR-003 |
 | SSR-safe islands | Ark `ClientOnly` + CSS fallback + DOM-seeded atom | useEffect-after-hydration; pure-CSS icon; SSR from a theme cookie | An island's first paint can't read client-resolved state at build time; the fallback paints the resolved UI before hydration while the stateful primitive (Swap + rotate) loads on the client | ADR-004 |
-| Content model | Single-source MDX + per-locale section yaml collections | Split metadata (yaml) from body (MDX); nested locale fields | One source of truth per project; each locale has a schema-validated collection; the registry selects the required locale without fallback | — |
+| Content model | Per-locale project MDX + shared project images + per-locale section yaml collections | Locale-suffixed files in one project folder; duplicated images inside locale folders; nested locale fields | Locale-first paths match the other content collections and preserve independent entries without duplicating shared images | ADR-005 |
 | i18n strategy | Routing-based: pt bare, en `/en`, explicit route files, no auto-detect or fallback | Client-side (react-i18next style); both-locales-prefixed; browser detection; Astro `i18n.fallback` | Keeps the perf budget and prevents Portuguese content at English URLs. Explicit files make the small supported route set visible | — |
 | Analytics | PostHog US Cloud (cookieless) | Umami Cloud; Cloudflare Web Analytics | Privacy-first is the driver: PostHog's cookieless mode (daily-salt hash identity, memory persistence, autocapture + session recording off, DNT respected) delivers custom events and UTM in one privacy-first config, plus server-side `contact-submission` capture (server-authoritative, no client double-count) — which CF Web Analytics lacks and Umami does not cover. Umami ships lighter, but client weight is held down by manual-only capture; measure the real bundle before locking the lib | — |
 | E2E testing | Drop it | Keep Playwright (scoped) | Three content pages and one form; the form's failure paths are covered by the unit suite, and a browser installation in CI does not pay for what is left | — |
@@ -218,4 +218,9 @@ Sections and pages carry no automated test — the owner checks them in the brow
 - English editorial source: `docs/design/copy.en.yaml`
 - i18n research: `.artifacts/research/i18n-research.md`
 - Astro i18n routing: https://docs.astro.build/en/guides/internationalization/
-- ADRs: `docs/adr/001-react-islands-runtime.md`, `docs/adr/002-theme-switching-mechanism.md`, `docs/adr/003-nanostores-island-state.md`, `docs/adr/004-ssr-safe-island-rendering.md`
+- ADRs:
+  - `docs/adr/001-react-islands-runtime.md`
+  - `docs/adr/002-theme-switching-mechanism.md`
+  - `docs/adr/003-nanostores-island-state.md`
+  - `docs/adr/004-ssr-safe-island-rendering.md`
+  - `docs/adr/005-localized-project-content-with-shared-images.md`

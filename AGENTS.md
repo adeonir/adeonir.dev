@@ -6,7 +6,7 @@ It holds what the code cannot answer: the decisions, the prohibitions, the place
 
 ## Repository overview
 
-`adeonir.dev` is a personal portfolio for a frontend developer positioned around design and code. It ships in Portuguese and English: `pt` is the default locale and serves from the root, `en` serves under `/en/`. The work case studies have their routes and collection in place but no content yet; `docs/product/PRD.md` carries that scope.
+`adeonir.dev` is a personal portfolio for a frontend developer positioned around design and code. It ships in Portuguese and English: `pt` is the default locale and serves from the root, `en` serves under `/en/`. The project pages have their routes and collection in place but no content yet; `docs/product/PRD.md` carries that scope.
 
 The site is an Astro application deployed as an SSR Worker on Cloudflare. Most content pages are prerendered to static HTML; the localized not-found catch-all and contact Action run on demand.
 
