@@ -7,6 +7,7 @@ import { buttonVariants } from '~/components/ui/button-variants'
 import { Eyebrow } from '~/components/ui/eyebrow'
 import { cn } from '~/helpers/classnames'
 import { parseLocale } from '~/helpers/content'
+import { assertFeaturedBounds } from '~/helpers/projects'
 import { getLocalizedEntry } from '~/services/localized'
 import IconArrowRight from '~icons/tabler/arrow-right'
 import IconFolder from '~icons/tabler/folder'
@@ -19,6 +20,10 @@ const { eyebrow, headline, body, seeAll, empty } = projects.data
 const entries = await getCollection('projectsContent', (entry) =>
   entry.id.startsWith(`${locale}/`),
 )
+
+if (entries.length > 0) {
+  assertFeaturedBounds(entries)
+}
 
 const indexHref = getRelativeLocaleUrl(locale, '/projects')
 
