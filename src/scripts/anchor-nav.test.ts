@@ -50,6 +50,20 @@ describe('anchor navigation', () => {
     expect(location.hash).toBe('')
   })
 
+  it('scrolls to the section when the link carries the page path', () => {
+    clickLink('/#about')
+
+    expect(scrollIntoView).toHaveBeenCalledTimes(1)
+    expect(location.hash).toBe('')
+  })
+
+  it('leaves an anchor on another page to the browser', () => {
+    const { event } = clickLink('/projects/#about')
+
+    expect(event.defaultPrevented).toBe(false)
+    expect(scrollIntoView).not.toHaveBeenCalled()
+  })
+
   it('leaves a link it cannot resolve to the browser', () => {
     const { event } = clickLink('#missing')
 
