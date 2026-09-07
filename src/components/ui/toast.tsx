@@ -41,6 +41,7 @@ function Root({ className, ...props }: ComponentProps<typeof ArkToast.Root>) {
         'focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background',
         'z-(--z-index) h-(--height) translate-x-(--x) translate-y-(--y) scale-(--scale) opacity-(--opacity)',
         'transition-[translate,scale,opacity,height,box-shadow] duration-400 ease-out will-change-[translate,opacity,scale]',
+        'motion-reduce:transition-opacity',
         className,
       )}
       {...props}

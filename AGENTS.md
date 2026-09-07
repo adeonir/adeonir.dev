@@ -6,7 +6,7 @@ It holds what the code cannot answer: the decisions, the prohibitions, the place
 
 ## Repository overview
 
-`adeonir.dev` is a personal portfolio for a frontend developer positioned around design and code. It ships in Portuguese and English: `pt` is the default locale and serves from the root, `en` serves under `/en/`. The work case studies are planned but not built; `docs/product/prd.md` carries that scope.
+`adeonir.dev` is a personal portfolio for a frontend developer positioned around design and code. It ships in Portuguese and English: `pt` is the default locale and serves from the root, `en` serves under `/en/`. The work case studies have their routes and collection in place but no content yet; `docs/product/PRD.md` carries that scope.
 
 The site is an Astro application deployed as an SSR Worker on Cloudflare. Most content pages are prerendered to static HTML; the localized not-found catch-all and contact Action run on demand.
 
@@ -48,10 +48,10 @@ Before planning or building a feature, read the documents that apply to the work
 - `CONTEXT.md` — the project's language: the domain terms and the words to avoid for each one.
 - `PROJECT.md` — the project's shared memory: what a silent failure costs, the durable conventions and decisions, and the traps this codebase has already hit.
 - `docs/tech/design-doc.md` — the technical authority: architecture, runtime boundaries, contact flow, security, testing, and CI/CD.
-- `docs/product/prd.md` — scope, FR/NFR identifiers, personas, journeys, business rules, and edge cases.
-- `docs/product/brief.md` — one-page product summary.
+- `docs/product/PRD.md` — scope, FR/NFR identifiers, personas, journeys, business rules, and edge cases.
+- `docs/product/PRODUCT.md` — strategic positioning: register, audience relationship, brand personality, anti-references, design principles.
 - `DESIGN.md` — the authority on the visual identity and the design tokens.
-- `docs/design/copy.yaml` — canonical site copy. `docs/design/copy.en.yaml` holds the English translation. Every content collection has a `.en.yaml` pair, and sections read the pair for the current locale through `getLocalizedEntry`.
+- `docs/design/copy.yaml` — canonical site copy. `docs/design/copy.en.yaml` holds the English translation. Collection files split by locale directory instead, as `src/content/<group>/pt/` and `src/content/<group>/en/`, and sections read the entry for the current locale through `getLocalizedEntry`.
 - The token styleguide is the live `/styleguide` route, built from `src/pages/styleguide.astro`.
 - `docs/adr/` — the accepted architecture decisions: the React island runtime, the theme-switching mechanism, the nanostores island state layer, and SSR-safe island rendering.
 
@@ -76,13 +76,14 @@ Read the matching rule before making the change:
 
 ## Agent skills
 
+`.agents/skills/new-component/SKILL.md` is the component scaffolding workflow, and every agent reads it.
+
 `.github/skills/code-review/SKILL.md` gives the Copilot cloud reviewer its project context. It is specific to that reviewer; Claude Code and Codex read this file and `.agents/rules/` instead.
 
 ## Runtime architecture
 
 - **Astro and Cloudflare:** the site runs on the `workerd` runtime through `@astrojs/cloudflare`. Content pages prerender to static HTML, while the localized not-found catch-all handles arbitrary missing paths at runtime. There is no standalone `/contact` page.
-- **Client JavaScript budget:** Astro's static rendering keeps normal pages light. Use client-side JavaScript when an interaction needs it. Keep React hydration limited to the theme toggle, contact form, mobile navigation, and footer tagline. This is a boundary, not a ban on JavaScript. Use deferred `client:*` directives for React islands.
-- **Content layer:** the collections are `file()`-loaded YAML.
+- **Content layer:** the collections are `glob()`-loaded YAML, one directory per locale.
 - **External services:** Resend sends outbound email, the hosted `contato@adeonir.dev` mailbox receives owner notifications, and PostHog collects cookieless analytics.
 - **Bindings and context:** read Cloudflare bindings through `import { env } from 'cloudflare:workers'`. Use `Astro.locals.cfContext.waitUntil` for non-blocking work and `Astro.clientAddress` for the client IP.
 
@@ -94,9 +95,9 @@ No contact data is stored. There is no database, and contact PII is never logged
 
 ## Content, routes, and page composition
 
-- `src/components/sections/*.astro` contains section markup only. Each section owns its own vertical spacing and wraps its content in the shared content column.
+- `src/components/sections/` contains section markup only. Sections shared across pages sit at its root; sections belonging to one page sit in a folder named for that page, such as `sections/home/`. Each section owns its own vertical spacing and wraps its content in the shared content column.
 - `src/layouts/base.astro` owns the document shell, the header, and the footer. It does not set page width or inter-section spacing.
-- Each section reads its own typed collection with `getEntry`. Collection keys are declared in `src/content.config.ts`.
+- Each section reads its own typed collection with `getLocalizedEntry`, which resolves the entry for the current locale. Collection keys are declared in `src/content.config.ts`.
 - `docs/design/copy.yaml` is the canonical prose. Collection files carry rendering markup. Headline emphasis and controlled breaks come from the design frame, not from `copy.yaml` when that file omits them.
 
 ## Code conventions
@@ -106,7 +107,7 @@ No contact data is stored. There is no database, and contact PII is never logged
 - Use `kebab-case` for files, slugs, folders, and routes. Use PascalCase for component names.
 - `.astro` components use the implicit default export. React/TSX components use named exports such as `export function Button`.
 - Use the `~/` alias for imports across directories. Use `./` and `../` only within the same directory.
-- JSX uses React. Use `className` in `.tsx` and `class` in `.astro`.
+- JSX uses React. The receiving component decides the attribute, not the file it is written in: pass `className` to a React component and `class` to an Astro component, from either kind of file.
 
 ### Component tiers
 
@@ -118,7 +119,7 @@ No contact data is stored. There is no database, and contact PII is never logged
 - `src/components/ui/` — styled, stateless primitives that use semantic tokens. Prefer the Ark `ark.<element>` factory so primitives remain polymorphic and accept `asChild`; use a bare element only for a trivial primitive that never needs `asChild`.
 - `src/scripts/` — client-side vanilla modules, loaded from a `<script>` tag.
 
-Use the repository's component scaffolding workflow when creating a new component. Shared pure helpers belong in `src/helpers/` and must not contain JSX. Shared React hooks belong in `src/hooks/`.
+Use the `new-component` skill when creating a new component. Shared pure helpers belong in `src/helpers/` and must not contain JSX. Shared React hooks belong in `src/hooks/`.
 
 ### Styling and design system
 
@@ -147,7 +148,7 @@ The contact form validates with `src/validations/contact.ts` on the client and t
 
 PostHog runs cookieless and respects Do Not Track. Server-side contact events never include form PII and use a synthetic `distinct_id`. Analytics is inert when `POSTHOG_KEY` is unset.
 
-The `/styleguide` and `/maintenance` routes are noindex and are excluded from the sitemap and `robots.txt` through the shared `noIndexRoutes` list. Crawl files are generated at build time; never add a static `public/robots.txt`.
+The `/styleguide` and `/maintenance` routes are noindex and are excluded from the sitemap and `robots.txt` through the shared `noIndexRoutes` list. The per-locale `llms.txt` and `index.md` routes serve agent readers and are listed in `agentDocumentRoutes`, which keeps them out of the sitemap while leaving them crawlable. Crawl files are generated at build time; never add a static `public/robots.txt`.
 
 ## Testing, quality, and delivery
 
@@ -163,7 +164,7 @@ The repository tracks delivery in GitHub Issues for `adeonir/adeonir.dev`, using
 
 ## Key files and assets
 
-- `src/layouts/base.astro` is the shared document shell. Every new page uses it, and `title` is its only required prop.
+- `src/layouts/base.astro` is the shared document shell. Every new page uses it. Every prop is optional in the type, but the layout throws unless it receives a title: pass `title` for a literal one, or `titleKey` to read one from the settings collection.
 - Do not recreate the content-layer scaffolding in `src/content.config.ts`, `src/content/`, and `src/schemas/`.
 - `src/validations/contact.ts` exports `UTM_KEYS`. The contact island and the analytics service read that list; never write a second copy.
 - Figma source: https://www.figma.com/design/T4wd9lMdUUdpfpmbT3C0bN/Adeonir

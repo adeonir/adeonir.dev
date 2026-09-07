@@ -10,31 +10,21 @@ interface Props {
   launch: string
   summary: string
   cover: ImageMetadata
-  href?: string
+  href: string
 }
 
 const { name, category, launch, summary, cover, href } = Astro.props
 
-const year = launch.slice(-4)
-
-const Wrapper = href ? 'a' : Fragment
-const wrapperAttrs = href
-  ? {
-      href,
-      'aria-label': name,
-      class:
-        'block rounded-2xl transition-shadow duration-200 focus-visible:ring-4 focus-visible:ring-ring/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none',
-    }
-  : {}
+const year = launch.slice(0, 4)
 ---
 
-<Wrapper {...wrapperAttrs}>
+<a
+  href={href}
+  class="group block rounded-2xl transition-shadow duration-200 focus-visible:ring-4 focus-visible:ring-ring/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+>
   <article
     data-enter="block"
-    class:list={[
-      'relative isolate flex aspect-21/9 overflow-hidden rounded-2xl border border-border',
-      href && 'group',
-    ]}
+    class="relative isolate flex aspect-21/9 overflow-hidden rounded-2xl border border-border"
   >
     <Image
       src={cover}
@@ -43,19 +33,15 @@ const wrapperAttrs = href
       decoding="async"
       widths={[480, 640, 960, 1280]}
       sizes="(min-width: 768px) 640px, calc(100vw - 3rem)"
-      class="absolute inset-0 -z-10 size-full object-cover object-[70%_center] group-focus-within:scale-103 group-hover:scale-103 motion-safe:transition-transform motion-safe:duration-500 motion-safe:ease-out"
+      class="absolute inset-0 -z-10 size-full object-cover object-[70%_center] transition-transform duration-500 ease-out motion-safe:group-focus-within:scale-103 motion-safe:group-hover:scale-103"
     />
     <div
-      class="flex h-full w-46/100 flex-col justify-end gap-2 bg-sunken/50 bg-linear-to-t from-sunken to-sunken/0 to-50% p-6 backdrop-blur-sm"
+      class="flex h-full w-46/100 flex-col justify-end gap-2 bg-linear-to-t from-sunken to-sunken/50 to-50% p-6 backdrop-blur-sm"
     >
-      {
-        href && (
-          <IconArrowRight
-            className="absolute top-6 right-6 size-5 text-foreground group-focus-within:translate-x-1 group-hover:translate-x-2 group-hover:text-primary motion-safe:transition-[color,transform,translate] motion-safe:duration-200"
-            aria-hidden="true"
-          />
-        )
-      }
+      <IconArrowRight
+        className="absolute top-6 right-6 size-5 text-foreground transition-[color,transform,translate] duration-200 group-hover:text-primary motion-safe:group-focus-within:translate-x-1 motion-safe:group-hover:translate-x-2"
+        aria-hidden="true"
+      />
       <p
         class="font-mono text-xs tracking-widest text-muted-foreground uppercase"
       >
@@ -67,4 +53,4 @@ const wrapperAttrs = href
       </p>
     </div>
   </article>
-</Wrapper>
+</a>
