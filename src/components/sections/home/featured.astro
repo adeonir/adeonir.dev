@@ -1,5 +1,6 @@
 ---
-import { getCollection } from 'astro:content'
+import type { ImageMetadata } from 'astro'
+import { type CollectionEntry, getCollection } from 'astro:content'
 import { getRelativeLocaleUrl } from 'astro:i18n'
 
 import ProjectCard from '~/components/sections/home/card.astro'
@@ -11,6 +12,12 @@ import { assertFeaturedBounds } from '~/helpers/projects'
 import { getLocalizedEntry } from '~/services/localized'
 import IconArrowRight from '~icons/tabler/arrow-right'
 import IconFolder from '~icons/tabler/folder'
+
+type ProjectEntry = CollectionEntry<'projectsContent'>
+
+type FeaturedEntry = ProjectEntry & {
+  data: { featured: number; cover: ImageMetadata }
+}
 
 const locale = parseLocale(Astro.currentLocale)
 const projects = await getLocalizedEntry('homeProjects', locale)
@@ -28,22 +35,15 @@ if (entries.length > 0) {
 const indexHref = getRelativeLocaleUrl(locale, '/projects')
 
 const featured = entries
-  .filter((entry) => entry.data.featured !== undefined)
-  .sort((a, b) => (a.data.featured ?? 0) - (b.data.featured ?? 0))
-  .map((entry) => {
-    if (!entry.data.cover) {
-      throw new Error(`Featured project without a cover: ${entry.id}`)
-    }
-
-    return {
-      ...entry.data,
-      cover: entry.data.cover,
-      href: getRelativeLocaleUrl(
-        locale,
-        `/projects/${entry.id.slice(locale.length + 1)}`,
-      ),
-    }
-  })
+  .filter((entry): entry is FeaturedEntry => entry.data.featured !== undefined)
+  .sort((a, b) => a.data.featured - b.data.featured)
+  .map((entry) => ({
+    ...entry.data,
+    href: getRelativeLocaleUrl(
+      locale,
+      `/projects/${entry.id.slice(locale.length + 1)}`,
+    ),
+  }))
 ---
 
 <section id="projects" class="pt-16 pb-4 md:pt-20 md:pb-8">
