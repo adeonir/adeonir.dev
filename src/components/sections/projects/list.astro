@@ -40,7 +40,9 @@ const tableGrid =
 const rowGrid = 'md:col-span-4 md:grid md:grid-cols-subgrid md:items-start'
 ---
 
-<section class="pt-4 pb-16 md:pt-8 md:pb-20">
+<section
+  class="bg-linear-to-t from-popover to-transparent bg-size-[auto_24rem] bg-bottom bg-no-repeat pt-4 pb-24 md:pt-8 md:pb-28"
+>
   <div class="wrapper">
     {
       projects.length > 0 ? (
@@ -55,7 +57,7 @@ const rowGrid = 'md:col-span-4 md:grid md:grid-cols-subgrid md:items-start'
           </div>
           {projects.map((project) => (
             <article
-              class={`flex flex-col gap-3 border-b border-border py-6 ${rowGrid}`}
+              class={`flex flex-col gap-3 border-b border-border py-6 last:border-b-0 ${rowGrid}`}
             >
               <div class="flex flex-row-reverse items-baseline justify-between gap-4 md:contents">
                 <span class="shrink-0 text-label text-muted-foreground md:col-start-1 md:row-start-1">
