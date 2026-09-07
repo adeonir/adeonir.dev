@@ -16,5 +16,6 @@ export const homeProjectsSchema = z.object({
     )
     .min(1),
   body: z.string().min(1),
+  seeAll: z.string().min(1),
   empty: z.array(emptySegmentSchema).min(1),
 })

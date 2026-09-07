@@ -5,18 +5,22 @@ import { getRelativeLocaleUrl } from 'astro:i18n'
 import ProjectCard from '~/components/sections/home/card.astro'
 import { buttonVariants } from '~/components/ui/button-variants'
 import { Eyebrow } from '~/components/ui/eyebrow'
+import { cn } from '~/helpers/classnames'
 import { parseLocale } from '~/helpers/content'
 import { getLocalizedEntry } from '~/services/localized'
+import IconArrowRight from '~icons/tabler/arrow-right'
 import IconFolder from '~icons/tabler/folder'
 
 const locale = parseLocale(Astro.currentLocale)
 const projects = await getLocalizedEntry('homeProjects', locale)
 
-const { eyebrow, headline, body, empty } = projects.data
+const { eyebrow, headline, body, seeAll, empty } = projects.data
 
 const entries = await getCollection('projectsContent', (entry) =>
   entry.id.startsWith(`${locale}/`),
 )
+
+const indexHref = getRelativeLocaleUrl(locale, '/projects')
 
 const featured = entries
   .filter((entry) => entry.data.featured !== undefined)
@@ -97,6 +101,21 @@ const featured = entries
                 )}
               </p>
             </div>
+          )
+        }
+        {
+          entries.length > 0 && (
+            <a
+              data-enter="block"
+              href={indexHref}
+              class={cn(
+                'mt-8 inline-flex items-center gap-2 font-mono text-sm',
+                buttonVariants({ variant: 'link', size: 'inline' }),
+              )}
+            >
+              {seeAll}
+              <IconArrowRight className="size-4 shrink-0" aria-hidden="true" />
+            </a>
           )
         }
       </div>
