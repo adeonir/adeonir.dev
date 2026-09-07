@@ -8,6 +8,7 @@ import { Button } from '~/components/ui/button'
 import { Eyebrow } from '~/components/ui/eyebrow'
 import { Field } from '~/components/ui/field'
 import { NavLink } from '~/components/ui/nav-link'
+import { cn } from '~/helpers/classnames'
 
 const surfaces = [
   {
@@ -169,11 +170,11 @@ const breakpoints = [
           <div class="flex flex-1 flex-col gap-3">
             {group.map((c) => (
               <div
-                class:list={[
+                class={cn(
                   'flex h-20 flex-col justify-end rounded-md border border-border p-3',
                   c.box,
                   c.text,
-                ]}
+                )}
               >
                 <span class="text-caption">{c.label}</span>
               </div>
@@ -190,7 +191,7 @@ const breakpoints = [
       {
         lines.map((l) => (
           <div class="flex flex-col items-center gap-1">
-            <div class:list={['size-12 rounded-md border-2', l.cls]} />
+            <div class={cn('size-12 rounded-md border-2', l.cls)} />
             <span class="text-caption text-muted-foreground">{l.label}</span>
           </div>
         ))
@@ -204,7 +205,7 @@ const breakpoints = [
       {
         inks.map((i) => (
           <div class="flex flex-col gap-1">
-            <span class:list={['text-body', i.cls]}>The quick brown fox</span>
+            <span class={cn('text-body', i.cls)}>The quick brown fox</span>
             <span class="text-caption text-muted-foreground">{i.label}</span>
           </div>
         ))
@@ -232,7 +233,7 @@ const breakpoints = [
       {
         spacing.map((s) => (
           <div class="flex items-center gap-3">
-            <div class:list={['h-3 rounded-xs bg-primary', s.cls]} />
+            <div class={cn('h-3 rounded-xs bg-primary', s.cls)} />
             <span class="text-caption text-muted-foreground">{s.label}</span>
           </div>
         ))
@@ -246,7 +247,7 @@ const breakpoints = [
       {
         radii.map((r) => (
           <div class="flex flex-col items-center gap-1">
-            <div class:list={['size-14 border border-border bg-card', r.cls]} />
+            <div class={cn('size-14 border border-border bg-card', r.cls)} />
             <span class="text-caption text-muted-foreground">{r.label}</span>
           </div>
         ))
@@ -261,7 +262,7 @@ const breakpoints = [
         widths.map((w) => (
           <div class="flex flex-col items-center gap-1">
             <div
-              class:list={['size-14 rounded-md border-border bg-card', w.cls]}
+              class={cn('size-14 rounded-md border-border bg-card', w.cls)}
             />
             <span class="text-caption text-muted-foreground">{w.label}</span>
           </div>
@@ -277,10 +278,10 @@ const breakpoints = [
         shadows.map((s) => (
           <div class="flex flex-col items-center gap-1">
             <div
-              class:list={[
+              class={cn(
                 'size-14 rounded-lg border border-border bg-card',
                 s.cls,
-              ]}
+              )}
             />
             <span class="text-caption text-muted-foreground">{s.label}</span>
           </div>

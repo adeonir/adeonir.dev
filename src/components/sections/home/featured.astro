@@ -6,6 +6,7 @@ import { getRelativeLocaleUrl } from 'astro:i18n'
 import ProjectCard from '~/components/sections/home/card.astro'
 import { buttonVariants } from '~/components/ui/button-variants'
 import { Eyebrow } from '~/components/ui/eyebrow'
+import { cn } from '~/helpers/classnames'
 import { parseLocale } from '~/helpers/content'
 import { assertFeaturedBounds } from '~/helpers/projects'
 import { getLocalizedEntry } from '~/services/localized'
@@ -112,10 +113,10 @@ const featured = entries
             <div data-enter="block" class="mt-8 flex justify-end">
               <a
                 href={indexHref}
-                class:list={[
+                class={cn(
                   'group gap-2',
                   buttonVariants({ variant: 'link', size: 'inline' }),
-                ]}
+                )}
               >
                 {seeAll}
                 <IconArrowRight

@@ -55,10 +55,10 @@ const { eyebrow, headline, body, bio } = about.data
                     href={segment.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class:list={[
+                    class={cn(
                       'group gap-1',
                       buttonVariants({ variant: 'link', size: 'inline' }),
-                    ]}
+                    )}
                   >
                     {segment.text}
                     <IconArrowUpRight
