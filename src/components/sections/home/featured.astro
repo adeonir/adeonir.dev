@@ -21,13 +21,20 @@ const entries = await getCollection('projectsContent', (entry) =>
 const featured = entries
   .filter((entry) => entry.data.featured !== undefined)
   .sort((a, b) => (a.data.featured ?? 0) - (b.data.featured ?? 0))
-  .map((entry) => ({
-    ...entry.data,
-    href: getRelativeLocaleUrl(
-      locale,
-      `/projects/${entry.id.slice(locale.length + 1)}`,
-    ),
-  }))
+  .map((entry) => {
+    if (!entry.data.cover) {
+      throw new Error(`Featured project without a cover: ${entry.id}`)
+    }
+
+    return {
+      ...entry.data,
+      cover: entry.data.cover,
+      href: getRelativeLocaleUrl(
+        locale,
+        `/projects/${entry.id.slice(locale.length + 1)}`,
+      ),
+    }
+  })
 ---
 
 <section id="projects" class="pt-16 pb-4 md:pt-20 md:pb-8">
