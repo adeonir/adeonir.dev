@@ -119,7 +119,7 @@ flowchart LR
 | Contact submission | Inbound visitor message | `name`/`email`/`message` and `locale` (`pt` or `en`) validated; rate-limited per IP; never stored or logged | none — transient, delivered via Resend |
 
 - **Lifecycle:** projects are shown everywhere on the work index and on the home page when present in the featured list — no stored state. A contact submission flows: validate fields and locale → honeypot + rate-limit check → select localized email copy and date format → send two emails → discard.
-- **Business rules:** see PRD BR-1 (work is the primary action), BR-2 (every shown project routes to a detail surface), BR-3 (contact offers a direct channel besides the form).
+- **Business rules:** see PRD BR-1 (work is the primary action), BR-2 (every shown project carries a summary; it routes to a detail surface, links out to its site, or is listed as offline), BR-3 (contact offers a direct channel besides the form).
 
 ```mermaid
 erDiagram

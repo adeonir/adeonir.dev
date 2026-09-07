@@ -154,7 +154,7 @@ Separately, lightweight privacy-respecting analytics collect usage statistics (w
 | ID | Rule | Scope |
 | --- | --- | --- |
 | BR-1 | The primary action across the landing is to view the work; contact is secondary | Landing, navigation |
-| BR-2 | Every project shown — curated or indexed — routes to a project detail surface | Work index, curated selection |
+| BR-2 | Every project shown carries a summary in place; a project with a case study routes to its detail surface, a project with only a live site links out to it, and a project with neither is listed as offline | Work index, curated selection |
 | BR-3 | Contact must offer at least one direct channel in addition to the form | Contact surface |
 
 ## 8. Edge Cases
