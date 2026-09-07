@@ -5,6 +5,33 @@ paths:
   - 'src/**/*.ts'
 ---
 
+## Class Composition With cn
+
+**Impact: MEDIUM**
+
+Compose every class list with `cn` from `~/helpers/classnames`, in `.astro` files as much as in React ones. Astro's `class:list` only concatenates, so two utilities of the same family on one element leave the winner to whichever Tailwind emits later in the stylesheet — an order that shifts when a token is renamed, with no error to show for it. `cn` runs `tailwind-merge`, which resolves the pair by the order written. A single literal string with nothing to compose stays a plain `class`.
+
+**Incorrect:**
+
+```astro
+<a
+  class:list={[
+    'group gap-2',
+    buttonVariants({ variant: 'link', size: 'inline' }),
+  ]}
+>
+```
+
+**Correct:**
+
+```astro
+<a
+  class={cn('group gap-2', buttonVariants({ variant: 'link', size: 'inline' }))}
+>
+```
+
+Reference: [tailwind-merge — What is it for](https://github.com/dcastil/tailwind-merge/blob/main/docs/what-is-it-for.md)
+
 ## Tailwind Canonical Shorthand Over Arbitrary Values
 
 **Impact: LOW**
