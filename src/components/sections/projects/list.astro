@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content'
 import { getRelativeLocaleUrl } from 'astro:i18n'
 
+import { buttonVariants } from '~/components/ui/button-variants'
 import { parseLocale } from '~/helpers/content'
 import {
   getLaunchYear,
@@ -80,7 +81,10 @@ const rowGrid = 'md:col-span-4 md:grid md:grid-cols-subgrid md:items-start'
               {project.destination.kind === 'case-study' && (
                 <a
                   href={project.destination.href}
-                  class="group inline-flex items-center gap-1.5 self-end font-mono text-xs text-primary underline-offset-4 hover:underline focus-visible:rounded-xs focus-visible:ring-4 focus-visible:ring-ring/50 focus-visible:outline-none md:col-start-4 md:row-start-1 md:self-auto"
+                  class:list={[
+                    'group size-fit gap-1.5 self-end font-mono text-xs md:col-start-4 md:row-start-1 md:self-auto',
+                    buttonVariants({ variant: 'link', size: 'inline' }),
+                  ]}
                 >
                   {links.more}
                   <IconArrowRight
@@ -94,7 +98,10 @@ const rowGrid = 'md:col-span-4 md:grid md:grid-cols-subgrid md:items-start'
                   href={project.destination.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="group inline-flex items-center gap-1.5 self-end font-mono text-xs text-primary underline-offset-4 hover:underline focus-visible:rounded-xs focus-visible:ring-4 focus-visible:ring-ring/50 focus-visible:outline-none md:col-start-4 md:row-start-1 md:self-auto"
+                  class:list={[
+                    'group gap-1.5 self-end font-mono text-xs md:col-start-4 md:row-start-1 md:self-auto',
+                    buttonVariants({ variant: 'link', size: 'inline' }),
+                  ]}
                 >
                   {project.destination.domain}
                   <IconArrowUpRight
