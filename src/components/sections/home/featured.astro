@@ -6,7 +6,6 @@ import { getRelativeLocaleUrl } from 'astro:i18n'
 import ProjectCard from '~/components/sections/home/card.astro'
 import { buttonVariants } from '~/components/ui/button-variants'
 import { Eyebrow } from '~/components/ui/eyebrow'
-import { cn } from '~/helpers/classnames'
 import { parseLocale } from '~/helpers/content'
 import { assertFeaturedBounds } from '~/helpers/projects'
 import { getLocalizedEntry } from '~/services/localized'
@@ -110,17 +109,21 @@ const featured = entries
         }
         {
           entries.length > 0 && (
-            <a
-              data-enter="block"
-              href={indexHref}
-              class={cn(
-                'mt-8 inline-flex items-center gap-2 font-mono text-sm',
-                buttonVariants({ variant: 'link', size: 'inline' }),
-              )}
-            >
-              {seeAll}
-              <IconArrowRight className="size-4 shrink-0" aria-hidden="true" />
-            </a>
+            <div data-enter="block" class="mt-8 flex justify-end">
+              <a
+                href={indexHref}
+                class:list={[
+                  'group gap-2',
+                  buttonVariants({ variant: 'link', size: 'inline' }),
+                ]}
+              >
+                {seeAll}
+                <IconArrowRight
+                  className="size-4 shrink-0 transition-transform duration-200 motion-safe:group-hover:translate-x-1"
+                  aria-hidden="true"
+                />
+              </a>
+            </div>
           )
         }
       </div>
