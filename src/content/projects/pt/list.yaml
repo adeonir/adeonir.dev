@@ -1,0 +1,9 @@
+labels:
+  year: 'Ano'
+  project: 'Projeto'
+  stack: 'Stack'
+  link: 'Link'
+links:
+  more: 'Ver mais'
+  offline: 'Fora do ar'
+empty: 'Nenhum projeto publicado ainda. Estou trabalhando em algo e em breve ele aparece aqui.'
