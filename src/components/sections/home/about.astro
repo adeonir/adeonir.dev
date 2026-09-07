@@ -4,6 +4,7 @@ import { buttonVariants } from '~/components/ui/button-variants'
 import { cn } from '~/helpers/classnames'
 import { parseLocale } from '~/helpers/content'
 import { getLocalizedEntry } from '~/services/localized'
+import IconArrowUpRight from '~icons/tabler/arrow-up-right'
 
 const locale = parseLocale(Astro.currentLocale)
 const about = await getLocalizedEntry('homeAbout', locale)
@@ -54,9 +55,16 @@ const { eyebrow, headline, body, bio } = about.data
                     href={segment.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class={buttonVariants({ variant: 'link', size: 'inline' })}
+                    class={cn(
+                      'group gap-1',
+                      buttonVariants({ variant: 'link', size: 'inline' }),
+                    )}
                   >
                     {segment.text}
+                    <IconArrowUpRight
+                      className="size-4 shrink-0 transition-transform duration-200 motion-safe:group-hover:-translate-y-0.5"
+                      aria-hidden="true"
+                    />
                   </a>
                 ) : (
                   segment.text

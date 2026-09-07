@@ -17,6 +17,7 @@ export const sharedSettingsSchema = z.object({
   }),
   pageTitles: z.object({
     home: z.string(),
+    projects: z.string(),
     notFound: z.string(),
     maintenance: z.string(),
   }),

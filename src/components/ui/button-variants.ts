@@ -15,7 +15,7 @@ export const buttonVariants = cva(
       },
       size: {
         default: 'h-11 gap-2 px-5 text-button',
-        inline: 'h-auto p-0 text-inherit',
+        inline: 'h-auto p-0',
         icon: 'size-9',
       },
     },

@@ -64,7 +64,7 @@ Read the matching rule before making the change:
 | When | Read |
 |---|---|
 | Creating or renaming source files under `src/` | `.agents/rules/kebab-case-filenames.md` |
-| Choosing Tailwind utility classes in source files | `.agents/rules/tailwind-canonical-classes.md` |
+| Choosing or composing Tailwind classes in source files | `.agents/rules/tailwind-canonical-classes.md` |
 | Naming highlight fields or rendering highlighted text | `.agents/rules/text-highlight-segments.md` |
 | Importing modules across `src/` directories | `.agents/rules/tilde-alias-imports.md` |
 

@@ -16,21 +16,18 @@ document.addEventListener(
     const href = link.getAttribute('href')
     if (!href) return
 
-    if (href.startsWith('#')) {
-      if (href === '#') return
-      if (goToAnchor(href.slice(1))) event.preventDefault()
+    const url = new URL(link.href)
+    if (url.origin !== location.origin) return
+    if (url.pathname !== location.pathname) return
+
+    if (url.hash) {
+      if (url.hash === '#') return
+      if (goToAnchor(url.hash.slice(1))) event.preventDefault()
       return
     }
 
-    const url = new URL(link.href)
-    if (
-      url.origin === location.origin &&
-      url.pathname === location.pathname &&
-      !url.hash
-    ) {
-      event.preventDefault()
-      scrollToTop()
-    }
+    event.preventDefault()
+    scrollToTop()
   },
   { capture: true },
 )

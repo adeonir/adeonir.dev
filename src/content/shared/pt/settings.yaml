@@ -12,5 +12,6 @@ agentDocument:
     contact: 'Contato'
 pageTitles:
   home: 'Portfólio'
+  projects: 'Projetos'
   notFound: 'Página não encontrada'
   maintenance: 'Manutenção'

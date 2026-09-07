@@ -3,8 +3,10 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import type { Locale } from '~/helpers/content'
 
 const getLocalizedEntry = vi.hoisted(() => vi.fn())
+const getCollection = vi.hoisted(() => vi.fn())
 
 vi.mock('~/services/localized', () => ({ getLocalizedEntry }))
+vi.mock('astro:content', () => ({ getCollection }))
 
 import { getAgentDocuments } from '~/services/agent-documents'
 
@@ -32,6 +34,7 @@ const entriesByLocale = {
       eyebrow: 'Projetos em destaque',
       headline: [{ text: 'Ideias ', highlight: true }, { text: 'no ar' }],
       body: 'Alguns projetos que ajudei a construir.',
+      seeAll: 'Ver todos projetos',
       empty: [
         { text: 'Ainda não publiquei nenhum projeto aqui. ' },
         { text: 'me manda uma mensagem', href: '#contact' },
@@ -94,6 +97,7 @@ const entriesByLocale = {
       eyebrow: 'Featured work',
       headline: [{ text: 'Ideas ', highlight: true }, { text: 'that shipped' }],
       body: 'A few projects I helped build.',
+      seeAll: 'See all projects',
       empty: [
         { text: "I haven't published a project here yet. " },
         { text: 'send me a message', href: '#contact' },
@@ -135,8 +139,78 @@ const entriesByLocale = {
   },
 } as const
 
+const projectEntries = {
+  pt: [
+    {
+      id: 'pt/alpha',
+      body: 'Estudo de caso.',
+      data: {
+        name: 'Alpha',
+        summary: 'Um projeto com estudo de caso.',
+        launch: '2025-06-01',
+      },
+    },
+    {
+      id: 'pt/beta',
+      body: '',
+      data: {
+        name: 'Beta',
+        summary: 'Um projeto com site próprio.',
+        launch: '2024-02-10',
+        url: 'https://beta.example.com',
+      },
+    },
+    {
+      id: 'pt/gama',
+      body: '',
+      data: {
+        name: 'Gama',
+        summary: 'Um projeto fora do ar.',
+        launch: '2023-09-20',
+      },
+    },
+  ],
+  en: [
+    {
+      id: 'en/alpha',
+      body: 'Case study.',
+      data: {
+        name: 'Alpha',
+        summary: 'A project with a case study.',
+        launch: '2025-06-01',
+      },
+    },
+    {
+      id: 'en/beta',
+      body: '',
+      data: {
+        name: 'Beta',
+        summary: 'A project with its own site.',
+        launch: '2024-02-10',
+        url: 'https://beta.example.com',
+      },
+    },
+    {
+      id: 'en/gama',
+      body: '',
+      data: {
+        name: 'Gama',
+        summary: 'An offline project.',
+        launch: '2023-09-20',
+      },
+    },
+  ],
+}
+
+type ProjectEntry = (typeof projectEntries)['pt'][number]
+
 describe('getAgentDocuments', () => {
   beforeEach(() => {
+    getCollection.mockReset()
+    getCollection.mockImplementation(
+      async (_collection: string, filter: (entry: ProjectEntry) => boolean) =>
+        [...projectEntries.pt, ...projectEntries.en].filter(filter),
+    )
     getLocalizedEntry.mockReset()
     getLocalizedEntry.mockImplementation(
       async (collection: string, locale: Locale) => {
@@ -173,6 +247,8 @@ describe('getAgentDocuments', () => {
   })
 
   it('carries the projects empty state in both documents for each locale', async () => {
+    getCollection.mockResolvedValue([])
+
     const portuguese = await getAgentDocuments('pt')
     const english = await getAgentDocuments('en')
 
@@ -225,6 +301,59 @@ describe('getAgentDocuments', () => {
     expect(portuguese.llms).toContain(entriesByLocale.pt.homeAbout.body)
     expect(english.markdown).toContain(entriesByLocale.en.homeAbout.body)
     expect(english.llms).toContain(entriesByLocale.en.homeAbout.body)
+  })
+
+  it('lists every project of the locale, newest first, in the markdown document', async () => {
+    const { markdown } = await getAgentDocuments('en')
+
+    const order = [
+      markdown.indexOf('Alpha'),
+      markdown.indexOf('Beta'),
+      markdown.indexOf('Gama'),
+    ]
+
+    expect(order.every((position) => position >= 0)).toBe(true)
+    expect(order[0]).toBeLessThan(order[1])
+    expect(order[1]).toBeLessThan(order[2])
+  })
+
+  it('points each project at its case study, its own site, or nowhere', async () => {
+    const { markdown } = await getAgentDocuments('en')
+
+    expect(markdown).toContain(
+      '- [Alpha](https://adeonir.dev/en/projects/alpha) (2025): A project with a case study.',
+    )
+    expect(markdown).toContain(
+      '- [Beta](https://beta.example.com) (2024): A project with its own site.',
+    )
+    expect(markdown).toContain('- Gama (2023): An offline project.')
+  })
+
+  it('reads the projects of the requested locale only', async () => {
+    const { markdown } = await getAgentDocuments('pt')
+
+    expect(markdown).toContain(
+      '- [Alpha](https://adeonir.dev/projects/alpha) (2025): Um projeto com estudo de caso.',
+    )
+    expect(markdown).not.toContain('A project with a case study.')
+  })
+
+  it('links the projects index from both documents for each locale', async () => {
+    const portuguese = await getAgentDocuments('pt')
+    const english = await getAgentDocuments('en')
+
+    expect(portuguese.markdown).toContain(
+      '[Ver todos projetos](https://adeonir.dev/projects)',
+    )
+    expect(portuguese.llms).toContain(
+      '[Ver todos projetos](https://adeonir.dev/projects)',
+    )
+    expect(english.markdown).toContain(
+      '[See all projects](https://adeonir.dev/en/projects)',
+    )
+    expect(english.llms).toContain(
+      '[See all projects](https://adeonir.dev/en/projects)',
+    )
   })
 
   it('places the expertise section between about and stack', async () => {

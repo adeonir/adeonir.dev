@@ -25,6 +25,7 @@
 
 - A `file()` collection entry can come back `undefined`, so a section must guard the entry before reading `.data` — every section that calls `getEntry`; source: src/components/sections/hero.astro
 - Editing the content config or a schema needs a dev-server restart before the new shape is picked up — content collections
+- Removing a content entry leaves it in the content layer store, so the next build fails on the asset it referenced — run `pnpm build --force`; source: node_modules/.astro/data-store.json
 - Every `allowBuilds` entry must resolve to `true` or `false` for a dependency present in the tree — an unresolved placeholder makes every `pnpm run` command fail during pnpm's dependency check; source: pnpm-workspace.yaml
 - The Lighthouse budget runs through the scoped `@lhci/cli`; the unscoped `lhci` package is a different project — pnpm lighthouse; source: package.json
 - `Astro.locals.runtime` no longer exists — read Cloudflare bindings through `cloudflare:workers` and reach the execution context through `Astro.locals.cfContext`; source: src/actions/index.ts

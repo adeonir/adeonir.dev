@@ -1,4 +1,5 @@
 import cloudflare from '@astrojs/cloudflare'
+import mdx from '@astrojs/mdx'
 import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
 import tailwindcss from '@tailwindcss/vite'
@@ -66,6 +67,7 @@ export default defineConfig({
     },
   ],
   integrations: [
+    mdx(),
     react(),
     sitemap({
       i18n: { defaultLocale: 'pt', locales: { pt: 'pt-BR', en: 'en' } },

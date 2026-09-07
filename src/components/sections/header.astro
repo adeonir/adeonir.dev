@@ -16,7 +16,12 @@ const homeURL = getRelativeLocaleUrl(locale)
 
 const isNotFound = Astro.response.status === 404
 
-const { logo, nav } = header.data
+const { logo } = header.data
+
+const nav = header.data.nav.map((item) => ({
+  ...item,
+  href: item.href.startsWith('#') ? `${homeURL}${item.href}` : item.href,
+}))
 ---
 
 <header

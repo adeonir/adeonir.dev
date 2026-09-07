@@ -1,0 +1,33 @@
+---
+import { parseLocale } from '~/helpers/content'
+import { getLocalizedEntry } from '~/services/localized'
+
+const locale = parseLocale(Astro.currentLocale)
+const hero = await getLocalizedEntry('projectsHero', locale)
+
+const { headline, subheadline } = hero.data
+---
+
+<section class="pt-16 pb-4 md:pt-20 md:pb-8">
+  <div class="wrapper flex flex-col gap-4">
+    <h1 data-enter="block" class="text-display text-pretty text-foreground">
+      {
+        headline.map((segment) => (
+          <>
+            {segment.highlight ? (
+              <span class="text-secondary">{segment.text}</span>
+            ) : (
+              segment.text
+            )}
+          </>
+        ))
+      }
+    </h1>
+    <p
+      data-enter="block"
+      class="max-w-2xl text-body leading-relaxed text-pretty text-muted-foreground"
+    >
+      {subheadline}
+    </p>
+  </div>
+</section>

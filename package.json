@@ -19,6 +19,7 @@
   "dependencies": {
     "@ark-ui/react": "5.39.1",
     "@astrojs/cloudflare": "14.3.0",
+    "@astrojs/mdx": "8.0.0",
     "@astrojs/react": "6.0.5",
     "@astrojs/sitemap": "3.7.4",
     "@nanostores/react": "2.0.1",

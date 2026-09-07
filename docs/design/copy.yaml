@@ -1,7 +1,8 @@
 metadata:
   source: 'docs/product/brief.md, docs/product/prd.md, conversation'
   created: '2026-06-06'
-  version: '1.0.9'
+  updated: '2026-09-07'
+  version: '1.0.10'
   status: 'ready'
 
 project:
@@ -42,7 +43,7 @@ routes:
   maintenance:
     title: 'Manutenção'
 
-# The content tree covers the surfaces home, work, project, plus a global not-found (404) error surface. Header and footer are persistent across every surface — defined once on home and aliased. Projects live in one top-level `projects` collection (always complete); the work index shows all, the landing shows featured: true.
+# The content tree covers the surfaces home, work, project, plus a global not-found (404) error surface. Header and footer are persistent across every surface — defined once on home and aliased. Each project lives in its own MDX file under `src/content/projects/<locale>/`; the work index lists every file, the landing shows the ones with a `featured` position.
 
 content:
   home:
@@ -202,32 +203,39 @@ content:
   projects:
     header: *header
     page-header:
-      eyebrow: 'Projetos'
-      headline: 'Projetos que desenhei e construí'
-      subheadline: 'Uma seleção de projetos que desenvolvi ou ajudei a construir.'
-    # list -> top-level `projects` collection (all, in order)
+      headline: 'Todos os projetos'
+      subheadline: 'O que ajudei a construir nos últimos anos.'
+    # list -> every project file, newest first; name, summary, stack, launch, and link come from each file's frontmatter
+    labels:
+      year: 'Ano'
+      project: 'Projeto'
+      stack: 'Stack'
+      link: 'Link'
+    links:
+      more: 'Ver mais'
+      external: '{domain}'
+      offline: 'Fora do ar'
     states:
-      empty: 'Ainda não tem projetos por aqui. Volte em breve.'
+      empty: 'Nenhum projeto publicado ainda. Estou trabalhando em algo e em breve ele aparece aqui.'
     footer: *footer
 
   project:
     header: *header
-    # Per-project detail. Page content is keyed by slug in the top-level `projects` collection (overview / body / gallery / launch). The labels below are the static chrome shared by every project detail surface.
+    # Per-project detail. Page content comes from the project's own MDX file: frontmatter for the metadata, body for the long-form. The labels below are the static chrome shared by every project detail surface.
     page-header:
       eyebrow: 'Projeto'
-      # title and meta resolve from the matching projects entry: title -> name, meta -> "{role} · {launch}"
+      # title and meta resolve from the frontmatter: title -> name, meta -> "{role} · {launch}"
     overview:
-      # text -> entry.overview, meta -> stack used + links (live: entry.link, repo: entry.repo)
+      # text -> frontmatter summary, meta -> stack + link
       meta-label: 'Links'
-    gallery: [] # images -> entry.gallery
-    body: {} # long-form -> entry.body
+    gallery: [] # images -> frontmatter
+    body: {} # long-form -> MDX body
     prev-next:
       prev:
         text: 'Projeto anterior'
       next:
         text: 'Próximo projeto'
-    states:
-      not-found: 'Esse projeto não existe. Volte para os projetos.'
+    # not-found -> content.not-found.paths.projects
     footer: *footer
 
   not-found:
@@ -270,77 +278,16 @@ emails:
     received: 'Recebido em {date}'
     footer: 'Esta é uma notificação automática enviada pelo formulário de contato do site. Responda a este email para falar diretamente com {name}.'
 
-# Projects — draft list only. Each project's data lives in the frontmatter of its own file under `src/content/projects/<locale>/`; there, `featured` is a position that sets the home order.
-projects:
-  - slug: 'charas-beer'
-    name: 'Charas Beer'
-    summary: 'Uma loja online para uma marca de cerveja artesanal.'
-    role: 'Product engineer, UI designer & frontend developer'
-    launch: '12/2026'
-    link: 'https://charasbeer.com.br'
-    repo: null
-    cta: 'Ver projeto'
-    # Detail fields — author per project (see notes):
-    overview: null # TODO: case-study overview paragraph
-    body: null # TODO: long-form case study
-    gallery: [] # TODO: project images (description/url/alt)
-  - slug: 'adeonir-kohl'
-    name: 'Adeonir Kohl'
-    summary: 'Planejei e construí este portfólio com desenvolvimento assistido por IA.'
-    role: 'Product engineer, UI designer & frontend developer'
-    launch: '06/2026'
-    link: 'https://adeonir.dev'
-    repo: null
-    cta: 'Ver projeto'
-    overview: null # TODO
-    body: null # TODO
-    gallery: [] # TODO
-  - slug: 'uira-muller'
-    name: 'Uirá Müller Design'
-    summary: 'Um portfólio apresentando o trabalho de um designer gráfico.'
-    role: 'UI designer & frontend developer'
-    launch: '05/2026'
-    link: 'https://uiramuller.com.br'
-    repo: null
-    cta: 'Ver projeto'
-    overview: null # TODO
-    body: null # TODO
-    gallery: [] # TODO
-  - slug: 'reisenthal'
-    name: 'Reisenthal Turismo'
-    summary: 'Uma agência de viagens com destinos pela Europa, Brasil e além.'
-    role: 'UI designer & frontend developer'
-    launch: '07/2025'
-    link: 'https://reisenthal.com.br'
-    repo: null
-    cta: 'Ver projeto'
-    overview: null # TODO
-    body: null # TODO
-    gallery: [] # TODO
-  - slug: 'atio'
-    name: 'Atio'
-    summary: 'Normas, certificação e treinamento em segurança de alimentos para a indústria.'
-    role: 'UI designer & frontend developer'
-    launch: '02/2024'
-    link: 'https://atio.com.br'
-    repo: null
-    cta: 'Ver projeto'
-    overview: null # TODO
-    body: null # TODO
-    gallery: [] # TODO
-
 notes: |
   Localization: copy.yaml (pt) and copy.en.yaml (en) are localized copy, not
   translation. Each line reads native in its language, so wording may diverge
   between the files on purpose.
 
-  Projects: one top-level `projects` collection (always complete). The work
-  index shows all in order; the landing shows the featured: true ones.
+  Projects: not in this file. Each project lives in its own MDX file under
+  src/content/projects/<locale>/, and its name, summary, stack, launch, link,
+  and featured position come from that file frontmatter.
 
   Still to author (flagged, not invented):
-  - Per-project case-study content: overview, body, gallery (images) are
-    null/empty for all entries.
-  - repo links are null — add if any project is open source.
   - The about timeline (companies, roles, periods) has no key yet.
 
   Design-blind: no colors, fonts, icons, or layout in this file.

@@ -4,6 +4,7 @@ headline:
     highlight: true
   - text: 'that went live'
 body: 'A few projects I helped build over the last years.'
+seeAll: 'See all projects'
 empty:
   - text: "I don't have a featured project published here yet. If you want to know what I'm working on, "
   - text: 'send me a message'

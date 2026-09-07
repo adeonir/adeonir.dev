@@ -1,26 +1,42 @@
 ---
-import { getCollection } from 'astro:content'
+import type { ImageMetadata } from 'astro'
+import { type CollectionEntry, getCollection } from 'astro:content'
 import { getRelativeLocaleUrl } from 'astro:i18n'
 
 import ProjectCard from '~/components/sections/home/card.astro'
 import { buttonVariants } from '~/components/ui/button-variants'
 import { Eyebrow } from '~/components/ui/eyebrow'
+import { cn } from '~/helpers/classnames'
 import { parseLocale } from '~/helpers/content'
+import { assertFeaturedBounds } from '~/helpers/projects'
 import { getLocalizedEntry } from '~/services/localized'
+import IconArrowRight from '~icons/tabler/arrow-right'
 import IconFolder from '~icons/tabler/folder'
+
+type ProjectEntry = CollectionEntry<'projectsContent'>
+
+type FeaturedEntry = ProjectEntry & {
+  data: { featured: number; cover: ImageMetadata }
+}
 
 const locale = parseLocale(Astro.currentLocale)
 const projects = await getLocalizedEntry('homeProjects', locale)
 
-const { eyebrow, headline, body, empty } = projects.data
+const { eyebrow, headline, body, seeAll, empty } = projects.data
 
 const entries = await getCollection('projectsContent', (entry) =>
   entry.id.startsWith(`${locale}/`),
 )
 
+if (entries.length > 0) {
+  assertFeaturedBounds(entries)
+}
+
+const indexHref = getRelativeLocaleUrl(locale, '/projects')
+
 const featured = entries
-  .filter((entry) => entry.data.featured !== undefined)
-  .sort((a, b) => (a.data.featured ?? 0) - (b.data.featured ?? 0))
+  .filter((entry): entry is FeaturedEntry => entry.data.featured !== undefined)
+  .sort((a, b) => a.data.featured - b.data.featured)
   .map((entry) => ({
     ...entry.data,
     href: getRelativeLocaleUrl(
@@ -89,6 +105,25 @@ const featured = entries
                   ),
                 )}
               </p>
+            </div>
+          )
+        }
+        {
+          entries.length > 0 && (
+            <div data-enter="block" class="mt-8 flex justify-end">
+              <a
+                href={indexHref}
+                class={cn(
+                  'group gap-2',
+                  buttonVariants({ variant: 'link', size: 'inline' }),
+                )}
+              >
+                {seeAll}
+                <IconArrowRight
+                  className="size-4 shrink-0 transition-transform duration-200 motion-safe:group-hover:translate-x-1"
+                  aria-hidden="true"
+                />
+              </a>
             </div>
           )
         }
