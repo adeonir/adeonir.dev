@@ -397,7 +397,7 @@ The radius scale is graded, not uniform. The smallest steps are for small inner 
 
 Border width has two levels. The hairline is the default stroke for dividers, card edges, and field borders. The two-pixel border marks the eyebrow pill and the toast, where an edge carries emphasis instead of only separating.
 
-An image holds an aspect ratio near 16:10, is cropped to fill, and takes the card radius. There are no art-directed crops between breakpoints, so the same asset scales. The site avoids decorative imagery, because an image here is content rather than ornament.
+An image holds a 16:9 aspect ratio and takes the card radius. There are no art-directed crops between breakpoints, so the same asset scales. The site avoids decorative imagery, because an image here is content rather than ornament.
 
 Corners are rounded consistently: enough to feel approachable, and little enough to read as precise. Nothing is fully square, and nothing takes the pill radius except a true pill.
 
@@ -415,7 +415,7 @@ Corners are rounded consistently: enough to feel approachable, and little enough
 
 **Distinctive components.** The eyebrow is a pill with a two-pixel blue border, blue text, and no fill. It sets its text in uppercase Geist at the smallest step, one weight above the `label` role and with wider letter-spacing, because a grotesque needs more air in uppercase than the monospace does. It is the one place a small uppercase run is not `label`. Static pink emphasis appears as pink text inside a running line. It is a marker and never a control.
 
-**Project card.** The card itself, not the image inside it, holds a 21:9 aspect ratio at the 1rem radius. The cover image fills that container edge to edge and sits behind the content rather than beside it. A gradient scrim rises from `sunken` at the bottom to transparent, carrying an overline, the project name in `title`, and a truncated summary in `caption`. When the card links out, the whole card lifts an arrow glyph and pushes it right on hover and focus, and the cover image scales up slightly behind the scrim, so the two motions read as one surface responding together. The card takes the shared focus ring on its outer edge, offset from the background.
+**Project card.** The card holds a 16:9 aspect ratio at the 1rem radius, the same ratio as the image inside it. The cover image fills that container edge to edge without being cropped and sits behind the content rather than beside it. A gradient scrim rises from `sunken` at the bottom to transparent, carrying an overline, the project name in `title`, and a truncated summary in `caption`. When the card links out, the whole card lifts an arrow glyph and pushes it right on hover and focus, and the cover image scales up slightly behind the scrim, so the two motions read as one surface responding together. The card takes the shared focus ring on its outer edge, offset from the background.
 
 ## Do's and Don'ts
 

@@ -8,7 +8,7 @@ import { buttonVariants } from '~/components/ui/button-variants'
 import { Eyebrow } from '~/components/ui/eyebrow'
 import { cn } from '~/helpers/classnames'
 import { parseLocale } from '~/helpers/content'
-import { assertFeaturedBounds } from '~/helpers/projects'
+import { assertFeaturedBounds, sortByLaunch } from '~/helpers/projects'
 import { getLocalizedEntry } from '~/services/localized'
 import IconArrowRight from '~icons/tabler/arrow-right'
 import IconFolder from '~icons/tabler/folder'
@@ -16,7 +16,7 @@ import IconFolder from '~icons/tabler/folder'
 type ProjectEntry = CollectionEntry<'projectsContent'>
 
 type FeaturedEntry = ProjectEntry & {
-  data: { featured: number; cover: ImageMetadata }
+  data: { featured: true; cover: ImageMetadata }
 }
 
 const locale = parseLocale(Astro.currentLocale)
@@ -34,16 +34,17 @@ if (entries.length > 0) {
 
 const indexHref = getRelativeLocaleUrl(locale, '/projects')
 
-const featured = entries
-  .filter((entry): entry is FeaturedEntry => entry.data.featured !== undefined)
-  .sort((a, b) => a.data.featured - b.data.featured)
-  .map((entry) => ({
-    ...entry.data,
-    href: getRelativeLocaleUrl(
-      locale,
-      `/projects/${entry.id.slice(locale.length + 1)}`,
-    ),
-  }))
+const featured = sortByLaunch(
+  entries.filter(
+    (entry): entry is FeaturedEntry => entry.data.featured === true,
+  ),
+).map((entry) => ({
+  ...entry.data,
+  href: getRelativeLocaleUrl(
+    locale,
+    `/projects/${entry.id.slice(locale.length + 1)}`,
+  ),
+}))
 ---
 
 <section id="projects" class="pt-16 pb-4 md:pt-20 md:pb-8">
@@ -82,7 +83,7 @@ const featured = entries
           ) : (
             <div
               data-enter="block"
-              class="flex aspect-21/9 flex-col items-center justify-center gap-4 rounded-2xl border border-border bg-card p-6 text-center"
+              class="flex aspect-video flex-col items-center justify-center gap-4 rounded-2xl border border-border bg-card p-6 text-center"
             >
               <IconFolder
                 className="size-7 shrink-0 text-muted-foreground opacity-70"

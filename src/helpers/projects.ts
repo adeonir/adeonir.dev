@@ -4,7 +4,7 @@ export interface ProjectLike {
   data: {
     launch: string
     url?: string
-    featured?: number
+    featured?: boolean
   }
 }
 
@@ -46,9 +46,7 @@ export function getProjectDestination(
 }
 
 export function assertFeaturedBounds(entries: ProjectLike[]): void {
-  const count = entries.filter(
-    (entry) => entry.data.featured !== undefined,
-  ).length
+  const count = entries.filter((entry) => entry.data.featured).length
 
   if (count < MIN_FEATURED || count > MAX_FEATURED) {
     throw new Error(

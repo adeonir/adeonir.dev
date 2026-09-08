@@ -24,7 +24,7 @@ const year = launch.slice(0, 4)
 >
   <article
     data-enter="block"
-    class="relative isolate flex aspect-21/9 overflow-hidden rounded-2xl border border-border"
+    class="relative isolate flex aspect-video overflow-hidden rounded-2xl border border-border"
   >
     <Image
       src={cover}
@@ -33,7 +33,7 @@ const year = launch.slice(0, 4)
       decoding="async"
       widths={[480, 640, 960, 1280]}
       sizes="(min-width: 768px) 640px, calc(100vw - 3rem)"
-      class="absolute inset-0 -z-10 size-full object-cover object-[70%_center] transition-transform duration-500 ease-out motion-safe:group-focus-within:scale-103 motion-safe:group-hover:scale-103"
+      class="absolute inset-0 -z-10 size-full object-cover transition-transform duration-500 ease-out motion-safe:group-focus-within:scale-103 motion-safe:group-hover:scale-103"
     />
     <div
       class="flex h-full w-46/100 flex-col justify-end gap-2 bg-linear-to-t from-sunken to-sunken/50 to-50% p-6 backdrop-blur-sm"

@@ -11,7 +11,7 @@ export const projectsContentSchema = ({ image }: SchemaContext) =>
       stack: z.array(z.string().min(1)).min(1),
       url: z.url().optional(),
       cover: image().optional(),
-      featured: z.number().int().positive().optional(),
+      featured: z.boolean().optional(),
     })
     .refine((entry) => entry.featured === undefined || entry.cover, {
       path: ['cover'],

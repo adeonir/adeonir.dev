@@ -105,16 +105,16 @@ describe('assertFeaturedBounds', () => {
 
   it('accepts one featured entry', () => {
     expect(() =>
-      assertFeaturedBounds([project('a', { featured: 1 }), project('b')]),
+      assertFeaturedBounds([project('a', { featured: true }), project('b')]),
     ).not.toThrow()
   })
 
   it('accepts three featured entries', () => {
     expect(() =>
       assertFeaturedBounds([
-        project('a', { featured: 1 }),
-        project('b', { featured: 2 }),
-        project('c', { featured: 3 }),
+        project('a', { featured: true }),
+        project('b', { featured: true }),
+        project('c', { featured: true }),
       ]),
     ).not.toThrow()
   })
@@ -122,10 +122,10 @@ describe('assertFeaturedBounds', () => {
   it('throws on four featured entries', () => {
     expect(() =>
       assertFeaturedBounds([
-        project('a', { featured: 1 }),
-        project('b', { featured: 2 }),
-        project('c', { featured: 3 }),
-        project('d', { featured: 4 }),
+        project('a', { featured: true }),
+        project('b', { featured: true }),
+        project('c', { featured: true }),
+        project('d', { featured: true }),
       ]),
     ).toThrow(/Featured projects must be between 1 and 3, found 4/)
   })
