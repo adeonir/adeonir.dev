@@ -6,6 +6,8 @@ import { homeExpertiseSchema } from '~/schemas/home/expertise'
 import { homeHeroSchema } from '~/schemas/home/hero'
 import { homeProjectsSchema } from '~/schemas/home/projects'
 import { homeStackSchema } from '~/schemas/home/stack'
+import { projectHeaderSchema } from '~/schemas/project/header'
+import { projectMetaSchema } from '~/schemas/project/meta'
 import { projectsContentSchema } from '~/schemas/projects/content'
 import { projectsHeroSchema } from '~/schemas/projects/hero'
 import { projectsListSchema } from '~/schemas/projects/list'
@@ -167,6 +169,24 @@ const projectsContent = defineCollection({
   schema: projectsContentSchema,
 })
 
+const projectHeader = defineCollection({
+  loader: glob({
+    pattern: '*/header.yaml',
+    base: 'src/content/project',
+    generateId: localeId('projectHeader'),
+  }),
+  schema: projectHeaderSchema,
+})
+
+const projectMeta = defineCollection({
+  loader: glob({
+    pattern: '*/meta.yaml',
+    base: 'src/content/project',
+    generateId: localeId('projectMeta'),
+  }),
+  schema: projectMetaSchema,
+})
+
 const projectsHero = defineCollection({
   loader: glob({
     pattern: '*/hero.yaml',
@@ -202,6 +222,8 @@ export const collections = {
   sharedEmails,
   sharedConsole,
   projectsContent,
+  projectHeader,
+  projectMeta,
   projectsHero,
   projectsList,
 }
