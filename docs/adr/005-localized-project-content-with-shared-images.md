@@ -1,7 +1,7 @@
 ---
 name: 005-localized-project-content-with-shared-images
 date: 2026-09-07
-updated: 2026-09-07
+updated: 2026-09-08
 sources:
   - CONTEXT.md
   - docs/tech/design-doc.md
@@ -12,7 +12,7 @@ sources:
 
 ## Status
 
-Proposed
+Accepted
 
 ## Context
 
