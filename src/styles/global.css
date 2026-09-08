@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @custom-variant light ([data-theme="light"] &);
 @custom-variant reduce-transparency (
@@ -265,6 +266,50 @@
 
   html[data-menu="open"] {
     overflow: hidden;
+  }
+}
+
+.prose {
+  --tw-prose-body: var(--muted-foreground);
+  --tw-prose-headings: var(--foreground);
+  --tw-prose-lead: var(--muted-foreground);
+  --tw-prose-links: var(--primary);
+  --tw-prose-bold: var(--foreground);
+  --tw-prose-counters: var(--muted-foreground);
+  --tw-prose-bullets: var(--border);
+  --tw-prose-hr: var(--border);
+  --tw-prose-quotes: var(--foreground);
+  --tw-prose-quote-borders: var(--border);
+  --tw-prose-captions: var(--muted-foreground);
+  --tw-prose-code: var(--foreground);
+  --tw-prose-pre-code: var(--sunken-foreground);
+  --tw-prose-pre-bg: var(--sunken);
+  --tw-prose-th-borders: var(--border);
+  --tw-prose-td-borders: var(--border);
+
+  h2 {
+    @apply text-heading;
+  }
+
+  h3 {
+    @apply text-title;
+  }
+
+  h4 {
+    @apply text-subtitle;
+  }
+
+  p,
+  li {
+    @apply text-body leading-relaxed;
+  }
+
+  code {
+    @apply text-code;
+  }
+
+  a {
+    @apply font-medium underline underline-offset-4;
   }
 }
 
