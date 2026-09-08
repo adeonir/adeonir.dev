@@ -143,60 +143,60 @@ const projectEntries = {
   pt: [
     {
       id: 'pt/alpha',
-      body: 'Estudo de caso.',
       data: {
         name: 'Alpha',
         summary: 'Um projeto com estudo de caso.',
         launch: '2025-06-01',
+        destination: 'internal',
       },
     },
     {
       id: 'pt/beta',
-      body: '',
       data: {
         name: 'Beta',
         summary: 'Um projeto com site próprio.',
         launch: '2024-02-10',
+        destination: 'external',
         url: 'https://beta.example.com',
       },
     },
     {
       id: 'pt/gama',
-      body: '',
       data: {
         name: 'Gama',
         summary: 'Um projeto fora do ar.',
         launch: '2023-09-20',
+        destination: 'offline',
       },
     },
   ],
   en: [
     {
       id: 'en/alpha',
-      body: 'Case study.',
       data: {
         name: 'Alpha',
         summary: 'A project with a case study.',
         launch: '2025-06-01',
+        destination: 'internal',
       },
     },
     {
       id: 'en/beta',
-      body: '',
       data: {
         name: 'Beta',
         summary: 'A project with its own site.',
         launch: '2024-02-10',
+        destination: 'external',
         url: 'https://beta.example.com',
       },
     },
     {
       id: 'en/gama',
-      body: '',
       data: {
         name: 'Gama',
         summary: 'An offline project.',
         launch: '2023-09-20',
+        destination: 'offline',
       },
     },
   ],

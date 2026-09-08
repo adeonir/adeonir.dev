@@ -79,7 +79,7 @@ const rowGrid = 'md:col-span-4 md:grid md:grid-cols-subgrid md:items-start'
                   </li>
                 ))}
               </ul>
-              {project.destination.kind === 'case-study' && (
+              {project.destination.kind === 'internal' && (
                 <a
                   href={project.destination.href}
                   class={cn(

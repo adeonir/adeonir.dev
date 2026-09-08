@@ -1,15 +1,17 @@
+export type ProjectDestinationKind = 'internal' | 'external' | 'offline'
+
 export interface ProjectLike {
   id: string
-  body?: string
   data: {
     launch: string
+    destination: ProjectDestinationKind
     url?: string
     featured?: boolean
   }
 }
 
 export type ProjectDestination =
-  | { kind: 'case-study'; href: string }
+  | { kind: 'internal'; href: string }
   | { kind: 'external'; href: string; domain: string }
   | { kind: 'offline' }
 
@@ -30,11 +32,11 @@ export function getProjectDestination(
   entry: ProjectLike,
   href: string,
 ): ProjectDestination {
-  if (entry.body?.trim()) {
-    return { kind: 'case-study', href }
+  if (entry.data.destination === 'internal') {
+    return { kind: 'internal', href }
   }
 
-  if (entry.data.url) {
+  if (entry.data.destination === 'external' && entry.data.url) {
     return {
       kind: 'external',
       href: entry.data.url,

@@ -11,9 +11,8 @@ import {
 function project(
   id: string,
   data: Partial<ProjectLike['data']> = {},
-  body?: string,
 ): ProjectLike {
-  return { id, body, data: { launch: '2025-01-01', ...data } }
+  return { id, data: { launch: '2025-01-01', destination: 'offline', ...data } }
 }
 
 describe('sortByLaunch', () => {
@@ -50,27 +49,23 @@ describe('getLaunchYear', () => {
 })
 
 describe('getProjectDestination', () => {
-  it('points at the case study when the entry has a body', () => {
-    const entry = project('pt/one', { url: 'https://one.dev' }, '# One')
+  it('points at the page when the entry is marked internal', () => {
+    const entry = project('pt/one', {
+      destination: 'internal',
+      url: 'https://one.dev',
+    })
 
     expect(getProjectDestination(entry, '/projects/one')).toEqual({
-      kind: 'case-study',
+      kind: 'internal',
       href: '/projects/one',
     })
   })
 
-  it('treats a blank body as no case study', () => {
-    const entry = project('pt/one', { url: 'https://one.dev' }, '\n  \n')
-
-    expect(getProjectDestination(entry, '/projects/one')).toEqual({
-      kind: 'external',
-      href: 'https://one.dev',
-      domain: 'one.dev',
+  it('points at the site when the entry is marked external', () => {
+    const entry = project('pt/one', {
+      destination: 'external',
+      url: 'https://one.dev/work',
     })
-  })
-
-  it('points at the site when the entry has only a url', () => {
-    const entry = project('pt/one', { url: 'https://one.dev/work' })
 
     expect(getProjectDestination(entry, '/projects/one')).toEqual({
       kind: 'external',
@@ -80,7 +75,10 @@ describe('getProjectDestination', () => {
   })
 
   it('strips a leading www from the domain', () => {
-    const entry = project('pt/one', { url: 'https://www.one.dev' })
+    const entry = project('pt/one', {
+      destination: 'external',
+      url: 'https://www.one.dev',
+    })
 
     expect(getProjectDestination(entry, '/projects/one')).toEqual({
       kind: 'external',
@@ -89,7 +87,7 @@ describe('getProjectDestination', () => {
     })
   })
 
-  it('marks the project offline without a body and without a url', () => {
+  it('marks the project offline when it is marked offline', () => {
     expect(getProjectDestination(project('pt/one'), '/projects/one')).toEqual({
       kind: 'offline',
     })
