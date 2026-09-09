@@ -9,9 +9,11 @@ const { entry } = Astro.props
 const { Content } = await render(entry)
 ---
 
-<section class="py-8 md:py-10">
+<section
+  class="bg-linear-to-t from-popover to-transparent bg-size-[auto_24rem] bg-bottom bg-no-repeat py-8 pb-24 md:py-10 md:pb-28"
+>
   <div class="wrapper">
-    <div class="prose">
+    <div class="mx-auto prose">
       <Content />
     </div>
   </div>
