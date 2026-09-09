@@ -7,15 +7,12 @@ import IconArrowRight from '~icons/tabler/arrow-right'
 interface Props {
   name: string
   category: string
-  launch: string
   summary: string
   cover: ImageMetadata
   href: string
 }
 
-const { name, category, launch, summary, cover, href } = Astro.props
-
-const year = launch.slice(0, 4)
+const { name, category, summary, cover, href } = Astro.props
 ---
 
 <a
@@ -43,7 +40,7 @@ const year = launch.slice(0, 4)
         aria-hidden="true"
       />
       <p class="font-mono text-xs tracking-widest text-foreground uppercase">
-        {category} · {year}
+        {category}
       </p>
       <h3 class="text-title font-bold text-pretty text-foreground">{name}</h3>
       <p class="line-clamp-2 text-caption text-pretty text-muted-foreground/80">
