@@ -1,0 +1,88 @@
+---
+import { getCollection } from 'astro:content'
+import { getRelativeLocaleUrl } from 'astro:i18n'
+
+import { buttonVariants } from '~/components/ui/button-variants'
+import { cn } from '~/helpers/classnames'
+import { parseLocale } from '~/helpers/content'
+import { sortByLaunch } from '~/helpers/projects'
+import { getLocalizedEntry } from '~/services/localized'
+import IconArrowLeft from '~icons/tabler/arrow-left'
+import IconArrowRight from '~icons/tabler/arrow-right'
+
+interface Props {
+  slug: string
+}
+
+const { slug } = Astro.props
+
+const locale = parseLocale(Astro.currentLocale)
+const nav = await getLocalizedEntry('projectNav', locale)
+
+const entries = await getCollection('projectsContent', (entry) =>
+  entry.id.startsWith(`${locale}/`),
+)
+
+const ordered = sortByLaunch(entries)
+const current = ordered.findIndex((entry) => entry.id === `${locale}/${slug}`)
+
+const previous = ordered[current - 1]
+const next = ordered[current + 1]
+
+function hrefFor(id: string) {
+  return getRelativeLocaleUrl(
+    locale,
+    `/projects/${id.slice(locale.length + 1)}`,
+  )
+}
+
+const linkClass = cn(
+  'group flex max-w-1/2 flex-col gap-1',
+  buttonVariants({ variant: 'link', size: 'inline' }),
+)
+---
+
+{
+  (previous || next) && (
+    <nav class="pb-24 md:pb-28">
+      <div class="wrapper">
+        <div class="mx-auto flex w-full max-w-2xl flex-col">
+          <div class="flex items-start justify-between gap-8">
+            {previous ? (
+              <a
+                href={hrefFor(previous.id)}
+                class={cn(linkClass, 'items-start text-left')}
+              >
+                <span class="flex items-center gap-2 text-caption text-muted-foreground">
+                  <IconArrowLeft
+                    className="size-4 shrink-0 transition-transform duration-200 motion-safe:group-hover:-translate-x-1"
+                    aria-hidden="true"
+                  />
+                  {nav.data.previous}
+                </span>
+                <span class="text-body text-pretty">{previous.data.name}</span>
+              </a>
+            ) : (
+              <span />
+            )}
+            {next && (
+              <a
+                href={hrefFor(next.id)}
+                class={cn(linkClass, 'items-end text-right')}
+              >
+                <span class="flex items-center gap-2 text-caption text-muted-foreground">
+                  {nav.data.next}
+                  <IconArrowRight
+                    className="size-4 shrink-0 transition-transform duration-200 motion-safe:group-hover:translate-x-1"
+                    aria-hidden="true"
+                  />
+                </span>
+                <span class="text-body text-pretty">{next.data.name}</span>
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    </nav>
+  )
+}

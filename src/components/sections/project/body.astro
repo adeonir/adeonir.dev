@@ -9,9 +9,7 @@ const { entry } = Astro.props
 const { Content } = await render(entry)
 ---
 
-<section
-  class="bg-linear-to-t from-popover to-transparent bg-size-[auto_24rem] bg-bottom bg-no-repeat pt-16 pb-24 md:pb-28"
->
+<section class="pt-16">
   <div class="wrapper">
     <div class="prose max-w-none">
       <Content />

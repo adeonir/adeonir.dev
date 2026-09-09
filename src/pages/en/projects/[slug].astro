@@ -4,6 +4,7 @@ import { type CollectionEntry, getCollection } from 'astro:content'
 import Body from '~/components/sections/project/body.astro'
 import Header from '~/components/sections/project/header.astro'
 import Meta from '~/components/sections/project/meta.astro'
+import Nav from '~/components/sections/project/nav.astro'
 import { Divider } from '~/components/ui/divider'
 import Layout from '~/layouts/base.astro'
 
@@ -38,7 +39,9 @@ const {
 ---
 
 <Layout title={name} description={summary} shell>
-  <article>
+  <article
+    class="bg-linear-to-t from-popover to-transparent bg-size-[auto_24rem] bg-bottom bg-no-repeat"
+  >
     <Header
       kind={kind}
       category={category}
@@ -50,5 +53,7 @@ const {
     <Divider className="mx-auto my-8 flex w-full max-w-2xl md:my-16" />
     <Meta launch={launch} role={role} type={type} stack={stack} />
     <Body entry={entry} />
+    <Divider className="mx-auto my-8 flex w-full max-w-2xl md:my-16" />
+    <Nav slug={entry.id.slice('en/'.length)} />
   </article>
 </Layout>

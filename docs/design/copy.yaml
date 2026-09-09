@@ -227,6 +227,9 @@ content:
       stack: 'Stack'
       link: 'Link'
     body: {}
+    nav:
+      previous: 'Projeto anterior'
+      next: 'Próximo projeto'
     # not-found -> content.not-found.paths.projects
     footer: *footer
 
