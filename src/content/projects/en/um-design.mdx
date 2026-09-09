@@ -1,0 +1,27 @@
+---
+name: 'UM Design'
+kind: 'Project'
+category: 'Portfolio'
+summary: 'Portfolio of a graphic designer who specializes in packaging design, rebuilt as a lightweight site that is easy to update.'
+launch: '2026-05-01'
+role: 'UI design and frontend development'
+destination: 'internal'
+stack:
+  - 'Astro'
+  - 'React'
+  - 'TypeScript'
+  - 'Tailwind CSS'
+  - 'Zod'
+  - 'Bun'
+  - 'Cloudflare'
+url: 'https://uiramuller.com.br'
+cover: '../../../assets/projects/um-design/cover.png'
+---
+
+## The context
+
+### A heavy site with little control over the result
+
+Uirá's site was built in Mobirise, a visual website builder. The result was heavy, hard to update, and left little control over the code, the design, and the performance. I rebuilt the site as a single static page in Astro, with a few parts in React.
+
+Content lives in structured YAML, and Zod validates that content at build time. As a result, the site needs no CMS, no database, and no backend. It loads fast and sends visitors straight to WhatsApp. I can update the content with a simple commit. It also collects no personal data.
