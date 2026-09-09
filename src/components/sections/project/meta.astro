@@ -1,0 +1,89 @@
+---
+import { parseLocale } from '~/helpers/content'
+import { formatLaunch } from '~/helpers/projects'
+import { getLocalizedEntry } from '~/services/localized'
+import IconArrowUpRight from '~icons/tabler/arrow-up-right'
+
+interface Props {
+  launch: string
+  role: string
+  stack: string[]
+  url?: string
+}
+
+const { launch, role, stack, url } = Astro.props
+
+const locale = parseLocale(Astro.currentLocale)
+const meta = await getLocalizedEntry('projectMeta', locale)
+
+const labels = meta.data
+const launchLabel = formatLaunch(launch, locale)
+const domain = url ? new URL(url).hostname.replace(/^www\./, '') : undefined
+
+const tableGrid = 'md:grid md:grid-cols-[1fr_1fr_1.5fr_auto] md:gap-x-6'
+const rowGrid = 'md:col-span-4 md:grid md:grid-cols-subgrid md:items-start'
+---
+
+<section class="py-8 md:py-10">
+  <div class="wrapper">
+    <div class={`flex flex-col gap-6 md:gap-0 ${tableGrid}`}>
+      <div
+        class={`hidden border-b border-border pb-3 text-label text-muted-foreground ${rowGrid}`}
+      >
+        <span>{labels.launch}</span>
+        <span>{labels.role}</span>
+        <span>{labels.stack}</span>
+        <span>{labels.link}</span>
+      </div>
+      <div class={`flex flex-col gap-6 md:pt-6 ${rowGrid}`}>
+        <div class="flex flex-col gap-1 md:contents">
+          <span class="text-label text-muted-foreground md:hidden">
+            {labels.launch}
+          </span>
+          <span class="text-caption text-foreground">{launchLabel}</span>
+        </div>
+        <div class="flex flex-col gap-1 md:contents">
+          <span class="text-label text-muted-foreground md:hidden">
+            {labels.role}
+          </span>
+          <span class="text-caption text-pretty text-foreground">{role}</span>
+        </div>
+        <div class="flex flex-col gap-1 md:contents">
+          <span class="text-label text-muted-foreground md:hidden">
+            {labels.stack}
+          </span>
+          <ul class="flex flex-wrap gap-2">
+            {
+              stack.map((item) => (
+                <li class="rounded-full bg-muted px-3 py-1 font-mono text-xs text-muted-foreground">
+                  {item}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        {
+          url && (
+            <div class="flex flex-col gap-1 md:contents">
+              <span class="text-label text-muted-foreground md:hidden">
+                {labels.link}
+              </span>
+              <a
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group flex size-fit items-center gap-1.5 font-mono text-xs text-primary"
+              >
+                {domain}
+                <IconArrowUpRight
+                  className="size-4 shrink-0 transition-transform duration-200 motion-safe:group-hover:-translate-y-0.5"
+                  aria-hidden="true"
+                />
+              </a>
+            </div>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</section>
