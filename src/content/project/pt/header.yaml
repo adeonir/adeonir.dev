@@ -1,1 +1,4 @@
 back: 'Todos os projetos'
+links:
+  site: 'Visitar projeto'
+  repository: 'Ver repositório'
