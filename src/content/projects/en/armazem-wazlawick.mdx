@@ -27,7 +27,7 @@ import cover from '~/assets/projects/armazem-wazlawick/cover.jpg'
   alt=""
   widths={[640, 960, 1280, 1792]}
   sizes="(min-width: 64rem) 56rem, calc(100vw - 3rem)"
-  class="mx-auto my-16 aspect-video w-full max-w-4xl rounded-2xl border border-border object-cover"
+  class="mx-auto aspect-video w-full max-w-4xl rounded-2xl border border-border object-cover shadow-xl"
 />
 
 <div class="mx-auto max-w-2xl">
@@ -36,6 +36,6 @@ import cover from '~/assets/projects/armazem-wazlawick/cover.jpg'
 
 The restaurant published its menu as a single image. On phones, where most visits come from, the text was hard to read. Search engines could not index the content either. I built the menu as structured text in YAML. Zod validates that content at build time, and Astro generates the pages.
 
-The owner edits the menu in Airtable and publishes it through an authenticated route, protected by Cloudflare Access. The route writes a validated copy to Cloudflare KV, and the site reads the menu from there. Today the menu is easy to read on a phone and shows up in search results. The owner updates the content without having to learn a CMS.
+The owner edits the menu in Airtable and publishes it through an authenticated route, protected by Cloudflare Access. The route writes a validated copy to Cloudflare KV, and the site reads the information from there. Today the menu is easy to read on a phone, shows up in search results, and the owner updates the content without a developer's help.
 
 </div>

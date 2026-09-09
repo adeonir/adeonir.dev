@@ -27,7 +27,7 @@ import cover from '~/assets/projects/armazem-wazlawick/cover.jpg'
   alt=""
   widths={[640, 960, 1280, 1792]}
   sizes="(min-width: 64rem) 56rem, calc(100vw - 3rem)"
-  class="mx-auto my-16 aspect-video w-full max-w-4xl rounded-2xl border border-border object-cover"
+  class="mx-auto aspect-video w-full max-w-4xl rounded-2xl border border-border object-cover shadow-xl"
 />
 
 <div class="mx-auto max-w-2xl">
@@ -36,6 +36,6 @@ import cover from '~/assets/projects/armazem-wazlawick/cover.jpg'
 
 O restaurante publicava o cardápio como uma única imagem. No celular, de onde vem a maior parte das visitas, o texto ficava difícil de ler. E o Google não conseguia indexar o conteúdo. Construí o cardápio como texto estruturado em YAML. O Zod valida esse conteúdo durante o build, e o Astro gera as páginas.
 
-O dono edita o cardápio no Airtable e publica por uma rota autenticada, protegida pelo Cloudflare Access. Essa rota grava uma cópia validada no Cloudflare KV, e o site lê o cardápio dessa cópia. Hoje o cardápio é fácil de ler no celular e aparece no Google. O dono atualiza o conteúdo sem precisar aprender um CMS.
+O dono edita o cardápio no Airtable e publica por uma rota autenticada, protegida pelo Cloudflare Access. Essa rota grava uma cópia validada no Cloudflare KV, e o site lê as informações dessa cópia. Hoje o cardápio é fácil de ler no celular, aparece no Google e o dono atualiza o conteúdo sem depender de desenvolvedor.
 
 </div>
