@@ -1,0 +1,32 @@
+---
+name: 'Reisenthal Turismo'
+kind: 'Projeto'
+category: 'Site institucional e vitrine de viagens'
+summary: 'Site de uma agência de viagens, migrado de um WordPress tradicional para uma arquitetura headless com páginas pré-renderizadas.'
+launch: '2025-09-01'
+role: 'Design de interface e frontend'
+destination: 'internal'
+stack:
+  - 'Next.js'
+  - 'React'
+  - 'TypeScript'
+  - 'Tailwind CSS'
+  - 'WordPress'
+  - 'GraphQL'
+  - 'React Query'
+  - 'Algolia'
+  - 'ImageKit'
+  - 'Vercel'
+  - 'Cloudflare'
+url: 'https://reisenthal.com.br'
+cover: '../../../assets/projects/reisenthal-turismo/cover.png'
+featured: true
+---
+
+## O contexto
+
+### Um servidor WordPress lento demais para o próprio site
+
+A agência usava um tema tradicional de WordPress. Cada página era montada no servidor a cada acesso. A busca era lenta, mesmo com cache. Qualquer mudança no frontend exigia mexer na estrutura do conteúdo. Movi o site para uma arquitetura headless. O WordPress continua como CMS, atrás de uma API GraphQL, e as páginas são pré-renderizadas no build e regeneradas sob demanda. A busca passou para a Algolia, com filtros por categoria, e as imagens passaram para o proxy da ImageKit.
+
+O servidor do WordPress era tão lento que a regeneração sob demanda das páginas falhava. Por isso a API GraphQL fica atrás de um proxy na Cloudflare, que responde a partir do cache. As páginas carregam 50% mais rápido no Lighthouse, e a busca na Algolia responde em menos de 100 ms. Todas as URLs continuaram válidas depois da migração, e o time de marketing publica conteúdo sem depender de desenvolvedor.

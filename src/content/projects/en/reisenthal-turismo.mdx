@@ -1,0 +1,32 @@
+---
+name: 'Reisenthal Turismo'
+kind: 'Project'
+category: 'Company website with a travel showcase'
+summary: 'Travel agency website, moved from a traditional WordPress theme to a headless architecture with pre-rendered pages.'
+launch: '2025-09-01'
+role: 'UI design and frontend development'
+destination: 'internal'
+stack:
+  - 'Next.js'
+  - 'React'
+  - 'TypeScript'
+  - 'Tailwind CSS'
+  - 'WordPress'
+  - 'GraphQL'
+  - 'React Query'
+  - 'Algolia'
+  - 'ImageKit'
+  - 'Vercel'
+  - 'Cloudflare'
+url: 'https://reisenthal.com.br'
+cover: '../../../assets/projects/reisenthal-turismo/cover.png'
+featured: true
+---
+
+## The context
+
+### A WordPress server too slow for its own site
+
+The agency ran a traditional WordPress theme. Every page was rendered on the server on each request. Search was slow, even with a cache. Any frontend change meant touching the content infrastructure. I moved the site to a headless architecture. WordPress stays as the CMS behind a GraphQL API, and pages are pre-rendered at build time and regenerated on demand. Search moved to Algolia, with faceted filters, and images moved to the ImageKit proxy.
+
+The WordPress server was so slow that on-demand page regeneration failed. For that reason, the GraphQL API sits behind a Cloudflare proxy that serves responses from cache. Pages load 50% faster in Lighthouse, and Algolia search responds in under 100 ms. Every URL stayed valid after the migration, and the marketing team publishes content without a developer's help.
