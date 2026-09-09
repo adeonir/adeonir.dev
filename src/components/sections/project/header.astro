@@ -1,0 +1,57 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n'
+
+import { buttonVariants } from '~/components/ui/button-variants'
+import { cn } from '~/helpers/classnames'
+import { parseLocale } from '~/helpers/content'
+import { getLocalizedEntry } from '~/services/localized'
+import IconArrowLeft from '~icons/tabler/arrow-left'
+
+interface Props {
+  kind: string
+  category: string
+  name: string
+  summary: string
+}
+
+const { kind, category, name, summary } = Astro.props
+
+const locale = parseLocale(Astro.currentLocale)
+const header = await getLocalizedEntry('projectHeader', locale)
+
+const { back } = header.data
+const indexHref = getRelativeLocaleUrl(locale, '/projects')
+---
+
+<header class="pt-16 pb-4 md:pt-20 md:pb-8">
+  <div class="wrapper flex flex-col gap-16">
+    <a
+      href={indexHref}
+      class={cn(
+        'group size-fit gap-2',
+        buttonVariants({ variant: 'link', size: 'inline' }),
+      )}
+    >
+      <IconArrowLeft
+        className="size-4 shrink-0 transition-transform duration-200 motion-safe:group-hover:-translate-x-1"
+        aria-hidden="true"
+      />
+      {back}
+    </a>
+    <div class="flex flex-col gap-6">
+      <p class="text-label text-muted-foreground">{kind} · {category}</p>
+      <div
+        class="grid grid-cols-1 gap-6 md:grid-cols-5 md:items-baseline md:gap-12"
+      >
+        <h1 class="text-display text-pretty text-secondary md:col-span-2">
+          {name}
+        </h1>
+        <p
+          class="text-body leading-relaxed text-pretty text-muted-foreground md:col-span-3"
+        >
+          {summary}
+        </p>
+      </div>
+    </div>
+  </div>
+</header>
