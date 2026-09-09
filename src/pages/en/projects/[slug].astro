@@ -1,6 +1,9 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content'
 
+import Body from '~/components/sections/project/body.astro'
+import Header from '~/components/sections/project/header.astro'
+import Meta from '~/components/sections/project/meta.astro'
 import Layout from '~/layouts/base.astro'
 
 interface Props {
@@ -19,16 +22,13 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props
-const { name, summary } = entry.data
+const { name, kind, category, summary, launch, role, stack, url } = entry.data
 ---
 
 <Layout title={name} description={summary} shell>
-  <section class="pt-16 pb-4 md:pt-20 md:pb-8">
-    <div class="wrapper flex flex-col gap-6">
-      <h1 class="text-display text-pretty text-foreground">{name}</h1>
-      <p class="text-body leading-relaxed text-pretty text-muted-foreground">
-        {summary}
-      </p>
-    </div>
-  </section>
+  <article>
+    <Header kind={kind} category={category} name={name} summary={summary} />
+    <Meta launch={launch} role={role} stack={stack} url={url} />
+    <Body entry={entry} />
+  </article>
 </Layout>
