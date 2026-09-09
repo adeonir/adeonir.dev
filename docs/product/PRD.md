@@ -1,7 +1,7 @@
 ---
 name: adeonir-dev-portfolio
 created: 2026-06-06
-updated: 2026-09-06
+updated: 2026-09-09
 status: ready
 sources: []
 ---
@@ -140,6 +140,7 @@ Separately, lightweight privacy-respecting analytics collect usage statistics (w
 | ID | Requirement | Notes |
 | --- | --- | --- |
 | FR-10 | Previous / next navigation between projects | Keeps visitors moving through the work |
+| FR-13 | An illustrated character of Adeonir at the end of every page and on the not-found page | Reinforces the personal, casual register |
 
 ### Won't Have
 
@@ -156,6 +157,7 @@ Separately, lightweight privacy-respecting analytics collect usage statistics (w
 | BR-1 | The primary action across the landing is to view the work; contact is secondary | Landing, navigation |
 | BR-2 | Every project shown carries a summary in place; a project with a case study routes to its detail surface, a project with only a live site links out to it, and a project with neither is listed as offline | Work index, curated selection |
 | BR-3 | Contact must offer at least one direct channel in addition to the form | Contact surface |
+| BR-4 | The end-of-page character follows the time of day: coffee between 9:00 and 18:00, beer outside that window | End of page |
 
 ## 8. Edge Cases
 
