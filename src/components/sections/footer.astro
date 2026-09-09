@@ -1,6 +1,9 @@
 ---
+import { Image } from 'astro:assets'
 import { getRelativeLocaleUrl } from 'astro:i18n'
 
+import drinkingBeer from '~/assets/characters/drinking-beer.png'
+import drinkingCoffee from '~/assets/characters/drinking-coffee.png'
 import { FooterSignoff } from '~/components/islands/footer-signoff'
 import Logo from '~/components/logo.astro'
 import { parseLocale } from '~/helpers/content'
@@ -30,6 +33,27 @@ const { brand, signoff } = footer.data
         </p>
       </div>
       <FooterSignoff segments={signoff} client:visible />
+      <Image
+        src={drinkingCoffee}
+        alt=""
+        loading="lazy"
+        decoding="async"
+        widths={[224, 448]}
+        sizes="(min-width: 768px) 224px, 112px"
+        class="h-28 w-auto md:h-56"
+        data-character="coffee"
+      />
+      <Image
+        src={drinkingBeer}
+        alt=""
+        loading="lazy"
+        decoding="async"
+        widths={[224, 448]}
+        sizes="(min-width: 768px) 224px, 112px"
+        class="h-28 w-auto md:h-56"
+        data-character="beer"
+        hidden
+      />
     </div>
   </div>
 </footer>
