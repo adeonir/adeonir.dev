@@ -1,0 +1,27 @@
+---
+name: 'Armazém Wazlawick'
+kind: 'Project'
+category: 'Restaurant website with an online menu'
+summary: 'Restaurant website with an online menu. The menu was a single image and is now structured text that is easy to read on a phone.'
+launch: '2026-07-01'
+role: 'UI design and frontend development'
+destination: 'internal'
+stack:
+  - 'Astro'
+  - 'Tailwind CSS'
+  - 'Bun'
+  - 'Zod'
+  - 'Airtable'
+  - 'Cloudflare'
+url: 'https://armazemwazlawick.com.br'
+cover: '../../../assets/projects/armazem-wazlawick/cover.png'
+featured: true
+---
+
+## The context
+
+### A menu that was hard to read on a phone
+
+The restaurant published its menu as a single image. On phones, where most visits come from, the text was hard to read. Search engines could not index the content either. I built the menu as structured text in YAML. Zod validates that content at build time, and Astro generates the pages.
+
+The owner edits the menu in Airtable and publishes it through an authenticated route, protected by Cloudflare Access. The route writes a validated copy to Cloudflare KV, and the site reads the menu from there. Today the menu is easy to read on a phone and shows up in search results. The owner updates the content without having to learn a CMS.
