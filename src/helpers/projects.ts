@@ -33,6 +33,25 @@ export function getLaunchYear(launch: string): string {
   return launch.slice(0, 4)
 }
 
+export function groupByYear<TProject extends { year: string }>(
+  projects: TProject[],
+): { year: string; projects: TProject[] }[] {
+  return projects.reduce<{ year: string; projects: TProject[] }[]>(
+    (groups, project) => {
+      const current = groups.at(-1)
+
+      if (current?.year === project.year) {
+        current.projects.push(project)
+        return groups
+      }
+
+      groups.push({ year: project.year, projects: [project] })
+      return groups
+    },
+    [],
+  )
+}
+
 export function formatLaunch(launch: string, locale: Locale): string {
   const [year, month] = launch.split('-')
   const date = new Date(Number(year), Number(month) - 1, 1)

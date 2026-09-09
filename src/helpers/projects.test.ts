@@ -5,6 +5,7 @@ import {
   formatLaunch,
   getLaunchYear,
   getProjectDestination,
+  groupByYear,
   type ProjectLike,
   sortByLaunch,
 } from '~/helpers/projects'
@@ -46,6 +47,25 @@ describe('sortByLaunch', () => {
 describe('getLaunchYear', () => {
   it('reads the year from the launch date', () => {
     expect(getLaunchYear('2024-06-10')).toBe('2024')
+  })
+})
+
+describe('groupByYear', () => {
+  it('groups consecutive projects that share a year', () => {
+    const projects = [
+      { year: '2026', name: 'a' },
+      { year: '2026', name: 'b' },
+      { year: '2025', name: 'c' },
+    ]
+
+    expect(groupByYear(projects)).toEqual([
+      { year: '2026', projects: [projects[0], projects[1]] },
+      { year: '2025', projects: [projects[2]] },
+    ])
+  })
+
+  it('returns no groups for an empty list', () => {
+    expect(groupByYear([])).toEqual([])
   })
 })
 
