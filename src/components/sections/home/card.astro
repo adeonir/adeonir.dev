@@ -33,18 +33,16 @@ const year = launch.slice(0, 4)
       decoding="async"
       widths={[480, 640, 960, 1280]}
       sizes="(min-width: 768px) 640px, calc(100vw - 3rem)"
-      class="absolute inset-0 -z-10 size-full object-cover transition-transform duration-500 ease-out motion-safe:group-focus-within:scale-103 motion-safe:group-hover:scale-103"
+      class="absolute inset-0 object-cover transition-transform duration-500 ease-out motion-safe:group-focus-within:scale-103 motion-safe:group-hover:scale-103"
     />
     <div
-      class="flex h-full w-46/100 flex-col justify-end gap-2 bg-linear-to-t from-sunken to-sunken/50 to-50% p-6 backdrop-blur-sm"
+      class="ml-auto flex h-full w-46/100 flex-col justify-end gap-2 bg-linear-to-t from-sunken to-sunken/50 to-50% p-6 backdrop-blur-sm"
     >
       <IconArrowRight
-        className="absolute top-6 right-6 size-5 text-foreground transition-[color,transform,translate] duration-200 group-hover:text-primary motion-safe:group-focus-within:translate-x-1 motion-safe:group-hover:translate-x-2"
+        className="absolute top-6 right-6 size-5 text-foreground transition-[color,transform,translate] duration-200 motion-safe:group-focus-within:translate-x-1 motion-safe:group-hover:translate-x-2"
         aria-hidden="true"
       />
-      <p
-        class="font-mono text-xs tracking-widest text-muted-foreground uppercase"
-      >
+      <p class="font-mono text-xs tracking-widest text-foreground uppercase">
         {category} · {year}
       </p>
       <h3 class="text-title font-bold text-pretty text-foreground">{name}</h3>
