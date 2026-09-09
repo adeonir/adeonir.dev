@@ -6,49 +6,80 @@ import { cn } from '~/helpers/classnames'
 import { parseLocale } from '~/helpers/content'
 import { getLocalizedEntry } from '~/services/localized'
 import IconArrowLeft from '~icons/tabler/arrow-left'
+import IconArrowUpRight from '~icons/tabler/arrow-up-right'
 
 interface Props {
   kind: string
   category: string
   name: string
   summary: string
+  url?: string
+  repository?: string
 }
 
-const { kind, category, name, summary } = Astro.props
+const { kind, category, name, summary, url, repository } = Astro.props
 
 const locale = parseLocale(Astro.currentLocale)
 const header = await getLocalizedEntry('projectHeader', locale)
 
-const { back } = header.data
+const { back, links } = header.data
 const indexHref = getRelativeLocaleUrl(locale, '/projects')
+
+const actions = [
+  { href: url, label: links.site },
+  { href: repository, label: links.repository },
+].filter((action): action is { href: string; label: string } =>
+  Boolean(action.href),
+)
+
+const actionClass = cn(
+  'group size-fit gap-2 text-button',
+  buttonVariants({ variant: 'link', size: 'inline' }),
+)
 ---
 
-<header class="py-8 md:py-16">
-  <div class="wrapper flex flex-col gap-16">
-    <a
-      href={indexHref}
-      class={cn(
-        'group size-fit gap-2',
-        buttonVariants({ variant: 'link', size: 'inline' }),
-      )}
-    >
-      <IconArrowLeft
-        className="size-4 shrink-0 transition-transform duration-200 motion-safe:group-hover:-translate-x-1"
-        aria-hidden="true"
-      />
-      {back}
-    </a>
-    <div class="flex flex-col gap-8">
-      <p class="text-label text-muted-foreground">{kind} · {category}</p>
-      <div class="grid grid-cols-1 gap-6 md:grid-cols-5 md:items-end md:gap-12">
-        <h1 class="text-display text-pretty text-foreground md:col-span-2">
-          {name}
-        </h1>
-        <p
-          class="text-body leading-relaxed text-pretty text-muted-foreground md:col-span-3"
-        >
+<header class="pt-8 md:pt-16">
+  <div class="wrapper">
+    <div class="mx-auto flex w-full max-w-2xl flex-col gap-16">
+      <a
+        href={indexHref}
+        class={cn(
+          'group size-fit gap-2',
+          buttonVariants({ variant: 'link', size: 'inline' }),
+        )}
+      >
+        <IconArrowLeft
+          className="size-4 shrink-0 transition-transform duration-200 motion-safe:group-hover:-translate-x-1"
+          aria-hidden="true"
+        />
+        {back}
+      </a>
+      <div class="flex flex-col gap-6">
+        <p class="text-label text-muted-foreground">{category} · {kind}</p>
+        <h1 class="text-display text-pretty text-foreground">{name}</h1>
+        <p class="text-body leading-relaxed text-pretty text-muted-foreground">
           {summary}
         </p>
+        {
+          actions.length > 0 && (
+            <div class="mt-2 flex flex-wrap gap-6">
+              {actions.map((action) => (
+                <a
+                  href={action.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class={actionClass}
+                >
+                  {action.label}
+                  <IconArrowUpRight
+                    className="size-5 shrink-0 transition-transform duration-200 motion-safe:group-hover:-translate-y-0.5"
+                    aria-hidden="true"
+                  />
+                </a>
+              ))}
+            </div>
+          )
+        }
       </div>
     </div>
   </div>

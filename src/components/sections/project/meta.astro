@@ -1,93 +1,59 @@
 ---
-import { buttonVariants } from '~/components/ui/button-variants'
-import { cn } from '~/helpers/classnames'
+import { Tag } from '~/components/ui/tag'
 import { parseLocale } from '~/helpers/content'
 import { formatLaunch } from '~/helpers/projects'
 import { getLocalizedEntry } from '~/services/localized'
-import IconArrowUpRight from '~icons/tabler/arrow-up-right'
 
 interface Props {
   launch: string
   role: string
+  type?: string
   stack: string[]
-  url?: string
 }
 
-const { launch, role, stack, url } = Astro.props
+const { launch, role, type, stack } = Astro.props
 
 const locale = parseLocale(Astro.currentLocale)
 const meta = await getLocalizedEntry('projectMeta', locale)
 
 const labels = meta.data
 const launchLabel = formatLaunch(launch, locale)
-const domain = url ? new URL(url).hostname.replace(/^www\./, '') : undefined
 
-const tableGrid = 'md:grid md:grid-cols-[1fr_1fr_1.5fr_auto] md:gap-x-6'
-const rowGrid = 'md:col-span-4 md:grid md:grid-cols-subgrid md:items-start'
+const columns = [
+  { label: labels.launch, value: launchLabel },
+  { label: labels.role, value: role },
+  ...(type ? [{ label: labels.type, value: type }] : []),
+]
 ---
 
-<section class="py-8">
+<section>
   <div class="wrapper">
-    <div class={`flex flex-col gap-6 md:gap-0 ${tableGrid}`}>
-      <div
-        class={`hidden border-b border-border pb-3 text-label text-muted-foreground ${rowGrid}`}
-      >
-        <span>{labels.launch}</span>
-        <span>{labels.role}</span>
-        <span>{labels.stack}</span>
-        <span>{labels.link}</span>
-      </div>
-      <div class={`flex flex-col gap-6 md:pt-6 ${rowGrid}`}>
-        <div class="flex flex-col gap-1 md:contents">
-          <span class="text-label text-muted-foreground md:hidden">
-            {labels.launch}
-          </span>
-          <span class="text-sm text-foreground">{launchLabel}</span>
-        </div>
-        <div class="flex flex-col gap-1 md:contents">
-          <span class="text-label text-muted-foreground md:hidden">
-            {labels.role}
-          </span>
-          <span class="text-body text-pretty text-foreground">{role}</span>
-        </div>
-        <div class="flex flex-col gap-1 md:contents">
-          <span class="text-label text-muted-foreground md:hidden">
-            {labels.stack}
-          </span>
-          <ul class="flex flex-wrap gap-2">
-            {
-              stack.map((item) => (
-                <li class="rounded-full bg-muted px-3 py-1 font-mono text-xs text-muted-foreground">
-                  {item}
-                </li>
-              ))
-            }
-          </ul>
-        </div>
+    <div class="mx-auto flex w-full max-w-2xl flex-col gap-8">
+      <div class="flex flex-col gap-8 md:flex-row md:flex-wrap md:gap-16">
         {
-          url && (
-            <div class="flex flex-col gap-1 md:contents">
-              <span class="text-label text-muted-foreground md:hidden">
-                {labels.link}
+          columns.map((column) => (
+            <div class="flex flex-col gap-2">
+              <span class="text-caption text-muted-foreground">
+                {column.label}
               </span>
-              <a
-                href={url}
-                target="_blank"
-                rel="noopener noreferrer"
-                class={cn(
-                  'group size-fit gap-2',
-                  buttonVariants({ variant: 'link', size: 'inline' }),
-                )}
-              >
-                {domain}
-                <IconArrowUpRight
-                  className="size-4 shrink-0 transition-transform duration-200 motion-safe:group-hover:-translate-y-0.5"
-                  aria-hidden="true"
-                />
-              </a>
+              <span class="text-body text-pretty text-foreground">
+                {column.value}
+              </span>
             </div>
-          )
+          ))
         }
+      </div>
+      <div class="flex flex-col gap-4">
+        <span class="text-caption text-muted-foreground">{labels.stack}</span>
+        <ul class="flex flex-wrap gap-2">
+          {
+            stack.map((item) => (
+              <li>
+                <Tag>{item}</Tag>
+              </li>
+            ))
+          }
+        </ul>
       </div>
     </div>
   </div>

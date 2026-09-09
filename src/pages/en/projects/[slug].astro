@@ -4,6 +4,7 @@ import { type CollectionEntry, getCollection } from 'astro:content'
 import Body from '~/components/sections/project/body.astro'
 import Header from '~/components/sections/project/header.astro'
 import Meta from '~/components/sections/project/meta.astro'
+import { Divider } from '~/components/ui/divider'
 import Layout from '~/layouts/base.astro'
 
 interface Props {
@@ -22,13 +23,32 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props
-const { name, kind, category, summary, launch, role, stack, url } = entry.data
+const {
+  name,
+  kind,
+  category,
+  type,
+  summary,
+  launch,
+  role,
+  stack,
+  url,
+  repository,
+} = entry.data
 ---
 
 <Layout title={name} description={summary} shell>
   <article>
-    <Header kind={kind} category={category} name={name} summary={summary} />
-    <Meta launch={launch} role={role} stack={stack} url={url} />
+    <Header
+      kind={kind}
+      category={category}
+      name={name}
+      summary={summary}
+      url={url}
+      repository={repository}
+    />
+    <Divider className="mx-auto my-8 flex w-full max-w-2xl md:my-16" />
+    <Meta launch={launch} role={role} type={type} stack={stack} />
     <Body entry={entry} />
   </article>
 </Layout>
