@@ -15,15 +15,26 @@ stack:
   - 'Bun'
   - 'Cloudflare'
 url: 'https://uiramuller.com.br'
-cover: '../../../assets/projects/um-design/cover.png'
+cover: '~/assets/projects/um-design/cover.png'
 ---
 
-![](../../../assets/projects/um-design/cover.png)
+import { Image } from 'astro:assets'
+import cover from '~/assets/projects/um-design/cover.png'
 
-## O contexto
+<Image
+  src={cover}
+  alt=""
+  widths={[640, 960, 1280, 1792]}
+  sizes="(min-width: 64rem) 56rem, calc(100vw - 3rem)"
+  class="mx-auto my-16 aspect-video w-full max-w-4xl rounded-2xl border border-border object-cover"
+/>
 
-### Um site pesado e com pouco controle sobre o resultado
+<div class="mx-auto max-w-2xl">
+
+## Sobre o projeto
 
 O site do Uirá era feito no Mobirise, um criador de sites visual. O resultado era pesado, difícil de atualizar e com pouco controle sobre o código, o visual e a performance. Refiz o site como uma única página estática em Astro, com algumas partes em React.
 
 O conteúdo fica em YAML estruturado, e o Zod valida esse conteúdo durante o build. Assim o site não precisa de CMS, banco de dados nem backend. Ele carrega rápido e leva o visitante direto para o WhatsApp. Eu atualizo o conteúdo com um simples commit. Além disso, o site não coleta dados pessoais.
+
+</div>

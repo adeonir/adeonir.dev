@@ -16,15 +16,26 @@ stack:
   - 'Vitest'
   - 'Lighthouse CI'
 url: 'https://adeonir.dev'
-cover: '../../../assets/projects/adeonir-dev/cover.png'
+cover: '~/assets/projects/adeonir-dev/cover.png'
 ---
 
-![](../../../assets/projects/adeonir-dev/cover.png)
+import { Image } from 'astro:assets'
+import cover from '~/assets/projects/adeonir-dev/cover.png'
 
-## The context
+<Image
+  src={cover}
+  alt=""
+  widths={[640, 960, 1280, 1792]}
+  sizes="(min-width: 64rem) 56rem, calc(100vw - 3rem)"
+  class="mx-auto aspect-video w-full max-w-4xl rounded-2xl border border-border object-cover"
+/>
 
-### A site built with the same care I put into every project
+<div class="mx-auto max-w-2xl">
+
+## About the project
 
 This site is my calling card, so it has to match the quality of my professional work. I built it in Astro, and it runs on Cloudflare. The home page is a one-page layout, with navigation between sections, smooth entrance animations, and a responsive design.
 
 It is available in Portuguese and English, with light and dark themes. Every build runs unit tests and a Lighthouse audit before it ships. Those checks cover performance and accessibility.
+
+</div>

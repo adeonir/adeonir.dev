@@ -14,16 +14,27 @@ stack:
   - 'Airtable'
   - 'Cloudflare'
 url: 'https://armazemwazlawick.com.br'
-cover: '../../../assets/projects/armazem-wazlawick/cover.png'
+cover: '~/assets/projects/armazem-wazlawick/cover.png'
 featured: true
 ---
 
-![](../../../assets/projects/armazem-wazlawick/cover.png)
+import { Image } from 'astro:assets'
+import cover from '~/assets/projects/armazem-wazlawick/cover.png'
 
-## The context
+<Image
+  src={cover}
+  alt=""
+  widths={[640, 960, 1280, 1792]}
+  sizes="(min-width: 64rem) 56rem, calc(100vw - 3rem)"
+  class="mx-auto my-16 aspect-video w-full max-w-4xl rounded-2xl border border-border object-cover"
+/>
 
-### A menu that was hard to read on a phone
+<div class="mx-auto max-w-2xl">
+
+## About the project
 
 The restaurant published its menu as a single image. On phones, where most visits come from, the text was hard to read. Search engines could not index the content either. I built the menu as structured text in YAML. Zod validates that content at build time, and Astro generates the pages.
 
 The owner edits the menu in Airtable and publishes it through an authenticated route, protected by Cloudflare Access. The route writes a validated copy to Cloudflare KV, and the site reads the menu from there. Today the menu is easy to read on a phone and shows up in search results. The owner updates the content without having to learn a CMS.
+
+</div>

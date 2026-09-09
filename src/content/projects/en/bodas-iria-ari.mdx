@@ -16,16 +16,27 @@ stack:
   - 'ImageKit'
   - 'Vitest'
 url: 'https://bodas-iria-ari.com.br'
-cover: '../../../assets/projects/bodas-iria-ari/cover.png'
+cover: '~/assets/projects/bodas-iria-ari/cover.png'
 featured: true
 ---
 
-![](../../../assets/projects/bodas-iria-ari/cover.png)
+import { Image } from 'astro:assets'
+import cover from '~/assets/projects/bodas-iria-ari/cover.png'
 
-## The context
+<Image
+  src={cover}
+  alt=""
+  widths={[640, 960, 1280, 1792]}
+  sizes="(min-width: 64rem) 56rem, calc(100vw - 3rem)"
+  class="mx-auto my-16 aspect-video w-full max-w-4xl rounded-2xl border border-border object-cover"
+/>
 
-### Fifty years of history to share with the family
+<div class="mx-auto max-w-2xl">
+
+## About the project
 
 I built the site for my parents' 50th wedding anniversary, open for family and friends to leave messages. The risk was accepting messages from any visitor on a public site. That could expose my family to unwanted content. I built a guestbook where an admin approves every message before it appears, behind token authentication.
 
 The site also has a photo gallery, a timeline of their story, and a countdown to the party. Tests run against an in-memory database, so continuous integration needs no external database.
+
+</div>

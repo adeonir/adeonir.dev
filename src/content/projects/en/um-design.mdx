@@ -15,15 +15,26 @@ stack:
   - 'Bun'
   - 'Cloudflare'
 url: 'https://uiramuller.com.br'
-cover: '../../../assets/projects/um-design/cover.png'
+cover: '~/assets/projects/um-design/cover.png'
 ---
 
-![](../../../assets/projects/um-design/cover.png)
+import { Image } from 'astro:assets'
+import cover from '~/assets/projects/um-design/cover.png'
 
-## The context
+<Image
+  src={cover}
+  alt=""
+  widths={[640, 960, 1280, 1792]}
+  sizes="(min-width: 64rem) 56rem, calc(100vw - 3rem)"
+  class="mx-auto my-16 aspect-video w-full max-w-4xl rounded-2xl border border-border object-cover"
+/>
 
-### A heavy site with little control over the result
+<div class="mx-auto max-w-2xl">
+
+## About the project
 
 Uirá's site was built in Mobirise, a visual website builder. The result was heavy, hard to update, and left little control over the code, the design, and the performance. I rebuilt the site as a single static page in Astro, with a few parts in React.
 
 Content lives in structured YAML, and Zod validates that content at build time. As a result, the site needs no CMS, no database, and no backend. It loads fast and sends visitors straight to WhatsApp. I can update the content with a simple commit. It also collects no personal data.
+
+</div>
