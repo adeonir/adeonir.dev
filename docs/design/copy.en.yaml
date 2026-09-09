@@ -1,8 +1,8 @@
 metadata:
   source: 'docs/product/brief.md, docs/product/prd.md, conversation'
   created: '2026-06-06'
-  updated: '2026-09-07'
-  version: '1.0.10'
+  updated: '2026-09-08'
+  version: '1.0.11'
   status: 'ready'
 
 project:
@@ -43,7 +43,7 @@ routes:
   maintenance:
     title: 'Maintenance'
 
-# The content tree covers the surfaces home, work, project, plus a global not-found (404) error surface. Header and footer are persistent across every surface — defined once on home and aliased. Each project lives in its own MDX file under `src/content/projects/<locale>/`; the work index lists every file, the landing shows the ones with a `featured` position.
+# The content tree covers the surfaces home, projects, project, plus a global not-found (404) error surface. Header and footer are persistent across every surface.
 
 content:
   home:
@@ -204,8 +204,7 @@ content:
     header: *header
     page-header:
       headline: 'All projects'
-      subheadline: 'What I helped build over the last years.'
-    # list -> every project file, newest first; name, summary, stack, launch, and link come from each file's frontmatter
+      subheadline: 'Sites I built for clients, for my family, and for myself.'
     labels:
       year: 'Year'
       project: 'Project'
@@ -221,20 +220,16 @@ content:
 
   project:
     header: *header
-    # Per-project detail. Page content comes from the project's own MDX file: frontmatter for the metadata, body for the long-form. The labels below are the static chrome shared by every project detail surface.
-    page-header:
-      eyebrow: 'Project'
-      # title and meta resolve from the frontmatter: title -> name, meta -> "{role} · {launch}"
-    overview:
-      # text -> frontmatter summary, meta -> stack + link
-      meta-label: 'Links'
-    gallery: [] # images -> frontmatter
-    body: {} # long-form -> MDX body
-    prev-next:
-      prev:
-        text: 'Previous project'
-      next:
-        text: 'Next project'
+    back: 'All projects'
+    meta:
+      launch: 'Launch'
+      role: 'Role'
+      stack: 'Stack'
+      link: 'Link'
+    body: {}
+    nav:
+      previous: 'Previous project'
+      next: 'Next project'
     # not-found -> content.not-found.paths.projects
     footer: *footer
 
@@ -283,11 +278,6 @@ notes: |
   translation. Each line reads native in its language, so wording may diverge
   between the files on purpose.
 
-  Projects: not in this file. Each project lives in its own MDX file under
-  src/content/projects/<locale>/, and its name, summary, stack, launch, link,
-  and featured position come from that file frontmatter.
-
-  Still to author (flagged, not invented):
-  - The about timeline (companies, roles, periods) has no key yet.
+  Projects: not in this file. Each project carries its own copy.
 
   Design-blind: no colors, fonts, icons, or layout in this file.

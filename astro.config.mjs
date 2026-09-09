@@ -42,7 +42,9 @@ function optimizeServerDeps() {
 
 export default defineConfig({
   site: 'https://adeonir.dev',
-  adapter: cloudflare(),
+  adapter: cloudflare({
+    imageService: { build: 'compile', runtime: 'cloudflare-binding' },
+  }),
   i18n: {
     locales: ['pt', 'en'],
     defaultLocale: 'pt',

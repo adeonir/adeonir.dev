@@ -1,0 +1,60 @@
+---
+import { Tag } from '~/components/ui/tag'
+import { parseLocale } from '~/helpers/content'
+import { formatLaunch } from '~/helpers/projects'
+import { getLocalizedEntry } from '~/services/localized'
+
+interface Props {
+  launch: string
+  role: string
+  type?: string
+  stack: string[]
+}
+
+const { launch, role, type, stack } = Astro.props
+
+const locale = parseLocale(Astro.currentLocale)
+const meta = await getLocalizedEntry('projectMeta', locale)
+
+const labels = meta.data
+const launchLabel = formatLaunch(launch, locale)
+
+const columns = [
+  { label: labels.launch, value: launchLabel },
+  { label: labels.role, value: role },
+  ...(type ? [{ label: labels.type, value: type }] : []),
+]
+---
+
+<section>
+  <div class="wrapper">
+    <div class="mx-auto flex w-full max-w-2xl flex-col gap-8">
+      <div class="flex flex-col gap-8 md:flex-row md:flex-wrap md:gap-16">
+        {
+          columns.map((column) => (
+            <div class="flex flex-col gap-2">
+              <span class="text-caption text-muted-foreground">
+                {column.label}
+              </span>
+              <span class="text-body text-pretty text-foreground">
+                {column.value}
+              </span>
+            </div>
+          ))
+        }
+      </div>
+      <div class="flex flex-col gap-4">
+        <span class="text-caption text-muted-foreground">{labels.stack}</span>
+        <ul class="flex flex-wrap gap-2">
+          {
+            stack.map((item) => (
+              <li>
+                <Tag>{item}</Tag>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

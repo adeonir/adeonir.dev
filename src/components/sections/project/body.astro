@@ -1,0 +1,18 @@
+---
+import { type CollectionEntry, render } from 'astro:content'
+
+interface Props {
+  entry: CollectionEntry<'projectsContent'>
+}
+
+const { entry } = Astro.props
+const { Content } = await render(entry)
+---
+
+<section class="pt-16">
+  <div class="wrapper">
+    <div class="prose max-w-none">
+      <Content />
+    </div>
+  </div>
+</section>

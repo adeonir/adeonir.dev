@@ -8,6 +8,7 @@ import { parseLocale } from '~/helpers/content'
 import {
   getLaunchYear,
   getProjectDestination,
+  groupByYear,
   sortByLaunch,
 } from '~/helpers/projects'
 import { getLocalizedEntry } from '~/services/localized'
@@ -17,7 +18,7 @@ import IconArrowUpRight from '~icons/tabler/arrow-up-right'
 const locale = parseLocale(Astro.currentLocale)
 const list = await getLocalizedEntry('projectsList', locale)
 
-const { labels, links, empty } = list.data
+const { links, empty } = list.data
 
 const entries = await getCollection('projectsContent', (entry) =>
   entry.id.startsWith(`${locale}/`),
@@ -25,8 +26,8 @@ const entries = await getCollection('projectsContent', (entry) =>
 
 const projects = sortByLaunch(entries).map((entry) => ({
   name: entry.data.name,
+  category: entry.data.category,
   summary: entry.data.summary,
-  stack: entry.data.stack,
   year: getLaunchYear(entry.data.launch),
   destination: getProjectDestination(
     entry,
@@ -37,9 +38,14 @@ const projects = sortByLaunch(entries).map((entry) => ({
   ),
 }))
 
-const tableGrid =
-  'md:grid md:grid-cols-[4rem_minmax(0,2fr)_minmax(0,1.5fr)_auto] md:gap-x-6'
-const rowGrid = 'md:col-span-4 md:grid md:grid-cols-subgrid md:items-start'
+const groups = groupByYear(projects)
+
+const tableGrid = 'md:grid md:grid-cols-[4.5rem_minmax(0,1fr)_auto] md:gap-x-8'
+const groupGrid = 'md:col-span-3 md:grid md:grid-cols-subgrid'
+const rowGrid =
+  'relative flex flex-col gap-4 py-8 md:col-span-3 md:grid md:grid-cols-subgrid md:items-start md:gap-4 md:py-10'
+const rowDivider =
+  'before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-border md:before:left-24'
 ---
 
 <section
@@ -48,81 +54,76 @@ const rowGrid = 'md:col-span-4 md:grid md:grid-cols-subgrid md:items-start'
   <div class="wrapper">
     {
       projects.length > 0 ? (
-        <div data-enter="block" class={`flex flex-col ${tableGrid}`}>
-          <div
-            class={`hidden border-b border-border pb-3 text-label text-muted-foreground ${rowGrid}`}
-          >
-            <span>{labels.year}</span>
-            <span>{labels.project}</span>
-            <span>{labels.stack}</span>
-            <span>{labels.link}</span>
-          </div>
-          {projects.map((project) => (
-            <article
-              class={`flex flex-col gap-3 border-b border-border py-6 last:border-b-0 ${rowGrid}`}
-            >
-              <div class="flex flex-row-reverse items-baseline justify-between gap-4 md:contents">
-                <span class="shrink-0 text-label text-muted-foreground md:col-start-1 md:row-start-1">
-                  {project.year}
-                </span>
-                <h2 class="text-title text-pretty text-foreground md:col-start-2 md:row-start-1">
-                  {project.name}
-                </h2>
-              </div>
-              <p class="text-caption leading-relaxed text-pretty text-muted-foreground md:col-start-2 md:row-start-2 md:mt-2">
-                {project.summary}
-              </p>
-              <ul class="flex flex-wrap gap-2 md:col-start-3 md:row-start-1">
-                {project.stack.map((item) => (
-                  <li class="rounded-full bg-muted px-3 py-1 font-mono text-xs text-muted-foreground">
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              {project.destination.kind === 'case-study' && (
-                <a
-                  href={project.destination.href}
-                  class={cn(
-                    'group size-fit gap-1.5 self-end font-mono text-xs md:col-start-4 md:row-start-1 md:self-auto',
-                    buttonVariants({ variant: 'link', size: 'inline' }),
-                  )}
-                >
-                  {links.more}
-                  <IconArrowRight
-                    className="size-4 shrink-0 transition-transform duration-200 motion-safe:group-hover:translate-x-1"
-                    aria-hidden="true"
-                  />
-                </a>
-              )}
-              {project.destination.kind === 'external' && (
-                <a
-                  href={project.destination.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class={cn(
-                    'group gap-1.5 self-end font-mono text-xs md:col-start-4 md:row-start-1 md:self-auto',
-                    buttonVariants({ variant: 'link', size: 'inline' }),
-                  )}
-                >
-                  {project.destination.domain}
-                  <IconArrowUpRight
-                    className="size-4 shrink-0 transition-transform duration-200 motion-safe:group-hover:-translate-y-0.5"
-                    aria-hidden="true"
-                  />
-                </a>
-              )}
-              {project.destination.kind === 'offline' && (
-                <span class="self-end font-mono text-xs text-muted-foreground md:col-start-4 md:row-start-1 md:self-auto">
-                  {links.offline}
-                </span>
-              )}
-            </article>
+        <div data-enter="block" class={cn('flex flex-col', tableGrid)}>
+          {groups.map((group) => (
+            <div class={cn('border-t border-border', groupGrid)}>
+              {group.projects.map((project, index) => {
+                const isFirst = index === 0
+
+                return (
+                  <article class={cn(rowGrid, !isFirst && rowDivider)}>
+                    <span class="text-code text-secondary md:col-start-1 md:row-start-1 md:pt-2">
+                      {isFirst ? group.year : ''}
+                    </span>
+                    <div class="flex flex-col gap-3 md:col-start-2 md:row-start-1">
+                      <h2 class="flex flex-col gap-2 text-heading text-pretty text-foreground lg:flex-row lg:items-baseline lg:gap-8">
+                        <span>{project.name}</span>
+                        <span class="font-mono text-sm font-medium tracking-wider text-muted-foreground/50 uppercase">
+                          {project.category}
+                        </span>
+                      </h2>
+
+                      <p class="text-body leading-relaxed text-pretty text-muted-foreground/80">
+                        {project.summary}
+                      </p>
+                    </div>
+                    {project.destination.kind === 'internal' && (
+                      <a
+                        href={project.destination.href}
+                        class={cn(
+                          'group size-fit gap-2 self-end text-caption md:col-start-3 md:row-start-1 md:self-auto md:pt-2',
+                          buttonVariants({ variant: 'link', size: 'inline' }),
+                        )}
+                      >
+                        {links.more}
+                        <IconArrowRight
+                          className="size-4 shrink-0 transition-transform duration-200 motion-safe:group-hover:translate-x-1"
+                          aria-hidden="true"
+                        />
+                      </a>
+                    )}
+                    {project.destination.kind === 'external' && (
+                      <a
+                        href={project.destination.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class={cn(
+                          'group size-fit gap-2 self-end font-mono text-caption md:col-start-3 md:row-start-1 md:self-auto md:pt-2',
+                          buttonVariants({ variant: 'link', size: 'inline' }),
+                        )}
+                      >
+                        {project.destination.domain}
+                        <IconArrowUpRight
+                          className="size-4 shrink-0 transition-transform duration-200 motion-safe:group-hover:-translate-y-0.5"
+                          aria-hidden="true"
+                        />
+                      </a>
+                    )}
+                    {project.destination.kind === 'offline' && (
+                      <span class="self-end font-mono text-caption text-muted-foreground md:col-start-3 md:row-start-1 md:self-auto md:pt-2">
+                        {links.offline}
+                      </span>
+                    )}
+                  </article>
+                )
+              })}
+            </div>
           ))}
         </div>
       ) : (
         <p
           data-enter="block"
-          class="max-w-[50ch] text-body leading-relaxed text-pretty text-muted-foreground"
+          class="text-body leading-relaxed text-pretty text-muted-foreground"
         >
           {empty}
         </p>

@@ -1,0 +1,42 @@
+---
+name: 'Adeonir Kohl'
+kind: 'Resumo'
+category: 'Portfólio'
+type: 'Site pessoal'
+summary: 'Apresenta meu trabalho e minha trajetória como desenvolvedor frontend.'
+launch: '2026-09-01'
+role: 'Design de interface e frontend'
+destination: 'internal'
+stack:
+  - 'Astro'
+  - 'React'
+  - 'TypeScript'
+  - 'Tailwind CSS'
+  - 'Zod'
+  - 'Cloudflare'
+  - 'Vitest'
+  - 'Lighthouse CI'
+url: 'https://adeonir.dev'
+cover: '~/assets/projects/adeonir-dev/cover.jpg'
+---
+
+import { Image } from 'astro:assets'
+import cover from '~/assets/projects/adeonir-dev/cover.jpg'
+
+<Image
+  src={cover}
+  alt=""
+  widths={[640, 960, 1280, 1792]}
+  sizes="(min-width: 64rem) 56rem, calc(100vw - 3rem)"
+  class="mx-auto aspect-video w-full max-w-4xl rounded-2xl border border-border object-cover shadow-xl"
+/>
+
+<div class="mx-auto max-w-2xl">
+
+## Sobre o projeto
+
+O site é a minha vitrine, então ele precisa ter a mesma qualidade do trabalho que faço profissionalmente. Construí o site em Astro, e ele roda na Cloudflare. A página inicial é uma one-page, com navegação entre as seções, animações suaves de entrada e layout responsivo.
+
+Está disponível em português e em inglês, com tema claro e escuro. Cada build passa por testes unitários e por uma auditoria do Lighthouse antes de ir ao ar, para checar performance e acessibilidade.
+
+</div>

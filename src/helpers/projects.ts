@@ -1,15 +1,22 @@
+import { format } from 'date-fns'
+import { enUS, ptBR } from 'date-fns/locale'
+
+import type { Locale } from '~/helpers/content'
+
+export type ProjectDestinationKind = 'internal' | 'external' | 'offline'
+
 export interface ProjectLike {
   id: string
-  body?: string
   data: {
     launch: string
+    destination: ProjectDestinationKind
     url?: string
-    featured?: number
+    featured?: boolean
   }
 }
 
 export type ProjectDestination =
-  | { kind: 'case-study'; href: string }
+  | { kind: 'internal'; href: string }
   | { kind: 'external'; href: string; domain: string }
   | { kind: 'offline' }
 
@@ -26,15 +33,44 @@ export function getLaunchYear(launch: string): string {
   return launch.slice(0, 4)
 }
 
+export function groupByYear<TProject extends { year: string }>(
+  projects: TProject[],
+): { year: string; projects: TProject[] }[] {
+  return projects.reduce<{ year: string; projects: TProject[] }[]>(
+    (groups, project) => {
+      const current = groups.at(-1)
+
+      if (current?.year === project.year) {
+        current.projects.push(project)
+        return groups
+      }
+
+      groups.push({ year: project.year, projects: [project] })
+      return groups
+    },
+    [],
+  )
+}
+
+export function formatLaunch(launch: string, locale: Locale): string {
+  const [year, month] = launch.split('-')
+  const date = new Date(Number(year), Number(month) - 1, 1)
+  const abbreviated = format(date, 'LLL', {
+    locale: locale === 'pt' ? ptBR : enUS,
+  })
+
+  return `${abbreviated.charAt(0).toUpperCase()}${abbreviated.slice(1)}/${year}`
+}
+
 export function getProjectDestination(
   entry: ProjectLike,
   href: string,
 ): ProjectDestination {
-  if (entry.body?.trim()) {
-    return { kind: 'case-study', href }
+  if (entry.data.destination === 'internal') {
+    return { kind: 'internal', href }
   }
 
-  if (entry.data.url) {
+  if (entry.data.destination === 'external' && entry.data.url) {
     return {
       kind: 'external',
       href: entry.data.url,
@@ -46,9 +82,7 @@ export function getProjectDestination(
 }
 
 export function assertFeaturedBounds(entries: ProjectLike[]): void {
-  const count = entries.filter(
-    (entry) => entry.data.featured !== undefined,
-  ).length
+  const count = entries.filter((entry) => entry.data.featured).length
 
   if (count < MIN_FEATURED || count > MAX_FEATURED) {
     throw new Error(

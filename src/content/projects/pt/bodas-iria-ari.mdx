@@ -1,0 +1,43 @@
+---
+name: 'Bodas de Ouro'
+kind: 'Resumo'
+category: 'Site comemorativo'
+type: 'Plataforma web'
+summary: 'Celebra os 50 anos de casamento dos meus pais, com galeria de fotos, linha do tempo e livro de mensagens para família e amigos.'
+launch: '2025-10-01'
+role: 'Design de interface e frontend'
+destination: 'internal'
+stack:
+  - 'Next.js'
+  - 'React'
+  - 'TypeScript'
+  - 'Tailwind CSS'
+  - 'PostgreSQL'
+  - 'Drizzle'
+  - 'ImageKit'
+  - 'Vitest'
+url: 'https://bodas-iria-ari.com.br'
+cover: '~/assets/projects/bodas-iria-ari/cover.jpg'
+featured: true
+---
+
+import { Image } from 'astro:assets'
+import cover from '~/assets/projects/bodas-iria-ari/cover.jpg'
+
+<Image
+  src={cover}
+  alt=""
+  widths={[640, 960, 1280, 1792]}
+  sizes="(min-width: 64rem) 56rem, calc(100vw - 3rem)"
+  class="mx-auto aspect-video w-full max-w-4xl rounded-2xl border border-border object-cover shadow-xl"
+/>
+
+<div class="mx-auto max-w-2xl">
+
+## Sobre o projeto
+
+Construí o site para os 50 anos de casamento dos meus pais, aberto para família e amigos deixarem mensagens. O risco era receber mensagens de qualquer pessoa em um site público. Isso podia expor minha família a conteúdo indesejado. Construí um livro de mensagens em que toda mensagem passa por aprovação no painel administrativo, protegido por autenticação com token.
+
+O site também tem uma galeria de fotos, uma linha do tempo com a história dos dois e uma contagem regressiva para a festa. Os testes rodam com um banco de dados em memória, então a integração contínua não precisa de um banco externo.
+
+</div>

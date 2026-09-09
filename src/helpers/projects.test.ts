@@ -2,8 +2,10 @@ import { describe, expect, it } from 'vitest'
 
 import {
   assertFeaturedBounds,
+  formatLaunch,
   getLaunchYear,
   getProjectDestination,
+  groupByYear,
   type ProjectLike,
   sortByLaunch,
 } from '~/helpers/projects'
@@ -11,9 +13,8 @@ import {
 function project(
   id: string,
   data: Partial<ProjectLike['data']> = {},
-  body?: string,
 ): ProjectLike {
-  return { id, body, data: { launch: '2025-01-01', ...data } }
+  return { id, data: { launch: '2025-01-01', destination: 'offline', ...data } }
 }
 
 describe('sortByLaunch', () => {
@@ -49,28 +50,55 @@ describe('getLaunchYear', () => {
   })
 })
 
+describe('groupByYear', () => {
+  it('groups consecutive projects that share a year', () => {
+    const projects = [
+      { year: '2026', name: 'a' },
+      { year: '2026', name: 'b' },
+      { year: '2025', name: 'c' },
+    ]
+
+    expect(groupByYear(projects)).toEqual([
+      { year: '2026', projects: [projects[0], projects[1]] },
+      { year: '2025', projects: [projects[2]] },
+    ])
+  })
+
+  it('returns no groups for an empty list', () => {
+    expect(groupByYear([])).toEqual([])
+  })
+})
+
+describe('formatLaunch', () => {
+  it('formats the launch as an abbreviated month and year in each locale', () => {
+    expect(formatLaunch('2025-09-01', 'pt')).toBe('Set/2025')
+    expect(formatLaunch('2025-09-01', 'en')).toBe('Sep/2025')
+  })
+
+  it('reads the month from the string, never from a parsed instant', () => {
+    expect(formatLaunch('2026-01-01', 'pt')).toBe('Jan/2026')
+    expect(formatLaunch('2026-01-01', 'en')).toBe('Jan/2026')
+  })
+})
+
 describe('getProjectDestination', () => {
-  it('points at the case study when the entry has a body', () => {
-    const entry = project('pt/one', { url: 'https://one.dev' }, '# One')
+  it('points at the page when the entry is marked internal', () => {
+    const entry = project('pt/one', {
+      destination: 'internal',
+      url: 'https://one.dev',
+    })
 
     expect(getProjectDestination(entry, '/projects/one')).toEqual({
-      kind: 'case-study',
+      kind: 'internal',
       href: '/projects/one',
     })
   })
 
-  it('treats a blank body as no case study', () => {
-    const entry = project('pt/one', { url: 'https://one.dev' }, '\n  \n')
-
-    expect(getProjectDestination(entry, '/projects/one')).toEqual({
-      kind: 'external',
-      href: 'https://one.dev',
-      domain: 'one.dev',
+  it('points at the site when the entry is marked external', () => {
+    const entry = project('pt/one', {
+      destination: 'external',
+      url: 'https://one.dev/work',
     })
-  })
-
-  it('points at the site when the entry has only a url', () => {
-    const entry = project('pt/one', { url: 'https://one.dev/work' })
 
     expect(getProjectDestination(entry, '/projects/one')).toEqual({
       kind: 'external',
@@ -80,7 +108,10 @@ describe('getProjectDestination', () => {
   })
 
   it('strips a leading www from the domain', () => {
-    const entry = project('pt/one', { url: 'https://www.one.dev' })
+    const entry = project('pt/one', {
+      destination: 'external',
+      url: 'https://www.one.dev',
+    })
 
     expect(getProjectDestination(entry, '/projects/one')).toEqual({
       kind: 'external',
@@ -89,7 +120,7 @@ describe('getProjectDestination', () => {
     })
   })
 
-  it('marks the project offline without a body and without a url', () => {
+  it('marks the project offline when it is marked offline', () => {
     expect(getProjectDestination(project('pt/one'), '/projects/one')).toEqual({
       kind: 'offline',
     })
@@ -105,16 +136,16 @@ describe('assertFeaturedBounds', () => {
 
   it('accepts one featured entry', () => {
     expect(() =>
-      assertFeaturedBounds([project('a', { featured: 1 }), project('b')]),
+      assertFeaturedBounds([project('a', { featured: true }), project('b')]),
     ).not.toThrow()
   })
 
   it('accepts three featured entries', () => {
     expect(() =>
       assertFeaturedBounds([
-        project('a', { featured: 1 }),
-        project('b', { featured: 2 }),
-        project('c', { featured: 3 }),
+        project('a', { featured: true }),
+        project('b', { featured: true }),
+        project('c', { featured: true }),
       ]),
     ).not.toThrow()
   })
@@ -122,10 +153,10 @@ describe('assertFeaturedBounds', () => {
   it('throws on four featured entries', () => {
     expect(() =>
       assertFeaturedBounds([
-        project('a', { featured: 1 }),
-        project('b', { featured: 2 }),
-        project('c', { featured: 3 }),
-        project('d', { featured: 4 }),
+        project('a', { featured: true }),
+        project('b', { featured: true }),
+        project('c', { featured: true }),
+        project('d', { featured: true }),
       ]),
     ).toThrow(/Featured projects must be between 1 and 3, found 4/)
   })

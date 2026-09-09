@@ -1,0 +1,4 @@
+launch: 'Launch'
+role: 'Role'
+type: 'Project type'
+stack: 'Stack'
