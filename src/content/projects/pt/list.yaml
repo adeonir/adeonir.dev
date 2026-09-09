@@ -1,8 +1,3 @@
-labels:
-  year: 'Ano'
-  project: 'Projeto'
-  stack: 'Stack'
-  link: 'Link'
 links:
   more: 'Ver mais'
   offline: 'Fora do ar'

@@ -205,11 +205,6 @@ content:
     page-header:
       headline: 'All projects'
       subheadline: 'Sites I built for clients, for my family, and for myself.'
-    labels:
-      year: 'Year'
-      project: 'Project'
-      stack: 'Stack'
-      link: 'Link'
     links:
       more: 'See more'
       external: '{domain}'
