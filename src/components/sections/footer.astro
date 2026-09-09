@@ -14,6 +14,7 @@ const footer = await getLocalizedEntry('sharedFooter', locale)
 const homeURL = getRelativeLocaleUrl(locale)
 
 const { brand, signoff } = footer.data
+const showCharacter = Astro.response.status !== 404
 ---
 
 <footer
@@ -37,27 +38,33 @@ const { brand, signoff } = footer.data
         </div>
         <FooterSignoff segments={signoff} client:visible />
       </div>
-      <Image
-        src={drinkingCoffee}
-        alt=""
-        loading="lazy"
-        decoding="async"
-        widths={[224, 448]}
-        sizes="(min-width: 768px) 224px, 112px"
-        class="h-44 w-auto self-end xxs:-mb-16 xs:-mb-32 md:mb-0 md:h-56"
-        data-character="coffee"
-      />
-      <Image
-        src={drinkingBeer}
-        alt=""
-        loading="lazy"
-        decoding="async"
-        widths={[224, 448]}
-        sizes="(min-width: 768px) 224px, 112px"
-        class="h-44 w-auto self-end xxs:-mb-16 xs:-mb-32 md:mb-0 md:h-56"
-        data-character="beer"
-        hidden
-      />
+      {
+        showCharacter && (
+          <>
+            <Image
+              src={drinkingCoffee}
+              alt=""
+              loading="lazy"
+              decoding="async"
+              widths={[224, 448]}
+              sizes="(min-width: 768px) 224px, 112px"
+              class="h-44 w-auto self-end xxs:-mb-16 xs:-mb-32 md:mb-0 md:h-56"
+              data-character="coffee"
+            />
+            <Image
+              src={drinkingBeer}
+              alt=""
+              loading="lazy"
+              decoding="async"
+              widths={[224, 448]}
+              sizes="(min-width: 768px) 224px, 112px"
+              class="h-44 w-auto self-end xxs:-mb-16 xs:-mb-32 md:mb-0 md:h-56"
+              data-character="beer"
+              hidden
+            />
+          </>
+        )
+      }
     </div>
   </div>
 </footer>
