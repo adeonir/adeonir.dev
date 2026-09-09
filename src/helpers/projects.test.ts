@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 
 import {
   assertFeaturedBounds,
+  formatLaunch,
   getLaunchYear,
   getProjectDestination,
   type ProjectLike,
@@ -45,6 +46,18 @@ describe('sortByLaunch', () => {
 describe('getLaunchYear', () => {
   it('reads the year from the launch date', () => {
     expect(getLaunchYear('2024-06-10')).toBe('2024')
+  })
+})
+
+describe('formatLaunch', () => {
+  it('formats the launch as an abbreviated month and year in each locale', () => {
+    expect(formatLaunch('2025-09-01', 'pt')).toBe('Set/2025')
+    expect(formatLaunch('2025-09-01', 'en')).toBe('Sep/2025')
+  })
+
+  it('reads the month from the string, never from a parsed instant', () => {
+    expect(formatLaunch('2026-01-01', 'pt')).toBe('Jan/2026')
+    expect(formatLaunch('2026-01-01', 'en')).toBe('Jan/2026')
   })
 })
 

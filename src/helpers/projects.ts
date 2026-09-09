@@ -1,3 +1,8 @@
+import { format } from 'date-fns'
+import { enUS, ptBR } from 'date-fns/locale'
+
+import type { Locale } from '~/helpers/content'
+
 export type ProjectDestinationKind = 'internal' | 'external' | 'offline'
 
 export interface ProjectLike {
@@ -26,6 +31,16 @@ export function sortByLaunch<TProject extends ProjectLike>(
 
 export function getLaunchYear(launch: string): string {
   return launch.slice(0, 4)
+}
+
+export function formatLaunch(launch: string, locale: Locale): string {
+  const [year, month] = launch.split('-')
+  const date = new Date(Number(year), Number(month) - 1, 1)
+  const abbreviated = format(date, 'LLL', {
+    locale: locale === 'pt' ? ptBR : enUS,
+  })
+
+  return `${abbreviated.charAt(0).toUpperCase()}${abbreviated.slice(1)}/${year}`
 }
 
 export function getProjectDestination(
