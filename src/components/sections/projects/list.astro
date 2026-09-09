@@ -59,20 +59,22 @@ const rowGrid = 'md:col-span-4 md:grid md:grid-cols-subgrid md:items-start'
           </div>
           {projects.map((project) => (
             <article
-              class={`flex flex-col gap-3 border-b border-border py-6 last:border-b-0 ${rowGrid}`}
+              class={`flex flex-col border-b border-border py-6 last:border-b-0 ${rowGrid}`}
             >
               <div class="flex flex-row-reverse items-baseline justify-between gap-4 md:contents">
-                <span class="shrink-0 text-label text-muted-foreground md:col-start-1 md:row-start-1">
+                <span class="shrink-0 text-sm text-muted-foreground md:col-start-1 md:row-start-1">
                   {project.year}
                 </span>
-                <h2 class="text-title text-pretty text-foreground md:col-start-2 md:row-start-1">
-                  {project.name}
-                </h2>
+                <div class="flex flex-col gap-1">
+                  <h2 class="text-title text-pretty text-foreground md:col-start-2 md:row-start-1 md:-mt-1">
+                    {project.name}
+                  </h2>
+                  <p class="text-caption leading-relaxed text-pretty text-muted-foreground md:col-start-2 md:row-start-2 md:mt-2">
+                    {project.summary}
+                  </p>
+                </div>
               </div>
-              <p class="text-caption leading-relaxed text-pretty text-muted-foreground md:col-start-2 md:row-start-2 md:mt-2">
-                {project.summary}
-              </p>
-              <ul class="flex flex-wrap gap-2 md:col-start-3 md:row-start-1">
+              <ul class="mt-6 flex flex-wrap gap-2 md:col-start-3 md:row-start-1 md:mt-0">
                 {project.stack.map((item) => (
                   <li class="rounded-full bg-muted px-3 py-1 font-mono text-xs text-muted-foreground">
                     {item}
@@ -83,7 +85,7 @@ const rowGrid = 'md:col-span-4 md:grid md:grid-cols-subgrid md:items-start'
                 <a
                   href={project.destination.href}
                   class={cn(
-                    'group size-fit gap-1.5 self-end font-mono text-xs md:col-start-4 md:row-start-1 md:self-auto',
+                    'group mt-2 size-fit gap-2 self-end text-sm md:col-start-4 md:row-start-1 md:mt-0 md:self-auto',
                     buttonVariants({ variant: 'link', size: 'inline' }),
                   )}
                 >
@@ -100,7 +102,7 @@ const rowGrid = 'md:col-span-4 md:grid md:grid-cols-subgrid md:items-start'
                   target="_blank"
                   rel="noopener noreferrer"
                   class={cn(
-                    'group gap-1.5 self-end font-mono text-xs md:col-start-4 md:row-start-1 md:self-auto',
+                    'group mt-2 gap-2 self-end font-mono text-sm md:col-start-4 md:row-start-1 md:mt-0 md:self-auto',
                     buttonVariants({ variant: 'link', size: 'inline' }),
                   )}
                 >
@@ -112,7 +114,7 @@ const rowGrid = 'md:col-span-4 md:grid md:grid-cols-subgrid md:items-start'
                 </a>
               )}
               {project.destination.kind === 'offline' && (
-                <span class="self-end font-mono text-xs text-muted-foreground md:col-start-4 md:row-start-1 md:self-auto">
+                <span class="mt-2 self-end font-mono text-xs text-muted-foreground md:col-start-4 md:row-start-1 md:mt-0 md:self-auto">
                   {links.offline}
                 </span>
               )}
