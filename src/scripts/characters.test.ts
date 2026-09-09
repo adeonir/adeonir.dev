@@ -9,10 +9,12 @@ const loadCharacters = async () => {
 
 const render = () => {
   document.body.innerHTML =
-    '<img data-character="coffee" alt="" /><img data-character="beer" alt="" hidden />'
+    '<img data-character="coffee" alt="" loading="lazy" /><img data-character="beer" alt="" loading="lazy" hidden />'
   return {
-    coffee: document.querySelector('[data-character="coffee"]') as HTMLElement,
-    beer: document.querySelector('[data-character="beer"]') as HTMLElement,
+    coffee: document.querySelector(
+      '[data-character="coffee"]',
+    ) as HTMLImageElement,
+    beer: document.querySelector('[data-character="beer"]') as HTMLImageElement,
   }
 }
 
@@ -65,6 +67,17 @@ it('switches the character when the clock crosses a boundary', async () => {
 
   expect(coffee.hidden).toBe(true)
   expect(beer.hidden).toBe(false)
+})
+
+it('warms the hidden character after binding', async () => {
+  setClock(10)
+  const { bindCharacters } = await loadCharacters()
+  const { coffee, beer } = render()
+
+  bindCharacters()
+
+  expect(beer.loading).toBe('eager')
+  expect(coffee.loading).toBe('lazy')
 })
 
 it('binds on each visit through the page load event', async () => {

@@ -31,7 +31,8 @@ const nextBoundary = (date: Date) => {
 }
 
 export const bindCharacters = () => {
-  const characters = document.querySelectorAll<HTMLElement>('[data-character]')
+  const characters =
+    document.querySelectorAll<HTMLImageElement>('[data-character]')
   if (characters.length === 0) return
 
   let timer: ReturnType<typeof setTimeout> | undefined
@@ -42,6 +43,8 @@ export const bindCharacters = () => {
 
     for (const character of characters) {
       character.hidden = character.dataset.character !== period
+      // Fetch the hidden one now so the switch at the boundary paints at once.
+      if (character.hidden) character.loading = 'eager'
     }
 
     timer = setTimeout(apply, nextBoundary(now).getTime() - now.getTime())
