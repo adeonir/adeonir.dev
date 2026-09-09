@@ -1,6 +1,9 @@
 ---
+import { Image } from 'astro:assets'
 import { getRelativeLocaleUrl } from 'astro:i18n'
 
+import drinkingBeer from '~/assets/characters/drinking-beer.png'
+import drinkingCoffee from '~/assets/characters/drinking-coffee.png'
 import { FooterSignoff } from '~/components/islands/footer-signoff'
 import Logo from '~/components/logo.astro'
 import { parseLocale } from '~/helpers/content'
@@ -11,25 +14,57 @@ const footer = await getLocalizedEntry('sharedFooter', locale)
 const homeURL = getRelativeLocaleUrl(locale)
 
 const { brand, signoff } = footer.data
+const showCharacter = Astro.response.status !== 404
 ---
 
-<footer class="bg-popover">
+<footer
+  class="relative bg-popover pt-8 before:pointer-events-none before:absolute before:inset-x-0 before:bottom-full before:-z-10 before:h-224 before:bg-linear-to-b before:from-transparent before:to-popover md:before:h-128"
+>
   <div class="wrapper">
     <div
-      class="flex flex-col gap-6 border-t border-border py-12 md:flex-row md:items-center md:justify-between"
+      class="flex flex-col-reverse gap-6 pb-12 md:flex-row md:items-end md:justify-between"
     >
-      <div class="flex flex-col gap-2">
-        <a
-          href={homeURL}
-          class="-mx-1.5 -my-0.5 shrink-0 self-start rounded-sm px-1.5 py-0.5 transition focus-visible:ring-4 focus-visible:ring-ring/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
-        >
-          <Logo class="w-28" label={brand.text} />
-        </a>
-        <p class="font-mono text-xs text-muted-foreground">
-          {brand.copyright}
-        </p>
+      <div class="flex flex-col gap-8 xs:mb-4 md:mb-8">
+        <div class="flex flex-col gap-2">
+          <a
+            href={homeURL}
+            class="-mx-1.5 -my-0.5 shrink-0 self-start rounded-sm px-1.5 py-0.5 transition focus-visible:ring-4 focus-visible:ring-ring/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+          >
+            <Logo class="w-28" label={brand.text} />
+          </a>
+          <p class="font-mono text-xs text-muted-foreground">
+            {brand.copyright}
+          </p>
+        </div>
+        <FooterSignoff segments={signoff} client:visible />
       </div>
-      <FooterSignoff segments={signoff} client:visible />
+      {
+        showCharacter && (
+          <>
+            <Image
+              src={drinkingCoffee}
+              alt=""
+              loading="lazy"
+              decoding="async"
+              widths={[224, 448]}
+              sizes="(min-width: 768px) 224px, 112px"
+              class="h-44 w-auto self-end xxs:-mb-16 xs:-mb-32 md:mb-0 md:h-56"
+              data-character="coffee"
+            />
+            <Image
+              src={drinkingBeer}
+              alt=""
+              loading="lazy"
+              decoding="async"
+              widths={[224, 448]}
+              sizes="(min-width: 768px) 224px, 112px"
+              class="h-44 w-auto self-end xxs:-mb-16 xs:-mb-32 md:mb-0 md:h-56"
+              data-character="beer"
+              hidden
+            />
+          </>
+        )
+      }
     </div>
   </div>
 </footer>

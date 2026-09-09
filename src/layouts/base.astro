@@ -124,7 +124,7 @@ const ogImageURL = new URL(
     <ConsoleGreeting />
   </head>
   <body
-    class="flex min-h-dvh flex-col overflow-x-clip bg-background bg-linear-to-b from-sunken/50 to-transparent bg-size-[auto_24rem] bg-no-repeat text-foreground antialiased"
+    class="isolate flex min-h-dvh flex-col overflow-x-clip bg-background bg-linear-to-b from-sunken/50 to-transparent bg-size-[auto_24rem] bg-no-repeat text-foreground antialiased"
   >
     {
       shell ? (
@@ -141,6 +141,7 @@ const ogImageURL = new URL(
     }
     <script>
       import '~/scripts/anchor-nav'
+      import '~/scripts/characters'
       import '~/scripts/header-scroll'
       import '~/scripts/language-nav'
       import '~/scripts/motion'
