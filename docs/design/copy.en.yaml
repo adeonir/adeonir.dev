@@ -204,7 +204,7 @@ content:
     header: *header
     page-header:
       headline: 'All projects'
-      subheadline: 'What I helped build over the last years.'
+      subheadline: 'Sites I built for clients, for my family, and for myself.'
     labels:
       year: 'Year'
       project: 'Project'
