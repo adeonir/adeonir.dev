@@ -1,4 +1,6 @@
 ---
+import { buttonVariants } from '~/components/ui/button-variants'
+import { cn } from '~/helpers/classnames'
 import { parseLocale } from '~/helpers/content'
 import { formatLaunch } from '~/helpers/projects'
 import { getLocalizedEntry } from '~/services/localized'
@@ -24,7 +26,7 @@ const tableGrid = 'md:grid md:grid-cols-[1fr_1fr_1.5fr_auto] md:gap-x-6'
 const rowGrid = 'md:col-span-4 md:grid md:grid-cols-subgrid md:items-start'
 ---
 
-<section class="py-8 md:py-10">
+<section class="py-8">
   <div class="wrapper">
     <div class={`flex flex-col gap-6 md:gap-0 ${tableGrid}`}>
       <div
@@ -40,13 +42,13 @@ const rowGrid = 'md:col-span-4 md:grid md:grid-cols-subgrid md:items-start'
           <span class="text-label text-muted-foreground md:hidden">
             {labels.launch}
           </span>
-          <span class="text-caption text-foreground">{launchLabel}</span>
+          <span class="text-sm text-foreground">{launchLabel}</span>
         </div>
         <div class="flex flex-col gap-1 md:contents">
           <span class="text-label text-muted-foreground md:hidden">
             {labels.role}
           </span>
-          <span class="text-caption text-pretty text-foreground">{role}</span>
+          <span class="text-body text-pretty text-foreground">{role}</span>
         </div>
         <div class="flex flex-col gap-1 md:contents">
           <span class="text-label text-muted-foreground md:hidden">
@@ -72,7 +74,10 @@ const rowGrid = 'md:col-span-4 md:grid md:grid-cols-subgrid md:items-start'
                 href={url}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="group flex size-fit items-center gap-1.5 font-mono text-xs text-primary"
+                class={cn(
+                  'group size-fit gap-2',
+                  buttonVariants({ variant: 'link', size: 'inline' }),
+                )}
               >
                 {domain}
                 <IconArrowUpRight
