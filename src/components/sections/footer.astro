@@ -4,6 +4,7 @@ import { getRelativeLocaleUrl } from 'astro:i18n'
 
 import drinkingBeer from '~/assets/characters/drinking-beer.png'
 import drinkingCoffee from '~/assets/characters/drinking-coffee.png'
+import worried from '~/assets/characters/worried.png'
 import { FooterSignoff } from '~/components/islands/footer-signoff'
 import Logo from '~/components/logo.astro'
 import { parseLocale } from '~/helpers/content'
@@ -39,7 +40,7 @@ const showCharacter = Astro.response.status !== 404
         <FooterSignoff segments={signoff} client:visible />
       </div>
       {
-        showCharacter && (
+        showCharacter ? (
           <>
             <Image
               src={drinkingCoffee}
@@ -63,6 +64,16 @@ const showCharacter = Astro.response.status !== 404
               hidden
             />
           </>
+        ) : (
+          <Image
+            src={worried}
+            alt=""
+            loading="lazy"
+            decoding="async"
+            widths={[224, 448]}
+            sizes="(min-width: 768px) 224px, 112px"
+            class="h-44 w-auto self-end xxs:-mb-16 xs:-mb-32 md:mb-0 md:h-56"
+          />
         )
       }
     </div>
