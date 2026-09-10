@@ -12,8 +12,8 @@ const expertise = await getLocalizedEntry('homeExpertise', locale)
 const { eyebrow, headline, body, items } = expertise.data
 const carryingBlocksMobile = await getImage({
   src: carryingBlocks,
-  width: 309,
-  height: 480,
+  width: 325,
+  height: 504,
 })
 ---
 
@@ -62,8 +62,8 @@ const carryingBlocksMobile = await getImage({
           alt=""
           loading="lazy"
           decoding="async"
-          class="float-left mr-4 mb-2 h-60 w-auto md:hidden"
-          style={`shape-outside: url(${carryingBlocksMobile.src}); shape-margin: 2rem`}
+          class="float-right ml-2 hidden w-auto xxs:block xxs:h-63 md:hidden"
+          style={`shape-outside: url(${carryingBlocksMobile.src}); shape-margin: 1rem`}
           data-enter="block"
         />
         <ul class="space-y-8">
