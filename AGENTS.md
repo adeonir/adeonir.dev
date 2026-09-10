@@ -51,7 +51,7 @@ Before planning or building a feature, read the documents that apply to the work
 - `docs/product/PRD.md` — scope, FR/NFR identifiers, personas, journeys, business rules, and edge cases.
 - `docs/product/PRODUCT.md` — strategic positioning: register, audience relationship, brand personality, anti-references, design principles.
 - `DESIGN.md` — the authority on the visual identity and the design tokens.
-- `docs/design/copy.yaml` — canonical site copy. `docs/design/copy.en.yaml` holds the English translation. Collection files split by locale directory instead, as `src/content/<group>/pt/` and `src/content/<group>/en/`, and sections read the entry for the current locale through `getLocalizedEntry`.
+- `docs/product/copy.yaml` — canonical site copy. `docs/product/copy.en.yaml` holds the English translation. Collection files split by locale directory instead, as `src/content/<group>/pt/` and `src/content/<group>/en/`, and sections read the entry for the current locale through `getLocalizedEntry`.
 - The token styleguide is the live `/styleguide` route, built from `src/pages/styleguide.astro`.
 - `docs/adr/` — the accepted architecture decisions: the React island runtime, the theme-switching mechanism, the nanostores island state layer, and SSR-safe island rendering.
 
@@ -98,7 +98,7 @@ No contact data is stored. There is no database, and contact PII is never logged
 - `src/components/sections/` contains section markup only. Sections shared across pages sit at its root; sections belonging to one page sit in a folder named for that page, such as `sections/home/`. Each section owns its own vertical spacing and wraps its content in the shared content column.
 - `src/layouts/base.astro` owns the document shell, the header, and the footer. It does not set page width or inter-section spacing.
 - Each section reads its own typed collection with `getLocalizedEntry`, which resolves the entry for the current locale. Collection keys are declared in `src/content.config.ts`.
-- `docs/design/copy.yaml` is the canonical prose. Collection files carry rendering markup. Headline emphasis and controlled breaks come from the design frame, not from `copy.yaml` when that file omits them.
+- `docs/product/copy.yaml` is the canonical prose. Collection files carry rendering markup. Headline emphasis and controlled breaks come from the design frame, not from `copy.yaml` when that file omits them.
 
 ## Code conventions
 
