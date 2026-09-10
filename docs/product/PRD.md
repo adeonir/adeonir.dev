@@ -140,7 +140,7 @@ Separately, lightweight privacy-respecting analytics collect usage statistics (w
 | ID | Requirement | Notes |
 | --- | --- | --- |
 | FR-10 | Previous / next navigation between projects | Keeps visitors moving through the work |
-| FR-13 | An illustrated character of Adeonir at the end of every page and on the not-found page | Reinforces the personal, casual register |
+| FR-13 | An illustrated character of Adeonir appears across the site, in a pose matched to the moment | Reinforces the personal, casual register |
 
 ### Won't Have
 
