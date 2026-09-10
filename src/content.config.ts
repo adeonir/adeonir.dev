@@ -6,10 +6,10 @@ import { homeExpertiseSchema } from '~/schemas/home/expertise'
 import { homeHeroSchema } from '~/schemas/home/hero'
 import { homeProjectsSchema } from '~/schemas/home/projects'
 import { homeStackSchema } from '~/schemas/home/stack'
+import { projectContentSchema } from '~/schemas/project/content'
 import { projectHeaderSchema } from '~/schemas/project/header'
 import { projectMetaSchema } from '~/schemas/project/meta'
 import { projectNavSchema } from '~/schemas/project/nav'
-import { projectsContentSchema } from '~/schemas/projects/content'
 import { projectsHeroSchema } from '~/schemas/projects/hero'
 import { projectsListSchema } from '~/schemas/projects/list'
 import { sharedConsoleSchema } from '~/schemas/shared/console'
@@ -162,12 +162,12 @@ const sharedConsole = defineCollection({
   schema: sharedConsoleSchema,
 })
 
-const projectsContent = defineCollection({
+const projectContent = defineCollection({
   loader: glob({
     pattern: '*/*.mdx',
-    base: 'src/content/projects',
+    base: 'src/content/project',
   }),
-  schema: projectsContentSchema,
+  schema: projectContentSchema,
 })
 
 const projectHeader = defineCollection({
@@ -231,7 +231,7 @@ export const collections = {
   sharedNotFound,
   sharedEmails,
   sharedConsole,
-  projectsContent,
+  projectContent,
   projectHeader,
   projectMeta,
   projectNav,

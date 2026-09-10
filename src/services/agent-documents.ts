@@ -304,7 +304,7 @@ async function getAgentDocumentContent(
     getLocalizedEntry('homeExpertise', locale),
     getLocalizedEntry('homeStack', locale),
     getLocalizedEntry('homeContact', locale),
-    getCollection('projectsContent', (entry: { id: string }) =>
+    getCollection('projectContent', (entry: { id: string }) =>
       entry.id.startsWith(`${locale}/`),
     ),
   ])

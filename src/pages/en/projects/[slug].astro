@@ -9,11 +9,11 @@ import { Divider } from '~/components/ui/divider'
 import Layout from '~/layouts/base.astro'
 
 interface Props {
-  entry: CollectionEntry<'projectsContent'>
+  entry: CollectionEntry<'projectContent'>
 }
 
 export async function getStaticPaths() {
-  const entries = await getCollection('projectsContent', (entry) =>
+  const entries = await getCollection('projectContent', (entry) =>
     entry.id.startsWith('en/'),
   )
 
