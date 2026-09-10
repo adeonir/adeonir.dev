@@ -12,8 +12,8 @@ const expertise = await getLocalizedEntry('homeExpertise', locale)
 const { eyebrow, headline, body, items } = expertise.data
 const carryingBlocksMobile = await getImage({
   src: carryingBlocks,
-  width: 226,
-  height: 352,
+  width: 309,
+  height: 480,
 })
 ---
 
@@ -46,9 +46,9 @@ const carryingBlocksMobile = await getImage({
           alt=""
           loading="lazy"
           decoding="async"
-          widths={[165, 330]}
-          sizes="165px"
-          class="hidden h-64 w-auto md:block"
+          widths={[206, 412]}
+          sizes="206px"
+          class="hidden h-80 w-auto self-start md:block md:pl-8"
           data-enter="block"
         />
       </div>
@@ -62,24 +62,24 @@ const carryingBlocksMobile = await getImage({
           alt=""
           loading="lazy"
           decoding="async"
-          class="float-left mr-4 mb-2 h-44 w-auto md:hidden"
-          style={`shape-outside: url(${carryingBlocksMobile.src}); shape-margin: 0.5rem`}
+          class="float-left mr-4 mb-2 h-60 w-auto md:hidden"
+          style={`shape-outside: url(${carryingBlocksMobile.src}); shape-margin: 2rem`}
           data-enter="block"
         />
         <ul class="space-y-8">
           {
             items.map((item) => (
-              <li data-enter="block" class="relative pl-5.5">
-                <span
-                  aria-hidden="true"
-                  class="absolute top-2.5 left-0 size-1.5 bg-secondary"
-                />
-                <div class="space-y-2">
-                  <p class="text-code text-foreground">{item.title}</p>
-                  <p class="text-body leading-relaxed text-pretty text-muted-foreground">
-                    {item.description}
-                  </p>
-                </div>
+              <li data-enter="block" class="space-y-2">
+                <p class="text-code text-foreground">
+                  <span
+                    aria-hidden="true"
+                    class="mr-3 inline-block size-1.5 bg-secondary align-middle"
+                  />
+                  {item.title}
+                </p>
+                <p class="pl-4.5 text-body leading-relaxed text-pretty text-muted-foreground">
+                  {item.description}
+                </p>
               </li>
             ))
           }
