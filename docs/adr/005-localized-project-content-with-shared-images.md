@@ -20,11 +20,11 @@ Each project page has separate Portuguese and English content. The content colle
 
 ## Decision
 
-We will store each project MDX entry at `src/content/projects/<locale>/<slug>.mdx` and store images shared by both locales at `src/assets/projects/<slug>/`.
+We will store each project MDX entry at `src/content/project/<locale>/<slug>.mdx` and store images shared by both locales at `src/assets/projects/<slug>/`.
 
 ## Consequences
 
-Each locale owns a complete project entry under the same directory structure, while shared images have one source file. Relative image paths cross from the content directory into the shared asset directory. The `projectsContent` glob matches `*/*.mdx`, and the generated IDs remain `<locale>/<slug>`, so the current route and locale filters remain valid.
+Each locale owns a complete project entry under the same directory structure, while shared images have one source file. Relative image paths cross from the content directory into the shared asset directory. The `projectContent` glob matches `*/*.mdx` under `src/content/project`, and the generated IDs remain `<locale>/<slug>`, so the current route and locale filters remain valid.
 
 ## References
 

@@ -20,7 +20,7 @@ const list = await getLocalizedEntry('projectsList', locale)
 
 const { links, empty } = list.data
 
-const entries = await getCollection('projectsContent', (entry) =>
+const entries = await getCollection('projectContent', (entry) =>
   entry.id.startsWith(`${locale}/`),
 )
 

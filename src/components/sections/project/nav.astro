@@ -19,7 +19,7 @@ const { slug } = Astro.props
 const locale = parseLocale(Astro.currentLocale)
 const nav = await getLocalizedEntry('projectNav', locale)
 
-const entries = await getCollection('projectsContent', (entry) =>
+const entries = await getCollection('projectContent', (entry) =>
   entry.id.startsWith(`${locale}/`),
 )
 

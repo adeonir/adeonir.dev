@@ -13,7 +13,7 @@ import { getLocalizedEntry } from '~/services/localized'
 import IconArrowRight from '~icons/tabler/arrow-right'
 import IconFolder from '~icons/tabler/folder'
 
-type ProjectEntry = CollectionEntry<'projectsContent'>
+type ProjectEntry = CollectionEntry<'projectContent'>
 
 type FeaturedEntry = ProjectEntry & {
   data: { featured: true; cover: ImageMetadata }
@@ -24,7 +24,7 @@ const projects = await getLocalizedEntry('homeProjects', locale)
 
 const { eyebrow, headline, body, seeAll, empty } = projects.data
 
-const entries = await getCollection('projectsContent', (entry) =>
+const entries = await getCollection('projectContent', (entry) =>
   entry.id.startsWith(`${locale}/`),
 )
 
