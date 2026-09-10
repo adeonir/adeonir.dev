@@ -13,7 +13,7 @@ const locale = parseLocale(Astro.currentLocale)
 const about = await getLocalizedEntry('homeAbout', locale)
 
 const { eyebrow, headline, body, bio } = about.data
-const workingMobile = await getImage({ src: working, width: 134, height: 176 })
+const workingMobile = await getImage({ src: working, width: 268, height: 352 })
 ---
 
 <section id="about" class="pt-16 pb-4 md:pt-20 md:pb-8">
@@ -56,6 +56,8 @@ const workingMobile = await getImage({ src: working, width: 134, height: 176 })
       >
         <img
           src={workingMobile.src}
+          width={workingMobile.attributes.width}
+          height={workingMobile.attributes.height}
           alt=""
           loading="lazy"
           decoding="async"
