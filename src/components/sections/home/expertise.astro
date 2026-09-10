@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets'
+
+import carryingBlocks from '~/assets/characters/carrying-blocks.png'
 import { Eyebrow } from '~/components/ui/eyebrow'
 import { parseLocale } from '~/helpers/content'
 import { getLocalizedEntry } from '~/services/localized'
@@ -33,6 +36,16 @@ const { eyebrow, headline, body, items } = expertise.data
         >
           {body}
         </p>
+        <Image
+          src={carryingBlocks}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          widths={[165, 330]}
+          sizes="165px"
+          class="hidden h-64 w-auto md:block"
+          data-enter="block"
+        />
       </div>
       <div class="flex flex-col gap-6 md:col-span-3 md:pt-14">
         <ul class="flex flex-col gap-8">
