@@ -5,8 +5,8 @@ updated: 2026-09-06
 status: accepted
 sources:
   - docs/product/PRD.md
-  - docs/design/copy.yaml
-  - docs/design/copy.en.yaml
+  - docs/product/copy.yaml
+  - docs/product/copy.en.yaml
   - DESIGN.md
   - .artifacts/research/i18n-research.md
 ---
@@ -214,8 +214,8 @@ Sections and pages carry no automated test — the owner checks them in the brow
 ## 6. References
 
 - PRD: `docs/product/PRD.md`
-- Portuguese editorial source: `docs/design/copy.yaml`
-- English editorial source: `docs/design/copy.en.yaml`
+- Portuguese editorial source: `docs/product/copy.yaml`
+- English editorial source: `docs/product/copy.en.yaml`
 - i18n research: `.artifacts/research/i18n-research.md`
 - Astro i18n routing: https://docs.astro.build/en/guides/internationalization/
 - ADRs:
