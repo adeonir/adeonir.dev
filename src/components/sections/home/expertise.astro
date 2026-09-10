@@ -1,4 +1,7 @@
 ---
+import { getImage, Image } from 'astro:assets'
+
+import carryingBlocks from '~/assets/characters/carrying-blocks.png'
 import { Eyebrow } from '~/components/ui/eyebrow'
 import { parseLocale } from '~/helpers/content'
 import { getLocalizedEntry } from '~/services/localized'
@@ -7,6 +10,11 @@ const locale = parseLocale(Astro.currentLocale)
 const expertise = await getLocalizedEntry('homeExpertise', locale)
 
 const { eyebrow, headline, body, items } = expertise.data
+const carryingBlocksMobile = await getImage({
+  src: carryingBlocks,
+  width: 325,
+  height: 504,
+})
 ---
 
 <section id="expertise" class="pt-16 pb-4 md:pt-20 md:pb-8">
@@ -33,22 +41,45 @@ const { eyebrow, headline, body, items } = expertise.data
         >
           {body}
         </p>
+        <Image
+          src={carryingBlocks}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          widths={[206, 412]}
+          sizes="206px"
+          class="hidden h-80 w-auto self-start md:block md:pl-8"
+          data-enter="block"
+        />
       </div>
-      <div class="flex flex-col gap-6 md:col-span-3 md:pt-14">
-        <ul class="flex flex-col gap-8">
+      <div
+        class="flow-root space-y-6 md:col-span-3 md:flex md:flex-col md:gap-6 md:space-y-0 md:pt-14"
+      >
+        <img
+          src={carryingBlocksMobile.src}
+          width={carryingBlocksMobile.attributes.width}
+          height={carryingBlocksMobile.attributes.height}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          class="float-right ml-2 hidden w-auto xxs:block xxs:h-63 md:hidden"
+          style={`shape-outside: url(${carryingBlocksMobile.src}); shape-margin: 1rem`}
+          data-enter="block"
+        />
+        <ul class="space-y-8">
           {
             items.map((item) => (
-              <li data-enter="block" class="flex gap-4">
-                <span
-                  aria-hidden="true"
-                  class="mt-2.5 size-1.5 shrink-0 bg-secondary"
-                />
-                <div class="flex flex-col gap-2">
-                  <p class="text-code text-foreground">{item.title}</p>
-                  <p class="text-body leading-relaxed text-pretty text-muted-foreground">
-                    {item.description}
-                  </p>
-                </div>
+              <li data-enter="block" class="space-y-2">
+                <p class="text-code text-foreground">
+                  <span
+                    aria-hidden="true"
+                    class="mr-3 inline-block size-1.5 bg-secondary align-middle"
+                  />
+                  {item.title}
+                </p>
+                <p class="pl-4.5 text-body leading-relaxed text-pretty text-muted-foreground">
+                  {item.description}
+                </p>
               </li>
             ))
           }
