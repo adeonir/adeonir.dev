@@ -1,6 +1,8 @@
 ---
+import { getImage, Image } from 'astro:assets'
 import { getRelativeLocaleUrl } from 'astro:i18n'
 
+import presenting from '~/assets/characters/presenting.png'
 import { buttonVariants } from '~/components/ui/button-variants'
 import { cn } from '~/helpers/classnames'
 import { parseLocale } from '~/helpers/content'
@@ -32,6 +34,12 @@ const actions = [
   Boolean(action.href),
 )
 
+const presentingMobile = await getImage({
+  src: presenting,
+  width: 321,
+  height: 504,
+})
+
 const actionClass = cn(
   'group size-fit gap-2 text-button',
   buttonVariants({ variant: 'link', size: 'inline' }),
@@ -54,32 +62,57 @@ const actionClass = cn(
         />
         {back}
       </a>
-      <div class="flex flex-col gap-6">
-        <p class="text-label text-muted-foreground">{category} · {kind}</p>
-        <h1 class="text-display text-pretty text-foreground">{name}</h1>
-        <p class="text-body leading-relaxed text-pretty text-muted-foreground">
-          {summary}
-        </p>
-        {
-          actions.length > 0 && (
-            <div class="mt-2 flex flex-wrap gap-6">
-              {actions.map((action) => (
-                <a
-                  href={action.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class={actionClass}
-                >
-                  {action.label}
-                  <IconArrowUpRight
-                    className="size-5 shrink-0 transition-transform duration-200 motion-safe:group-hover:-translate-y-0.5"
-                    aria-hidden="true"
-                  />
-                </a>
-              ))}
-            </div>
-          )
-        }
+      <div class="flex flex-col gap-6 md:flex-row md:items-start md:gap-8">
+        <div
+          class="flow-root space-y-6 md:flex md:flex-col md:gap-6 md:space-y-0"
+        >
+          <img
+            src={presentingMobile.src}
+            width={presentingMobile.attributes.width}
+            height={presentingMobile.attributes.height}
+            alt=""
+            loading="lazy"
+            decoding="async"
+            class="float-right ml-2 hidden w-auto xxs:block xxs:h-63 md:hidden"
+            style={`shape-outside: url(${presentingMobile.src}); shape-margin: 1rem`}
+          />
+          <p class="text-label text-muted-foreground">{category} · {kind}</p>
+          <h1 class="text-display text-pretty text-foreground">{name}</h1>
+          <p
+            class="text-body leading-relaxed text-pretty text-muted-foreground"
+          >
+            {summary}
+          </p>
+          {
+            actions.length > 0 && (
+              <div class="mt-2 flex flex-wrap gap-6">
+                {actions.map((action) => (
+                  <a
+                    href={action.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class={actionClass}
+                  >
+                    {action.label}
+                    <IconArrowUpRight
+                      className="size-5 shrink-0 transition-transform duration-200 motion-safe:group-hover:-translate-y-0.5"
+                      aria-hidden="true"
+                    />
+                  </a>
+                ))}
+              </div>
+            )
+          }
+        </div>
+        <Image
+          src={presenting}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          widths={[204, 408]}
+          sizes="204px"
+          class="-mt-12 hidden h-80 w-auto shrink-0 md:block"
+        />
       </div>
     </div>
   </div>
