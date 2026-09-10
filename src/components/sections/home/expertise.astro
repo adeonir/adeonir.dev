@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets'
+import { getImage, Image } from 'astro:assets'
 
 import carryingBlocks from '~/assets/characters/carrying-blocks.png'
 import { Eyebrow } from '~/components/ui/eyebrow'
@@ -10,6 +10,11 @@ const locale = parseLocale(Astro.currentLocale)
 const expertise = await getLocalizedEntry('homeExpertise', locale)
 
 const { eyebrow, headline, body, items } = expertise.data
+const carryingBlocksMobile = await getImage({
+  src: carryingBlocks,
+  width: 113,
+  height: 176,
+})
 ---
 
 <section id="expertise" class="pt-16 pb-4 md:pt-20 md:pb-8">
@@ -47,16 +52,27 @@ const { eyebrow, headline, body, items } = expertise.data
           data-enter="block"
         />
       </div>
-      <div class="flex flex-col gap-6 md:col-span-3 md:pt-14">
-        <ul class="flex flex-col gap-8">
+      <div
+        class="flow-root space-y-6 md:col-span-3 md:flex md:flex-col md:gap-6 md:space-y-0 md:pt-14"
+      >
+        <img
+          src={carryingBlocksMobile.src}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          class="float-left mr-4 mb-2 h-44 w-auto md:hidden"
+          style={`shape-outside: url(${carryingBlocksMobile.src}); shape-margin: 0.5rem`}
+          data-enter="block"
+        />
+        <ul class="space-y-8">
           {
             items.map((item) => (
-              <li data-enter="block" class="flex gap-4">
+              <li data-enter="block" class="relative pl-5.5">
                 <span
                   aria-hidden="true"
-                  class="mt-2.5 size-1.5 shrink-0 bg-secondary"
+                  class="absolute top-2.5 left-0 size-1.5 bg-secondary"
                 />
-                <div class="flex flex-col gap-2">
+                <div class="space-y-2">
                   <p class="text-code text-foreground">{item.title}</p>
                   <p class="text-body leading-relaxed text-pretty text-muted-foreground">
                     {item.description}

@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets'
+import { getImage, Image } from 'astro:assets'
 
 import working from '~/assets/characters/working.png'
 import { Eyebrow } from '~/components/ui/eyebrow'
@@ -13,6 +13,7 @@ const locale = parseLocale(Astro.currentLocale)
 const about = await getLocalizedEntry('homeAbout', locale)
 
 const { eyebrow, headline, body, bio } = about.data
+const workingMobile = await getImage({ src: working, width: 134, height: 176 })
 ---
 
 <section id="about" class="pt-16 pb-4 md:pt-20 md:pb-8">
@@ -50,7 +51,18 @@ const { eyebrow, headline, body, bio } = about.data
           data-enter="block"
         />
       </div>
-      <div class="flex flex-col gap-6 md:col-span-3 md:pt-14">
+      <div
+        class="flow-root space-y-6 md:col-span-3 md:flex md:flex-col md:gap-6 md:space-y-0 md:pt-14"
+      >
+        <img
+          src={workingMobile.src}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          class="float-left mr-4 mb-2 h-44 w-auto md:hidden"
+          style={`shape-outside: url(${workingMobile.src}); shape-margin: 0.5rem`}
+          data-enter="block"
+        />
         {
           bio.map((paragraph, index) => (
             <p
