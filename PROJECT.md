@@ -23,6 +23,7 @@
 
 ## Gotchas
 
+- `getImage` with both `width` and `height` must keep the source ratio — the build-time service crops to the box while the dev service fits inside it, so a mismatch shows up only in production; source: src/components/sections/home/expertise.astro
 - A `file()` collection entry can come back `undefined`, so a section must guard the entry before reading `.data` — every section that calls `getEntry`; source: src/components/sections/hero.astro
 - Adding a field to a content schema needs `pnpm dev --force`: a plain restart leaves the stored entries at their old shape, and the new field reads as undefined while the build renders it correctly — content collections
 - Removing a content entry leaves it in the content layer store, so the next build fails on the asset it referenced — run `pnpm build --force`; source: node_modules/.astro/data-store.json
