@@ -1,1 +1,3 @@
-greeting: 'Bem-vindo aos bastidores. Me avisa se encontrar algum bug.'
+greeting: |-
+  Olá, você está nos bastidores.
+  Se encontrar um bug, me escreve: contato@adeonir.dev

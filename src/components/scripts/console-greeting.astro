@@ -6,8 +6,35 @@ const locale = parseLocale(Astro.currentLocale)
 const entry = await getLocalizedEntry('sharedConsole', locale)
 
 const { greeting } = entry.data
+
+// Drawn with the Slant figlet font; regenerate with the same font or the art will not match.
+const wordmark = [
+  '             __                 _           __         ',
+  '  ____ _____/ /__  ____  ____  (_)____ ____/ /__ _   __',
+  ' / __ `/ __  / _ \\/ __ \\/ __ \\/ / ___// __  / _ \\ | / /',
+  '/ /_/ / /_/ /  __/ /_/ / / / / / / _ / /_/ /  __/ |/ / ',
+  '\\__,_/\\__,_/\\___/\\____/_/ /_/_/_/ (_)\\__,_/\\___/|___/  ',
+].join('\n')
 ---
 
-<script is:inline define:vars={{ greeting }}>
-  console.log(greeting)
+<script is:inline define:vars={{ greeting, wordmark }}>
+  const logGreeting = () => {
+    const root = getComputedStyle(document.documentElement)
+    const token = (name) => root.getPropertyValue(name).trim()
+
+    const mono = '"Fira Code",monospace'
+
+    console.log(
+      `%c${wordmark}%c\n\n${greeting}\n`,
+      `color:${token('--primary')};line-height:16px`,
+      `color:${token('--foreground')};font-family:${mono};font-size:14px`,
+    )
+  }
+
+  // Wait for load: in dev, Vite injects the CSS through JS, and the tokens read empty before that.
+  if (document.readyState === 'complete') {
+    logGreeting()
+  } else {
+    window.addEventListener('load', logGreeting, { once: true })
+  }
 </script>
