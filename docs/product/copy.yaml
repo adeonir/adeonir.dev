@@ -244,7 +244,7 @@ content:
 
 # Hidden dev-console greeting — logged once per page load, not a routed surface.
 console:
-  greeting: 'Bem-vindo aos bastidores. Me avisa se encontrar algum bug.'
+  greeting: 'Olá, você está nos bastidores. Se encontrar um bug, me escreve: contato@adeonir.dev'
 
 # Transactional emails — not a routed surface. Sent on contact form submit.
 # Tokens: {name} = sender's name (first name in body), {date} = received timestamp, {subject} = submitted subject (notification subject line).

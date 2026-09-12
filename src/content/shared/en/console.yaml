@@ -1,1 +1,3 @@
-greeting: 'Welcome behind the scenes. Let me know if you find a bug.'
+greeting: |-
+  Hi, you're backstage now.
+  If you find a bug, email me at contato@adeonir.dev
