@@ -9,13 +9,13 @@ headline:
 body: 'Where I come from, what I work on today, and what I get up to beyond that.'
 bio:
   - - text: "Hi, I'm Adeonir, and I like building things for the internet. I work as a frontend engineer, and the part I'm most drawn to is design engineering. I test ideas in prototypes and build functional, accessible interfaces, always keeping an eye on the details. I particularly enjoy working at the intersection of design and code."
-  - - text: "I'm currently a Frontend Engineer at "
+  - - text: 'I was a Frontend Engineer at '
     - text: 'Jaya Tech'
       href: 'https://jaya.tech/'
-    - text: ", and I'm part of the product team at "
+    - text: ', on the product team at '
     - text: 'The Zebra'
       href: 'https://www.thezebra.com/'
-    - text: ', a US car insurance company, where I work on the design system library and the web platform. I mainly use React and TypeScript, and I work with designers, developers, and product managers.'
+    - text: ', a US car insurance company, where I worked on the design system library and the web platform. I mainly used React and TypeScript, working with designers, developers, and product managers.'
   - - text: "After years as a graphic designer creating advertising materials, books, and magazines, I moved into frontend development. Since then, I've worked on financial products, business management platforms, and creditor investigation and asset recovery systems."
   - - text: 'I worked for a while at '
     - text: 'Joyjet'
