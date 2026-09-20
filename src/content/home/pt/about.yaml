@@ -8,8 +8,8 @@ headline:
     highlight: true
 body: 'De onde eu venho, no que trabalho hoje e o que faço além disso.'
 bio:
-  - - text: 'Olá, sou Adeonir e gosto de criar coisas para a internet. Sou frontend e design engineer, e estou em busca da próxima oportunidade. Exploro ideias em protótipos e crio interfaces funcionais e acessíveis, sempre de olho nos detalhes. Gosto especialmente de trabalhar na interseção entre design e código.'
-  - - text: 'Depois de anos como designer gráfico, criando materiais publicitários, livros e revistas, migrei para o desenvolvimento frontend. No dia a dia eu trabalho principalmente com React, TypeScript, Next.js e Tailwind, e uso agentes de IA no fluxo de desenvolvimento.'
+  - - text: 'Olá, sou Adeonir e gosto de criar coisas para a internet. Sou frontend e design engineer, e estou em busca da próxima oportunidade. Exploro ideias em protótipos e crio interfaces funcionais e acessíveis, construindo as bibliotecas de componentes e design systems por trás delas. Gosto especialmente de trabalhar na interseção entre design e código, sempre de olho nos detalhes.'
+  - - text: 'Depois de mais de uma década como designer gráfico, criando materiais publicitários, livros e revistas, migrei para o desenvolvimento frontend. No dia a dia eu trabalho principalmente com React, TypeScript, Next.js e Tailwind, e uso agentes de IA como Claude Code e Codex em todo o ciclo, da especificação e planejamento à implementação e revisão.'
   - - text: 'Na '
     - text: 'Joyjet'
       href: 'https://joyjet.com/'
