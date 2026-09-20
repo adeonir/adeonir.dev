@@ -8,8 +8,8 @@ headline:
     highlight: true
 body: 'Where I come from, what I work on today, and what I do beyond that.'
 bio:
-  - - text: "Hi, I'm Adeonir, and I like building things for the internet. I'm a frontend and design engineer, currently looking for my next opportunity. I explore ideas through prototypes and build functional, accessible interfaces, with an eye for detail. I particularly enjoy working at the intersection of design and code."
-  - - text: 'After years as a graphic designer working on advertising materials, books, and magazines, I moved into frontend development. Day to day, I work mainly with React, TypeScript, Next.js, and Tailwind, and I use AI agents in my development workflow.'
+  - - text: "Hi, I'm Adeonir, and I like building things for the internet. I'm a frontend and design engineer, currently looking for my next opportunity. I explore ideas through prototypes and craft functional, accessible interfaces, building the component libraries and design systems behind them. I particularly enjoy working at the intersection of design and code, with an eye for detail."
+  - - text: 'After more than a decade as a graphic designer working on advertising materials, books, and magazines, I moved into frontend development. Day to day, I work mainly with React, TypeScript, Next.js, and Tailwind, and I use AI agents like Claude Code and Codex across the whole cycle, from specs and planning to implementation and review.'
   - - text: 'At '
     - text: 'Joyjet'
       href: 'https://joyjet.com/'
