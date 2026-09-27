@@ -1,7 +1,7 @@
 ---
 name: adeonir-dev-portfolio
 created: 2026-06-06
-updated: 2026-09-06
+updated: 2026-09-27
 status: accepted
 sources:
   - docs/product/PRD.md
@@ -95,6 +95,7 @@ flowchart LR
 
 - **Actors:** site visitors (the three PRD personas).
 - **External services:** Cloudflare Workers (host + edge runtime, git-integration build and deploy), Resend (outbound transactional email), a Plesk-hosted mailbox on `adeonir.dev` (inbound `contato@adeonir.dev`), PostHog US Cloud (cookieless analytics — manual capture, server-side `contact-submission` event), GitHub Actions (CI quality gates).
+- **Narration production (planned):** ElevenLabs generates narration before publication. The exported audio files ship with the site's static assets; neither visits nor builds call ElevenLabs.
 
 ### 3.3 Conventions
 
@@ -177,12 +178,25 @@ Sections and pages carry no automated test — the owner checks them in the brow
 - **Environments:** local (`.dev.vars`), PR preview, production.
 - **Secrets management:** Cloudflare Worker environment variables hold the Resend key and per-environment runtime config (production vs preview). No Cloudflare credentials in GitHub — the git integration deploys, so Actions holds no deploy secrets.
 
+### 3.9 Home Narration (Planned)
+
+The owner generates narration with ElevenLabs before publication and publishes the exported files as static assets with the site. Each narrated section has an audio file for each supported locale, selected from the page's locale. See PRD FR-16 for scope and BR-5 for playback rules.
+
+ElevenLabs is a content-production dependency. Playback and site builds use the exported files without contacting the provider, and the site needs no ElevenLabs SDK, API key, or synthesis endpoint. A provider outage blocks new recordings but does not affect files already published.
+
+The playback implementation must load audio on request, keep only one section playing, and leave the written content available when audio is missing or fails. Playback controls must work with a keyboard and expose their state to assistive technology. Audio must not add a download to the initial page load.
+
+The owner reviews pronunciation and correspondence with the visible text before publishing each locale. Changes to narrated text require regenerating and reviewing the affected file, then publishing text and audio together. Exported files are versioned with the site so a rollback restores the matching text and audio.
+
+Validation must cover locale selection, switching between sections, failed audio loads, keyboard operation, and the absence of audio downloads before playback is requested. File format, asset paths, and the playback implementation remain open.
+
 ---
 
 ## 4. Alternatives Considered
 
 | Decision | Chosen | Rejected | Reasoning | Record |
 | --- | --- | --- | --- | --- |
+| Narration delivery | Pre-generated ElevenLabs audio published as static assets | Synthesis during visits or builds | Fixed section text can be recorded before publication; visits and builds remain independent of the provider. Text changes require regenerating and publishing the matching audio | — |
 | Framework | Astro (hybrid) | TanStack Start | Content-first site where performance is the message; TanStack Start is an app framework solving a content problem — its loaders/server-fns are app features this site does not need | — |
 | Host / rendering | Cloudflare Workers (static assets today, on-demand contact Action planned) | Vercel / Netlify; fully static | Free edge hosting on the workerd runtime with a native ecosystem (KV, per-branch preview URLs); ships as static assets now, with the contact Action the one planned on-demand route while everything else prerenders. Vercel/Netlify are equally capable; fully static would force the form onto a third party | — |
 | Deploy pipeline | Cloudflare Workers Builds git integration | Wrangler deploy job in GitHub Actions | Solo, deterministic static build: the git integration runs `pnpm build` + `wrangler deploy` on push, giving automatic per-branch previews, dashboard rollback, and per-environment vars with zero deploy credentials in GitHub. Quality gates run in Actions as required checks and branch protection keeps `main` green, so red never reaches production — the artifact-parity edge of an in-pipeline deploy job doesn't justify rebuilding that DX by hand | — |
@@ -207,7 +221,7 @@ Sections and pages carry no automated test — the owner checks them in the brow
 
 ## 5. Open Questions
 
-- None currently.
+- Narration: choose the audio format, asset paths, and playback implementation before building FR-16.
 
 ---
 
