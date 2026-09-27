@@ -8,7 +8,6 @@ agentDocument:
     about: 'About me'
     projects: 'Projects'
     expertise: 'Capabilities'
-    stack: 'Tech Stack'
     contact: 'Contact'
 pageTitles:
   home: 'Frontend Engineer'

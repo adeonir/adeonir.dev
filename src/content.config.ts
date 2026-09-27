@@ -5,7 +5,6 @@ import { homeContactSchema } from '~/schemas/home/contact'
 import { homeExpertiseSchema } from '~/schemas/home/expertise'
 import { homeHeroSchema } from '~/schemas/home/hero'
 import { homeProjectsSchema } from '~/schemas/home/projects'
-import { homeStackSchema } from '~/schemas/home/stack'
 import { projectContentSchema } from '~/schemas/project/content'
 import { projectHeaderSchema } from '~/schemas/project/header'
 import { projectMetaSchema } from '~/schemas/project/meta'
@@ -61,15 +60,6 @@ const homeExpertise = defineCollection({
     generateId: localeId('homeExpertise'),
   }),
   schema: homeExpertiseSchema,
-})
-
-const homeStack = defineCollection({
-  loader: glob({
-    pattern: '*/stack.yaml',
-    base: 'src/content/home',
-    generateId: localeId('homeStack'),
-  }),
-  schema: homeStackSchema,
 })
 
 const homeContact = defineCollection({
@@ -226,7 +216,6 @@ export const collections = {
   homeProjects,
   homeAbout,
   homeExpertise,
-  homeStack,
   homeContact,
   sharedNotFound,
   sharedEmails,

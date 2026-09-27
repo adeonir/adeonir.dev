@@ -53,7 +53,6 @@ content:
         about: 'About me'
         projects: 'Projects'
         expertise: 'Capabilities'
-        stack: 'Tech Stack'
         contact: 'Contact'
     header: &header
       logo:
@@ -109,39 +108,6 @@ content:
           description: "I use automated tests to cover how the product behaves and keep an eye on errors and performance once it's live."
         - title: 'AI-assisted development'
           description: 'I use AI agents in structured processes: research, intent definition, specification, planning, implementation, and testing. I review and adjust the work along the way.'
-
-    stack:
-      eyebrow: 'Tech Stack'
-      headline: 'The tools I build with'
-      body: 'Some of the tools and technologies I use across projects.'
-      tools:
-        - title: 'frontend'
-          items:
-            - 'react'
-            - 'next.js'
-            - 'tanstack-start'
-            - 'typescript'
-            - 'tailwindcss'
-            - 'zustand'
-            - 'react-native'
-        - title: 'backend'
-          items:
-            - 'node.js'
-            - 'fastify'
-            - 'hono'
-            - 'drizzle'
-            - 'prisma'
-            - 'sqlite'
-            - 'postgresql'
-        - title: 'tooling'
-          items:
-            - 'figma'
-            - 'vscode'
-            - 'vite'
-            - 'vitest'
-            - 'claude'
-            - 'codex'
-            - 'cloudflare'
 
     contact:
       eyebrow: "Let's talk"

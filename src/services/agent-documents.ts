@@ -26,11 +26,6 @@ type TextSegment = {
   href?: string
 }
 
-type StackGroup = {
-  title: string
-  items: string[]
-}
-
 type ExpertiseItem = {
   title: string
   description: string
@@ -66,12 +61,6 @@ type AgentDocumentContent = {
     headline: string
     body: string
     items: ExpertiseItem[]
-  }
-  stack: {
-    eyebrow: string
-    headline: string
-    body: string
-    tools: StackGroup[]
   }
   contact: {
     title: string
@@ -136,15 +125,6 @@ function serializeExpertiseItems(items: ExpertiseItem[]): string {
     .join('\n\n')
 }
 
-function serializeStackTools(tools: StackGroup[]): string {
-  return tools
-    .map(
-      (group) =>
-        `### ${group.title}\n\n${group.items.map((item) => `- ${item}`).join('\n')}`,
-    )
-    .join('\n\n')
-}
-
 function serializeSocialLinks(
   social: Array<{ label: string; link: string }>,
 ): string {
@@ -202,17 +182,6 @@ ${content.expertise.body}
 
 ${serializeExpertiseItems(content.expertise.items)}
 
-<a id="stack"></a>
-## ${getSectionTitle(content, 'stack')}
-
-${content.stack.eyebrow}
-
-### ${content.stack.headline}
-
-${content.stack.body}
-
-${serializeStackTools(content.stack.tools)}
-
 <a id="contact"></a>
 ## ${getSectionTitle(content, 'contact')}
 
@@ -252,11 +221,6 @@ function serializeLlms(content: AgentDocumentContent, locale: Locale): string {
       linkTitle: getSectionTitle(content, 'expertise'),
       description: content.expertise.body,
     },
-    stack: {
-      title: getSectionTitle(content, 'stack'),
-      linkTitle: getSectionTitle(content, 'stack'),
-      description: content.stack.body,
-    },
     contact: {
       title: getSectionTitle(content, 'contact'),
       linkTitle: getSectionTitle(content, 'contact'),
@@ -287,33 +251,23 @@ ${agentDocumentSections
 async function getAgentDocumentContent(
   locale: Locale,
 ): Promise<AgentDocumentContent> {
-  const [
-    settings,
-    hero,
-    projects,
-    about,
-    expertise,
-    stack,
-    contact,
-    projectEntries,
-  ] = await Promise.all([
-    getLocalizedEntry('sharedSettings', locale),
-    getLocalizedEntry('homeHero', locale),
-    getLocalizedEntry('homeProjects', locale),
-    getLocalizedEntry('homeAbout', locale),
-    getLocalizedEntry('homeExpertise', locale),
-    getLocalizedEntry('homeStack', locale),
-    getLocalizedEntry('homeContact', locale),
-    getCollection('projectContent', (entry: { id: string }) =>
-      entry.id.startsWith(`${locale}/`),
-    ),
-  ])
+  const [settings, hero, projects, about, expertise, contact, projectEntries] =
+    await Promise.all([
+      getLocalizedEntry('sharedSettings', locale),
+      getLocalizedEntry('homeHero', locale),
+      getLocalizedEntry('homeProjects', locale),
+      getLocalizedEntry('homeAbout', locale),
+      getLocalizedEntry('homeExpertise', locale),
+      getLocalizedEntry('homeContact', locale),
+      getCollection('projectContent', (entry: { id: string }) =>
+        entry.id.startsWith(`${locale}/`),
+      ),
+    ])
 
   const heroData = hero.data
   const projectsData = projects.data
   const aboutData = about.data
   const expertiseData = expertise.data
-  const stackData = stack.data
   const contactData = contact.data
 
   return {
@@ -358,12 +312,6 @@ async function getAgentDocumentContent(
       headline: joinSegments(expertiseData.headline),
       body: expertiseData.body,
       items: expertiseData.items,
-    },
-    stack: {
-      eyebrow: stackData.eyebrow,
-      headline: joinSegments(stackData.headline),
-      body: stackData.body,
-      tools: stackData.tools,
     },
     contact: {
       title: joinSegments(contactData.title),

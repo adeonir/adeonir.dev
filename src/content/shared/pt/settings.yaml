@@ -8,7 +8,6 @@ agentDocument:
     about: 'Sobre mim'
     projects: 'Projetos'
     expertise: 'Especialidades'
-    stack: 'Tecnologias'
     contact: 'Contato'
 pageTitles:
   home: 'Frontend Engineer'

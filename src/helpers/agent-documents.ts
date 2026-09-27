@@ -9,7 +9,6 @@ export const agentDocumentSections = [
   'about',
   'projects',
   'expertise',
-  'stack',
   'contact',
 ] as const
 
