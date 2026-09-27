@@ -75,7 +75,6 @@ content:
       actions:
         primary: 'Ver meu trabalho'
         secondary: 'Entrar em contato'
-      scroll: 'role para ver mais'
 
     about:
       eyebrow: 'Sobre mim'

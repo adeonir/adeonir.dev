@@ -75,7 +75,6 @@ content:
       actions:
         primary: 'See my projects'
         secondary: 'Get in touch'
-      scroll: 'scroll for more'
 
     about:
       eyebrow: 'About me'

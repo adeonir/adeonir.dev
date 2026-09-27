@@ -16,4 +16,3 @@ actions:
   secondary:
     label: 'Entrar em contato'
     href: '#contact'
-scroll: 'role para ver mais'
