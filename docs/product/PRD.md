@@ -1,7 +1,7 @@
 ---
 name: adeonir-dev-portfolio
 created: 2026-06-06
-updated: 2026-09-09
+updated: 2026-09-27
 status: ready
 sources: []
 ---
@@ -10,11 +10,11 @@ sources: []
 
 ## 1. Executive Summary
 
-adeonir.dev gives Adeonir Kohl — a frontend developer with 6+ years building web interfaces, moving toward product engineering — a personal portfolio that lets prospective clients, recruiters, and peers evaluate his work and reach him. The must-have scope covers a landing surface, a curated and a full work index, per-project detail pages, a contact path, and persistent navigation. Success is qualitative: the owner agreeing the site represents him well.
+adeonir.dev is Adeonir Kohl's personal portfolio for anyone curious about him, including prospective clients and recruiters. It presents his background and selected work, lets visitors explore projects in depth, and provides a way to get in touch. The intent is to present him through his own account and the work he chooses to show. Success is the owner agreeing the site represents him well.
 
 ## 2. Problem Statement
 
-Adeonir Kohl — frontend developer with 6+ years building web interfaces (primarily React and TypeScript), with a prior career in graphic design — has no personal web presence that represents him professionally. Without a portfolio, three audiences have no single place to evaluate him: prospective clients have no path to engage him, recruiters cannot see his work, and peers cannot gauge his credibility. The evidence is direct: no site exists today — this is a founding need, not a fix. The cost of not solving it is missed client and recruiter opportunities and weaker positioning as he moves toward product engineering.
+Adeonir's work and background are spread across profiles such as LinkedIn and GitHub, and each shows only a piece. Someone who wants to know him has to connect his career history with the work he builds without a shared narrative. The assumption is that this fragmented view makes it harder to understand how his background relates to his work and, for prospective clients and recruiters, to judge whether he fits what they need.
 
 ## 3. Goals & Non-Goals
 
@@ -29,8 +29,15 @@ Separately, lightweight privacy-respecting analytics collect usage statistics (w
 - Not a blog or content platform.
 - No backend beyond what contact handling requires.
 - Not a generic template — the design quality is part of the message.
+- Not a sales site — no explicit hiring pitch.
 
 ## 4. User Personas
+
+### Curious Visitor
+
+- **Role:** Anyone who wants to know Adeonir
+- **Pain Point:** No single place that shows who he is and what he builds
+- **Goal:** Get to know him and his work
 
 ### Prospective Client
 
@@ -51,6 +58,24 @@ Separately, lightweight privacy-respecting analytics collect usage statistics (w
 - **Goal:** Assess craft, background, and tools to form a professional opinion
 
 ## 5. User Journeys
+
+### Visitor gets to know Adeonir
+
+**Actor:** Curious visitor **Goal:** Get to know Adeonir and his work
+
+**Pre-conditions:**
+
+- Visitor reaches the landing surface
+
+**Main Flow:**
+
+1. Lands on the site → reads who he is
+2. Reads the about narrative → learns his background
+3. Browses the work → sees what he builds
+
+**Post-conditions:**
+
+- Visitor knows who Adeonir is and what he builds
 
 ### Client looks to hire
 
@@ -92,6 +117,7 @@ Separately, lightweight privacy-respecting analytics collect usage statistics (w
 **Alternative Flows:**
 
 - 2a. Wants the full set → follows the curated selection into the work index
+- 2b. Wants the career path → reads the experience timeline → opens the resume → downloads it as a PDF
 - 4a. Not ready to contact → leaves with a clear impression
 
 **Post-conditions:**
@@ -105,7 +131,7 @@ Separately, lightweight privacy-respecting analytics collect usage statistics (w
 **Main Flow:**
 
 1. Lands on the site → reads the about narrative and background
-2. Reviews the tools / stack → gauges technical fit
+2. Reads how the site was built → gauges technical fit
 3. Browses the work → forms a professional opinion
 
 **Post-conditions:**
@@ -131,9 +157,9 @@ Separately, lightweight privacy-respecting analytics collect usage statistics (w
 
 | ID | Requirement | Notes |
 | --- | --- | --- |
-| FR-7 | An about narrative (graphic design → frontend → product engineering) | Carries the differentiation story |
-| FR-8 | A tools / stack overview | Supports peer credibility |
+| FR-7 | An about narrative of his background | Carries the differentiation story |
 | FR-9 | Lightweight, privacy-respecting usage analytics | Observe work views and contact submissions; no audience targets |
+| FR-14 | An experience timeline on the landing that leads into a full resume, downloadable as PDF | Lets recruiters read the career path and keep the resume |
 
 ### Could Have
 
@@ -141,6 +167,8 @@ Separately, lightweight privacy-respecting analytics collect usage statistics (w
 | --- | --- | --- |
 | FR-10 | Previous / next navigation between projects | Keeps visitors moving through the work |
 | FR-13 | An illustrated character of Adeonir appears across the site, in a pose matched to the moment | Reinforces the personal, casual register |
+| FR-15 | An about-this-site surface describing how the site was built | Supports peer credibility |
+| FR-16 | On-demand audio narration of the hero, about, and expertise sections, in both languages; each section plays independently | Reinforces the AI and design positioning |
 
 ### Won't Have
 
@@ -149,6 +177,7 @@ Separately, lightweight privacy-respecting analytics collect usage statistics (w
 | FR-N1 | Blog or CMS | Out of scope for launch; deferred candidate for a future phase, not a permanent exclusion |
 | FR-N2 | Authentication / user accounts | No logged-in experience |
 | FR-N3 | E-commerce or payments | Not a transactional product |
+| FR-N4 | A tools / stack overview | A fixed stack list reads as a recipe and understates the actual range; tools are already named in the about prose |
 
 ## 7. Business Rules
 
@@ -158,6 +187,7 @@ Separately, lightweight privacy-respecting analytics collect usage statistics (w
 | BR-2 | Every project shown carries a summary in place; a project with a case study routes to its detail surface, a project with only a live site links out to it, and a project with neither is listed as offline | Work index, curated selection |
 | BR-3 | Contact must offer at least one direct channel in addition to the form | Contact surface |
 | BR-4 | The end-of-page character follows the time of day: coffee between 9:00 and 18:00, beer outside that window | End of page |
+| BR-5 | Narration plays only when the visitor starts it; starting one section pauses any other that is playing | Hero, about, expertise |
 
 ## 8. Edge Cases
 
@@ -186,7 +216,11 @@ Separately, lightweight privacy-respecting analytics collect usage statistics (w
 
 ## 11. External Dependencies
 
-None identified — Adeonir owns content authoring, design, and delivery end-to-end.
+Adeonir owns content authoring, design, and delivery end-to-end. One outside service shapes delivery:
+
+| ID | Dependency | Impact if blocked | Owner / Status |
+| --- | --- | --- | --- |
+| DEP-1 | Text-to-speech provider (ElevenLabs) for the narration audio; the free plan requires attribution on the site | Narration cannot be generated or updated | ElevenLabs — free plan |
 
 ## 12. Risks
 
