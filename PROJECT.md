@@ -15,6 +15,7 @@
 
 ## Decisions
 
+- Home narration will use ElevenLabs audio generated before publication and shipped as static files per section and locale. Visits and builds will not call ElevenLabs; changing narrated text requires regenerating and publishing the matching audio. This is a planned feature; source: docs/tech/design-doc.md §3.9 and docs/product/PRD.md FR-16 / BR-5; scope: home narration
 - The home stays prerendered — the static Lighthouse audit reads `dist/client`, and an on-demand home leaves it nothing to read; source: lighthouserc.json and wrangler.jsonc; scope: the home route
 - Contact rate limiting uses the native Workers Rate Limiting binding rather than a KV read-modify-write counter or a global Durable Object — the binding covers the need, and it supports only 10- or 60-second periods; source: wrangler.jsonc and src/services/rate-limit.ts; scope: contact flow
 - Server-side PostHog capture sends raw ingest requests through the shared analytics service — the browser snippet is not available inside the Cloudflare Worker; source: src/services/analytics.ts; scope: server-side analytics
