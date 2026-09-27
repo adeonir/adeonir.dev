@@ -93,7 +93,7 @@ content:
       headline: 'Ideias que saíram do papel'
       body: 'Alguns projetos que ajudei a construir nos últimos anos.'
       empty: 'Ainda não tenho nenhum projeto em destaque publicado aqui. Se quiser saber no que estou trabalhando, me manda uma mensagem.'
-      see-all: 'Ver todos projetos'
+      see-all: 'Ver todos os projetos'
 
     expertise:
       eyebrow: 'Especialidades'

@@ -34,7 +34,7 @@ const entriesByLocale = {
       eyebrow: 'Projetos em destaque',
       headline: [{ text: 'Ideias ', highlight: true }, { text: 'no ar' }],
       body: 'Alguns projetos que ajudei a construir.',
-      seeAll: 'Ver todos projetos',
+      seeAll: 'Ver todos os projetos',
       empty: [
         { text: 'Ainda não publiquei nenhum projeto aqui. ' },
         { text: 'me manda uma mensagem', href: '#contact' },
@@ -343,10 +343,10 @@ describe('getAgentDocuments', () => {
     const english = await getAgentDocuments('en')
 
     expect(portuguese.markdown).toContain(
-      '[Ver todos projetos](https://adeonir.dev/projects)',
+      '[Ver todos os projetos](https://adeonir.dev/projects)',
     )
     expect(portuguese.llms).toContain(
-      '[Ver todos projetos](https://adeonir.dev/projects)',
+      '[Ver todos os projetos](https://adeonir.dev/projects)',
     )
     expect(english.markdown).toContain(
       '[See all projects](https://adeonir.dev/en/projects)',
