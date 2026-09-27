@@ -63,6 +63,7 @@ Read the matching rule before making the change:
 
 | When | Read |
 |---|---|
+| Writing a commit subject or pull request title | `.agents/rules/git-commit-messages.md` |
 | Creating or renaming source files under `src/` | `.agents/rules/kebab-case-filenames.md` |
 | Choosing or composing Tailwind classes in source files | `.agents/rules/tailwind-canonical-classes.md` |
 | Naming highlight fields or rendering highlighted text | `.agents/rules/text-highlight-segments.md` |

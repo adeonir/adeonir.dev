@@ -1,0 +1,1 @@
+../../.agents/rules/git-commit-messages.md
