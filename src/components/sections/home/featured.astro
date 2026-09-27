@@ -16,7 +16,7 @@ import IconFolder from '~icons/tabler/folder'
 type ProjectEntry = CollectionEntry<'projectContent'>
 
 type FeaturedEntry = ProjectEntry & {
-  data: { featured: true; cover: ImageMetadata }
+  data: { featured: true; cover: ImageMetadata; coverAlt: string }
 }
 
 const locale = parseLocale(Astro.currentLocale)

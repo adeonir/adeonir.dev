@@ -11,7 +11,6 @@ export const sharedSettingsSchema = z.object({
       projects: z.string(),
       about: z.string(),
       expertise: z.string(),
-      stack: z.string(),
       contact: z.string(),
     }),
   }),

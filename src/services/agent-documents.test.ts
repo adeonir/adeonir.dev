@@ -20,7 +20,6 @@ const entriesByLocale = {
           projects: 'Projetos',
           about: 'Sobre mim',
           expertise: 'Especialidades',
-          stack: 'Tecnologias',
           contact: 'Contato',
         },
       },
@@ -34,7 +33,7 @@ const entriesByLocale = {
       eyebrow: 'Projetos em destaque',
       headline: [{ text: 'Ideias ', highlight: true }, { text: 'no ar' }],
       body: 'Alguns projetos que ajudei a construir.',
-      seeAll: 'Ver todos projetos',
+      seeAll: 'Ver todos os projetos',
       empty: [
         { text: 'Ainda não publiquei nenhum projeto aqui. ' },
         { text: 'me manda uma mensagem', href: '#contact' },
@@ -62,12 +61,6 @@ const entriesByLocale = {
         },
       ],
     },
-    homeStack: {
-      eyebrow: 'Stack',
-      headline: [{ text: 'Com o que eu trabalho' }],
-      body: 'Ferramentas do dia a dia.',
-      tools: [{ title: 'Frontend', items: ['React', 'Astro'] }],
-    },
     homeContact: {
       title: [{ text: 'Vamos conversar' }],
       body: 'Me escreva.',
@@ -83,7 +76,6 @@ const entriesByLocale = {
           projects: 'Projects',
           about: 'About me',
           expertise: 'Capabilities',
-          stack: 'Tech Stack',
           contact: 'Contact',
         },
       },
@@ -124,12 +116,6 @@ const entriesByLocale = {
           description: 'Components the team can build on.',
         },
       ],
-    },
-    homeStack: {
-      eyebrow: 'Stack',
-      headline: [{ text: 'What I work with' }],
-      body: 'Day-to-day tools.',
-      tools: [{ title: 'Frontend', items: ['React', 'Astro'] }],
     },
     homeContact: {
       title: [{ text: "Let's talk" }],
@@ -343,10 +329,10 @@ describe('getAgentDocuments', () => {
     const english = await getAgentDocuments('en')
 
     expect(portuguese.markdown).toContain(
-      '[Ver todos projetos](https://adeonir.dev/projects)',
+      '[Ver todos os projetos](https://adeonir.dev/projects)',
     )
     expect(portuguese.llms).toContain(
-      '[Ver todos projetos](https://adeonir.dev/projects)',
+      '[Ver todos os projetos](https://adeonir.dev/projects)',
     )
     expect(english.markdown).toContain(
       '[See all projects](https://adeonir.dev/en/projects)',
@@ -356,18 +342,18 @@ describe('getAgentDocuments', () => {
     )
   })
 
-  it('places the expertise section between about and stack', async () => {
+  it('places the expertise section between about and contact', async () => {
     const { llms, markdown } = await getAgentDocuments('en')
 
     const markdownOrder = [
       markdown.indexOf('## About me'),
       markdown.indexOf('## Capabilities'),
-      markdown.indexOf('## Tech Stack'),
+      markdown.indexOf('## Contact'),
     ]
     const llmsOrder = [
       llms.indexOf('## About me'),
       llms.indexOf('## Capabilities'),
-      llms.indexOf('## Tech Stack'),
+      llms.indexOf('## Contact'),
     ]
 
     expect(markdownOrder.every((position) => position >= 0)).toBe(true)

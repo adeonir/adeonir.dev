@@ -16,4 +16,3 @@ actions:
   secondary:
     label: 'Get in touch'
     href: '#contact'
-scroll: 'scroll for more'
