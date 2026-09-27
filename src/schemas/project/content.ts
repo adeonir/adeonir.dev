@@ -16,11 +16,16 @@ export const projectContentSchema = ({ image }: SchemaContext) =>
       url: z.url().optional(),
       repository: z.url().optional(),
       cover: image().optional(),
+      coverAlt: z.string().min(1).optional(),
       featured: z.boolean().optional(),
     })
     .refine((entry) => entry.featured === undefined || entry.cover, {
       path: ['cover'],
       message: 'A featured project needs a cover',
+    })
+    .refine((entry) => entry.featured === undefined || entry.coverAlt, {
+      path: ['coverAlt'],
+      message: 'A featured project needs a cover description',
     })
     .refine((entry) => entry.destination !== 'external' || entry.url, {
       path: ['url'],

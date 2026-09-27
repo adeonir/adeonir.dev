@@ -9,10 +9,11 @@ interface Props {
   category: string
   summary: string
   cover: ImageMetadata
+  coverAlt: string
   href: string
 }
 
-const { name, category, summary, cover, href } = Astro.props
+const { name, category, summary, cover, coverAlt, href } = Astro.props
 ---
 
 <a
@@ -25,7 +26,7 @@ const { name, category, summary, cover, href } = Astro.props
   >
     <Image
       src={cover}
-      alt=""
+      alt={coverAlt}
       loading="lazy"
       decoding="async"
       widths={[480, 640, 960, 1280]}
