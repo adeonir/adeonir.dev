@@ -43,7 +43,11 @@ if (!resolvedTitle) {
   throw new Error('A page title or title key is required')
 }
 
-const fullTitle = `${resolvedTitle} | ${settings.data.siteName}`
+const titleTemplate =
+  titleKey === 'home'
+    ? `${settings.data.siteName} | %s`
+    : `%s | ${settings.data.siteName}`
+const fullTitle = titleTemplate.replace('%s', resolvedTitle)
 const resolvedDescription = description?.trim()
   ? description
   : settings.data.description
@@ -81,7 +85,7 @@ const ogImageURL = new URL(
 
     <SEO
       title={resolvedTitle}
-      titleTemplate={`%s | ${settings.data.siteName}`}
+      titleTemplate={titleTemplate}
       description={resolvedDescription}
       canonical={canonicalURL}
       noindex={noindex}

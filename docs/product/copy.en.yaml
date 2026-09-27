@@ -9,7 +9,7 @@ project:
   name: 'adeonir.dev'
   language: 'en'
   industry: 'portfolio'
-  title: 'Adeonir Kohl | Portfolio'
+  title: 'Adeonir Kohl | Frontend Engineer'
   description: "I'm a frontend engineer working in design engineering, bringing design decisions into code to build accessible, responsive, fast web interfaces."
 
 intent:
@@ -37,7 +37,7 @@ voice:
 
 routes:
   home:
-    title: 'Portfolio'
+    title: 'Frontend Engineer'
   not-found:
     title: 'Page not found'
   maintenance:

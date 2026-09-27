@@ -11,7 +11,7 @@ agentDocument:
     stack: 'Tech Stack'
     contact: 'Contact'
 pageTitles:
-  home: 'Portfolio'
+  home: 'Frontend Engineer'
   projects: 'Projects'
   notFound: 'Page not found'
   maintenance: 'Maintenance'

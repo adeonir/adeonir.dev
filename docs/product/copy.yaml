@@ -9,7 +9,7 @@ project:
   name: 'adeonir.dev'
   language: 'pt'
   industry: 'portfolio'
-  title: 'Adeonir Kohl | Portfólio'
+  title: 'Adeonir Kohl | Frontend Engineer'
   description: 'Sou frontend engineer e trabalho com design engineering, levando decisões de design para o código em interfaces web acessíveis, responsivas e rápidas.'
 
 intent:
@@ -37,7 +37,7 @@ voice:
 
 routes:
   home:
-    title: 'Portfólio'
+    title: 'Frontend Engineer'
   not-found:
     title: 'Página não encontrada'
   maintenance:
