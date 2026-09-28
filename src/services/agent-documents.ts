@@ -11,18 +11,13 @@ import {
   getProjectDestination,
   sortByLaunch,
 } from '~/helpers/projects'
+import { joinSegments, type TextSegment } from '~/helpers/segments'
 import { getLocalizedEntry } from '~/services/localized'
 
 type AgentDocumentProject = {
   name: string
   summary: string
   year: string
-  href?: string
-}
-
-type TextSegment = {
-  text: string
-  highlight?: boolean
   href?: string
 }
 
@@ -81,10 +76,6 @@ function getSectionTitle(
   section: AgentDocumentSection,
 ): string {
   return content.agentDocument.sections[section]
-}
-
-function joinSegments(segments: TextSegment[]): string {
-  return segments.map((segment) => segment.text).join('')
 }
 
 function serializeLinkedSegments(segments: TextSegment[]): string {
