@@ -1,8 +1,8 @@
 metadata:
   source: 'docs/product/brief.md, docs/product/prd.md, conversation'
   created: '2026-06-06'
-  updated: '2026-09-08'
-  version: '1.0.11'
+  updated: '2026-09-28'
+  version: '1.0.13'
   status: 'ready'
 
 project:
@@ -10,7 +10,7 @@ project:
   language: 'pt'
   industry: 'portfolio'
   title: 'Adeonir Kohl | Frontend Engineer'
-  description: 'Sou frontend engineer e trabalho com design engineering, levando decisões de design para o código em interfaces web acessíveis, responsivas e rápidas.'
+  description: 'Sou design engineer e trabalho no frontend, cuidando de cada detalhe de interfaces web acessíveis, responsivas e rápidas.'
 
 intent:
   status: confirmed
@@ -69,8 +69,9 @@ content:
     hero:
       eyebrow: 'Frontend Engineer'
       display: 'Adeonir Kohl'
-      tagline: 'Eu construo interfaces web que funcionam.'
-      description: 'Gosto de ver ideias tomarem forma e o design ganhar vida na tela.'
+      tagline: 'O design também acontece no código.'
+      description: 'Sou design engineer e trabalho no frontend, cuidando de cada detalhe da interface.'
+      availability: 'Disponível para trabalho'
       actions:
         primary: 'Ver meu trabalho'
         secondary: 'Entrar em contato'

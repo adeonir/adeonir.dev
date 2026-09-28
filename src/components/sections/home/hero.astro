@@ -1,4 +1,5 @@
 ---
+import AvailabilitySeal from '~/components/availability-seal.astro'
 import { buttonVariants } from '~/components/ui/button-variants'
 import { Eyebrow } from '~/components/ui/eyebrow'
 import { cn } from '~/helpers/classnames'
@@ -8,7 +9,8 @@ import { getLocalizedEntry } from '~/services/localized'
 const locale = parseLocale(Astro.currentLocale)
 const hero = await getLocalizedEntry('homeHero', locale)
 
-const { eyebrow, display, tagline, description, actions } = hero.data
+const { eyebrow, display, tagline, description, availability, actions } =
+  hero.data
 ---
 
 <section
@@ -19,11 +21,19 @@ const { eyebrow, display, tagline, description, actions } = hero.data
     <Eyebrow className="animate-enter [--blur-in:var(--blur-xs)]"
       >{eyebrow}</Eyebrow
     >
-    <h1
-      class="mt-4 animate-enter text-5xl leading-[0.92] font-extrabold text-foreground [--blur-in:var(--blur-lg)] [--enter-opacity:1] [animation-delay:70ms] sm:mt-5 sm:text-7xl lg:text-[7rem]"
-    >
-      {display}
-    </h1>
+    <div class="relative mt-4 sm:mt-5">
+      <h1
+        class="animate-enter text-5xl leading-[0.92] font-extrabold text-foreground [--blur-in:var(--blur-lg)] [--enter-opacity:1] [animation-delay:70ms] sm:text-6xl md:text-7xl lg:text-8xl"
+      >
+        {display}
+      </h1>
+      <a
+        href={actions.secondary.href}
+        class="absolute -top-36 right-0 size-20 -rotate-16 animate-enter overflow-hidden rounded-full transition-transform [--blur-in:var(--blur-lg)] [animation-delay:210ms] focus-visible:ring-4 focus-visible:ring-ring/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none motion-safe:hover:-rotate-24 xxs:-top-24 xxs:-right-8 xs:-right-24 xs:size-24 lg:-top-28 lg:-right-32 lg:size-28"
+      >
+        <AvailabilitySeal availability={availability} />
+      </a>
+    </div>
     <p
       class="mt-6 max-w-3xl animate-enter text-2xl font-semibold text-balance text-foreground [--blur-in:var(--blur-sm)] [animation-delay:140ms] sm:mt-10 sm:text-3xl lg:text-4xl"
     >
@@ -40,7 +50,7 @@ const { eyebrow, display, tagline, description, actions } = hero.data
       }
     </p>
     <p
-      class="mt-3 max-w-3xl animate-enter text-subtitle leading-relaxed text-pretty text-muted-foreground [--blur-in:var(--blur-xs)] [animation-delay:210ms] sm:mt-4"
+      class="mt-3 max-w-lg animate-enter text-lg leading-relaxed text-pretty text-muted-foreground/80 [--blur-in:var(--blur-xs)] [animation-delay:210ms] sm:mt-4 sm:text-xl lg:max-w-xl lg:text-2xl"
     >
       {description}
     </p>

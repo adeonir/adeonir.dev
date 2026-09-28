@@ -12,6 +12,11 @@ export const homeHeroSchema = z.object({
     )
     .min(1),
   description: z.string().min(1),
+  availability: z.object({
+    label: z.string().min(1),
+    top: z.string().min(1),
+    bottom: z.string().min(1),
+  }),
   actions: z.object({
     primary: z.object({
       label: z.string().min(1),
