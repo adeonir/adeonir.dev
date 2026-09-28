@@ -145,6 +145,8 @@ Astro's env schema defines `POSTHOG_KEY` (optional public client key), `POSTHOG_
 
 Never put `RESEND_API_KEY` in client code, source files, or logs. Local values belong in the gitignored `.env`; use `.env.example` as the template. Production values belong in the Cloudflare dashboard.
 
+`ELEVENLABS_API_KEY` and `ELEVENLABS_VOICE_ID` serve only the local narration script. Keep them in `.env`, and never add them to the Astro env schema or the Cloudflare dashboard: the site plays committed audio files and never calls ElevenLabs.
+
 The contact form validates with `src/validations/contact.ts` on the client and the server. The shared client schema imports the canonical `zod` package; server-only content schemas may use `astro/zod`.
 
 PostHog runs cookieless and respects Do Not Track. Server-side contact events never include form PII and use a synthetic `distinct_id`. Analytics is inert when `POSTHOG_KEY` is unset.

@@ -1,7 +1,7 @@
 ---
 name: adeonir-dev-portfolio
 created: 2026-06-06
-updated: 2026-09-27
+updated: 2026-09-28
 status: ready
 sources: []
 ---
@@ -22,7 +22,7 @@ Adeonir's work and background are spread across profiles such as LinkedIn and Gi
 | --- | --- | --- |
 | Site authentically represents Adeonir | Owner self-assessment | Owner agrees it represents him well |
 
-Separately, lightweight privacy-respecting analytics collect usage statistics (work views, contact submissions) for insight only — not goals, not targets, not graded against a KPI.
+Separately, lightweight privacy-respecting analytics collect usage statistics (work views, contact submissions, narration plays) for insight only — not goals, not targets, not graded against a KPI.
 
 ### Non-Goals
 
@@ -158,7 +158,7 @@ Separately, lightweight privacy-respecting analytics collect usage statistics (w
 | ID | Requirement | Notes |
 | --- | --- | --- |
 | FR-7 | An about narrative of his background | Carries the differentiation story |
-| FR-9 | Lightweight, privacy-respecting usage analytics | Observe work views and contact submissions; no audience targets |
+| FR-9 | Lightweight, privacy-respecting usage analytics | Observe work views, contact submissions, and narration plays; no audience targets |
 | FR-14 | An experience timeline on the landing that leads into a full resume, downloadable as PDF | Lets recruiters read the career path and keep the resume |
 
 ### Could Have
@@ -188,6 +188,7 @@ Separately, lightweight privacy-respecting analytics collect usage statistics (w
 | BR-3 | Contact must offer at least one direct channel in addition to the form | Contact surface |
 | BR-4 | The end-of-page character follows the time of day: coffee between 9:00 and 18:00, beer outside that window | End of page |
 | BR-5 | Narration plays only when the visitor starts it; starting one section pauses any other that is playing | Hero, about, expertise |
+| BR-6 | Narration reads the section's visible text as written, without its labels: the eyebrow, the availability seal, and the action labels are not read | Hero, about, expertise |
 
 ## 8. Edge Cases
 
@@ -196,6 +197,7 @@ Separately, lightweight privacy-respecting analytics collect usage statistics (w
 | EC-1 | No projects available yet | Show a meaningful empty state rather than a blank index |
 | EC-2 | Contact form submission fails | Show an error and surface a direct fallback channel |
 | EC-3 | A project detail is requested for a project that does not exist | Show a not-found state with a path back to the work index |
+| EC-4 | A section's narration audio fails to load | Show an error message; the section's text stays on the page |
 
 ## 9. Non-Functional Requirements
 
@@ -216,11 +218,7 @@ Separately, lightweight privacy-respecting analytics collect usage statistics (w
 
 ## 11. External Dependencies
 
-Adeonir owns content authoring, design, and delivery end-to-end. One outside service shapes delivery:
-
-| ID | Dependency | Impact if blocked | Owner / Status |
-| --- | --- | --- | --- |
-| DEP-1 | Text-to-speech provider (ElevenLabs) for the narration audio; the free plan requires attribution on the site | Narration cannot be generated or updated | ElevenLabs — free plan |
+Adeonir owns content authoring, design, and delivery end-to-end. No outside dependency blocks delivery; the services the site uses are recorded in the Design Doc.
 
 ## 12. Risks
 

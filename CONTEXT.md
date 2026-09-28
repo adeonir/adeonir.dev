@@ -43,3 +43,15 @@ _Avoid_: Project page, project content
 **Empty state**:
 What a section shows while it has nothing to list.
 _Avoid_: Holding message, placeholder
+
+**Narration**:
+The recording of one section's spoken text, in one language, in the owner's cloned voice. Only the hero, about, and expertise sections have one.
+_Avoid_: Audio, voiceover, reading
+
+**Narrated text**:
+The visible text of a narrated section without its labels: the eyebrow, the availability seal, and the action labels are not part of it.
+_Avoid_: Section text, page copy
+
+**Spoken text**:
+The narrated text written for listening, with delivery directions and words spelled the way they are spoken. It is what the narration records, and it can differ from the page on purpose.
+_Avoid_: Script, narration script, transcript
