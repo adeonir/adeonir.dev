@@ -8,6 +8,10 @@ tagline:
     highlight: true
   - text: ' too.'
 description: "I'm a design engineer working on the frontend, taking care of every detail of the interface."
+availability:
+  label: 'Available for work'
+  top: 'Available'
+  bottom: 'for work'
 actions:
   primary:
     label: 'See my projects'

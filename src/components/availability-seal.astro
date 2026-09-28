@@ -1,0 +1,83 @@
+---
+import type { CollectionEntry } from 'astro:content'
+
+import { parseLocale } from '~/helpers/content'
+
+interface Props {
+  availability: CollectionEntry<'homeHero'>['data']['availability']
+}
+
+const { availability } = Astro.props
+const locale = parseLocale(Astro.currentLocale)
+
+// The side dots sit mid-way between the two text arcs, on the circle halfway
+// between the rings (radius 48.75 in the 136 viewBox, center 68). Each angle
+// comes from that locale's text widths measured in Geist.
+const dotAngle = { pt: 200.8, en: 182.9 }[locale]
+const radians = (dotAngle * Math.PI) / 180
+const dotX = 68 + 48.75 * Math.cos(radians)
+const dotY = (68 - 48.75 * Math.sin(radians)).toFixed(2)
+---
+
+<svg
+  class="size-full font-sans font-normal uppercase"
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 136 136"
+  role="img"
+  aria-label={availability.label}
+>
+  <defs>
+    <path
+      id="availability-seal-top"
+      d="M37.55,98.45 A43.07,43.07 0 1,1 98.45,98.45"></path>
+    <path
+      id="availability-seal-bottom"
+      d="M13.57,68 A54.43,54.43 0 0,0 122.43,68"></path>
+  </defs>
+  <circle
+    class="fill-background stroke-accent"
+    cx="68"
+    cy="68"
+    r="65"
+    stroke-width="2"></circle>
+  <circle
+    class="fill-none stroke-accent"
+    cx="68"
+    cy="68"
+    r="32"
+    stroke-width="3"></circle>
+  <text
+    class="fill-muted-foreground"
+    font-size="16"
+    letter-spacing="0"
+    text-anchor="middle"
+  >
+    <textPath href="#availability-seal-top" startOffset="50%"
+      >{availability.top}</textPath
+    >
+  </text>
+  <text
+    class="fill-muted-foreground"
+    font-size="16"
+    letter-spacing="2"
+    text-anchor="middle"
+  >
+    <textPath href="#availability-seal-bottom" startOffset="50%"
+      >{availability.bottom}</textPath
+    >
+  </text>
+  <circle class="fill-muted-foreground" cx={dotX.toFixed(2)} cy={dotY} r="2.5"
+  ></circle>
+  <circle
+    class="fill-muted-foreground"
+    cx={(136 - dotX).toFixed(2)}
+    cy={dotY}
+    r="2.5"></circle>
+  <circle class="fill-accent" cx="68" cy="68" r="22"></circle>
+  <path
+    class="fill-none stroke-background"
+    d="M58 68l7 7 14-15"
+    stroke-width="4.5"
+    stroke-linecap="round"
+    stroke-linejoin="round"></path>
+</svg>

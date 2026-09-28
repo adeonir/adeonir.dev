@@ -9,6 +9,10 @@ tagline:
     highlight: true
   - text: '.'
 description: 'Sou design engineer e trabalho no frontend, cuidando de cada detalhe da interface.'
+availability:
+  label: 'Disponível para trabalho'
+  top: 'Disponível para'
+  bottom: 'trabalho'
 actions:
   primary:
     label: 'Ver meu trabalho'
