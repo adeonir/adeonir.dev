@@ -1,15 +1,8 @@
 import { Portal } from '@ark-ui/react/portal'
-import { Toaster as ArkToaster, createToaster } from '@ark-ui/react/toast'
+import { Toaster as ArkToaster } from '@ark-ui/react/toast'
 
 import { Toast } from '~/components/ui/toast'
-
-export const toaster = createToaster({
-  placement: 'bottom-end',
-  duration: 5000,
-  overlap: true,
-  gap: 16,
-  max: 4,
-})
+import { toaster } from '~/stores/toaster'
 
 export function Toaster() {
   return (

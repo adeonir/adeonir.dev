@@ -1,0 +1,9 @@
+import { createToaster } from '@ark-ui/react/toast'
+
+export const toaster = createToaster({
+  placement: 'bottom-end',
+  duration: 5000,
+  overlap: true,
+  gap: 16,
+  max: 4,
+})
