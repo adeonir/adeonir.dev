@@ -1,14 +1,13 @@
 eyebrow: 'Frontend Engineer'
 display: 'Adeonir Kohl'
 tagline:
-  - text: 'I build '
-  - text: 'web interfaces'
+  - text: 'Design'
     highlight: true
-  - text: ' that '
-  - text: 'work'
+  - text: ' happens in '
+  - text: 'code'
     highlight: true
-  - text: '.'
-description: 'I like seeing ideas take shape and design come to life on screen.'
+  - text: ' too.'
+description: "I'm a design engineer working on the frontend, taking care of every detail of the interface."
 actions:
   primary:
     label: 'See my projects'
