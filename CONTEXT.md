@@ -5,7 +5,7 @@ Personal portfolio for a design engineer. The visual identity is the product. It
 ## Language
 
 **Design engineer**:
-A frontend professional who turns design decisions into working interfaces, preserving the visual intent through implementation and resolving technical constraints without degrading the experience. Their scope is the interface itself: layout, typography, interaction, and composition, worked out in code and browser prototypes and delivered as responsive, accessible, performant, and reusable patterns. Sometimes, in their own projects, they can own design and frontend end to end. They are not a Product Designer: the role carries no user research, no product strategy, and no ownership of discovery.
+A frontend professional who turns design decisions into working interfaces, preserving the visual intent through implementation and resolving technical constraints without degrading the experience. Their scope is the interface itself: layout, typography, interaction, and composition, worked out in code and browser prototypes and delivered as responsive, accessible, performant, and reusable patterns. They often do the design themselves, owning design and frontend end to end. They are not a Product Designer: the role carries no user research, no product strategy, and no ownership of discovery.
 _Avoid_: Designer and developer in equal parts, full Product Designer, product engineer
 
 **Enter**:
