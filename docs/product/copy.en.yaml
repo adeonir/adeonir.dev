@@ -151,6 +151,16 @@ content:
           email: 'Enter a valid email address.'
           maxLength: 'Use {max} characters or fewer.'
 
+    narration:
+      label: 'Listen'
+      names:
+        hero: 'Listen to the introduction'
+        about: 'Listen to the about me section'
+        expertise: 'Listen to the capabilities section'
+      error:
+        title: "We couldn't play the narration"
+        description: 'Try again in a moment.'
+
     footer: &footer
       brand:
         text: 'adeonir.dev'

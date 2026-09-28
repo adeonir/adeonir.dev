@@ -4,6 +4,7 @@ import { homeAboutSchema } from '~/schemas/home/about'
 import { homeContactSchema } from '~/schemas/home/contact'
 import { homeExpertiseSchema } from '~/schemas/home/expertise'
 import { homeHeroSchema } from '~/schemas/home/hero'
+import { homeNarrationSchema } from '~/schemas/home/narration'
 import { homeProjectsSchema } from '~/schemas/home/projects'
 import { projectContentSchema } from '~/schemas/project/content'
 import { projectHeaderSchema } from '~/schemas/project/header'
@@ -69,6 +70,15 @@ const homeContact = defineCollection({
     generateId: localeId('homeContact'),
   }),
   schema: homeContactSchema,
+})
+
+const homeNarration = defineCollection({
+  loader: glob({
+    pattern: '*/narration.yaml',
+    base: 'src/content/home',
+    generateId: localeId('homeNarration'),
+  }),
+  schema: homeNarrationSchema,
 })
 
 const sharedSettings = defineCollection({
@@ -217,6 +227,7 @@ export const collections = {
   homeAbout,
   homeExpertise,
   homeContact,
+  homeNarration,
   sharedNotFound,
   sharedEmails,
   sharedConsole,
