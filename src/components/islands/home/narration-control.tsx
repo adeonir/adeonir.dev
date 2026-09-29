@@ -111,6 +111,7 @@ export function NarrationControl({
           size="icon"
           className="rounded-full"
           aria-label={name}
+          aria-pressed={status === 'playing'}
           onClick={toggle}
         >
           {status === 'loading' ? (
