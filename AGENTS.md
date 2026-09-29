@@ -35,6 +35,7 @@ pnpm lint         # Read-only Biome and Prettier checks
 pnpm lint:fix     # Apply Biome and Prettier fixes
 pnpm lighthouse   # Build and run the budget gate
 pnpm email        # Start the React Email development server
+pnpm narration    # Generate missing narrations (calls ElevenLabs)
 ```
 
 Before considering a change done, run the gate: `pnpm typecheck && pnpm lint:fix`.
@@ -93,6 +94,14 @@ Read the matching rule before making the change:
 The contact section is on the home, and its island submits through `actions.contact()` without navigating. The Action validates, discards a honeypot submission silently, checks the rate-limit binding, sends both messages through Resend, and records a non-blocking analytics event. Read `src/actions/index.ts` for the sequence and the typed errors.
 
 No contact data is stored. There is no database, and contact PII is never logged. The rate-limit service fails open if its binding throws, so a broken binding degrades to no limit rather than to a rejected form. The always-visible direct contact list is the fallback channel when delivery fails.
+
+### Home narration
+
+The hero, about, and expertise sections play narrations committed under `public/narration/`. Nothing calls ElevenLabs at runtime or during the build; `pnpm narration` generates the audio locally from the spoken text of each section in `src/content/home/<locale>/narration.yaml`.
+
+- A copy change to a narrated section updates its spoken text in the same change. The spoken text differs from the page on purpose: audio tags in square brackets and words spelled the way they are spoken. Never align it back to the page text.
+- Each MP3 is named after the hash of its spoken text. Never rename or hand-edit these files; `pnpm narration` writes the new file and deletes the old one, and the narration sync test fails when the file for a current spoken text is missing.
+- Every generation bills ElevenLabs and produces different audio. Run `pnpm narration` only when asked, and do not commit new audio before the owner has listened to it.
 
 ## Content, routes, and page composition
 
