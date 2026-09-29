@@ -115,35 +115,29 @@ const ogImageURL = new URL(
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    {
-      titleKey === 'home' && (
-        <>
-          <link rel="alternate" type="text/markdown" href={agentMarkdownURL} />
-          <link rel="describedby" href={agentLlmsURL} />
-        </>
-      )
-    }
+    {titleKey === 'home' && (
+      <>
+        <link rel="alternate" type="text/markdown" href={agentMarkdownURL} />
+        <link rel="describedby" href={agentLlmsURL} />
+      </>
+    )}
 
     <ClientRouter />
     <Analytics />
     <ConsoleGreeting />
   </head>
-  <body
-    class="isolate flex min-h-dvh flex-col overflow-x-clip bg-background bg-linear-to-b from-sunken/50 to-transparent bg-size-[auto_24rem] bg-no-repeat text-foreground antialiased"
-  >
-    {
-      shell ? (
-        <>
-          <Header />
-          <main class="flex flex-1 flex-col">
-            <slot />
-          </main>
-          <Footer />
-        </>
-      ) : (
-        <slot />
-      )
-    }
+  <body class="isolate flex min-h-dvh flex-col overflow-x-clip bg-background bg-linear-to-b from-sunken/50 to-transparent bg-size-[auto_24rem] bg-no-repeat text-foreground antialiased">
+    {shell ? (
+      <>
+        <Header />
+        <main class="flex flex-1 flex-col">
+          <slot />
+        </main>
+        <Footer />
+      </>
+    ) : (
+      <slot />
+    )}
     <Toaster client:idle />
     <script>
       import '~/scripts/anchor-nav'

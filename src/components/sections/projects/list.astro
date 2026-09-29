@@ -50,82 +50,80 @@ const rowDivider =
 
 <section class="flex-1 pt-4 pb-16 md:pt-8">
   <div class="wrapper">
-    {
-      projects.length > 0 ? (
-        <div data-enter="block" class={cn('flex flex-col', tableGrid)}>
-          {groups.map((group) => (
-            <div class={cn('border-t border-border', groupGrid)}>
-              {group.projects.map((project, index) => {
-                const isFirst = index === 0
+    {projects.length > 0 ? (
+      <div data-enter="block" class={cn('flex flex-col', tableGrid)}>
+        {groups.map((group) => (
+          <div class={cn('border-t border-border', groupGrid)}>
+            {group.projects.map((project, index) => {
+              const isFirst = index === 0
 
-                return (
-                  <article class={cn(rowGrid, !isFirst && rowDivider)}>
-                    <span class="text-code text-secondary md:col-start-1 md:row-start-1 md:pt-2">
-                      {isFirst ? group.year : ''}
-                    </span>
-                    <div class="flex flex-col gap-3 md:col-start-2 md:row-start-1">
-                      <h2 class="flex flex-col gap-2 text-heading text-pretty text-foreground lg:flex-row lg:items-baseline lg:gap-8">
-                        <span>{project.name}</span>
-                        <span class="font-mono text-sm font-medium tracking-wider text-muted-foreground/50 uppercase">
-                          {project.category}
-                        </span>
-                      </h2>
-
-                      <p class="text-body leading-relaxed text-pretty text-muted-foreground/80">
-                        {project.summary}
-                      </p>
-                    </div>
-                    {project.destination.kind === 'internal' && (
-                      <a
-                        href={project.destination.href}
-                        class={cn(
-                          'group size-fit gap-2 self-end text-caption md:col-start-3 md:row-start-1 md:self-auto md:pt-2',
-                          buttonVariants({ variant: 'link', size: 'inline' }),
-                        )}
-                      >
-                        {links.more}
-                        <IconArrowRight
-                          className="size-4 shrink-0 transition-transform duration-200 motion-safe:group-hover:translate-x-1"
-                          aria-hidden="true"
-                        />
-                      </a>
-                    )}
-                    {project.destination.kind === 'external' && (
-                      <a
-                        href={project.destination.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class={cn(
-                          'group size-fit gap-2 self-end font-mono text-caption md:col-start-3 md:row-start-1 md:self-auto md:pt-2',
-                          buttonVariants({ variant: 'link', size: 'inline' }),
-                        )}
-                      >
-                        {project.destination.domain}
-                        <IconArrowUpRight
-                          className="size-4 shrink-0 transition-transform duration-200 motion-safe:group-hover:-translate-y-0.5"
-                          aria-hidden="true"
-                        />
-                      </a>
-                    )}
-                    {project.destination.kind === 'offline' && (
-                      <span class="self-end font-mono text-caption text-muted-foreground md:col-start-3 md:row-start-1 md:self-auto md:pt-2">
-                        {links.offline}
+              return (
+                <article class={cn(rowGrid, !isFirst && rowDivider)}>
+                  <span class="text-code text-secondary md:col-start-1 md:row-start-1 md:pt-2">
+                    {isFirst ? group.year : ''}
+                  </span>
+                  <div class="flex flex-col gap-3 md:col-start-2 md:row-start-1">
+                    <h2 class="flex flex-col gap-2 text-heading text-pretty text-foreground lg:flex-row lg:items-baseline lg:gap-8">
+                      <span>{project.name}</span>
+                      <span class="font-mono text-sm font-medium tracking-wider text-muted-foreground/50 uppercase">
+                        {project.category}
                       </span>
-                    )}
-                  </article>
-                )
-              })}
-            </div>
-          ))}
-        </div>
-      ) : (
-        <p
-          data-enter="block"
-          class="text-body leading-relaxed text-pretty text-muted-foreground"
-        >
-          {empty}
-        </p>
-      )
-    }
+                    </h2>
+
+                    <p class="text-body leading-relaxed text-pretty text-muted-foreground/80">
+                      {project.summary}
+                    </p>
+                  </div>
+                  {project.destination.kind === 'internal' && (
+                    <a
+                      href={project.destination.href}
+                      class={cn(
+                        'group size-fit gap-2 self-end text-caption md:col-start-3 md:row-start-1 md:self-auto md:pt-2',
+                        buttonVariants({ variant: 'link', size: 'inline' }),
+                      )}
+                    >
+                      {links.more}
+                      <IconArrowRight
+                        className="size-4 shrink-0 transition-transform duration-200 motion-safe:group-hover:translate-x-1"
+                        aria-hidden="true"
+                      />
+                    </a>
+                  )}
+                  {project.destination.kind === 'external' && (
+                    <a
+                      href={project.destination.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class={cn(
+                        'group size-fit gap-2 self-end font-mono text-caption md:col-start-3 md:row-start-1 md:self-auto md:pt-2',
+                        buttonVariants({ variant: 'link', size: 'inline' }),
+                      )}
+                    >
+                      {project.destination.domain}
+                      <IconArrowUpRight
+                        className="size-4 shrink-0 transition-transform duration-200 motion-safe:group-hover:-translate-y-0.5"
+                        aria-hidden="true"
+                      />
+                    </a>
+                  )}
+                  {project.destination.kind === 'offline' && (
+                    <span class="self-end font-mono text-caption text-muted-foreground md:col-start-3 md:row-start-1 md:self-auto md:pt-2">
+                      {links.offline}
+                    </span>
+                  )}
+                </article>
+              )
+            })}
+          </div>
+        ))}
+      </div>
+    ) : (
+      <p
+        data-enter="block"
+        class="text-body leading-relaxed text-pretty text-muted-foreground"
+      >
+        {empty}
+      </p>
+    )}
   </div>
 </section>

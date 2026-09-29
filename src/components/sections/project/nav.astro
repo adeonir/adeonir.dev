@@ -42,47 +42,45 @@ const linkClass = cn(
 )
 ---
 
-{
-  (previous || next) && (
-    <nav class="pb-16">
-      <div class="wrapper">
-        <div class="mx-auto flex w-full max-w-2xl flex-col">
-          <div class="flex items-start justify-between gap-8">
-            {previous ? (
-              <a
-                href={hrefFor(previous.id)}
-                class={cn(linkClass, 'items-start text-left')}
-              >
-                <span class="flex items-center gap-2 text-caption text-muted-foreground">
-                  <IconArrowLeft
-                    className="size-4 shrink-0 transition-transform duration-200 motion-safe:group-hover:-translate-x-1"
-                    aria-hidden="true"
-                  />
-                  {nav.data.previous}
-                </span>
-                <span class="text-body text-pretty">{previous.data.name}</span>
-              </a>
-            ) : (
-              <span />
-            )}
-            {next && (
-              <a
-                href={hrefFor(next.id)}
-                class={cn(linkClass, 'items-end text-right')}
-              >
-                <span class="flex items-center gap-2 text-caption text-muted-foreground">
-                  {nav.data.next}
-                  <IconArrowRight
-                    className="size-4 shrink-0 transition-transform duration-200 motion-safe:group-hover:translate-x-1"
-                    aria-hidden="true"
-                  />
-                </span>
-                <span class="text-body text-pretty">{next.data.name}</span>
-              </a>
-            )}
-          </div>
+{(previous || next) && (
+  <nav class="pb-16">
+    <div class="wrapper">
+      <div class="mx-auto flex w-full max-w-2xl flex-col">
+        <div class="flex items-start justify-between gap-8">
+          {previous ? (
+            <a
+              href={hrefFor(previous.id)}
+              class={cn(linkClass, 'items-start text-left')}
+            >
+              <span class="flex items-center gap-2 text-caption text-muted-foreground">
+                <IconArrowLeft
+                  className="size-4 shrink-0 transition-transform duration-200 motion-safe:group-hover:-translate-x-1"
+                  aria-hidden="true"
+                />
+                {nav.data.previous}
+              </span>
+              <span class="text-body text-pretty">{previous.data.name}</span>
+            </a>
+          ) : (
+            <span />
+          )}
+          {next && (
+            <a
+              href={hrefFor(next.id)}
+              class={cn(linkClass, 'items-end text-right')}
+            >
+              <span class="flex items-center gap-2 text-caption text-muted-foreground">
+                {nav.data.next}
+                <IconArrowRight
+                  className="size-4 shrink-0 transition-transform duration-200 motion-safe:group-hover:translate-x-1"
+                  aria-hidden="true"
+                />
+              </span>
+              <span class="text-body text-pretty">{next.data.name}</span>
+            </a>
+          )}
         </div>
       </div>
-    </nav>
-  )
-}
+    </div>
+  </nav>
+)}

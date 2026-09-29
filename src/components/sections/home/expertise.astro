@@ -27,17 +27,15 @@ const carryingBlocksMobile = await getImage({
           <Narration section="expertise" />
         </div>
         <h2 data-enter="block" class="text-display text-pretty text-foreground">
-          {
-            headline.map((segment) => (
-              <>
-                {segment.highlight ? (
-                  <span class="text-secondary">{segment.text}</span>
-                ) : (
-                  segment.text
-                )}
-              </>
-            ))
-          }
+          {headline.map((segment) => (
+            <>
+              {segment.highlight ? (
+                <span class="text-secondary">{segment.text}</span>
+              ) : (
+                segment.text
+              )}
+            </>
+          ))}
         </h2>
         <p
           data-enter="block"
@@ -56,9 +54,7 @@ const carryingBlocksMobile = await getImage({
           data-enter="block"
         />
       </div>
-      <div
-        class="flow-root space-y-6 md:col-span-3 md:flex md:flex-col md:gap-6 md:space-y-0 md:pt-14"
-      >
+      <div class="flow-root space-y-6 md:col-span-3 md:flex md:flex-col md:gap-6 md:space-y-0 md:pt-14">
         <img
           src={carryingBlocksMobile.src}
           width={carryingBlocksMobile.attributes.width}
@@ -71,22 +67,20 @@ const carryingBlocksMobile = await getImage({
           data-enter="block"
         />
         <ul class="space-y-8">
-          {
-            items.map((item) => (
-              <li data-enter="block" class="space-y-2">
-                <p class="text-code text-foreground">
-                  <span
-                    aria-hidden="true"
-                    class="mr-3 inline-block size-1.5 bg-secondary align-middle"
-                  />
-                  {item.title}
-                </p>
-                <p class="pl-4.5 text-body leading-relaxed text-pretty text-muted-foreground">
-                  {item.description}
-                </p>
-              </li>
-            ))
-          }
+          {items.map((item) => (
+            <li data-enter="block" class="space-y-2">
+              <p class="text-code text-foreground">
+                <span
+                  aria-hidden="true"
+                  class="mr-3 inline-block size-1.5 bg-secondary align-middle"
+                />
+                {item.title}
+              </p>
+              <p class="pl-4.5 text-body leading-relaxed text-pretty text-muted-foreground">
+                {item.description}
+              </p>
+            </li>
+          ))}
         </ul>
       </div>
     </div>
