@@ -1,9 +1,11 @@
 import { Progress } from '@ark-ui/react/progress'
+import { useStore } from '@nanostores/react'
 import { type SyntheticEvent, useEffect, useRef, useState } from 'react'
 
 import { Button } from '~/components/ui/button'
 import type { Locale } from '~/helpers/content'
 import type { NarrationSection } from '~/helpers/narration'
+import { $narration } from '~/stores/narration'
 import IconLoader from '~icons/tabler/loader-2'
 import IconPlayerPause from '~icons/tabler/player-pause'
 import IconPlayerPlay from '~icons/tabler/player-play'
@@ -25,11 +27,21 @@ function percentPlayed(audio: HTMLAudioElement) {
   return Math.min(100, (currentTime / duration) * 100)
 }
 
-export function NarrationControl({ src, label, name }: NarrationControlProps) {
+export function NarrationControl({
+  section,
+  src,
+  label,
+  name,
+}: NarrationControlProps) {
   const audioRef = useRef<HTMLAudioElement>(null)
+  const current = useStore($narration)
   const [status, setStatus] = useState<Status>('idle')
   const [progress, setProgress] = useState(0)
   const active = status === 'loading' || status === 'playing'
+
+  useEffect(() => {
+    if (active && current !== section) audioRef.current?.pause()
+  }, [active, current, section])
 
   useEffect(() => {
     const audio = audioRef.current
@@ -53,6 +65,7 @@ export function NarrationControl({ src, label, name }: NarrationControlProps) {
       return
     }
 
+    $narration.set(section)
     setStatus('loading')
     audio.play().catch((reason: unknown) => {
       if (reason instanceof DOMException && reason.name === 'AbortError') return
@@ -68,6 +81,7 @@ export function NarrationControl({ src, label, name }: NarrationControlProps) {
     event.currentTarget.currentTime = 0
     setProgress(0)
     setStatus('idle')
+    if ($narration.get() === section) $narration.set(null)
   }
 
   return (
