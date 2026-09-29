@@ -79,10 +79,10 @@ content:
     about:
       eyebrow: 'About me'
       headline: 'From design to code'
-      body: 'Where I come from, what I work on today, and what I do beyond that.'
+      body: 'Who I am, where I come from, and what I do.'
       bio:
-        - "Hi, I'm Adeonir, and I like building things for the internet. I'm a frontend and design engineer, currently looking for my next opportunity. I explore ideas through prototypes and craft functional, accessible interfaces, building the component libraries and design systems behind them. I particularly enjoy working at the intersection of design and code, with an eye for detail."
-        - 'After more than a decade as a graphic designer working on advertising materials, books, and magazines, I moved into frontend development. Day to day, I work mainly with React, TypeScript, Next.js, and Tailwind, and I use AI agents like Claude Code and Codex across the whole cycle, from specs and planning to implementation and review. I work in English with professional working proficiency and have collaborated with teams in Europe and the US.'
+        - "Hi, I'm Adeonir, and I like building things for the internet. As a frontend and design engineer, I'm looking for my next opportunity. I explore ideas through prototypes, create functional and accessible interfaces, build component libraries and design systems. I especially enjoy working at the intersection of design and code, always with an eye for detail."
+        - 'After more than a decade as a graphic designer working on advertising materials, books, and magazines, I moved into frontend development. Day to day, I work mainly with React, TypeScript, Next.js, and Tailwind, and I use AI agents like Claude Code and Codex across the whole cycle, from specs and planning to implementation and review. I work in English at a professional level and have collaborated with teams in Europe and the US.'
         - 'Outside of work, I build a few personal projects where I design the interface and define the architecture, and get to practice backend and mobile development too.'
         - 'In my spare time, I like spending time with family, collecting Hot Wheels with my son, watching TV shows and movies, and hanging out with friends.'
 
@@ -96,16 +96,16 @@ content:
     expertise:
       eyebrow: 'Capabilities'
       headline: 'What I do'
-      body: 'What I do day to day, and what the team gets from it.'
+      body: 'Day to day, I work with teams to build interfaces.'
       items:
         - title: 'Artificial intelligence'
-          description: 'I use AI agents in structured processes to plan, debug, test, and review. I also build integrations of AI features into interfaces.'
+          description: 'I use AI agents to plan solutions, create prototypes, and test code. I also integrate AI features into products, like the audio narration on this site.'
         - title: 'Design systems'
-          description: 'I keep the component library organized and documented, so the team can build new screens to the same standard without rewriting what’s already there.'
+          description: "I keep the component library organized and documented, so the team can build new screens to the same standard without rewriting what's already there."
         - title: 'Accessible interfaces'
           description: 'I work on accessibility from the first component, so the interface also works with keyboard navigation or a screen reader.'
         - title: 'Performance'
-          description: 'I care about performance in every screen I build, because a well-made interface also has to load fast and respond without lag.'
+          description: 'I care about how each screen performs, especially how long it takes to load and how it responds to interactions.'
 
     contact:
       eyebrow: "Let's talk"

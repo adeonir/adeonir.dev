@@ -3,13 +3,13 @@ headline:
   - text: 'O que eu '
   - text: 'faço'
     highlight: true
-body: 'O que eu faço no dia a dia, e o que o time ganha com isso.'
+body: 'No dia a dia, trabalho com times na construção de interfaces.'
 items:
   - title: 'Inteligência artificial'
-    description: 'Uso agentes de IA em processos estruturados para planejar, debugar, testar e revisar. Também faço integrações de recursos de IA nas interfaces.'
+    description: 'Uso agentes de IA para planejar soluções, criar protótipos e testar o código. Também integro recursos de IA aos produtos, como a narração em áudio deste site.'
   - title: 'Design systems'
     description: 'Deixo a biblioteca de componentes organizada e documentada, para o time montar telas novas no mesmo padrão sem reescrever o que já existe.'
   - title: 'Interfaces acessíveis'
     description: 'Cuido da acessibilidade desde o primeiro componente, para que a interface funcione também com navegação pelo teclado ou leitor de tela.'
   - title: 'Performance'
-    description: 'Me preocupo com performance em cada tela que construo, porque uma interface bem feita também precisa carregar rápido e responder sem atraso.'
+    description: 'Me preocupo com a performance de cada tela, principalmente com o tempo de carregamento e a resposta às interações.'

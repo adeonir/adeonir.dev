@@ -79,9 +79,9 @@ content:
     about:
       eyebrow: 'Sobre mim'
       headline: 'Do design ao código'
-      body: 'De onde eu venho, no que trabalho hoje e o que faço além disso.'
+      body: 'Quem eu sou, de onde venho e o que faço.'
       bio:
-        - 'Olá, sou Adeonir e gosto de criar coisas para a internet. Sou frontend e design engineer, e estou em busca da próxima oportunidade. Exploro ideias em protótipos e crio interfaces funcionais e acessíveis, construindo as bibliotecas de componentes e design systems por trás delas. Gosto especialmente de trabalhar na interseção entre design e código, sempre de olho nos detalhes.'
+        - 'Olá, sou Adeonir e gosto de criar coisas para a internet. Como frontend e design engineer, estou em busca da próxima oportunidade. Exploro ideias em protótipos, crio interfaces funcionais e acessíveis, construo bibliotecas de componentes e design systems. Gosto especialmente de trabalhar na interseção entre design e código, sempre de olho nos detalhes.'
         - 'Depois de mais de uma década como designer gráfico, criando materiais publicitários, livros e revistas, migrei para o desenvolvimento frontend. No dia a dia eu trabalho principalmente com React, TypeScript, Next.js e Tailwind, e uso agentes de IA como Claude Code e Codex em todo o ciclo, da especificação e planejamento à implementação e revisão. Trabalho em inglês com proficiência profissional e já colaborei com times da Europa e dos Estados Unidos.'
         - 'Fora do trabalho, desenvolvo alguns projetos pessoais, onde desenho a interface e defino a arquitetura, e também aplico meus conhecimentos em backend e desenvolvimento mobile.'
         - 'No meu tempo livre, gosto de ficar com a família, colecionar miniaturas de Hot Wheels com meu filho, assistir a séries e filmes e curtir com amigos.'
@@ -96,16 +96,16 @@ content:
     expertise:
       eyebrow: 'Especialidades'
       headline: 'O que eu faço'
-      body: 'O que eu faço no dia a dia, e o que o time ganha com isso.'
+      body: 'No dia a dia, trabalho com times na construção de interfaces.'
       items:
         - title: 'Inteligência artificial'
-          description: 'Uso agentes de IA em processos estruturados para planejar, debugar, testar e revisar. Também faço integrações de recursos de IA nas interfaces.'
+          description: 'Uso agentes de IA para planejar soluções, criar protótipos e testar o código. Também integro recursos de IA aos produtos, como a narração em áudio deste site.'
         - title: 'Design systems'
           description: 'Deixo a biblioteca de componentes organizada e documentada, para o time montar telas novas no mesmo padrão sem reescrever o que já existe.'
         - title: 'Interfaces acessíveis'
           description: 'Cuido da acessibilidade desde o primeiro componente, para que a interface funcione também com navegação pelo teclado ou leitor de tela.'
         - title: 'Performance'
-          description: 'Me preocupo com performance em cada tela que construo, porque uma interface bem feita também precisa carregar rápido e responder sem atraso.'
+          description: 'Me preocupo com a performance de cada tela, principalmente com o tempo de carregamento e a resposta às interações.'
 
     contact:
       eyebrow: 'Vamos conversar'

@@ -3,13 +3,13 @@ headline:
   - text: 'What I '
   - text: 'do'
     highlight: true
-body: 'What I do day to day, and what the team gets from it.'
+body: 'Day to day, I work with teams to build interfaces.'
 items:
   - title: 'Artificial intelligence'
-    description: 'I use AI agents in structured processes to plan, debug, test, and review. I also build integrations of AI features into interfaces.'
+    description: 'I use AI agents to plan solutions, create prototypes, and test code. I also integrate AI features into products, like the audio narration on this site.'
   - title: 'Design systems'
-    description: 'I keep the component library organized and documented, so the team can build new screens to the same standard without rewriting what’s already there.'
+    description: "I keep the component library organized and documented, so the team can build new screens to the same standard without rewriting what's already there."
   - title: 'Accessible interfaces'
     description: 'I work on accessibility from the first component, so the interface also works with keyboard navigation or a screen reader.'
   - title: 'Performance'
-    description: 'I care about performance in every screen I build, because a well-made interface also has to load fast and respond without lag.'
+    description: 'I care about how each screen performs, especially how long it takes to load and how it responds to interactions.'
