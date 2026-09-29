@@ -9,7 +9,7 @@ import {
   Section,
   Tailwind,
   Text,
-} from '@react-email/components'
+} from 'react-email'
 
 const colors = {
   background: 'oklch(95.78% 0.0058 264.53)', // latte-50

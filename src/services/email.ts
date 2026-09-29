@@ -1,8 +1,8 @@
 import { RESEND_API_KEY } from 'astro:env/server'
-import { render } from '@react-email/render'
 import { enUS, ptBR } from 'date-fns/locale'
 import { formatInTimeZone } from 'date-fns-tz'
 import { createElement } from 'react'
+import { render } from 'react-email'
 
 import { Confirmation } from '~/emails/confirmation'
 import { Notification } from '~/emails/notification'
