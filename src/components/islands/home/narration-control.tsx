@@ -22,6 +22,11 @@ type NarrationControlProps = {
 
 type Status = 'idle' | 'loading' | 'playing' | 'paused'
 
+type NarrationEvent =
+  | 'narration-started'
+  | 'narration-completed'
+  | 'narration-failed'
+
 function percentPlayed(audio: HTMLAudioElement) {
   const { currentTime, duration } = audio
   if (!Number.isFinite(duration) || duration <= 0) return 0
@@ -30,6 +35,7 @@ function percentPlayed(audio: HTMLAudioElement) {
 
 export function NarrationControl({
   section,
+  locale,
   src,
   label,
   name,
@@ -38,6 +44,8 @@ export function NarrationControl({
   const audioRef = useRef<HTMLAudioElement>(null)
   // a missing file fires the audio error event and also rejects play(); report it once
   const failedRef = useRef(false)
+  // a play from idle records a start once playback begins; a resume records nothing
+  const startingRef = useRef(false)
   const current = useStore($narration)
   const [status, setStatus] = useState<Status>('idle')
   const [progress, setProgress] = useState(0)
@@ -60,6 +68,10 @@ export function NarrationControl({
     return () => cancelAnimationFrame(frame)
   }, [status])
 
+  function record(event: NarrationEvent) {
+    window.posthog?.capture(event, { section, locale })
+  }
+
   function toggle() {
     const audio = audioRef.current
     if (!audio) return
@@ -70,6 +82,7 @@ export function NarrationControl({
     }
 
     failedRef.current = false
+    startingRef.current = status === 'idle'
     $narration.set(section)
     setStatus('loading')
     audio.play().catch((reason: unknown) => {
@@ -81,10 +94,19 @@ export function NarrationControl({
   function fail() {
     if (failedRef.current) return
     failedRef.current = true
+    startingRef.current = false
     setStatus('idle')
     setProgress(0)
     if ($narration.get() === section) $narration.set(null)
     toaster.error(error)
+    record('narration-failed')
+  }
+
+  function begin() {
+    setStatus('playing')
+    if (!startingRef.current) return
+    startingRef.current = false
+    record('narration-started')
   }
 
   function pause() {
@@ -100,6 +122,7 @@ export function NarrationControl({
     setProgress(0)
     setStatus('idle')
     if ($narration.get() === section) $narration.set(null)
+    record('narration-completed')
   }
 
   return (
@@ -141,7 +164,7 @@ export function NarrationControl({
         ref={audioRef}
         src={src}
         preload="none"
-        onPlaying={() => setStatus('playing')}
+        onPlaying={begin}
         onWaiting={() => setStatus('loading')}
         onPause={pause}
         onError={fail}
