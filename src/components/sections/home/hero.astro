@@ -19,13 +19,11 @@ const { eyebrow, display, tagline, description, availability, actions } =
   class="relative flex min-h-[calc(100dvh-6rem)] flex-col items-center justify-center pt-8 text-center [--scale-in:0.98] motion-reduce:[--scale-in:1]"
 >
   <div class="wrapper flex flex-col items-center">
-    <Eyebrow className="animate-enter [--blur-in:var(--blur-xs)]"
-      >{eyebrow}</Eyebrow
-    >
+    <Eyebrow className="animate-enter [--blur-in:var(--blur-xs)]">
+      {eyebrow}
+    </Eyebrow>
     <div class="relative mt-4 sm:mt-5">
-      <h1
-        class="animate-enter text-5xl leading-[0.92] font-extrabold text-foreground [--blur-in:var(--blur-lg)] [--enter-opacity:1] [animation-delay:70ms] sm:text-6xl md:text-7xl lg:text-8xl"
-      >
+      <h1 class="animate-enter text-5xl leading-[0.92] font-extrabold text-foreground [--blur-in:var(--blur-lg)] [--enter-opacity:1] [animation-delay:70ms] sm:text-6xl md:text-7xl lg:text-8xl">
         {display}
       </h1>
       <a
@@ -35,29 +33,21 @@ const { eyebrow, display, tagline, description, availability, actions } =
         <AvailabilitySeal availability={availability} />
       </a>
     </div>
-    <p
-      class="mt-6 max-w-3xl animate-enter text-2xl font-semibold text-balance text-foreground [--blur-in:var(--blur-sm)] [animation-delay:140ms] sm:mt-10 sm:text-3xl lg:text-4xl"
-    >
-      {
-        tagline.map((segment) => (
-          <>
-            {segment.highlight ? (
-              <span class="text-secondary">{segment.text}</span>
-            ) : (
-              segment.text
-            )}
-          </>
-        ))
-      }
+    <p class="mt-6 max-w-3xl animate-enter text-2xl font-semibold text-balance text-foreground [--blur-in:var(--blur-sm)] [animation-delay:140ms] sm:mt-10 sm:text-3xl lg:text-4xl">
+      {tagline.map((segment) => (
+        <>
+          {segment.highlight ? (
+            <span class="text-secondary">{segment.text}</span>
+          ) : (
+            segment.text
+          )}
+        </>
+      ))}
     </p>
-    <p
-      class="mt-3 max-w-lg animate-enter text-lg leading-relaxed text-pretty text-muted-foreground/80 [--blur-in:var(--blur-xs)] [animation-delay:210ms] sm:mt-4 sm:text-xl lg:max-w-xl lg:text-2xl"
-    >
+    <p class="mt-3 max-w-lg animate-enter text-lg leading-relaxed text-pretty text-muted-foreground/80 [--blur-in:var(--blur-xs)] [animation-delay:210ms] sm:mt-4 sm:text-xl lg:max-w-xl lg:text-2xl">
       {description}
     </p>
-    <div
-      class="mt-10 flex animate-enter flex-wrap items-center justify-center gap-4 [--blur-in:0px] [animation-delay:280ms] sm:mt-14"
-    >
+    <div class="mt-10 flex animate-enter flex-wrap items-center justify-center gap-4 [--blur-in:0px] [animation-delay:280ms] sm:mt-14">
       <a
         href={actions.primary.href}
         class={cn(buttonVariants({ variant: 'default', size: 'default' }))}

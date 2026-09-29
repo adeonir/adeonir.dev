@@ -26,17 +26,15 @@ const workingMobile = await getImage({ src: working, width: 268, height: 352 })
           <Narration section="about" />
         </div>
         <h2 data-enter="block" class="text-display text-pretty text-foreground">
-          {
-            headline.map((segment) => (
-              <>
-                {segment.highlight ? (
-                  <span class="text-secondary">{segment.text}</span>
-                ) : (
-                  <span class="text-muted-foreground">{segment.text}</span>
-                )}
-              </>
-            ))
-          }
+          {headline.map((segment) => (
+            <>
+              {segment.highlight ? (
+                <span class="text-secondary">{segment.text}</span>
+              ) : (
+                <span class="text-muted-foreground">{segment.text}</span>
+              )}
+            </>
+          ))}
         </h2>
         <p
           data-enter="block"
@@ -55,9 +53,7 @@ const workingMobile = await getImage({ src: working, width: 268, height: 352 })
           data-enter="block"
         />
       </div>
-      <div
-        class="flow-root space-y-6 md:col-span-3 md:flex md:flex-col md:gap-6 md:space-y-0 md:pt-14"
-      >
+      <div class="flow-root space-y-6 md:col-span-3 md:flex md:flex-col md:gap-6 md:space-y-0 md:pt-14">
         <img
           src={workingMobile.src}
           width={workingMobile.attributes.width}
@@ -69,41 +65,39 @@ const workingMobile = await getImage({ src: working, width: 268, height: 352 })
           style={`shape-outside: url(${workingMobile.src}); shape-margin: 1rem`}
           data-enter="block"
         />
-        {
-          bio.map((paragraph, index) => (
-            <p
-              data-enter="block"
-              class={cn(
-                'leading-relaxed text-pretty',
-                index === 0
-                  ? 'text-subtitle text-foreground'
-                  : 'text-body text-muted-foreground',
-              )}
-            >
-              {paragraph.map((segment) =>
-                segment.href ? (
-                  <a
-                    href={segment.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class={cn(
-                      'group gap-1',
-                      buttonVariants({ variant: 'link', size: 'inline' }),
-                    )}
-                  >
-                    {segment.text}
-                    <IconArrowUpRight
-                      className="size-4 shrink-0 transition-transform duration-200 motion-safe:group-hover:-translate-y-0.5"
-                      aria-hidden="true"
-                    />
-                  </a>
-                ) : (
-                  segment.text
-                ),
-              )}
-            </p>
-          ))
-        }
+        {bio.map((paragraph, index) => (
+          <p
+            data-enter="block"
+            class={cn(
+              'leading-relaxed text-pretty',
+              index === 0
+                ? 'text-subtitle text-foreground'
+                : 'text-body text-muted-foreground',
+            )}
+          >
+            {paragraph.map((segment) =>
+              segment.href ? (
+                <a
+                  href={segment.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class={cn(
+                    'group gap-1',
+                    buttonVariants({ variant: 'link', size: 'inline' }),
+                  )}
+                >
+                  {segment.text}
+                  <IconArrowUpRight
+                    className="size-4 shrink-0 transition-transform duration-200 motion-safe:group-hover:-translate-y-0.5"
+                    aria-hidden="true"
+                  />
+                </a>
+              ) : (
+                segment.text
+              ),
+            )}
+          </p>
+        ))}
       </div>
     </div>
   </div>

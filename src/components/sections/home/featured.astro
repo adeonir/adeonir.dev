@@ -51,19 +51,19 @@ const featured = sortByLaunch(
   <div class="wrapper">
     <div class="mt-12 grid grid-cols-1 gap-12 md:grid-cols-5">
       <div class="flex flex-col gap-6 md:col-span-2">
-        <Eyebrow data-enter="block" variant="muted">{eyebrow}</Eyebrow>
+        <Eyebrow data-enter="block" variant="muted">
+          {eyebrow}
+        </Eyebrow>
         <h2 data-enter="block" class="text-display text-pretty text-foreground">
-          {
-            headline.map((segment) => (
-              <>
-                {segment.highlight ? (
-                  <span class="text-secondary">{segment.text}</span>
-                ) : (
-                  segment.text
-                )}
-              </>
-            ))
-          }
+          {headline.map((segment) => (
+            <>
+              {segment.highlight ? (
+                <span class="text-secondary">{segment.text}</span>
+              ) : (
+                segment.text
+              )}
+            </>
+          ))}
         </h2>
         <p
           data-enter="block"
@@ -73,61 +73,57 @@ const featured = sortByLaunch(
         </p>
       </div>
       <div class="md:col-span-3 md:pt-14">
-        {
-          featured.length > 0 ? (
-            <div class="flex flex-col gap-8">
-              {featured.map((project) => (
-                <ProjectCard {...project} />
-              ))}
-            </div>
-          ) : (
-            <div
-              data-enter="block"
-              class="flex aspect-video flex-col items-center justify-center gap-4 rounded-2xl border border-border bg-card p-6 text-center"
+        {featured.length > 0 ? (
+          <div class="flex flex-col gap-8">
+            {featured.map((project) => (
+              <ProjectCard {...project} />
+            ))}
+          </div>
+        ) : (
+          <div
+            data-enter="block"
+            class="flex aspect-video flex-col items-center justify-center gap-4 rounded-2xl border border-border bg-card p-6 text-center"
+          >
+            <IconFolder
+              className="size-7 shrink-0 text-muted-foreground opacity-70"
+              aria-hidden="true"
+            />
+            <p class="max-w-[40ch] text-base leading-normal text-pretty text-muted-foreground">
+              {empty.map((segment) =>
+                segment.href ? (
+                  <a
+                    href={segment.href}
+                    class={buttonVariants({
+                      variant: 'link',
+                      size: 'inline',
+                    })}
+                  >
+                    {segment.text}
+                  </a>
+                ) : (
+                  segment.text
+                ),
+              )}
+            </p>
+          </div>
+        )}
+        {entries.length > 0 && (
+          <div data-enter="block" class="mt-8 flex justify-end">
+            <a
+              href={indexHref}
+              class={cn(
+                'group gap-2',
+                buttonVariants({ variant: 'link', size: 'inline' }),
+              )}
             >
-              <IconFolder
-                className="size-7 shrink-0 text-muted-foreground opacity-70"
+              {seeAll}
+              <IconArrowRight
+                className="size-4 shrink-0 transition-transform duration-200 motion-safe:group-hover:translate-x-1"
                 aria-hidden="true"
               />
-              <p class="max-w-[40ch] text-base leading-normal text-pretty text-muted-foreground">
-                {empty.map((segment) =>
-                  segment.href ? (
-                    <a
-                      href={segment.href}
-                      class={buttonVariants({
-                        variant: 'link',
-                        size: 'inline',
-                      })}
-                    >
-                      {segment.text}
-                    </a>
-                  ) : (
-                    segment.text
-                  ),
-                )}
-              </p>
-            </div>
-          )
-        }
-        {
-          entries.length > 0 && (
-            <div data-enter="block" class="mt-8 flex justify-end">
-              <a
-                href={indexHref}
-                class={cn(
-                  'group gap-2',
-                  buttonVariants({ variant: 'link', size: 'inline' }),
-                )}
-              >
-                {seeAll}
-                <IconArrowRight
-                  className="size-4 shrink-0 transition-transform duration-200 motion-safe:group-hover:translate-x-1"
-                  aria-hidden="true"
-                />
-              </a>
-            </div>
-          )
-        }
+            </a>
+          </div>
+        )}
       </div>
     </div>
   </div>

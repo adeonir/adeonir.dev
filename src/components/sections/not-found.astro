@@ -15,34 +15,28 @@ const { display, headline, paths } = notFound.data
 const { body, action } = paths[segment] ?? notFound.data
 ---
 
-<section
-  class="flex flex-1 flex-col items-center justify-center py-8 text-center"
->
+<section class="flex flex-1 flex-col items-center justify-center py-8 text-center">
   <h1 class="text-8xl leading-none font-extrabold text-foreground sm:text-9xl">
     {display}
   </h1>
   <p class="mt-6 text-display text-pretty text-foreground">
-    {
-      headline.map((segment) => (
-        <>
-          {segment.highlight ? (
-            <span class="text-secondary">{segment.text}</span>
-          ) : (
-            segment.text
-          )}
-        </>
-      ))
-    }
+    {headline.map((segment) => (
+      <>
+        {segment.highlight ? (
+          <span class="text-secondary">{segment.text}</span>
+        ) : (
+          segment.text
+        )}
+      </>
+    ))}
   </p>
   <div class="mt-3 flex flex-col items-center">
     <div class="flex max-w-3xl flex-col gap-4">
-      {
-        body.map((paragraph) => (
-          <p class="text-body leading-relaxed text-pretty text-muted-foreground">
-            {paragraph}
-          </p>
-        ))
-      }
+      {body.map((paragraph) => (
+        <p class="text-body leading-relaxed text-pretty text-muted-foreground">
+          {paragraph}
+        </p>
+      ))}
     </div>
     <a
       href={action.href}

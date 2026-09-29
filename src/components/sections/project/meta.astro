@@ -30,29 +30,25 @@ const columns = [
   <div class="wrapper">
     <div class="mx-auto flex w-full max-w-2xl flex-col gap-8">
       <div class="flex flex-col gap-8 md:flex-row md:flex-wrap md:gap-16">
-        {
-          columns.map((column) => (
-            <div class="flex flex-col gap-2">
-              <span class="text-caption text-muted-foreground">
-                {column.label}
-              </span>
-              <span class="text-body text-pretty text-foreground">
-                {column.value}
-              </span>
-            </div>
-          ))
-        }
+        {columns.map((column) => (
+          <div class="flex flex-col gap-2">
+            <span class="text-caption text-muted-foreground">
+              {column.label}
+            </span>
+            <span class="text-body text-pretty text-foreground">
+              {column.value}
+            </span>
+          </div>
+        ))}
       </div>
       <div class="flex flex-col gap-4">
         <span class="text-caption text-muted-foreground">{labels.stack}</span>
         <ul class="flex flex-wrap gap-2">
-          {
-            stack.map((item) => (
-              <li>
-                <Tag>{item}</Tag>
-              </li>
-            ))
-          }
+          {stack.map((item) => (
+            <li>
+              <Tag>{item}</Tag>
+            </li>
+          ))}
         </ul>
       </div>
     </div>
