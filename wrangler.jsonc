@@ -24,8 +24,5 @@
         "period": 60
       }
     }
-  ],
-  "vars": {
-    "POSTHOG_HOST": "https://t.adeonir.dev"
-  }
+  ]
 }
