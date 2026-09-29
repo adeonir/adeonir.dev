@@ -1,5 +1,5 @@
 import { Progress } from '@ark-ui/react/progress'
-import { type SyntheticEvent, useRef, useState } from 'react'
+import { type SyntheticEvent, useEffect, useRef, useState } from 'react'
 
 import { Button } from '~/components/ui/button'
 import type { Locale } from '~/helpers/content'
@@ -30,6 +30,19 @@ export function NarrationControl({ src, label, name }: NarrationControlProps) {
   const [status, setStatus] = useState<Status>('idle')
   const [progress, setProgress] = useState(0)
   const active = status === 'loading' || status === 'playing'
+
+  useEffect(() => {
+    const audio = audioRef.current
+    if (status !== 'playing' || !audio) return
+
+    // timeupdate fires about four times a second; follow every frame while playing
+    let frame = requestAnimationFrame(function follow() {
+      setProgress(percentPlayed(audio))
+      frame = requestAnimationFrame(follow)
+    })
+
+    return () => cancelAnimationFrame(frame)
+  }, [status])
 
   function toggle() {
     const audio = audioRef.current
