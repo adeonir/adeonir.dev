@@ -1,5 +1,6 @@
 ---
 import AvailabilitySeal from '~/components/availability-seal.astro'
+import Narration from '~/components/narration.astro'
 import { buttonVariants } from '~/components/ui/button-variants'
 import { Eyebrow } from '~/components/ui/eyebrow'
 import { cn } from '~/helpers/classnames'
@@ -70,5 +71,9 @@ const { eyebrow, display, tagline, description, availability, actions } =
         {actions.secondary.label}
       </a>
     </div>
+    <Narration
+      section="hero"
+      class="mt-8 animate-enter [--blur-in:0px] [animation-delay:350ms] sm:mt-10"
+    />
   </div>
 </section>

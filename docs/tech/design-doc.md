@@ -1,7 +1,7 @@
 ---
 name: adeonir-dev-portfolio
 created: 2026-06-06
-updated: 2026-09-27
+updated: 2026-09-29
 status: accepted
 sources:
   - docs/product/PRD.md
@@ -30,7 +30,7 @@ The surrounding landscape is intentionally small: Cloudflare hosts and runs the 
 ### Goals
 
 - **Performance budget (enforced in CI):** mobile Lighthouse Performance ≥ 95, Accessibility 100, Best Practices 100, SEO 100; CLS < 0.1, INP < 200ms. Builds fail when a category score regresses; CLS and the blocking-time proxy for INP report as warnings (NFR-1). LCP under 3s is a nice to have and only warns.
-- **Client JavaScript budget:** Astro prerenders normal pages to static HTML. Use client-side JavaScript when an interaction needs it, and keep React hydration limited to the theme toggle, contact form, mobile nav, and footer signoff. This budget is not a ban on JavaScript. The localized not-found catch-all remains server-rendered without a client translation layer.
+- **Client JavaScript budget:** Astro prerenders normal pages to static HTML. Use client-side JavaScript when an interaction needs it, and keep React hydration limited to the theme toggle, contact form, mobile nav, footer signoff, toaster, and the home narration controls. This budget is not a ban on JavaScript. The localized not-found catch-all remains server-rendered without a client translation layer.
 - **Accessibility:** WCAG AA across all pages, asserted automatically (NFR-2).
 - **Bilingual delivery:** routing-based i18n (pt at `/`, en at `/en`) with localized content and document metadata, `hreflang` alternates, and localized sitemap entries (NFR-4).
 - **Contact path integrity:** server-side validated submission, two transactional emails per submit, spam-guarded, zero persistence; on failure the UI surfaces a direct fallback channel (FR-5, EC-2).
@@ -56,7 +56,7 @@ flowchart TD
     Pages[Prerendered routes: pt and en]
     NotFound[Localized not-found catch-all]
     Action[Contact Action - on-demand, prerender=false]
-    Islands[React islands: toggle, form, nav]
+    Islands[React islands: toggle, form, nav, narration]
   end
   subgraph Content[src/content - build time]
     MDX[project page MDX collection]
@@ -95,7 +95,7 @@ flowchart LR
 
 - **Actors:** site visitors (the three PRD personas).
 - **External services:** Cloudflare Workers (host + edge runtime, git-integration build and deploy), Resend (outbound transactional email), a Plesk-hosted mailbox on `adeonir.dev` (inbound `contato@adeonir.dev`), PostHog US Cloud (cookieless analytics — manual capture, server-side `contact-submission` event), GitHub Actions (CI quality gates).
-- **Narration production (planned):** ElevenLabs generates narration before publication. The exported audio files ship with the site's static assets; neither visits nor builds call ElevenLabs.
+- **Narration production:** a local script in the repository calls the ElevenLabs API before publication and writes the audio files, which ship with the site's static assets. Neither visits nor builds call ElevenLabs.
 
 ### 3.3 Conventions
 
@@ -141,11 +141,11 @@ erDiagram
 - **Spam / abuse:** honeypot field + the native Workers Rate Limiting binding (`CONTACT_LIMIT`, 5 requests / 60s per IP, keyed on `Astro.clientAddress`) + Zod validation. The binding supports only 10- or 60-second periods, so 60s is the longest window it can express. It fails open: when the binding throws, the request is admitted rather than rejected. Cloudflare Turnstile is held in reserve and added only if spam gets through.
 - **Audit log:** N/A — no sensitive or stateful operations to audit.
 - **Regulatory (LGPD/GDPR):** analytics is cookieless and aggregate and nothing is retained, so no consent banner is required; a lightweight privacy notice sits near the form ("your message is emailed to me, not stored"). A standalone `/privacy` page is deferred.
-- **Secrets:** the Resend API key (and any future tokens) live in the Cloudflare Worker's environment variables, with `.dev.vars` for local development; never committed. Sending domain `adeonir.dev` is verified in Resend via SPF/DKIM/DMARC records in Cloudflare DNS.
+- **Secrets:** the Resend API key (and any future tokens) live in the Cloudflare Worker's environment variables, with `.dev.vars` for local development; never committed. Sending domain `adeonir.dev` is verified in Resend via SPF/DKIM/DMARC records in Cloudflare DNS. The narration script reads the ElevenLabs key and voice id from the local `.env` only; neither value belongs in the Astro env schema or the Cloudflare environment.
 
 ### 3.6 Observability
 
-- **Metrics:** PostHog US Cloud (`us.i.posthog.com`), hardened cookieless — `cookieless_mode: 'always'` (server-side daily-salt hash identity; unique counts are effectively per-day as the salt rotates), `persistence: 'memory'`, `autocapture: false`, `disable_session_recording: true`, `respect_dnt: true`; loaded async and direct (no reverse proxy), off the LCP critical path. All events are manual: pageviews, button/CTA clicks, and form interactions (client), plus `contact-submission` — a standalone conversion count (not joined to the visitor funnel) captured **server-side in the contact Action** via a direct `fetch` to the capture endpoint, keeping the count server-authoritative and free of client double-firing. The event carries name + UTM/source only — no form PII — and fires non-blocking via `waitUntil`, isolated from the Resend send so analytics never blocks or breaks submission. UTM source/medium/campaign attribution (FR-9). posthog-js core is heavier than Umami; with autocapture and session recording off the heavy chunks lazy-load out — confirm the real shipped size against the perf budget (§2) before locking the lib.
+- **Metrics:** PostHog US Cloud (`us.i.posthog.com`), hardened cookieless — `cookieless_mode: 'always'` (server-side daily-salt hash identity; unique counts are effectively per-day as the salt rotates), `persistence: 'memory'`, `autocapture: false`, `disable_session_recording: true`, `respect_dnt: true`; loaded async and direct (no reverse proxy), off the LCP critical path. All events are manual: pageviews, button/CTA clicks, form interactions, and narration playback — `narration-started`, `narration-completed`, and `narration-failed`, each with `section` and `locale` (client), plus `contact-submission` — a standalone conversion count (not joined to the visitor funnel) captured **server-side in the contact Action** via a direct `fetch` to the capture endpoint, keeping the count server-authoritative and free of client double-firing. The event carries name + UTM/source only — no form PII — and fires non-blocking via `waitUntil`, isolated from the Resend send so analytics never blocks or breaks submission. UTM source/medium/campaign attribution (FR-9). posthog-js core is heavier than Umami; with autocapture and session recording off the heavy chunks lazy-load out — confirm the real shipped size against the perf budget (§2) before locking the lib.
 - **Logging:** Cloudflare Worker logs capture contact Action errors (no PII); Resend's dashboard records delivery status. The site is otherwise static and log-free.
 - **Alerts:** N/A for paging — this is a personal site. Delivery failure is surfaced to the visitor in-band (EC-2 fallback to the direct channel) and visible in the Resend dashboard.
 - **Dashboards:** PostHog dashboard (owner) for traffic and goals.
@@ -155,7 +155,7 @@ erDiagram
 
 | Type | Scope | Tools | Coverage Target |
 | --- | --- | --- | --- |
-| Unit | Input validation, localized email rendering, hooks, scripts, services | Vitest — plain config + `vite-tsconfig-paths`; node default, happy-dom per spec | Pure logic only |
+| Unit | Input validation, localized email rendering, hooks, scripts, services, narration audio sync | Vitest — plain config + `vite-tsconfig-paths`; node default, happy-dom per spec | Pure logic only |
 | Perf / budget | Quality budgets (see §2) | Lighthouse CI | Key pages |
 
 Sections and pages carry no automated test — the owner checks them in the browser instead. An earlier attempt rendered Astro sections and React islands through Vitest browser mode and the Astro Container API; both were dropped because a rendered assertion never caught more than a manual pass already would, for the cost of a container setup and a browser runner. Unit coverage stays on pure logic: helpers, hooks, scripts, and services.
@@ -178,17 +178,17 @@ Sections and pages carry no automated test — the owner checks them in the brow
 - **Environments:** local (`.dev.vars`), PR preview, production.
 - **Secrets management:** Cloudflare Worker environment variables hold the Resend key and per-environment runtime config (production vs preview). No Cloudflare credentials in GitHub — the git integration deploys, so Actions holds no deploy secrets.
 
-### 3.9 Home Narration (Planned)
+### 3.9 Home Narration
 
-The owner generates narration with ElevenLabs before publication and publishes the exported files as static assets with the site. Each narrated section has an audio file for each supported locale, selected from the page's locale. See PRD FR-16 for scope and BR-5 for playback rules.
+The owner generates narration before publication with a local script in the repository and publishes the files as static assets with the site. Each narrated section has an audio file for each supported locale, selected from the page's locale. See PRD FR-16 for scope, BR-5 for playback rules, BR-6 for the narrated text, and EC-4 for a failed load.
 
-ElevenLabs is a content-production dependency. Playback and site builds use the exported files without contacting the provider, and the site needs no ElevenLabs SDK, API key, or synthesis endpoint. A provider outage blocks new recordings but does not affect files already published.
+**Production.** The script reads each section's spoken text from the narration content collection and sends it to ElevenLabs with the owner's cloned voice. The spoken text is the narrated text (PRD BR-6) written for listening, with delivery directions and words spelled the way they are spoken. The script writes one MP3 per section and locale as a static asset, named after the hash of its spoken text. MP3 plays in every target browser, and the files are served without a build step.
 
-The playback implementation must load audio on request, keep only one section playing, and leave the written content available when audio is missing or fails. Playback controls must work with a keyboard and expose their state to assistive technology. Audio must not add a download to the initial page load.
+ElevenLabs is a content-production dependency. Playback and site builds use the committed files without contacting the provider, and the site runtime needs no ElevenLabs SDK, API key, or synthesis endpoint; only the local script holds the key (§3.5). A provider outage blocks new recordings but does not affect files already published.
 
-The owner reviews pronunciation and correspondence with the visible text before publishing each locale. Changes to narrated text require regenerating and reviewing the affected file, then publishing text and audio together. Exported files are versioned with the site so a rollback restores the matching text and audio.
+**Text and audio sync.** A unit test hashes each current spoken text and fails when the file with that name is missing, so a changed spoken text cannot ship with stale audio. The test does not compare the spoken text with the page, because the two differ on purpose: a copy change to a narrated section updates its spoken text in the same change, and the owner listens to every regenerated file before publishing. Text and audio ship in the same commit so a rollback restores both.
 
-Validation must cover locale selection, switching between sections, failed audio loads, keyboard operation, and the absence of audio downloads before playback is requested. File format, asset paths, and the playback implementation remain open.
+**Playback.** Each narrated section mounts its own React island. A nanostores atom holds the section that is playing (ADR-003); starting one section sets the atom, and the other islands pause. No audio downloads until the visitor starts a narration. A paused section keeps its position; a finished one resets to the start. A failed load raises a toast through the toaster the layout shares with the contact form, and returns the control to idle while the text stays on the page. The control is an accessible toggle button with a fixed visible label, and its copy lives in a per-locale content collection.
 
 ---
 
@@ -197,8 +197,13 @@ Validation must cover locale selection, switching between sections, failed audio
 | Decision | Chosen | Rejected | Reasoning | Record |
 | --- | --- | --- | --- | --- |
 | Narration delivery | Pre-generated ElevenLabs audio published as static assets | Synthesis during visits or builds | Fixed section text can be recorded before publication; visits and builds remain independent of the provider. Text changes require regenerating and publishing the matching audio | — |
+| Narration source | An authored spoken text per section and locale | Text derived from the page copy | Delivery directions and pronunciation fixes cannot be derived from the page text; the cost is keeping each spoken text in step with its section's copy by hand | — |
+| Narration generation | Repository script calling the ElevenLabs API | Manual export from the ElevenLabs dashboard | Regenerating after a spoken text change is one command and touches only the sections that changed; the cost is a script to maintain and an API key in the local `.env` | — |
+| Narration asset location | Files in `public/` named after the hash of their spoken text | Stable, unhashed paths in `public/`; imported from `src/assets` | A new name on every regeneration keeps a cached older file from being served, and the name itself records which spoken text the file came from; the build computes the same name to link each section to its file | — |
+| Narration text sync | Unit test that the file for each current spoken text exists | A hash manifest; comparing the spoken text with the page; manual regeneration only | A spoken text edit without new audio fails the required `Unit Tests` check; comparing with the page would fail on every delivery direction and pronunciation fix | — |
+| Narration controls | One React island per section plus a shared nanostores atom | One vanilla script over Astro-rendered buttons | Matches the island and state layer already in place (ADR-001, ADR-003) and reuses the Ark primitives; the cost is three extra hydrating islands on the home | — |
 | Framework | Astro (hybrid) | TanStack Start | Content-first site where performance is the message; TanStack Start is an app framework solving a content problem — its loaders/server-fns are app features this site does not need | — |
-| Host / rendering | Cloudflare Workers (static assets today, on-demand contact Action planned) | Vercel / Netlify; fully static | Free edge hosting on the workerd runtime with a native ecosystem (KV, per-branch preview URLs); ships as static assets now, with the contact Action the one planned on-demand route while everything else prerenders. Vercel/Netlify are equally capable; fully static would force the form onto a third party | — |
+| Host / rendering | Cloudflare Workers (prerendered static assets plus on-demand routes) | Vercel / Netlify; fully static | Free edge hosting on the workerd runtime with a native ecosystem (KV, per-branch preview URLs); content pages prerender to static assets, while the contact Action and the localized not-found catch-all run on demand. Vercel/Netlify are equally capable; fully static would force the form onto a third party | — |
 | Deploy pipeline | Cloudflare Workers Builds git integration | Wrangler deploy job in GitHub Actions | Solo, deterministic static build: the git integration runs `pnpm build` + `wrangler deploy` on push, giving automatic per-branch previews, dashboard rollback, and per-environment vars with zero deploy credentials in GitHub. Quality gates run in Actions as required checks and branch protection keeps `main` green, so red never reaches production — the artifact-parity edge of an in-pipeline deploy job doesn't justify rebuilding that DX by hand | — |
 | Contact delivery | Resend (2 emails) | CF Email Routing send-binding; D1 persistence | The flow must email the _visitor_ (arbitrary address) — the send-binding can only reach verified self-addresses; no DB needed since emails are the record | — |
 | Spam defense | Honeypot + Workers Rate Limiting binding | KV rate-limit counter; Turnstile from day one | The binding needs no read-modify-write and no TTL bookkeeping, and 5 req / 60s is enough for a low-volume personal form; its 10s/60s period limit is the cost. Turnstile adds a script + widget that costs perf — reserved until spam is proven | — |
@@ -221,7 +226,7 @@ Validation must cover locale selection, switching between sections, failed audio
 
 ## 5. Open Questions
 
-- Narration: choose the audio format, asset paths, and playback implementation before building FR-16.
+None.
 
 ---
 

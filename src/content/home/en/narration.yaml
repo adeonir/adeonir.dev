@@ -1,0 +1,39 @@
+label: 'Listen'
+names:
+  hero: 'Listen to the introduction'
+  about: 'Listen to the about me section'
+  expertise: 'Listen to the capabilities section'
+error:
+  title: "We couldn't play the narration"
+  description: 'Try again in a moment.'
+spoken:
+  hero: |-
+    [warm, conversational narration] Adeonir Kohl.
+
+    [short pause] [with conviction] Design happens in code too.
+
+    [short pause] I'm a design engineer working on the frontend, taking care of every detail of the interface.
+  about: |-
+    [warm, conversational narration] From design to code.
+
+    [short pause] Who I am, where I come from, and what I do.
+
+    [long pause] Hi, I'm Adeonir, and I like building things for the internet. As a frontend and design engineer, I'm looking for my next opportunity. I explore ideas through prototypes, create functional and accessible interfaces, build component libraries and design systems. [thoughtful] I especially enjoy working at the intersection of design and code, always with an eye for detail.
+
+    [short pause] [reflective] After more than a decade as a graphic designer working on advertising materials, books, and magazines, I moved into frontend development. Day to day, I work mainly with React, TypeScript, Nextjs, and Tailwind, and I use AI agents like Claude Code and Codex across the whole cycle, from specs and planning to implementation and review. I work in English at a professional level and have collaborated with teams in Europe and the US.
+
+    Outside of work, I build a few personal projects where I design the interface and define the architecture, and get to practice backend and mobile development too.
+
+    In my spare time, [happy] I like spending time with family, collecting Hot Wheels with my son, watching TV shows and movies, and hanging out with friends.
+  expertise: |-
+    [warm, conversational narration] What I do.
+
+    [short pause] Day to day, I work with teams to build interfaces.
+
+    [long pause] [confident] Artificial intelligence. I use AI agents to plan solutions, create prototypes, and test code. I also integrate AI features into products, [playful] like the audio narration on this site.
+
+    [short pause] Design systems. I keep the component library organized and documented, so the team can build new screens to the same standard without rewriting what's already there.
+
+    [short pause] Accessible interfaces. I work on accessibility from the first component, so the interface also works with keyboard navigation or a screen reader.
+
+    [short pause] Performance. I care about how each screen performs, especially how long it takes to load and how it responds to interactions.

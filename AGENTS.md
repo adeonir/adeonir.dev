@@ -35,6 +35,7 @@ pnpm lint         # Read-only Biome and Prettier checks
 pnpm lint:fix     # Apply Biome and Prettier fixes
 pnpm lighthouse   # Build and run the budget gate
 pnpm email        # Start the React Email development server
+pnpm narration    # Generate missing narrations (calls ElevenLabs)
 ```
 
 Before considering a change done, run the gate: `pnpm typecheck && pnpm lint:fix`.
@@ -94,6 +95,14 @@ The contact section is on the home, and its island submits through `actions.cont
 
 No contact data is stored. There is no database, and contact PII is never logged. The rate-limit service fails open if its binding throws, so a broken binding degrades to no limit rather than to a rejected form. The always-visible direct contact list is the fallback channel when delivery fails.
 
+### Home narration
+
+The hero, about, and expertise sections play narrations committed under `public/narration/`. Nothing calls ElevenLabs at runtime or during the build; `pnpm narration` generates the audio locally from the spoken text of each section in `src/content/home/<locale>/narration.yaml`.
+
+- A copy change to a narrated section updates its spoken text in the same change. The spoken text differs from the page on purpose: audio tags in square brackets and words spelled the way they are spoken. Never align it back to the page text.
+- Each MP3 is named after the hash of its spoken text. Never rename or hand-edit these files; `pnpm narration` writes the new file and deletes the old one, and the narration sync test fails when the file for a current spoken text is missing.
+- Every generation bills ElevenLabs and produces different audio. Run `pnpm narration` only when asked, and do not commit new audio before the owner has listened to it.
+
 ## Content, routes, and page composition
 
 - `src/components/sections/` contains section markup only. Sections shared across pages sit at its root; sections belonging to one page sit in a folder named for that page, such as `sections/home/`. Each section owns its own vertical spacing and wraps its content in the shared content column.
@@ -144,6 +153,8 @@ Use the `new-component` skill when creating a new component. Shared pure helpers
 Astro's env schema defines `POSTHOG_KEY` (optional public client key), `POSTHOG_HOST` (public client host), and `RESEND_API_KEY` (server secret).
 
 Never put `RESEND_API_KEY` in client code, source files, or logs. Local values belong in the gitignored `.env`; use `.env.example` as the template. Production values belong in the Cloudflare dashboard.
+
+`ELEVENLABS_API_KEY` and `ELEVENLABS_VOICE_ID` serve only the local narration script. Keep them in `.env`, and never add them to the Astro env schema or the Cloudflare dashboard: the site plays committed audio files and never calls ElevenLabs.
 
 The contact form validates with `src/validations/contact.ts` on the client and the server. The shared client schema imports the canonical `zod` package; server-only content schemas may use `astro/zod`.
 

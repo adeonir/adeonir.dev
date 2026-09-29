@@ -14,7 +14,8 @@
     "test": "vitest run",
     "lint": "biome check --error-on-warnings && prettier --check \"src/**/*.{astro,yaml}\"",
     "lint:fix": "biome check --write --unsafe --error-on-warnings && prettier --write \"src/**/*.{astro,yaml}\"",
-    "lighthouse": "astro build && npx -y @lhci/cli autorun"
+    "lighthouse": "astro build && npx -y @lhci/cli autorun",
+    "narration": "tsx --env-file=.env src/services/narration.ts"
   },
   "dependencies": {
     "@ark-ui/react": "5.39.1",
@@ -59,9 +60,11 @@
     "prettier-plugin-astro": "0.14.1",
     "prettier-plugin-tailwindcss": "0.8.1",
     "react-email": "6.9.3",
+    "tsx": "4.23.15",
     "typescript": "6.0.3",
     "unplugin-icons": "23.0.1",
     "vitest": "5.0.0",
-    "wrangler": "4.129.0"
+    "wrangler": "4.129.0",
+    "yaml": "2.9.1"
   }
 }

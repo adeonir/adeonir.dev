@@ -1,5 +1,6 @@
-import { Toaster, toaster } from '~/components/islands/toaster'
+import { Toaster } from '~/components/islands/toaster'
 import { Button } from '~/components/ui/button'
+import { toaster } from '~/stores/toaster'
 
 const samples = [
   {

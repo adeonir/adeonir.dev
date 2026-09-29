@@ -1,0 +1,39 @@
+label: 'Ouvir'
+names:
+  hero: 'Ouvir a apresentação'
+  about: 'Ouvir a seção sobre mim'
+  expertise: 'Ouvir a seção especialidades'
+error:
+  title: 'Não foi possível tocar a narração'
+  description: 'Tenta de novo em instantes.'
+spoken:
+  hero: |-
+    [warm, conversational narration] Adeonir Kohl.
+
+    [short pause] [with conviction] O design também acontece no código.
+
+    [short pause] Sou design engineer e trabalho no frontend, cuidando de cada detalhe da interface.
+  about: |-
+    [warm, conversational narration] Do design ao código.
+
+    [short pause] Quem eu sou, de onde venho e o que faço.
+
+    [long pause] Olá, sou Adeonir e gosto de criar coisas para a internet. Como frontend e design engineer, estou em busca da próxima oportunidade. Exploro ideias em protótipos, crio interfaces funcionais e acessíveis, construo bibliotecas de componentes e design systems. [thoughtful] Gosto especialmente de trabalhar na interseção entre design e código, sempre de olho nos detalhes.
+
+    [short pause] [reflective] Depois de mais de uma década como designer gráfico, criando materiais publicitários, livros e revistas, migrei para o desenvolvimento frontend. No dia a dia eu trabalho principalmente com React, TypeScript, Nextjs e Tailwind, e uso agentes de /i ˈa/ como Claude Code e Codex em todo o ciclo, da especificação e planejamento à implementação e revisão. Trabalho em inglês com proficiência profissional e já colaborei com times da Europa e dos Estados Unidos.
+
+    Fora do trabalho, desenvolvo alguns projetos pessoais, onde desenho a interface e defino a arquitetura, e também aplico meus conhecimentos em backend e desenvolvimento mobile.
+
+    No meu tempo livre, [happy] gosto de ficar com a família, colecionar miniaturas de Hot Wheels com meu filho, assistir a séries e filmes e curtir com amigos.
+  expertise: |-
+    [warm, conversational narration] O que eu faço.
+
+    [short pause] No dia a dia, trabalho com times na construção de interfaces.
+
+    [long pause] [confident] Inteligência artificial. Uso agentes de /i ˈa/ para planejar soluções, criar protótipos e testar o código. Também integro recursos de /i ˈa/ aos produtos, [playful] como a narração em áudio deste site.
+
+    [short pause] Design systems. Deixo a biblioteca de componentes organizada e documentada, para o time montar telas novas no mesmo padrão sem reescrever o que já existe.
+
+    [short pause] Interfaces acessíveis. Cuido da acessibilidade desde o primeiro componente, para que a interface funcione também com navegação pelo teclado ou leitor de tela.
+
+    [short pause] Performance. Me preocupo com a performance de cada tela, principalmente com o tempo de carregamento e a resposta às interações.

@@ -1,10 +1,10 @@
 import { actions } from 'astro:actions'
 import { useRef } from 'react'
-import { toaster } from '~/components/islands/toaster'
 import { Button } from '~/components/ui/button'
 import { Field } from '~/components/ui/field'
 import type { Locale } from '~/helpers/content'
 import { useForm } from '~/hooks/use-form'
+import { toaster } from '~/stores/toaster'
 import {
   type ContactValidationMessages,
   createContactSchema,
