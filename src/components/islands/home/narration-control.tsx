@@ -6,6 +6,7 @@ import { Button } from '~/components/ui/button'
 import type { Locale } from '~/helpers/content'
 import type { NarrationSection } from '~/helpers/narration'
 import { $narration } from '~/stores/narration'
+import { toaster } from '~/stores/toaster'
 import IconLoader from '~icons/tabler/loader-2'
 import IconPlayerPause from '~icons/tabler/player-pause'
 import IconPlayerPlay from '~icons/tabler/player-play'
@@ -32,8 +33,11 @@ export function NarrationControl({
   src,
   label,
   name,
+  error,
 }: NarrationControlProps) {
   const audioRef = useRef<HTMLAudioElement>(null)
+  // a missing file fires the audio error event and also rejects play(); report it once
+  const failedRef = useRef(false)
   const current = useStore($narration)
   const [status, setStatus] = useState<Status>('idle')
   const [progress, setProgress] = useState(0)
@@ -65,12 +69,26 @@ export function NarrationControl({
       return
     }
 
+    failedRef.current = false
     $narration.set(section)
     setStatus('loading')
     audio.play().catch((reason: unknown) => {
       if (reason instanceof DOMException && reason.name === 'AbortError') return
-      setStatus('idle')
+      fail()
     })
+  }
+
+  function fail() {
+    if (failedRef.current) return
+    failedRef.current = true
+    setStatus('idle')
+    setProgress(0)
+    if ($narration.get() === section) $narration.set(null)
+    toaster.error(error)
+  }
+
+  function pause() {
+    if (!failedRef.current) setStatus('paused')
   }
 
   function track(event: SyntheticEvent<HTMLAudioElement>) {
@@ -124,7 +142,8 @@ export function NarrationControl({
         preload="none"
         onPlaying={() => setStatus('playing')}
         onWaiting={() => setStatus('loading')}
-        onPause={() => setStatus('paused')}
+        onPause={pause}
+        onError={fail}
         onTimeUpdate={track}
         onDurationChange={track}
         onEnded={finish}
