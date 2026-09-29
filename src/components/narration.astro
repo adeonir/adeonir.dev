@@ -1,0 +1,30 @@
+---
+import { NarrationControl } from '~/components/islands/home/narration-control'
+import { parseLocale } from '~/helpers/content'
+import { type NarrationSection, narrationFile } from '~/helpers/narration'
+import { getLocalizedEntry } from '~/services/localized'
+
+interface Props {
+  section: NarrationSection
+  class?: string
+}
+
+const { section, class: className } = Astro.props
+
+const locale = parseLocale(Astro.currentLocale)
+const narration = await getLocalizedEntry('homeNarration', locale)
+const { label, names, error, spoken } = narration.data
+const src = await narrationFile(locale, section, spoken[section])
+---
+
+<div class={className}>
+  <NarrationControl
+    client:visible
+    section={section}
+    locale={locale}
+    src={src}
+    label={label}
+    name={names[section]}
+    error={error}
+  />
+</div>
