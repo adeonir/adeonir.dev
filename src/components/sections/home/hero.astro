@@ -16,7 +16,7 @@ const { eyebrow, display, tagline, description, availability, actions } =
 
 <section
   id="hero"
-  class="relative flex min-h-[calc(100dvh-6rem)] flex-col items-center justify-center pt-8 pb-24 text-center [--scale-in:0.98] motion-reduce:[--scale-in:1]"
+  class="relative flex min-h-[calc(100dvh-6rem)] flex-col items-center justify-center pt-8 text-center [--scale-in:0.98] motion-reduce:[--scale-in:1]"
 >
   <div class="wrapper flex flex-col items-center">
     <Eyebrow className="animate-enter [--blur-in:var(--blur-xs)]"
@@ -71,9 +71,9 @@ const { eyebrow, display, tagline, description, availability, actions } =
         {actions.secondary.label}
       </a>
     </div>
+    <Narration
+      section="hero"
+      class="mt-8 animate-enter [--blur-in:0px] [animation-delay:350ms] sm:mt-10"
+    />
   </div>
-  <Narration
-    section="hero"
-    class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-enter [--blur-in:0px] [animation-delay:350ms]"
-  />
 </section>
