@@ -7,6 +7,7 @@ const ENDPOINT = 'https://api.elevenlabs.io/v1/text-to-dialogue'
 const OUTPUT_FORMAT = 'mp3_44100_128'
 const MODEL_ID = 'eleven_v4'
 const SETTINGS = { stability: 0.35, similarity: 0.5 }
+const MANIFEST = 'src/data/audio.json'
 
 export const supportedLocales = ['pt', 'en'] as const
 
@@ -28,6 +29,8 @@ const spokenSchema = z.object({
     expertise: z.string().min(1),
   }),
 })
+
+export type AudioManifest = Record<Locale, Record<NarrationSection, string>>
 
 export async function hashNarration(text: string): Promise<string> {
   const digest = await crypto.subtle.digest(
@@ -64,6 +67,10 @@ async function removeOlderFiles(audio: string, section: string): Promise<void> {
       await rm(join(directory, file))
     }
   }
+}
+
+export function manifestPath(): string {
+  return join(process.cwd(), MANIFEST)
 }
 
 export async function readSpokenTexts(locale: Locale) {
@@ -107,18 +114,18 @@ export async function generateNarrations(): Promise<void> {
     process.exit(1)
   }
   const { ELEVENLABS_API_KEY: apiKey, ELEVENLABS_VOICE_ID: voiceId } = env.data
+  const manifest = {} as AudioManifest
 
   for (const locale of supportedLocales) {
     const spoken = await readSpokenTexts(locale)
+    manifest[locale] = {} as AudioManifest[Locale]
 
     for (const section of narrationSections) {
       const key = `${locale}/${section}`
       const text = spoken[section]
-      const audio = join(
-        process.cwd(),
-        'public',
-        await narrationFile(locale, section, text),
-      )
+      const file = await narrationFile(locale, section, text)
+      const audio = join(process.cwd(), 'public', file)
+      manifest[locale][section] = file
 
       if (await fileExists(audio)) {
         console.log(`Up to date: ${key}`)
@@ -132,6 +139,9 @@ export async function generateNarrations(): Promise<void> {
       await removeOlderFiles(audio, section)
     }
   }
+
+  await mkdir(dirname(manifestPath()), { recursive: true })
+  await writeFile(manifestPath(), `${JSON.stringify(manifest, null, 2)}\n`)
 }
 
 if (import.meta.main) {

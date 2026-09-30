@@ -1,7 +1,8 @@
 ---
+import audio from '~/data/audio.json'
 import { NarrationControl } from '~/components/islands/home/narration-control'
 import { parseLocale } from '~/helpers/locale'
-import { type NarrationSection, narrationFile } from '~/helpers/narration'
+import type { NarrationSection } from '~/helpers/narration'
 import { getLocalizedEntry } from '~/services/localized'
 
 interface Props {
@@ -13,8 +14,8 @@ const { section, class: className } = Astro.props
 
 const locale = parseLocale(Astro.currentLocale)
 const narration = await getLocalizedEntry('homeNarration', locale)
-const { label, names, error, spoken } = narration.data
-const src = await narrationFile(locale, section, spoken[section])
+const { label, names, error } = narration.data
+const src = audio[locale][section]
 ---
 
 <div class={className}>
