@@ -1,8 +1,13 @@
 ---
 import audio from '~/data/audio.json'
+import peaksByPath from '~/data/peaks.json'
 import { NarrationControl } from '~/components/islands/home/narration-control'
 import { parseLocale } from '~/helpers/locale'
-import type { NarrationSection } from '~/helpers/narration'
+import {
+  NARRATION_BARS,
+  type NarrationSection,
+  placeholderPeaks,
+} from '~/helpers/narration'
 import { getLocalizedEntry } from '~/services/localized'
 
 interface Props {
@@ -16,6 +21,9 @@ const locale = parseLocale(Astro.currentLocale)
 const narration = await getLocalizedEntry('homeNarration', locale)
 const { labels, error } = narration.data
 const src = audio[locale][section]
+const peaks =
+  (peaksByPath as Record<string, number[]>)[src] ??
+  placeholderPeaks(src, NARRATION_BARS)
 ---
 
 <div class={className}>
@@ -25,6 +33,7 @@ const src = audio[locale][section]
     locale={locale}
     src={src}
     label={labels[section]}
+    peaks={peaks}
     error={error}
   />
 </div>

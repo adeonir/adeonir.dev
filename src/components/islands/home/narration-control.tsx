@@ -1,8 +1,8 @@
-import { Progress } from '@ark-ui/react/progress'
 import { useStore } from '@nanostores/react'
 import { type SyntheticEvent, useEffect, useId, useRef, useState } from 'react'
 
 import { Button } from '~/components/ui/button'
+import { cn } from '~/helpers/classnames'
 import type { Locale } from '~/helpers/locale'
 import type { NarrationSection } from '~/helpers/narration'
 import { $narration } from '~/stores/narration'
@@ -16,6 +16,7 @@ type NarrationControlProps = {
   locale: Locale
   src: string
   label: string
+  peaks: number[]
   error: { title: string; description: string }
 }
 
@@ -32,11 +33,50 @@ function percentPlayed(audio: HTMLAudioElement) {
   return Math.min(100, (currentTime / duration) * 100)
 }
 
+function Bars({
+  peaks,
+  className,
+  fill,
+  ...props
+}: {
+  peaks: number[]
+  className: string
+  fill?: number
+  'data-fill'?: boolean
+}) {
+  return (
+    <div
+      className={cn(
+        'flex h-full items-center gap-0.5',
+        fill !== undefined && 'absolute inset-0',
+      )}
+      style={
+        fill === undefined
+          ? undefined
+          : { clipPath: `inset(0 ${100 - fill}% 0 0)` }
+      }
+      {...props}
+    >
+      {peaks.map((peak, index) => (
+        <span
+          // the bars never reorder, so the index is a stable key
+          // biome-ignore lint/suspicious/noArrayIndexKey: fixed-length list
+          key={index}
+          data-bar
+          className={cn('block w-0.75 rounded-full', className)}
+          style={{ height: `${peak * 100}%` }}
+        />
+      ))}
+    </div>
+  )
+}
+
 export function NarrationControl({
   section,
   locale,
   src,
   label,
+  peaks,
   error,
 }: NarrationControlProps) {
   const labelId = useId()
@@ -126,34 +166,37 @@ export function NarrationControl({
 
   return (
     <div className="inline-flex flex-col items-center gap-2">
-      <div className="relative">
+      <div className="inline-flex h-9 items-center gap-2 rounded-full border border-border ps-0.75 pe-3.5">
         <Button
           type="button"
-          variant="outline"
+          variant="ghost"
           size="icon"
-          className="rounded-full"
+          className="size-7 rounded-full"
           aria-labelledby={labelId}
           aria-pressed={status === 'playing'}
           onClick={toggle}
         >
           {status === 'loading' ? (
-            <IconLoader className="size-4.5 text-primary motion-safe:animate-spin motion-reduce:animate-pulse" />
+            <IconLoader className="size-3.5 text-primary motion-safe:animate-spin motion-reduce:animate-pulse" />
           ) : status === 'playing' ? (
-            <IconPlayerPause className="size-4.5 text-primary" />
+            <IconPlayerPause className="size-3.5 text-primary" />
           ) : (
-            <IconPlayerPlay className="size-4.5" />
+            <IconPlayerPlay className="size-3.5" />
           )}
         </Button>
-        <Progress.Root
-          value={progress}
+        <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0"
+          data-waveform
+          className="relative h-5.5 cursor-pointer"
         >
-          <Progress.Circle className="[--size:--spacing(9)] [--thickness:2px]">
-            <Progress.CircleTrack />
-            <Progress.CircleRange className="stroke-primary" />
-          </Progress.Circle>
-        </Progress.Root>
+          <Bars peaks={peaks} className="bg-neutral" />
+          <Bars
+            peaks={peaks}
+            className="bg-primary"
+            fill={progress}
+            data-fill
+          />
+        </div>
       </div>
       <span id={labelId} className="text-button text-muted-foreground">
         {label}
