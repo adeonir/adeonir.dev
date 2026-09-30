@@ -123,6 +123,7 @@ The hero, about, and expertise sections play narrations committed under `public/
 
 - `src/components/` — server-side Astro composition and stateful React pieces reused by islands.
 - `src/components/scripts/` — Astro components that emit only inline script side effects.
+- `src/components/emails/` — React Email templates rendered server-side by the email service.
 - `src/components/islands/` — React hydration boundaries mounted with `client:*` directives.
 - `src/components/sections/` — Astro files for page sections.
 - `src/components/styleguide/` — pieces rendered only by the `/styleguide` route.

@@ -9,12 +9,12 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "email": "email dev --dir src/emails",
     "typecheck": "astro check",
     "test": "vitest run",
     "lint": "biome check --error-on-warnings && prettier --check \"src/**/*.{astro,yaml}\"",
     "lint:fix": "biome check --write --unsafe --error-on-warnings && prettier --write \"src/**/*.{astro,yaml}\"",
     "lighthouse": "astro build && npx -y @lhci/cli autorun",
+    "email": "email dev --dir src/components/emails",
     "narration": "tsx --env-file=.env scripts/audio.ts"
   },
   "dependencies": {

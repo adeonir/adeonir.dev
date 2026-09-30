@@ -4,10 +4,10 @@ import { formatInTimeZone } from 'date-fns-tz'
 import { createElement } from 'react'
 import { render } from 'react-email'
 
-import { Confirmation } from '~/emails/confirmation'
-import { Notification } from '~/emails/notification'
-import type { Locale } from '~/helpers/content'
+import { Confirmation } from '~/components/emails/confirmation'
+import { Notification } from '~/components/emails/notification'
 import { interpolate } from '~/helpers/interpolate'
+import type { Locale } from '~/helpers/locale'
 import { getLocalizedEntry } from '~/services/localized'
 
 export class ContactDeliveryError extends Error {
