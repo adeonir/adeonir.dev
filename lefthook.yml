@@ -11,6 +11,9 @@ pre-commit:
       glob: "src/**/*.{astro,yaml,yml}"
       run: pnpm exec prettier --write {staged_files}
       stage_fixed: true
+    - name: peaks
+      glob: "src/content/home/*/narration.yaml"
+      run: pnpm peaks && pnpm exec biome format --write src/data/peaks.json && git add src/data/peaks.json
 
 pre-push:
   parallel: true
