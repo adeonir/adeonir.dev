@@ -15,8 +15,8 @@ import type { NarrationSection } from '~/helpers/narration'
 import { $narration } from '~/stores/narration'
 import { toaster } from '~/stores/toaster'
 import IconLoader from '~icons/tabler/loader-2'
-import IconPlayerPause from '~icons/tabler/player-pause'
-import IconPlayerPlay from '~icons/tabler/player-play'
+import IconPlayerPause from '~icons/tabler/player-pause-filled'
+import IconPlayerPlay from '~icons/tabler/player-play-filled'
 
 type NarrationControlProps = {
   section: NarrationSection
@@ -214,12 +214,20 @@ export function NarrationControl({
 
   return (
     <div className="inline-flex flex-col items-center gap-2">
-      <div className="inline-flex h-9 items-center gap-2 rounded-full border border-border ps-0.75 pe-3.5">
+      <div
+        className={cn(
+          'inline-flex h-9 items-center gap-2.5 rounded-full border border-border ps-0.75 pe-3.5',
+          'has-focus-visible:ring-4 has-focus-visible:ring-ring/50 has-focus-visible:ring-offset-2 has-focus-visible:ring-offset-background',
+        )}
+      >
         <Button
           type="button"
           variant="ghost"
           size="icon"
-          className="size-7 rounded-full"
+          className={cn(
+            'size-7 rounded-full bg-muted/60 hover:bg-primary/15 hover:shadow-none focus-visible:ring-0 focus-visible:ring-offset-0',
+            active && 'bg-primary/15',
+          )}
           aria-labelledby={labelId}
           aria-pressed={status === 'playing'}
           onClick={toggle}
@@ -229,7 +237,7 @@ export function NarrationControl({
           ) : status === 'playing' ? (
             <IconPlayerPause className="size-3.5 text-primary" />
           ) : (
-            <IconPlayerPlay className="size-3.5" />
+            <IconPlayerPlay className="ms-0.5 size-3.5" />
           )}
         </Button>
         <div
@@ -250,7 +258,7 @@ export function NarrationControl({
           />
         </div>
       </div>
-      <span id={labelId} className="text-button text-muted-foreground">
+      <span id={labelId} className="text-neutral-foreground/80 text-sm">
         {label}
       </span>
       {/* biome-ignore lint/a11y/useMediaCaption: narration of on-page text */}
