@@ -29,11 +29,11 @@ describe('narration sync', () => {
 
       expect(
         manifest[locale][section],
-        `${file} is not in the manifest; run pnpm narration`,
+        `${file} is not in the manifest; run pnpm audio`,
       ).toBe(file)
       await expect(
         access(join(process.cwd(), 'public', file)),
-        `${file} is missing; run pnpm narration`,
+        `${file} is missing; run pnpm audio`,
       ).resolves.toBeUndefined()
     },
   )

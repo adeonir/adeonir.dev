@@ -15,7 +15,7 @@
     "lint:fix": "biome check --write --unsafe --error-on-warnings && prettier --write \"src/**/*.{astro,yaml}\"",
     "lighthouse": "astro build && npx -y @lhci/cli autorun",
     "email": "email dev --dir src/components/emails",
-    "narration": "tsx --env-file=.env scripts/audio.ts"
+    "audio": "tsx --env-file=.env scripts/audio.ts"
   },
   "dependencies": {
     "@ark-ui/react": "5.39.2",

@@ -35,7 +35,7 @@ pnpm lint         # Read-only Biome and Prettier checks
 pnpm lint:fix     # Apply Biome and Prettier fixes
 pnpm lighthouse   # Build and run the budget gate
 pnpm email        # Start the React Email development server
-pnpm narration    # Generate missing narrations (calls ElevenLabs)
+pnpm audio        # Generate missing narrations (calls ElevenLabs)
 ```
 
 Before considering a change done, run the gate: `pnpm typecheck && pnpm lint:fix`.
@@ -97,11 +97,11 @@ No contact data is stored. There is no database, and contact PII is never logged
 
 ### Home narration
 
-The hero, about, and expertise sections play narrations committed under `public/narration/`. Nothing calls ElevenLabs at runtime or during the build; `pnpm narration` generates the audio locally from the spoken text of each section in `src/content/home/<locale>/narration.yaml`.
+The hero, about, and expertise sections play narrations committed under `public/narration/`. Nothing calls ElevenLabs at runtime or during the build; `pnpm audio` generates the audio locally from the spoken text of each section in `src/content/home/<locale>/narration.yaml`.
 
 - A copy change to a narrated section updates its spoken text in the same change. The spoken text differs from the page on purpose: audio tags in square brackets and words spelled the way they are spoken. Never align it back to the page text.
-- Each MP3 is named after the hash of its spoken text, and `src/data/audio.json` maps each locale and section to its current file. Never rename or hand-edit these files; `pnpm narration` writes the new MP3, deletes the old one, and rewrites the manifest. The site reads the manifest and never hashes; the narration sync test fails when the manifest or the file for a current spoken text is out of date.
-- Every generation bills ElevenLabs and produces different audio. Run `pnpm narration` only when asked, and do not commit new audio before the owner has listened to it.
+- Each MP3 is named after the hash of its spoken text, and `src/data/audio.json` maps each locale and section to its current file. Never rename or hand-edit these files; `pnpm audio` writes the new MP3, deletes the old one, and rewrites the manifest. The site reads the manifest and never hashes; the narration sync test fails when the manifest or the file for a current spoken text is out of date.
+- Every generation bills ElevenLabs and produces different audio. Run `pnpm audio` only when asked, and do not commit new audio before the owner has listened to it.
 
 ## Content, routes, and page composition
 
