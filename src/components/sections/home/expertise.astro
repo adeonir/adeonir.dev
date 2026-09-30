@@ -2,9 +2,9 @@
 import { getImage, Image } from 'astro:assets'
 
 import carryingBlocks from '~/assets/characters/carrying-blocks.png'
-import Narration from '~/components/narration.astro'
+import NarrationPlayer from '~/components/narration-player.astro'
 import { Eyebrow } from '~/components/ui/eyebrow'
-import { parseLocale } from '~/helpers/content'
+import { parseLocale } from '~/helpers/locale'
 import { getLocalizedEntry } from '~/services/localized'
 
 const locale = parseLocale(Astro.currentLocale)
@@ -24,7 +24,7 @@ const carryingBlocksMobile = await getImage({
       <div class="flex flex-col gap-6 md:col-span-2">
         <div data-enter="block" class="flex flex-wrap items-center gap-4">
           <Eyebrow variant="muted">{eyebrow}</Eyebrow>
-          <Narration section="expertise" />
+          <NarrationPlayer section="expertise" />
         </div>
         <h2 data-enter="block" class="text-display text-pretty text-foreground">
           {headline.map((segment) => (

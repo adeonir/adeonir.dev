@@ -4,7 +4,7 @@ import {
   getEntry,
 } from 'astro:content'
 
-import type { Locale } from '~/helpers/content'
+import type { Locale } from '~/helpers/locale'
 
 export async function getLocalizedEntry<TCollection extends CollectionKey>(
   collection: TCollection,

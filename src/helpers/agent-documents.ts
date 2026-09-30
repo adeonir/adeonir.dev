@@ -1,4 +1,4 @@
-import type { Locale } from '~/helpers/content'
+import type { Locale } from '~/helpers/locale'
 
 export const agentDocumentKinds = ['llms', 'markdown'] as const
 

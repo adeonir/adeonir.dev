@@ -1,4 +1,4 @@
-import type { Locale } from '~/helpers/content'
+import type { Locale } from '~/helpers/locale'
 import { getLocalizedPath } from '~/helpers/locale-path'
 
 import { onVisit } from './visit'

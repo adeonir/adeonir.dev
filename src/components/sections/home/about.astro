@@ -2,11 +2,11 @@
 import { getImage, Image } from 'astro:assets'
 
 import working from '~/assets/characters/working.png'
-import Narration from '~/components/narration.astro'
+import NarrationPlayer from '~/components/narration-player.astro'
 import { Eyebrow } from '~/components/ui/eyebrow'
 import { buttonVariants } from '~/components/ui/button-variants'
 import { cn } from '~/helpers/classnames'
-import { parseLocale } from '~/helpers/content'
+import { parseLocale } from '~/helpers/locale'
 import { getLocalizedEntry } from '~/services/localized'
 import IconArrowUpRight from '~icons/tabler/arrow-up-right'
 
@@ -23,7 +23,7 @@ const workingMobile = await getImage({ src: working, width: 268, height: 352 })
       <div class="flex flex-col gap-6 md:col-span-2">
         <div data-enter="block" class="flex flex-wrap items-center gap-4">
           <Eyebrow variant="muted">{eyebrow}</Eyebrow>
-          <Narration section="about" />
+          <NarrationPlayer section="about" />
         </div>
         <h2 data-enter="block" class="text-display text-pretty text-foreground">
           {headline.map((segment) => (

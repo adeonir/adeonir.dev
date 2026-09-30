@@ -3,7 +3,7 @@ import { useStore } from '@nanostores/react'
 import { type SyntheticEvent, useEffect, useRef, useState } from 'react'
 
 import { Button } from '~/components/ui/button'
-import type { Locale } from '~/helpers/content'
+import type { Locale } from '~/helpers/locale'
 import type { NarrationSection } from '~/helpers/narration'
 import { $narration } from '~/stores/narration'
 import { toaster } from '~/stores/toaster'

@@ -1,4 +1,4 @@
-import type { Locale } from './content'
+import type { Locale } from './locale'
 
 export const getLocalizedPath = (
   pathname: string,

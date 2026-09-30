@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { isLocale, parseLocale } from '~/helpers/content'
+import { isLocale, parseLocale } from '~/helpers/locale'
 
 describe('content locale validation', () => {
   it('recognizes only supported locales', () => {

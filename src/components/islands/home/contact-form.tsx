@@ -2,7 +2,7 @@ import { actions } from 'astro:actions'
 import { useRef } from 'react'
 import { Button } from '~/components/ui/button'
 import { Field } from '~/components/ui/field'
-import type { Locale } from '~/helpers/content'
+import type { Locale } from '~/helpers/locale'
 import { useForm } from '~/hooks/use-form'
 import { toaster } from '~/stores/toaster'
 import {

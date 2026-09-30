@@ -1,7 +1,7 @@
 import { format } from 'date-fns'
 import { enUS, ptBR } from 'date-fns/locale'
 
-import type { Locale } from '~/helpers/content'
+import type { Locale } from '~/helpers/locale'
 
 export type ProjectDestinationKind = 'internal' | 'external' | 'offline'
 
