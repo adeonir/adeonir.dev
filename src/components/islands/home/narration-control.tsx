@@ -1,5 +1,12 @@
 import { useStore } from '@nanostores/react'
-import { type SyntheticEvent, useEffect, useId, useRef, useState } from 'react'
+import {
+  type PointerEvent,
+  type SyntheticEvent,
+  useEffect,
+  useId,
+  useRef,
+  useState,
+} from 'react'
 
 import { Button } from '~/components/ui/button'
 import { cn } from '~/helpers/classnames'
@@ -31,6 +38,12 @@ function percentPlayed(audio: HTMLAudioElement) {
   const { currentTime, duration } = audio
   if (!Number.isFinite(duration) || duration <= 0) return 0
   return Math.min(100, (currentTime / duration) * 100)
+}
+
+function pointerFraction(event: PointerEvent<HTMLElement>) {
+  const { left, width } = event.currentTarget.getBoundingClientRect()
+  if (width <= 0) return 0
+  return Math.min(1, Math.max(0, (event.clientX - left) / width))
 }
 
 function Bars({
@@ -88,6 +101,10 @@ export function NarrationControl({
   const current = useStore($narration)
   const [status, setStatus] = useState<Status>('idle')
   const [progress, setProgress] = useState(0)
+  // a position picked before the audio knows its duration, as a fraction
+  const pendingRef = useRef<number | null>(null)
+  // the fraction under the pointer while a drag is in progress
+  const [drag, setDrag] = useState<number | null>(null)
   const active = status === 'loading' || status === 'playing'
 
   useEffect(() => {
@@ -134,6 +151,7 @@ export function NarrationControl({
     if (failedRef.current) return
     failedRef.current = true
     startingRef.current = false
+    pendingRef.current = null
     setStatus('idle')
     setProgress(0)
     if ($narration.get() === section) $narration.set(null)
@@ -153,11 +171,41 @@ export function NarrationControl({
   }
 
   function track(event: SyntheticEvent<HTMLAudioElement>) {
+    if (pendingRef.current !== null) return
     setProgress(percentPlayed(event.currentTarget))
+  }
+
+  function applyPending(audio: HTMLAudioElement) {
+    const fraction = pendingRef.current
+    if (fraction === null || !Number.isFinite(audio.duration)) return
+    pendingRef.current = null
+    audio.currentTime = fraction * audio.duration
+    setProgress(fraction * 100)
+  }
+
+  function startDrag(event: PointerEvent<HTMLElement>) {
+    event.currentTarget.setPointerCapture(event.pointerId)
+    setDrag(pointerFraction(event))
+  }
+
+  function moveDrag(event: PointerEvent<HTMLElement>) {
+    if (drag === null) return
+    setDrag(pointerFraction(event))
+  }
+
+  function endDrag(event: PointerEvent<HTMLElement>) {
+    const audio = audioRef.current
+    if (drag === null || !audio) return
+    const fraction = pointerFraction(event)
+    setDrag(null)
+    setProgress(fraction * 100)
+    pendingRef.current = fraction
+    applyPending(audio)
   }
 
   function finish(event: SyntheticEvent<HTMLAudioElement>) {
     event.currentTarget.currentTime = 0
+    pendingRef.current = null
     setProgress(0)
     setStatus('idle')
     if ($narration.get() === section) $narration.set(null)
@@ -187,13 +235,17 @@ export function NarrationControl({
         <div
           aria-hidden="true"
           data-waveform
-          className="relative h-5.5 cursor-pointer"
+          className="relative h-5.5 cursor-pointer touch-none"
+          onPointerDown={startDrag}
+          onPointerMove={moveDrag}
+          onPointerUp={endDrag}
+          onPointerCancel={() => setDrag(null)}
         >
           <Bars peaks={peaks} className="bg-neutral" />
           <Bars
             peaks={peaks}
             className="bg-primary"
-            fill={progress}
+            fill={drag === null ? progress : drag * 100}
             data-fill
           />
         </div>
@@ -210,6 +262,7 @@ export function NarrationControl({
         onWaiting={() => setStatus('loading')}
         onPause={pause}
         onError={fail}
+        onLoadedMetadata={(event) => applyPending(event.currentTarget)}
         onTimeUpdate={track}
         onDurationChange={track}
         onEnded={finish}
