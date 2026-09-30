@@ -15,7 +15,8 @@
     "lint:fix": "biome check --write --unsafe --error-on-warnings && prettier --write \"src/**/*.{astro,yaml}\"",
     "lighthouse": "astro build && npx -y @lhci/cli autorun",
     "email": "email dev --dir src/components/emails",
-    "audio": "tsx --env-file=.env scripts/audio.ts"
+    "audio": "tsx --env-file=.env scripts/audio.ts",
+    "peaks": "tsx scripts/peaks.ts"
   },
   "dependencies": {
     "@ark-ui/react": "5.39.2",
@@ -55,6 +56,7 @@
     "@types/react-dom": "19.3.0",
     "happy-dom": "20.14.5",
     "lefthook": "2.1.14",
+    "mpg123-decoder": "1.0.3",
     "prettier": "3.9.9",
     "prettier-plugin-astro": "1.1.0",
     "prettier-plugin-tailwindcss": "0.8.1",
