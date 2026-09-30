@@ -67,10 +67,6 @@ colors:
   secondary: "oklch(67.2% 0.233 2.27)"
   secondary-foreground: "oklch(18.3% 0.02 284.2)"
   spot: "oklch(67.2% 0.233 2.27)"
-  accent: "oklch(36.38% 0.0319 281.06)"
-  accent-foreground: "oklch(87.87% 0.0426 272.28)"
-  muted: "oklch(32.40% 0.0319 281.98)"
-  muted-foreground: "oklch(75.10% 0.0396 273.93)"
   background: "oklch(24.29% 0.0304 283.91)"
   foreground: "oklch(87.87% 0.0426 272.28)"
   card: "oklch(22.92% 0.0279 283.99)"
@@ -79,6 +75,12 @@ colors:
   popover-foreground: "oklch(87.87% 0.0426 272.28)"
   sunken: "oklch(18.28% 0.0204 284.2)"
   sunken-foreground: "oklch(87.87% 0.0426 272.28)"
+  neutral: "oklch(40.37% 0.032 280.15)"
+  neutral-foreground: "oklch(81.68% 0.0403 272.86)"
+  accent: "oklch(36.38% 0.0319 281.06)"
+  accent-foreground: "oklch(87.87% 0.0426 272.28)"
+  muted: "oklch(32.40% 0.0319 281.98)"
+  muted-foreground: "oklch(75.10% 0.0396 273.93)"
   destructive: "oklch(70.4% 0.191 22.216)"
   destructive-foreground: "oklch(18.3% 0.02 284.2)"
   border: "oklch(32.40% 0.0319 281.98)"
@@ -329,8 +331,6 @@ The frontmatter carries the values of the dark skin, which is the default. Each 
 - **secondary** — `azalea-500` dark, `azalea-600` light. Pink ornaments and pink text at headline size. Never interactive.
 - **secondary-foreground** — `ink` in both skins. The dark text that pairs with `secondary` wherever the pink is used as a fill.
 - **spot** — `azalea-500` dark, `azalea-750` light. The pink for text below headline size. It governs the text a reader reads; a pink ornament carries no reading content, so the size rule never reaches it. Pink text at headline size uses `secondary` directly. Both roles resolve to the same step in the dark skin, so they differ only in the light skin.
-- **accent** — `mocha-750` dark, `latte-250` light. The neutral hover surface. It sits half a step from the surface below it, so a hovered row shows without becoming a surface of its own.
-- **accent-foreground** — `mocha-50` dark, `latte-950` light. Text on the neutral hover surface.
 - **background** — `mocha-850` dark, `latte-50` light. The main surface. In the dark skin it is a deep violet-charcoal, never pure black.
 - **foreground** — `mocha-50` dark, `latte-950` light. Primary text and headings. In the dark skin it is a soft lavender-white, never pure white.
 - **card** — `mocha-875` dark, `latte-75` light. Half a step from `background`. Use it to group related content.
@@ -339,8 +339,12 @@ The frontmatter carries the values of the dark skin, which is the default. Each 
 - **popover-foreground** — `mocha-50` dark, `latte-950` light. Text on a popover.
 - **sunken** — `mocha-950` dark, `latte-150` light. The deepest surface, for anything set below the page rather than on it.
 - **sunken-foreground** — `mocha-50` dark, `latte-950` light. Text on the deepest surface.
+- **accent** — `mocha-750` dark, `latte-250` light. The neutral hover surface. It sits half a step from the surface below it, so a hovered row shows without becoming a surface of its own.
+- **accent-foreground** — `mocha-50` dark, `latte-950` light. Text on the neutral hover surface.
 - **muted** — `mocha-800` dark, `latte-200` light. Muted fills and inactive surfaces, one step below the hover surface.
 - **muted-foreground** — `mocha-200` dark, `latte-900` light. Secondary text, captions, and supporting copy. Each skin takes its deepest step: subtext-0 in the dark skin, subtext-1 in the light skin. The light skin leaves less distance between secondary text and primary text, so weight and position carry more of that distinction there.
+- **neutral** — `mocha-700` dark, `latte-300` light. Low-emphasis marks that are not text, such as the unfilled part of a progress indicator.
+- **neutral-foreground** — `mocha-100` dark, `latte-950` light. Text or an icon on a `neutral` fill, and supporting text on `background` and `card`.
 - **border** — `mocha-800` dark, `latte-200` light. The edge of a surface and the line of a divider, one pixel wide. A surface at rest separates by this edge and by its lightness, not by a shadow.
 - **input** — `mocha-700` dark, `latte-300` light. The edge of a form control, and the same colour at one tenth opacity for the fill behind it. It carries one step more contrast against the surface than `border` does, so the edge of a control is stronger than the line of a divider.
 - **ring** — `ocean-600` in both skins. The focus ring, one value for both skins.

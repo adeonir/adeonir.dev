@@ -1,8 +1,8 @@
 metadata:
   source: 'docs/product/brief.md, docs/product/prd.md, conversation'
   created: '2026-06-06'
-  updated: '2026-09-28'
-  version: '1.0.14'
+  updated: '2026-09-29'
+  version: '1.0.15'
   status: 'ready'
 
 project:
@@ -152,11 +152,10 @@ content:
           maxLength: 'Use no máximo {max} caracteres.'
 
     narration:
-      label: 'Ouvir'
-      names:
-        hero: 'Ouvir a apresentação'
-        about: 'Ouvir a seção sobre mim'
-        expertise: 'Ouvir a seção especialidades'
+      labels:
+        hero: 'Ouça a apresentação'
+        about: 'Ouça minha história'
+        expertise: 'Ouça o que eu faço'
       error:
         title: 'Não foi possível tocar a narração'
         description: 'Tenta de novo em instantes.'

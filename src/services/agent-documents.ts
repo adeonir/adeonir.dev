@@ -5,7 +5,7 @@ import {
   agentDocumentSections,
   getAgentDocumentPath,
 } from '~/helpers/agent-documents'
-import { type Locale, parseLocale } from '~/helpers/content'
+import { type Locale, parseLocale } from '~/helpers/locale'
 import {
   getLaunchYear,
   getProjectDestination,

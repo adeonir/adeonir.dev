@@ -1,4 +1,4 @@
-import { goToAnchor, scrollToTop } from '~/helpers/anchor'
+import { goToAnchor, scrollToTop } from '~/scripts/anchor'
 import { onVisit } from '~/scripts/visit'
 
 document.addEventListener(

@@ -1,0 +1,12 @@
+{
+  "pt": {
+    "hero": "/narration/pt/hero.94acdce7.mp3",
+    "about": "/narration/pt/about.ee310b56.mp3",
+    "expertise": "/narration/pt/expertise.5859d0b3.mp3"
+  },
+  "en": {
+    "hero": "/narration/en/hero.d823505f.mp3",
+    "about": "/narration/en/about.1d037ea9.mp3",
+    "expertise": "/narration/en/expertise.e09ee025.mp3"
+  }
+}

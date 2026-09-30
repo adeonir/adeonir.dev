@@ -7,7 +7,7 @@ import { Popover } from '~/components/ui/popover'
 
 const items = ['First item', 'Second item', 'Third item']
 
-export function FloatingDemo() {
+export function Floating() {
   return (
     <div className="flex flex-wrap items-center gap-3">
       <Popover.Root

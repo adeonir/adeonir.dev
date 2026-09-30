@@ -1,8 +1,8 @@
 metadata:
   source: 'docs/product/brief.md, docs/product/prd.md, conversation'
   created: '2026-06-06'
-  updated: '2026-09-28'
-  version: '1.0.14'
+  updated: '2026-09-29'
+  version: '1.0.15'
   status: 'ready'
 
 project:
@@ -152,11 +152,10 @@ content:
           maxLength: 'Use {max} characters or fewer.'
 
     narration:
-      label: 'Listen'
-      names:
-        hero: 'Listen to the introduction'
-        about: 'Listen to the about me section'
-        expertise: 'Listen to the capabilities section'
+      labels:
+        hero: 'Listen to the intro'
+        about: 'Listen to my story'
+        expertise: 'Listen to what I do'
       error:
         title: "We couldn't play the narration"
         description: 'Try again in a moment.'

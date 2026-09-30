@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import type { Locale } from '~/helpers/content'
+import type { Locale } from '~/helpers/locale'
 
 const getLocalizedEntry = vi.hoisted(() => vi.fn())
 const getCollection = vi.hoisted(() => vi.fn())

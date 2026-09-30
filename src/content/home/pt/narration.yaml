@@ -1,8 +1,7 @@
-label: 'Ouvir'
-names:
-  hero: 'Ouvir a apresentação'
-  about: 'Ouvir a seção sobre mim'
-  expertise: 'Ouvir a seção especialidades'
+labels:
+  hero: 'Ouça a apresentação'
+  about: 'Ouça minha história'
+  expertise: 'Ouça o que eu faço'
 error:
   title: 'Não foi possível tocar a narração'
   description: 'Tenta de novo em instantes.'

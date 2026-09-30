@@ -4,13 +4,16 @@ pre-commit:
   parallel: true
   jobs:
     - name: biome
-      glob: "src/**/*.{js,mjs,cjs,ts,tsx,jsx,json,jsonc,css}"
+      glob: "{src,scripts}/**/*.{js,mjs,cjs,ts,tsx,jsx,json,jsonc,css}"
       run: pnpm exec biome check --write --unsafe --no-errors-on-unmatched --error-on-warnings {staged_files}
       stage_fixed: true
     - name: prettier
       glob: "src/**/*.{astro,yaml,yml}"
       run: pnpm exec prettier --write {staged_files}
       stage_fixed: true
+    - name: peaks
+      glob: "src/content/home/*/narration.yaml"
+      run: pnpm peaks && pnpm exec biome format --write src/data/peaks.json && git add src/data/peaks.json
 
 pre-push:
   parallel: true

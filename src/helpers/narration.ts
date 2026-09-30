@@ -1,24 +1,22 @@
-import type { Locale } from './content'
-
 export const narrationSections = ['hero', 'about', 'expertise'] as const
 
 export type NarrationSection = (typeof narrationSections)[number]
 
-export async function hashNarration(text: string): Promise<string> {
-  const digest = await crypto.subtle.digest(
-    'SHA-256',
-    new TextEncoder().encode(text),
-  )
-  return Array.from(new Uint8Array(digest), (byte) =>
-    byte.toString(16).padStart(2, '0'),
-  ).join('')
-}
+export const NARRATION_BARS = 28
 
-export async function narrationFile(
-  locale: Locale,
-  section: NarrationSection,
-  spoken: string,
-): Promise<string> {
-  const hash = await hashNarration(spoken)
-  return `/narration/${locale}/${section}.${hash.slice(0, 8)}.mp3`
+// FNV-1a hash of the seed feeds a mulberry32 generator, so a seed always yields the same bars
+export function placeholderPeaks(seed: string, count: number) {
+  let hash = 2166136261
+  for (const char of seed) {
+    hash = Math.imul(hash ^ char.charCodeAt(0), 16777619)
+  }
+  let state = hash >>> 0
+
+  return Array.from({ length: count }, () => {
+    state = (state + 0x6d2b79f5) >>> 0
+    let mixed = Math.imul(state ^ (state >>> 15), state | 1)
+    mixed ^= mixed + Math.imul(mixed ^ (mixed >>> 7), mixed | 61)
+    const unit = ((mixed ^ (mixed >>> 14)) >>> 0) / 4294967296
+    return Math.round((0.25 + unit * 0.75) * 100) / 100
+  })
 }

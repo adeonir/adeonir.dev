@@ -1,10 +1,10 @@
 ---
 import AvailabilitySeal from '~/components/availability-seal.astro'
-import Narration from '~/components/narration.astro'
+import NarrationPlayer from '~/components/narration-player.astro'
 import { buttonVariants } from '~/components/ui/button-variants'
 import { Eyebrow } from '~/components/ui/eyebrow'
 import { cn } from '~/helpers/classnames'
-import { parseLocale } from '~/helpers/content'
+import { parseLocale } from '~/helpers/locale'
 import { getLocalizedEntry } from '~/services/localized'
 
 const locale = parseLocale(Astro.currentLocale)
@@ -61,7 +61,7 @@ const { eyebrow, display, tagline, description, availability, actions } =
         {actions.secondary.label}
       </a>
     </div>
-    <Narration
+    <NarrationPlayer
       section="hero"
       class="mt-8 animate-enter [--blur-in:0px] [animation-delay:350ms] sm:mt-10"
     />

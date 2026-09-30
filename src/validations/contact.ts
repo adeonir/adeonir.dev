@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { supportedLocales } from '~/helpers/content'
+import { supportedLocales } from '~/helpers/locale'
 
 export const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign'] as const
 

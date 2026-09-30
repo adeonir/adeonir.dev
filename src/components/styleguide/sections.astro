@@ -2,8 +2,8 @@
 import IconArrowRight from '~icons/tabler/arrow-right'
 
 import Logo from '~/components/logo.astro'
-import { FloatingDemo } from '~/components/styleguide/floating'
-import { ToastDemo } from '~/components/styleguide/toast'
+import { Floating } from '~/components/styleguide/floating'
+import { Toast } from '~/components/styleguide/toast'
 import { Button } from '~/components/ui/button'
 import { Eyebrow } from '~/components/ui/eyebrow'
 import { Field } from '~/components/ui/field'
@@ -53,6 +53,11 @@ const accents = [
     box: 'bg-accent',
     text: 'text-accent-foreground',
     label: 'accent / accent-foreground',
+  },
+  {
+    box: 'bg-neutral',
+    text: 'text-neutral-foreground',
+    label: 'neutral / neutral-foreground',
   },
 ]
 
@@ -311,12 +316,12 @@ const breakpoints = [
 
       <div class="flex flex-col gap-2">
         <span class="text-caption text-muted-foreground">Popover / Menu</span>
-        <FloatingDemo client:load />
+        <Floating client:load />
       </div>
 
       <div class="flex flex-col gap-2">
         <span class="text-caption text-muted-foreground">Toast</span>
-        <ToastDemo client:load />
+        <Toast client:load />
       </div>
 
       <div class="flex flex-col gap-2">

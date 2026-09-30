@@ -1,8 +1,7 @@
 import { z } from 'astro/zod'
 
 export const homeNarrationSchema = z.object({
-  label: z.string().min(1),
-  names: z.object({
+  labels: z.object({
     hero: z.string().min(1),
     about: z.string().min(1),
     expertise: z.string().min(1),

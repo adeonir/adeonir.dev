@@ -1,8 +1,7 @@
-label: 'Listen'
-names:
-  hero: 'Listen to the introduction'
-  about: 'Listen to the about me section'
-  expertise: 'Listen to the capabilities section'
+labels:
+  hero: 'Listen to the intro'
+  about: 'Listen to my story'
+  expertise: 'Listen to what I do'
 error:
   title: "We couldn't play the narration"
   description: 'Try again in a moment.'

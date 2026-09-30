@@ -29,7 +29,7 @@ const samples = [
   },
 ] as const
 
-export function ToastDemo() {
+export function Toast() {
   return (
     <>
       <div className="flex flex-wrap gap-3">

@@ -1,4 +1,4 @@
-import { ANCHOR_SCROLL_EVENT } from '~/helpers/anchor'
+import { ANCHOR_SCROLL_EVENT } from '~/scripts/anchor'
 import { onVisit } from '~/scripts/visit'
 
 // Trackpads and touch report a few pixels of movement in both directions
