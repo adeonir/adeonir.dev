@@ -1,6 +1,6 @@
 import { Progress } from '@ark-ui/react/progress'
 import { useStore } from '@nanostores/react'
-import { type SyntheticEvent, useEffect, useRef, useState } from 'react'
+import { type SyntheticEvent, useEffect, useId, useRef, useState } from 'react'
 
 import { Button } from '~/components/ui/button'
 import type { Locale } from '~/helpers/locale'
@@ -16,7 +16,6 @@ type NarrationControlProps = {
   locale: Locale
   src: string
   label: string
-  name: string
   error: { title: string; description: string }
 }
 
@@ -38,9 +37,9 @@ export function NarrationControl({
   locale,
   src,
   label,
-  name,
   error,
 }: NarrationControlProps) {
+  const labelId = useId()
   const audioRef = useRef<HTMLAudioElement>(null)
   // a missing file fires the audio error event and also rejects play(); report it once
   const failedRef = useRef(false)
@@ -126,14 +125,14 @@ export function NarrationControl({
   }
 
   return (
-    <div className="flex items-center gap-3">
+    <div className="inline-flex flex-col items-center gap-2">
       <div className="relative">
         <Button
           type="button"
           variant="outline"
           size="icon"
           className="rounded-full"
-          aria-label={name}
+          aria-labelledby={labelId}
           aria-pressed={status === 'playing'}
           onClick={toggle}
         >
@@ -156,7 +155,7 @@ export function NarrationControl({
           </Progress.Circle>
         </Progress.Root>
       </div>
-      <span aria-hidden="true" className="text-button text-muted-foreground">
+      <span id={labelId} className="text-button text-muted-foreground">
         {label}
       </span>
       {/* biome-ignore lint/a11y/useMediaCaption: narration of on-page text */}
