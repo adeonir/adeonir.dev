@@ -76,6 +76,8 @@
   --accent-foreground: var(--mocha-50); /* text */
   --muted: var(--mocha-800); /* surface-0 */
   --muted-foreground: var(--mocha-200); /* subtext-0 */
+  --neutral: var(--mocha-700); /* surface-1 */
+  --neutral-foreground: var(--mocha-100); /* subtext-1 */
   --background: var(--mocha-850); /* base */
   --foreground: var(--mocha-50); /* text */
   --card: var(--mocha-875); /* base/mantle blend */
@@ -111,6 +113,8 @@
   --accent-foreground: var(--latte-950); /* text */
   --muted: var(--latte-200); /* surface-0 */
   --muted-foreground: var(--latte-900); /* subtext-1 */
+  --neutral: var(--latte-300); /* surface-1 */
+  --neutral-foreground: var(--latte-950); /* text */
   --background: var(--latte-50); /* base */
   --foreground: var(--latte-950); /* text */
   --card: var(--latte-75); /* base/mantle blend */
@@ -142,6 +146,8 @@
   --color-accent-foreground: var(--accent-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
+  --color-neutral: var(--neutral);
+  --color-neutral-foreground: var(--neutral-foreground);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
