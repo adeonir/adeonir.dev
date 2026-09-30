@@ -4,7 +4,7 @@ pre-commit:
   parallel: true
   jobs:
     - name: biome
-      glob: "src/**/*.{js,mjs,cjs,ts,tsx,jsx,json,jsonc,css}"
+      glob: "{src,scripts}/**/*.{js,mjs,cjs,ts,tsx,jsx,json,jsonc,css}"
       run: pnpm exec biome check --write --unsafe --no-errors-on-unmatched --error-on-warnings {staged_files}
       stage_fixed: true
     - name: prettier

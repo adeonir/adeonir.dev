@@ -128,6 +128,7 @@ The hero, about, and expertise sections play narrations committed under `public/
 - `src/components/styleguide/` — pieces rendered only by the `/styleguide` route.
 - `src/components/ui/` — styled, stateless primitives that use semantic tokens. Prefer the Ark `ark.<element>` factory so primitives remain polymorphic and accept `asChild`; use a bare element only for a trivial primitive that never needs `asChild`.
 - `src/scripts/` — client-side vanilla modules, loaded from a `<script>` tag.
+- `scripts/` (repository root) — local Node scripts run through `package.json`. They never import from `src/`, so anything they share with the site is duplicated on purpose.
 
 Use the `new-component` skill when creating a new component. Shared pure helpers belong in `src/helpers/` and must not contain JSX. Shared React hooks belong in `src/hooks/`.
 

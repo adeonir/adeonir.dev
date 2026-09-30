@@ -6,7 +6,7 @@
     "useIgnoreFile": true
   },
   "files": {
-    "includes": ["src/**", "!**/*.astro"]
+    "includes": ["src/**", "scripts/**", "!**/*.astro"]
   },
   "formatter": {
     "enabled": true,

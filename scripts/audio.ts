@@ -1,16 +1,52 @@
 import { mkdir, readdir, readFile, rm, stat, writeFile } from 'node:fs/promises'
 import { basename, dirname, join } from 'node:path'
 import { parse } from 'yaml'
-
-import { type Locale, supportedLocales } from '~/helpers/content'
-import { narrationFile, narrationSections } from '~/helpers/narration'
-import { homeNarrationSchema } from '~/schemas/home/narration'
-import { narrationEnvSchema } from '~/validations/narration'
+import { z } from 'zod'
 
 const ENDPOINT = 'https://api.elevenlabs.io/v1/text-to-dialogue'
 const OUTPUT_FORMAT = 'mp3_44100_128'
 const MODEL_ID = 'eleven_v4'
 const SETTINGS = { stability: 0.35, similarity: 0.5 }
+
+export const supportedLocales = ['pt', 'en'] as const
+
+export type Locale = (typeof supportedLocales)[number]
+
+export const narrationSections = ['hero', 'about', 'expertise'] as const
+
+export type NarrationSection = (typeof narrationSections)[number]
+
+const envSchema = z.object({
+  ELEVENLABS_API_KEY: z.string().min(1),
+  ELEVENLABS_VOICE_ID: z.string().min(1),
+})
+
+const spokenSchema = z.object({
+  spoken: z.object({
+    hero: z.string().min(1),
+    about: z.string().min(1),
+    expertise: z.string().min(1),
+  }),
+})
+
+export async function hashNarration(text: string): Promise<string> {
+  const digest = await crypto.subtle.digest(
+    'SHA-256',
+    new TextEncoder().encode(text),
+  )
+  return Array.from(new Uint8Array(digest), (byte) =>
+    byte.toString(16).padStart(2, '0'),
+  ).join('')
+}
+
+export async function narrationFile(
+  locale: Locale,
+  section: NarrationSection,
+  spoken: string,
+): Promise<string> {
+  const hash = await hashNarration(spoken)
+  return `/narration/${locale}/${section}.${hash.slice(0, 8)}.mp3`
+}
 
 async function fileExists(path: string): Promise<boolean> {
   try {
@@ -30,12 +66,12 @@ async function removeOlderFiles(audio: string, section: string): Promise<void> {
   }
 }
 
-async function readSpokenTexts(locale: Locale) {
+export async function readSpokenTexts(locale: Locale) {
   const source = join(
     process.cwd(),
     `src/content/home/${locale}/narration.yaml`,
   )
-  const entry = homeNarrationSchema.parse(parse(await readFile(source, 'utf8')))
+  const entry = spokenSchema.parse(parse(await readFile(source, 'utf8')))
   return entry.spoken
 }
 
@@ -64,7 +100,7 @@ export async function synthesize(
 }
 
 export async function generateNarrations(): Promise<void> {
-  const env = narrationEnvSchema.safeParse(process.env)
+  const env = envSchema.safeParse(process.env)
   if (!env.success) {
     const missing = env.error.issues.map((issue) => issue.path.join('.'))
     console.error(`Missing environment variables: ${missing.join(', ')}`)
