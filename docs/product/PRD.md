@@ -244,7 +244,7 @@ Adeonir owns content authoring, design, and delivery end-to-end. No outside depe
 
 ## 14. References
 
-- **PRODUCT:** [docs/product/PRODUCT.md](./PRODUCT.md)
+- **PRODUCT:** [PRODUCT.md](../../PRODUCT.md)
 - **PRD:** This document
 - **Design Doc:** [docs/tech/design-doc.md](../tech/design-doc.md)
 - **Research:** None

@@ -50,7 +50,7 @@ Before planning or building a feature, read the documents that apply to the work
 - `PROJECT.md` — the project's shared memory: what a silent failure costs, the durable conventions and decisions, and the traps this codebase has already hit.
 - `docs/tech/design-doc.md` — the technical authority: architecture, runtime boundaries, contact flow, security, testing, and CI/CD.
 - `docs/product/PRD.md` — scope, FR/NFR identifiers, personas, journeys, business rules, and edge cases.
-- `docs/product/PRODUCT.md` — strategic positioning: register, audience relationship, brand personality, anti-references, design principles.
+- `PRODUCT.md` — strategic positioning: register, audience relationship, brand personality, anti-references, design principles.
 - `DESIGN.md` — the authority on the visual identity and the design tokens.
 - `docs/product/copy.yaml` — canonical site copy. `docs/product/copy.en.yaml` holds the English translation. Collection files split by locale directory instead, as `src/content/<group>/pt/` and `src/content/<group>/en/`, and sections read the entry for the current locale through `getLocalizedEntry`.
 - The token styleguide is the live `/styleguide` route, built from `src/pages/styleguide.astro`.
