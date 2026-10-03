@@ -21,6 +21,10 @@
 - Server-side PostHog capture sends raw ingest requests through the shared analytics service — the browser snippet is not available inside the Cloudflare Worker; source: src/services/analytics.ts; scope: server-side analytics
 - Tailwind conflict merging uses `tailwind-merge` around the project's class concatenation helper, with the custom `text-*` type utilities registered as font-size entries — otherwise they collide with the semantic text-color tokens; source: src/helpers/classnames.ts and src/styles/global.css; scope: type utilities
 - A copy collection holds both locales together: one YAML file per locale under `src/content/<surface>/<locale>/<name>.yaml` (`home` for the six home-section types, `shared` for the rest), loaded through `glob()` with an explicit `generateId` returning `${locale}/<collectionKey>`. A new collection needs no separate per-locale registration — its id already carries the locale; source: src/content.config.ts; scope: content layer
+- The narration control does not show the audio duration — the control stays minimal, and a missing duration is not a gap to fix; source: src/components/islands/home/narration-control.tsx; scope: home narration
+- The narration waveform seeks by pointer only and stays `aria-hidden` — play and pause work from the keyboard, and the narration reads text already on the page, so nothing becomes unreachable; source: src/components/islands/home/narration-control.tsx; scope: home narration
+- The hero eyebrow reads "Frontend Engineer" while the description says "Sou design engineer e trabalho no frontend" — the eyebrow is the title held at companies and the description is the positioning, so the two are not a conflict to resolve; source: src/content/home/pt/hero.yaml; scope: home hero
+- The site has no skip link — the first Tab stop is the logo and the second is the first section link, so the content is already reached without one; source: src/layouts/base.astro; scope: every page
 
 ## Gotchas
 
