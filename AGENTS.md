@@ -170,11 +170,15 @@ The `/styleguide` and `/maintenance` routes are noindex and are excluded from th
 - The quality target is mobile Lighthouse Performance ≥ 95, Accessibility, Best Practices and SEO at 100, CLS < 0.1, INP < 200ms, and WCAG AA. LCP under 3s is a nice to have, not a gate. `lighthouserc.json` holds what CI enforces: the category scores fail the build, and the metric budgets only warn.
 - Lighthouse audits only the home. The required `main` checks are Build, Lint, Typecheck, Unit Tests, Workers Builds, and Lighthouse.
 
-## Deployment and tracking
+## Deployment
 
 Cloudflare Workers Builds deploys the Worker named `adeonir`. A push to `main` builds and deploys, publishes `https://adeonir.dev`, and creates preview deployments for branches and pull requests. GitHub Actions provides quality gates; no Cloudflare credentials are stored in GitHub.
 
-The repository tracks delivery in GitHub Issues for `adeonir/adeonir.dev`, using milestones, sub-issues, and labels. There are no Issue Types. Use the `epic-tracker` skill for epic and story changes, and the `git-helpers` skill for commits, pull requests, and branch cleanup.
+Use the `git-helpers` skill for commits, pull requests, and branch cleanup.
+
+## Issue tracker
+
+Delivery artifacts for this repo live in Linear, team Development, project Portfolio, managed by `epic-tracker`. Source: `git config --get-regexp '^epic-tracker\.'`. Change it with "configure tracker".
 
 ## Key files and assets
 
