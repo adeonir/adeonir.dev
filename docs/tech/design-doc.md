@@ -31,7 +31,7 @@ The surrounding landscape is intentionally small: Cloudflare hosts and runs the 
 
 - **Performance budget (enforced in CI):** mobile Lighthouse Performance ≥ 95, Accessibility 100, Best Practices 100, SEO 100; CLS < 0.1, INP < 200ms. Builds fail when a category score regresses; CLS and the blocking-time proxy for INP report as warnings (NFR-1). LCP under 3s is a nice to have and only warns.
 - **Client JavaScript budget:** Astro prerenders normal pages to static HTML. Use client-side JavaScript when an interaction needs it, and keep React hydration limited to the theme toggle, contact form, mobile nav, footer signoff, toaster, and the home narration controls. This budget is not a ban on JavaScript. The localized not-found catch-all remains server-rendered without a client translation layer.
-- **Accessibility:** WCAG AA across all pages, asserted automatically (NFR-2).
+- **Accessibility:** Lighthouse Accessibility 100 on the home, enforced in CI (NFR-2). WCAG AA across all pages is a nice to have, not a gate.
 - **Bilingual delivery:** routing-based i18n (pt at `/`, en at `/en`) with localized content and document metadata, `hreflang` alternates, and localized sitemap entries (NFR-4).
 - **Contact path integrity:** server-side validated submission, two transactional emails per submit, spam-guarded, zero persistence; on failure the UI surfaces a direct fallback channel (FR-5, EC-2).
 - **Safe delivery:** production publishes only from a green, branch-protected `main` (CI quality gates are required checks); every PR gets an automatic preview deployment.
