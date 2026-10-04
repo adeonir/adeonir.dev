@@ -4,6 +4,7 @@ import { Button } from '~/components/ui/button'
 import { Menu } from '~/components/ui/menu'
 import { NavLink } from '~/components/ui/nav-link'
 import { Popover } from '~/components/ui/popover'
+import { Tooltip } from '~/components/ui/tooltip'
 
 const items = ['First item', 'Second item', 'Third item']
 
@@ -54,6 +55,25 @@ export function Floating() {
           </Menu.Positioner>
         </Portal>
       </Menu.Root>
+
+      <Tooltip.Root
+        lazyMount
+        unmountOnExit
+        positioning={{
+          placement: 'bottom-start',
+          gutter: 8,
+          flip: false,
+        }}
+      >
+        <Tooltip.Trigger asChild>
+          <Button variant="outline">Tooltip</Button>
+        </Tooltip.Trigger>
+        <Portal>
+          <Tooltip.Positioner>
+            <Tooltip.Content>The quick brown fox</Tooltip.Content>
+          </Tooltip.Positioner>
+        </Portal>
+      </Tooltip.Root>
     </div>
   )
 }
