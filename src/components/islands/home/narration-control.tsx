@@ -217,7 +217,7 @@ export function NarrationControl({
       <div
         className={cn(
           'inline-flex h-9 items-center gap-2.5 rounded-full border border-border ps-0.75 pe-3.5',
-          'has-focus-visible:ring-4 has-focus-visible:ring-ring/50 has-focus-visible:ring-offset-2 has-focus-visible:ring-offset-background',
+          'has-focus-visible:ring-2 has-focus-visible:ring-ring has-focus-visible:ring-offset-2 has-focus-visible:ring-offset-background',
         )}
       >
         <Button
