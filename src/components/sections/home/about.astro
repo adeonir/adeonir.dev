@@ -30,7 +30,7 @@ const workingMobile = await getImage({ src: working, width: 268, height: 352 })
               {segment.highlight ? (
                 <span class="text-secondary">{segment.text}</span>
               ) : (
-                <span class="text-muted-foreground">{segment.text}</span>
+                segment.text
               )}
             </>
           ))}
