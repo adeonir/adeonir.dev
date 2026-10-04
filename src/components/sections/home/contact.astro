@@ -8,7 +8,7 @@ import IconFolder from '~icons/tabler/folder'
 const locale = parseLocale(Astro.currentLocale)
 const contact = await getLocalizedEntry('homeContact', locale)
 
-const { eyebrow, title, body, social, form } = contact.data
+const { eyebrow, title, body, socialLabel, social, form } = contact.data
 ---
 
 <section id="contact" class="pt-16 pb-16 md:pt-20">
@@ -44,7 +44,7 @@ const { eyebrow, title, body, social, form } = contact.data
             <span>contact/</span>
           </p>
           <ul
-            aria-label="Canais de contato"
+            aria-label={socialLabel}
             class="relative flex flex-col gap-1 pl-5 before:absolute before:top-0 before:bottom-2.5 before:left-1.5 before:w-2 before:rounded-bl-lg before:border-b before:border-l before:border-border"
           >
             {social.map((channel) => {

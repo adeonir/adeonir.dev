@@ -117,6 +117,7 @@ content:
       eyebrow: "Let's talk"
       headline: 'Send me a message'
       body: 'It can be about development, a project, or just to say hi.'
+      social-label: 'Contact channels'
       social:
         - platform: 'email'
           label: 'contato@adeonir.dev'

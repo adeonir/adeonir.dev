@@ -117,6 +117,7 @@ content:
       eyebrow: 'Vamos conversar'
       headline: 'Me manda uma mensagem'
       body: 'Pode ser sobre desenvolvimento, um projeto ou só dar um oi.'
+      social-label: 'Canais de contato'
       social:
         - platform: 'email'
           label: 'contato@adeonir.dev'
