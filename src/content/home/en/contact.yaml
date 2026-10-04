@@ -4,6 +4,7 @@ title:
   - text: 'message'
     highlight: true
 body: 'It can be about development, a project, or just to say hi.'
+socialLabel: 'Contact channels'
 social:
   - platform: 'email'
     label: 'contato@adeonir.dev'

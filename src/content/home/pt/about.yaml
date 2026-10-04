@@ -1,14 +1,11 @@
 eyebrow: 'Sobre mim'
 headline:
-  - text: 'Do '
-  - text: 'design '
+  - text: 'Quem eu '
+  - text: 'sou'
     highlight: true
-  - text: 'ao '
-  - text: 'código'
-    highlight: true
-body: 'Quem eu sou, de onde venho e o que faço.'
+body: 'Um pouco da minha história e o que eu gosto de fazer.'
 bio:
-  - - text: 'Olá, sou Adeonir e gosto de criar coisas para a internet. Como frontend e design engineer, estou em busca da próxima oportunidade. Exploro ideias em protótipos, crio interfaces funcionais e acessíveis, construo bibliotecas de componentes e design systems. Gosto especialmente de trabalhar na interseção entre design e código, sempre de olho nos detalhes.'
+  - - text: 'Olá, sou Adeonir e gosto de criar coisas para a internet. Como frontend e design engineer, eu exploro ideias em protótipos, crio interfaces funcionais e acessíveis, construo bibliotecas de componentes e design systems. Gosto especialmente de trabalhar na interseção entre design e código, sempre de olho nos detalhes.'
   - - text: 'Depois de mais de uma década como designer gráfico, criando materiais publicitários, livros e revistas, migrei para o desenvolvimento frontend. No dia a dia eu trabalho principalmente com React, TypeScript, Next.js e Tailwind, e uso agentes de IA como Claude Code e Codex em todo o ciclo, da especificação e planejamento à implementação e revisão. Trabalho em inglês com proficiência profissional e já colaborei com times da Europa e dos Estados Unidos.'
   - - text: 'Fora do trabalho, desenvolvo alguns projetos pessoais, onde desenho a interface e defino a arquitetura, e também aplico meus conhecimentos em backend e desenvolvimento mobile.'
   - - text: 'No meu tempo livre, gosto de ficar com a família, colecionar miniaturas de Hot Wheels com meu filho, assistir a séries e filmes e curtir com amigos.'

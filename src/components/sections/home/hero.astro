@@ -28,7 +28,7 @@ const { eyebrow, display, tagline, description, availability, actions } =
       </h1>
       <a
         href={actions.secondary.href}
-        class="absolute -top-36 right-0 size-20 -rotate-16 animate-enter overflow-hidden rounded-full transition-transform [--blur-in:var(--blur-lg)] [animation-delay:210ms] focus-visible:ring-4 focus-visible:ring-ring/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none motion-safe:hover:-rotate-24 xxs:-top-24 xxs:-right-8 xs:-right-24 xs:size-24 lg:-top-28 lg:-right-32 lg:size-28"
+        class="group absolute -top-36 right-0 size-20 -rotate-16 animate-enter overflow-hidden rounded-full transition [--blur-in:var(--blur-lg)] [animation-delay:210ms] focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none motion-safe:hover:-rotate-24 xxs:-top-24 xxs:-right-8 xs:-right-24 xs:size-24 lg:-top-28 lg:-right-32 lg:size-28"
       >
         <AvailabilitySeal availability={availability} />
       </a>
@@ -47,7 +47,11 @@ const { eyebrow, display, tagline, description, availability, actions } =
     <p class="mt-3 max-w-lg animate-enter text-lg leading-relaxed text-pretty text-muted-foreground/80 [--blur-in:var(--blur-xs)] [animation-delay:210ms] sm:mt-4 sm:text-xl lg:max-w-xl lg:text-2xl">
       {description}
     </p>
-    <div class="mt-10 flex animate-enter flex-wrap items-center justify-center gap-4 [--blur-in:0px] [animation-delay:280ms] sm:mt-14">
+    <NarrationPlayer
+      section="hero"
+      class="mt-10 animate-enter [--blur-in:0px] [animation-delay:280ms] sm:mt-14"
+    />
+    <div class="mt-8 flex animate-enter flex-wrap items-center justify-center gap-4 [--blur-in:0px] [animation-delay:350ms] sm:mt-10">
       <a
         href={actions.primary.href}
         class={cn(buttonVariants({ variant: 'default', size: 'default' }))}
@@ -61,9 +65,5 @@ const { eyebrow, display, tagline, description, availability, actions } =
         {actions.secondary.label}
       </a>
     </div>
-    <NarrationPlayer
-      section="hero"
-      class="mt-8 animate-enter [--blur-in:0px] [animation-delay:350ms] sm:mt-10"
-    />
   </div>
 </section>

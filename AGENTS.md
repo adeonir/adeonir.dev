@@ -50,7 +50,7 @@ Before planning or building a feature, read the documents that apply to the work
 - `PROJECT.md` — the project's shared memory: what a silent failure costs, the durable conventions and decisions, and the traps this codebase has already hit.
 - `docs/tech/design-doc.md` — the technical authority: architecture, runtime boundaries, contact flow, security, testing, and CI/CD.
 - `docs/product/PRD.md` — scope, FR/NFR identifiers, personas, journeys, business rules, and edge cases.
-- `docs/product/PRODUCT.md` — strategic positioning: register, audience relationship, brand personality, anti-references, design principles.
+- `PRODUCT.md` — strategic positioning: register, audience relationship, brand personality, anti-references, design principles.
 - `DESIGN.md` — the authority on the visual identity and the design tokens.
 - `docs/product/copy.yaml` — canonical site copy. `docs/product/copy.en.yaml` holds the English translation. Collection files split by locale directory instead, as `src/content/<group>/pt/` and `src/content/<group>/en/`, and sections read the entry for the current locale through `getLocalizedEntry`.
 - The token styleguide is the live `/styleguide` route, built from `src/pages/styleguide.astro`.
@@ -167,14 +167,18 @@ The `/styleguide` and `/maintenance` routes are noindex and are excluded from th
 ## Testing, quality, and delivery
 
 - The default Vitest environment is Node. A DOM-dependent spec opts into happy-dom with a `// @vitest-environment happy-dom` docblock.
-- The quality target is mobile Lighthouse Performance ≥ 95, Accessibility, Best Practices and SEO at 100, CLS < 0.1, INP < 200ms, and WCAG AA. LCP under 3s is a nice to have, not a gate. `lighthouserc.json` holds what CI enforces: the category scores fail the build, and the metric budgets only warn.
+- The quality target is mobile Lighthouse Performance ≥ 95, Accessibility, Best Practices and SEO at 100, CLS < 0.1, and INP < 200ms. WCAG AA and LCP under 3s are nice to have, not gates. `lighthouserc.json` holds what CI enforces: the category scores fail the build, and the metric budgets only warn.
 - Lighthouse audits only the home. The required `main` checks are Build, Lint, Typecheck, Unit Tests, Workers Builds, and Lighthouse.
 
-## Deployment and tracking
+## Deployment
 
 Cloudflare Workers Builds deploys the Worker named `adeonir`. A push to `main` builds and deploys, publishes `https://adeonir.dev`, and creates preview deployments for branches and pull requests. GitHub Actions provides quality gates; no Cloudflare credentials are stored in GitHub.
 
-The repository tracks delivery in GitHub Issues for `adeonir/adeonir.dev`, using milestones, sub-issues, and labels. There are no Issue Types. Use the `epic-tracker` skill for epic and story changes, and the `git-helpers` skill for commits, pull requests, and branch cleanup.
+Use the `git-helpers` skill for commits, pull requests, and branch cleanup.
+
+## Issue tracker
+
+Delivery artifacts for this repo live in Linear, team Development, project Portfolio, managed by `epic-tracker`. Source: `git config --get-regexp '^epic-tracker\.'`. Change it with "configure tracker".
 
 ## Key files and assets
 

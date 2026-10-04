@@ -17,7 +17,11 @@ import { ThemeToggle } from '~/components/islands/theme-toggle'
       <div class="fixed top-2 right-2 rounded-xl bg-background p-4">
         <ThemeToggle
           client:load
-          labels={{ dark: 'Dark theme', light: 'Light theme' }}
+          labels={{
+            label: 'Light theme',
+            switchToLight: 'Switch to light theme',
+            switchToDark: 'Switch to dark theme',
+          }}
         />
       </div>
       <div class="mx-auto min-h-screen max-w-5xl space-y-8 p-8">

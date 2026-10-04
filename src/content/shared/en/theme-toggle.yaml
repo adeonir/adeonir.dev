@@ -1,2 +1,3 @@
-dark: 'Dark theme'
-light: 'Light theme'
+label: 'Light theme'
+switchToLight: 'Switch to light theme'
+switchToDark: 'Switch to dark theme'

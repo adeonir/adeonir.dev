@@ -8,7 +8,7 @@ export function NavLink({ className, ...props }: NavLinkProps) {
   return (
     <ark.a
       className={cn(
-        "-mx-1 -my-px rounded-sm px-1 py-px font-mono font-semibold text-muted-foreground text-sm transition before:mr-2 before:text-secondary before:content-['#'] hover:text-primary focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+        'relative -mx-1 -my-px rounded-sm px-1 py-px font-mono font-semibold text-muted-foreground text-sm transition after:absolute after:inset-x-0 after:-inset-y-1 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
         className,
       )}
       {...props}

@@ -204,7 +204,7 @@ Separately, lightweight privacy-respecting analytics collect usage statistics (w
 | ID | Requirement | Target |
 | --- | --- | --- |
 | NFR-1 | Performance — the differentiator must be evident | Fast load on mobile and desktop (concrete budget TBD in design) |
-| NFR-2 | Accessibility | WCAG AA |
+| NFR-2 | Accessibility | Lighthouse Accessibility 100; WCAG AA is a nice to have, not a gate |
 | NFR-3 | Responsiveness | Usable from small mobile to large desktop |
 | NFR-4 | Shareability | Correct title, description, and preview metadata for links, localized per language with hreflang annotations |
 
@@ -244,7 +244,7 @@ Adeonir owns content authoring, design, and delivery end-to-end. No outside depe
 
 ## 14. References
 
-- **PRODUCT:** [docs/product/PRODUCT.md](./PRODUCT.md)
+- **PRODUCT:** [PRODUCT.md](../../PRODUCT.md)
 - **PRD:** This document
 - **Design Doc:** [docs/tech/design-doc.md](../tech/design-doc.md)
 - **Research:** None

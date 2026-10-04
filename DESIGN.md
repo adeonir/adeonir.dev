@@ -255,7 +255,7 @@ components:
     size: "{spacing.8}"
   eyebrow:
     backgroundColor: "{colors.background}"
-    textColor: "{colors.primary}"
+    textColor: "{colors.muted-foreground}"
     rounded: "{rounded.full}"
     padding: "{spacing.3}"
   spot-text:
@@ -297,7 +297,7 @@ Primary text is a soft lavender-white rather than pure white, so a long passage 
 
 Density is editorial rather than dense. Large gaps separate the sections, and content runs in one readable column instead of a dashboard grid. Depth comes from lightness and hairline borders, not from heavy shadow. A reader tells two surfaces apart by how light or dark each one is.
 
-The signature of this identity is the split between the two accents: one hue may act, the other may never act. The system holds two accent hues, the neutrals, and one narrow band of corner radii. Colour carries meaning here, so the page reads as a single calm surface.
+The signature of this identity is the split between the two accents: one hue may act, the other never acts beyond the word it marks. The system holds two accent hues, the neutrals, and one narrow band of corner radii. Colour carries meaning here, so the page reads as a single calm surface.
 
 The identity ships two skins, which are two sets of values for the same roles. The dark skin is the default, and the light skin is its daytime counterpart. Both skins draw from the same palette family, so the personality survives the switch.
 
@@ -326,9 +326,9 @@ The raw scales are the primitive layer. Every semantic role points at a step of 
 
 The frontmatter carries the values of the dark skin, which is the default. Each role below names its dark step first and its light step second.
 
-- **primary** — `ocean-500` dark, `ocean-700` light. The only blue that acts, whether it renders as text, as a border, or as a fill: links, the hover state in navigation, the eyebrow outline, the focus border of a field, and the solid button. The light skin takes a deeper step, and that one step serves text and fill alike rather than splitting into a brighter fill-only twin.
+- **primary** — `ocean-500` dark, `ocean-700` light. The only blue that acts, whether it renders as text, as a border, or as a fill: links, the hover state in navigation, the focus border of a field, and the solid button. The light skin takes a deeper step, and that one step serves text and fill alike rather than splitting into a brighter fill-only twin.
 - **primary-foreground** — `ink` dark, `paper` light. The text that sits on the solid blue fill.
-- **secondary** — `azalea-500` dark, `azalea-600` light. Pink ornaments and pink text at headline size. Never interactive.
+- **secondary** — `azalea-500` dark, `azalea-600` light. Pink ornaments and pink text at headline size. It never navigates, submits, or changes state elsewhere.
 - **secondary-foreground** — `ink` in both skins. The dark text that pairs with `secondary` wherever the pink is used as a fill.
 - **spot** — `azalea-500` dark, `azalea-750` light. The pink for text below headline size. It governs the text a reader reads; a pink ornament carries no reading content, so the size rule never reaches it. Pink text at headline size uses `secondary` directly. Both roles resolve to the same step in the dark skin, so they differ only in the light skin.
 - **background** — `mocha-850` dark, `latte-50` light. The main surface. In the dark skin it is a deep violet-charcoal, never pure black.
@@ -351,13 +351,13 @@ The frontmatter carries the values of the dark skin, which is the default. Each 
 
 ### Destructive and status
 
-`destructive` is the danger role on form controls: the border of an invalid field, its focus ring, and its error message. It is always a border or a line of text and never a fill, so it follows the same rule as the other two accent text roles and takes a different step in each skin. The dark skin takes a lighter red and the light skin a deeper one. Contrast is a distance in lightness, so a single red would have to sit between the two skins and would be far from neither.
+`destructive` is the danger role on form controls: the border of an invalid field, the faint tint behind it, and its error message. It is a border, a line of text, or a translucent tint over a field, and never a solid fill, so it follows the same rule as the other two accent text roles and takes a different step in each skin. The dark skin takes a lighter red and the light skin a deeper one. Contrast is a distance in lightness, so a single red would have to sit between the two skins and would be far from neither.
 
 The status roles are feedback fills for toasts. They report state and never act, so each one holds the same step in both skins while the neutrals around it change. All four carry `ink` text.
 
 These four are the one place the identity keeps the stock hues of the framework palette, and that is deliberate. A status colour works by being the colour a reader already expects, so a green that is nobody's green costs recognition and buys nothing. The invention stays with the accents and the neutrals. `info` is the only one that carried a constraint of its own: a cyan far enough from the blue that a notice is never mistaken for a control.
 
-`error` and `destructive` are the same hue at different jobs, and therefore at different steps. `error` is the fill that reports state. It holds one step for both skins, because `ink` sits on top of it. `destructive` is the border and text that mark an invalid control. It takes a different step in each skin, because the surface behind it changes.
+`error` and `destructive` are the same hue at different jobs, and therefore at different steps. `error` is the fill that reports state. It holds one step for both skins, because `ink` sits on top of it. `destructive` is the border, tint, and text that mark an invalid control. It takes a different step in each skin, because the surface behind it changes.
 
 ## Typography
 
@@ -409,15 +409,19 @@ Corners are rounded consistently: enough to feel approachable, and little enough
 
 **Buttons.** The solid button fills with `primary` and takes `primary-foreground` text, at the 0.5rem radius, 1.25rem of horizontal padding, and a control height of 2.75rem. It is the most prominent element on any view. On hover the fill dims a little and the control takes the shadow described in Elevation & Depth. The outline button has no fill, a hairline `border` edge, and `muted-foreground` text, at the same radius and height. On hover its border and its text both take the blue, and its fill takes a faint muted wash, so the control brightens without filling. A disabled control drops to half opacity and loses its pointer cursor rather than changing color. A control in its loading state keeps its label in place, hides the label from view, and centers a spinner over it, so the button keeps its width. The icon-only variant is a 2.25rem square at the same radius, with no fill.
 
-**Inputs and forms.** A form field fills with `input` at one tenth opacity, takes a hairline `input` border at full strength, the 0.5rem radius, 1rem of horizontal padding, `body` text, and a height of 2.75rem for a single line. One colour serves both jobs, so the field reads as a single piece of material rather than a box drawn on a surface. On focus the border takes the blue and a wide `ring` appears outside it, offset from the control. The field is the one place the ring runs weaker than elsewhere, because its own border has already turned blue and two signals at full strength would fight. An invalid field changes its border to `destructive` and its ring to a destructive tint. Its message renders in `destructive` in the `caption` role below the control, one size down from the text of the field itself, so the correction reads as a note rather than as a second field. A label sits above its field in the uppercase `label` role, in `muted-foreground`.
+**Inputs and forms.** A form field fills with `input` at one tenth opacity, takes a hairline `input` border at full strength, the 0.5rem radius, 1rem of horizontal padding, `body` text, and a height of 2.75rem for a single line. One colour serves both jobs, so the field reads as a single piece of material rather than a box drawn on a surface. A text field draws no focus ring: its states show through the border and the fill. On hover the fill rises to `input` at one fifth opacity. On focus the border takes the blue and the fill returns to one tenth, with no hover tint, so a focused field looks the same whether or not the pointer is over it. An invalid field at rest takes a `destructive` border and a `destructive` fill at one twentieth opacity, and on hover the fill rises to one tenth. An invalid field in focus takes the same blue border and one-tenth `input` fill as a valid one, so focus reads the same in both. A disabled field takes no hover tint. The fill joins the border in the transition between states. Its message renders in `destructive` in the `caption` role below the control, one size down from the text of the field itself, and begins with an alert icon, so the correction reads as a note rather than as a second field and does not rely on color alone. A label sits above its field in the uppercase `label` role, in `muted-foreground`.
 
 **Cards and containers.** A card is the `card` fill inside a hairline `border`, at the 1rem radius, with 1.5rem of padding and no shadow. Its depth comes from the change in lightness and from the border. Containers stack with large gaps and rely on that same border to separate, never on a heavy divider. The divider itself is a hairline `border` rule, horizontal or vertical.
 
 **Floating surfaces.** A popover takes the `popover` surface, keeps the hairline border and the 0.5rem radius, and carries a soft shadow. It backs any transient panel. A menu takes the same surface, border, and radius, and a deeper shadow, because it sits higher. Its rows are navigation links, and the highlighted row turns blue and draws the shared focus ring, so the pointer and the keyboard mark a row the same way. A toast takes the same surface with a two-pixel border and a round status indicator: a filled circle in the matching status color, with an `ink` glyph and a translucent halo of the same hue.
 
-**Navigation.** A link rests in `muted-foreground`, set in the monospace face at 0.875rem and weight 600. No typography role carries that combination, so the link composes it directly. It carries a pink hash mark before it and takes the blue on hover. The hash mark is static emphasis and never responds to the pointer. Focus draws the one ring the whole interface shares, offset from the surface behind it.
+**Navigation.** A link rests in `muted-foreground`, set in the monospace face at 0.875rem and weight 600. No typography role carries that combination, so the link composes it directly. It takes the blue on hover, and focus draws the shared focus ring.
 
-**Distinctive components.** The eyebrow is a pill with a two-pixel blue border, blue text, and no fill. It sets its text in uppercase Geist at the smallest step, one weight above the `label` role and with wider letter-spacing, because a grotesque needs more air in uppercase than the monospace does. It is the one place a small uppercase run is not `label`. Static pink emphasis appears as pink text inside a running line. It is a marker and never a control.
+**Item lists.** Each item title takes a pink hash mark before it, in `secondary`. The mark is static emphasis and never responds to the pointer. The description under a title aligns with the title text, not with the mark. A short list of links takes a pink dash as its marker.
+
+**Focus ring.** Every control draws the same ring on keyboard focus: two pixels wide, `ring` at full opacity, offset from the surface behind it. A text field has its own focus behavior, described under Inputs and forms, and draws no ring. A radio and a checkbox draw the shared ring.
+
+**Distinctive components.** The eyebrow is a pill with a two-pixel `border` edge, `muted-foreground` text, and no fill. It is a static label, so it takes neither accent. The logo is a brand mark and not a control: it carries no hover state and no interactive color. It sets its text in uppercase Geist at the smallest step, one weight above the `label` role and with wider letter-spacing, because a grotesque needs more air in uppercase than the monospace does. It is the one place a small uppercase run is not `label`. Static pink emphasis appears as pink text inside a running line. It is a marker and never a control.
 
 **Project card.** The card holds a 16:9 aspect ratio at the 1rem radius, the same ratio as the image inside it. The cover image fills that container edge to edge without being cropped and sits behind the content rather than beside it. A gradient scrim rises from `sunken` at the bottom to transparent, carrying an overline, the project name in `title`, and a truncated summary in `caption`. When the card links out, the whole card lifts an arrow glyph and pushes it right on hover and focus, and the cover image scales up slightly behind the scrim, so the two motions read as one surface responding together. The card takes the shared focus ring on its outer edge, offset from the background.
 
@@ -428,7 +432,7 @@ Corners are rounded consistently: enough to feel approachable, and little enough
 - Do build depth from lightness and hairline borders, and keep most surfaces flat.
 - Do keep content in one reading column with large gaps between sections.
 - Do use the monospace face only for technical content: code, navigation links, and uppercase labels.
-- Don't let pink act. It is never a button, a link, or a focus ring.
+- Don't let pink act beyond the word it sits on. It never navigates, submits, or changes state elsewhere, and it is never a link or a focus ring. A pink word may still reveal something about itself, such as a popover.
 - Don't tint a shadow. Every shadow in the system is black, and a surface at rest carries none.
 - Don't use a heavy shadow to separate two surfaces when a change in lightness and a border will do.
 - Don't pack content into a dense grid. The density here is editorial.

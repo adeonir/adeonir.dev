@@ -216,8 +216,8 @@ export function NarrationControl({
     <div className="inline-flex flex-col items-center gap-2">
       <div
         className={cn(
-          'inline-flex h-9 items-center gap-2.5 rounded-full border border-border ps-0.75 pe-3.5',
-          'has-focus-visible:ring-4 has-focus-visible:ring-ring/50 has-focus-visible:ring-offset-2 has-focus-visible:ring-offset-background',
+          'inline-flex h-9 items-center gap-2.5 rounded-full border border-border ps-0.75 pe-3.5 transition-shadow',
+          'has-focus-visible:ring-2 has-focus-visible:ring-ring has-focus-visible:ring-offset-2 has-focus-visible:ring-offset-background',
         )}
       >
         <Button
@@ -258,7 +258,10 @@ export function NarrationControl({
           />
         </div>
       </div>
-      <span id={labelId} className="text-neutral-foreground/80 text-sm">
+      <span
+        id={labelId}
+        className="light:text-neutral-foreground/85 text-neutral-foreground/80 text-sm"
+      >
         {label}
       </span>
       {/* biome-ignore lint/a11y/useMediaCaption: narration of on-page text */}

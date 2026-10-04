@@ -51,9 +51,7 @@ const featured = sortByLaunch(
   <div class="wrapper">
     <div class="mt-12 grid grid-cols-1 gap-12 md:grid-cols-5">
       <div class="flex flex-col gap-6 md:col-span-2">
-        <Eyebrow data-enter="block" variant="muted">
-          {eyebrow}
-        </Eyebrow>
+        <Eyebrow data-enter="block">{eyebrow}</Eyebrow>
         <h2 data-enter="block" class="text-display text-pretty text-foreground">
           {headline.map((segment) => (
             <>

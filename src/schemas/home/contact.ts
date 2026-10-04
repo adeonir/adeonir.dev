@@ -11,6 +11,7 @@ export const homeContactSchema = z.object({
     )
     .min(1),
   body: z.string().min(1),
+  socialLabel: z.string().min(1),
   social: z
     .array(
       z.object({
