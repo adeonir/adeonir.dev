@@ -1,9 +1,16 @@
 import { Field as ArkField } from '@ark-ui/react/field'
 
 import { cn } from '~/helpers/classnames'
+import IconAlertCircle from '~icons/tabler/alert-circle'
 
 const fieldClasses =
-  'w-full rounded-lg border bg-input/10 px-4 text-body text-foreground transition-[border-color,box-shadow,opacity] placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-60'
+  'w-full rounded-lg border px-4 text-body text-foreground transition-[border-color,background-color,opacity] placeholder:text-muted-foreground focus:border-primary focus:outline-hidden disabled:cursor-not-allowed disabled:opacity-60'
+
+const validClasses =
+  'border-input bg-input/10 not-focus:enabled:hover:bg-input/20'
+
+const invalidClasses =
+  'border-destructive bg-destructive/5 not-focus:enabled:hover:bg-destructive/10 focus:bg-input/10'
 
 export type FieldProps = {
   label: string
@@ -49,9 +56,7 @@ export function Field({
           className={cn(
             fieldClasses,
             'min-h-32 resize-y py-3',
-            invalid
-              ? 'border-destructive focus-visible:ring-destructive'
-              : 'border-input focus:border-primary focus-visible:ring-ring',
+            invalid ? invalidClasses : validClasses,
           )}
         />
       ) : (
@@ -63,14 +68,16 @@ export function Field({
           className={cn(
             fieldClasses,
             'h-11',
-            invalid
-              ? 'border-destructive focus-visible:ring-destructive'
-              : 'border-input focus:border-primary focus-visible:ring-ring',
+            invalid ? invalidClasses : validClasses,
           )}
         />
       )}
       {invalid && error && (
-        <ArkField.ErrorText className="text-caption text-destructive">
+        <ArkField.ErrorText className="flex items-start gap-1.5 text-caption text-destructive">
+          <IconAlertCircle
+            aria-hidden="true"
+            className="mt-px size-4 shrink-0"
+          />
           {error}
         </ArkField.ErrorText>
       )}
