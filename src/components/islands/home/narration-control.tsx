@@ -155,7 +155,7 @@ export function NarrationControl({
     setStatus('idle')
     setProgress(0)
     if ($narration.get() === section) $narration.set(null)
-    toaster.error(error)
+    toaster.error({ ...error, duration: Infinity })
     record('narration-failed')
   }
 

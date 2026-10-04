@@ -73,7 +73,7 @@ export function ContactForm({ content, locale }: ContactFormProps) {
         if (result.error) {
           toaster.error({ ...content.states.error, duration: Infinity })
         } else {
-          toaster.success(content.states.success)
+          toaster.success({ ...content.states.success, duration: Infinity })
           formRef.current?.reset()
         }
       } catch {
