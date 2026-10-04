@@ -1,6 +1,5 @@
 ---
-import { buttonVariants } from '~/components/ui/button-variants'
-import { cn } from '~/helpers/classnames'
+import { LanguageToggle as LanguageToggleIsland } from '~/components/islands/language-toggle'
 import type { Locale } from '~/helpers/locale'
 import { getLocalizedPath } from '~/helpers/locale-path'
 import { getLocalizedEntry } from '~/services/localized'
@@ -15,11 +14,9 @@ const labels = await getLocalizedEntry('sharedLanguageToggle', locale)
 const href = `${getLocalizedPath(Astro.url.pathname, targetLocale)}${Astro.url.search}`
 ---
 
-<a
+<LanguageToggleIsland
+  client:load
   href={href}
-  data-language-link
-  aria-label={labels.data.name}
-  class={cn(buttonVariants({ variant: 'ghost', size: 'icon' }), 'font-mono')}
->
-  {labels.data.code}
-</a>
+  code={labels.data.code}
+  name={labels.data.name}
+/>
