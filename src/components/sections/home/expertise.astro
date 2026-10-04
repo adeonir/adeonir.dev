@@ -41,15 +41,15 @@ const { eyebrow, headline, body, items } = expertise.data
       <div class="space-y-6 md:col-span-3 md:flex md:flex-col md:gap-6 md:space-y-0 md:pt-14">
         <ul class="space-y-8">
           {items.map((item) => (
-            <li data-enter="block" class="space-y-2">
-              <p class="text-code text-foreground">
-                <span
-                  aria-hidden="true"
-                  class="mr-3 inline-block size-1.5 bg-secondary align-middle"
-                />
-                {item.title}
-              </p>
-              <p class="pl-4.5 text-body leading-relaxed text-pretty text-muted-foreground">
+            <li
+              data-enter="block"
+              class="grid grid-cols-[auto_1fr] gap-x-3 gap-y-2"
+            >
+              <span aria-hidden="true" class="text-code text-secondary">
+                #
+              </span>
+              <p class="text-code text-foreground">{item.title}</p>
+              <p class="col-start-2 text-body leading-relaxed text-pretty text-muted-foreground">
                 {item.description}
               </p>
             </li>
