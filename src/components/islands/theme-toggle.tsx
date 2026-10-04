@@ -8,7 +8,7 @@ import IconMoon from '~icons/tabler/moon'
 import IconSun from '~icons/tabler/sun'
 
 type ThemeToggleProps = {
-  labels: { dark: string; light: string }
+  labels: { label: string; switchToLight: string; switchToDark: string }
 }
 
 export function ThemeToggle({ labels }: ThemeToggleProps) {
@@ -20,7 +20,7 @@ export function ThemeToggle({ labels }: ThemeToggleProps) {
       type="button"
       size="icon"
       variant="ghost"
-      aria-label={isLight ? labels.light : labels.dark}
+      aria-label={labels.label}
       aria-pressed={isLight}
       onClick={toggleTheme}
       suppressHydrationWarning

@@ -65,6 +65,12 @@ content:
         label: 'Menu'
         open: 'Open menu'
         close: 'Close menu'
+      theme:
+        label: 'Light theme'
+        to-light: 'Switch to light theme'
+        to-dark: 'Switch to dark theme'
+      language:
+        label: 'Switch to Portuguese'
 
     hero:
       eyebrow: 'Frontend Engineer'

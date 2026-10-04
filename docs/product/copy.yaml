@@ -65,6 +65,12 @@ content:
         label: 'Menu'
         open: 'Abrir menu'
         close: 'Fechar menu'
+      theme:
+        label: 'Tema claro'
+        to-light: 'Mudar para o tema claro'
+        to-dark: 'Mudar para o tema escuro'
+      language:
+        label: 'Mudar para inglês'
 
     hero:
       eyebrow: 'Frontend Engineer'
