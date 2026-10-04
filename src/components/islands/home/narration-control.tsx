@@ -258,7 +258,10 @@ export function NarrationControl({
           />
         </div>
       </div>
-      <span id={labelId} className="text-neutral-foreground/80 text-sm">
+      <span
+        id={labelId}
+        className="light:text-neutral-foreground/85 text-neutral-foreground/80 text-sm"
+      >
         {label}
       </span>
       {/* biome-ignore lint/a11y/useMediaCaption: narration of on-page text */}
