@@ -1,7 +1,4 @@
 ---
-import { getImage, Image } from 'astro:assets'
-
-import working from '~/assets/characters/working.png'
 import NarrationPlayer from '~/components/narration-player.astro'
 import { Eyebrow } from '~/components/ui/eyebrow'
 import { buttonVariants } from '~/components/ui/button-variants'
@@ -14,7 +11,6 @@ const locale = parseLocale(Astro.currentLocale)
 const about = await getLocalizedEntry('homeAbout', locale)
 
 const { eyebrow, headline, body, bio } = about.data
-const workingMobile = await getImage({ src: working, width: 268, height: 352 })
 ---
 
 <section id="about" class="pt-16 pb-4 md:pt-20 md:pb-8">
@@ -44,29 +40,8 @@ const workingMobile = await getImage({ src: working, width: 268, height: 352 })
         <div data-enter="block">
           <NarrationPlayer section="about" />
         </div>
-        <Image
-          src={working}
-          alt=""
-          loading="lazy"
-          decoding="async"
-          widths={[171, 342]}
-          sizes="171px"
-          class="hidden h-56 w-auto self-start md:block md:pl-8"
-          data-enter="block"
-        />
       </div>
-      <div class="flow-root space-y-6 md:col-span-3 md:flex md:flex-col md:gap-6 md:space-y-0 md:pt-14">
-        <img
-          src={workingMobile.src}
-          width={workingMobile.attributes.width}
-          height={workingMobile.attributes.height}
-          alt=""
-          loading="lazy"
-          decoding="async"
-          class="float-right ml-2 hidden w-auto xxs:block xxs:h-44 md:hidden"
-          style={`shape-outside: url(${workingMobile.src}); shape-margin: 1rem`}
-          data-enter="block"
-        />
+      <div class="space-y-6 md:col-span-3 md:flex md:flex-col md:gap-6 md:space-y-0 md:pt-14">
         {bio.map((paragraph, index) => (
           <p
             data-enter="block"
