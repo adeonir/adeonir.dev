@@ -1,6 +1,7 @@
 import { ClientOnly } from '@ark-ui/react/client-only'
 import { Portal } from '@ark-ui/react/portal'
 import { useStore } from '@nanostores/react'
+import { useEffect, useState } from 'react'
 
 import { Button } from '~/components/ui/button'
 import { Swap } from '~/components/ui/swap'
@@ -16,6 +17,11 @@ type ThemeToggleProps = {
 export function ThemeToggle({ labels }: ThemeToggleProps) {
   const theme = useStore($theme)
   const isLight = theme === 'light'
+  const [pressed, setPressed] = useState(false)
+
+  useEffect(() => {
+    setPressed(isLight)
+  }, [isLight])
 
   return (
     <Tooltip.Root
@@ -29,7 +35,7 @@ export function ThemeToggle({ labels }: ThemeToggleProps) {
           size="icon"
           variant="ghost"
           aria-label={labels.label}
-          aria-pressed={isLight}
+          aria-pressed={pressed}
           onClick={toggleTheme}
           suppressHydrationWarning
         >

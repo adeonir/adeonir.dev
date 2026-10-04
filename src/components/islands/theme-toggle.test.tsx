@@ -49,4 +49,13 @@ describe('ThemeToggle', () => {
     expect(back.getAttribute('aria-pressed')).toBe('false')
     expect(back.getAttribute('aria-label')).toBe(labels.label)
   })
+
+  it('reports pressed on mount when the saved theme is light', () => {
+    $theme.set('light')
+
+    render(<ThemeToggle labels={labels} />)
+
+    const button = screen.getByRole('button', { name: labels.label })
+    expect(button.getAttribute('aria-pressed')).toBe('true')
+  })
 })
