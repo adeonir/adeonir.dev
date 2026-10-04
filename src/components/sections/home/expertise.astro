@@ -1,7 +1,4 @@
 ---
-import { getImage, Image } from 'astro:assets'
-
-import carryingBlocks from '~/assets/characters/carrying-blocks.png'
 import NarrationPlayer from '~/components/narration-player.astro'
 import { Eyebrow } from '~/components/ui/eyebrow'
 import { parseLocale } from '~/helpers/locale'
@@ -11,11 +8,6 @@ const locale = parseLocale(Astro.currentLocale)
 const expertise = await getLocalizedEntry('homeExpertise', locale)
 
 const { eyebrow, headline, body, items } = expertise.data
-const carryingBlocksMobile = await getImage({
-  src: carryingBlocks,
-  width: 267,
-  height: 504,
-})
 ---
 
 <section id="expertise" class="pt-16 pb-4 md:pt-20 md:pb-8">
@@ -45,29 +37,8 @@ const carryingBlocksMobile = await getImage({
         <div data-enter="block">
           <NarrationPlayer section="expertise" />
         </div>
-        <Image
-          src={carryingBlocks}
-          alt=""
-          loading="lazy"
-          decoding="async"
-          widths={[206, 412]}
-          sizes="206px"
-          class="hidden h-80 w-auto self-start md:block md:pl-8"
-          data-enter="block"
-        />
       </div>
-      <div class="flow-root space-y-6 md:col-span-3 md:flex md:flex-col md:gap-6 md:space-y-0 md:pt-14">
-        <img
-          src={carryingBlocksMobile.src}
-          width={carryingBlocksMobile.attributes.width}
-          height={carryingBlocksMobile.attributes.height}
-          alt=""
-          loading="lazy"
-          decoding="async"
-          class="float-right ml-2 hidden w-auto xxs:block xxs:h-63 md:hidden"
-          style={`shape-outside: url(${carryingBlocksMobile.src}); shape-margin: 1rem`}
-          data-enter="block"
-        />
+      <div class="space-y-6 md:col-span-3 md:flex md:flex-col md:gap-6 md:space-y-0 md:pt-14">
         <ul class="space-y-8">
           {items.map((item) => (
             <li data-enter="block" class="space-y-2">
