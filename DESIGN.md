@@ -255,7 +255,7 @@ components:
     size: "{spacing.8}"
   eyebrow:
     backgroundColor: "{colors.background}"
-    textColor: "{colors.primary}"
+    textColor: "{colors.muted-foreground}"
     rounded: "{rounded.full}"
     padding: "{spacing.3}"
   spot-text:
@@ -297,7 +297,7 @@ Primary text is a soft lavender-white rather than pure white, so a long passage 
 
 Density is editorial rather than dense. Large gaps separate the sections, and content runs in one readable column instead of a dashboard grid. Depth comes from lightness and hairline borders, not from heavy shadow. A reader tells two surfaces apart by how light or dark each one is.
 
-The signature of this identity is the split between the two accents: one hue may act, the other may never act. The system holds two accent hues, the neutrals, and one narrow band of corner radii. Colour carries meaning here, so the page reads as a single calm surface.
+The signature of this identity is the split between the two accents: one hue may act, the other never acts beyond the word it marks. The system holds two accent hues, the neutrals, and one narrow band of corner radii. Colour carries meaning here, so the page reads as a single calm surface.
 
 The identity ships two skins, which are two sets of values for the same roles. The dark skin is the default, and the light skin is its daytime counterpart. Both skins draw from the same palette family, so the personality survives the switch.
 
@@ -326,9 +326,9 @@ The raw scales are the primitive layer. Every semantic role points at a step of 
 
 The frontmatter carries the values of the dark skin, which is the default. Each role below names its dark step first and its light step second.
 
-- **primary** — `ocean-500` dark, `ocean-700` light. The only blue that acts, whether it renders as text, as a border, or as a fill: links, the hover state in navigation, the eyebrow outline, the focus border of a field, and the solid button. The light skin takes a deeper step, and that one step serves text and fill alike rather than splitting into a brighter fill-only twin.
+- **primary** — `ocean-500` dark, `ocean-700` light. The only blue that acts, whether it renders as text, as a border, or as a fill: links, the hover state in navigation, the focus border of a field, and the solid button. The light skin takes a deeper step, and that one step serves text and fill alike rather than splitting into a brighter fill-only twin.
 - **primary-foreground** — `ink` dark, `paper` light. The text that sits on the solid blue fill.
-- **secondary** — `azalea-500` dark, `azalea-600` light. Pink ornaments and pink text at headline size. Never interactive.
+- **secondary** — `azalea-500` dark, `azalea-600` light. Pink ornaments and pink text at headline size. It never navigates, submits, or changes state elsewhere.
 - **secondary-foreground** — `ink` in both skins. The dark text that pairs with `secondary` wherever the pink is used as a fill.
 - **spot** — `azalea-500` dark, `azalea-750` light. The pink for text below headline size. It governs the text a reader reads; a pink ornament carries no reading content, so the size rule never reaches it. Pink text at headline size uses `secondary` directly. Both roles resolve to the same step in the dark skin, so they differ only in the light skin.
 - **background** — `mocha-850` dark, `latte-50` light. The main surface. In the dark skin it is a deep violet-charcoal, never pure black.
@@ -421,7 +421,7 @@ Corners are rounded consistently: enough to feel approachable, and little enough
 
 **Focus ring.** Every control draws the same ring on keyboard focus: two pixels wide, `ring` at full opacity, offset from the surface behind it. A text field has its own focus behavior, described under Inputs and forms, and draws no ring. A radio and a checkbox draw the shared ring.
 
-**Distinctive components.** The eyebrow is a pill with a two-pixel blue border, blue text, and no fill. It sets its text in uppercase Geist at the smallest step, one weight above the `label` role and with wider letter-spacing, because a grotesque needs more air in uppercase than the monospace does. It is the one place a small uppercase run is not `label`. Static pink emphasis appears as pink text inside a running line. It is a marker and never a control.
+**Distinctive components.** The eyebrow is a pill with a two-pixel `border` edge, `muted-foreground` text, and no fill. It is a static label, so it takes neither accent. The logo is a brand mark and not a control: it carries no hover state and no interactive color. It sets its text in uppercase Geist at the smallest step, one weight above the `label` role and with wider letter-spacing, because a grotesque needs more air in uppercase than the monospace does. It is the one place a small uppercase run is not `label`. Static pink emphasis appears as pink text inside a running line. It is a marker and never a control.
 
 **Project card.** The card holds a 16:9 aspect ratio at the 1rem radius, the same ratio as the image inside it. The cover image fills that container edge to edge without being cropped and sits behind the content rather than beside it. A gradient scrim rises from `sunken` at the bottom to transparent, carrying an overline, the project name in `title`, and a truncated summary in `caption`. When the card links out, the whole card lifts an arrow glyph and pushes it right on hover and focus, and the cover image scales up slightly behind the scrim, so the two motions read as one surface responding together. The card takes the shared focus ring on its outer edge, offset from the background.
 
@@ -432,7 +432,7 @@ Corners are rounded consistently: enough to feel approachable, and little enough
 - Do build depth from lightness and hairline borders, and keep most surfaces flat.
 - Do keep content in one reading column with large gaps between sections.
 - Do use the monospace face only for technical content: code, navigation links, and uppercase labels.
-- Don't let pink act. It is never a button, a link, or a focus ring.
+- Don't let pink act beyond the word it sits on. It never navigates, submits, or changes state elsewhere, and it is never a link or a focus ring. A pink word may still reveal something about itself, such as a popover.
 - Don't tint a shadow. Every shadow in the system is black, and a surface at rest carries none.
 - Don't use a heavy shadow to separate two surfaces when a change in lightness and a border will do.
 - Don't pack content into a dense grid. The density here is editorial.
