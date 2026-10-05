@@ -104,7 +104,13 @@ export default defineConfig({
   vite: {
     plugins: [
       tailwindcss(),
-      icons({ compiler: 'jsx', jsx: 'react' }),
+      icons({
+        compiler: 'jsx',
+        jsx: 'react',
+        iconCustomizer(_collection, _icon, props) {
+          props['aria-hidden'] = 'true'
+        },
+      }),
       optimizeServerDeps(),
     ],
     optimizeDeps: {

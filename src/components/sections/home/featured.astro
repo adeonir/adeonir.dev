@@ -82,10 +82,7 @@ const featured = sortByLaunch(
             data-enter="block"
             class="flex aspect-video flex-col items-center justify-center gap-4 rounded-2xl border border-border bg-card p-6 text-center"
           >
-            <IconFolder
-              className="size-7 shrink-0 text-muted-foreground opacity-70"
-              aria-hidden="true"
-            />
+            <IconFolder className="size-7 shrink-0 text-muted-foreground opacity-70" />
             <p class="max-w-[40ch] text-base leading-normal text-pretty text-muted-foreground">
               {empty.map((segment) =>
                 segment.href ? (
@@ -115,10 +112,7 @@ const featured = sortByLaunch(
               )}
             >
               {seeAll}
-              <IconArrowRight
-                className="size-4 shrink-0 transition-transform duration-200 motion-safe:group-hover:translate-x-1"
-                aria-hidden="true"
-              />
+              <IconArrowRight className="size-4 shrink-0 transition-transform duration-200 motion-safe:group-hover:translate-x-1" />
             </a>
           </div>
         )}

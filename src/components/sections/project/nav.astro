@@ -53,10 +53,7 @@ const linkClass = cn(
               class={cn(linkClass, 'items-start text-left')}
             >
               <span class="flex items-center gap-2 text-caption text-muted-foreground">
-                <IconArrowLeft
-                  className="size-4 shrink-0 transition-transform duration-200 motion-safe:group-hover:-translate-x-1"
-                  aria-hidden="true"
-                />
+                <IconArrowLeft className="size-4 shrink-0 transition-transform duration-200 motion-safe:group-hover:-translate-x-1" />
                 {nav.data.previous}
               </span>
               <span class="text-body text-pretty">{previous.data.name}</span>
@@ -71,10 +68,7 @@ const linkClass = cn(
             >
               <span class="flex items-center gap-2 text-caption text-muted-foreground">
                 {nav.data.next}
-                <IconArrowRight
-                  className="size-4 shrink-0 transition-transform duration-200 motion-safe:group-hover:translate-x-1"
-                  aria-hidden="true"
-                />
+                <IconArrowRight className="size-4 shrink-0 transition-transform duration-200 motion-safe:group-hover:translate-x-1" />
               </span>
               <span class="text-body text-pretty">{next.data.name}</span>
             </a>
