@@ -128,7 +128,7 @@ export function ContactForm({ content, locale }: ContactFormProps) {
           placeholder={field.placeholder}
           type="text"
           multiline={field.name === 'message'}
-          required
+          required={field.name !== 'subject'}
           invalid={!!errors[field.name]}
           error={errors[field.name]}
         />

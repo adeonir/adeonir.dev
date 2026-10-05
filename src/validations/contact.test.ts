@@ -39,6 +39,26 @@ describe('contact validation', () => {
     },
   )
 
+  it.each([
+    ['absent', undefined],
+    ['empty', ''],
+  ])('accepts a submission without a subject (%s)', (_, subject) => {
+    const schema = createContactSchema(messages)
+    const result = schema.safeParse({ ...validInput, subject })
+
+    expect(result.success).toBe(true)
+  })
+
+  it('treats a subject of only spaces as no subject', () => {
+    const schema = createContactSchema(messages)
+    const result = schema.safeParse({ ...validInput, subject: '   ' })
+
+    expect(result.success).toBe(true)
+    if (result.success) {
+      expect(result.data.subject).toBe('')
+    }
+  })
+
   it('accepts a valid submission with optional fields absent', () => {
     expect(contactInputSchema.safeParse(validInput).success).toBe(true)
   })

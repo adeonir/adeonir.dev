@@ -26,8 +26,9 @@ export function createContactSchema(messages?: ContactValidationMessages) {
       .pipe(z.email(messages?.email)),
     subject: z
       .string()
-      .min(1)
-      .max(120, messages?.maxLength?.replace('{max}', '120')),
+      .trim()
+      .max(120, messages?.maxLength?.replace('{max}', '120'))
+      .optional(),
     message: z
       .string()
       .min(1, messages?.required.message)

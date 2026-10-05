@@ -23,7 +23,7 @@ export class ContactDeliveryError extends Error {
 type ContactEmailInput = {
   name: string
   email: string
-  subject: string
+  subject?: string
   message: string
   locale: Locale
 }
@@ -92,7 +92,7 @@ export async function sendContactEmails({
   const firstName = name.split(' ')[0]
   const receivedAt = formatReceivedAt(new Date(), locale)
   const sender = `${from} <${OWNER}>`
-  const data = { name, email, subject, message }
+  const data = { name, email, subject: subject ?? '', message }
 
   const notificationHtml = await render(
     createElement(Notification, {
@@ -125,7 +125,9 @@ export async function sendContactEmails({
   await send({
     from: sender,
     to: OWNER,
-    subject: interpolate(notification.subject, { subject }),
+    subject: subject
+      ? interpolate(notification.subject, { subject })
+      : interpolate(notification.subjectFallback, { name }),
     html: notificationHtml,
     reply_to: email,
   })

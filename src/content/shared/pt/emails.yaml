@@ -13,6 +13,7 @@ confirmation:
   footer: 'Quer acrescentar alguma coisa? É só responder a este email. Sua resposta chega direto para mim.'
 notification:
   subject: 'Novo contato: {subject}'
+  subjectFallback: 'Mensagem de {name}'
   preview: 'Nova mensagem de {name} pelo formulário de contato.'
   badge: 'Novo contato'
   heading: 'Nova mensagem de contato'
