@@ -1,8 +1,8 @@
 metadata:
   source: 'docs/product/brief.md, docs/product/prd.md, conversation'
   created: '2026-06-06'
-  updated: '2026-10-03'
-  version: '1.0.16'
+  updated: '2026-10-04'
+  version: '1.0.17'
   status: 'ready'
 
 project:
@@ -154,9 +154,12 @@ content:
             title: 'Não foi possível enviar sua mensagem'
             description: 'Tenta de novo ou me escreve direto no email.'
         validation:
-          required: 'Preencha este campo.'
-          email: 'Digite um email válido.'
-          maxLength: 'Use no máximo {max} caracteres.'
+          required:
+            name: 'Preciso saber seu nome.'
+            email: 'Não esquece do seu email.'
+            message: 'Escreve a mensagem antes de enviar.'
+          email: 'Confere o email, parece que tem algo errado.'
+          maxLength: 'Usa no máximo {max} caracteres.'
 
     narration:
       labels:
@@ -225,7 +228,8 @@ console:
   greeting: 'Olá, você está nos bastidores. Se encontrar um bug, me escreve: contato@adeonir.dev'
 
 # Transactional emails — not a routed surface. Sent on contact form submit.
-# Tokens: {name} = sender's name (first name in body), {date} = received timestamp, {subject} = submitted subject (notification subject line).
+# Tokens: {name} = sender's name (first name in body, full name in subjectFallback), {date} = received timestamp, {subject} = submitted subject (notification subject line).
+# subjectFallback replaces the notification subject when the sender leaves the subject empty.
 # Recap/table field values come from the submission, not copy.
 emails:
   from: 'Adeonir'
@@ -240,6 +244,7 @@ emails:
     footer: 'Quer acrescentar alguma coisa? É só responder a este email. Sua resposta chega direto para mim.'
   notification:
     subject: 'Novo contato: {subject}'
+    subjectFallback: 'Mensagem de {name}'
     preview: 'Nova mensagem de {name} pelo formulário de contato.'
     badge: 'Novo contato'
     heading: 'Nova mensagem de contato'
