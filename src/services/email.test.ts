@@ -117,4 +117,26 @@ describe('sendContactEmails', () => {
 
     expect(readNotificationSubject()).toBe('New contact: Projeto novo')
   })
+
+  it.each(missingSubjects)(
+    'omits the subject line from both emails when there is no subject (%s)',
+    async (_, subject) => {
+      await sendContactEmails({
+        name: 'Ada Lovelace',
+        email: 'ada@example.com',
+        subject,
+        message: 'Just reaching out about a project.',
+        locale: 'en',
+      })
+
+      const [notificationHtml, confirmationHtml] = fetchMock.mock.calls.map(
+        ([, request]) => JSON.parse(request.body as string).html as string,
+      )
+
+      expect(notificationHtml).toContain('>name<')
+      expect(notificationHtml).not.toContain('>subject<')
+      expect(confirmationHtml).toContain('>name<')
+      expect(confirmationHtml).not.toContain('>subject<')
+    },
+  )
 })
