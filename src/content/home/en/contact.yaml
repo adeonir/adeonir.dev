@@ -45,5 +45,5 @@ form:
       name: 'I need to know your name.'
       email: "Don't forget your email."
       message: 'Write your message before sending.'
-    email: 'Enter a valid email address.'
-    maxLength: 'Use {max} characters or fewer.'
+    email: 'Check your email, something looks off.'
+    maxLength: 'Keep it to {max} characters or fewer.'

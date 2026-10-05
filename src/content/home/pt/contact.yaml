@@ -45,5 +45,5 @@ form:
       name: 'Preciso saber seu nome.'
       email: 'Não esquece do seu email.'
       message: 'Escreve a mensagem antes de enviar.'
-    email: 'Digite um email válido.'
-    maxLength: 'Use no máximo {max} caracteres.'
+    email: 'Confere o email, parece que tem algo errado.'
+    maxLength: 'Usa no máximo {max} caracteres.'
