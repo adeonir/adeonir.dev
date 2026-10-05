@@ -13,6 +13,7 @@ confirmation:
   footer: 'Want to add anything? Just reply to this email. Your reply comes straight to me.'
 notification:
   subject: 'New contact: {subject}'
+  subjectFallback: 'Message from {name}'
   preview: 'New message from {name} via the contact form.'
   badge: 'New contact'
   heading: 'New contact message'

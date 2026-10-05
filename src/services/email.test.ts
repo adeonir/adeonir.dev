@@ -31,6 +31,7 @@ const englishEmailEntry = {
     },
     notification: {
       subject: 'New contact: {subject}',
+      subjectFallback: 'Message from {name}',
       preview: 'New message from {name} via the contact form.',
       badge: 'New contact',
       heading: 'New contact message',
@@ -40,6 +41,17 @@ const englishEmailEntry = {
     },
   },
 }
+
+function readNotificationSubject() {
+  const [, request] = fetchMock.mock.calls[0]
+
+  return JSON.parse(request.body as string).subject
+}
+
+const missingSubjects = [
+  ['absent', undefined],
+  ['empty', ''],
+] as const
 
 describe('sendContactEmails', () => {
   beforeEach(() => {
@@ -78,4 +90,53 @@ describe('sendContactEmails', () => {
     expect(payloads[1].subject).toBe('Got your message')
     expect(payloads[1].html).toContain('Your message was sent')
   })
+
+  it.each(missingSubjects)(
+    'uses the localized fallback subject with the full name when there is no subject (%s)',
+    async (_, subject) => {
+      await sendContactEmails({
+        name: 'Ada Lovelace',
+        email: 'ada@example.com',
+        subject,
+        message: 'Just reaching out about a project.',
+        locale: 'en',
+      })
+
+      expect(readNotificationSubject()).toBe('Message from Ada Lovelace')
+    },
+  )
+
+  it("keeps the visitor's subject in the notification subject", async () => {
+    await sendContactEmails({
+      name: 'Ada Lovelace',
+      email: 'ada@example.com',
+      subject: 'Projeto novo',
+      message: 'Just reaching out about a project.',
+      locale: 'en',
+    })
+
+    expect(readNotificationSubject()).toBe('New contact: Projeto novo')
+  })
+
+  it.each(missingSubjects)(
+    'omits the subject line from both emails when there is no subject (%s)',
+    async (_, subject) => {
+      await sendContactEmails({
+        name: 'Ada Lovelace',
+        email: 'ada@example.com',
+        subject,
+        message: 'Just reaching out about a project.',
+        locale: 'en',
+      })
+
+      const [notificationHtml, confirmationHtml] = fetchMock.mock.calls.map(
+        ([, request]) => JSON.parse(request.body as string).html as string,
+      )
+
+      expect(notificationHtml).toContain('>name<')
+      expect(notificationHtml).not.toContain('>subject<')
+      expect(confirmationHtml).toContain('>name<')
+      expect(confirmationHtml).not.toContain('>subject<')
+    },
+  )
 })

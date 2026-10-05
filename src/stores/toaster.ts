@@ -5,5 +5,5 @@ export const toaster = createToaster({
   duration: 5000,
   overlap: true,
   gap: 16,
-  max: 4,
+  max: 24,
 })

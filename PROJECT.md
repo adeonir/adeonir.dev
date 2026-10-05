@@ -25,6 +25,7 @@
 - The narration waveform seeks by pointer only and stays `aria-hidden` — play and pause work from the keyboard, and the narration reads text already on the page, so nothing becomes unreachable; source: src/components/islands/home/narration-control.tsx; scope: home narration
 - The hero eyebrow reads "Frontend Engineer" while the description says "Sou design engineer e trabalho no frontend" — the eyebrow is the title held at companies and the description is the positioning, so the two are not a conflict to resolve; source: src/content/home/pt/hero.yaml; scope: home hero
 - The site has no skip link — the first Tab stop is the logo and the second is the first section link, so the content is already reached without one; source: src/layouts/base.astro; scope: every page
+- Every icon is decorative by default — the icon plugin's `iconCustomizer` writes `aria-hidden="true"` on each generated `<svg>`, so a usage site never adds it, and an icon that carries meaning alone passes `aria-hidden={false}` with a `title` or `aria-label`; source: astro.config.mjs; scope: every icon
 
 ## Gotchas
 
@@ -37,6 +38,7 @@
 - `Astro.locals.runtime` no longer exists — read Cloudflare bindings through `cloudflare:workers` and reach the execution context through `Astro.locals.cfContext`; source: src/actions/index.ts
 - The `website` honeypot is checked inside the Action rather than in the shared validation schema — a bot reaches the silent discard path instead of a validation error, so it looks like a missing rule and is not; source: src/actions/index.ts
 - The contact Action reads the UTM values from its validated input, never from `context.url` — the Action endpoint carries no page query; source: src/actions/index.ts
+- An Action with `accept: 'form'` turns an empty form value into `undefined` only when the field's outer validator is `.optional()`, and into `null` otherwise — an optional text field must keep `.optional()` as its outer layer, or an empty value fails `z.string()` on the server while the client schema accepts `""`; source: node_modules/astro/dist/actions/runtime/server.js
 - `unplugin-icons` with the JSX compiler requires both `@svgr/core` and `@svgr/plugin-jsx` — a production build may not catch a missing dependency when the consuming island is excluded from that build; source: astro.config.mjs and package.json
 - Zag floating primitives take their inline z-index from the Ark `Content` element, not the positioner — put the z-index utility on `Content`; source: src/components/ui/popover.tsx
 - The header's `backdrop-blur` creates a containing block for fixed descendants — full-viewport overlays rendered under the header must be portaled to `body` and layered above the header; source: src/components/sections/header.astro

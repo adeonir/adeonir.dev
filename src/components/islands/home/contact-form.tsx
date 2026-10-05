@@ -73,7 +73,7 @@ export function ContactForm({ content, locale }: ContactFormProps) {
         if (result.error) {
           toaster.error({ ...content.states.error, duration: Infinity })
         } else {
-          toaster.success(content.states.success)
+          toaster.success({ ...content.states.success, duration: Infinity })
           formRef.current?.reset()
         }
       } catch {
@@ -128,7 +128,7 @@ export function ContactForm({ content, locale }: ContactFormProps) {
           placeholder={field.placeholder}
           type="text"
           multiline={field.name === 'message'}
-          required
+          required={field.name !== 'subject'}
           invalid={!!errors[field.name]}
           error={errors[field.name]}
         />

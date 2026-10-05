@@ -48,7 +48,7 @@ const tailwindConfig = {
 export type NotificationProps = {
   name: string
   email: string
-  subject: string
+  subject?: string
   message: string
   copy: {
     preview: string
@@ -137,18 +137,20 @@ export function Notification({
                 </Column>
               </Row>
 
-              <Row className="border-0 border-border border-b border-solid">
-                <Column className="w-20 py-3.5 align-baseline">
-                  <Text className="m-0 font-mono text-muted/50 text-xs leading-normal">
-                    {copy.fields.subject}
-                  </Text>
-                </Column>
-                <Column className="py-3.5 pl-4 align-baseline">
-                  <Text className="m-0 text-base text-foreground leading-normal">
-                    {subject}
-                  </Text>
-                </Column>
-              </Row>
+              {subject && (
+                <Row className="border-0 border-border border-b border-solid">
+                  <Column className="w-20 py-3.5 align-baseline">
+                    <Text className="m-0 font-mono text-muted/50 text-xs leading-normal">
+                      {copy.fields.subject}
+                    </Text>
+                  </Column>
+                  <Column className="py-3.5 pl-4 align-baseline">
+                    <Text className="m-0 text-base text-foreground leading-normal">
+                      {subject}
+                    </Text>
+                  </Column>
+                </Row>
+              )}
 
               <Row>
                 <Column className="w-20 py-3.5 align-baseline">

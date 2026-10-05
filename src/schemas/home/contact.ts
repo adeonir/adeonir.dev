@@ -43,7 +43,11 @@ export const homeContactSchema = z.object({
       }),
     }),
     validation: z.object({
-      required: z.string().min(1),
+      required: z.object({
+        name: z.string().min(1),
+        email: z.string().min(1),
+        message: z.string().min(1),
+      }),
       email: z.string().min(1),
       maxLength: z.string().min(1),
     }),

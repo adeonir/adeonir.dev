@@ -18,6 +18,7 @@ export const sharedEmailsSchema = z.object({
   }),
   notification: z.object({
     subject: z.string().min(1),
+    subjectFallback: z.string().min(1),
     preview: z.string().min(1),
     badge: z.string().min(1),
     heading: z.string().min(1),

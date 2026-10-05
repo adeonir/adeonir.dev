@@ -23,7 +23,7 @@ export class ContactDeliveryError extends Error {
 type ContactEmailInput = {
   name: string
   email: string
-  subject: string
+  subject?: string
   message: string
   locale: Locale
 }
@@ -125,7 +125,9 @@ export async function sendContactEmails({
   await send({
     from: sender,
     to: OWNER,
-    subject: interpolate(notification.subject, { subject }),
+    subject: subject
+      ? interpolate(notification.subject, { subject })
+      : interpolate(notification.subjectFallback, { name }),
     html: notificationHtml,
     reply_to: email,
   })

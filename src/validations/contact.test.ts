@@ -11,12 +11,109 @@ const validInput = {
 }
 
 const messages = {
-  required: 'This field is required',
+  required: {
+    name: 'Name is required',
+    email: 'Email is required',
+    message: 'Message is required',
+  },
   email: 'Enter a valid email',
   maxLength: 'Maximum {max} characters',
 }
 
 describe('contact validation', () => {
+  it.each(['name', 'email', 'message'] as const)(
+    'reports the empty-field message for each required field (%s)',
+    (field) => {
+      const schema = createContactSchema(messages)
+      const result = schema.safeParse({ ...validInput, [field]: '' })
+
+      expect(result.success).toBe(false)
+      if (!result.success) {
+        const issues = result.error.issues.filter(
+          (entry) => entry.path[0] === field,
+        )
+        expect(issues.map((issue) => issue.message)).toEqual([
+          messages.required[field],
+        ])
+      }
+    },
+  )
+
+  it.each(['name', 'message'] as const)(
+    'reports the empty-field message for a name or message of only spaces (%s)',
+    (field) => {
+      const schema = createContactSchema(messages)
+      const result = schema.safeParse({ ...validInput, [field]: '   ' })
+
+      expect(result.success).toBe(false)
+      if (!result.success) {
+        const issues = result.error.issues.filter(
+          (entry) => entry.path[0] === field,
+        )
+        expect(issues.map((issue) => issue.message)).toEqual([
+          messages.required[field],
+        ])
+      }
+    },
+  )
+
+  it('reports the format message for an invalid email', () => {
+    const schema = createContactSchema(messages)
+    const result = schema.safeParse({ ...validInput, email: 'ada.example.com' })
+
+    expect(result.success).toBe(false)
+    if (!result.success) {
+      const issues = result.error.issues.filter(
+        (entry) => entry.path[0] === 'email',
+      )
+      expect(issues.map((issue) => issue.message)).toEqual([messages.email])
+    }
+  })
+
+  it.each([
+    ['subject', 120],
+    ['message', 2000],
+  ] as const)(
+    'reports the limit message for a subject or message over the limit (%s)',
+    (field, max) => {
+      const schema = createContactSchema(messages)
+      const result = schema.safeParse({
+        ...validInput,
+        [field]: 'x'.repeat(max + 1),
+      })
+
+      expect(result.success).toBe(false)
+      if (!result.success) {
+        const issues = result.error.issues.filter(
+          (entry) => entry.path[0] === field,
+        )
+        expect(issues.map((issue) => issue.message)).toEqual([
+          `Maximum ${max} characters`,
+        ])
+      }
+    },
+  )
+
+  it.each([
+    ['absent', undefined],
+    ['empty', ''],
+  ])('accepts a submission without a subject (%s)', (_, subject) => {
+    const schema = createContactSchema(messages)
+    const result = schema.safeParse({ ...validInput, subject })
+
+    expect(result.success).toBe(true)
+  })
+
+  it('treats a subject of only spaces as no subject', () => {
+    const schema = createContactSchema(messages)
+    const result = schema.safeParse({ ...validInput, subject: '   ' })
+
+    expect(result.success).toBe(true)
+    if (result.success) {
+      expect(result.data.subject).toBe('')
+    }
+  })
+
   it('accepts a valid submission with optional fields absent', () => {
     expect(contactInputSchema.safeParse(validInput).success).toBe(true)
   })

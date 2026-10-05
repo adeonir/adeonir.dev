@@ -1,8 +1,8 @@
 metadata:
   source: 'docs/product/brief.md, docs/product/prd.md, conversation'
   created: '2026-06-06'
-  updated: '2026-10-03'
-  version: '1.0.16'
+  updated: '2026-10-04'
+  version: '1.0.17'
   status: 'ready'
 
 project:
@@ -154,9 +154,12 @@ content:
             title: "We couldn't send your message"
             description: 'Try again or email me directly.'
         validation:
-          required: 'This field is required.'
-          email: 'Enter a valid email address.'
-          maxLength: 'Use {max} characters or fewer.'
+          required:
+            name: 'I need to know your name.'
+            email: "Don't forget your email."
+            message: 'Write your message before sending.'
+          email: 'Check your email, something looks off.'
+          maxLength: 'Keep it to {max} characters or fewer.'
 
     narration:
       labels:
@@ -225,7 +228,8 @@ console:
   greeting: "Hi, you're backstage now. If you find a bug, email me at contato@adeonir.dev"
 
 # Transactional emails — not a routed surface. Sent on contact form submit.
-# Tokens: {name} = sender's name (first name in body), {date} = received timestamp, {subject} = submitted subject (notification subject line).
+# Tokens: {name} = sender's name (first name in body, full name in subjectFallback), {date} = received timestamp, {subject} = submitted subject (notification subject line).
+# subjectFallback replaces the notification subject when the sender leaves the subject empty.
 # Recap/table field values come from the submission, not copy.
 emails:
   from: 'Adeonir'
@@ -240,6 +244,7 @@ emails:
     footer: 'Want to add anything? Just reply to this email. Your reply comes straight to me.'
   notification:
     subject: 'New contact: {subject}'
+    subjectFallback: 'Message from {name}'
     preview: 'New message from {name} via the contact form.'
     badge: 'New contact'
     heading: 'New contact message'

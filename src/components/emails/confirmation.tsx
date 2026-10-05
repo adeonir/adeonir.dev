@@ -43,7 +43,7 @@ const tailwindConfig = {
 export type ConfirmationProps = {
   name: string
   email: string
-  subject: string
+  subject?: string
   message: string
   copy: {
     preview: string
@@ -112,12 +112,16 @@ export function Confirmation({
                 <Text className="m-0 mb-4 text-foreground text-sm leading-normal">
                   {email}
                 </Text>
-                <Text className="m-0 mb-1 font-mono text-muted/50 text-xs">
-                  {copy.fields.subject}
-                </Text>
-                <Text className="m-0 mb-4 text-foreground text-sm leading-normal">
-                  {subject}
-                </Text>
+                {subject && (
+                  <>
+                    <Text className="m-0 mb-1 font-mono text-muted/50 text-xs">
+                      {copy.fields.subject}
+                    </Text>
+                    <Text className="m-0 mb-4 text-foreground text-sm leading-normal">
+                      {subject}
+                    </Text>
+                  </>
+                )}
                 <Text className="m-0 mb-1 font-mono text-muted/50 text-xs">
                   {copy.fields.message}
                 </Text>
