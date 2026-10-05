@@ -41,6 +41,9 @@ form:
       title: 'Não foi possível enviar sua mensagem'
       description: 'Tenta de novo ou me escreve direto no email.'
   validation:
-    required: 'Preencha este campo.'
+    required:
+      name: 'Preciso saber seu nome.'
+      email: 'Não esquece do seu email.'
+      message: 'Escreve a mensagem antes de enviar.'
     email: 'Digite um email válido.'
     maxLength: 'Use no máximo {max} caracteres.'

@@ -41,6 +41,9 @@ form:
       title: "We couldn't send your message"
       description: 'Try again or email me directly.'
   validation:
-    required: 'This field is required.'
+    required:
+      name: 'I need to know your name.'
+      email: "Don't forget your email."
+      message: 'Write your message before sending.'
     email: 'Enter a valid email address.'
     maxLength: 'Use {max} characters or fewer.'
