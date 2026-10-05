@@ -25,6 +25,7 @@
 - The narration waveform seeks by pointer only and stays `aria-hidden` — play and pause work from the keyboard, and the narration reads text already on the page, so nothing becomes unreachable; source: src/components/islands/home/narration-control.tsx; scope: home narration
 - The hero eyebrow reads "Frontend Engineer" while the description says "Sou design engineer e trabalho no frontend" — the eyebrow is the title held at companies and the description is the positioning, so the two are not a conflict to resolve; source: src/content/home/pt/hero.yaml; scope: home hero
 - The site has no skip link — the first Tab stop is the logo and the second is the first section link, so the content is already reached without one; source: src/layouts/base.astro; scope: every page
+- Every icon is decorative by default — the icon plugin's `iconCustomizer` writes `aria-hidden="true"` on each generated `<svg>`, so a usage site never adds it, and an icon that carries meaning alone passes `aria-hidden={false}` with a `title` or `aria-label`; source: astro.config.mjs; scope: every icon
 
 ## Gotchas
 
