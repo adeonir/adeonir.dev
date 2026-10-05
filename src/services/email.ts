@@ -92,7 +92,7 @@ export async function sendContactEmails({
   const firstName = name.split(' ')[0]
   const receivedAt = formatReceivedAt(new Date(), locale)
   const sender = `${from} <${OWNER}>`
-  const data = { name, email, subject: subject ?? '', message }
+  const data = { name, email, subject, message }
 
   const notificationHtml = await render(
     createElement(Notification, {
