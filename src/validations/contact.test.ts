@@ -39,6 +39,24 @@ describe('contact validation', () => {
     },
   )
 
+  it.each(['name', 'message'] as const)(
+    'reports the empty-field message for a name or message of only spaces (%s)',
+    (field) => {
+      const schema = createContactSchema(messages)
+      const result = schema.safeParse({ ...validInput, [field]: '   ' })
+
+      expect(result.success).toBe(false)
+      if (!result.success) {
+        const issues = result.error.issues.filter(
+          (entry) => entry.path[0] === field,
+        )
+        expect(issues.map((issue) => issue.message)).toEqual([
+          messages.required[field],
+        ])
+      }
+    },
+  )
+
   it.each([
     ['absent', undefined],
     ['empty', ''],

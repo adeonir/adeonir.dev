@@ -18,7 +18,7 @@ export type ContactValidationMessages = {
 
 export function createContactSchema(messages?: ContactValidationMessages) {
   return z.object({
-    name: z.string().min(1, messages?.required.name),
+    name: z.string().trim().min(1, messages?.required.name),
     email: z
       .string()
       .trim()
@@ -31,6 +31,7 @@ export function createContactSchema(messages?: ContactValidationMessages) {
       .optional(),
     message: z
       .string()
+      .trim()
       .min(1, messages?.required.message)
       .max(2000, messages?.maxLength?.replace('{max}', '2000')),
     locale: z.enum(supportedLocales),
