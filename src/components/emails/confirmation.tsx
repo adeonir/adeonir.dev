@@ -100,13 +100,13 @@ export function Confirmation({
                 <Text className="m-0 mb-4 font-semibold text-foreground text-sm uppercase tracking-wider">
                   {copy.recapLabel}
                 </Text>
-                <Text className="m-0 mb-1 font-mono text-muted/50 text-xs">
+                <Text className="m-0 mb-1 font-mono text-muted text-xs">
                   {copy.fields.name}
                 </Text>
                 <Text className="m-0 mb-4 text-foreground text-sm leading-normal">
                   {name}
                 </Text>
-                <Text className="m-0 mb-1 font-mono text-muted/50 text-xs">
+                <Text className="m-0 mb-1 font-mono text-muted text-xs">
                   {copy.fields.email}
                 </Text>
                 <Text className="m-0 mb-4 text-foreground text-sm leading-normal">
@@ -114,7 +114,7 @@ export function Confirmation({
                 </Text>
                 {subject && (
                   <>
-                    <Text className="m-0 mb-1 font-mono text-muted/50 text-xs">
+                    <Text className="m-0 mb-1 font-mono text-muted text-xs">
                       {copy.fields.subject}
                     </Text>
                     <Text className="m-0 mb-4 text-foreground text-sm leading-normal">
@@ -122,7 +122,7 @@ export function Confirmation({
                     </Text>
                   </>
                 )}
-                <Text className="m-0 mb-1 font-mono text-muted/50 text-xs">
+                <Text className="m-0 mb-1 font-mono text-muted text-xs">
                   {copy.fields.message}
                 </Text>
                 <Text className="m-0 whitespace-pre-wrap text-foreground text-sm leading-normal">
