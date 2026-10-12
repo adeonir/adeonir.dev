@@ -349,6 +349,8 @@ The frontmatter carries the values of the dark skin, which is the default. Each 
 - **input** — `mocha-500` dark, `latte-700` light. The edge of a form control, and the same colour at one twentieth opacity for the fill behind it. It is the first overlay step that holds 3:1 against `background`, `card`, and `popover` in both skins, so the edge of a control reads as a boundary while the line of a divider stays a hairline.
 - **ring** — `ocean-600` in both skins. The focus ring, one value for both skins.
 
+Supporting copy can sit one step below `muted-foreground` by lowering its opacity, never by moving to another role, and the opacity is set per skin. The dark skin has room to spare, so reading copy takes `muted-foreground` at four fifths and a monospace category under a title at three quarters. The light skin has almost none, so both take nine tenths. That lands the light step at 4.46:1, a hair under 4.5:1, and it is kept on purpose: the step exists so the copy never takes the full role, and the light skin cannot go lower without losing legibility.
+
 ### Destructive and status
 
 `destructive` is the danger role on form controls: the border of an invalid field, the faint tint behind it, and its error message. It is a border, a line of text, or a translucent tint over a field, and never a solid fill, so it follows the same rule as the other two accent text roles and takes a different step in each skin. The dark skin takes a lighter red and the light skin a deeper one. Contrast is a distance in lightness, so a single red would have to sit between the two skins and would be far from neither.
