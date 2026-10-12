@@ -7,10 +7,10 @@ const fieldClasses =
   'w-full rounded-lg border px-4 text-body text-foreground transition-[border-color,background-color,opacity] placeholder:text-muted-foreground focus:border-primary focus:outline-hidden disabled:cursor-not-allowed disabled:opacity-60'
 
 const validClasses =
-  'border-input bg-input/10 not-focus:enabled:hover:bg-input/20'
+  'border-input bg-input/5 not-focus:enabled:hover:bg-input/10'
 
 const invalidClasses =
-  'border-destructive bg-destructive/5 not-focus:enabled:hover:bg-destructive/10 focus:bg-input/10'
+  'border-destructive bg-destructive/5 not-focus:enabled:hover:bg-destructive/10 focus:bg-input/5'
 
 export type FieldProps = {
   label: string
