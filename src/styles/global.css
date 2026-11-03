@@ -348,7 +348,7 @@
 }
 
 @utility text-label {
-  @apply font-mono font-medium text-xs tracking-wider uppercase;
+  @apply font-mono font-medium text-xs tracking-wider;
 }
 
 @utility text-button {

@@ -44,7 +44,7 @@ export function Field({
       invalid={invalid}
       className="flex flex-col gap-2"
     >
-      <ArkField.Label className="text-label text-muted-foreground">
+      <ArkField.Label className="text-label text-muted-foreground uppercase">
         {label}
       </ArkField.Label>
       {multiline ? (
