@@ -15,7 +15,7 @@ type Enter = () => void
 const stopWatching = vi.fn()
 const stopAnimation = vi.fn()
 
-let entries: { section: Element; enter: Enter; options: { margin?: string } }[]
+let entries: { section: Element; enter: Enter; options: { amount?: number } }[]
 
 const loadEnter = async () => {
   vi.resetModules()
@@ -74,7 +74,7 @@ beforeEach(() => {
   mocks.animate.mockReset()
 
   mocks.inView.mockImplementation(
-    (section: Element, enter: Enter, options: { margin?: string }) => {
+    (section: Element, enter: Enter, options: { amount?: number }) => {
       entries.push({ section, enter, options })
       return stopWatching
     },
@@ -114,13 +114,13 @@ it('leaves an unmarked element and a section with no id alone', async () => {
   expect(at('loose').style.opacity).toBe('')
 })
 
-it('watches each section with an id from above its top', async () => {
+it('starts each section with an id once a quarter of it is in view', async () => {
   const { bindEnter } = await loadEnter()
 
   bindEnter()
 
   expect(entries.map(({ section }) => section.id)).toEqual(['about', 'stack'])
-  expect(entries[0].options.margin).toBe('0px 0px -35% 0px')
+  expect(entries[0].options.amount).toBe(0.25)
 })
 
 it('starts each block of a section after the block before it', async () => {
