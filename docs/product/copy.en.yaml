@@ -1,8 +1,8 @@
 metadata:
   source: 'docs/product/brief.md, docs/product/prd.md, conversation'
   created: '2026-06-06'
-  updated: '2026-10-04'
-  version: '1.0.17'
+  updated: '2026-11-11'
+  version: '1.1.0'
   status: 'ready'
 
 project:
@@ -38,12 +38,14 @@ voice:
 routes:
   home:
     title: 'Frontend Engineer'
+  colophon:
+    title: 'Colophon'
   not-found:
     title: 'Page not found'
   maintenance:
     title: 'Maintenance'
 
-# The content tree covers the surfaces home, projects, project, plus a global not-found (404) error surface. Header and footer are persistent across every surface.
+# The content tree covers the surfaces home, projects, project, colophon, plus a global not-found (404) error surface. Header and footer are persistent across every surface.
 
 content:
   home:
@@ -174,6 +176,9 @@ content:
       brand:
         text: 'adeonir.dev'
         copyright: '© 2026 Adeonir Kohl'
+        colophon:
+          label: 'About this site'
+          link: '/colophon'
       signoff: 'Built with care, coffee, and beer.'
       reveals:
         - word: 'coffee'
@@ -207,6 +212,53 @@ content:
       previous: 'Previous project'
       next: 'Next project'
     # not-found -> content.not-found.paths.projects
+    footer: *footer
+
+  colophon:
+    header: *header
+    back: 'Back'
+    eyebrow: 'Colophon'
+    headline: 'How this site was made'
+    links:
+      - label: 'Repository'
+        link: 'https://github.com/adeonir/adeonir.dev'
+      - label: 'Styleguide'
+        link: '/styleguide'
+    motivation:
+      headline: 'Motivation'
+      body:
+        - "I'm a frontend engineer and I like working close to design. I made this site to show that in practice. Here I tell you what I used and why I made some of the choices."
+    technologies:
+      headline: 'Technologies'
+      groups:
+        - label: 'Stack'
+          body:
+            - 'I built the site with Astro and published it on Cloudflare.'
+            - 'I used React for the interactive parts and Nanostores to share state between the islands. For the styles, I picked Tailwind CSS. For the primitives, I used Ark UI because they are headless. The animations were made with Motion.'
+        - label: 'Design'
+          body:
+            - 'I started the design in Figma, then explored some interactions in Claude Design and prototyped straight in code. I also built a styleguide page to show the site tokens.'
+            - 'For the colors, I used Catppuccin Mocha in the dark theme and Latte in the light one. For the text, I used Geist for headings and body and Fira Code for technical bits. The icons come from Tabler, and the character images were generated with ChatGPT Image.'
+        - label: 'Content'
+          body:
+            - 'The site has Portuguese and English versions, split by language and organized in YAML files. The home narrations were generated with ElevenLabs using my own voice as the base.'
+        - label: 'Quality'
+          body:
+            - 'I set up CI to run typecheck, linter, tests and a Lighthouse audit. I follow how the site is used with PostHog.'
+    decisions:
+      headline: 'Decisions'
+      items:
+        - title: 'Content pages as static HTML'
+          description: 'The content pages are generated during the build and only the contact form runs on the server. That way they reach the browser ready and faster.'
+        - title: 'The form keeps no messages'
+          description: "The form sends the messages to my email and no copy stays in a database or in the logs, because I don't want to keep data about whoever visits the site."
+        - title: 'Analytics without cookies'
+          description: "I set PostHog up to work without cookies and to respect Do Not Track. That way I don't need a privacy and consent banner."
+        - title: 'Lighthouse targets in CI'
+          description: 'I set a target of performance above 95 on mobile and 100 in accessibility, best practices and SEO, with WCAG AA as the accessibility reference. I care about the performance of every screen, and the audit checks it on each change.'
+    cta:
+      headline: 'Want to talk about any of these choices?'
+      action: 'Get in touch'
     footer: *footer
 
   not-found:
@@ -257,5 +309,8 @@ notes: |
   between the files on purpose.
 
   Projects: not in this file. Each project carries its own copy.
+
+  Colophon: the technology paragraphs name tools as plain prose. The links to
+  each tool live in the collection file that renders the section.
 
   Design-blind: no colors, fonts, icons, or layout in this file.
