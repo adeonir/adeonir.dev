@@ -65,7 +65,7 @@ function Bars({
   return (
     <div
       className={cn(
-        'flex h-full items-center gap-1',
+        'flex h-full items-center gap-0.5',
         fill !== undefined && 'absolute inset-0',
       )}
       style={
