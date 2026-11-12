@@ -1,5 +1,4 @@
 ---
-import { cn } from '~/helpers/classnames'
 import { parseLocale } from '~/helpers/locale'
 import { getLocalizedEntry } from '~/services/localized'
 
@@ -11,22 +10,25 @@ const { headline, groups } = technologies.data
 const isExternal = (href: string) => href.startsWith('http')
 ---
 
-<section class="py-8 md:py-12">
+<section class="py-12">
   <div class="wrapper">
-    <div class="mx-auto flex w-full max-w-2xl flex-col gap-8">
+    <div class="mx-auto flex w-full max-w-4xl flex-col gap-7">
       <h2 data-enter="block" class="text-heading text-foreground">
+        <span class="mr-2 text-secondary" aria-hidden="true">
+          #
+        </span>
         {headline}
       </h2>
-      <div class="flex flex-col divide-y divide-border">
+      <div class="flex flex-col border-b border-border">
         {groups.map((group) => (
           <div
             data-enter="block"
-            class="flex flex-col gap-2 py-6 first:pt-0 last:pb-0 md:flex-row md:gap-8"
+            class="flex flex-col gap-2 border-t border-border py-7 md:flex-row md:gap-12"
           >
-            <h3 class="text-title text-foreground md:w-32 md:shrink-0">
+            <h3 class="text-label text-muted-foreground uppercase md:mt-1.5 md:w-40 md:shrink-0">
               {group.label}
             </h3>
-            <div class="flex flex-col gap-4 text-muted-foreground">
+            <div class="flex max-w-2xl flex-col gap-4 text-body leading-relaxed text-muted-foreground">
               {group.paragraphs.map((paragraph) => (
                 <p class="text-pretty">
                   {paragraph.map((segment) =>
@@ -39,9 +41,7 @@ const isExternal = (href: string) => href.startsWith('http')
                             ? 'noopener noreferrer'
                             : undefined
                         }
-                        class={cn(
-                          'text-primary underline decoration-primary/40 underline-offset-4 hover:decoration-primary',
-                        )}
+                        class="font-medium text-primary underline underline-offset-4"
                       >
                         {segment.text}
                       </a>

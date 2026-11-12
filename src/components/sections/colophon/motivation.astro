@@ -8,15 +8,18 @@ const motivation = await getLocalizedEntry('colophonMotivation', locale)
 const { headline, body } = motivation.data
 ---
 
-<section class="py-8 md:py-12">
+<section class="py-12">
   <div class="wrapper">
-    <div class="mx-auto flex w-full max-w-2xl flex-col gap-4">
+    <div class="mx-auto flex w-full max-w-4xl flex-col gap-6">
       <h2 data-enter="block" class="text-heading text-foreground">
+        <span class="mr-2 text-secondary" aria-hidden="true">
+          #
+        </span>
         {headline}
       </h2>
       <p
         data-enter="block"
-        class="text-2xl leading-relaxed text-pretty text-muted-foreground"
+        class="max-w-3xl text-xl leading-normal font-medium text-pretty text-foreground md:text-2xl"
       >
         {body}
       </p>

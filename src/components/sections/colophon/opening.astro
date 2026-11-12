@@ -21,45 +21,46 @@ const linkClass = cn(
 )
 ---
 
-<section class="pt-8 pb-4 md:pt-16 md:pb-8">
+<section class="pt-8 pb-12 md:pt-20">
   <div class="wrapper">
-    <div class="mx-auto flex w-full max-w-2xl flex-col gap-16">
+    <div class="mx-auto flex w-full max-w-4xl flex-col items-start gap-8">
       <a
         href={homeHref}
         class={cn(
-          'group size-fit gap-2',
+          'group size-fit gap-2 text-button',
           buttonVariants({ variant: 'link', size: 'inline' }),
         )}
       >
         <IconArrowLeft className="size-4 shrink-0 transition-transform duration-200 motion-safe:group-hover:-translate-x-1" />
         {back}
       </a>
-      <div class="flex flex-col items-start gap-6">
-        <Eyebrow data-enter="block">{eyebrow}</Eyebrow>
-        <h1 data-enter="block" class="text-display text-pretty text-foreground">
-          {headline.map((segment) => (
-            <>
-              {segment.highlight ? (
-                <span class="text-secondary">{segment.text}</span>
-              ) : (
-                segment.text
-              )}
-            </>
-          ))}
-        </h1>
-        <div class="mt-2 flex flex-wrap gap-6">
-          {links.map((link) => (
-            <a
-              href={link.href}
-              target={link.external ? '_blank' : undefined}
-              rel={link.external ? 'noopener noreferrer' : undefined}
-              class={linkClass}
-            >
-              {link.label}
-              <IconArrowUpRight className="size-5 shrink-0 transition-transform duration-200 motion-safe:group-hover:-translate-y-0.5" />
-            </a>
-          ))}
-        </div>
+      <Eyebrow data-enter="block">{eyebrow}</Eyebrow>
+      <h1
+        data-enter="block"
+        class="max-w-3xl text-5xl leading-none font-extrabold tracking-tight text-balance text-foreground sm:text-6xl md:text-7xl lg:text-8xl"
+      >
+        {headline.map((segment) => (
+          <>
+            {segment.highlight ? (
+              <span class="text-secondary">{segment.text}</span>
+            ) : (
+              segment.text
+            )}
+          </>
+        ))}
+      </h1>
+      <div class="flex flex-wrap gap-x-8 gap-y-2">
+        {links.map((link) => (
+          <a
+            href={link.href}
+            target={link.external ? '_blank' : undefined}
+            rel={link.external ? 'noopener noreferrer' : undefined}
+            class={linkClass}
+          >
+            {link.label}
+            <IconArrowUpRight className="size-5 shrink-0 transition-transform duration-200 motion-safe:group-hover:-translate-y-0.5" />
+          </a>
+        ))}
       </div>
     </div>
   </div>

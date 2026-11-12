@@ -8,25 +8,32 @@ const decisions = await getLocalizedEntry('colophonDecisions', locale)
 const { headline, items } = decisions.data
 ---
 
-<section class="py-8 md:py-12">
+<section class="py-12">
   <div class="wrapper">
-    <div class="mx-auto flex w-full max-w-2xl flex-col gap-6">
+    <div class="mx-auto flex w-full max-w-4xl flex-col gap-7">
       <h2 data-enter="block" class="text-heading text-foreground">
+        <span class="mr-2 text-secondary" aria-hidden="true">
+          #
+        </span>
         {headline}
       </h2>
       <ol class="flex flex-col gap-4">
         {items.map((item, index) => (
           <li
             data-enter="block"
-            class="flex flex-col gap-3 rounded-2xl border border-border bg-card p-6"
+            class="flex flex-col gap-3 rounded-2xl border border-border bg-card px-6 py-6 md:flex-row md:gap-8 md:px-8"
           >
-            <span class="text-label text-muted-foreground">
+            <span class="w-10 shrink-0 font-mono text-sm leading-7 font-medium text-secondary">
               {String(index + 1).padStart(2, '0')}
             </span>
-            <h3 class="text-title text-card-foreground">{item.title}</h3>
-            <p class="text-body text-pretty text-muted-foreground">
-              {item.description}
-            </p>
+            <div class="flex flex-col gap-2.5">
+              <h3 class="text-xl leading-7 font-semibold text-card-foreground">
+                {item.title}
+              </h3>
+              <p class="text-base text-pretty text-muted-foreground">
+                {item.description}
+              </p>
+            </div>
           </li>
         ))}
       </ol>
