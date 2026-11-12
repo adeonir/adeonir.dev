@@ -151,15 +151,21 @@ export const bindHeroFx = () => {
     if (visible) frame = requestAnimationFrame(draw)
   })
 
+  // a resize clears the drawing buffer; a still canvas has no next frame to repaint it
+  const refit = () => {
+    resize()
+    if (still && visible) draw()
+  }
+
   resize()
-  window.addEventListener('resize', resize)
+  window.addEventListener('resize', refit)
   hero.addEventListener('pointermove', follow)
   observer.observe(canvas)
 
   return () => {
     cancelAnimationFrame(frame)
     observer.disconnect()
-    window.removeEventListener('resize', resize)
+    window.removeEventListener('resize', refit)
     hero.removeEventListener('pointermove', follow)
   }
 }
