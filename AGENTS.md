@@ -186,3 +186,7 @@ Delivery artifacts for this repo live in Linear, team Development, project Portf
 - Do not recreate the content-layer scaffolding in `src/content.config.ts`, `src/content/`, and `src/schemas/`.
 - `src/validations/contact.ts` exports `UTM_KEYS`. The contact island and the analytics service read that list; never write a second copy.
 - Figma source: https://www.figma.com/design/T4wd9lMdUUdpfpmbT3C0bN/Adeonir
+
+## Merge method
+
+Pull requests merge with a merge commit, preserving branch commits.
