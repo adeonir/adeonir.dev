@@ -22,7 +22,6 @@ jobs:
           - { cmd: lint, name: Lint }
           - { cmd: typecheck, name: Typecheck }
           - { cmd: test, name: Unit Tests }
-          - { cmd: build, name: Build }
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -42,8 +41,9 @@ jobs:
       - name: Run ${{ matrix.task.name }}
         run: pnpm ${{ matrix.task.cmd }}
 
-  lighthouse:
-    name: Lighthouse
+  build:
+    name: Build
+    needs: quality
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -61,8 +61,37 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Build the site
+        run: pnpm build
+
+      - name: Upload dist
+        uses: actions/upload-artifact@v7
+        with:
+          name: site-dist
+          path: dist/client
+          retention-days: 1
+
+  lighthouse:
+    name: Lighthouse
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: lts/*
+
+      - name: Download dist
+        uses: actions/download-artifact@v7
+        with:
+          name: site-dist
+          path: dist/client
+
       - name: Run Lighthouse
-        run: pnpm lighthouse
+        run: npx -y @lhci/cli autorun
 
       - name: Upload reports
         if: always()

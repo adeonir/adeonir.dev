@@ -42,8 +42,8 @@ export function ThemeToggle({ labels }: ThemeToggleProps) {
           <ClientOnly
             fallback={
               <>
-                <IconMoon className="in-data-[theme=light]:hidden size-4.5" />
-                <IconSun className="in-data-[theme=dark]:hidden size-4.5" />
+                <IconMoon className="size-4.5 in-data-[theme=light]:hidden" />
+                <IconSun className="size-4.5 in-data-[theme=dark]:hidden" />
               </>
             }
           >

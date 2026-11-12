@@ -37,8 +37,8 @@ function Root({ className, ...props }: ComponentProps<typeof ArkToast.Root>) {
   return (
     <ArkToast.Root
       className={cn(
-        'flex min-w-84 items-center gap-6 rounded-lg border-2 border-border bg-popover p-4 pl-6 text-foreground light:shadow-black/25 shadow-black/50 shadow-xl',
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
+        'border-border bg-popover text-foreground light:shadow-black/25 flex min-w-84 items-center gap-6 rounded-lg border-2 p-4 pl-6 shadow-xl shadow-black/50',
+        'focus-visible:ring-ring focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
         'z-(--z-index) h-(--height) translate-x-(--x) translate-y-(--y) scale-(--scale) opacity-(--opacity)',
         'transition-[translate,scale,opacity,height,box-shadow] duration-400 ease-out will-change-[translate,opacity,scale]',
         'motion-reduce:transition-opacity',
@@ -95,7 +95,7 @@ function CloseTrigger({
   return (
     <ArkToast.CloseTrigger
       className={cn(
-        'inline-flex size-8 shrink-0 items-center justify-center rounded-md text-muted-foreground transition-[color,background-color,box-shadow] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
+        'text-muted-foreground hover:bg-muted hover:text-foreground focus-visible:ring-ring focus-visible:ring-offset-background inline-flex size-8 shrink-0 items-center justify-center rounded-md transition-[color,background-color,box-shadow] focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
         className,
       )}
       {...props}

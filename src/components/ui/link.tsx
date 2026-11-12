@@ -22,7 +22,7 @@ export function Link({
 }: Props) {
   const isExternal = typeof href === 'string' && /^https?:\/\//.test(href)
   const classNames = cn(
-    'group cursor-pointer font-medium text-primary underline decoration-primary/40 underline-offset-4 transition-colors duration-200 hover:decoration-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
+    'group text-primary decoration-primary/40 hover:decoration-primary focus-visible:ring-ring focus-visible:ring-offset-background cursor-pointer font-medium underline underline-offset-4 transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
     size === 'small' ? 'text-base' : 'text-body',
     className,
   )

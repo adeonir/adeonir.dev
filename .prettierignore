@@ -3,5 +3,7 @@ dist
 .astro
 pnpm-lock.yaml
 
-# CSS is owned by Biome (see biome.json); keep Prettier off it
+# CSS and YAML are owned by Biome (see biome.json); keep Prettier off them
 **/*.css
+**/*.yaml
+**/*.yml

@@ -147,7 +147,7 @@ Use the `new-component` skill when creating a new component. Shared pure helpers
 
 ## Configuration and formatting
 
-- Biome owns JS, TS, CSS, and JSON. Prettier owns `.astro` and YAML. Neither reaches the other's files, so a formatting question is answered by knowing which tool owns the extension.
+- Biome owns JS, TS, CSS, JSON, and YAML. Prettier owns `.astro`. Neither reaches the other's files, so a formatting question is answered by knowing which tool owns the extension.
 - `wrangler` is a direct dev dependency so its binary is available in the Workers Builds environment. Do not move it.
 
 ## Environment and security

@@ -8,7 +8,7 @@ export function Tag({ className, ...props }: TagProps) {
   return (
     <ark.span
       className={cn(
-        'inline-flex w-fit rounded-full bg-muted px-3 py-1 font-mono text-muted-foreground text-sm',
+        'bg-muted text-muted-foreground inline-flex w-fit rounded-full px-3 py-1 font-mono text-sm',
         className,
       )}
       {...props}

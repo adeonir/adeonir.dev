@@ -17,7 +17,7 @@ function Content({
   return (
     <ArkTooltip.Content
       className={cn(
-        'z-60 rounded-md border border-border bg-popover px-2 py-1 font-mono text-popover-foreground text-sm light:shadow-black/25 shadow-black/50 shadow-md data-[state=closed]:animate-fade-out data-[state=open]:animate-fade-in',
+        'border-border bg-popover text-popover-foreground light:shadow-black/25 data-[state=closed]:animate-fade-out data-[state=open]:animate-fade-in z-60 rounded-md border px-2 py-1 font-mono text-sm shadow-md shadow-black/50',
         className,
       )}
       {...props}

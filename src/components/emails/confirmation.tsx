@@ -74,10 +74,10 @@ export function Confirmation({
       </Head>
       <Preview>{copy.preview}</Preview>
       <Tailwind config={tailwindConfig}>
-        <Body className="m-0 bg-background py-8 font-sans">
-          <Container className="mx-auto max-w-120 overflow-hidden rounded-2xl border border-border border-solid bg-card">
+        <Body className="bg-background m-0 py-8 font-sans">
+          <Container className="border-border bg-card mx-auto max-w-120 overflow-hidden rounded-2xl border border-solid">
             <Section className="bg-header-bg px-10 py-11 text-center">
-              <Text className="m-0 font-mono font-semibold text-header-fg text-lg leading-none">
+              <Text className="text-header-fg m-0 font-mono text-lg leading-none font-semibold">
                 <span className="text-header-accent">~/</span>
                 adeonir
                 <span className="text-header-accent">.</span>
@@ -88,55 +88,55 @@ export function Confirmation({
             <Section className="px-10 py-9">
               <Heading
                 as="h1"
-                className="m-0 mb-5 font-bold text-2xl text-foreground leading-[1.2]"
+                className="text-foreground m-0 mb-5 text-2xl leading-[1.2] font-bold"
               >
                 {copy.heading}
               </Heading>
-              <Text className="m-0 mb-5 text-base text-foreground leading-[1.6]">
+              <Text className="text-foreground m-0 mb-5 text-base leading-[1.6]">
                 {copy.body}
               </Text>
 
-              <Section className="mb-5 rounded-xl border border-primary/50 border-solid bg-primary/8 p-5">
-                <Text className="m-0 mb-4 font-semibold text-foreground text-sm uppercase tracking-wider">
+              <Section className="border-primary/50 bg-primary/8 mb-5 rounded-xl border border-solid p-5">
+                <Text className="text-foreground m-0 mb-4 text-sm font-semibold tracking-wider uppercase">
                   {copy.recapLabel}
                 </Text>
-                <Text className="m-0 mb-1 font-mono text-muted text-xs">
+                <Text className="text-muted m-0 mb-1 font-mono text-xs">
                   {copy.fields.name}
                 </Text>
-                <Text className="m-0 mb-4 text-foreground text-sm leading-normal">
+                <Text className="text-foreground m-0 mb-4 text-sm leading-normal">
                   {name}
                 </Text>
-                <Text className="m-0 mb-1 font-mono text-muted text-xs">
+                <Text className="text-muted m-0 mb-1 font-mono text-xs">
                   {copy.fields.email}
                 </Text>
-                <Text className="m-0 mb-4 text-foreground text-sm leading-normal">
+                <Text className="text-foreground m-0 mb-4 text-sm leading-normal">
                   {email}
                 </Text>
                 {subject && (
                   <>
-                    <Text className="m-0 mb-1 font-mono text-muted text-xs">
+                    <Text className="text-muted m-0 mb-1 font-mono text-xs">
                       {copy.fields.subject}
                     </Text>
-                    <Text className="m-0 mb-4 text-foreground text-sm leading-normal">
+                    <Text className="text-foreground m-0 mb-4 text-sm leading-normal">
                       {subject}
                     </Text>
                   </>
                 )}
-                <Text className="m-0 mb-1 font-mono text-muted text-xs">
+                <Text className="text-muted m-0 mb-1 font-mono text-xs">
                   {copy.fields.message}
                 </Text>
-                <Text className="m-0 whitespace-pre-wrap text-foreground text-sm leading-normal">
+                <Text className="text-foreground m-0 text-sm leading-normal whitespace-pre-wrap">
                   {message}
                 </Text>
               </Section>
 
-              <Text className="m-0 text-foreground text-sm leading-[1.6]">
+              <Text className="text-foreground m-0 text-sm leading-[1.6]">
                 {copy.footer}
               </Text>
             </Section>
 
-            <Section className="border-border border-t border-solid bg-sunken px-10 py-6">
-              <Text className="m-0 font-mono font-semibold text-base text-muted leading-none">
+            <Section className="border-border bg-sunken border-t border-solid px-10 py-6">
+              <Text className="text-muted m-0 font-mono text-base leading-none font-semibold">
                 <span className="text-secondary">~/</span>
                 adeonir
                 <span className="text-secondary">.</span>

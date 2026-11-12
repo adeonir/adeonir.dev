@@ -79,12 +79,12 @@ export function Notification({
       </Head>
       <Preview>{copy.preview}</Preview>
       <Tailwind config={tailwindConfig}>
-        <Body className="m-0 bg-background py-8 font-sans">
-          <Container className="mx-auto max-w-120 overflow-hidden rounded-2xl border border-border border-solid bg-card">
+        <Body className="bg-background m-0 py-8 font-sans">
+          <Container className="border-border bg-card mx-auto max-w-120 overflow-hidden rounded-2xl border border-solid">
             <Section className="bg-header-bg px-10 py-7">
               <Row>
                 <Column>
-                  <Text className="m-0 font-mono font-semibold text-base text-header-fg leading-none">
+                  <Text className="text-header-fg m-0 font-mono text-base leading-none font-semibold">
                     <span className="text-header-accent">~/</span>
                     adeonir
                     <span className="text-header-accent">.</span>
@@ -92,8 +92,8 @@ export function Notification({
                   </Text>
                 </Column>
                 <Column align="right">
-                  <span className="inline-block rounded-full bg-header-surface px-3 py-1.5 align-middle font-semibold text-header-fg text-xs leading-none">
-                    <span className="mr-1.5 inline-block h-2 w-2 rounded-full bg-header-dot align-middle" />
+                  <span className="bg-header-surface text-header-fg inline-block rounded-full px-3 py-1.5 align-middle text-xs leading-none font-semibold">
+                    <span className="bg-header-dot mr-1.5 inline-block h-2 w-2 rounded-full align-middle" />
                     {copy.badge}
                   </span>
                 </Column>
@@ -103,49 +103,49 @@ export function Notification({
             <Section className="px-10 py-9">
               <Heading
                 as="h1"
-                className="m-0 mb-1 font-bold text-2xl text-foreground leading-[1.2]"
+                className="text-foreground m-0 mb-1 text-2xl leading-[1.2] font-bold"
               >
                 {copy.heading}
               </Heading>
-              <Text className="m-0 mb-6 text-muted/50 text-sm leading-normal">
+              <Text className="text-muted/50 m-0 mb-6 text-sm leading-normal">
                 {copy.received}
               </Text>
 
-              <Row className="border-0 border-border border-b border-solid">
+              <Row className="border-border border-0 border-b border-solid">
                 <Column className="w-20 py-3.5 align-baseline">
-                  <Text className="m-0 font-mono text-muted/50 text-xs leading-normal">
+                  <Text className="text-muted/50 m-0 font-mono text-xs leading-normal">
                     {copy.fields.name}
                   </Text>
                 </Column>
                 <Column className="py-3.5 pl-4 align-baseline">
-                  <Text className="m-0 text-base text-foreground leading-normal">
+                  <Text className="text-foreground m-0 text-base leading-normal">
                     {name}
                   </Text>
                 </Column>
               </Row>
 
-              <Row className="border-0 border-border border-b border-solid">
+              <Row className="border-border border-0 border-b border-solid">
                 <Column className="w-20 py-3.5 align-baseline">
-                  <Text className="m-0 font-mono text-muted/50 text-xs leading-normal">
+                  <Text className="text-muted/50 m-0 font-mono text-xs leading-normal">
                     {copy.fields.email}
                   </Text>
                 </Column>
                 <Column className="py-3.5 pl-4 align-baseline">
-                  <Text className="m-0 text-base text-foreground leading-normal">
+                  <Text className="text-foreground m-0 text-base leading-normal">
                     {email}
                   </Text>
                 </Column>
               </Row>
 
               {subject && (
-                <Row className="border-0 border-border border-b border-solid">
+                <Row className="border-border border-0 border-b border-solid">
                   <Column className="w-20 py-3.5 align-baseline">
-                    <Text className="m-0 font-mono text-muted/50 text-xs leading-normal">
+                    <Text className="text-muted/50 m-0 font-mono text-xs leading-normal">
                       {copy.fields.subject}
                     </Text>
                   </Column>
                   <Column className="py-3.5 pl-4 align-baseline">
-                    <Text className="m-0 text-base text-foreground leading-normal">
+                    <Text className="text-foreground m-0 text-base leading-normal">
                       {subject}
                     </Text>
                   </Column>
@@ -154,18 +154,18 @@ export function Notification({
 
               <Row>
                 <Column className="w-20 py-3.5 align-baseline">
-                  <Text className="m-0 font-mono text-muted/50 text-xs leading-normal">
+                  <Text className="text-muted/50 m-0 font-mono text-xs leading-normal">
                     {copy.fields.message}
                   </Text>
                 </Column>
                 <Column className="py-3.5 pl-4 align-baseline">
-                  <Text className="m-0 whitespace-pre-wrap text-base text-foreground leading-[1.6]">
+                  <Text className="text-foreground m-0 text-base leading-[1.6] whitespace-pre-wrap">
                     {message}
                   </Text>
                 </Column>
               </Row>
 
-              <Text className="m-0 mt-6 text-muted/50 text-xs leading-[1.6]">
+              <Text className="text-muted/50 m-0 mt-6 text-xs leading-[1.6]">
                 {copy.footer}
               </Text>
             </Section>
