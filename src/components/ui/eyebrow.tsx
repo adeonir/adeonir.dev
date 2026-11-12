@@ -8,7 +8,7 @@ export function Eyebrow({ className, ...props }: EyebrowProps) {
   return (
     <ark.span
       className={cn(
-        'inline-flex w-fit rounded-full border-2 border-border px-3 py-1 font-semibold text-muted-foreground text-xs uppercase tracking-widest',
+        'border-border text-muted-foreground inline-flex w-fit rounded-full border-2 px-3 py-1 text-xs font-semibold tracking-widest uppercase',
         className,
       )}
       {...props}

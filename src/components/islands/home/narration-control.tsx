@@ -229,7 +229,7 @@ export function NarrationControl({
   const time = duration !== null && (
     <span
       aria-hidden="true"
-      className="font-mono text-muted-foreground text-sm tabular-nums"
+      className="text-muted-foreground font-mono text-sm tabular-nums"
     >
       {formatTime(status === 'idle' ? duration : (duration * progress) / 100)}
     </span>
@@ -262,7 +262,7 @@ export function NarrationControl({
       variant="ghost"
       size="icon"
       className={cn(
-        'size-8 shrink-0 rounded-full bg-muted hover:bg-primary/15 hover:shadow-none',
+        'bg-muted hover:bg-primary/15 size-8 shrink-0 rounded-full hover:shadow-none',
         active && 'bg-primary/15',
       )}
       aria-labelledby={labelId}
@@ -270,9 +270,9 @@ export function NarrationControl({
       onClick={toggle}
     >
       {status === 'loading' ? (
-        <IconLoader className="size-3.5 text-primary motion-safe:animate-spin motion-reduce:animate-pulse" />
+        <IconLoader className="text-primary size-3.5 motion-safe:animate-spin motion-reduce:animate-pulse" />
       ) : status === 'playing' ? (
-        <IconPlayerPause className="size-3.5 text-primary" />
+        <IconPlayerPause className="text-primary size-3.5" />
       ) : (
         <IconPlayerPlay className="ms-0.5 size-3.5" />
       )}
@@ -317,7 +317,7 @@ export function NarrationControl({
     <div className="inline-flex flex-col items-start gap-2">
       <span
         id={labelId}
-        className="font-mono text-muted-foreground text-sm lowercase"
+        className="text-muted-foreground font-mono text-sm lowercase"
       >
         {label}
       </span>

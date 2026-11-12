@@ -101,7 +101,7 @@ export function ContactForm({ content, locale }: ContactFormProps) {
         className="sr-only"
       />
       <input type="hidden" name="locale" value={locale} />
-      <div className="grid @md:grid-cols-2 gap-6">
+      <div className="grid gap-6 @md:grid-cols-2">
         {[nameField, emailField].map((field) => (
           <Field
             key={field.name}

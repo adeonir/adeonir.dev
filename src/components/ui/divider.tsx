@@ -3,7 +3,7 @@ import { cva, type VariantProps } from 'class-variance-authority'
 
 import { cn } from '~/helpers/classnames'
 
-const dividerVariants = cva('shrink-0 border-border', {
+const dividerVariants = cva('border-border shrink-0', {
   variants: {
     orientation: {
       horizontal: 'w-full border-t',
