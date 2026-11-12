@@ -176,16 +176,15 @@ Cloudflare Workers Builds deploys the Worker named `adeonir`. A push to `main` b
 
 Use the `git-helpers` skill for commits, pull requests, and branch cleanup.
 
-## Issue tracker
-
-Delivery artifacts for this repo live in Linear, team Development, project Portfolio, managed by `epic-tracker`. Source: `git config --get-regexp '^epic-tracker\.'`. Change it with "configure tracker".
-
 ## Key files and assets
 
 - `src/layouts/base.astro` is the shared document shell. Every new page uses it. Every prop is optional in the type, but the layout throws unless it receives a title: pass `title` for a literal one, or `titleKey` to read one from the settings collection.
 - Do not recreate the content-layer scaffolding in `src/content.config.ts`, `src/content/`, and `src/schemas/`.
 - `src/validations/contact.ts` exports `UTM_KEYS`. The contact island and the analytics service read that list; never write a second copy.
-- Figma source: https://www.figma.com/design/T4wd9lMdUUdpfpmbT3C0bN/Adeonir
+
+## Issue tracker
+
+Tracker: Linear; team Development; project Portfolio.
 
 ## Merge method
 
