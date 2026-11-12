@@ -76,7 +76,7 @@ content:
 
     hero:
       display: 'Adeonir Kohl'
-      tagline: "I'm a frontend engineer, and I bring care for design to every line of code."
+      tagline: "I'm a frontend engineer, and I give every line of code the same care I put into design."
       availability: 'Available for work'
       actions:
         primary: 'See my projects'

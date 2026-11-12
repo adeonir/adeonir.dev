@@ -1,10 +1,10 @@
 display: 'Adeonir Kohl'
 tagline:
-  - text: 'Sou frontend engineer e levo o cuidado com o '
-  - text: 'design'
-    highlight: true
-  - text: ' para cada linha de '
+  - text: 'Sou frontend engineer e entrego a cada linha de '
   - text: 'código'
+    highlight: true
+  - text: ' o mesmo cuidado que dou ao '
+  - text: 'design'
     highlight: true
   - text: '.'
 availability:

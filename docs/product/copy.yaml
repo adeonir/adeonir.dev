@@ -76,7 +76,7 @@ content:
 
     hero:
       display: 'Adeonir Kohl'
-      tagline: 'Sou frontend engineer e levo o cuidado com o design para cada linha de código.'
+      tagline: 'Sou frontend engineer e entrego a cada linha de código o mesmo cuidado que dou ao design.'
       availability: 'Disponível para trabalho'
       actions:
         primary: 'Ver meu trabalho'
