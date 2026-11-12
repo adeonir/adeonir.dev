@@ -1,10 +1,18 @@
 import type { SchemaContext } from 'astro:content'
 import { z } from 'astro/zod'
 
+export const projectNameSegmentSchema = z.object({
+  text: z.string().min(1),
+  highlight: z.boolean().optional(),
+})
+
+export type ProjectNameSegment = z.infer<typeof projectNameSegmentSchema>
+
 export const projectContentSchema = ({ image }: SchemaContext) =>
   z
     .object({
       name: z.string().min(1),
+      nameSegments: z.array(projectNameSegmentSchema).min(1).optional(),
       kind: z.string().min(1),
       category: z.string().min(1),
       type: z.string().min(1).optional(),
@@ -19,6 +27,16 @@ export const projectContentSchema = ({ image }: SchemaContext) =>
       coverAlt: z.string().min(1).optional(),
       featured: z.boolean().optional(),
     })
+    .refine(
+      (entry) =>
+        !entry.nameSegments ||
+        entry.nameSegments.map((segment) => segment.text).join('') ===
+          entry.name,
+      {
+        path: ['nameSegments'],
+        message: 'Project name segments must match the project name',
+      },
+    )
     .refine((entry) => entry.featured === undefined || entry.cover, {
       path: ['cover'],
       message: 'A featured project needs a cover',

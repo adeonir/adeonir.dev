@@ -26,6 +26,7 @@ export async function getStaticPaths() {
 const { entry } = Astro.props
 const {
   name,
+  nameSegments,
   kind,
   category,
   type,
@@ -44,6 +45,7 @@ const {
       kind={kind}
       category={category}
       name={name}
+      nameSegments={nameSegments}
       summary={summary}
       url={url}
       repository={repository}
