@@ -9,6 +9,7 @@ import {
 } from 'react'
 
 import { Button } from '~/components/ui/button'
+import { Swap } from '~/components/ui/swap'
 import { cn } from '~/helpers/classnames'
 import type { Locale } from '~/helpers/locale'
 import type { NarrationSection } from '~/helpers/narration'
@@ -271,10 +272,15 @@ export function NarrationControl({
     >
       {status === 'loading' ? (
         <IconLoader className="text-primary size-3.5 motion-safe:animate-spin motion-reduce:animate-pulse" />
-      ) : status === 'playing' ? (
-        <IconPlayerPause className="text-primary size-3.5" />
       ) : (
-        <IconPlayerPlay className="ms-0.5 size-3.5" />
+        <Swap.Root className="size-3.5" swap={status === 'playing'}>
+          <Swap.Indicator type="off" variant="fade">
+            <IconPlayerPlay className="ms-0.5 size-3.5" />
+          </Swap.Indicator>
+          <Swap.Indicator type="on" variant="fade">
+            <IconPlayerPause className="text-primary size-3.5" />
+          </Swap.Indicator>
+        </Swap.Root>
       )}
     </Button>
   )
