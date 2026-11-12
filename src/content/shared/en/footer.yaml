@@ -1,6 +1,7 @@
 brand:
   text: 'adeonir.dev'
   copyright: '© 2026 Adeonir Kohl'
+  colophon: 'About this site'
 signoff:
   - text: 'Built with '
   - text: 'care'

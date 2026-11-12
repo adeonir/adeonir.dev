@@ -1,0 +1,12 @@
+back: 'Back'
+eyebrow: 'Colophon'
+headline:
+  - text: 'How this site was '
+  - text: 'made'
+    highlight: true
+links:
+  - label: 'Repository'
+    href: 'https://github.com/adeonir/adeonir.dev'
+    external: true
+  - label: 'Styleguide'
+    href: '/styleguide'

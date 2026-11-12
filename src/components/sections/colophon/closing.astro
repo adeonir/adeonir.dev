@@ -1,0 +1,33 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n'
+
+import { buttonVariants } from '~/components/ui/button-variants'
+import { cn } from '~/helpers/classnames'
+import { parseLocale } from '~/helpers/locale'
+import { getLocalizedEntry } from '~/services/localized'
+
+const locale = parseLocale(Astro.currentLocale)
+const closing = await getLocalizedEntry('colophonClosing', locale)
+
+const { headline, action } = closing.data
+const contactHref = `${getRelativeLocaleUrl(locale)}#contact`
+---
+
+<section class="py-12 md:py-16">
+  <div class="wrapper">
+    <div class="mx-auto flex w-full max-w-2xl flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
+      <p data-enter="block" class="text-title text-pretty text-foreground">
+        {headline}
+      </p>
+      <a
+        href={contactHref}
+        class={cn(
+          buttonVariants({ variant: 'default', size: 'default' }),
+          'shrink-0',
+        )}
+      >
+        {action}
+      </a>
+    </div>
+  </div>
+</section>
