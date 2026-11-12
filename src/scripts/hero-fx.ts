@@ -8,6 +8,21 @@ attribute vec2 position;
 void main() { gl_Position = vec4(position, 0.0, 1.0); }
 `
 
+// Comet colors per skin, close to the text color: pale lavender and mauve on the dark
+// skin, the latte text and subtext-1 steps with a softer head glow on the light one
+const SKINS = {
+  dark: {
+    lavender: [0.706, 0.745, 0.996],
+    mauve: [0.796, 0.651, 0.969],
+    glow: 1.2,
+  },
+  light: {
+    lavender: [0.298, 0.31, 0.412],
+    mauve: [0.361, 0.373, 0.467],
+    glow: 0.5,
+  },
+} as const
+
 const HEADER = `
 precision highp float;
 uniform vec2 resolution;
@@ -15,8 +30,10 @@ uniform vec2 pointer;
 uniform float time;
 // fraction of the canvas width where the content column ends
 uniform float limit;
-const vec3 lavender = vec3(0.706, 0.745, 0.996);
-const vec3 mauve = vec3(0.796, 0.651, 0.969);
+// the comet colors and head glow follow the skin, see SKINS
+uniform vec3 lavender;
+uniform vec3 mauve;
+uniform float glowGain;
 float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
 `
 
@@ -52,7 +69,7 @@ void main() {
     float tail = step(0.0, along) * pow(1.0 - smoothstep(0.0, span, along), 1.5);
     float width = 1.0 / (across * across * 0.8 + 1.0);
     float glow = 1.0 / (pow(length(rel) * resolution.y * 0.3 / scale, 2.0) + 1.0);
-    float streak = (tail * width * 1.3 + glow * 1.2) * mix(0.35, 1.0, depth);
+    float streak = (tail * width * 1.3 + glow * glowGain) * mix(0.35, 1.0, depth);
     color += mix(mauve, lavender, tail) * streak;
     alpha += streak;
   }
@@ -106,6 +123,19 @@ export const bindHeroFx = () => {
   const pointerAt = gl.getUniformLocation(program, 'pointer')
   const timeAt = gl.getUniformLocation(program, 'time')
   const limitAt = gl.getUniformLocation(program, 'limit')
+  const lavenderAt = gl.getUniformLocation(program, 'lavender')
+  const mauveAt = gl.getUniformLocation(program, 'mauve')
+  const glowAt = gl.getUniformLocation(program, 'glowGain')
+
+  const paint = () => {
+    const skin =
+      SKINS[
+        document.documentElement.dataset.theme === 'light' ? 'light' : 'dark'
+      ]
+    gl.uniform3fv(lavenderAt, skin.lavender)
+    gl.uniform3fv(mauveAt, skin.mauve)
+    gl.uniform1f(glowAt, skin.glow)
+  }
 
   const pointer = { x: 0.5, y: 0.5 }
   const target = { x: 0.5, y: 0.5 }
@@ -157,14 +187,25 @@ export const bindHeroFx = () => {
     if (still && visible) draw()
   }
 
+  const themeObserver = new MutationObserver(() => {
+    paint()
+    if (still && visible) draw()
+  })
+
+  paint()
   resize()
   window.addEventListener('resize', refit)
+  themeObserver.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme'],
+  })
   hero.addEventListener('pointermove', follow)
   observer.observe(canvas)
 
   return () => {
     cancelAnimationFrame(frame)
     observer.disconnect()
+    themeObserver.disconnect()
     window.removeEventListener('resize', refit)
     hero.removeEventListener('pointermove', follow)
   }
