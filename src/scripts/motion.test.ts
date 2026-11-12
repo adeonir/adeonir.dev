@@ -123,6 +123,16 @@ it('starts each section with an id once a quarter of it is in view', async () =>
   expect(entries[0].options.amount).toBe(0.25)
 })
 
+it('starts a section taller than the viewport once a quarter of a screen of it is in view', async () => {
+  Object.defineProperty(at('about'), 'offsetHeight', { value: 3600 })
+  vi.stubGlobal('innerHeight', 900)
+  const { bindEnter } = await loadEnter()
+
+  bindEnter()
+
+  expect(entries[0].options.amount).toBe(0.0625)
+})
+
 it('starts each block of a section after the block before it', async () => {
   const { bindEnter } = await loadEnter()
 

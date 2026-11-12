@@ -49,8 +49,9 @@ const featured = sortByLaunch(
 
 <section id="projects" class="pt-16 pb-4 md:pt-20 md:pb-8">
   <div class="wrapper">
-    <div class="mt-12 grid grid-cols-1 gap-12 md:grid-cols-5">
-      <div class="flex flex-col gap-6 md:col-span-2">
+    <div class="@container mt-12 grid grid-cols-1 gap-12 md:grid-cols-5">
+      {/* 33.75cqw - 0.675rem + 50px is the height of one card (16:9 over 3 of 5 columns with 3rem gaps, plus 50px) and 11.25rem is the distance between the eyebrow and the last card, so the title and the stack release together */}
+      <div class="flex flex-col gap-6 self-start md:sticky md:top-28 md:col-span-2 md:min-h-[calc(33.75cqw+10.575rem+50px)]">
         <Eyebrow data-enter="block">{eyebrow}</Eyebrow>
         <h2 data-enter="block" class="text-display text-pretty text-foreground">
           {headline.map((segment) => (
@@ -69,13 +70,38 @@ const featured = sortByLaunch(
         >
           {body}
         </p>
+        {entries.length > 0 && (
+          <a
+            data-enter="block"
+            href={indexHref}
+            class={cn(
+              'group gap-2 self-start',
+              buttonVariants({ variant: 'link', size: 'inline' }),
+            )}
+          >
+            {seeAll}
+            <IconArrowRight className="size-4 shrink-0 transition-transform duration-200 motion-safe:group-hover:translate-x-1" />
+          </a>
+        )}
       </div>
-      <div class="md:col-span-3 md:pt-14">
+      <div class="[--stack-top:7rem] md:col-span-3 md:pt-17 md:[--stack-top:11.25rem]">
         {featured.length > 0 ? (
           <div class="flex flex-col gap-8">
-            {featured.map((project) => (
-              <ProjectCard {...project} />
+            {/* the padding gives every card the bottom edge of the last one, so the whole stack releases at once */}
+            {featured.map((project, index) => (
+              <div
+                data-stack-card
+                class="sticky origin-top"
+                style={`top: calc(var(--stack-top) + ${index} * 3.5rem); padding-bottom: calc(${featured.length - 1 - index} * 3.5rem); margin-top: ${index === 0 ? 0 : `calc(${featured.length - index} * -3.5rem)`}`}
+              >
+                <ProjectCard
+                  {...project}
+                  sizes="(min-width: 1280px) 740px, (min-width: 768px) 60vw, calc(100vw - 3rem)"
+                />
+              </div>
             ))}
+            {/* sticky ignores the parent's padding, so an element holds the last card in place */}
+            <div aria-hidden="true" class="h-16 md:h-32" />
           </div>
         ) : (
           <div
@@ -100,20 +126,6 @@ const featured = sortByLaunch(
                 ),
               )}
             </p>
-          </div>
-        )}
-        {entries.length > 0 && (
-          <div data-enter="block" class="mt-8 flex justify-end">
-            <a
-              href={indexHref}
-              class={cn(
-                'group gap-2',
-                buttonVariants({ variant: 'link', size: 'inline' }),
-              )}
-            >
-              {seeAll}
-              <IconArrowRight className="size-4 shrink-0 transition-transform duration-200 motion-safe:group-hover:translate-x-1" />
-            </a>
           </div>
         )}
       </div>

@@ -12,8 +12,13 @@ const EASE: [number, number, number, number] = [0.33, 1, 0.68, 1]
 // A block that holds rows hands over after this many steps, so the next block
 // starts on its own beat while the rows before it are still arriving.
 const GROUP_LEAD = 3
-// Share of the section in view that starts its entrance.
+// Share of the section in view that starts its entrance, capped at this share
+// of the viewport so a section taller than the screen does not wait for a
+// long scroll.
 const AMOUNT = 0.25
+
+const amountFor = (section: HTMLElement) =>
+  Math.min(AMOUNT, (AMOUNT * window.innerHeight) / section.offsetHeight)
 
 type Step = { element: HTMLElement; rise: number; delay: number }
 
@@ -92,7 +97,7 @@ export const bindEnter = () => {
             )
           }
         },
-        { amount: AMOUNT },
+        { amount: amountFor(section) },
       ),
     )
   }
