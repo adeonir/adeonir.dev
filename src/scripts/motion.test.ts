@@ -114,23 +114,16 @@ it('leaves an unmarked element and a section with no id alone', async () => {
   expect(at('loose').style.opacity).toBe('')
 })
 
-it('starts each section with an id once a quarter of it is in view', async () => {
+it('starts each section with an id once its first block crosses the line near the bottom of the viewport', async () => {
   const { bindEnter } = await loadEnter()
 
   bindEnter()
 
-  expect(entries.map(({ section }) => section.id)).toEqual(['about', 'stack'])
-  expect(entries[0].options.amount).toBe(0.25)
-})
-
-it('starts a section taller than the viewport once a quarter of a screen of it is in view', async () => {
-  Object.defineProperty(at('about'), 'offsetHeight', { value: 3600 })
-  vi.stubGlobal('innerHeight', 900)
-  const { bindEnter } = await loadEnter()
-
-  bindEnter()
-
-  expect(entries[0].options.amount).toBe(0.0625)
+  expect(entries.map(({ section }) => section.id)).toEqual([
+    'headline',
+    'tools',
+  ])
+  expect(entries[0].options).toEqual({ margin: '0px 0px -15% 0px', amount: 0 })
 })
 
 it('starts each block of a section after the block before it', async () => {
