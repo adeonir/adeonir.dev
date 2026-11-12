@@ -76,8 +76,7 @@ content:
 
     hero:
       display: 'Adeonir Kohl'
-      tagline: 'O design também acontece no código.'
-      description: 'Sou design engineer e trabalho no frontend, cuidando de cada detalhe da interface.'
+      tagline: 'Sou frontend engineer e levo o cuidado com o design para cada linha de código.'
       availability: 'Disponível para trabalho'
       actions:
         primary: 'Ver meu trabalho'

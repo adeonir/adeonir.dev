@@ -33,7 +33,6 @@ type AgentDocumentContent = {
   hero: {
     display: string
     tagline: string
-    description: string
   }
   projects: {
     headline: string
@@ -123,14 +122,12 @@ function serializeSocialLinks(
 function serializeMarkdown(content: AgentDocumentContent): string {
   return `# ${content.hero.display}
 
-> ${content.hero.tagline} ${content.hero.description}
+> ${content.hero.tagline}
 
 <a id="hero"></a>
 ## ${getSectionTitle(content, 'hero')}
 
 ${content.hero.tagline}
-
-${content.hero.description}
 
 <a id="about"></a>
 ## ${getSectionTitle(content, 'about')}
@@ -180,7 +177,7 @@ function serializeLlms(content: AgentDocumentContent, locale: Locale): string {
     hero: {
       title: getSectionTitle(content, 'hero'),
       linkTitle: content.hero.display,
-      description: `${content.hero.tagline} ${content.hero.description}`,
+      description: content.hero.tagline,
     },
     about: {
       title: getSectionTitle(content, 'about'),
@@ -209,7 +206,7 @@ function serializeLlms(content: AgentDocumentContent, locale: Locale): string {
 
   return `# ${content.hero.display}
 
-> ${content.hero.tagline} ${content.hero.description}
+> ${content.hero.tagline}
 
 ${agentDocumentSections
   .map((section) => {
@@ -254,7 +251,6 @@ async function getAgentDocumentContent(
     hero: {
       display: settings.data.siteName,
       tagline: joinSegments(heroData.tagline),
-      description: heroData.description,
     },
     projects: {
       headline: joinSegments(projectsData.headline),

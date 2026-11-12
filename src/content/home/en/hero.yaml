@@ -1,12 +1,12 @@
 display: 'Adeonir Kohl'
 tagline:
-  - text: 'Design'
+  - text: "I'm a frontend engineer, and I bring care for "
+  - text: 'design'
     highlight: true
-  - text: ' happens in '
+  - text: ' to every line of '
   - text: 'code'
     highlight: true
-  - text: ' too.'
-description: "I'm a design engineer working on the frontend, taking care of every detail of the interface."
+  - text: '.'
 availability:
   label: 'Available for work'
   top: 'Available'

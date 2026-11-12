@@ -26,7 +26,6 @@ const entriesByLocale = {
     },
     homeHero: {
       tagline: [{ text: 'Interfaces que ' }, { text: 'funcionam' }],
-      description: 'Construo produtos web.',
     },
     homeProjects: {
       headline: [{ text: 'Ideias ', highlight: true }, { text: 'no ar' }],
@@ -78,7 +77,6 @@ const entriesByLocale = {
     },
     homeHero: {
       tagline: [{ text: 'Interfaces that ' }, { text: 'work' }],
-      description: 'I build web products.',
     },
     homeProjects: {
       headline: [{ text: 'Ideas ', highlight: true }, { text: 'that shipped' }],

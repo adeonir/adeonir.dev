@@ -50,7 +50,7 @@ const featured = sortByLaunch(
   <div class="wrapper">
     <div class="@container mt-12 grid grid-cols-1 gap-12 md:grid-cols-5">
       <div class="flex flex-col gap-6 self-start md:sticky md:top-28 md:col-span-2 md:min-h-[calc(33.75cqw+6.325rem+50px)]">
-        <h2 data-enter="block" class="text-display text-pretty text-foreground">
+        <h2 class="text-display text-pretty text-foreground">
           {headline.map((segment) => (
             <>
               {segment.highlight ? (
@@ -61,15 +61,11 @@ const featured = sortByLaunch(
             </>
           ))}
         </h2>
-        <p
-          data-enter="block"
-          class="text-body leading-relaxed text-pretty text-muted-foreground"
-        >
+        <p class="text-body leading-relaxed text-pretty text-muted-foreground">
           {body}
         </p>
         {entries.length > 0 && (
           <a
-            data-enter="block"
             href={indexHref}
             class={cn(
               'group gap-2 self-start',
