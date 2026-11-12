@@ -40,6 +40,11 @@ function percentPlayed(audio: HTMLAudioElement) {
   return Math.min(100, (currentTime / duration) * 100)
 }
 
+function formatTime(seconds: number) {
+  const whole = Math.max(0, Math.round(seconds))
+  return `${Math.floor(whole / 60)}:${String(whole % 60).padStart(2, '0')}`
+}
+
 function pointerFraction(event: PointerEvent<HTMLElement>) {
   const { left, width } = event.currentTarget.getBoundingClientRect()
   if (width <= 0) return 0
@@ -60,7 +65,7 @@ function Bars({
   return (
     <div
       className={cn(
-        'flex h-full items-center gap-0.5',
+        'flex h-full items-center gap-1',
         fill !== undefined && 'absolute inset-0',
       )}
       style={
@@ -76,7 +81,7 @@ function Bars({
           // biome-ignore lint/suspicious/noArrayIndexKey: fixed-length list
           key={index}
           data-bar
-          className={cn('block w-0.75 rounded-full', className)}
+          className={cn('block min-h-0.75 w-0.75 rounded-full', className)}
           style={{ height: `${peak * 100}%` }}
         />
       ))}
@@ -105,7 +110,14 @@ export function NarrationControl({
   const pendingRef = useRef<number | null>(null)
   // the fraction under the pointer while a drag is in progress
   const [drag, setDrag] = useState<number | null>(null)
+  const [duration, setDuration] = useState<number | null>(null)
   const active = status === 'loading' || status === 'playing'
+
+  // the audio can load its metadata before hydration attaches the listener
+  useEffect(() => {
+    const audio = audioRef.current
+    if (audio && Number.isFinite(audio.duration)) setDuration(audio.duration)
+  }, [])
 
   useEffect(() => {
     if (active && current !== section) audioRef.current?.pause()
@@ -213,19 +225,20 @@ export function NarrationControl({
   }
 
   return (
-    <div className="inline-flex flex-col items-center gap-2">
-      <div
-        className={cn(
-          'inline-flex h-9 items-center gap-2.5 rounded-full border border-border ps-0.75 pe-3.5 transition-shadow',
-          'has-focus-visible:ring-2 has-focus-visible:ring-ring has-focus-visible:ring-offset-2 has-focus-visible:ring-offset-background',
-        )}
+    <div className="inline-flex flex-col items-start gap-2">
+      <span
+        id={labelId}
+        className="font-mono text-muted-foreground text-sm lowercase"
       >
+        {label}
+      </span>
+      <div className="inline-flex h-8 items-center gap-3">
         <Button
           type="button"
           variant="ghost"
           size="icon"
           className={cn(
-            'size-7 rounded-full bg-muted/60 hover:bg-primary/15 hover:shadow-none focus-visible:ring-0 focus-visible:ring-offset-0',
+            'size-8 rounded-full bg-muted hover:bg-primary/15 hover:shadow-none',
             active && 'bg-primary/15',
           )}
           aria-labelledby={labelId}
@@ -243,7 +256,7 @@ export function NarrationControl({
         <div
           aria-hidden="true"
           data-waveform
-          className="relative h-5.5 cursor-pointer touch-none"
+          className="relative h-6 cursor-pointer touch-none"
           onPointerDown={startDrag}
           onPointerMove={moveDrag}
           onPointerUp={endDrag}
@@ -257,23 +270,31 @@ export function NarrationControl({
             data-fill
           />
         </div>
+        {duration !== null && (
+          <span
+            aria-hidden="true"
+            className="font-mono text-muted-foreground text-sm tabular-nums"
+          >
+            {formatTime(
+              status === 'idle' ? duration : (duration * progress) / 100,
+            )}
+          </span>
+        )}
       </div>
-      <span
-        id={labelId}
-        className="light:text-neutral-foreground/85 text-neutral-foreground/80 text-sm"
-      >
-        {label}
-      </span>
       {/* biome-ignore lint/a11y/useMediaCaption: narration of on-page text */}
       <audio
         ref={audioRef}
         src={src}
-        preload="none"
+        preload="metadata"
         onPlaying={begin}
         onWaiting={() => setStatus('loading')}
         onPause={pause}
         onError={fail}
-        onLoadedMetadata={(event) => applyPending(event.currentTarget)}
+        onLoadedMetadata={(event) => {
+          const audio = event.currentTarget
+          if (Number.isFinite(audio.duration)) setDuration(audio.duration)
+          applyPending(audio)
+        }}
         onTimeUpdate={track}
         onDurationChange={track}
         onEnded={finish}
