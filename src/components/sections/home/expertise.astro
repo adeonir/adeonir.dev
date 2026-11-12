@@ -43,7 +43,7 @@ const { headline, body, items } = expertise.data
               open={index === 0}
               class="expertise-item group/item border-b border-border py-2"
             >
-              <summary class="group/summary flex cursor-pointer group-open/item:pointer-events-none list-none items-center justify-between gap-6 rounded-xl px-4 py-5 transition-[background-color,translate] duration-300 ease-out hover:bg-card focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none [&::-webkit-details-marker]:hidden">
+              <summary class="group/summary flex cursor-pointer group-open/item:pointer-events-none -mx-4 list-none items-center justify-between gap-6 rounded-xl px-4 py-5 transition-[background-color,translate] duration-300 ease-out hover:bg-card focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none [&::-webkit-details-marker]:hidden">
                 <span class="text-2xl font-semibold text-muted-foreground transition-[color,translate] duration-300 ease-out group-open/item:text-foreground group-hover/summary:translate-x-1 group-hover/summary:text-foreground sm:text-3xl">
                   {item.title}
                 </span>
@@ -54,7 +54,7 @@ const { headline, body, items } = expertise.data
                   <IconPlus className="size-5" />
                 </span>
               </summary>
-              <p class="max-w-prose px-4 pb-6 text-body leading-relaxed text-pretty text-muted-foreground">
+              <p class="max-w-prose pb-6 text-body leading-relaxed text-pretty text-muted-foreground">
                 {item.description}
               </p>
             </details>
