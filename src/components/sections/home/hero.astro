@@ -13,13 +13,13 @@ const { display, tagline, availability, actions } = hero.data
 
 <section
   id="hero"
-  class="relative flex min-h-[calc(100dvh-16rem)] flex-col justify-center pt-8 [--scale-in:0.98] motion-reduce:[--scale-in:1]"
+  class="relative flex min-h-[calc(100dvh-16rem)] overflow-x-clip flex-col justify-center pt-8 [--scale-in:0.98] motion-reduce:[--scale-in:1]"
 >
   <div class="wrapper relative flex flex-col items-start">
     <canvas
       data-hero-fx
       aria-hidden="true"
-      class="pointer-events-none absolute top-1/2 right-0 hidden h-[calc(50%+6rem)] w-3/5 md:block"
+      class="pointer-events-none absolute top-1/2 right-[calc((100%-100vw)/2)] hidden h-[calc(50%+6rem)] w-[calc(60%+(100vw-100%)/2)] md:block"
     ></canvas>
     <p class="mb-6 inline-flex animate-enter items-center gap-2 rounded-full border-2 border-border px-3 py-1 text-xs font-semibold tracking-widest text-muted-foreground uppercase [--blur-in:0px] sm:mb-8">
       <span aria-hidden="true" class="size-2 rounded-full bg-success"></span>

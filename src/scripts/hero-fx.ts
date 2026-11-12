@@ -13,6 +13,8 @@ precision highp float;
 uniform vec2 resolution;
 uniform vec2 pointer;
 uniform float time;
+// fraction of the canvas width where the content column ends
+uniform float limit;
 const vec3 lavender = vec3(0.706, 0.745, 0.996);
 const vec3 mauve = vec3(0.796, 0.651, 0.969);
 float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
@@ -43,7 +45,7 @@ void main() {
     // forward speed stretches the tail; a comet easing back keeps a short one
     float speed = max(cos(phase) * 0.5 + cos(time * 0.35), 0.0);
     float span = (0.25 + hash(vec2(k, 3.0)) * 0.3 + speed * 0.35) * scale * aspect.x;
-    vec2 head = vec2((0.6 + hash(vec2(k * 17.3, 41.9)) * 0.2 + sway + pan.x * scale) * aspect.x, lane);
+    vec2 head = vec2(limit * (0.65 + hash(vec2(k * 17.3, 41.9)) * 0.22 + (sway + pan.x * scale) * 0.6) * aspect.x, lane);
     vec2 rel = q - head;
     float along = -dot(rel, dir);
     float across = abs(dot(rel, vec2(-dir.y, dir.x))) * resolution.y / scale;
@@ -54,7 +56,8 @@ void main() {
     color += mix(mauve, lavender, tail) * streak;
     alpha += streak;
   }
-  float edge = 1.0 - smoothstep(0.35, 0.5, max(abs(uv.x - 0.5), abs(uv.y - 0.5)));
+  // tails fade out on the left; past the content column the comets fade out softly instead of stopping hard
+  float edge = smoothstep(0.0, 0.3, uv.x) * (1.0 - smoothstep(limit - 0.02, limit + 0.1, uv.x)) * (1.0 - smoothstep(0.35, 0.5, abs(uv.y - 0.5)));
   gl_FragColor = vec4(clamp(color * edge, 0.0, 1.0), clamp(alpha * edge, 0.0, 1.0));
 }
 `
@@ -102,6 +105,7 @@ export const bindHeroFx = () => {
   const resolution = gl.getUniformLocation(program, 'resolution')
   const pointerAt = gl.getUniformLocation(program, 'pointer')
   const timeAt = gl.getUniformLocation(program, 'time')
+  const limitAt = gl.getUniformLocation(program, 'limit')
 
   const pointer = { x: 0.5, y: 0.5 }
   const target = { x: 0.5, y: 0.5 }
@@ -112,6 +116,13 @@ export const bindHeroFx = () => {
     canvas.height = Math.round(canvas.clientHeight * scale)
     gl.viewport(0, 0, canvas.width, canvas.height)
     gl.uniform2f(resolution, canvas.width, canvas.height)
+    const wrapper = canvas.parentElement
+    if (!wrapper) return
+    const box = canvas.getBoundingClientRect()
+    const contentRight =
+      wrapper.getBoundingClientRect().right -
+      Number.parseFloat(getComputedStyle(wrapper).paddingRight)
+    gl.uniform1f(limitAt, box.width ? (contentRight - box.left) / box.width : 1)
   }
 
   const follow = (event: PointerEvent) => {
