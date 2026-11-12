@@ -41,7 +41,9 @@ const { name, category, stack, cover, coverAlt, href, sizes } = Astro.props
         <ul class="mt-2 flex h-7 flex-wrap gap-2 overflow-hidden">
           {stack.map((item) => (
             <li>
-              <Tag>{item}</Tag>
+              <Tag className="border border-border bg-transparent py-0.75">
+                {item}
+              </Tag>
             </li>
           ))}
         </ul>
