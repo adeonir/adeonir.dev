@@ -3,6 +3,7 @@ import { glob } from 'astro/loaders'
 import { colophonClosingSchema } from '~/schemas/colophon/closing'
 import { colophonMotivationSchema } from '~/schemas/colophon/motivation'
 import { colophonOpeningSchema } from '~/schemas/colophon/opening'
+import { colophonTechnologiesSchema } from '~/schemas/colophon/technologies'
 import { homeAboutSchema } from '~/schemas/home/about'
 import { homeContactSchema } from '~/schemas/home/contact'
 import { homeExpertiseSchema } from '~/schemas/home/expertise'
@@ -236,6 +237,15 @@ const colophonMotivation = defineCollection({
   schema: colophonMotivationSchema,
 })
 
+const colophonTechnologies = defineCollection({
+  loader: glob({
+    pattern: '*/technologies.yaml',
+    base: 'src/content/colophon',
+    generateId: localeId('colophonTechnologies'),
+  }),
+  schema: colophonTechnologiesSchema,
+})
+
 const colophonClosing = defineCollection({
   loader: glob({
     pattern: '*/closing.yaml',
@@ -269,5 +279,6 @@ export const collections = {
   projectsList,
   colophonOpening,
   colophonMotivation,
+  colophonTechnologies,
   colophonClosing,
 }
