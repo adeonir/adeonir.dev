@@ -25,12 +25,9 @@ const entriesByLocale = {
       },
     },
     homeHero: {
-      eyebrow: 'Design engineer',
       tagline: [{ text: 'Interfaces que ' }, { text: 'funcionam' }],
-      description: 'Construo produtos web.',
     },
     homeProjects: {
-      eyebrow: 'Projetos em destaque',
       headline: [{ text: 'Ideias ', highlight: true }, { text: 'no ar' }],
       body: 'Alguns projetos que ajudei a construir.',
       seeAll: 'Ver todos os projetos',
@@ -41,13 +38,11 @@ const entriesByLocale = {
       ],
     },
     homeAbout: {
-      eyebrow: 'Sobre',
       headline: [{ text: 'Quem eu sou' }],
       body: 'De onde eu venho e no que trabalho hoje.',
       bio: [[{ text: 'Trabalho com frontend há anos.' }]],
     },
     homeExpertise: {
-      eyebrow: 'Especialidades',
       headline: [{ text: 'O que eu ' }, { text: 'faço', highlight: true }],
       body: 'O que eu faço no dia a dia.',
       items: [
@@ -81,12 +76,9 @@ const entriesByLocale = {
       },
     },
     homeHero: {
-      eyebrow: 'Design engineer',
       tagline: [{ text: 'Interfaces that ' }, { text: 'work' }],
-      description: 'I build web products.',
     },
     homeProjects: {
-      eyebrow: 'Featured work',
       headline: [{ text: 'Ideas ', highlight: true }, { text: 'that shipped' }],
       body: 'A few projects I helped build.',
       seeAll: 'See all projects',
@@ -97,13 +89,11 @@ const entriesByLocale = {
       ],
     },
     homeAbout: {
-      eyebrow: 'About',
       headline: [{ text: 'Who I am' }],
       body: 'Where I come from and what I work on today.',
       bio: [[{ text: 'I have worked on frontend for years.' }]],
     },
     homeExpertise: {
-      eyebrow: 'Capabilities',
       headline: [{ text: 'What I ' }, { text: 'do', highlight: true }],
       body: 'What I do day to day.',
       items: [

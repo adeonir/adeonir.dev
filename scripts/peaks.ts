@@ -14,26 +14,37 @@ const PEAKS = 'src/data/peaks.json'
 
 type Peaks = Record<string, number[]>
 
+// Lowest bar height, so a quiet stretch still shows a bar
+const FLOOR = 0.25
+
+// Each bar is the RMS of its stretch rather than its loudest sample, because
+// every second of speech holds one loud syllable and the maximum flattens the
+// bars. The range is stretched between the quietest and loudest stretch, so
+// the emphasis in the voice reads as height.
 export function summarizePeaks(
   channelData: Float32Array[],
   count: number,
 ): number[] {
   const length = channelData[0]?.length ?? 0
-  const loudest = Array.from({ length: count }, (_, bucket) => {
+  const energy = Array.from({ length: count }, (_, bucket) => {
     const start = Math.floor((bucket * length) / count)
     const end = Math.floor(((bucket + 1) * length) / count)
-    let max = 0
+    let sum = 0
+    let samples = 0
     for (const channel of channelData) {
       for (let index = start; index < end; index++) {
-        max = Math.max(max, Math.abs(channel[index] ?? 0))
+        sum += (channel[index] ?? 0) ** 2
+        samples++
       }
     }
-    return max
+    return samples > 0 ? Math.sqrt(sum / samples) : 0
   })
-  const top = Math.max(...loudest)
-  return loudest.map((value) =>
-    top > 0 ? Math.round((value / top) * 100) / 100 : 0,
-  )
+  const low = Math.min(...energy)
+  const range = Math.max(...energy) - low
+  return energy.map((value) => {
+    const share = range > 0 ? (value - low) / range : 1
+    return Math.round((FLOOR + (1 - FLOOR) * share) * 100) / 100
+  })
 }
 
 async function decodePeaks(audio: string): Promise<number[]> {
@@ -69,7 +80,7 @@ export async function generatePeaks(): Promise<void> {
     for (const section of narrationSections) {
       const file = await narrationFile(locale, section, spoken[section])
       const kept = existing[file]
-      if (kept?.length === PEAKS_BARS) {
+      if (kept?.length === PEAKS_BARS && !process.argv.includes('--force')) {
         peaks[file] = kept
         continue
       }

@@ -15,11 +15,16 @@ const entries = supportedLocales.flatMap((locale) =>
 )
 
 describe('summarizePeaks', () => {
-  it('scales the loudest bucket to one', () => {
-    const left = Float32Array.from([0.1, -0.2, 0.05, 0.1])
-    const right = Float32Array.from([0.1, 0.1, -0.4, 0.05])
+  it('stretches bars from the floor at the quietest stretch to one at the loudest', () => {
+    const left = Float32Array.from([0.1, -0.1, 0.25, -0.25, 0.3, -0.3])
 
-    expect(summarizePeaks([left, right], 2)).toEqual([0.5, 1])
+    expect(summarizePeaks([left], 3)).toEqual([0.25, 0.81, 1])
+  })
+
+  it('gives every bar full height when the audio holds one level', () => {
+    const left = Float32Array.from([0.2, -0.2, 0.2, -0.2])
+
+    expect(summarizePeaks([left], 2)).toEqual([1, 1])
   })
 })
 

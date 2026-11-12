@@ -9,9 +9,9 @@ const { entry } = Astro.props
 const { Content } = await render(entry)
 ---
 
-<section class="pt-16">
+<section id="project-body" class="pt-16">
   <div class="wrapper">
-    <div class="prose max-w-none">
+    <div data-enter="block" class="prose max-w-none">
       <Content />
     </div>
   </div>

@@ -32,12 +32,9 @@ type AgentDocumentContent = {
   }
   hero: {
     display: string
-    eyebrow: string
     tagline: string
-    description: string
   }
   projects: {
-    eyebrow: string
     headline: string
     body: string
     seeAll: string
@@ -46,13 +43,11 @@ type AgentDocumentContent = {
     items: AgentDocumentProject[]
   }
   about: {
-    eyebrow: string
     headline: string
     body: string
     bio: TextSegment[][]
   }
   expertise: {
-    eyebrow: string
     headline: string
     body: string
     items: ExpertiseItem[]
@@ -127,21 +122,15 @@ function serializeSocialLinks(
 function serializeMarkdown(content: AgentDocumentContent): string {
   return `# ${content.hero.display}
 
-> ${content.hero.tagline} ${content.hero.description}
+> ${content.hero.tagline}
 
 <a id="hero"></a>
 ## ${getSectionTitle(content, 'hero')}
 
-${content.hero.eyebrow}
-
 ${content.hero.tagline}
-
-${content.hero.description}
 
 <a id="about"></a>
 ## ${getSectionTitle(content, 'about')}
-
-${content.about.eyebrow}
 
 ### ${content.about.headline}
 
@@ -151,8 +140,6 @@ ${content.about.bio.map(serializeLinkedSegments).join('\n\n')}
 
 <a id="projects"></a>
 ## ${getSectionTitle(content, 'projects')}
-
-${content.projects.eyebrow}
 
 ### ${content.projects.headline}
 
@@ -164,8 +151,6 @@ ${content.projects.items.length > 0 ? serializeProjects(content.projects.items) 
 
 <a id="expertise"></a>
 ## ${getSectionTitle(content, 'expertise')}
-
-${content.expertise.eyebrow}
 
 ### ${content.expertise.headline}
 
@@ -192,7 +177,7 @@ function serializeLlms(content: AgentDocumentContent, locale: Locale): string {
     hero: {
       title: getSectionTitle(content, 'hero'),
       linkTitle: content.hero.display,
-      description: `${content.hero.tagline} ${content.hero.description}`,
+      description: content.hero.tagline,
     },
     about: {
       title: getSectionTitle(content, 'about'),
@@ -221,7 +206,7 @@ function serializeLlms(content: AgentDocumentContent, locale: Locale): string {
 
   return `# ${content.hero.display}
 
-> ${content.hero.tagline} ${content.hero.description}
+> ${content.hero.tagline}
 
 ${agentDocumentSections
   .map((section) => {
@@ -265,12 +250,9 @@ async function getAgentDocumentContent(
     agentDocument: settings.data.agentDocument,
     hero: {
       display: settings.data.siteName,
-      eyebrow: heroData.eyebrow,
       tagline: joinSegments(heroData.tagline),
-      description: heroData.description,
     },
     projects: {
-      eyebrow: projectsData.eyebrow,
       headline: joinSegments(projectsData.headline),
       body: projectsData.body,
       seeAll: projectsData.seeAll,
@@ -293,13 +275,11 @@ async function getAgentDocumentContent(
       }),
     },
     about: {
-      eyebrow: aboutData.eyebrow,
       headline: joinSegments(aboutData.headline),
       body: aboutData.body,
       bio: aboutData.bio,
     },
     expertise: {
-      eyebrow: expertiseData.eyebrow,
       headline: joinSegments(expertiseData.headline),
       body: expertiseData.body,
       items: expertiseData.items,

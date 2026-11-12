@@ -1,7 +1,6 @@
 import { z } from 'astro/zod'
 
 export const homeHeroSchema = z.object({
-  eyebrow: z.string().min(1),
   display: z.string().min(1),
   tagline: z
     .array(
@@ -11,11 +10,8 @@ export const homeHeroSchema = z.object({
       }),
     )
     .min(1),
-  description: z.string().min(1),
   availability: z.object({
     label: z.string().min(1),
-    top: z.string().min(1),
-    bottom: z.string().min(1),
   }),
   actions: z.object({
     primary: z.object({

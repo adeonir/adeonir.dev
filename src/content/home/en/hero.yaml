@@ -1,17 +1,14 @@
-eyebrow: 'Frontend Engineer'
 display: 'Adeonir Kohl'
 tagline:
-  - text: 'Design'
-    highlight: true
-  - text: ' happens in '
+  - text: "I'm a frontend engineer, and I give every line of "
   - text: 'code'
     highlight: true
-  - text: ' too.'
-description: "I'm a design engineer working on the frontend, taking care of every detail of the interface."
+  - text: ' the same care I put into '
+  - text: 'design'
+    highlight: true
+  - text: '.'
 availability:
   label: 'Available for work'
-  top: 'Available'
-  bottom: 'for work'
 actions:
   primary:
     label: 'See my projects'

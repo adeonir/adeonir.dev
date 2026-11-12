@@ -1,0 +1,214 @@
+import { onVisit } from '~/scripts/visit'
+
+// A horde of comets crossing the empty side of the hero, each at its own
+// depth, so the near ones read wider, brighter, and faster than the far ones.
+
+const VERTEX = `
+attribute vec2 position;
+void main() { gl_Position = vec4(position, 0.0, 1.0); }
+`
+
+// Comet colors per skin, close to the text color: pale lavender and mauve on the dark
+// skin, the latte text and subtext-1 steps with a softer head glow on the light one
+const SKINS = {
+  dark: {
+    lavender: [0.706, 0.745, 0.996],
+    mauve: [0.796, 0.651, 0.969],
+    glow: 1.2,
+  },
+  light: {
+    lavender: [0.298, 0.31, 0.412],
+    mauve: [0.361, 0.373, 0.467],
+    glow: 0.5,
+  },
+} as const
+
+const HEADER = `
+precision highp float;
+uniform vec2 resolution;
+uniform vec2 pointer;
+uniform float time;
+// fraction of the canvas width where the content column ends
+uniform float limit;
+// the comet colors and head glow follow the skin, see SKINS
+uniform vec3 lavender;
+uniform vec3 mauve;
+uniform float glowGain;
+float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
+`
+
+const FRAGMENT = `
+void main() {
+  vec2 aspect = vec2(resolution.x / resolution.y, 1.0);
+  vec2 uv = gl_FragCoord.xy / resolution;
+  vec2 q = uv * aspect;
+  vec3 color = vec3(0.0);
+  float alpha = 0.0;
+  // the whole group travels together, and each comet runs ahead or behind it
+  float group = 0.18 * sin(time * 0.35);
+  // the cursor pans the view: near comets shift more than far ones
+  vec2 pan = (clamp(pointer, -0.5, 1.5) - 0.5) * vec2(0.08, 0.1);
+  for (int i = 0; i < 12; i++) {
+    float k = float(i);
+    vec2 dir = vec2(1.0, 0.0);
+    // fixed depth, 0 far and 1 near: by parallax a near comet is wider, brighter, and moves faster
+    float depth = hash(vec2(k * 3.7, 9.0));
+    float scale = mix(0.45, 1.0, depth);
+    float drift = 0.12 * sin(time * (0.15 + hash(vec2(k, 6.0)) * 0.2) + k * 1.7);
+    float lane = 0.2 + hash(vec2(k * 7.7, 3.1)) * 0.6 + drift + pan.y * scale;
+    float rate = (0.5 + hash(vec2(k, 4.0)) * 0.6) * scale;
+    float phase = time * rate + k * 2.3;
+    float sway = (group + 0.1 * sin(phase)) * scale;
+    // forward speed stretches the tail; a comet easing back keeps a short one
+    float speed = max(cos(phase) * 0.5 + cos(time * 0.35), 0.0);
+    float span = (0.25 + hash(vec2(k, 3.0)) * 0.3 + speed * 0.35) * scale * aspect.x;
+    vec2 head = vec2(limit * (0.65 + hash(vec2(k * 17.3, 41.9)) * 0.22 + (sway + pan.x * scale) * 0.6) * aspect.x, lane);
+    vec2 rel = q - head;
+    float along = -dot(rel, dir);
+    float across = abs(dot(rel, vec2(-dir.y, dir.x))) * resolution.y / scale;
+    float tail = step(0.0, along) * pow(1.0 - smoothstep(0.0, span, along), 1.5);
+    float width = 1.0 / (across * across * 0.8 + 1.0);
+    float glow = 1.0 / (pow(length(rel) * resolution.y * 0.3 / scale, 2.0) + 1.0);
+    float streak = (tail * width * 1.3 + glow * glowGain) * mix(0.35, 1.0, depth);
+    color += mix(mauve, lavender, tail) * streak;
+    alpha += streak;
+  }
+  // tails fade out on the left; past the content column the comets fade out softly instead of stopping hard
+  float edge = smoothstep(0.0, 0.3, uv.x) * (1.0 - smoothstep(limit - 0.02, limit + 0.1, uv.x)) * (1.0 - smoothstep(0.35, 0.5, abs(uv.y - 0.5)));
+  gl_FragColor = vec4(clamp(color * edge, 0.0, 1.0), clamp(alpha * edge, 0.0, 1.0));
+}
+`
+
+const compile = (gl: WebGLRenderingContext, type: number, source: string) => {
+  const shader = gl.createShader(type)
+  if (!shader) return null
+  gl.shaderSource(shader, source)
+  gl.compileShader(shader)
+  if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+    console.error(gl.getShaderInfoLog(shader))
+    return null
+  }
+  return shader
+}
+
+export const bindHeroFx = () => {
+  const canvas = document.querySelector<HTMLCanvasElement>('[data-hero-fx]')
+  const hero = canvas?.closest('section')
+  if (!canvas || !hero) return
+
+  const gl = canvas.getContext('webgl', { premultipliedAlpha: true })
+  if (!gl) return
+
+  const vertex = compile(gl, gl.VERTEX_SHADER, VERTEX)
+  const fragment = compile(gl, gl.FRAGMENT_SHADER, HEADER + FRAGMENT)
+  const program = gl.createProgram()
+  if (!vertex || !fragment || !program) return
+  gl.attachShader(program, vertex)
+  gl.attachShader(program, fragment)
+  gl.linkProgram(program)
+  // biome-ignore lint/correctness/useHookAtTopLevel: WebGL call, not a React hook
+  gl.useProgram(program)
+
+  gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer())
+  gl.bufferData(
+    gl.ARRAY_BUFFER,
+    new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]),
+    gl.STATIC_DRAW,
+  )
+  const position = gl.getAttribLocation(program, 'position')
+  gl.enableVertexAttribArray(position)
+  gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0)
+
+  const resolution = gl.getUniformLocation(program, 'resolution')
+  const pointerAt = gl.getUniformLocation(program, 'pointer')
+  const timeAt = gl.getUniformLocation(program, 'time')
+  const limitAt = gl.getUniformLocation(program, 'limit')
+  const lavenderAt = gl.getUniformLocation(program, 'lavender')
+  const mauveAt = gl.getUniformLocation(program, 'mauve')
+  const glowAt = gl.getUniformLocation(program, 'glowGain')
+
+  const paint = () => {
+    const skin =
+      SKINS[
+        document.documentElement.dataset.theme === 'light' ? 'light' : 'dark'
+      ]
+    gl.uniform3fv(lavenderAt, skin.lavender)
+    gl.uniform3fv(mauveAt, skin.mauve)
+    gl.uniform1f(glowAt, skin.glow)
+  }
+
+  const pointer = { x: 0.5, y: 0.5 }
+  const target = { x: 0.5, y: 0.5 }
+
+  const resize = () => {
+    const scale = Math.min(window.devicePixelRatio, 1.5)
+    canvas.width = Math.round(canvas.clientWidth * scale)
+    canvas.height = Math.round(canvas.clientHeight * scale)
+    gl.viewport(0, 0, canvas.width, canvas.height)
+    gl.uniform2f(resolution, canvas.width, canvas.height)
+    const wrapper = canvas.parentElement
+    if (!wrapper) return
+    const box = canvas.getBoundingClientRect()
+    const contentRight =
+      wrapper.getBoundingClientRect().right -
+      Number.parseFloat(getComputedStyle(wrapper).paddingRight)
+    gl.uniform1f(limitAt, box.width ? (contentRight - box.left) / box.width : 1)
+  }
+
+  const follow = (event: PointerEvent) => {
+    const box = canvas.getBoundingClientRect()
+    target.x = (event.clientX - box.left) / box.width
+    target.y = 1 - (event.clientY - box.top) / box.height
+  }
+
+  const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  const start = performance.now()
+  let frame = 0
+  let visible = true
+
+  const draw = () => {
+    pointer.x += (target.x - pointer.x) * 0.05
+    pointer.y += (target.y - pointer.y) * 0.05
+    gl.uniform2f(pointerAt, pointer.x, pointer.y)
+    gl.uniform1f(timeAt, (performance.now() - start) / 1000)
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4)
+    if (!still && visible) frame = requestAnimationFrame(draw)
+  }
+
+  const observer = new IntersectionObserver(([entry]) => {
+    visible = entry?.isIntersecting ?? false
+    cancelAnimationFrame(frame)
+    if (visible) frame = requestAnimationFrame(draw)
+  })
+
+  // a resize clears the drawing buffer; a still canvas has no next frame to repaint it
+  const refit = () => {
+    resize()
+    if (still && visible) draw()
+  }
+
+  const themeObserver = new MutationObserver(() => {
+    paint()
+    if (still && visible) draw()
+  })
+
+  paint()
+  resize()
+  window.addEventListener('resize', refit)
+  themeObserver.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme'],
+  })
+  hero.addEventListener('pointermove', follow)
+  observer.observe(canvas)
+
+  return () => {
+    cancelAnimationFrame(frame)
+    observer.disconnect()
+    themeObserver.disconnect()
+    window.removeEventListener('resize', refit)
+    hero.removeEventListener('pointermove', follow)
+  }
+}
+
+onVisit(bindHeroFx)

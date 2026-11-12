@@ -2,46 +2,53 @@
 import type { ImageMetadata } from 'astro'
 import { Image } from 'astro:assets'
 
+import { Tag } from '~/components/ui/tag'
 import IconArrowRight from '~icons/tabler/arrow-right'
 
 interface Props {
   name: string
   category: string
-  summary: string
+  stack: string[]
   cover: ImageMetadata
   coverAlt: string
   href: string
+  sizes: string
 }
 
-const { name, category, summary, cover, coverAlt, href } = Astro.props
+const { name, category, stack, cover, coverAlt, href, sizes } = Astro.props
 ---
 
 <a
   href={href}
-  class="group block rounded-2xl transition-shadow duration-200 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+  class="group @container block rounded-2xl focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
 >
-  <article
-    data-enter="block"
-    class="relative isolate flex aspect-video overflow-hidden rounded-2xl border border-border"
-  >
+  <article class="relative isolate flex h-[calc(56.25cqw+190px)] flex-col justify-end overflow-hidden rounded-2xl border border-border/50 bg-card shadow-[0_-12px_32px_-8px_rgb(0_0_0/0.5)] light:shadow-[0_-12px_32px_-8px_rgb(0_0_0/0.25)] sm:h-[calc(56.25cqw+100px)]">
     <Image
       src={cover}
       alt={coverAlt}
       loading="lazy"
       decoding="async"
       widths={[480, 640, 960, 1280]}
-      sizes="(min-width: 768px) 640px, calc(100vw - 3rem)"
-      class="absolute inset-0 object-cover transition-transform duration-500 ease-out motion-safe:group-focus-within:scale-103 motion-safe:group-hover:scale-103"
+      sizes={sizes}
+      class="absolute inset-x-0 top-0 -z-10 h-auto w-full mask-[linear-gradient(to_bottom,rgb(0_0_0/1)_20%,rgb(0_0_0/0.95)_31%,rgb(0_0_0/0.82)_41%,rgb(0_0_0/0.62)_52%,rgb(0_0_0/0.4)_63%,rgb(0_0_0/0.2)_72%,rgb(0_0_0/0.08)_81%,rgb(0_0_0/0.02)_87%,rgb(0_0_0/0)_93%)] transition-transform duration-500 ease-out motion-safe:group-focus-within:scale-103 motion-safe:group-hover:scale-103"
     />
-    <div class="ml-auto flex h-full w-46/100 flex-col justify-end gap-2 bg-linear-to-t from-sunken to-sunken/50 to-50% p-6 backdrop-blur-sm">
-      <IconArrowRight className="absolute top-6 right-6 size-5 text-foreground transition-[color,transform,translate] duration-200 motion-safe:group-focus-within:translate-x-1 motion-safe:group-hover:translate-x-2" />
-      <p class="font-mono text-xs tracking-widest text-foreground uppercase">
-        {category}
-      </p>
-      <h3 class="text-title font-bold text-pretty text-foreground">{name}</h3>
-      <p class="line-clamp-2 text-caption text-pretty text-muted-foreground/80">
-        {summary}
-      </p>
+    <div class="flex items-end justify-between gap-6 p-6">
+      <div class="flex flex-col gap-2">
+        <p class="font-mono text-xs tracking-widest text-foreground uppercase">
+          {category}
+        </p>
+        <h3 class="text-title font-bold text-pretty text-foreground">{name}</h3>
+        <ul class="mt-2 flex h-7 flex-wrap gap-2 overflow-hidden">
+          {stack.map((item) => (
+            <li>
+              <Tag className="border border-border bg-transparent py-0.75">
+                {item}
+              </Tag>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <IconArrowRight className="mb-1 size-5 shrink-0 text-foreground transition-[color,translate] duration-200 motion-safe:group-focus-within:translate-x-1 motion-safe:group-hover:translate-x-2" />
     </div>
   </article>
 </a>

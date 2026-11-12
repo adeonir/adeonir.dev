@@ -25,6 +25,7 @@ type NarrationControlProps = {
   label: string
   peaks: number[]
   error: { title: string; description: string }
+  variant?: 'full' | 'compact'
 }
 
 type Status = 'idle' | 'loading' | 'playing' | 'paused'
@@ -38,6 +39,11 @@ function percentPlayed(audio: HTMLAudioElement) {
   const { currentTime, duration } = audio
   if (!Number.isFinite(duration) || duration <= 0) return 0
   return Math.min(100, (currentTime / duration) * 100)
+}
+
+function formatTime(seconds: number) {
+  const whole = Math.max(0, Math.round(seconds))
+  return `${Math.floor(whole / 60)}:${String(whole % 60).padStart(2, '0')}`
 }
 
 function pointerFraction(event: PointerEvent<HTMLElement>) {
@@ -76,7 +82,7 @@ function Bars({
           // biome-ignore lint/suspicious/noArrayIndexKey: fixed-length list
           key={index}
           data-bar
-          className={cn('block w-0.75 rounded-full', className)}
+          className={cn('block min-h-0.75 w-0.75 rounded-full', className)}
           style={{ height: `${peak * 100}%` }}
         />
       ))}
@@ -91,6 +97,7 @@ export function NarrationControl({
   label,
   peaks,
   error,
+  variant = 'full',
 }: NarrationControlProps) {
   const labelId = useId()
   const audioRef = useRef<HTMLAudioElement>(null)
@@ -105,7 +112,14 @@ export function NarrationControl({
   const pendingRef = useRef<number | null>(null)
   // the fraction under the pointer while a drag is in progress
   const [drag, setDrag] = useState<number | null>(null)
+  const [duration, setDuration] = useState<number | null>(null)
   const active = status === 'loading' || status === 'playing'
+
+  // the audio can load its metadata before hydration attaches the listener
+  useEffect(() => {
+    const audio = audioRef.current
+    if (audio && Number.isFinite(audio.duration)) setDuration(audio.duration)
+  }, [])
 
   useEffect(() => {
     if (active && current !== section) audioRef.current?.pause()
@@ -212,72 +226,107 @@ export function NarrationControl({
     record('narration-completed')
   }
 
-  return (
-    <div className="inline-flex flex-col items-center gap-2">
-      <div
-        className={cn(
-          'inline-flex h-9 items-center gap-2.5 rounded-full border border-border ps-0.75 pe-3.5 transition-shadow',
-          'has-focus-visible:ring-2 has-focus-visible:ring-ring has-focus-visible:ring-offset-2 has-focus-visible:ring-offset-background',
-        )}
-      >
-        <Button
-          type="button"
-          variant="ghost"
-          size="icon"
-          className={cn(
-            'size-7 rounded-full bg-muted/60 hover:bg-primary/15 hover:shadow-none focus-visible:ring-0 focus-visible:ring-offset-0',
-            active && 'bg-primary/15',
-          )}
-          aria-labelledby={labelId}
-          aria-pressed={status === 'playing'}
-          onClick={toggle}
-        >
-          {status === 'loading' ? (
-            <IconLoader className="size-3.5 text-primary motion-safe:animate-spin motion-reduce:animate-pulse" />
-          ) : status === 'playing' ? (
-            <IconPlayerPause className="size-3.5 text-primary" />
-          ) : (
-            <IconPlayerPlay className="ms-0.5 size-3.5" />
-          )}
-        </Button>
-        <div
-          aria-hidden="true"
-          data-waveform
-          className="relative h-5.5 cursor-pointer touch-none"
-          onPointerDown={startDrag}
-          onPointerMove={moveDrag}
-          onPointerUp={endDrag}
-          onPointerCancel={() => setDrag(null)}
-        >
-          <Bars peaks={peaks} className="bg-neutral" />
-          <Bars
-            peaks={peaks}
-            className="bg-primary"
-            fill={drag === null ? progress : drag * 100}
-            data-fill
-          />
-        </div>
+  const time = duration !== null && (
+    <span
+      aria-hidden="true"
+      className="font-mono text-muted-foreground text-sm tabular-nums"
+    >
+      {formatTime(status === 'idle' ? duration : (duration * progress) / 100)}
+    </span>
+  )
+
+  const audioElement = (
+    // biome-ignore lint/a11y/useMediaCaption: narration of on-page text
+    <audio
+      ref={audioRef}
+      src={src}
+      preload="metadata"
+      onPlaying={begin}
+      onWaiting={() => setStatus('loading')}
+      onPause={pause}
+      onError={fail}
+      onLoadedMetadata={(event) => {
+        const audio = event.currentTarget
+        if (Number.isFinite(audio.duration)) setDuration(audio.duration)
+        applyPending(audio)
+      }}
+      onTimeUpdate={track}
+      onDurationChange={track}
+      onEnded={finish}
+    />
+  )
+
+  const button = (
+    <Button
+      type="button"
+      variant="ghost"
+      size="icon"
+      className={cn(
+        'size-8 shrink-0 rounded-full bg-muted hover:bg-primary/15 hover:shadow-none',
+        active && 'bg-primary/15',
+      )}
+      aria-labelledby={labelId}
+      aria-pressed={status === 'playing'}
+      onClick={toggle}
+    >
+      {status === 'loading' ? (
+        <IconLoader className="size-3.5 text-primary motion-safe:animate-spin motion-reduce:animate-pulse" />
+      ) : status === 'playing' ? (
+        <IconPlayerPause className="size-3.5 text-primary" />
+      ) : (
+        <IconPlayerPlay className="ms-0.5 size-3.5" />
+      )}
+    </Button>
+  )
+
+  const waveform = (
+    <div
+      aria-hidden="true"
+      data-waveform
+      className="relative h-6 cursor-pointer touch-none"
+      onPointerDown={startDrag}
+      onPointerMove={moveDrag}
+      onPointerUp={endDrag}
+      onPointerCancel={() => setDrag(null)}
+    >
+      <Bars peaks={peaks} className="bg-neutral" />
+      <Bars
+        peaks={peaks}
+        className="bg-primary"
+        fill={drag === null ? progress : drag * 100}
+        data-fill
+      />
+    </div>
+  )
+
+  if (variant === 'compact') {
+    return (
+      <div className="inline-flex h-8 items-center gap-3">
+        <span id={labelId} className="sr-only">
+          {label}
+        </span>
+        {button}
+        {waveform}
+        {time}
+        {audioElement}
       </div>
+    )
+  }
+
+  return (
+    <div className="inline-flex flex-col items-start gap-2">
       <span
         id={labelId}
-        className="light:text-neutral-foreground/85 text-neutral-foreground/80 text-sm"
+        className="font-mono text-muted-foreground text-sm lowercase"
       >
         {label}
       </span>
-      {/* biome-ignore lint/a11y/useMediaCaption: narration of on-page text */}
-      <audio
-        ref={audioRef}
-        src={src}
-        preload="none"
-        onPlaying={begin}
-        onWaiting={() => setStatus('loading')}
-        onPause={pause}
-        onError={fail}
-        onLoadedMetadata={(event) => applyPending(event.currentTarget)}
-        onTimeUpdate={track}
-        onDurationChange={track}
-        onEnded={finish}
-      />
+      <div className="inline-flex h-8 items-center gap-3">
+        {button}
+        {waveform}
+        {time}
+      </div>
+      {audioElement}
     </div>
   )
 }

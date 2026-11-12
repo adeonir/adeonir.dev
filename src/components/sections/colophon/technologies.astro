@@ -1,31 +1,27 @@
 ---
 import { parseLocale } from '~/helpers/locale'
+import { Link } from '~/components/ui/link'
 import { getLocalizedEntry } from '~/services/localized'
 
 const locale = parseLocale(Astro.currentLocale)
 const technologies = await getLocalizedEntry('colophonTechnologies', locale)
 
 const { headline, groups } = technologies.data
-
-const isExternal = (href: string) => href.startsWith('http')
 ---
 
-<section id="technologies" class="py-12">
+<section id="technologies" class="pt-8 pb-12 md:pt-16">
   <div class="wrapper">
     <div class="mx-auto flex w-full max-w-4xl flex-col gap-7">
-      <h2 data-enter="block" class="text-heading text-foreground">
-        <span class="mr-2 text-secondary" aria-hidden="true">
-          #
-        </span>
+      <h2 data-enter="block" class="mt-0 text-heading text-foreground">
         {headline}
       </h2>
-      <div class="flex flex-col border-b border-border">
+      <div class="flex flex-col">
         {groups.map((group) => (
           <div
             data-enter="block"
-            class="flex flex-col gap-2 border-t border-border py-7 md:flex-row md:gap-12"
+            class="flex flex-col gap-2 border-t border-border py-7 first:border-t-0 first:pt-0 md:flex-row md:gap-12"
           >
-            <h3 class="text-label text-muted-foreground uppercase md:mt-1.5 md:w-40 md:shrink-0">
+            <h3 class="text-label text-muted-foreground uppercase md:mt-1.5 md:w-28 md:shrink-0">
               {group.label}
             </h3>
             <div class="flex max-w-2xl flex-col gap-4 text-body leading-relaxed text-muted-foreground">
@@ -33,18 +29,9 @@ const isExternal = (href: string) => href.startsWith('http')
                 <p class="text-pretty">
                   {paragraph.map((segment) =>
                     segment.href ? (
-                      <a
-                        href={segment.href}
-                        target={isExternal(segment.href) ? '_blank' : undefined}
-                        rel={
-                          isExternal(segment.href)
-                            ? 'noopener noreferrer'
-                            : undefined
-                        }
-                        class="font-medium text-primary underline underline-offset-4"
-                      >
+                      <Link href={segment.href} size="large">
                         {segment.text}
-                      </a>
+                      </Link>
                     ) : (
                       segment.text
                     ),

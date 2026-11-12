@@ -12,8 +12,10 @@ const EASE: [number, number, number, number] = [0.33, 1, 0.68, 1]
 // A block that holds rows hands over after this many steps, so the next block
 // starts on its own beat while the rows before it are still arriving.
 const GROUP_LEAD = 3
-// Share of the section in view that starts its entrance.
-const AMOUNT = 0.25
+// A section starts its entrance once its first block crosses this line near the
+// bottom of the viewport, so the padding above the content does not spend the
+// entrance off screen.
+const ENTER_LINE = '0px 0px -15% 0px'
 
 type Step = { element: HTMLElement; rise: number; delay: number }
 
@@ -57,7 +59,9 @@ const clear = ({ element }: Step) => {
 export const bindEnter = () => {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
-  const sections = document.querySelectorAll<HTMLElement>('main > section[id]')
+  const sections = document.querySelectorAll<HTMLElement>(
+    'main > section[id], main > article[id] > [id]',
+  )
   if (sections.length === 0) return
 
   const stops: (() => void)[] = []
@@ -77,7 +81,7 @@ export const bindEnter = () => {
 
     stops.push(
       inView(
-        section,
+        steps[0].element,
         () => {
           if (settled) return
           settled = true
@@ -92,7 +96,7 @@ export const bindEnter = () => {
             )
           }
         },
-        { amount: AMOUNT },
+        { margin: ENTER_LINE, amount: 0 },
       ),
     )
   }

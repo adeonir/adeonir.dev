@@ -5,7 +5,6 @@ import { getRelativeLocaleUrl } from 'astro:i18n'
 
 import ProjectCard from '~/components/project-card.astro'
 import { buttonVariants } from '~/components/ui/button-variants'
-import { Eyebrow } from '~/components/ui/eyebrow'
 import { cn } from '~/helpers/classnames'
 import { parseLocale } from '~/helpers/locale'
 import { assertFeaturedBounds, sortByLaunch } from '~/helpers/projects'
@@ -22,7 +21,7 @@ type FeaturedEntry = ProjectEntry & {
 const locale = parseLocale(Astro.currentLocale)
 const projects = await getLocalizedEntry('homeProjects', locale)
 
-const { eyebrow, headline, body, seeAll, empty } = projects.data
+const { headline, body, seeAll, empty } = projects.data
 
 const entries = await getCollection('projectContent', (entry) =>
   entry.id.startsWith(`${locale}/`),
@@ -49,10 +48,9 @@ const featured = sortByLaunch(
 
 <section id="projects" class="pt-16 pb-4 md:pt-20 md:pb-8">
   <div class="wrapper">
-    <div class="mt-12 grid grid-cols-1 gap-12 md:grid-cols-5">
-      <div class="flex flex-col gap-6 md:col-span-2">
-        <Eyebrow data-enter="block">{eyebrow}</Eyebrow>
-        <h2 data-enter="block" class="text-display text-pretty text-foreground">
+    <div class="@container mt-12 grid grid-cols-1 gap-12 md:grid-cols-5">
+      <div class="flex flex-col gap-6 self-start md:sticky md:top-28 md:col-span-2 md:min-h-[calc(33.75cqw+6.325rem+100px)]">
+        <h2 class="text-display text-pretty text-foreground">
           {headline.map((segment) => (
             <>
               {segment.highlight ? (
@@ -63,18 +61,36 @@ const featured = sortByLaunch(
             </>
           ))}
         </h2>
-        <p
-          data-enter="block"
-          class="text-body leading-relaxed text-pretty text-muted-foreground"
-        >
+        <p class="text-body leading-relaxed text-pretty text-muted-foreground">
           {body}
         </p>
+        {entries.length > 0 && (
+          <a
+            href={indexHref}
+            class={cn(
+              'group gap-2 self-start',
+              buttonVariants({ variant: 'link', size: 'inline' }),
+            )}
+          >
+            {seeAll}
+            <IconArrowRight className="size-4 shrink-0 transition-transform duration-200 motion-safe:group-hover:translate-x-1" />
+          </a>
+        )}
       </div>
-      <div class="md:col-span-3 md:pt-14">
+      <div class="[--stack-top:7rem] md:col-span-3">
         {featured.length > 0 ? (
-          <div class="flex flex-col gap-8">
-            {featured.map((project) => (
-              <ProjectCard {...project} />
+          <div class="flex flex-col gap-16">
+            {featured.map((project, index) => (
+              <div
+                data-stack-card
+                class="sticky origin-top"
+                style={`top: calc(var(--stack-top) + ${index} * 3.5rem); padding-bottom: calc(${featured.length - 1 - index} * 3.5rem); margin-top: ${index === 0 ? 0 : `calc(${featured.length - index} * -3.5rem)`}`}
+              >
+                <ProjectCard
+                  {...project}
+                  sizes="(min-width: 1280px) 740px, (min-width: 768px) 60vw, calc(100vw - 3rem)"
+                />
+              </div>
             ))}
           </div>
         ) : (
@@ -100,20 +116,6 @@ const featured = sortByLaunch(
                 ),
               )}
             </p>
-          </div>
-        )}
-        {entries.length > 0 && (
-          <div data-enter="block" class="mt-8 flex justify-end">
-            <a
-              href={indexHref}
-              class={cn(
-                'group gap-2',
-                buttonVariants({ variant: 'link', size: 'inline' }),
-              )}
-            >
-              {seeAll}
-              <IconArrowRight className="size-4 shrink-0 transition-transform duration-200 motion-safe:group-hover:translate-x-1" />
-            </a>
           </div>
         )}
       </div>
