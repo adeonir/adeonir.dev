@@ -2,19 +2,20 @@
 import type { ImageMetadata } from 'astro'
 import { Image } from 'astro:assets'
 
+import { Tag } from '~/components/ui/tag'
 import IconArrowRight from '~icons/tabler/arrow-right'
 
 interface Props {
   name: string
   category: string
-  summary: string
+  stack: string[]
   cover: ImageMetadata
   coverAlt: string
   href: string
   sizes: string
 }
 
-const { name, category, summary, cover, coverAlt, href, sizes } = Astro.props
+const { name, category, stack, cover, coverAlt, href, sizes } = Astro.props
 ---
 
 <a
@@ -32,7 +33,7 @@ const { name, category, summary, cover, coverAlt, href, sizes } = Astro.props
       decoding="async"
       widths={[480, 640, 960, 1280]}
       sizes={sizes}
-      class="absolute inset-x-0 top-0 -z-10 h-auto w-full mask-b-from-40% mask-b-to-75% transition-transform duration-500 ease-out motion-safe:group-focus-within:scale-103 motion-safe:group-hover:scale-103"
+      class="absolute inset-x-0 top-0 -z-10 h-auto w-full [mask-image:linear-gradient(to_bottom,rgb(0_0_0/1)_20%,rgb(0_0_0/0.95)_28%,rgb(0_0_0/0.82)_36%,rgb(0_0_0/0.62)_44%,rgb(0_0_0/0.4)_52%,rgb(0_0_0/0.2)_60%,rgb(0_0_0/0.07)_68%,rgb(0_0_0/0)_75%)] transition-transform duration-500 ease-out motion-safe:group-focus-within:scale-103 motion-safe:group-hover:scale-103"
     />
     <div class="flex items-end justify-between gap-6 p-6">
       <div class="flex flex-col gap-2">
@@ -40,11 +41,15 @@ const { name, category, summary, cover, coverAlt, href, sizes } = Astro.props
           {category}
         </p>
         <h3 class="text-title font-bold text-pretty text-foreground">{name}</h3>
-        <p class="line-clamp-2 text-caption text-pretty text-muted-foreground">
-          {summary}
-        </p>
+        <ul class="mt-2 flex h-7 flex-wrap gap-2 overflow-hidden">
+          {stack.map((item) => (
+            <li>
+              <Tag>{item}</Tag>
+            </li>
+          ))}
+        </ul>
       </div>
-      <IconArrowRight className="size-5 shrink-0 text-foreground transition-[color,translate] duration-200 motion-safe:group-focus-within:translate-x-1 motion-safe:group-hover:translate-x-2" />
+      <IconArrowRight className="mb-1 size-5 shrink-0text-foreground transition-[color,translate] duration-200 motion-safe:group-focus-within:translate-x-1 motion-safe:group-hover:translate-x-2" />
     </div>
   </article>
 </a>
