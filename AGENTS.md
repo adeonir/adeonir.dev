@@ -168,7 +168,7 @@ The `/styleguide` and `/maintenance` routes are noindex and are excluded from th
 
 - The default Vitest environment is Node. A DOM-dependent spec opts into happy-dom with a `// @vitest-environment happy-dom` docblock.
 - The quality target is mobile Lighthouse Performance ≥ 95, Accessibility, Best Practices and SEO at 100, CLS < 0.1, and INP < 200ms. WCAG AA and LCP under 3s are nice to have, not gates. `lighthouserc.json` holds what CI enforces: the category scores fail the build, and the metric budgets only warn.
-- Lighthouse audits only the home. The required `main` checks are Build, Lint, Typecheck, Unit Tests, Workers Builds, and Lighthouse.
+- Lighthouse audits the home and the colophon. The required `main` checks are Build, Lint, Typecheck, Unit Tests, Workers Builds, and Lighthouse.
 
 ## Deployment
 
