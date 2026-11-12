@@ -246,7 +246,7 @@ Adeonir owns content authoring, design, and delivery end-to-end. No outside depe
 
 - **PRODUCT:** [PRODUCT.md](../../PRODUCT.md)
 - **PRD:** This document
-- **Design Doc:** [docs/tech/design-doc.md](../tech/design-doc.md)
+- **Design Doc:** [docs/product/design-doc.md](design-doc.md)
 - **Research:** None
 - **ADRs:** [docs/adr/](../adr/)
 - Figma — [adeonir.dev](https://www.figma.com/design/T4wd9lMdUUdpfpmbT3C0bN/Adeonir) (Website page)

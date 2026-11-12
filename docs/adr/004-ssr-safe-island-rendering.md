@@ -52,7 +52,7 @@ We will render any island whose first paint depends on client-resolved state beh
 
 ## References
 
-- `docs/tech/design-doc.md#4-alternatives-considered`
+- `docs/product/design-doc.md#4-alternatives-considered`
 - ADR-002
 - ADR-003
 - Ark UI `ClientOnly`: https://ark-ui.com/react/docs/components/client-only
