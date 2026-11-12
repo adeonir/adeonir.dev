@@ -17,7 +17,7 @@ function Content({
   return (
     <ArkPopover.Content
       className={cn(
-        'border-border bg-popover text-popover-foreground light:shadow-black/25 data-[state=closed]:animate-fade-out data-[state=open]:animate-fade-in z-60 rounded-lg border px-4 py-2 shadow-lg shadow-black/50',
+        'border-border bg-popover text-popover-foreground light:shadow-black/25 data-[state=closed]:animate-fade-out data-[state=open]:animate-blur-in z-60 origin-[var(--transform-origin)] rounded-lg border px-4 py-2 shadow-lg shadow-black/50 [--blur-in:0px] motion-safe:[--scale-in:0.96]',
         className,
       )}
       {...props}
