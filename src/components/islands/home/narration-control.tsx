@@ -25,6 +25,7 @@ type NarrationControlProps = {
   label: string
   peaks: number[]
   error: { title: string; description: string }
+  variant?: 'full' | 'compact'
 }
 
 type Status = 'idle' | 'loading' | 'playing' | 'paused'
@@ -96,6 +97,7 @@ export function NarrationControl({
   label,
   peaks,
   error,
+  variant = 'full',
 }: NarrationControlProps) {
   const labelId = useId()
   const audioRef = useRef<HTMLAudioElement>(null)
@@ -222,6 +224,93 @@ export function NarrationControl({
     setStatus('idle')
     if ($narration.get() === section) $narration.set(null)
     record('narration-completed')
+  }
+
+  const time = duration !== null && (
+    <span
+      aria-hidden="true"
+      className="font-mono text-muted-foreground text-sm tabular-nums"
+    >
+      {formatTime(status === 'idle' ? duration : (duration * progress) / 100)}
+    </span>
+  )
+
+  const audioElement = (
+    // biome-ignore lint/a11y/useMediaCaption: narration of on-page text
+    <audio
+      ref={audioRef}
+      src={src}
+      preload="metadata"
+      onPlaying={begin}
+      onWaiting={() => setStatus('loading')}
+      onPause={pause}
+      onError={fail}
+      onLoadedMetadata={(event) => {
+        const audio = event.currentTarget
+        if (Number.isFinite(audio.duration)) setDuration(audio.duration)
+        applyPending(audio)
+      }}
+      onTimeUpdate={track}
+      onDurationChange={track}
+      onEnded={finish}
+    />
+  )
+
+  const button = (
+    <Button
+      type="button"
+      variant="ghost"
+      size="icon"
+      className={cn(
+        'size-8 shrink-0 rounded-full bg-muted hover:bg-primary/15 hover:shadow-none',
+        active && 'bg-primary/15',
+      )}
+      aria-labelledby={labelId}
+      aria-pressed={status === 'playing'}
+      onClick={toggle}
+    >
+      {status === 'loading' ? (
+        <IconLoader className="size-3.5 text-primary motion-safe:animate-spin motion-reduce:animate-pulse" />
+      ) : status === 'playing' ? (
+        <IconPlayerPause className="size-3.5 text-primary" />
+      ) : (
+        <IconPlayerPlay className="ms-0.5 size-3.5" />
+      )}
+    </Button>
+  )
+
+  const waveform = (
+    <div
+      aria-hidden="true"
+      data-waveform
+      className="relative h-6 cursor-pointer touch-none"
+      onPointerDown={startDrag}
+      onPointerMove={moveDrag}
+      onPointerUp={endDrag}
+      onPointerCancel={() => setDrag(null)}
+    >
+      <Bars peaks={peaks} className="bg-neutral" />
+      <Bars
+        peaks={peaks}
+        className="bg-primary"
+        fill={drag === null ? progress : drag * 100}
+        data-fill
+      />
+    </div>
+  )
+
+  if (variant === 'compact') {
+    return (
+      <div className="inline-flex h-8 items-center gap-3">
+        <span id={labelId} className="sr-only">
+          {label}
+        </span>
+        {button}
+        {waveform}
+        {time}
+        {audioElement}
+      </div>
+    )
   }
 
   return (

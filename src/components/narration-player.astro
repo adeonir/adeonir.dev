@@ -13,9 +13,10 @@ import { getLocalizedEntry } from '~/services/localized'
 interface Props {
   section: NarrationSection
   class?: string
+  variant?: 'full' | 'compact'
 }
 
-const { section, class: className } = Astro.props
+const { section, class: className, variant } = Astro.props
 
 const locale = parseLocale(Astro.currentLocale)
 const narration = await getLocalizedEntry('homeNarration', locale)
@@ -35,5 +36,6 @@ const peaks =
     label={labels[section]}
     peaks={peaks}
     error={error}
+    variant={variant}
   />
 </div>

@@ -26,15 +26,15 @@ const { headline, body, items } = expertise.data
             </>
           ))}
         </h2>
+        <div data-enter="block">
+          <NarrationPlayer section="expertise" variant="compact" />
+        </div>
         <p
           data-enter="block"
           class="text-body leading-relaxed text-pretty text-muted-foreground"
         >
           {body}
         </p>
-        <div data-enter="block" class="mt-4 sm:mt-6">
-          <NarrationPlayer section="expertise" />
-        </div>
       </div>
       <div class="md:col-span-3">
         <div data-enter="block" class="border-t border-border">

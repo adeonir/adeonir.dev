@@ -27,15 +27,15 @@ const { headline, body, bio } = about.data
             </>
           ))}
         </h2>
+        <div data-enter="block">
+          <NarrationPlayer section="about" variant="compact" />
+        </div>
         <p
           data-enter="block"
           class="text-body leading-relaxed text-pretty text-muted-foreground"
         >
           {body}
         </p>
-        <div data-enter="block" class="mt-4 sm:mt-6">
-          <NarrationPlayer section="about" />
-        </div>
       </div>
       <div class="space-y-6 md:col-span-3 md:flex md:flex-col md:gap-6 md:space-y-0">
         {bio.map((paragraph, index) => (
