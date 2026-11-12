@@ -43,5 +43,10 @@
   "tailwind": {
     "mergeFunctions": ["cn", "clsx"],
     "variantFunctions": ["cva", "tv"]
+  },
+  "yaml": {
+    "formatter": {
+      "quoteStyle": "single"
+    }
   }
 }
