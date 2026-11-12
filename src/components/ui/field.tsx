@@ -73,7 +73,7 @@ export function Field({
         />
       )}
       {invalid && error && (
-        <ArkField.ErrorText className="text-caption text-destructive flex items-start gap-1.5">
+        <ArkField.ErrorText className="animate-fade-in text-caption text-destructive flex items-start gap-1.5">
           <IconAlertCircle className="mt-px size-4 shrink-0" />
           {error}
         </ArkField.ErrorText>
