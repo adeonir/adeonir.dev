@@ -9,8 +9,6 @@ tagline:
   - text: '.'
 availability:
   label: 'Available for work'
-  top: 'Available'
-  bottom: 'for work'
 actions:
   primary:
     label: 'See my projects'

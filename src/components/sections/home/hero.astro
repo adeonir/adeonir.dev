@@ -1,5 +1,4 @@
 ---
-import AvailabilitySeal from '~/components/availability-seal.astro'
 import NarrationPlayer from '~/components/narration-player.astro'
 import { buttonVariants } from '~/components/ui/button-variants'
 import { cn } from '~/helpers/classnames'
@@ -22,16 +21,14 @@ const { display, tagline, availability, actions } = hero.data
       aria-hidden="true"
       class="pointer-events-none absolute top-1/2 right-0 hidden h-[calc(50%+6rem)] w-3/5 md:block"
     ></canvas>
+    <p class="mb-6 inline-flex animate-enter items-center gap-2 rounded-full border-2 border-border px-3 py-1 text-xs font-semibold tracking-widest text-muted-foreground uppercase [--blur-in:0px] sm:mb-8">
+      <span aria-hidden="true" class="size-2 rounded-full bg-success"></span>
+      {availability.label}
+    </p>
     <div class="relative">
       <h1 class="animate-enter text-6xl leading-[0.92] font-extrabold text-foreground [--blur-in:var(--blur-lg)] [--enter-opacity:1] sm:text-7xl md:text-8xl lg:text-9xl">
         {display}
       </h1>
-      <a
-        href={actions.secondary.href}
-        class="group absolute -top-36 right-0 size-20 -rotate-16 animate-enter overflow-hidden rounded-full transition [--blur-in:var(--blur-lg)] [animation-delay:210ms] focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none motion-safe:hover:-rotate-24 xxs:-top-24 xxs:-right-8 xs:-right-24 xs:size-24 lg:-top-28 lg:-right-32 lg:size-28"
-      >
-        <AvailabilitySeal availability={availability} />
-      </a>
     </div>
     <p class="mt-6 max-w-208 animate-enter text-2xl leading-snug text-pretty text-foreground [--blur-in:var(--blur-sm)] [animation-delay:70ms] sm:mt-8 sm:text-3xl lg:text-4xl">
       {tagline.map((segment) => (

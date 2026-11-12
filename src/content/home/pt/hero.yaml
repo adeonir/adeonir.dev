@@ -9,8 +9,6 @@ tagline:
   - text: '.'
 availability:
   label: 'Disponível para trabalho'
-  top: 'Disponível para'
-  bottom: 'trabalho'
 actions:
   primary:
     label: 'Ver meu trabalho'
