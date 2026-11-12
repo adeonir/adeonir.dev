@@ -16,7 +16,12 @@ const { display, tagline, availability, actions } = hero.data
   id="hero"
   class="relative flex min-h-[calc(100dvh-16rem)] flex-col justify-center pt-8 [--scale-in:0.98] motion-reduce:[--scale-in:1]"
 >
-  <div class="wrapper flex flex-col items-start">
+  <div class="wrapper relative flex flex-col items-start">
+    <canvas
+      data-hero-fx
+      aria-hidden="true"
+      class="pointer-events-none absolute top-1/2 right-0 hidden h-[calc(50%+6rem)] w-3/5 md:block"
+    ></canvas>
     <div class="relative">
       <h1 class="animate-enter text-6xl leading-[0.92] font-extrabold text-foreground [--blur-in:var(--blur-lg)] [--enter-opacity:1] sm:text-7xl md:text-8xl lg:text-9xl">
         {display}
