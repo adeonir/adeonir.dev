@@ -1,68 +1,60 @@
 ---
 import { getRelativeLocaleUrl } from 'astro:i18n'
 
-import { buttonVariants } from '~/components/ui/button-variants'
-import { Eyebrow } from '~/components/ui/eyebrow'
-import { cn } from '~/helpers/classnames'
+import Motivation from '~/components/sections/colophon/motivation.astro'
+import { Divider } from '~/components/ui/divider'
+import { Link } from '~/components/ui/link'
 import { parseLocale } from '~/helpers/locale'
 import { getLocalizedEntry } from '~/services/localized'
-import IconArrowLeft from '~icons/tabler/arrow-left'
-import IconArrowUpRight from '~icons/tabler/arrow-up-right'
 
 const locale = parseLocale(Astro.currentLocale)
 const opening = await getLocalizedEntry('colophonOpening', locale)
 
 const { back, eyebrow, headline, links } = opening.data
 const homeHref = getRelativeLocaleUrl(locale)
-
-const linkClass = cn(
-  'group size-fit gap-2 text-button',
-  buttonVariants({ variant: 'link', size: 'inline' }),
-)
 ---
 
-<section id="opening" class="pt-8 pb-12 md:pt-20">
+<section id="opening" class="pt-8 md:pt-16">
   <div class="wrapper">
-    <div class="mx-auto flex w-full max-w-4xl flex-col items-start gap-8">
-      <a
-        data-enter="block"
-        href={homeHref}
-        class={cn(
-          'group size-fit gap-2 text-button',
-          buttonVariants({ variant: 'link', size: 'inline' }),
-        )}
-      >
-        <IconArrowLeft className="size-4 shrink-0 transition-transform duration-200 motion-safe:group-hover:-translate-x-1" />
+    <div class="mx-auto flex w-full max-w-2xl flex-col items-start gap-16">
+      <Link data-enter="block" href={homeHref} icon="arrow-left" size="small">
         {back}
-      </a>
-      <Eyebrow data-enter="block">{eyebrow}</Eyebrow>
-      <h1
-        data-enter="block"
-        class="max-w-3xl text-5xl leading-none font-extrabold tracking-tight text-balance text-foreground sm:text-6xl md:text-7xl lg:text-8xl"
-      >
-        {headline.map((segment) => (
-          <>
-            {segment.highlight ? (
-              <span class="text-secondary">{segment.text}</span>
-            ) : (
-              segment.text
-            )}
-          </>
-        ))}
-      </h1>
-      <div data-enter="block" class="flex flex-wrap gap-x-8 gap-y-2">
-        {links.map((link) => (
-          <a
-            href={link.href}
-            target={link.external ? '_blank' : undefined}
-            rel={link.external ? 'noopener noreferrer' : undefined}
-            class={linkClass}
-          >
-            {link.label}
-            <IconArrowUpRight className="size-5 shrink-0 transition-transform duration-200 motion-safe:group-hover:-translate-y-0.5" />
-          </a>
-        ))}
+      </Link>
+      <div class="flex w-full flex-col items-start gap-6">
+        <p
+          data-enter="block"
+          class="text-label text-muted-foreground uppercase"
+        >
+          {eyebrow}
+        </p>
+        <h1
+          data-enter="block"
+          class="max-w-lg text-5xl leading-none font-extrabold tracking-tight text-balance text-foreground md:text-6xl"
+        >
+          {headline.map((segment) => (
+            <>
+              {segment.highlight ? (
+                <span class="text-secondary">{segment.text}</span>
+              ) : (
+                segment.text
+              )}
+            </>
+          ))}
+        </h1>
+        <Motivation />
+        <div data-enter="block" class="flex flex-wrap gap-x-8 gap-y-2">
+          {links.map((link) => (
+            <Link
+              href={link.href}
+              icon={link.external ? undefined : 'arrow-up-right'}
+              size="small"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   </div>
+  <Divider className="mx-auto mt-8 mb-0 flex w-full max-w-2xl md:mt-16" />
 </section>
