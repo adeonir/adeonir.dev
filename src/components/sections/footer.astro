@@ -32,9 +32,10 @@ const showCharacter = Astro.response.status !== 404
           </a>
           <p class="flex flex-wrap items-center gap-x-3 font-mono text-xs text-muted-foreground">
             {brand.copyright}
+            <span aria-hidden="true">-</span>
             <a
               href={colophonURL}
-              class="rounded-sm underline underline-offset-4 transition hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+              class="rounded-sm underline-offset-4 transition hover:underline hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
             >
               {brand.colophon}
             </a>
