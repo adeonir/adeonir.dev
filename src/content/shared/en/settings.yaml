@@ -12,5 +12,6 @@ agentDocument:
 pageTitles:
   home: 'Frontend Engineer'
   projects: 'Projects'
+  colophon: 'Colophon'
   notFound: 'Page not found'
   maintenance: 'Maintenance'

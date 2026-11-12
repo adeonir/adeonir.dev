@@ -1,8 +1,8 @@
 metadata:
   source: 'docs/product/brief.md, docs/product/prd.md, conversation'
   created: '2026-06-06'
-  updated: '2026-10-04'
-  version: '1.0.17'
+  updated: '2026-11-11'
+  version: '1.1.0'
   status: 'ready'
 
 project:
@@ -38,12 +38,14 @@ voice:
 routes:
   home:
     title: 'Frontend Engineer'
+  colophon:
+    title: 'Colophon'
   not-found:
     title: 'Página não encontrada'
   maintenance:
     title: 'Manutenção'
 
-# The content tree covers the surfaces home, projects, project, plus a global not-found (404) error surface. Header and footer are persistent across every surface.
+# The content tree covers the surfaces home, projects, project, colophon, plus a global not-found (404) error surface. Header and footer are persistent across every surface.
 
 content:
   home:
@@ -174,6 +176,9 @@ content:
       brand:
         text: 'adeonir.dev'
         copyright: '© 2026 Adeonir Kohl'
+        colophon:
+          label: 'Sobre este site'
+          link: '/colophon'
       signoff: 'Feito com cuidado, café e cerveja.'
       reveals:
         - word: 'café'
@@ -207,6 +212,54 @@ content:
       previous: 'Projeto anterior'
       next: 'Próximo projeto'
     # not-found -> content.not-found.paths.projects
+    footer: *footer
+
+  colophon:
+    header: *header
+    back: 'Voltar'
+    eyebrow: 'Colophon'
+    headline: 'Como este site foi feito'
+    links:
+      - label: 'Repositório'
+        link: 'https://github.com/adeonir/adeonir.dev'
+      - label: 'Styleguide'
+        link: '/styleguide'
+    motivation:
+      headline: 'Motivação'
+      body:
+        - 'Sou frontend engineer e gosto de trabalhar próximo do design. Fiz este site para mostrar isso na prática. Aqui eu conto o que usei e por que fiz algumas escolhas.'
+    technologies:
+      headline: 'Tecnologias'
+      groups:
+        - label: 'Stack'
+          body:
+            - 'Fiz o site com Astro e publiquei na Cloudflare.'
+            - 'Usei React nas partes interativas e Nanostores para compartilhar o estado entre as islands. Para os estilos, escolhi Tailwind CSS. Para os componentes primitivos, usei Ark UI porque eles são headless. As animações foram feitas com Motion. Os emails do formulário são templates em React Email enviados pelo Resend.'
+            - 'Escrevi o código usando o Claude Code na definição da especificação, na implementação das tarefas e na revisão de código.'
+        - label: 'Design'
+          body:
+            - 'Comecei o design no Figma, depois explorei algumas interações no Claude Design e fiz protótipos direto no código. Também criei uma página de styleguide para mostrar os tokens do site.'
+            - 'Para as cores, usei Catppuccin Mocha no tema escuro e Latte no tema claro. Nos textos eu usei Geist para os títulos e o corpo e Fira Code nos trechos técnicos. Os ícones são da biblioteca Tabler, e as imagens dos personagens foram geradas com o ChatGPT Image.'
+        - label: 'Conteúdo'
+          body:
+            - 'O site tem versões em português e inglês, separadas por idioma e organizadas em arquivos YAML. As narrações da home foram geradas com ElevenLabs usando minha voz como base.'
+        - label: 'Qualidade'
+          body:
+            - 'Configurei o CI para rodar typecheck com TypeScript, linter com Biome, testes com Vitest e uma auditoria do Lighthouse. Acompanho o uso do site com o PostHog.'
+    decisions:
+      headline: 'Decisões'
+      items:
+        - title: 'Páginas de conteúdo em HTML estático'
+          description: 'As páginas de conteúdo são geradas durante o build e só o formulário de contato roda no servidor. Assim elas chegam prontas e mais rápido ao navegador.'
+        - title: 'O formulário não guarda mensagens'
+          description: 'O formulário envia as mensagens para o meu email e nenhuma cópia fica em banco de dados nem nos logs, porque não quero guardar dados de quem visita o site.'
+        - title: 'Analytics sem cookies'
+          description: 'Configurei o PostHog para funcionar sem cookies e respeitar o Do Not Track. Assim não preciso mostrar banner de privacidade e consentimento.'
+        - title: 'Metas de Lighthouse no CI'
+          description: 'Defini como meta performance acima de 95 no mobile e nota 100 em acessibilidade, boas práticas e SEO, com WCAG AA como referência de acessibilidade. Me importo com o desempenho de cada tela, e a auditoria confere isso a cada alteração.'
+    cta:
+      headline: 'Quer conversar sobre alguma dessas escolhas?'
+      action: 'Entrar em contato'
     footer: *footer
 
   not-found:
@@ -257,5 +310,8 @@ notes: |
   between the files on purpose.
 
   Projects: not in this file. Each project carries its own copy.
+
+  Colophon: the technology paragraphs name tools as plain prose. The links to
+  each tool live in the collection file that renders the section.
 
   Design-blind: no colors, fonts, icons, or layout in this file.

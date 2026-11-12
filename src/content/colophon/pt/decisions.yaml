@@ -1,0 +1,10 @@
+headline: 'Decisões'
+items:
+  - title: 'Páginas de conteúdo em HTML estático'
+    description: 'As páginas de conteúdo são geradas durante o build e só o formulário de contato roda no servidor. Assim elas chegam prontas e mais rápido ao navegador.'
+  - title: 'O formulário não guarda mensagens'
+    description: 'O formulário envia as mensagens para o meu email e nenhuma cópia fica em banco de dados nem nos logs, porque não quero guardar dados de quem visita o site.'
+  - title: 'Analytics sem cookies'
+    description: 'Configurei o PostHog para funcionar sem cookies e respeitar o Do Not Track. Assim não preciso mostrar banner de privacidade e consentimento.'
+  - title: 'Metas de Lighthouse no CI'
+    description: 'Defini como meta performance acima de 95 no mobile e nota 100 em acessibilidade, boas práticas e SEO, com WCAG AA como referência de acessibilidade. Me importo com o desempenho de cada tela, e a auditoria confere isso a cada alteração.'

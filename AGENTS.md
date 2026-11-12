@@ -48,7 +48,7 @@ Before planning or building a feature, read the documents that apply to the work
 
 - `CONTEXT.md` — the project's language: the domain terms and the words to avoid for each one.
 - `PROJECT.md` — the project's shared memory: what a silent failure costs, the durable conventions and decisions, and the traps this codebase has already hit.
-- `docs/tech/design-doc.md` — the technical authority: architecture, runtime boundaries, contact flow, security, testing, and CI/CD.
+- `docs/product/design-doc.md` — the technical authority: architecture, runtime boundaries, contact flow, security, testing, and CI/CD.
 - `docs/product/PRD.md` — scope, FR/NFR identifiers, personas, journeys, business rules, and edge cases.
 - `PRODUCT.md` — strategic positioning: register, audience relationship, brand personality, anti-references, design principles.
 - `DESIGN.md` — the authority on the visual identity and the design tokens.
@@ -168,7 +168,7 @@ The `/styleguide` and `/maintenance` routes are noindex and are excluded from th
 
 - The default Vitest environment is Node. A DOM-dependent spec opts into happy-dom with a `// @vitest-environment happy-dom` docblock.
 - The quality target is mobile Lighthouse Performance ≥ 95, Accessibility, Best Practices and SEO at 100, CLS < 0.1, and INP < 200ms. WCAG AA and LCP under 3s are nice to have, not gates. `lighthouserc.json` holds what CI enforces: the category scores fail the build, and the metric budgets only warn.
-- Lighthouse audits only the home. The required `main` checks are Build, Lint, Typecheck, Unit Tests, Workers Builds, and Lighthouse.
+- Lighthouse audits the home and the colophon. The required `main` checks are Build, Lint, Typecheck, Unit Tests, Workers Builds, and Lighthouse.
 
 ## Deployment
 

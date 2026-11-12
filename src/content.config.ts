@@ -1,5 +1,10 @@
 import { defineCollection } from 'astro:content'
 import { glob } from 'astro/loaders'
+import { colophonClosingSchema } from '~/schemas/colophon/closing'
+import { colophonDecisionsSchema } from '~/schemas/colophon/decisions'
+import { colophonMotivationSchema } from '~/schemas/colophon/motivation'
+import { colophonOpeningSchema } from '~/schemas/colophon/opening'
+import { colophonTechnologiesSchema } from '~/schemas/colophon/technologies'
 import { homeAboutSchema } from '~/schemas/home/about'
 import { homeContactSchema } from '~/schemas/home/contact'
 import { homeExpertiseSchema } from '~/schemas/home/expertise'
@@ -215,6 +220,51 @@ const projectsList = defineCollection({
   schema: projectsListSchema,
 })
 
+const colophonOpening = defineCollection({
+  loader: glob({
+    pattern: '*/opening.yaml',
+    base: 'src/content/colophon',
+    generateId: localeId('colophonOpening'),
+  }),
+  schema: colophonOpeningSchema,
+})
+
+const colophonMotivation = defineCollection({
+  loader: glob({
+    pattern: '*/motivation.yaml',
+    base: 'src/content/colophon',
+    generateId: localeId('colophonMotivation'),
+  }),
+  schema: colophonMotivationSchema,
+})
+
+const colophonTechnologies = defineCollection({
+  loader: glob({
+    pattern: '*/technologies.yaml',
+    base: 'src/content/colophon',
+    generateId: localeId('colophonTechnologies'),
+  }),
+  schema: colophonTechnologiesSchema,
+})
+
+const colophonDecisions = defineCollection({
+  loader: glob({
+    pattern: '*/decisions.yaml',
+    base: 'src/content/colophon',
+    generateId: localeId('colophonDecisions'),
+  }),
+  schema: colophonDecisionsSchema,
+})
+
+const colophonClosing = defineCollection({
+  loader: glob({
+    pattern: '*/closing.yaml',
+    base: 'src/content/colophon',
+    generateId: localeId('colophonClosing'),
+  }),
+  schema: colophonClosingSchema,
+})
+
 export const collections = {
   sharedSettings,
   sharedHeader,
@@ -237,4 +287,9 @@ export const collections = {
   projectNav,
   projectsHero,
   projectsList,
+  colophonOpening,
+  colophonMotivation,
+  colophonTechnologies,
+  colophonDecisions,
+  colophonClosing,
 }

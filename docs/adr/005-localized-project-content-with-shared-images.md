@@ -4,7 +4,7 @@ date: 2026-09-07
 updated: 2026-09-08
 sources:
   - CONTEXT.md
-  - docs/tech/design-doc.md
+  - docs/product/design-doc.md
   - src/content.config.ts
 ---
 
@@ -29,7 +29,7 @@ Each locale owns a complete project entry under the same directory structure, wh
 ## References
 
 - `CONTEXT.md`
-- `docs/tech/design-doc.md#33-conventions`
-- `docs/tech/design-doc.md#34-domain`
+- `docs/product/design-doc.md#33-conventions`
+- `docs/product/design-doc.md#34-domain`
 - `src/content.config.ts`
 - Astro content collections: https://docs.astro.build/en/guides/content-collections/

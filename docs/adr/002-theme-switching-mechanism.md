@@ -7,7 +7,7 @@ supersedes: []
 superseded-by: []
 sources:
   - DESIGN.md
-  - docs/tech/design-doc.md
+  - docs/product/design-doc.md
   - https://github.com/adeonir/adeonir.dev/issues/79
 ---
 
@@ -57,7 +57,7 @@ We will switch skins via a `[data-theme]` attribute on the document root — dar
 
 ## References
 
-- `docs/tech/design-doc.md#4-alternatives-considered` — Styling row (Tailwind)
+- `docs/product/design-doc.md#4-alternatives-considered` — Styling row (Tailwind)
 - `DESIGN.md` — two skins of one identity; dark default, latte light
 - `src/styles/global.css` — `@theme inline` semantic roles, `[data-theme=light]`
 - Theme toggle epic and story: https://github.com/adeonir/adeonir.dev/issues/78, https://github.com/adeonir/adeonir.dev/issues/79

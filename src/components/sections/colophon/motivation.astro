@@ -1,0 +1,28 @@
+---
+import { parseLocale } from '~/helpers/locale'
+import { getLocalizedEntry } from '~/services/localized'
+
+const locale = parseLocale(Astro.currentLocale)
+const motivation = await getLocalizedEntry('colophonMotivation', locale)
+
+const { headline, body } = motivation.data
+---
+
+<section id="motivation" class="py-12">
+  <div class="wrapper">
+    <div class="mx-auto flex w-full max-w-4xl flex-col gap-6">
+      <h2 data-enter="block" class="text-heading text-foreground">
+        <span class="mr-2 text-secondary" aria-hidden="true">
+          #
+        </span>
+        {headline}
+      </h2>
+      <p
+        data-enter="block"
+        class="max-w-3xl text-xl leading-normal font-medium text-pretty text-foreground md:text-2xl"
+      >
+        {body}
+      </p>
+    </div>
+  </div>
+</section>

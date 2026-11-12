@@ -6,7 +6,7 @@ status: accepted
 supersedes: []
 superseded-by: []
 sources:
-  - docs/tech/design.md
+  - docs/product/design-doc.md
   - https://github.com/adeonir/adeonir.dev/issues/26
 ---
 
@@ -61,7 +61,7 @@ We will run the client islands on React 19 via `@astrojs/react`, with `@ark-ui/r
 
 ## References
 
-- `docs/tech/design.md#4-alternatives-considered` — UI runtime row
+- `docs/product/design-doc.md#4-alternatives-considered` — UI runtime row
 - Mobile nav story that surfaced the conflict: https://github.com/adeonir/adeonir.dev/issues/26
 - Ark UI framework list: https://ark-ui.com/llms.txt
 - Astro React integration: https://docs.astro.build/en/guides/integrations-guide/react/

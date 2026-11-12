@@ -1,0 +1,42 @@
+---
+import { parseLocale } from '~/helpers/locale'
+import { getLocalizedEntry } from '~/services/localized'
+
+const locale = parseLocale(Astro.currentLocale)
+const decisions = await getLocalizedEntry('colophonDecisions', locale)
+
+const { headline, items } = decisions.data
+---
+
+<section id="decisions" class="py-12">
+  <div class="wrapper">
+    <div class="mx-auto flex w-full max-w-4xl flex-col gap-7">
+      <h2 data-enter="block" class="text-heading text-foreground">
+        <span class="mr-2 text-secondary" aria-hidden="true">
+          #
+        </span>
+        {headline}
+      </h2>
+      <ol class="flex flex-col gap-4">
+        {items.map((item, index) => (
+          <li
+            data-enter="block"
+            class="flex flex-col gap-3 rounded-2xl border border-border bg-card px-6 py-6 md:flex-row md:gap-8 md:px-8"
+          >
+            <span class="w-10 shrink-0 font-mono text-sm leading-7 font-medium text-secondary">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <div class="flex flex-col gap-2.5">
+              <h3 class="text-xl leading-7 font-semibold text-card-foreground">
+                {item.title}
+              </h3>
+              <p class="text-base text-pretty text-muted-foreground">
+                {item.description}
+              </p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>
