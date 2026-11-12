@@ -9,7 +9,7 @@ description: Review context for pull requests in adeonir.dev, an Astro site depl
 
 `AGENTS.md` in the repository root is the canonical guide. When a dedicated document disagrees with it, the dedicated document wins:
 
-- `docs/tech/design-doc.md` — architecture, runtime boundaries, and the contact flow. Technical authority.
+- `docs/product/design-doc.md` — architecture, runtime boundaries, and the contact flow. Technical authority.
 - `DESIGN.md` — visual identity and design tokens.
 - `.agents/rules/*.md` — four enforced conventions, each with correct and incorrect examples.
 
