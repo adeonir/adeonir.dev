@@ -1,4 +1,5 @@
 ---
+import IconMinus from '~icons/tabler/minus'
 import IconPlus from '~icons/tabler/plus'
 import NarrationPlayer from '~/components/narration-player.astro'
 import { parseLocale } from '~/helpers/locale'
@@ -49,9 +50,10 @@ const { headline, body, items } = expertise.data
                 </span>
                 <span
                   aria-hidden="true"
-                  class="grid size-10 shrink-0 place-items-center rounded-full border border-border text-muted-foreground transition duration-300 ease-out group-open/item:rotate-45 group-open/item:text-foreground group-hover/summary:border-primary group-hover/summary:text-primary"
+                  class="grid size-10 shrink-0 place-items-center rounded-full border border-border text-muted-foreground transition duration-300 ease-out group-open/item:text-muted-foreground/50 group-hover/summary:border-primary group-hover/summary:text-primary"
                 >
-                  <IconPlus className="size-5" />
+                  <IconPlus className="size-5 group-open/item:hidden" />
+                  <IconMinus className="hidden size-5 group-open/item:block" />
                 </span>
               </summary>
               <p class="max-w-prose pb-6 text-body leading-relaxed text-pretty text-muted-foreground">
