@@ -75,7 +75,6 @@ content:
         label: 'Mudar para inglês'
 
     hero:
-      eyebrow: 'Frontend Engineer'
       display: 'Adeonir Kohl'
       tagline: 'O design também acontece no código.'
       description: 'Sou design engineer e trabalho no frontend, cuidando de cada detalhe da interface.'
@@ -85,7 +84,6 @@ content:
         secondary: 'Entrar em contato'
 
     about:
-      eyebrow: 'Sobre mim'
       headline: 'Quem eu sou'
       body: 'Um pouco da minha história e o que eu gosto de fazer.'
       bio:
@@ -95,14 +93,12 @@ content:
         - 'No meu tempo livre, gosto de ficar com a família, colecionar miniaturas de Hot Wheels com meu filho, assistir a séries e filmes e curtir com amigos.'
 
     projects:
-      eyebrow: 'Projetos em destaque'
       headline: 'Ideias que saíram do papel'
       body: 'Alguns projetos que ajudei a construir nos últimos anos.'
       empty: 'Ainda não tenho nenhum projeto em destaque publicado aqui. Se quiser saber no que estou trabalhando, me manda uma mensagem.'
       see-all: 'Ver todos os projetos'
 
     expertise:
-      eyebrow: 'Especialidades'
       headline: 'O que eu faço'
       body: 'No dia a dia, trabalho com times na construção de interfaces.'
       items:
@@ -116,7 +112,6 @@ content:
           description: 'Me preocupo com a performance de cada tela, principalmente com o tempo de carregamento e a resposta às interações.'
 
     contact:
-      eyebrow: 'Vamos conversar'
       headline: 'Me manda uma mensagem'
       body: 'Pode ser sobre desenvolvimento, um projeto ou só dar um oi.'
       social-label: 'Canais de contato'

@@ -1,6 +1,5 @@
 ---
 import { ContactForm } from '~/components/islands/home/contact-form'
-import { Eyebrow } from '~/components/ui/eyebrow'
 import { parseLocale } from '~/helpers/locale'
 import { getLocalizedEntry } from '~/services/localized'
 import IconFolder from '~icons/tabler/folder'
@@ -8,14 +7,13 @@ import IconFolder from '~icons/tabler/folder'
 const locale = parseLocale(Astro.currentLocale)
 const contact = await getLocalizedEntry('homeContact', locale)
 
-const { eyebrow, title, body, socialLabel, social, form } = contact.data
+const { title, body, socialLabel, social, form } = contact.data
 ---
 
 <section id="contact" class="pt-16 pb-16 md:pt-20">
   <div class="wrapper">
     <div class="mt-12 grid grid-cols-1 gap-12 md:grid-cols-5">
       <div class="flex flex-col gap-6 md:col-span-2">
-        <Eyebrow data-enter="block">{eyebrow}</Eyebrow>
         <h2 data-enter="block" class="text-display text-pretty text-foreground">
           {title.map((segment) => (
             <>
@@ -64,7 +62,7 @@ const { eyebrow, title, body, socialLabel, social, form } = contact.data
           </ul>
         </div>
       </div>
-      <div class="flex flex-col gap-6 md:col-span-3 md:pt-14">
+      <div class="flex flex-col gap-6 md:col-span-3">
         <div data-enter="block">
           <ContactForm content={form} locale={locale} client:visible />
         </div>

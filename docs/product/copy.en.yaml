@@ -75,7 +75,6 @@ content:
         label: 'Switch to Portuguese'
 
     hero:
-      eyebrow: 'Frontend Engineer'
       display: 'Adeonir Kohl'
       tagline: 'Design happens in code too.'
       description: "I'm a design engineer working on the frontend, taking care of every detail of the interface."
@@ -85,7 +84,6 @@ content:
         secondary: 'Get in touch'
 
     about:
-      eyebrow: 'About me'
       headline: 'Who I am'
       body: 'A bit of my story and what I like to do.'
       bio:
@@ -95,14 +93,12 @@ content:
         - 'In my spare time, I like spending time with family, collecting Hot Wheels with my son, watching TV shows and movies, and hanging out with friends.'
 
     projects:
-      eyebrow: 'Featured projects'
       headline: 'Ideas that went live'
       body: 'A few projects I helped build over the last years.'
       empty: "I don't have a featured project published here yet. If you want to know what I'm working on, send me a message."
       see-all: 'See all projects'
 
     expertise:
-      eyebrow: 'Capabilities'
       headline: 'What I do'
       body: 'Day to day, I work with teams to build interfaces.'
       items:
@@ -116,7 +112,6 @@ content:
           description: 'I care about how each screen performs, especially how long it takes to load and how it responds to interactions.'
 
     contact:
-      eyebrow: "Let's talk"
       headline: 'Send me a message'
       body: 'It can be about development, a project, or just to say hi.'
       social-label: 'Contact channels'

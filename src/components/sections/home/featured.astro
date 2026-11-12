@@ -5,7 +5,6 @@ import { getRelativeLocaleUrl } from 'astro:i18n'
 
 import ProjectCard from '~/components/project-card.astro'
 import { buttonVariants } from '~/components/ui/button-variants'
-import { Eyebrow } from '~/components/ui/eyebrow'
 import { cn } from '~/helpers/classnames'
 import { parseLocale } from '~/helpers/locale'
 import { assertFeaturedBounds, sortByLaunch } from '~/helpers/projects'
@@ -22,7 +21,7 @@ type FeaturedEntry = ProjectEntry & {
 const locale = parseLocale(Astro.currentLocale)
 const projects = await getLocalizedEntry('homeProjects', locale)
 
-const { eyebrow, headline, body, seeAll, empty } = projects.data
+const { headline, body, seeAll, empty } = projects.data
 
 const entries = await getCollection('projectContent', (entry) =>
   entry.id.startsWith(`${locale}/`),
@@ -50,9 +49,7 @@ const featured = sortByLaunch(
 <section id="projects" class="pt-16 pb-4 md:pt-20 md:pb-8">
   <div class="wrapper">
     <div class="@container mt-12 grid grid-cols-1 gap-12 md:grid-cols-5">
-      {/* 33.75cqw - 0.675rem + 50px is the height of one card (16:9 over 3 of 5 columns with 3rem gaps, plus 50px) and 11.25rem is the distance between the eyebrow and the last card, so the title and the stack release together */}
-      <div class="flex flex-col gap-6 self-start md:sticky md:top-28 md:col-span-2 md:min-h-[calc(33.75cqw+10.575rem+50px)]">
-        <Eyebrow data-enter="block">{eyebrow}</Eyebrow>
+      <div class="flex flex-col gap-6 self-start md:sticky md:top-28 md:col-span-2 md:min-h-[calc(33.75cqw+6.325rem+50px)]">
         <h2 data-enter="block" class="text-display text-pretty text-foreground">
           {headline.map((segment) => (
             <>
@@ -84,10 +81,9 @@ const featured = sortByLaunch(
           </a>
         )}
       </div>
-      <div class="[--stack-top:7rem] md:col-span-3 md:pt-17 md:[--stack-top:11.25rem]">
+      <div class="[--stack-top:7rem] md:col-span-3">
         {featured.length > 0 ? (
           <div class="flex flex-col gap-16">
-            {/* the padding gives every card the bottom edge of the last one, so the whole stack releases at once */}
             {featured.map((project, index) => (
               <div
                 data-stack-card
@@ -100,7 +96,6 @@ const featured = sortByLaunch(
                 />
               </div>
             ))}
-            {/* sticky ignores the parent's padding, so an element holds the last card in place */}
             <div aria-hidden="true" class="h-16 md:h-32" />
           </div>
         ) : (

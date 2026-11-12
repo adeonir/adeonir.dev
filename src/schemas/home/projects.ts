@@ -6,7 +6,6 @@ const emptySegmentSchema = z.object({
 })
 
 export const homeProjectsSchema = z.object({
-  eyebrow: z.string().min(1),
   headline: z
     .array(
       z.object({

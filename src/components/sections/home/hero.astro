@@ -2,7 +2,6 @@
 import AvailabilitySeal from '~/components/availability-seal.astro'
 import NarrationPlayer from '~/components/narration-player.astro'
 import { buttonVariants } from '~/components/ui/button-variants'
-import { Eyebrow } from '~/components/ui/eyebrow'
 import { cn } from '~/helpers/classnames'
 import { parseLocale } from '~/helpers/locale'
 import { getLocalizedEntry } from '~/services/localized'
@@ -10,8 +9,7 @@ import { getLocalizedEntry } from '~/services/localized'
 const locale = parseLocale(Astro.currentLocale)
 const hero = await getLocalizedEntry('homeHero', locale)
 
-const { eyebrow, display, tagline, description, availability, actions } =
-  hero.data
+const { display, tagline, description, availability, actions } = hero.data
 ---
 
 <section
@@ -19,9 +17,6 @@ const { eyebrow, display, tagline, description, availability, actions } =
   class="relative flex min-h-[calc(100dvh-6rem)] flex-col items-center justify-center pt-8 text-center [--scale-in:0.98] motion-reduce:[--scale-in:1]"
 >
   <div class="wrapper flex flex-col items-center">
-    <Eyebrow className="animate-enter [--blur-in:var(--blur-xs)]">
-      {eyebrow}
-    </Eyebrow>
     <div class="relative mt-4 sm:mt-5">
       <h1 class="animate-enter text-5xl leading-[0.92] font-extrabold text-foreground [--blur-in:var(--blur-lg)] [--enter-opacity:1] [animation-delay:70ms] sm:text-6xl md:text-7xl lg:text-8xl">
         {display}
