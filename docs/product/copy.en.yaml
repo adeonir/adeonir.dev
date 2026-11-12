@@ -234,7 +234,8 @@ content:
         - label: 'Stack'
           body:
             - 'I built the site with Astro and published it on Cloudflare.'
-            - 'I used React for the interactive parts and Nanostores to share state between the islands. For the styles, I picked Tailwind CSS. For the primitives, I used Ark UI because they are headless. The animations were made with Motion.'
+            - 'I used React for the interactive parts and Nanostores to share state between the islands. For the styles, I picked Tailwind CSS. For the primitives, I used Ark UI because they are headless. The animations were made with Motion. The form emails are templates in React Email sent through Resend.'
+            - 'I wrote the code using Claude Code to define the specs, implement the tasks, and review the code.'
         - label: 'Design'
           body:
             - 'I started the design in Figma, then explored some interactions in Claude Design and prototyped straight in code. I also built a styleguide page to show the site tokens.'
@@ -244,7 +245,7 @@ content:
             - 'The site has Portuguese and English versions, split by language and organized in YAML files. The home narrations were generated with ElevenLabs using my own voice as the base.'
         - label: 'Quality'
           body:
-            - 'I set up CI to run typecheck, linter, tests and a Lighthouse audit. I follow how the site is used with PostHog.'
+            - 'I set up CI to run typecheck with TypeScript, linter with Biome, tests with Vitest and a Lighthouse audit. I follow how the site is used with PostHog.'
     decisions:
       headline: 'Decisions'
       items:
