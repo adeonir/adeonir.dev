@@ -1,0 +1,10 @@
+headline: 'Decisions'
+items:
+  - title: 'Content pages as static HTML'
+    description: 'The content pages are generated during the build and only the contact form runs on the server. That way they reach the browser ready and faster.'
+  - title: 'The form keeps no messages'
+    description: "The form sends the messages to my email and no copy stays in a database or in the logs, because I don't want to keep data about whoever visits the site."
+  - title: 'Analytics without cookies'
+    description: "I set PostHog up to work without cookies and to respect Do Not Track. That way I don't need a privacy and consent banner."
+  - title: 'Lighthouse targets in CI'
+    description: 'I set a target of performance above 95 on mobile and 100 in accessibility, best practices and SEO, with WCAG AA as the accessibility reference. I care about the performance of every screen, and the audit checks it on each change.'
