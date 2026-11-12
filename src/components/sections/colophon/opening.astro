@@ -21,10 +21,11 @@ const linkClass = cn(
 )
 ---
 
-<section class="pt-8 pb-12 md:pt-20">
+<section id="opening" class="pt-8 pb-12 md:pt-20">
   <div class="wrapper">
     <div class="mx-auto flex w-full max-w-4xl flex-col items-start gap-8">
       <a
+        data-enter="block"
         href={homeHref}
         class={cn(
           'group size-fit gap-2 text-button',
@@ -49,7 +50,7 @@ const linkClass = cn(
           </>
         ))}
       </h1>
-      <div class="flex flex-wrap gap-x-8 gap-y-2">
+      <div data-enter="block" class="flex flex-wrap gap-x-8 gap-y-2">
         {links.map((link) => (
           <a
             href={link.href}

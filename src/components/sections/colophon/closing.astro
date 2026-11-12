@@ -13,7 +13,7 @@ const { headline, action } = closing.data
 const contactHref = `${getRelativeLocaleUrl(locale)}#contact`
 ---
 
-<section class="pt-12 pb-16">
+<section id="closing" class="pt-12 pb-16">
   <div class="wrapper">
     <div class="mx-auto flex w-full max-w-4xl flex-col items-start gap-6 border-t border-border pt-12 md:flex-row md:items-center md:justify-between">
       <p
@@ -23,6 +23,7 @@ const contactHref = `${getRelativeLocaleUrl(locale)}#contact`
         {headline}
       </p>
       <a
+        data-enter="block"
         href={contactHref}
         class={cn(
           buttonVariants({ variant: 'default', size: 'default' }),
