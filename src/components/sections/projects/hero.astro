@@ -8,7 +8,7 @@ const hero = await getLocalizedEntry('projectsHero', locale)
 const { headline, subheadline } = hero.data
 ---
 
-<section class="pt-16 pb-4 md:pt-20 md:pb-8">
+<section id="projects-hero" class="pt-16 pb-4 md:pt-20 md:pb-8">
   <div class="wrapper flex flex-col gap-4">
     <h1 data-enter="block" class="text-display text-pretty text-foreground">
       {headline.map((segment) => (

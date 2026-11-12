@@ -41,15 +41,16 @@ const presentingMobile = await getImage({
 })
 ---
 
-<header class="pt-8 md:pt-16">
+<header id="project-header" class="pt-8 md:pt-16">
   <div class="wrapper">
     <div class="mx-auto flex w-full max-w-2xl flex-col gap-16">
-      <Link href={indexHref} icon="arrow-left" size="small">
+      <Link data-enter="block" href={indexHref} icon="arrow-left" size="small">
         {back}
       </Link>
       <div class="flex flex-col gap-6 md:flex-row md:items-start md:gap-8">
         <div class="flow-root space-y-6 md:flex md:flex-col md:gap-6 md:space-y-0">
           <img
+            data-enter="block"
             src={presentingMobile.src}
             width={presentingMobile.attributes.width}
             height={presentingMobile.attributes.height}
@@ -59,10 +60,16 @@ const presentingMobile = await getImage({
             class="float-right ml-2 hidden w-auto xxs:block xxs:h-63 md:hidden"
             style={`shape-outside: url(${presentingMobile.src}); shape-margin: 1rem`}
           />
-          <p class="text-label text-muted-foreground uppercase">
+          <p
+            data-enter="block"
+            class="text-label text-muted-foreground uppercase"
+          >
             {category} · {kind}
           </p>
-          <h1 class="text-5xl leading-none font-extrabold tracking-tight text-pretty text-foreground md:text-6xl">
+          <h1
+            data-enter="block"
+            class="text-5xl leading-none font-extrabold tracking-tight text-pretty text-foreground md:text-6xl"
+          >
             {nameSegments?.map((segment) =>
               segment.highlight ? (
                 <span class="text-secondary">{segment.text}</span>
@@ -71,11 +78,14 @@ const presentingMobile = await getImage({
               ),
             ) ?? name}
           </h1>
-          <p class="text-body leading-relaxed text-pretty text-muted-foreground">
+          <p
+            data-enter="block"
+            class="text-body leading-relaxed text-pretty text-muted-foreground"
+          >
             {summary}
           </p>
           {actions.length > 0 && (
-            <div class="mt-2 flex flex-wrap gap-6">
+            <div data-enter="block" class="mt-2 flex flex-wrap gap-6">
               {actions.map((action) => (
                 <Link href={action.href} size="small">
                   {action.label}
@@ -85,6 +95,7 @@ const presentingMobile = await getImage({
           )}
         </div>
         <Image
+          data-enter="block"
           src={presenting}
           alt=""
           loading="lazy"

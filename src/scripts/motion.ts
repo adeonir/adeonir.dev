@@ -59,7 +59,9 @@ const clear = ({ element }: Step) => {
 export const bindEnter = () => {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
-  const sections = document.querySelectorAll<HTMLElement>('main > section[id]')
+  const sections = document.querySelectorAll<HTMLElement>(
+    'main > section[id], main > article[id] > [id]',
+  )
   if (sections.length === 0) return
 
   const stops: (() => void)[] = []
