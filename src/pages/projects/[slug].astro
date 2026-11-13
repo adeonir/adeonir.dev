@@ -50,10 +50,14 @@ const {
       url={url}
       repository={repository}
     />
-    <Divider className="mx-auto my-8 flex w-full max-w-2xl md:my-16" />
+    <div class="wrapper">
+      <Divider className="mx-auto my-12 flex w-full max-w-2xl" />
+    </div>
     <Meta launch={launch} role={role} type={type} stack={stack} />
     <Body entry={entry} />
-    <Divider className="mx-auto my-8 flex w-full max-w-2xl md:my-16" />
+    <div class="wrapper">
+      <Divider className="mx-auto my-12 flex w-full max-w-2xl" />
+    </div>
     <Nav slug={entry.id.slice('pt/'.length)} />
   </article>
 </Layout>

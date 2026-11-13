@@ -104,6 +104,21 @@ it('shrinks a card 5% more for each card stacked in front of it', async () => {
   expect(at('card-1').style.transform).toBe('scale(0.95)')
 })
 
+it('keeps the stack shrunk while the pinned stack scrolls away together', async () => {
+  render(3)
+  allowMotion(false)
+  placeAt('card-0', -300)
+  placeAt('card-1', -244)
+  placeAt('card-2', -188)
+  const { bindRecede } = await loadRecede()
+
+  bindRecede()
+  onScroll()()
+
+  expect(at('card-0').style.transform).toBe('scale(0.9)')
+  expect(at('card-1').style.transform).toBe('scale(0.95)')
+})
+
 it('leaves the last card untouched', async () => {
   render(2)
   allowMotion(false)

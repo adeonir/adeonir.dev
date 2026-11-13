@@ -12,7 +12,12 @@ const STEP = 0.05
 const overlap = (back: HTMLElement, front: HTMLElement) => {
   const surface = back.firstElementChild as HTMLElement
   const bottom = back.getBoundingClientRect().top + surface.offsetHeight
-  const pinned = Number.parseFloat(getComputedStyle(front).top)
+  // Where the front card pins, measured from the back card's current top, so
+  // the share holds once the whole pinned stack scrolls away together.
+  const offset =
+    Number.parseFloat(getComputedStyle(front).top) -
+    Number.parseFloat(getComputedStyle(back).top)
+  const pinned = back.getBoundingClientRect().top + offset
   const top = front.getBoundingClientRect().top
   const share = (bottom - top) / (bottom - pinned)
   return Math.min(Math.max(share, 0), 1)

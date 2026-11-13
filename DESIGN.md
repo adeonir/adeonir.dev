@@ -283,6 +283,15 @@ components:
   divider:
     backgroundColor: "{colors.border}"
     height: 1px
+  link:
+    backgroundColor: "{colors.background}"
+    textColor: "{colors.primary}"
+    typography: "{typography.body}"
+  status-pill:
+    backgroundColor: "{colors.background}"
+    textColor: "{colors.muted-foreground}"
+    rounded: "{rounded.full}"
+    padding: "{spacing.3}"
 ---
 
 # adeonir.dev
@@ -387,6 +396,8 @@ The base spacing unit is 0.25rem, and every measurement is a multiple of it. Spa
 
 Density is generous rather than packed. A line of body text runs about 60 to 75 characters, so type sets at a reading measure rather than filling whatever width it is given. A group of items reads as a list of rows, each row a hover target, rather than as a dense grid of cards.
 
+A section may sit on a full-width `card` band that runs edge to edge while its content stays in the reading column, so one section reads as a lighter ground without becoming a framed card.
+
 Whitespace carries the structure. A reader tells two surfaces apart by lightness and by a hairline border, so the large gaps between sections mark where one idea ends and the next begins.
 
 ## Elevation & Depth
@@ -399,11 +410,11 @@ Opacity does the rest of the work, and it is what changes between the skins. The
 
 ## Shapes
 
-The radius scale is graded, not uniform. The smallest steps are for small inner elements. 0.375rem is for compact controls. 0.5rem is for buttons, form fields, popovers, and toasts. 0.75rem and 1rem are for large framed containers and cards. The full pill radius is for eyebrows and avatar masks.
+The radius scale is graded, not uniform. The smallest steps are for small inner elements. 0.375rem is for compact controls. 0.5rem is for buttons, form fields, popovers, and toasts. 0.75rem and 1rem are for large framed containers and cards. The full pill radius is for pills, tags, round toggles, and avatar masks.
 
-Border width has two levels. The hairline is the default stroke for dividers, card edges, and field borders. The two-pixel border marks the eyebrow pill and the toast, where an edge carries emphasis instead of only separating.
+Border width has two levels. The hairline is the default stroke for dividers, card edges, and field borders. The two-pixel border marks the status pill, the eyebrow, and the toast, where an edge carries emphasis instead of only separating.
 
-An image holds a 16:9 aspect ratio and takes the card radius. There are no art-directed crops between breakpoints, so the same asset scales. The site avoids decorative imagery, because an image here is content rather than ornament.
+An image holds a 16:9 aspect ratio and takes the card radius of its container. There are no art-directed crops between breakpoints, so the same asset scales. The site avoids decorative imagery, because an image here is content rather than ornament.
 
 Corners are rounded consistently: enough to feel approachable, and little enough to read as precise. Nothing is fully square, and nothing takes the pill radius except a true pill.
 
@@ -423,9 +434,13 @@ Corners are rounded consistently: enough to feel approachable, and little enough
 
 **Focus ring.** Every control draws the same ring on keyboard focus: two pixels wide, `ring` at full opacity, offset from the surface behind it. A text field has its own focus behavior, described under Inputs and forms, and draws no ring. A radio and a checkbox draw the shared ring.
 
-**Distinctive components.** The eyebrow is a pill with a two-pixel `border` edge, `muted-foreground` text, and no fill. It is a static label, so it takes neither accent. The logo is a brand mark and not a control: it carries no hover state and no interactive color. It sets its text in uppercase Geist at the smallest step, one weight above the `label` role and with wider letter-spacing, because a grotesque needs more air in uppercase than the monospace does. It is the one place a small uppercase run is not `label`. Static pink emphasis appears as pink text inside a running line. It is a marker and never a control.
+**Links.** A text link sets `primary` in weight 500 with an underline at 40% opacity and a four-pixel offset; on hover the underline takes the full blue. It comes in two sizes, `body` for running copy and 1rem for compact lists, and an optional arrow or external-link glyph sized to match (1rem or 1.25rem). The glyph moves toward where the link leads on hover: up for an outward arrow or an external link, left for a back arrow. Focus draws the shared focus ring.
 
-**Project card.** The card holds a 16:9 aspect ratio at the 1rem radius, the same ratio as the image inside it. The cover image fills that container edge to edge without being cropped and sits behind the content rather than beside it. A gradient scrim rises from `sunken` at the bottom to transparent, carrying an overline, the project name in `title`, and a truncated summary in `caption`. When the card links out, the whole card lifts an arrow glyph and pushes it right on hover and focus, and the cover image scales up slightly behind the scrim, so the two motions read as one surface responding together. The card takes the shared focus ring on its outer edge, offset from the background.
+**Accordion.** An expandable list is a stack of rows between hairline `border` rules, one row open at a time. A row title rests in `muted-foreground` at 1.5rem (1.875rem from the 40rem breakpoint), weight 600, and turns `foreground` when hovered or open. The hovered row takes a `card` fill at the 0.75rem radius, and its title shifts slightly right. A round toggle sits at the row's end: a 2.5rem circle with a hairline `border` edge and `muted-foreground` glyph that takes the blue edge and glyph on hover. The open row shows a minus in `muted-foreground` at half opacity instead of a close icon, because the open row cannot be closed by itself.
+
+**Distinctive components.** The status pill is a pill with a two-pixel `border` edge, uppercase Geist at 0.75rem, weight 600 and widest letter-spacing, in `muted-foreground`, led by a 0.5rem `success` dot. It reports a state and is not a control. The eyebrow is the same pill without the dot, a static label that takes neither accent. The logo is a brand mark and not a control: it carries no hover state and no interactive color. It sets its text in uppercase Geist at the smallest step, one weight above the `label` role and with wider letter-spacing, because a grotesque needs more air in uppercase than the monospace does. Static pink emphasis appears as pink text inside a running line. It is a marker and never a control.
+
+**Project card.** The card is a `card` surface at the 1rem radius with a `border` edge at half opacity. Its height is the 16:9 height of its width plus a fixed band for the text (190px, 100px from the 40rem breakpoint). The cover image spans the top edge to edge and fades into the card through a mask that reaches transparent near the bottom, so the text sits on the card surface rather than on a scrim. The text block carries an overline in the monospace face at 0.75rem, uppercase with widest letter-spacing, the project name in `title` at weight 700, and one line of stack tags. Each tag is outlined with a hairline `border` and no fill, so its text meets AA. An arrow glyph in `foreground` sits at the bottom right and never shrinks. Featured cards stack as sticky layers on scroll, so each card casts an upward black shadow onto the one below (0 -12px 32px -8px at 50% dark, 25% light). On hover and focus the arrow moves right and the cover scales to 103%, so the two motions read as one surface responding together. The card takes the shared focus ring on its outer edge, offset from the background.
 
 ## Do's and Don'ts
 
@@ -440,31 +455,13 @@ Corners are rounded consistently: enough to feel approachable, and little enough
 - Don't pack content into a dense grid. The density here is editorial.
 - Don't use pure black or pure white. The neutrals are a pastel charcoal and a lavender-white.
 
-## Agent Prompt Guide
+## Motion
 
-### Token quick reference
+Motion is short and eases out, so a surface arrives quickly and settles. Every movement that translates or scales is gated on `prefers-reduced-motion: no-preference`; with reduced motion only opacity and color change.
 
-- Anything blue that acts, as text, border, or fill: `primary`, with `primary-foreground` on top of a solid fill. The light skin takes a deeper blue for contrast.
-- Static pink text: `spot` for small text, `secondary` for headline-size text and for fills.
-- Surfaces from shallow to deep: `background`, `card`, `popover`, `sunken`. `accent` is the hover surface.
-- Text: `foreground` for primary text, `muted-foreground` for supporting copy.
-- Edges: `border` for dividers and card edges, `input` for field borders, `ring` for focus.
-
-### Example component prompts
-
-- "Hero with an eyebrow pill `[Eyebrow Label]` as `{components.eyebrow}`, the name `[Headline]` in `{typography.display}`, a tagline `[Subhead]` in `{typography.subtitle}` where one keyword takes `{colors.spot}`, and paired actions `[CTA Label]` as `{components.button-primary}` and `[CTA Label]` as `{components.button-outline}`, over `{colors.background}`."
-- "Section heading `[Heading Word One] [Heading Word Two]` in `{typography.heading}` with the second word in `{colors.spot}`."
-- "List row as `{components.card}` holding `[Item Title]` in `{typography.title}` and `[Item Description]` in `{typography.caption}`, tinting to `{colors.accent}` on hover and shifting the title to `{colors.primary}`."
-- "Form field as `{components.input}` with its label `[Field Label]` as `{components.input-label}`, its message as `{components.input-error}`, and a submit `[CTA Label]` as `{components.button-primary}`."
-- "Navigation entry `[Nav Label]` as `{components.nav-link}`, rising to `{components.nav-link-hover}` on hover."
-- "Confirmation toast as `{components.toast}` with a `{components.toast-success}` indicator and `[Body]` in `{typography.body}`."
-
-### Iteration guide
-
-1. Set the neutrals first: `background`, `card`, `foreground`, and `border`. The dark surfaces and their steps are the base of the identity.
-2. Only the blue may act. If an element responds to the reader, it is blue and nothing else.
-3. Only the pink may emphasize. If it is not pointing at static text, it does not belong.
-4. Keep the palette at two accent hues and the neutrals. More chroma is almost always wrong here.
-5. Separate two surfaces with a change in lightness and a border before using any shadow.
-6. Use no pure black and no pure white. Take the neutrals from the two Catppuccin scales.
-7. For the light skin, map the roles onto the `latte` scale and take the deeper accent steps. Never reuse a dark-skin accent step on a light surface.
+- **Entrance.** A section's blocks enter when its first block comes into view: opacity from 0, a blur that clears, and an optional slight scale (700ms, cubic-bezier(0.33, 1, 0.68, 1)). Blocks in a group follow each other with a 70ms stagger. The hero headline enters at full opacity with a large blur, the phrase under it with a small blur, and the actions with no blur, so weight decides how much the entrance shows. The hero starts from a scale of 0.98.
+- **Press.** Every enabled button shrinks to 97% while pressed, through the shared button base.
+- **Floating surfaces.** A popover opens from its trigger: it fades in and scales from 96% with its transform origin on the trigger (200ms, ease-out) and fades out (100ms, ease-in). A menu and a tooltip fade in (150ms, ease-out) and out (100ms, ease-in). A toast slides and scales into its stack (400ms, ease-out).
+- **State swaps.** A field error fades in (150ms, ease-out). The narration player crossfades between its play and pause glyphs instead of swapping them.
+- **Hover.** Color, underline, and glyph nudges run for 200ms; accordion rows for 300ms, ease-out; a project cover's scale for 500ms, ease-out.
+- Nothing animates layout, and nothing loops except the narration waveform while audio plays.

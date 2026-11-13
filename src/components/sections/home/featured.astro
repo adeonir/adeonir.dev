@@ -49,7 +49,10 @@ const featured = sortByLaunch(
 <section id="projects" class="pt-16 pb-4 md:pt-20 md:pb-8">
   <div class="wrapper">
     <div class="@container mt-12 grid grid-cols-1 gap-12 md:grid-cols-5">
-      <div class="flex flex-col gap-6 self-start md:sticky md:top-28 md:col-span-2 md:min-h-[calc(33.75cqw+6.325rem+100px)]">
+      <div
+        data-featured-title
+        class="sticky top-28 z-10 mb-(--featured-stack-h) flex flex-col gap-6 self-start bg-background pb-12 md:z-auto md:mb-0 md:bg-transparent md:pb-0 md:col-span-2 md:min-h-[calc(33.75cqw+6.325rem+100px)]"
+      >
         <h2 class="text-display text-pretty text-foreground">
           {headline.map((segment) => (
             <>
@@ -70,6 +73,7 @@ const featured = sortByLaunch(
             class={cn(
               'group gap-2 self-start',
               buttonVariants({ variant: 'link', size: 'inline' }),
+              'hidden md:inline-flex',
             )}
           >
             {seeAll}
@@ -77,9 +81,9 @@ const featured = sortByLaunch(
           </a>
         )}
       </div>
-      <div class="[--stack-top:7rem] md:col-span-3">
+      <div class="relative z-20 -mt-[calc(var(--featured-stack-h,0px)+3rem)] md:mt-0 [--stack-top:calc(7rem+var(--featured-title-h,0px))] md:z-auto md:col-span-3 md:[--stack-top:7rem]">
         {featured.length > 0 ? (
-          <div class="flex flex-col gap-16">
+          <div class="flex flex-col gap-8">
             {featured.map((project, index) => (
               <div
                 data-stack-card
@@ -120,5 +124,18 @@ const featured = sortByLaunch(
         )}
       </div>
     </div>
+    {entries.length > 0 && (
+      <a
+        href={indexHref}
+        class={cn(
+          'group mt-12 gap-2',
+          buttonVariants({ variant: 'link', size: 'inline' }),
+          'md:hidden',
+        )}
+      >
+        {seeAll}
+        <IconArrowRight className="size-4 shrink-0 transition-transform duration-200 motion-safe:group-hover:translate-x-1" />
+      </a>
+    )}
   </div>
 </section>

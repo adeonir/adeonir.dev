@@ -12,7 +12,7 @@ import { getLocalizedEntry } from '~/services/localized'
 
 const locale = parseLocale(Astro.currentLocale)
 const footer = await getLocalizedEntry('sharedFooter', locale)
-const homeURL = getRelativeLocaleUrl(locale)
+const topURL = Astro.url.pathname
 const colophonURL = getRelativeLocaleUrl(locale, '/colophon')
 
 const { brand, signoff } = footer.data
@@ -25,7 +25,7 @@ const showCharacter = Astro.response.status !== 404
       <div class="flex flex-col gap-8 xs:mb-4 md:mb-8">
         <div class="flex flex-col gap-2">
           <a
-            href={homeURL}
+            href={topURL}
             class="-mx-1.5 -my-0.5 shrink-0 self-start rounded-sm px-1.5 py-0.5 transition focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
           >
             <Logo class="w-28" label={brand.text} />
