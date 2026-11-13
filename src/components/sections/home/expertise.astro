@@ -37,12 +37,13 @@ const { headline, body, items } = expertise.data
         </p>
       </div>
       <div class="md:col-span-3">
-        <div data-enter="block" class="border-t border-border">
+        <div data-enter="block" data-accordion class="border-t border-border">
           {items.map((item, index) => (
             <details
               name="expertise"
               open={index === 0}
-              class="expertise-item group/item border-b border-border py-2"
+              data-accordion-item
+              class="group/item border-b border-border py-2"
             >
               <summary class="group/summary flex cursor-pointer group-open/item:pointer-events-none -mx-4 list-none items-center justify-between gap-6 rounded-xl px-4 py-5 transition-[background-color,translate] duration-300 ease-out hover:bg-card focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none [&::-webkit-details-marker]:hidden">
                 <span class="text-2xl font-semibold text-muted-foreground transition-[color,translate] duration-300 ease-out group-open/item:text-foreground group-hover/summary:translate-x-1 group-hover/summary:text-foreground sm:text-3xl">
@@ -56,9 +57,11 @@ const { headline, body, items } = expertise.data
                   <IconMinus className="hidden size-5 group-open/item:block" />
                 </span>
               </summary>
-              <p class="max-w-prose pb-6 text-body leading-relaxed text-pretty text-muted-foreground">
-                {item.description}
-              </p>
+              <div data-accordion-panel class="overflow-clip">
+                <p class="max-w-prose pb-6 text-body leading-relaxed text-pretty text-muted-foreground">
+                  {item.description}
+                </p>
+              </div>
             </details>
           ))}
         </div>
@@ -66,42 +69,3 @@ const { headline, body, items } = expertise.data
     </div>
   </div>
 </section>
-
-<script>
-  // one area stays open at all times: clicking the open summary does not close it
-  for (const summary of document.querySelectorAll<HTMLElement>(
-    '.expertise-item > summary',
-  )) {
-    summary.addEventListener('click', (event) => {
-      if ((summary.parentElement as HTMLDetailsElement).open)
-        event.preventDefault()
-    })
-  }
-</script>
-
-<style>
-  .expertise-item {
-    interpolate-size: allow-keywords;
-  }
-
-  .expertise-item::details-content {
-    height: 0;
-    overflow: clip;
-    opacity: 0;
-    transition:
-      height 400ms cubic-bezier(0.16, 1, 0.3, 1),
-      opacity 300ms ease-out,
-      content-visibility 400ms allow-discrete;
-  }
-
-  .expertise-item[open]::details-content {
-    height: auto;
-    opacity: 1;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .expertise-item::details-content {
-      transition: none;
-    }
-  }
-</style>

@@ -8,8 +8,6 @@ attribute vec2 position;
 void main() { gl_Position = vec4(position, 0.0, 1.0); }
 `
 
-// Comet colors per skin, close to the text color: pale lavender and mauve on the dark
-// skin, the latte text and subtext-1 steps with a softer head glow on the light one
 const SKINS = {
   dark: {
     lavender: [0.706, 0.745, 0.996],
@@ -30,7 +28,6 @@ uniform vec2 pointer;
 uniform float time;
 // fraction of the canvas width where the content column ends
 uniform float limit;
-// the comet colors and head glow follow the skin, see SKINS
 uniform vec3 lavender;
 uniform vec3 mauve;
 uniform float glowGain;
