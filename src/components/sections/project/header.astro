@@ -1,5 +1,5 @@
 ---
-import { getImage, Image } from 'astro:assets'
+import { Image } from 'astro:assets'
 import { getRelativeLocaleUrl } from 'astro:i18n'
 
 import presenting from '~/assets/characters/presenting.png'
@@ -33,12 +33,6 @@ const actions = [
 ].filter((action): action is { href: string; label: string } =>
   Boolean(action.href),
 )
-
-const presentingMobile = await getImage({
-  src: presenting,
-  width: 321,
-  height: 504,
-})
 ---
 
 <header id="project-header" class="pt-8 md:pt-16">
@@ -49,17 +43,6 @@ const presentingMobile = await getImage({
       </Link>
       <div class="flex flex-col gap-6 md:flex-row md:items-start md:gap-8">
         <div class="flow-root space-y-6 md:flex md:flex-col md:gap-6 md:space-y-0">
-          <img
-            data-enter="block"
-            src={presentingMobile.src}
-            width={presentingMobile.attributes.width}
-            height={presentingMobile.attributes.height}
-            alt=""
-            loading="lazy"
-            decoding="async"
-            class="float-right ml-2 hidden w-auto xxs:block xxs:h-63 md:hidden"
-            style={`shape-outside: url(${presentingMobile.src}); shape-margin: 1rem`}
-          />
           <p
             data-enter="block"
             class="text-label text-muted-foreground uppercase"
