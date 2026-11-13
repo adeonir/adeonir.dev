@@ -88,7 +88,6 @@ export const bindAccordion = () => {
         current = item
         expand(item)
       }
-      // Find-in-page opens a closed item without a click.
       const onToggle = () => {
         if (!item.open || item === current) return
         if (current) current.open = false
