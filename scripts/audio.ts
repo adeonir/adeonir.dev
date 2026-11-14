@@ -1,5 +1,6 @@
 import { mkdir, readdir, readFile, rm, stat, writeFile } from 'node:fs/promises'
 import { basename, dirname, join } from 'node:path'
+import { MPEGDecoder } from 'mpg123-decoder'
 import { parse } from 'yaml'
 import { z } from 'zod'
 
@@ -30,7 +31,9 @@ const spokenSchema = z.object({
   }),
 })
 
-export type AudioManifest = Record<Locale, Record<NarrationSection, string>>
+export type AudioEntry = { file: string; duration: number }
+
+export type AudioManifest = Record<Locale, Record<NarrationSection, AudioEntry>>
 
 export async function hashNarration(text: string): Promise<string> {
   const digest = await crypto.subtle.digest(
@@ -49,6 +52,22 @@ export async function narrationFile(
 ): Promise<string> {
   const hash = await hashNarration(spoken)
   return `/narration/${locale}/${section}.${hash.slice(0, 8)}.mp3`
+}
+
+export async function readMp3Duration(path: string): Promise<number> {
+  const decoder = new MPEGDecoder()
+  try {
+    await decoder.ready
+    const { samplesDecoded, sampleRate, errors } = decoder.decode(
+      new Uint8Array(await readFile(path)),
+    )
+    if (errors.length > 0) {
+      throw new Error(`Decoding ${path} failed: ${errors[0]?.message}`)
+    }
+    return Math.round((samplesDecoded / sampleRate) * 100) / 100
+  } finally {
+    decoder.free()
+  }
 }
 
 async function fileExists(path: string): Promise<boolean> {
@@ -125,18 +144,20 @@ export async function generateNarrations(): Promise<void> {
       const text = spoken[section]
       const file = await narrationFile(locale, section, text)
       const audio = join(process.cwd(), 'public', file)
-      manifest[locale][section] = file
 
       if (await fileExists(audio)) {
         console.log(`Up to date: ${key}`)
-        continue
+      } else {
+        console.log(`Regenerating: ${key}`)
+        const bytes = await synthesize(text, locale, apiKey, voiceId)
+        await mkdir(dirname(audio), { recursive: true })
+        await writeFile(audio, bytes)
+        await removeOlderFiles(audio, section)
       }
-
-      console.log(`Regenerating: ${key}`)
-      const bytes = await synthesize(text, locale, apiKey, voiceId)
-      await mkdir(dirname(audio), { recursive: true })
-      await writeFile(audio, bytes)
-      await removeOlderFiles(audio, section)
+      manifest[locale][section] = {
+        file,
+        duration: await readMp3Duration(audio),
+      }
     }
   }
 

@@ -42,6 +42,7 @@ function optimizeServerDeps() {
 
 export default defineConfig({
   site: 'https://adeonir.dev',
+  build: { inlineStylesheets: 'always' },
   adapter: cloudflare({
     imageService: { build: 'compile', runtime: 'cloudflare-binding' },
   }),
