@@ -138,7 +138,7 @@ const ogImageURL = new URL(
     ) : (
       <slot />
     )}
-    <Toaster client:idle />
+    <Toaster client:after-load />
     <script>
       import '~/scripts/accordion'
       import '~/scripts/anchor-nav'

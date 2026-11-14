@@ -1,12 +1,30 @@
 {
   "pt": {
-    "hero": "/narration/pt/hero.122702ad.mp3",
-    "about": "/narration/pt/about.f2bdb1da.mp3",
-    "expertise": "/narration/pt/expertise.5859d0b3.mp3"
+    "hero": {
+      "file": "/narration/pt/hero.122702ad.mp3",
+      "duration": 7.92
+    },
+    "about": {
+      "file": "/narration/pt/about.f2bdb1da.mp3",
+      "duration": 71.44
+    },
+    "expertise": {
+      "file": "/narration/pt/expertise.5859d0b3.mp3",
+      "duration": 45.6
+    }
   },
   "en": {
-    "hero": "/narration/en/hero.f2d260a5.mp3",
-    "about": "/narration/en/about.635bbcd0.mp3",
-    "expertise": "/narration/en/expertise.e09ee025.mp3"
+    "hero": {
+      "file": "/narration/en/hero.f2d260a5.mp3",
+      "duration": 7.44
+    },
+    "about": {
+      "file": "/narration/en/about.635bbcd0.mp3",
+      "duration": 66.24
+    },
+    "expertise": {
+      "file": "/narration/en/expertise.e09ee025.mp3",
+      "duration": 43.52
+    }
   }
 }

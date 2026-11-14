@@ -11,7 +11,7 @@ const peaks = Array.from({ length: NARRATION_BARS }, (_, index) =>
   index % 2 === 0 ? 0.5 : 1,
 )
 
-function renderControl() {
+function renderControl(duration?: number) {
   return render(
     <NarrationControl
       section="about"
@@ -19,6 +19,7 @@ function renderControl() {
       src="/narration/en/about.test.mp3"
       label="Listen to my story"
       peaks={peaks}
+      duration={duration}
       error={{ title: 'Failed', description: 'Try again' }}
     />,
   )
@@ -63,6 +64,33 @@ function stubPlayback(audio: HTMLAudioElement) {
 }
 
 describe('NarrationControl', () => {
+  it('shows the length from the manifest before playback', () => {
+    renderControl(75)
+
+    expect(screen.getByText('1:15')).toBeTruthy()
+  })
+
+  it('does not preload the audio', () => {
+    const { container } = renderControl(75)
+
+    expect(audioOf(container).getAttribute('preload')).toBe('none')
+  })
+
+  it('shows no time without a manifest length, takes it from the audio once loaded, and still plays', () => {
+    const { container } = renderControl()
+    const audio = audioOf(container)
+    const play = stubPlayback(audio)
+
+    expect(container.querySelector('.tabular-nums')).toBeNull()
+
+    setTimes(audio, 0, 90)
+    fireEvent.loadedMetadata(audio)
+    expect(screen.getByText('1:30')).toBeTruthy()
+
+    fireEvent.click(screen.getByRole('button'))
+    expect(play).toHaveBeenCalledTimes(1)
+  })
+
   it('names the play button by its visible label', () => {
     renderControl()
 
