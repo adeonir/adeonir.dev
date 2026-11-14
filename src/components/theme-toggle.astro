@@ -7,4 +7,4 @@ const locale = parseLocale(Astro.currentLocale)
 const labels = await getLocalizedEntry('sharedThemeToggle', locale)
 ---
 
-<ThemeToggleIsland client:load labels={labels.data} />
+<ThemeToggleIsland client:idle labels={labels.data} />
