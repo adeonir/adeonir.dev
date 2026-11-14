@@ -40,6 +40,20 @@ function optimizeServerDeps() {
   }
 }
 
+function afterLoadDirective() {
+  return {
+    name: 'client:after-load',
+    hooks: {
+      'astro:config:setup': ({ addClientDirective }) => {
+        addClientDirective({
+          name: 'after-load',
+          entrypoint: './src/scripts/after-load-directive.ts',
+        })
+      },
+    },
+  }
+}
+
 export default defineConfig({
   site: 'https://adeonir.dev',
   build: { inlineStylesheets: 'always' },
@@ -72,6 +86,7 @@ export default defineConfig({
   integrations: [
     mdx(),
     react(),
+    afterLoadDirective(),
     sitemap({
       i18n: { defaultLocale: 'pt', locales: { pt: 'pt-BR', en: 'en' } },
       filter: (page) => {

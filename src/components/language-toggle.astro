@@ -15,7 +15,7 @@ const href = `${getLocalizedPath(Astro.url.pathname, targetLocale)}${Astro.url.s
 ---
 
 <LanguageToggleIsland
-  client:idle
+  client:after-load
   href={href}
   code={labels.data.code}
   name={labels.data.name}
