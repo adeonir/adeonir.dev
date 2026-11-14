@@ -25,6 +25,7 @@ type NarrationControlProps = {
   src: string
   label: string
   peaks: number[]
+  duration?: number
   error: { title: string; description: string }
   variant?: 'full' | 'compact'
 }
@@ -97,6 +98,7 @@ export function NarrationControl({
   src,
   label,
   peaks,
+  duration: knownDuration,
   error,
   variant = 'full',
 }: NarrationControlProps) {
@@ -113,14 +115,8 @@ export function NarrationControl({
   const pendingRef = useRef<number | null>(null)
   // the fraction under the pointer while a drag is in progress
   const [drag, setDrag] = useState<number | null>(null)
-  const [duration, setDuration] = useState<number | null>(null)
+  const [duration, setDuration] = useState<number | null>(knownDuration ?? null)
   const active = status === 'loading' || status === 'playing'
-
-  // the audio can load its metadata before hydration attaches the listener
-  useEffect(() => {
-    const audio = audioRef.current
-    if (audio && Number.isFinite(audio.duration)) setDuration(audio.duration)
-  }, [])
 
   useEffect(() => {
     if (active && current !== section) audioRef.current?.pause()
@@ -241,14 +237,16 @@ export function NarrationControl({
     <audio
       ref={audioRef}
       src={src}
-      preload="metadata"
+      preload="none"
       onPlaying={begin}
       onWaiting={() => setStatus('loading')}
       onPause={pause}
       onError={fail}
       onLoadedMetadata={(event) => {
         const audio = event.currentTarget
-        if (Number.isFinite(audio.duration)) setDuration(audio.duration)
+        if (Number.isFinite(audio.duration)) {
+          setDuration((known) => known ?? audio.duration)
+        }
         applyPending(audio)
       }}
       onTimeUpdate={track}
