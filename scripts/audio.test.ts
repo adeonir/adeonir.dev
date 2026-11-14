@@ -7,6 +7,7 @@ import {
   manifestPath,
   narrationFile,
   narrationSections,
+  readMp3Duration,
   readSpokenTexts,
   supportedLocales,
 } from './audio'
@@ -28,7 +29,7 @@ describe('narration sync', () => {
       const manifest = await readManifest()
 
       expect(
-        manifest[locale][section],
+        manifest[locale][section]?.file,
         `${file} is not in the manifest; run pnpm audio`,
       ).toBe(file)
       await expect(
@@ -37,4 +38,24 @@ describe('narration sync', () => {
       ).resolves.toBeUndefined()
     },
   )
+
+  it.each(entries)(
+    '$locale/$section lists the length of its committed audio',
+    async ({ locale, section }) => {
+      const { file, duration } = (await readManifest())[locale][section]
+      const length = await readMp3Duration(join(process.cwd(), 'public', file))
+
+      expect(duration, `${file} has no length; run pnpm audio`).toBe(length)
+    },
+  )
+})
+
+describe('readMp3Duration', () => {
+  it('returns the length of the fixture, a two second tone', async () => {
+    const length = await readMp3Duration(
+      join(process.cwd(), 'scripts/fixtures/two-seconds.mp3'),
+    )
+
+    expect(length).toBeCloseTo(2, 1)
+  })
 })
