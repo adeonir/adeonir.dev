@@ -21,7 +21,7 @@ const { section, class: className, variant } = Astro.props
 const locale = parseLocale(Astro.currentLocale)
 const narration = await getLocalizedEntry('homeNarration', locale)
 const { labels, error } = narration.data
-const src = audio[locale][section]
+const { file: src, duration } = audio[locale][section]
 const peaks =
   (peaksByPath as Record<string, number[]>)[src] ??
   placeholderPeaks(src, NARRATION_BARS)
@@ -35,6 +35,7 @@ const peaks =
     src={src}
     label={labels[section]}
     peaks={peaks}
+    duration={duration}
     error={error}
     variant={variant}
   />
