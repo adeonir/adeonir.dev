@@ -41,12 +41,14 @@ export function MobileMenu({ content }: MobileMenuProps) {
       if (event.key === 'Escape') closeAndRefocus()
     }
     const onClick = (event: MouseEvent) => {
-      if (
-        event.target instanceof Element &&
-        event.target.closest('[data-menu-surface] nav a')
-      ) {
-        closeAndRefocus()
-      }
+      if (!(event.target instanceof Element)) return
+      const link = event.target.closest<HTMLAnchorElement>(
+        '[data-menu-surface] nav a',
+      )
+      if (!link?.hash || link.hash === '#') return
+      if (link.origin !== location.origin) return
+      if (link.pathname !== location.pathname) return
+      closeAndRefocus()
     }
     document.addEventListener('keydown', onKeyDown)
     document.addEventListener('click', onClick)

@@ -21,7 +21,7 @@ beforeEach(() => {
   document.body.innerHTML = `
     <main></main>
     <footer></footer>
-    <div data-menu-surface><nav><a href="#about">About</a></nav></div>
+    <div data-menu-surface><nav><a href="#about">About</a><a href="/other#about">Other</a></nav></div>
   `
 })
 
@@ -89,6 +89,19 @@ describe('MobileMenu', () => {
     const closed = button('Abrir menu')
     expect(closed.getAttribute('aria-expanded')).toBe('false')
     expect(document.activeElement).toBe(closed)
+  })
+
+  it('keeps the menu open and focus unchanged for a link to another page', () => {
+    render(<MobileMenu content={content} />)
+    const toggle = button('Abrir menu')
+    fireEvent.click(toggle)
+    const other = screen.getByRole('link', { name: 'Other', hidden: true })
+    other.focus()
+
+    fireEvent.click(other)
+
+    expect(button('Fechar menu').getAttribute('aria-expanded')).toBe('true')
+    expect(document.activeElement).toBe(other)
   })
 
   it('closes when the viewport reaches 48rem and stays closed', () => {
