@@ -4,9 +4,13 @@ Personal portfolio for a design engineer. The visual identity is the product. It
 
 ## Language
 
+### Role
+
 **Design engineer**:
 A frontend professional who turns design decisions into working interfaces, preserving the visual intent through implementation and resolving technical constraints without degrading the experience. Their scope is the interface itself: layout, typography, interaction, and composition, worked out in code and browser prototypes and delivered as responsive, accessible, performant, and reusable patterns. They often do the design themselves, owning design and frontend end to end. They are not a Product Designer: the role carries no user research, no product strategy, and no ownership of discovery.
 _Avoid_: Designer and developer in equal parts, full Product Designer, product engineer
+
+### Motion
 
 **Enter**:
 The animation that carries content from its starting values to its settled values.
@@ -23,6 +27,22 @@ _Avoid_: Rest, at rest, hidden, pending
 **Visit**:
 One full page load or one client navigation that replaces the page content. Content enters at most once per visit.
 _Avoid_: Session, view
+
+### Header
+
+**Pill**:
+The rounded bar at the top of every page that holds the logo, the theme and language toggles, and the navigation or the menu button.
+_Avoid_: Navbar, header bar, capsule
+
+**Pill backdrop**:
+The layer that draws the closed pill: its rounded shape, translucent fill, blur, border, and shadow.
+_Avoid_: Content column, pill background
+
+**Menu surface**:
+On a narrow screen, the layer that grows out of the pill until it covers the screen and becomes the menu. It holds the pill's row and the navigation.
+_Avoid_: Dropdown, overlay, drawer, menu panel
+
+### Projects
 
 **Published project**:
 A project present in the site's list of projects. Having a project page does not decide whether it is published.
@@ -43,6 +63,8 @@ _Avoid_: Project page, project content
 **Empty state**:
 What a section shows while it has nothing to list.
 _Avoid_: Holding message, placeholder
+
+### Narration
 
 **Narration**:
 The recording of one section's spoken text, in one language, in the owner's cloned voice. Only the hero, about, and expertise sections have one.

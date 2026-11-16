@@ -3,7 +3,7 @@ name: 005-localized-project-content-with-shared-images
 date: 2026-09-07
 updated: 2026-09-08
 sources:
-  - CONTEXT.md
+  - GLOSSARY.md
   - docs/product/design-doc.md
   - src/content.config.ts
 ---
@@ -28,7 +28,7 @@ Each locale owns a complete project entry under the same directory structure, wh
 
 ## References
 
-- `CONTEXT.md`
+- `GLOSSARY.md`
 - `docs/product/design-doc.md#33-conventions`
 - `docs/product/design-doc.md#34-domain`
 - `src/content.config.ts`

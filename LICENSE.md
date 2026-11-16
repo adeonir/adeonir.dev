@@ -6,7 +6,7 @@ The following are not covered by the MIT License and remain the property of Adeo
 
 - The site copy and content, including `docs/product/copy.yaml`, `docs/product/copy.en.yaml`, and everything under `src/content/`.
 - The visual identity, including the character illustrations and project images under `src/assets/`, the icons and Open Graph images under `public/`, and the design tokens described in `DESIGN.md`.
-- The product and design documents under `docs/`, `CONTEXT.md`, `PROJECT.md`, and `DESIGN.md`.
+- The product and design documents under `docs/`, `GLOSSARY.md`, `PROJECT.md`, and `DESIGN.md`.
 - The name "Adeonir Kohl" and the domain `adeonir.dev`.
 
 You may study and reuse the code. You may not republish the site, its content, or its identity as your own.
