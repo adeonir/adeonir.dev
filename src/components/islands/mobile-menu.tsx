@@ -2,6 +2,7 @@ import { animate } from 'motion/mini'
 import { useEffect, useRef, useState } from 'react'
 import { Button } from '~/components/ui/button'
 import { Swap } from '~/components/ui/swap'
+import { syncThemeColor } from '~/stores/theme'
 import IconMenu from '~icons/tabler/menu-2'
 import IconX from '~icons/tabler/x'
 
@@ -91,6 +92,7 @@ export function MobileMenu({ content }: MobileMenuProps) {
   useEffect(() => {
     if (!open) return
     document.documentElement.dataset.menu = 'open'
+    syncThemeColor()
     const covered = document.querySelectorAll<HTMLElement>('main, footer')
     for (const node of covered) node.inert = true
 
@@ -116,6 +118,7 @@ export function MobileMenu({ content }: MobileMenuProps) {
 
     return () => {
       delete document.documentElement.dataset.menu
+      syncThemeColor()
       for (const node of covered) node.inert = false
       document.removeEventListener('keydown', onKeyDown)
       document.removeEventListener('click', onClick)

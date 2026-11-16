@@ -60,6 +60,24 @@ describe('MobileMenu', () => {
     expect(document.activeElement).toBe(closed)
   })
 
+  it('paints the browser bars with the menu color only while open', () => {
+    const meta = document.createElement('meta')
+    meta.name = 'theme-color'
+    meta.content = '#1e1e2e'
+    document.head.appendChild(meta)
+    try {
+      render(<MobileMenu content={content} />)
+
+      fireEvent.click(button('Abrir menu'))
+      expect(meta.content).toBe('#151521')
+
+      fireEvent.click(button('Fechar menu'))
+      expect(meta.content).toBe('#1e1e2e')
+    } finally {
+      meta.remove()
+    }
+  })
+
   it('points the button at the menu navigation', () => {
     render(<MobileMenu content={content} />)
 
