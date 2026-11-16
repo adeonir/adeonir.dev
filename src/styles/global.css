@@ -99,6 +99,13 @@
   --warning-foreground: var(--ink);
   --info: var(--color-cyan-500);
   --info-foreground: var(--ink);
+
+  --header: color-mix(
+    in srgb,
+    var(--sunken) 70%,
+    var(--background)
+  ); /* pill over base */
+  --header-foreground: var(--mocha-50); /* text */
 }
 
 [data-theme="light"] {
@@ -128,6 +135,13 @@
   --border: var(--latte-200); /* surface-0 */
   --input: var(--latte-700); /* overlay-2 */
   --ring: var(--ocean-600);
+
+  --header: color-mix(
+    in srgb,
+    var(--sunken) 80%,
+    var(--background)
+  ); /* pill over base */
+  --header-foreground: var(--latte-950); /* text */
 }
 
 [data-theme-switching] *,
@@ -169,6 +183,8 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-header: var(--header);
+  --color-header-foreground: var(--header-foreground);
 }
 
 @theme {
