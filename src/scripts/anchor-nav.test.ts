@@ -50,6 +50,15 @@ describe('anchor navigation', () => {
     expect(location.hash).toBe('')
   })
 
+  it('keeps the router state of the history entry', () => {
+    const state = { index: 1, scrollX: 0, scrollY: 0 }
+    history.replaceState(state, '', '/')
+
+    clickLink('/#about')
+
+    expect(history.state).toEqual(state)
+  })
+
   it('scrolls to the section when the link carries the page path', () => {
     clickLink('/#about')
 
