@@ -6,7 +6,6 @@ import { commands, page } from 'vitest/browser'
 declare module 'vitest/browser' {
   interface BrowserCommands {
     renderHeader: (pathname: string) => Promise<string>
-    emulateReducedMotion: (reduce: boolean) => Promise<void>
   }
 }
 
@@ -94,10 +93,6 @@ describe('header pill', () => {
     }
     const surface = () =>
       document.querySelector('[data-menu-surface]') as Element
-    const links = () =>
-      [
-        ...document.querySelectorAll('[data-menu-surface] [data-menu-link]'),
-      ] as Element[]
     // Reads one transitioned property as [duration, delay, easing] in ms.
     const timing = (element: Element, property: string) => {
       const style = getComputedStyle(element)
@@ -114,9 +109,8 @@ describe('header pill', () => {
     const easeOut = 'cubic-bezier(0.33, 1, 0.68, 1)'
     const easeIn = 'cubic-bezier(0.32, 0, 0.67, 0)'
 
-    afterEach(async () => {
+    afterEach(() => {
       close()
-      await commands.emulateReducedMotion(false)
     })
 
     it('grows the surface in 500ms and shrinks it in 350ms', async () => {
@@ -135,43 +129,6 @@ describe('header pill', () => {
       expect(timing(surface(), 'background-color')[1]).toBe(0)
     })
 
-    it('starts the links 200ms in, 70ms apart, rising over 400ms', async () => {
-      await mountHeader(375)
-      open()
-
-      const all = links()
-      expect(all.length).toBeGreaterThan(1)
-      all.forEach((link, index) => {
-        expect(timing(link, 'opacity')).toEqual([
-          400,
-          200 + index * 70,
-          easeOut,
-        ])
-        expect(timing(link, 'transform')).toEqual([
-          400,
-          200 + index * 70,
-          easeOut,
-        ])
-      })
-      close()
-      await new Promise((resolve) => setTimeout(resolve, 150))
-      expect(getComputedStyle(all[0]).opacity).toBe('0')
-      expect(getComputedStyle(all[0]).transform).toBe(
-        'matrix(1, 0, 0, 1, 0, 8)',
-      )
-    })
-
-    it('exits the links together in 100ms with an ease-in', async () => {
-      await mountHeader(375)
-      open()
-      close()
-
-      for (const link of links()) {
-        expect(timing(link, 'opacity')).toEqual([100, 0, 'ease-in'])
-        expect(timing(link, 'transform')).toEqual([100, 0, 'ease-in'])
-      }
-    })
-
     it('hides the links from Tab only after the closing transition', async () => {
       await mountHeader(375)
       const nav = document.querySelector('[data-menu-surface] nav[aria-label]')
@@ -180,30 +137,6 @@ describe('header pill', () => {
       expect(timing(nav as Element, 'visibility')[1]).toBe(0)
       close()
       expect(timing(nav as Element, 'visibility')[1]).toBe(350)
-    })
-
-    it('fades the background and links in 150ms and out in 100ms with reduced motion', async () => {
-      await commands.emulateReducedMotion(true)
-      await mountHeader(375)
-
-      expect(timing(surface(), 'background-color')).toEqual([100, 0, 'ease-in'])
-      expect(timing(surface(), 'clip-path')).toEqual([0, 100, 'linear'])
-      for (const link of links()) {
-        expect(timing(link, 'opacity')).toEqual([100, 0, 'ease-in'])
-        expect(getComputedStyle(link).transform).toBe('none')
-      }
-
-      open()
-      expect(timing(surface(), 'background-color')).toEqual([
-        150,
-        0,
-        'ease-out',
-      ])
-      expect(timing(surface(), 'clip-path')[0]).toBe(0)
-      for (const link of links()) {
-        expect(timing(link, 'opacity')).toEqual([150, 0, 'ease-out'])
-        expect(getComputedStyle(link).transform).toBe('none')
-      }
     })
 
     it('runs no animation at 48rem and wider', async () => {

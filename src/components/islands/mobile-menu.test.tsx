@@ -2,13 +2,18 @@
 import { act, cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
+vi.mock('motion/mini', () => ({ animate: mocks.animate }))
+
 import { MobileMenu } from '~/components/islands/mobile-menu'
+
+const mocks = vi.hoisted(() => ({ animate: vi.fn() }))
 
 const content = { trigger: { open: 'Abrir menu', close: 'Fechar menu' } }
 
 let widthListener: ((event: { matches: boolean }) => void) | undefined
 
 beforeEach(() => {
+  mocks.animate.mockClear()
   widthListener = undefined
   vi.stubGlobal('matchMedia', () => ({
     addEventListener: (_: string, listener: typeof widthListener) => {
@@ -21,7 +26,7 @@ beforeEach(() => {
   document.body.innerHTML = `
     <main></main>
     <footer></footer>
-    <div data-menu-surface><nav><a href="#about">About</a><a href="/other#about">Other</a></nav></div>
+    <div data-menu-surface><nav><a data-menu-link href="#about">About</a><a data-menu-link href="/other#about">Other</a></nav></div>
   `
 })
 
@@ -113,5 +118,46 @@ describe('MobileMenu', () => {
 
     act(() => widthListener?.({ matches: false }))
     expect(button('Abrir menu').getAttribute('aria-expanded')).toBe('false')
+  })
+
+  it('enters the links 200ms in, 70ms apart, rising 8px over 400ms', () => {
+    render(<MobileMenu content={content} />)
+    const links = [...document.querySelectorAll('[data-menu-link]')]
+
+    fireEvent.click(button('Abrir menu'))
+
+    const ease = [0.33, 1, 0.68, 1]
+    expect(mocks.animate).toHaveBeenCalledTimes(2)
+    links.forEach((link, index) => {
+      expect(mocks.animate).toHaveBeenCalledWith(
+        link,
+        { opacity: [0, 1], y: [8, 0] },
+        { duration: 0.4, delay: 0.2 + index * 0.07, ease },
+      )
+    })
+  })
+
+  it('exits the links together in 100ms with an ease-in', () => {
+    render(<MobileMenu content={content} />)
+    const links = [...document.querySelectorAll('[data-menu-link]')]
+    fireEvent.click(button('Abrir menu'))
+    mocks.animate.mockClear()
+
+    fireEvent.click(button('Fechar menu'))
+
+    expect(mocks.animate).toHaveBeenCalledTimes(2)
+    for (const link of links) {
+      expect(mocks.animate).toHaveBeenCalledWith(
+        link,
+        { opacity: 0 },
+        { duration: 0.1, ease: 'easeIn' },
+      )
+    }
+  })
+
+  it('does not animate on mount', () => {
+    render(<MobileMenu content={content} />)
+
+    expect(mocks.animate).not.toHaveBeenCalled()
   })
 })

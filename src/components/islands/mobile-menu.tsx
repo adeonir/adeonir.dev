@@ -1,3 +1,4 @@
+import { animate } from 'motion/mini'
 import { useEffect, useRef, useState } from 'react'
 import { Button } from '~/components/ui/button'
 import { Swap } from '~/components/ui/swap'
@@ -8,9 +9,36 @@ type MobileMenuProps = {
   content: { trigger: { open: string; close: string } }
 }
 
+const ENTER_EASE: [number, number, number, number] = [0.33, 1, 0.68, 1]
+
+function animateLinks(open: boolean) {
+  const links = document.querySelectorAll<HTMLElement>('[data-menu-link]')
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  links.forEach((link, index) => {
+    if (!open) {
+      animate(link, { opacity: 0 }, { duration: 0.1, ease: 'easeIn' })
+    } else if (reduced) {
+      animate(link, { opacity: [0, 1] }, { duration: 0.15, ease: 'easeOut' })
+    } else {
+      animate(
+        link,
+        { opacity: [0, 1], y: [8, 0] },
+        { duration: 0.4, delay: 0.2 + index * 0.07, ease: ENTER_EASE },
+      )
+    }
+  })
+}
+
 export function MobileMenu({ content }: MobileMenuProps) {
   const [open, setOpen] = useState(false)
   const button = useRef<HTMLButtonElement | null>(null)
+  const mounted = useRef(false)
+
+  useEffect(() => {
+    if (mounted.current) animateLinks(open)
+    mounted.current = true
+  }, [open])
 
   useEffect(() => {
     const wide = window.matchMedia('(min-width: 48rem)')

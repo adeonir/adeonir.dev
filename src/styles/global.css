@@ -297,26 +297,6 @@
     transition: visibility 0s;
   }
 
-  [data-menu-surface] [data-menu-link] {
-    opacity: 0;
-    transform: translateY(8px);
-    transition:
-      color 150ms,
-      opacity 100ms ease-in,
-      transform 100ms ease-in;
-  }
-
-  html[data-menu="open"] [data-menu-surface] [data-menu-link] {
-    opacity: 1;
-    transform: none;
-    transition:
-      color 150ms,
-      opacity 400ms cubic-bezier(0.33, 1, 0.68, 1)
-      calc(200ms + var(--link-index) * 70ms),
-      transform 400ms cubic-bezier(0.33, 1, 0.68, 1)
-      calc(200ms + var(--link-index) * 70ms);
-  }
-
   @media (prefers-reduced-motion: reduce) {
     [data-menu-surface] {
       transition:
@@ -332,19 +312,6 @@
 
     [data-menu-surface] nav[aria-label] {
       transition: visibility 0s linear 100ms;
-    }
-
-    [data-menu-surface] [data-menu-link] {
-      transform: none;
-      transition:
-        color 150ms,
-        opacity 100ms ease-in;
-    }
-
-    html[data-menu="open"] [data-menu-surface] [data-menu-link] {
-      transition:
-        color 150ms,
-        opacity 150ms ease-out;
     }
   }
 }
