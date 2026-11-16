@@ -26,7 +26,7 @@ function animateLinks(open: boolean) {
       animate(
         link,
         { opacity: [0, 1], y: [8, 0] },
-        { duration: 0.4, delay: 0.2 + index * 0.07, ease: ENTER_EASE },
+        { duration: 0.4, delay: 0.25 + index * 0.07, ease: ENTER_EASE },
       )
     }
   })

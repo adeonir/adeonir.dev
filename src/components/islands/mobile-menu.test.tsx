@@ -120,7 +120,7 @@ describe('MobileMenu', () => {
     expect(button('Abrir menu').getAttribute('aria-expanded')).toBe('false')
   })
 
-  it('enters the links 200ms in, 70ms apart, rising 8px over 400ms', () => {
+  it('enters the links 250ms in, 70ms apart, rising 8px over 400ms', () => {
     render(<MobileMenu content={content} />)
     const links = [...document.querySelectorAll('[data-menu-link]')]
 
@@ -132,7 +132,7 @@ describe('MobileMenu', () => {
       expect(mocks.animate).toHaveBeenCalledWith(
         link,
         { opacity: [0, 1], y: [8, 0] },
-        { duration: 0.4, delay: 0.2 + index * 0.07, ease },
+        { duration: 0.4, delay: 0.25 + index * 0.07, ease },
       )
     })
   })

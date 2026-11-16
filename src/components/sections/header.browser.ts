@@ -201,18 +201,20 @@ describe('header pill', () => {
       close()
     })
 
-    it('grows the surface in 500ms and shrinks it in 350ms', async () => {
+    it('grows the surface in 400ms and shrinks it in 200ms', async () => {
       await mountHeader(375)
 
-      expect(timing(surface(), 'clip-path')).toEqual([350, 0, easeIn])
+      expect(timing(surface(), 'clip-path')).toEqual([200, 0, easeIn])
       open()
-      expect(timing(surface(), 'clip-path')).toEqual([500, 0, easeOut])
+      expect(timing(surface(), 'clip-path')).toEqual([400, 0, easeOut])
     })
 
-    it('keeps the surface opaque until it has shrunk back to the pill', async () => {
+    it('fades the surface background over 100ms after the shrink', async () => {
       await mountHeader(375)
 
-      expect(timing(surface(), 'background-color')[1]).toBe(350)
+      expect(timing(surface(), 'background-color').slice(0, 2)).toEqual([
+        100, 200,
+      ])
       open()
       expect(timing(surface(), 'background-color')[1]).toBe(0)
     })
@@ -224,7 +226,7 @@ describe('header pill', () => {
       open()
       expect(timing(nav as Element, 'visibility')[1]).toBe(0)
       close()
-      expect(timing(nav as Element, 'visibility')[1]).toBe(350)
+      expect(timing(nav as Element, 'visibility')[1]).toBe(200)
     })
 
     it('runs no animation at 48rem and wider', async () => {
