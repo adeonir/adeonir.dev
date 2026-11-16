@@ -35,6 +35,11 @@ export default getViteConfig(
         provider: playwright(),
         instances: [{ browser: 'chromium' }],
         commands: {
+          async emulateReducedMotion(ctx, reduce: boolean) {
+            await ctx.page.emulateMedia({
+              reducedMotion: reduce ? 'reduce' : 'no-preference',
+            })
+          },
           async renderHeader(ctx, pathname: string) {
             const { experimental_AstroContainer: AstroContainer } =
               await import('astro/container')
