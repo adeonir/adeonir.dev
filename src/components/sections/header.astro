@@ -86,7 +86,7 @@ const nav = header.data.nav.map((item) => ({
       {!isNotFound && (
         <nav
           aria-label={menu.data.label}
-          class="invisible mx-auto flex max-w-3xl flex-col gap-4 px-5 pt-8 in-data-[menu=open]:visible md:hidden"
+          class="invisible mx-auto flex max-w-3xl flex-col gap-4 px-5 pt-8 in-data-[menu=open]:visible md:hidden [&:has(a:active)>a:not(:active)]:opacity-30 [&:has(a:active)>a:not(:active)]:blur-[2px] [&>a:active]:font-semibold [&>a]:font-normal [&>a]:[-webkit-tap-highlight-color:transparent]"
         >
           {nav.map((item, index) => (
             <NavLink
