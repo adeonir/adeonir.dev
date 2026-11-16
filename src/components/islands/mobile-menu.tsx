@@ -58,10 +58,17 @@ export function MobileMenu({ content }: MobileMenuProps) {
     const holdLoader = (event: Event & { loader: () => Promise<void> }) => {
       if (!isOpen.current) return
       const surface = document.querySelector('[data-menu-surface]')
-      // Any transition ending on the surface means the close is done; the
-      // timer covers a close where nothing transitions (350ms is the longest).
+      // The surface background is the last transition of a close, in both
+      // motion modes; the timer covers a close where nothing transitions
+      // (300ms is the longest). Transitions inside the surface bubble here.
       const closed = new Promise<void>((resolve) => {
-        const finish = () => {
+        const finish = (event?: Event) => {
+          if (
+            event &&
+            (event.target !== surface ||
+              (event as TransitionEvent).propertyName !== 'background-color')
+          )
+            return
           clearTimeout(timer)
           surface?.removeEventListener('transitionend', finish)
           resolve()

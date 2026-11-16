@@ -171,11 +171,67 @@ describe('MobileMenu', () => {
       act(() => {
         surface.dispatchEvent(
           Object.assign(new Event('transitionend'), {
-            propertyName: 'clip-path',
+            propertyName: 'background-color',
           }),
         )
       })
     }
+
+    it('ignores a transition that ends inside the surface', async () => {
+      render(<MobileMenu content={content} />)
+      fireEvent.click(button('Abrir menu'))
+      const event = prepare(() => Promise.resolve())
+      act(() => {
+        document.dispatchEvent(event)
+      })
+
+      let done = false
+      const run = event.loader().then(() => {
+        done = true
+      })
+      const link = document.querySelector('[data-menu-link]') as Element
+      act(() => {
+        link.dispatchEvent(
+          Object.assign(new Event('transitionend', { bubbles: true }), {
+            propertyName: 'opacity',
+          }),
+        )
+      })
+      await new Promise((resolve) => setTimeout(resolve, 0))
+      expect(done).toBe(false)
+
+      finishClosing()
+      await run
+      expect(done).toBe(true)
+    })
+
+    it('waits for the background after the shrink', async () => {
+      render(<MobileMenu content={content} />)
+      fireEvent.click(button('Abrir menu'))
+      const event = prepare(() => Promise.resolve())
+      act(() => {
+        document.dispatchEvent(event)
+      })
+
+      let done = false
+      const run = event.loader().then(() => {
+        done = true
+      })
+      const surface = document.querySelector('[data-menu-surface]') as Element
+      act(() => {
+        surface.dispatchEvent(
+          Object.assign(new Event('transitionend'), {
+            propertyName: 'clip-path',
+          }),
+        )
+      })
+      await new Promise((resolve) => setTimeout(resolve, 0))
+      expect(done).toBe(false)
+
+      finishClosing()
+      await run
+      expect(done).toBe(true)
+    })
 
     it('closes the menu and holds the page load until the closing animation ends', async () => {
       render(<MobileMenu content={content} />)
