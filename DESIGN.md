@@ -75,6 +75,8 @@ colors:
   popover-foreground: "oklch(87.87% 0.0426 272.28)"
   sunken: "oklch(18.28% 0.0204 284.2)"
   sunken-foreground: "oklch(87.87% 0.0426 272.28)"
+  header: "oklch(20.13% 0.0235 284.09)"
+  header-foreground: "oklch(87.87% 0.0426 272.28)"
   neutral: "oklch(40.37% 0.032 280.15)"
   neutral-foreground: "oklch(81.68% 0.0403 272.86)"
   accent: "oklch(36.38% 0.0319 281.06)"
@@ -348,6 +350,8 @@ The frontmatter carries the values of the dark skin, which is the default. Each 
 - **popover-foreground** — `mocha-50` dark, `latte-950` light. Text on a popover.
 - **sunken** — `mocha-950` dark, `latte-150` light. The deepest surface, for anything set below the page rather than on it.
 - **sunken-foreground** — `mocha-50` dark, `latte-950` light. Text on the deepest surface.
+- **header** — `sunken` blended over `background`, 70% in the dark skin (`oklch(20.13% 0.0235 284.09)`) and 80% in the light skin (`oklch(91.64% 0.0105 264.5)`). The opaque color of the translucent header pill as it reads over the page, so a surface that grows out of the pill matches it.
+- **header-foreground** — `mocha-50` dark, `latte-950` light. Text on the header surface.
 - **accent** — `mocha-750` dark, `latte-250` light. The neutral hover surface. It sits half a step from the surface below it, so a hovered row shows without becoming a surface of its own.
 - **accent-foreground** — `mocha-50` dark, `latte-950` light. Text on the neutral hover surface.
 - **muted** — `mocha-800` dark, `latte-200` light. Muted fills and inactive surfaces, one step below the hover surface.
@@ -430,6 +434,8 @@ Corners are rounded consistently: enough to feel approachable, and little enough
 
 **Navigation.** A link rests in `muted-foreground`, set in the monospace face at 0.875rem and weight 600. No typography role carries that combination, so the link composes it directly. It takes the blue on hover, and focus draws the shared focus ring.
 
+**Header.** The header is a floating pill at the full radius, 3.5rem tall, inset from the top and the sides of the page. It takes `sunken` at 70% opacity in the dark skin and 80% in the light skin, over the page canvas, with a backdrop blur and a doubled saturation (`backdrop-filter: blur(8px) saturate(200%)`), a hairline `border`, and a black shadow (0 10px 15px -3px and 0 4px 6px -4px, at 50% dark, 25% light). With reduced transparency it takes solid `sunken` and no blur. Below 48rem the pill grows into the menu: an opaque `header` surface that covers the viewport with square corners and no border or shadow, while the logo, the toggles, and the menu button keep their place. Its navigation links sit near the bottom of the screen, aligned with the logo, in Geist at 2.25rem, weight 400, in `foreground`, stacked with a 0.75rem gap and 6rem above the bottom edge. A held link turns weight 600, and the other links drop to 30% opacity with a 2px blur. With reduced transparency the open menu takes solid `sunken`.
+
 **Item lists.** Each item title takes a pink hash mark before it, in `secondary`. The mark is static emphasis and never responds to the pointer. The description under a title aligns with the title text, not with the mark. A short list of links takes a pink dash as its marker.
 
 **Focus ring.** Every control draws the same ring on keyboard focus: two pixels wide, `ring` at full opacity, offset from the surface behind it. A text field has its own focus behavior, described under Inputs and forms, and draws no ring. A radio and a checkbox draw the shared ring.
@@ -462,6 +468,7 @@ Motion is short and eases out, so a surface arrives quickly and settles. Every m
 - **Entrance.** A section's blocks enter when its first block comes into view: opacity from 0, a blur that clears, and an optional slight scale (700ms, cubic-bezier(0.33, 1, 0.68, 1)). Blocks in a group follow each other with a 70ms stagger. The hero headline enters at full opacity with a large blur, the phrase under it with a small blur, and the actions with no blur, so weight decides how much the entrance shows. The hero starts from a scale of 0.98.
 - **Press.** Every enabled button shrinks to 97% while pressed, through the shared button base.
 - **Floating surfaces.** A popover opens from its trigger: it fades in and scales from 96% with its transform origin on the trigger (200ms, ease-out) and fades out (100ms, ease-in). A menu and a tooltip fade in (150ms, ease-out) and out (100ms, ease-in). A toast slides and scales into its stack (400ms, ease-out).
+- **Header menu.** Opening grows the menu surface from the pill's rectangle and radius to the full viewport through its clip (400ms, cubic-bezier(0.33, 1, 0.68, 1)); the surface turns opaque at the start. The navigation links rise 8px from opacity 0, starting 250ms in, 400ms each, with a 70ms stagger and the same curve. Closing fades the links together (100ms, ease-in), shrinks the surface back to the pill (200ms, cubic-bezier(0.32, 0, 0.67, 0)), and then fades its background out (100ms, ease-out), so the opaque surface settles into the translucent pill. With reduced motion the surface switches shape at once, and only its background (150ms in, 100ms out) and the links' opacity change.
 - **State swaps.** A field error fades in (150ms, ease-out). The narration player crossfades between its play and pause glyphs instead of swapping them.
 - **Hover.** Color, underline, and glyph nudges run for 200ms; accordion rows for 300ms, ease-out; a project cover's scale for 500ms, ease-out.
 - Nothing animates layout, and nothing loops except the narration waveform while audio plays.

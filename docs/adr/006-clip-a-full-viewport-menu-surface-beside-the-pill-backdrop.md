@@ -16,9 +16,9 @@ The header is `sticky` at `top: 0`, so it is the containing block for its `absol
 
 We will render the menu surface as a sibling of the pill backdrop inside the header. The surface holds the pill row and the navigation. It is positioned `absolute` across the full viewport width and the dynamic viewport height in both states, and we will animate only its `clip-path`.
 
-When the menu is closed, `inset()` reproduces the pill: the header's top padding, the wrapper gutter, a height of 3.5rem, and a radius of half that height. When the menu is open, the value is `inset(0 round 0)`.
+When the menu is closed, `inset()` follows the pill 1px inside its edge: the header's top padding, the wrapper gutter, and a height of 3.5rem, each inset by 1px, with a radius of half that height less 1px. The pill's border stays visible around the surface. When the menu is open, the value is `inset(0 round 0)`.
 
-The pill backdrop stays in the document flow and keeps the header at its height. It draws the closed pill: the translucent background, the blur, the border, and the shadow. The surface has no background while the menu is closed, and it takes the opaque `popover` background only while the menu is open.
+The pill backdrop stays in the document flow and keeps the header at its height. It draws the closed pill: the translucent background, the blur, the border, and the shadow. The surface has no background while the menu is closed, and it takes an opaque background only while the menu is open.
 
 ## Alternatives Considered
 
