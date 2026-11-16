@@ -160,4 +160,95 @@ describe('MobileMenu', () => {
 
     expect(mocks.animate).not.toHaveBeenCalled()
   })
+
+  describe('page navigation', () => {
+    function prepare(loader: () => Promise<void>) {
+      return Object.assign(new Event('astro:before-preparation'), { loader })
+    }
+
+    function finishClosing() {
+      const surface = document.querySelector('[data-menu-surface]') as Element
+      act(() => {
+        surface.dispatchEvent(
+          Object.assign(new Event('transitionend'), {
+            propertyName: 'clip-path',
+          }),
+        )
+      })
+    }
+
+    it('closes the menu and holds the page load until the closing animation ends', async () => {
+      render(<MobileMenu content={content} />)
+      fireEvent.click(button('Abrir menu'))
+      const loader = vi.fn(() => Promise.resolve())
+      const event = prepare(loader)
+
+      act(() => {
+        document.dispatchEvent(event)
+      })
+      expect(button('Abrir menu').getAttribute('aria-expanded')).toBe('false')
+
+      let done = false
+      const run = event.loader().then(() => {
+        done = true
+      })
+      await Promise.resolve()
+      expect(loader).toHaveBeenCalledTimes(1)
+      expect(done).toBe(false)
+
+      finishClosing()
+      await run
+      expect(done).toBe(true)
+    })
+
+    it('holds the page load until the load itself has finished', async () => {
+      render(<MobileMenu content={content} />)
+      fireEvent.click(button('Abrir menu'))
+      let finishLoad = () => {}
+      const event = prepare(
+        () => new Promise<void>((resolve) => (finishLoad = resolve)),
+      )
+      act(() => {
+        document.dispatchEvent(event)
+      })
+
+      let done = false
+      const run = event.loader().then(() => {
+        done = true
+      })
+      finishClosing()
+      await Promise.resolve()
+      await Promise.resolve()
+      expect(done).toBe(false)
+
+      finishLoad()
+      await run
+      expect(done).toBe(true)
+    })
+
+    it('leaves the loader alone when the menu is closed', async () => {
+      render(<MobileMenu content={content} />)
+      const loader = vi.fn(() => Promise.resolve())
+      const event = prepare(loader)
+
+      act(() => {
+        document.dispatchEvent(event)
+      })
+
+      expect(event.loader).toBe(loader)
+    })
+
+    it('closes at once when the swap starts with the menu open', () => {
+      render(<MobileMenu content={content} />)
+      fireEvent.click(button('Abrir menu'))
+
+      act(() => {
+        document.dispatchEvent(new Event('astro:before-swap'))
+      })
+
+      expect(button('Abrir menu').getAttribute('aria-expanded')).toBe('false')
+      expect(document.documentElement.dataset.menu).toBeUndefined()
+      expect((document.querySelector('main') as HTMLElement).inert).toBe(false)
+    })
+  })
 })

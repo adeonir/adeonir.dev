@@ -34,6 +34,8 @@ export function MobileMenu({ content }: MobileMenuProps) {
   const [open, setOpen] = useState(false)
   const button = useRef<HTMLButtonElement | null>(null)
   const mounted = useRef(false)
+  const isOpen = useRef(false)
+  isOpen.current = open
 
   useEffect(() => {
     if (mounted.current) animateLinks(open)
@@ -51,8 +53,28 @@ export function MobileMenu({ content }: MobileMenuProps) {
 
   useEffect(() => {
     const close = () => setOpen(false)
+    const holdLoader = (event: Event & { loader: () => Promise<void> }) => {
+      if (!isOpen.current) return
+      const surface = document.querySelector('[data-menu-surface]')
+      const closed = new Promise<void>((resolve) => {
+        const onEnd = (end: Event) => {
+          if ((end as TransitionEvent).propertyName !== 'clip-path') return
+          surface?.removeEventListener('transitionend', onEnd)
+          resolve()
+        }
+        if (surface) surface.addEventListener('transitionend', onEnd)
+        else resolve()
+      })
+      const load = event.loader
+      event.loader = () => Promise.all([closed, load()]).then(() => undefined)
+      setOpen(false)
+    }
+    document.addEventListener('astro:before-preparation', holdLoader)
     document.addEventListener('astro:before-swap', close)
-    return () => document.removeEventListener('astro:before-swap', close)
+    return () => {
+      document.removeEventListener('astro:before-preparation', holdLoader)
+      document.removeEventListener('astro:before-swap', close)
+    }
   }, [])
 
   useEffect(() => {
