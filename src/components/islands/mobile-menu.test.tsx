@@ -131,7 +131,7 @@ describe('MobileMenu', () => {
     links.forEach((link, index) => {
       expect(mocks.animate).toHaveBeenCalledWith(
         link,
-        { opacity: [0, 1], y: [8, 0] },
+        { opacity: [0, 1], transform: ['translateY(8px)', 'none'] },
         { duration: 0.4, delay: 0.25 + index * 0.07, ease },
       )
     })

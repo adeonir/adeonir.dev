@@ -25,7 +25,7 @@ function animateLinks(open: boolean) {
     } else {
       animate(
         link,
-        { opacity: [0, 1], y: [8, 0] },
+        { opacity: [0, 1], transform: ['translateY(8px)', 'none'] },
         { duration: 0.4, delay: 0.25 + index * 0.07, ease: ENTER_EASE },
       )
     }
