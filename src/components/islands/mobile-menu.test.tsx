@@ -60,6 +60,14 @@ describe('MobileMenu', () => {
     expect(document.activeElement).toBe(closed)
   })
 
+  it('points the button at the menu navigation', () => {
+    render(<MobileMenu content={content} />)
+
+    expect(button('Abrir menu').getAttribute('aria-controls')).toBe(
+      'menu-navigation',
+    )
+  })
+
   it('makes main and footer inert only while open', () => {
     render(<MobileMenu content={content} />)
     const main = document.querySelector('main') as HTMLElement

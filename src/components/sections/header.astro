@@ -85,6 +85,7 @@ const nav = header.data.nav.map((item) => ({
       </div>
       {!isNotFound && (
         <nav
+          id="menu-navigation"
           aria-label={menu.data.label}
           class="wrapper invisible absolute inset-x-0 bottom-0 in-data-[menu=open]:visible md:hidden [&:has(a:active)_a:not(:active)]:opacity-30 [&:has(a:active)_a:not(:active)]:blur-[2px] [&_a:active]:font-semibold [&_a]:font-normal [&_a]:transition-[color,font-weight,opacity,filter] [&_a]:duration-200 [&_a]:ease-out [&_a]:[-webkit-tap-highlight-color:transparent]"
         >

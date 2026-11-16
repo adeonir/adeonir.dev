@@ -126,6 +126,7 @@ export function MobileMenu({ content }: MobileMenuProps) {
     <Button
       aria-label={open ? content.trigger.close : content.trigger.open}
       aria-expanded={open}
+      aria-controls="menu-navigation"
       variant="ghost"
       size="icon"
       onClick={(event) => {
