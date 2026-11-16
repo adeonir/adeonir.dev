@@ -86,15 +86,27 @@ const nav = header.data.nav.map((item) => ({
       {!isNotFound && (
         <nav
           aria-label={menu.data.label}
-          class="invisible mx-auto flex max-w-3xl flex-col gap-4 px-5 pt-8 in-data-[menu=open]:visible md:hidden"
+          class="wrapper invisible absolute inset-x-0 bottom-0 in-data-[menu=open]:visible md:hidden"
         >
-          {nav.map((item) => (
-            <NavLink href={item.href}>{item.label}</NavLink>
-          ))}
-          <Divider className="block xxs:hidden" />
-          <div class="flex items-center gap-4 xxs:hidden">
-            <ThemeToggle />
-            <LanguageToggle locale={locale} />
+          <div class="mx-auto max-w-3xl px-5">
+            <ul class="mb-24 flex flex-col gap-3">
+              {nav.map((item) => (
+                <li>
+                  <NavLink
+                    href={item.href}
+                    className="font-sans text-4xl font-normal text-foreground"
+                  >
+                    {item.label}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="wrapper absolute inset-x-0 bottom-8 xxs:hidden">
+            <div class="mx-auto flex max-w-3xl items-center gap-4 px-5">
+              <ThemeToggle />
+              <LanguageToggle locale={locale} />
+            </div>
           </div>
         </nav>
       )}

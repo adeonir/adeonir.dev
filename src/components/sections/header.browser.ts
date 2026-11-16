@@ -82,5 +82,93 @@ describe('header pill', () => {
       )
       expect(getComputedStyle(link as Element).visibility).toBe('visible')
     })
+
+    describe('open menu layout', () => {
+      afterEach(() => {
+        document.documentElement.removeAttribute('data-menu')
+      })
+
+      async function openMenu(width: number) {
+        await mountHeader(width)
+        document.documentElement.dataset.menu = 'open'
+      }
+
+      const rem = () =>
+        Number.parseFloat(getComputedStyle(document.documentElement).fontSize)
+      const links = () => [
+        ...document.querySelectorAll<HTMLElement>(
+          '[data-menu-surface] nav[aria-label] a',
+        ),
+      ]
+
+      it('sets the links in Geist 2.25rem at weight 400 with a 0.75rem gap at 375px', async () => {
+        await openMenu(375)
+
+        const [first, second] = links()
+        const style = getComputedStyle(first as Element)
+        expect(Number.parseFloat(style.fontSize)).toBe(2.25 * rem())
+        expect(style.fontWeight).toBe('400')
+        expect(style.fontFamily).not.toMatch(/mono/i)
+        const gap =
+          (second.parentElement as Element).getBoundingClientRect().top -
+          (first.parentElement as Element).getBoundingClientRect().bottom
+        expect(gap).toBe(0.75 * rem())
+      })
+
+      it('aligns the list with the logo and sits it 6rem above the bottom at 375px', async () => {
+        await openMenu(375)
+
+        const logo = document.querySelector(
+          '[data-menu-surface] a svg',
+        ) as Element
+        const list = document.querySelector(
+          '[data-menu-surface] nav[aria-label] ul',
+        ) as Element
+        expect(list.getBoundingClientRect().left).toBe(
+          logo.getBoundingClientRect().left,
+        )
+        expect(800 - list.getBoundingClientRect().bottom).toBeCloseTo(
+          6 * rem(),
+          0,
+        )
+      })
+
+      const toggleSelector = '[aria-pressed], a[href^="/en"]'
+
+      it('shows the toggles in the navigation area at 360px', async () => {
+        await openMenu(360)
+
+        const area = document.querySelector(
+          '[data-menu-surface] nav[aria-label]',
+        ) as Element
+        const toggles = area.querySelectorAll(toggleSelector)
+        expect(toggles.length).toBe(2)
+        for (const toggle of toggles) {
+          expect(toggle.getBoundingClientRect().width).toBeGreaterThan(0)
+        }
+      })
+
+      it.each([false, true])(
+        'keeps the toggles in the pill row at 400px, menu open: %s',
+        async (open) => {
+          await mountHeader(400)
+          if (open) document.documentElement.dataset.menu = 'open'
+
+          const area = document.querySelector('nav[aria-label]') as Element
+          const row = [
+            ...document.querySelectorAll<HTMLElement>(toggleSelector),
+          ].filter((toggle) => !area.contains(toggle))
+          expect(row.length).toBe(2)
+          for (const toggle of row) {
+            const box = toggle.getBoundingClientRect()
+            expect(box.width).toBeGreaterThan(0)
+            expect(box.top).toBeLessThan(4 * rem())
+          }
+          for (const toggle of area.querySelectorAll(toggleSelector)) {
+            expect(toggle.getBoundingClientRect().width).toBe(0)
+          }
+        },
+      )
+    })
   })
 })
