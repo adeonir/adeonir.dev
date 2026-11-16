@@ -3,16 +3,8 @@ import { MobileMenu } from '~/components/islands/mobile-menu'
 import { parseLocale } from '~/helpers/locale'
 import { getLocalizedEntry } from '~/services/localized'
 
-interface Props {
-  nav: { label: string; href: string }[]
-}
-
 const locale = parseLocale(Astro.currentLocale)
 const content = await getLocalizedEntry('sharedMobileMenu', locale)
-
-const { nav } = Astro.props
 ---
 
-<MobileMenu client:visible nav={nav} content={content.data}>
-  <slot />
-</MobileMenu>
+<MobileMenu client:visible content={content.data} />

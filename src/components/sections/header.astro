@@ -17,6 +17,7 @@ const homeURL = getRelativeLocaleUrl(locale)
 const isNotFound = Astro.response.status === 404
 
 const { logo } = header.data
+const menu = await getLocalizedEntry('sharedMobileMenu', locale)
 
 const nav = header.data.nav.map((item) => ({
   ...item,
@@ -29,54 +30,74 @@ const nav = header.data.nav.map((item) => ({
   class="pointer-events-none sticky top-0 z-50 pt-6 pb-4 transition-transform duration-600 ease-out motion-safe:data-[state=hidden]:-translate-y-3/2 md:pt-8 md:pb-2"
 >
   <div class="wrapper">
-    <div class="pointer-events-auto mx-auto flex h-14 max-w-3xl items-center justify-between rounded-full border border-border bg-sunken/70 px-5 shadow-lg shadow-black/50 backdrop-blur-sm backdrop-saturate-200 light:bg-sunken/80 light:shadow-black/25 reduce-transparency:bg-sunken reduce-transparency:backdrop-blur-none">
-      <a
-        href={homeURL}
-        class="-mx-1.5 -my-0.5 shrink-0 rounded-sm px-1.5 py-0.5 transition focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
-      >
-        <Logo class="w-32" label={logo} />
-      </a>
-      <div class="flex items-center gap-4">
-        {!isNotFound && (
-          <>
-            <nav class="hidden md:block">
-              <ul class="flex items-center gap-6">
-                {nav.map((item) => (
-                  <li>
-                    <NavLink href={item.href}>{item.label}</NavLink>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-            <Divider
-              orientation="vertical"
-              className="mx-1 hidden h-5 md:block"
-            />
-          </>
-        )}
-        {isNotFound ? (
-          <div class="flex items-center gap-4">
-            <ThemeToggle />
-            <LanguageToggle locale={locale} />
-          </div>
-        ) : (
-          <>
-            <div class="hidden items-center gap-4 xxs:flex">
+    <div
+      aria-hidden="true"
+      class="mx-auto h-14 max-w-3xl rounded-full border border-border bg-sunken/70 shadow-lg shadow-black/50 backdrop-blur-sm backdrop-saturate-200 light:bg-sunken/80 light:shadow-black/25 reduce-transparency:bg-sunken reduce-transparency:backdrop-blur-none"
+    ></div>
+  </div>
+  <div
+    data-menu-surface
+    class="pointer-events-auto absolute inset-x-0 top-0 h-dvh [clip-path:inset(1.5rem_1.5rem_calc(100%_-_5rem)_1.5rem_round_1.75rem)] in-data-[menu=open]:bg-popover in-data-[menu=open]:[clip-path:inset(0_round_0)] md:pointer-events-none md:[clip-path:none]"
+  >
+    <div class="wrapper pt-6 md:pt-8">
+      <div class="pointer-events-auto mx-auto flex h-14 max-w-3xl items-center justify-between px-5">
+        <a
+          href={homeURL}
+          class="-mx-1.5 -my-0.5 shrink-0 rounded-sm px-1.5 py-0.5 transition focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+        >
+          <Logo class="w-32" label={logo} />
+        </a>
+        <div class="flex items-center gap-4">
+          {!isNotFound && (
+            <>
+              <nav class="hidden md:block">
+                <ul class="flex items-center gap-6">
+                  {nav.map((item) => (
+                    <li>
+                      <NavLink href={item.href}>{item.label}</NavLink>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+              <Divider
+                orientation="vertical"
+                className="mx-1 hidden h-5 md:block"
+              />
+            </>
+          )}
+          {isNotFound ? (
+            <div class="flex items-center gap-4">
               <ThemeToggle />
               <LanguageToggle locale={locale} />
             </div>
-            <div class="md:hidden">
-              <MobileMenu nav={nav}>
-                <Divider className="block xxs:hidden" />
-                <div class="flex items-center gap-4 xxs:hidden">
-                  <ThemeToggle />
-                  <LanguageToggle locale={locale} />
-                </div>
-              </MobileMenu>
-            </div>
-          </>
-        )}
+          ) : (
+            <>
+              <div class="hidden items-center gap-4 xxs:flex">
+                <ThemeToggle />
+                <LanguageToggle locale={locale} />
+              </div>
+              <div class="md:hidden">
+                <MobileMenu />
+              </div>
+            </>
+          )}
+        </div>
       </div>
+      {!isNotFound && (
+        <nav
+          aria-label={menu.data.label}
+          class="invisible mx-auto flex max-w-3xl flex-col gap-4 px-5 pt-8 in-data-[menu=open]:visible md:hidden"
+        >
+          {nav.map((item) => (
+            <NavLink href={item.href}>{item.label}</NavLink>
+          ))}
+          <Divider className="block xxs:hidden" />
+          <div class="flex items-center gap-4 xxs:hidden">
+            <ThemeToggle />
+            <LanguageToggle locale={locale} />
+          </div>
+        </nav>
+      )}
     </div>
   </div>
 </header>

@@ -39,4 +39,45 @@ describe('header pill', () => {
       ).toBeGreaterThanOrEqual((3.5 * rem) / 2)
     },
   )
+
+  describe('menu surface at 375px', () => {
+    afterEach(() => {
+      document.documentElement.removeAttribute('data-menu')
+    })
+
+    it('hides the menu links while closed', async () => {
+      await mountHeader(375)
+
+      const link = document.querySelector(
+        '[data-menu-surface] nav[aria-label] a',
+      )
+      expect(getComputedStyle(link as Element).visibility).toBe('hidden')
+    })
+
+    it('lets a tap through beside the pill while closed', async () => {
+      await mountHeader(375)
+
+      const surface = document.querySelector('[data-menu-surface]') as Element
+      const hit = document.elementFromPoint(187, 400)
+      expect(surface.contains(hit)).toBe(false)
+    })
+
+    it('covers the viewport with an opaque square surface when open', async () => {
+      await mountHeader(375)
+      document.documentElement.dataset.menu = 'open'
+
+      const surface = document.querySelector('[data-menu-surface]') as Element
+      const style = getComputedStyle(surface)
+      const box = surface.getBoundingClientRect()
+
+      expect(style.clipPath).toBe('inset(0px)')
+      expect(style.backgroundColor).not.toBe('rgba(0, 0, 0, 0)')
+      expect(box.width).toBe(document.documentElement.clientWidth)
+      expect(box.height).toBe(800)
+      const link = document.querySelector(
+        '[data-menu-surface] nav[aria-label] a',
+      )
+      expect(getComputedStyle(link as Element).visibility).toBe('visible')
+    })
+  })
 })
