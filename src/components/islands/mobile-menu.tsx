@@ -9,6 +9,8 @@ type MobileMenuProps = {
   content: { trigger: { open: string; close: string } }
 }
 
+const CLOSE_FALLBACK_MS = 400
+
 const ENTER_EASE: [number, number, number, number] = [0.33, 1, 0.68, 1]
 
 function animateLinks(open: boolean) {
@@ -56,14 +58,16 @@ export function MobileMenu({ content }: MobileMenuProps) {
     const holdLoader = (event: Event & { loader: () => Promise<void> }) => {
       if (!isOpen.current) return
       const surface = document.querySelector('[data-menu-surface]')
+      // Any transition ending on the surface means the close is done; the
+      // timer covers a close where nothing transitions (350ms is the longest).
       const closed = new Promise<void>((resolve) => {
-        const onEnd = (end: Event) => {
-          if ((end as TransitionEvent).propertyName !== 'clip-path') return
-          surface?.removeEventListener('transitionend', onEnd)
+        const finish = () => {
+          clearTimeout(timer)
+          surface?.removeEventListener('transitionend', finish)
           resolve()
         }
-        if (surface) surface.addEventListener('transitionend', onEnd)
-        else resolve()
+        const timer = setTimeout(finish, CLOSE_FALLBACK_MS)
+        surface?.addEventListener('transitionend', finish)
       })
       const load = event.loader
       event.loader = () => Promise.all([closed, load()]).then(() => undefined)

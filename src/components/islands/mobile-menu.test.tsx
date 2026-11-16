@@ -226,6 +226,49 @@ describe('MobileMenu', () => {
       expect(done).toBe(true)
     })
 
+    it('resolves under reduced motion when only the background transitions', async () => {
+      vi.stubGlobal('matchMedia', (query: string) => ({
+        matches: query.includes('prefers-reduced-motion'),
+        addEventListener: () => {},
+        removeEventListener: () => {},
+      }))
+      render(<MobileMenu content={content} />)
+      fireEvent.click(button('Abrir menu'))
+      const event = prepare(() => Promise.resolve())
+      act(() => {
+        document.dispatchEvent(event)
+      })
+
+      const surface = document.querySelector('[data-menu-surface]') as Element
+      act(() => {
+        surface.dispatchEvent(
+          Object.assign(new Event('transitionend'), {
+            propertyName: 'background-color',
+          }),
+        )
+      })
+
+      await event.loader()
+    })
+
+    it('resolves when no transition runs at all', async () => {
+      vi.useFakeTimers()
+      try {
+        render(<MobileMenu content={content} />)
+        fireEvent.click(button('Abrir menu'))
+        const event = prepare(() => Promise.resolve())
+        act(() => {
+          document.dispatchEvent(event)
+        })
+
+        const run = event.loader()
+        await vi.advanceTimersByTimeAsync(400)
+        await run
+      } finally {
+        vi.useRealTimers()
+      }
+    })
+
     it('leaves the loader alone when the menu is closed', async () => {
       render(<MobileMenu content={content} />)
       const loader = vi.fn(() => Promise.resolve())
