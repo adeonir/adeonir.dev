@@ -46,7 +46,7 @@ Add `--collect.settings.preset=desktop` to `pnpm lighthouse` for a desktop pass.
 
 Before planning or building a feature, read the documents that apply to the work:
 
-- `CONTEXT.md` — the project's language: the domain terms and the words to avoid for each one.
+- `GLOSSARY.md` — the project's language: the domain terms and the words to avoid for each one.
 - `PROJECT.md` — the project's shared memory: what a silent failure costs, the durable conventions and decisions, and the traps this codebase has already hit.
 - `docs/product/design-doc.md` — the technical authority: architecture, runtime boundaries, contact flow, security, testing, and CI/CD.
 - `docs/product/PRD.md` — scope, FR/NFR identifiers, personas, journeys, business rules, and edge cases.
