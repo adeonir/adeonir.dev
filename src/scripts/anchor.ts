@@ -11,7 +11,7 @@ const announce = () => {
 }
 
 const stripHash = () => {
-  history.replaceState(null, '', location.pathname + location.search)
+  history.replaceState(history.state, '', location.pathname + location.search)
 }
 
 export const scrollToTop = () => {

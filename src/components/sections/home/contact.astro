@@ -2,7 +2,18 @@
 import { ContactForm } from '~/components/islands/home/contact-form'
 import { parseLocale } from '~/helpers/locale'
 import { getLocalizedEntry } from '~/services/localized'
+import IconBrandGithub from '~icons/tabler/brand-github'
+import IconBrandLinkedin from '~icons/tabler/brand-linkedin'
+import IconBrandX from '~icons/tabler/brand-x'
 import IconFolder from '~icons/tabler/folder'
+import IconMail from '~icons/tabler/mail'
+
+const platformIcons = {
+  email: IconMail,
+  github: IconBrandGithub,
+  linkedin: IconBrandLinkedin,
+  x: IconBrandX,
+}
 
 const locale = parseLocale(Astro.currentLocale)
 const contact = await getLocalizedEntry('homeContact', locale)
@@ -42,11 +53,13 @@ const { title, body, socialLabel, social, form } = contact.data
           >
             {social.map((channel) => {
               const external = channel.platform !== 'email'
+              const Icon = platformIcons[channel.platform]
               return (
-                <li data-enter="row" class="flex gap-2 text-code">
-                  <span class="text-secondary" aria-hidden="true">
-                    -
-                  </span>
+                <li data-enter="row" class="flex items-center gap-2 text-code">
+                  <Icon
+                    className="size-4 shrink-0 text-muted-foreground"
+                    aria-hidden="true"
+                  />
                   <a
                     href={channel.link}
                     class="-mx-1 rounded-sm px-1 text-muted-foreground transition hover:text-primary focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"

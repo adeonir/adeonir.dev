@@ -12,16 +12,28 @@ export function readTheme(): Theme {
 
 export const $theme = atom<Theme>(readTheme())
 
+// Safari paints its bars from this meta. The values mirror the `background`
+// and `header` tokens of each skin, since the meta cannot read CSS variables.
+const themeColors = {
+  dark: { page: '#1e1e2e', menu: '#151521' },
+  light: { page: '#eff1f5', menu: '#e0e3eb' },
+}
+
+export function syncThemeColor() {
+  const surface =
+    document.documentElement.dataset.menu === 'open' ? 'menu' : 'page'
+  document
+    .querySelector('meta[name="theme-color"]')
+    ?.setAttribute('content', themeColors[readTheme()][surface])
+}
+
 export function toggleTheme() {
   const next: Theme = $theme.get() === 'dark' ? 'light' : 'dark'
   const root = document.documentElement
 
   root.setAttribute('data-theme-switching', '')
   root.dataset.theme = next
-
-  document
-    .querySelector('meta[name="theme-color"]')
-    ?.setAttribute('content', next === 'light' ? '#eff1f5' : '#1e1e2e')
+  syncThemeColor()
 
   try {
     localStorage.setItem('theme', next)
