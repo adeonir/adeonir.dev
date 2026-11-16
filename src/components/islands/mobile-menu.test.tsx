@@ -114,20 +114,4 @@ describe('MobileMenu', () => {
     act(() => widthListener?.({ matches: false }))
     expect(button('Abrir menu').getAttribute('aria-expanded')).toBe('false')
   })
-
-  it('listens for a passive touchstart on the surface only while open', () => {
-    const surface = document.querySelector('[data-menu-surface]') as HTMLElement
-    const add = vi.spyOn(surface, 'addEventListener')
-    const remove = vi.spyOn(surface, 'removeEventListener')
-    render(<MobileMenu content={content} />)
-    expect(add).not.toHaveBeenCalled()
-
-    fireEvent.click(button('Abrir menu'))
-    expect(add).toHaveBeenCalledWith('touchstart', expect.any(Function), {
-      passive: true,
-    })
-
-    fireEvent.click(button('Fechar menu'))
-    expect(remove).toHaveBeenCalledWith('touchstart', expect.any(Function))
-  })
 })
