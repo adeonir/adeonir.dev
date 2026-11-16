@@ -72,7 +72,10 @@ describe('header pill', () => {
 
       expect(style.clipPath).toBe('inset(0px)')
       expect(style.backgroundColor).not.toBe('rgba(0, 0, 0, 0)')
-      expect(box.width).toBe(document.documentElement.clientWidth)
+      expect(box.width).toBe(
+        (document.querySelector('header') as Element).getBoundingClientRect()
+          .width,
+      )
       expect(box.height).toBe(800)
       const link = document.querySelector(
         '[data-menu-surface] nav[aria-label] a',
