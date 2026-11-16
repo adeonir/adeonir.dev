@@ -50,12 +50,17 @@ export function MobileMenu({ content }: MobileMenuProps) {
       if (link.pathname !== location.pathname) return
       closeAndRefocus()
     }
+    const surface = document.querySelector<HTMLElement>('[data-menu-surface]')
+    // iOS Safari applies :active only when a touch listener is attached
+    const onTouchStart = () => {}
+    surface?.addEventListener('touchstart', onTouchStart, { passive: true })
     document.addEventListener('keydown', onKeyDown)
     document.addEventListener('click', onClick)
 
     return () => {
       delete document.documentElement.dataset.menu
       for (const node of covered) node.inert = false
+      surface?.removeEventListener('touchstart', onTouchStart)
       document.removeEventListener('keydown', onKeyDown)
       document.removeEventListener('click', onClick)
     }
