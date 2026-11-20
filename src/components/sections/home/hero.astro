@@ -26,6 +26,7 @@ type Placement = { x: number; y: number; size: number; rotate: number }
 
 const badges: {
   id: string
+  depth: number
   Icon: typeof IconReact
   sm?: Placement
   md?: Placement
@@ -33,6 +34,7 @@ const badges: {
 }[] = [
   {
     id: 'react',
+    depth: 1,
     Icon: IconReact,
     sm: { x: 63.846, y: 5.125, size: 3.75, rotate: -6 },
     md: { x: 71.703, y: 5.688, size: 4.5, rotate: -6 },
@@ -40,6 +42,7 @@ const badges: {
   },
   {
     id: 'typescript',
+    depth: 0.5,
     Icon: IconTypeScript,
     sm: { x: 81.282, y: 11.438, size: 2.75, rotate: 5 },
     md: { x: 35.132, y: 11.813, size: 3.75, rotate: 5 },
@@ -47,6 +50,7 @@ const badges: {
   },
   {
     id: 'next',
+    depth: 0.75,
     Icon: IconNextjs,
     sm: { x: 54.359, y: 16.75, size: 3.5, rotate: -4 },
     md: { x: 50.719, y: 7.25, size: 4.75, rotate: -4 },
@@ -54,16 +58,19 @@ const badges: {
   },
   {
     id: 'astro',
+    depth: 0.4,
     Icon: IconAstro,
     lg: { x: 84.861, y: -22, size: 4.5, rotate: 7 },
   },
   {
     id: 'tailwind',
+    depth: 0.55,
     Icon: IconTailwind,
     lg: { x: 84.028, y: 1.875, size: 4.75, rotate: -3 },
   },
   {
     id: 'claude',
+    depth: 0.85,
     Icon: IconClaude,
     sm: { x: 80.769, y: 17.75, size: 3, rotate: 6 },
     md: { x: 67.026, y: 14.063, size: 4.5, rotate: 6 },
@@ -71,16 +78,19 @@ const badges: {
   },
   {
     id: 'vscode',
+    depth: 0.65,
     Icon: IconVscode,
     lg: { x: 73.056, y: -7.375, size: 5.5, rotate: -7 },
   },
   {
     id: 'ghostty',
+    depth: 0.33,
     Icon: IconGhostty,
     lg: { x: 80.208, y: 13.063, size: 4.25, rotate: 4 },
   },
   {
     id: 'figma',
+    depth: 0.45,
     Icon: IconFigma,
     md: { x: 85.851, y: 11.813, size: 3.75, rotate: -5 },
     lg: { x: 87.569, y: -9.75, size: 4.75, rotate: -5 },
@@ -119,17 +129,18 @@ const placementStyle = (key: 'sm' | 'md' | 'lg', p?: Placement) =>
       aria-hidden="true"
       class="pointer-events-none absolute inset-y-0 right-[calc((100%-100vw)/2)] left-[calc((100%-100vw)/2)]"
     >
-      {badges.map(({ id, Icon, sm, md, lg }) => (
+      {badges.map(({ id, depth, Icon, sm, md, lg }) => (
         <div
           data-badge={id}
           style={
+            `--depth:${depth};` +
             placementStyle('sm', sm) +
             placementStyle('md', md) +
             placementStyle('lg', lg) +
             enterStyle(id, lg)
           }
           class={cn(
-            'absolute animate-badge-in items-center justify-center rounded-2xl motion-reduce:[--badge-scale-in:1] motion-reduce:[--badge-x:0rem] motion-reduce:[--badge-y:0rem] border border-border bg-card text-foreground',
+            'absolute animate-badge-in translate-x-[calc(var(--px,0)*var(--depth)*24px)] translate-y-[calc(var(--py,0)*var(--depth)*24px)] items-center justify-center rounded-2xl motion-reduce:[--badge-scale-in:1] motion-reduce:[--badge-x:0rem] motion-reduce:[--badge-y:0rem] border border-border bg-card text-foreground',
             sm
               ? 'flex left-(--sm-x) top-[calc(50%+var(--sm-y))] size-(--sm-s) rotate-(--sm-r)'
               : 'hidden',
