@@ -31,6 +31,8 @@ const badges: {
   sm?: Placement
   md?: Placement
   lg?: Placement
+  // Hides the badge between 64rem and 75rem, where the headline reaches its position.
+  wideOnly?: boolean
 }[] = [
   {
     id: 'react',
@@ -38,7 +40,7 @@ const badges: {
     Icon: IconReact,
     sm: { x: 76.26, y: 6.78, size: 3.75, rotate: -6 },
     md: { x: 71.703, y: 5.688, size: 4.5, rotate: -6 },
-    lg: { x: 70.139, y: -19.375, size: 6, rotate: -6 },
+    lg: { x: 70.139, y: -19.375, size: 5.7, rotate: -6 },
   },
   {
     id: 'typescript',
@@ -46,7 +48,7 @@ const badges: {
     Icon: IconTypeScript,
     sm: { x: 66.98, y: 12, size: 2.75, rotate: 5 },
     md: { x: 35.132, y: 11.813, size: 3.75, rotate: 5 },
-    lg: { x: 41.944, y: 14.563, size: 4.75, rotate: 5 },
+    lg: { x: 41.944, y: 14.563, size: 4.5125, rotate: 5 },
   },
   {
     id: 'next',
@@ -54,19 +56,19 @@ const badges: {
     Icon: IconNextjs,
     sm: { x: 54.359, y: 16.75, size: 3.5, rotate: -4 },
     md: { x: 50.719, y: 7.25, size: 4.75, rotate: -4 },
-    lg: { x: 53.681, y: 9.063, size: 5.5, rotate: -4 },
+    lg: { x: 53.681, y: 9.063, size: 5.225, rotate: -4 },
   },
   {
     id: 'astro',
     depth: 0.4,
     Icon: IconAstro,
-    lg: { x: 84.861, y: -22, size: 4.5, rotate: 7 },
+    lg: { x: 84.861, y: -22, size: 4.275, rotate: 7 },
   },
   {
     id: 'tailwind',
     depth: 0.55,
     Icon: IconTailwind,
-    lg: { x: 84.028, y: 1.875, size: 4.75, rotate: -3 },
+    lg: { x: 84.028, y: 1.875, size: 4.5125, rotate: -3 },
   },
   {
     id: 'claude',
@@ -74,26 +76,27 @@ const badges: {
     Icon: IconClaude,
     sm: { x: 80.769, y: 17.75, size: 3, rotate: 6 },
     md: { x: 67.026, y: 14.063, size: 4.5, rotate: 6 },
-    lg: { x: 68.056, y: 6.875, size: 5.5, rotate: 6 },
+    lg: { x: 68.056, y: 6.875, size: 5.225, rotate: 6 },
   },
   {
     id: 'vscode',
     depth: 0.65,
+    wideOnly: true,
     Icon: IconVscode,
-    lg: { x: 73.056, y: -7.375, size: 5.5, rotate: -7 },
+    lg: { x: 73.056, y: -7.375, size: 5.225, rotate: -7 },
   },
   {
     id: 'ghostty',
     depth: 0.33,
     Icon: IconGhostty,
-    lg: { x: 80.208, y: 13.063, size: 4.25, rotate: 4 },
+    lg: { x: 80.208, y: 13.063, size: 4.0375, rotate: 4 },
   },
   {
     id: 'figma',
     depth: 0.45,
     Icon: IconFigma,
     md: { x: 85.851, y: 11.813, size: 3.75, rotate: -5 },
-    lg: { x: 87.569, y: -9.75, size: 4.75, rotate: -5 },
+    lg: { x: 87.569, y: -9.75, size: 4.5125, rotate: -5 },
   },
 ]
 
@@ -129,7 +132,7 @@ const placementStyle = (key: 'sm' | 'md' | 'lg', p?: Placement) =>
       aria-hidden="true"
       class="pointer-events-none absolute inset-y-0 right-[calc((100%-100vw)/2)] left-[calc((100%-100vw)/2)]"
     >
-      {badges.map(({ id, depth, Icon, sm, md, lg }) => (
+      {badges.map(({ id, depth, Icon, sm, md, lg, wideOnly }) => (
         <div
           data-badge={id}
           style={
@@ -148,7 +151,9 @@ const placementStyle = (key: 'sm' | 'md' | 'lg', p?: Placement) =>
               ? 'md:flex md:left-(--md-x) md:top-[calc(50%+var(--md-y))] md:size-(--md-s) md:rotate-(--md-r)'
               : 'md:hidden',
             lg
-              ? 'lg:flex lg:left-(--lg-x) lg:top-[calc(50%+var(--lg-y))] lg:size-(--lg-s) lg:rotate-(--lg-r)'
+              ? wideOnly
+                ? 'lg:hidden min-[75rem]:flex min-[75rem]:left-(--lg-x) min-[75rem]:top-[calc(50%+var(--lg-y))] min-[75rem]:size-(--lg-s) min-[75rem]:rotate-(--lg-r)'
+                : 'lg:flex lg:left-(--lg-x) lg:top-[calc(50%+var(--lg-y))] lg:size-(--lg-s) lg:rotate-(--lg-r)'
               : 'lg:hidden',
           )}
         >
