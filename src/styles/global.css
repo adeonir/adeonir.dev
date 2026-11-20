@@ -206,6 +206,7 @@
   --animate-blur-out: blur-out 100ms ease-in;
 
   --animate-enter: blur-in 700ms var(--ease-out-cubic) backwards;
+  --animate-badge-in: badge-in 650ms var(--ease-out-cubic) backwards;
 
   --ease-out-cubic: cubic-bezier(0.33, 1, 0.68, 1);
 
@@ -268,6 +269,14 @@
       opacity: var(--enter-opacity, 0);
       filter: blur(var(--blur-in, 2px));
       scale: var(--scale-in, 1);
+    }
+  }
+
+  @keyframes badge-in {
+    from {
+      opacity: 0;
+      scale: var(--badge-scale-in, 0.5);
+      translate: var(--badge-x, 0) var(--badge-y, 0);
     }
   }
 
