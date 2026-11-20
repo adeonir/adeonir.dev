@@ -1,9 +1,6 @@
 ---
 paths:
-  - 'src/**/*.astro'
-  - 'src/**/*.ts'
-  - 'src/**/*.tsx'
-  - 'src/**/*.css'
+  - 'src/**/*.{astro,ts,tsx,css}'
 ---
 
 ## Kebab-Case Source Filenames

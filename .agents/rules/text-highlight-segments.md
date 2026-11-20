@@ -1,7 +1,6 @@
 ---
 paths:
-  - "src/**/*.ts"
-  - "src/**/*.astro"
+  - "src/**/*.{astro,ts}"
 ---
 
 ## Highlight Segment Field Naming

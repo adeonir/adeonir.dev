@@ -1,8 +1,6 @@
 ---
 paths:
-  - 'src/**/*.astro'
-  - 'src/**/*.tsx'
-  - 'src/**/*.ts'
+  - 'src/**/*.{astro,ts,tsx}'
 ---
 
 ## Class Composition With cn
