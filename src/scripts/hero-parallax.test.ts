@@ -75,6 +75,17 @@ it('registers no pointer listener when the pointer is coarse', async () => {
   expect(add).not.toHaveBeenCalled()
 })
 
+it('registers no pointer listener when reduced motion is requested', async () => {
+  vi.stubGlobal('matchMedia', (query: string) => ({
+    matches: query.includes('prefers-reduced-motion'),
+  }))
+  const add = vi.spyOn(hero(), 'addEventListener')
+  const { bindParallax } = await loadParallax()
+
+  expect(bindParallax()).toBeUndefined()
+  expect(add).not.toHaveBeenCalled()
+})
+
 it('stops following the pointer once the visit ends', async () => {
   coarse(false)
   const { bindParallax } = await loadParallax()

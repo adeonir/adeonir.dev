@@ -6,7 +6,11 @@ const EASE = 0.05
 const SETTLED = 0.001
 
 export const bindParallax = () => {
-  if (window.matchMedia('(pointer: coarse)').matches) return
+  if (
+    window.matchMedia('(pointer: coarse), (prefers-reduced-motion: reduce)')
+      .matches
+  )
+    return
 
   const hero = document.querySelector<HTMLElement>('#hero')
   if (!hero) return
