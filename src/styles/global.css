@@ -340,6 +340,13 @@
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  [data-badge] {
+    --badge-x: 0rem;
+    --badge-y: 0rem;
+  }
+}
+
 .prose {
   --tw-prose-body: var(--muted-foreground);
   --tw-prose-headings: var(--foreground);
