@@ -142,7 +142,7 @@ const placementStyle = (key: 'sm' | 'md' | 'lg', p?: Placement) =>
           class={cn(
             'absolute animate-badge-in translate-x-[calc(var(--px,0)*var(--depth)*24px)] translate-y-[calc(var(--py,0)*var(--depth)*24px)] items-center justify-center rounded-2xl motion-reduce:[--badge-scale-in:1] motion-reduce:[--badge-x:0rem] motion-reduce:[--badge-y:0rem] border border-border bg-card text-foreground',
             sm
-              ? 'flex left-(--sm-x) top-[calc(50%+var(--sm-y))] size-(--sm-s) rotate-(--sm-r)'
+              ? 'hidden xxs:flex xxs:left-(--sm-x) xxs:top-[calc(50%+var(--sm-y))] xxs:size-(--sm-s) xxs:rotate-(--sm-r)'
               : 'hidden',
             md
               ? 'md:flex md:left-(--md-x) md:top-[calc(50%+var(--md-y))] md:size-(--md-s) md:rotate-(--md-r)'
