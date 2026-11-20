@@ -206,6 +206,7 @@
   --animate-blur-out: blur-out 100ms ease-in;
 
   --animate-enter: blur-in 700ms var(--ease-out-cubic) backwards;
+  --animate-badge-in: badge-in 650ms var(--ease-out-cubic) backwards;
 
   --ease-out-cubic: cubic-bezier(0.33, 1, 0.68, 1);
 
@@ -271,6 +272,14 @@
     }
   }
 
+  @keyframes badge-in {
+    from {
+      opacity: 0;
+      scale: var(--badge-scale-in, 0.5);
+      translate: var(--badge-x, 0) var(--badge-y, 0);
+    }
+  }
+
   @keyframes blur-out {
     to {
       opacity: 0;
@@ -328,6 +337,13 @@
     [data-menu-surface] nav[aria-label] {
       transition: visibility 0s linear 100ms;
     }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-badge] {
+    --badge-x: 0rem;
+    --badge-y: 0rem;
   }
 }
 

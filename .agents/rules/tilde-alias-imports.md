@@ -1,8 +1,6 @@
 ---
 paths:
-  - 'src/**/*.ts'
-  - 'src/**/*.tsx'
-  - 'src/**/*.astro'
+  - 'src/**/*.{astro,ts,tsx}'
 ---
 
 ## Tilde Alias for Cross-Directory Imports

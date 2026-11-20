@@ -46,6 +46,7 @@
     "@astrojs/check": "0.9.12",
     "@astrojs/ts-plugin": "1.11.0",
     "@biomejs/biome": "2.6.6",
+    "@iconify-json/simple-icons": "1.2.103",
     "@iconify-json/tabler": "1.2.44",
     "@react-email/ui": "6.11.11",
     "@svgr/core": "8.1.0",

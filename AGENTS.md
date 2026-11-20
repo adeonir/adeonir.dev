@@ -69,6 +69,7 @@ Read the matching rule before making the change:
 | Choosing or composing Tailwind classes in source files | `.agents/rules/tailwind-canonical-classes.md` |
 | Naming highlight fields or rendering highlighted text | `.agents/rules/text-highlight-segments.md` |
 | Importing modules across `src/` directories | `.agents/rules/tilde-alias-imports.md` |
+| Writing a comment in source code | `.agents/rules/comment-restraint.md` |
 
 ## Agent hooks
 
@@ -142,7 +143,7 @@ Use the `new-component` skill when creating a new component. Shared pure helpers
 - Keep the palette at two accent hues and the neutrals; do not add a third accent. Separate surfaces with a tone drop before adding a shadow. Never use pure `#000` or `#fff`. `DESIGN.md` is the authority on what the identity allows.
 - Use Geist for all type roles. Use Fira Code only for genuinely technical content.
 - Ark UI primitives must use the dual-skin tokens and must not retain a default palette. Audit new primitives against `DESIGN.md`. Reference: https://ark-ui.com/llms.txt
-- Icons use `unplugin-icons` with Tabler, for example `import IconFolder from '~icons/tabler/folder'`. Render them statically in Astro.
+- Icons use `unplugin-icons`. Interface icons come from Tabler, for example `import IconFolder from '~icons/tabler/folder'`; brand logos come from Simple Icons, for example `import IconReact from '~icons/simple-icons/react'`. Render them statically in Astro.
 - Biome sorts Tailwind classes in JS/TS helper calls such as `cn`, `clsx`, `cva`, and `tv`; Prettier sorts them in Astro files.
 
 ## Configuration and formatting
@@ -168,6 +169,7 @@ The `/styleguide` and `/maintenance` routes are noindex and are excluded from th
 
 - The default Vitest environment is Node. A DOM-dependent spec opts into happy-dom with a `// @vitest-environment happy-dom` docblock.
 - The quality target is mobile Lighthouse Performance ≥ 95, Accessibility, Best Practices and SEO at 100, CLS < 0.1, and INP < 200ms. WCAG AA and LCP under 3s are nice to have, not gates. `lighthouserc.json` holds what CI enforces: the category scores fail the build, and the metric budgets only warn.
+- A change to a section's layout is checked in a browser with the `agent-browser` skill at 390, 834, 1046, and 1440 px before it is reported done: the badges and text of the hero overlapped at widths between the canvas frames.
 - Lighthouse audits the home and the colophon. The required `main` checks are Build, Lint, Typecheck, Unit Tests, Workers Builds, and Lighthouse.
 
 ## Deployment

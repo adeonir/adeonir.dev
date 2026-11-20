@@ -1,4 +1,13 @@
 ---
+import IconAstro from '~icons/simple-icons/astro'
+import IconClaude from '~icons/simple-icons/claude'
+import IconFigma from '~icons/simple-icons/figma'
+import IconGhostty from '~icons/simple-icons/ghostty'
+import IconNextjs from '~icons/simple-icons/nextdotjs'
+import IconReact from '~icons/simple-icons/react'
+import IconTailwind from '~icons/simple-icons/tailwindcss'
+import IconTypeScript from '~icons/simple-icons/typescript'
+import IconVscode from '~icons/simple-icons/visualstudiocode'
 import NarrationPlayer from '~/components/narration-player.astro'
 import { buttonVariants } from '~/components/ui/button-variants'
 import { cn } from '~/helpers/classnames'
@@ -9,6 +18,125 @@ const locale = parseLocale(Astro.currentLocale)
 const hero = await getLocalizedEntry('homeHero', locale)
 
 const { display, tagline, availability, actions } = hero.data
+
+type Placement = { x: number; y: number; size: number; rotate: number }
+
+const badges: {
+  id: string
+  depth: number
+  Icon: typeof IconReact
+  sm?: Placement
+  md?: Placement
+  lg?: Placement
+  wideOnly?: boolean
+}[] = [
+  {
+    id: 'react',
+    depth: 1,
+    Icon: IconReact,
+    sm: { x: 76.26, y: 6.78, size: 3.75, rotate: -6 },
+    md: { x: 71.703, y: 5.688, size: 4.5, rotate: -6 },
+    lg: { x: 70.139, y: -19.375, size: 5.7, rotate: -6 },
+  },
+  {
+    id: 'typescript',
+    depth: 0.5,
+    Icon: IconTypeScript,
+    sm: { x: 66.98, y: 12, size: 2.75, rotate: 5 },
+    md: { x: 35.132, y: 11.813, size: 3.75, rotate: 5 },
+    lg: { x: 41.944, y: 14.563, size: 4.5125, rotate: 5 },
+  },
+  {
+    id: 'next',
+    depth: 0.75,
+    Icon: IconNextjs,
+    sm: { x: 54.359, y: 16.75, size: 3.5, rotate: -4 },
+    md: { x: 50.719, y: 7.25, size: 4.75, rotate: -4 },
+    lg: { x: 53.681, y: 9.063, size: 5.225, rotate: -4 },
+  },
+  {
+    id: 'astro',
+    depth: 0.4,
+    Icon: IconAstro,
+    lg: { x: 84.861, y: -22, size: 4.275, rotate: 7 },
+  },
+  {
+    id: 'tailwind',
+    depth: 0.55,
+    Icon: IconTailwind,
+    lg: { x: 84.028, y: 1.875, size: 4.5125, rotate: -3 },
+  },
+  {
+    id: 'claude',
+    depth: 0.85,
+    Icon: IconClaude,
+    sm: { x: 80.769, y: 17.75, size: 3, rotate: 6 },
+    md: { x: 67.026, y: 14.063, size: 4.5, rotate: 6 },
+    lg: { x: 68.056, y: 6.875, size: 5.225, rotate: 6 },
+  },
+  {
+    id: 'vscode',
+    depth: 0.65,
+    wideOnly: true,
+    Icon: IconVscode,
+    lg: { x: 73.056, y: -7.375, size: 5.225, rotate: -7 },
+  },
+  {
+    id: 'ghostty',
+    depth: 0.33,
+    Icon: IconGhostty,
+    lg: { x: 80.208, y: 13.063, size: 4.0375, rotate: 4 },
+  },
+  {
+    id: 'figma',
+    depth: 0.45,
+    Icon: IconFigma,
+    md: { x: 85.851, y: 11.813, size: 3.75, rotate: -5 },
+    lg: { x: 87.569, y: -9.75, size: 4.5125, rotate: -5 },
+  },
+]
+
+const ENTER_START_MS = 210
+const ENTER_STEP_MS = 60
+const ENTER_OFFSET_REM = 2.5
+
+type BreakpointKey = 'sm' | 'md' | 'lg'
+type EnterStep = { id: string; at: Placement }
+
+const enterOrder = (key: BreakpointKey) =>
+  badges
+    .map((badge) => ({ id: badge.id, at: badge[key] }))
+    .filter((entry): entry is EnterStep => entry.at !== undefined)
+    .sort((a, b) => Math.abs(a.at.y) - Math.abs(b.at.y))
+
+const enterOrders: Record<BreakpointKey, EnterStep[]> = {
+  sm: enterOrder('sm'),
+  md: enterOrder('md'),
+  lg: enterOrder('lg'),
+}
+
+const enterStep = (key: BreakpointKey, id: string) => {
+  const index = enterOrders[key].findIndex((step) => step.id === id)
+  const at = index < 0 ? undefined : enterOrders[key][index]?.at
+  if (!at) return undefined
+  return {
+    x: (at.x < 50 ? -1 : 1) * ENTER_OFFSET_REM,
+    y: (at.y < 0 ? -1 : 1) * ENTER_OFFSET_REM,
+    delay: ENTER_START_MS + index * ENTER_STEP_MS,
+  }
+}
+
+const enterStyle = (key: BreakpointKey, id: string, p?: Placement) => {
+  const enter = p ? enterStep(key, id) : undefined
+  return enter
+    ? `--${key}-bx:${enter.x}rem;--${key}-by:${enter.y}rem;--${key}-bd:${enter.delay}ms;`
+    : ''
+}
+
+const placementStyle = (key: BreakpointKey, p?: Placement) =>
+  p
+    ? `--${key}-x:${p.x}%;--${key}-y:${p.y}rem;--${key}-s:${p.size}rem;--${key}-r:${p.rotate}deg;`
+    : ''
 ---
 
 <section
@@ -16,11 +144,41 @@ const { display, tagline, availability, actions } = hero.data
   class="relative flex min-h-[calc(100dvh-16rem)] overflow-x-clip flex-col justify-center pt-8 [--scale-in:0.98] motion-reduce:[--scale-in:1]"
 >
   <div class="wrapper relative flex flex-col items-start">
-    <canvas
-      data-hero-fx
+    <div
       aria-hidden="true"
-      class="pointer-events-none absolute top-1/2 right-[calc((100%-100vw)/2)] hidden h-[calc(50%+6rem)] w-[calc(60%+(100vw-100%)/2)] md:block"
-    ></canvas>
+      class="pointer-events-none absolute inset-y-0 right-[calc((100%-100vw)/2)] left-[calc((100%-100vw)/2)]"
+    >
+      {badges.map(({ id, depth, Icon, sm, md, lg, wideOnly }) => (
+        <div
+          data-badge={id}
+          style={
+            `--depth:${depth};` +
+            placementStyle('sm', sm) +
+            enterStyle('sm', id, sm) +
+            placementStyle('md', md) +
+            enterStyle('md', id, md) +
+            placementStyle('lg', lg) +
+            enterStyle('lg', id, lg)
+          }
+          class={cn(
+            'absolute animate-badge-in translate-x-[calc(var(--px,0)*var(--depth)*24px)] translate-y-[calc(var(--py,0)*var(--depth)*24px)] items-center justify-center rounded-2xl motion-reduce:[--badge-scale-in:1] border border-border bg-card text-foreground',
+            sm
+              ? 'hidden xxs:flex xxs:left-(--sm-x) xxs:top-[calc(50%+var(--sm-y))] xxs:size-(--sm-s) xxs:rotate-(--sm-r) xxs:[--badge-x:var(--sm-bx)] xxs:[--badge-y:var(--sm-by)] xxs:[animation-delay:var(--sm-bd)]'
+              : 'hidden',
+            md
+              ? 'md:flex md:left-(--md-x) md:top-[calc(50%+var(--md-y))] md:size-(--md-s) md:rotate-(--md-r) md:[--badge-x:var(--md-bx)] md:[--badge-y:var(--md-by)] md:[animation-delay:var(--md-bd)]'
+              : 'md:hidden',
+            lg
+              ? wideOnly
+                ? 'lg:hidden min-[75rem]:flex min-[75rem]:left-(--lg-x) min-[75rem]:top-[calc(50%+var(--lg-y))] min-[75rem]:size-(--lg-s) min-[75rem]:rotate-(--lg-r) min-[75rem]:[--badge-x:var(--lg-bx)] min-[75rem]:[--badge-y:var(--lg-by)] min-[75rem]:[animation-delay:var(--lg-bd)]'
+                : 'lg:flex lg:left-(--lg-x) lg:top-[calc(50%+var(--lg-y))] lg:size-(--lg-s) lg:rotate-(--lg-r) lg:[--badge-x:var(--lg-bx)] lg:[--badge-y:var(--lg-by)] lg:[animation-delay:var(--lg-bd)]'
+              : 'lg:hidden',
+          )}
+        >
+          <Icon className="size-[45%]" />
+        </div>
+      ))}
+    </div>
     <p class="mb-6 inline-flex animate-enter items-center gap-2 rounded-full border-2 border-border px-3 py-1 text-xs font-semibold tracking-widest text-muted-foreground uppercase [--blur-in:0px] sm:mb-8">
       <span aria-hidden="true" class="size-2 rounded-full bg-success"></span>
       {availability.label}
