@@ -1,4 +1,13 @@
 ---
+import IconAstro from '~icons/simple-icons/astro'
+import IconClaude from '~icons/simple-icons/claude'
+import IconFigma from '~icons/simple-icons/figma'
+import IconGhostty from '~icons/simple-icons/ghostty'
+import IconNextjs from '~icons/simple-icons/nextdotjs'
+import IconReact from '~icons/simple-icons/react'
+import IconTailwind from '~icons/simple-icons/tailwindcss'
+import IconTypeScript from '~icons/simple-icons/typescript'
+import IconVscode from '~icons/simple-icons/visualstudiocode'
 import NarrationPlayer from '~/components/narration-player.astro'
 import { buttonVariants } from '~/components/ui/button-variants'
 import { cn } from '~/helpers/classnames'
@@ -9,6 +18,79 @@ const locale = parseLocale(Astro.currentLocale)
 const hero = await getLocalizedEntry('homeHero', locale)
 
 const { display, tagline, availability, actions } = hero.data
+
+// Positions come from the canvas frames at 390px (sm), 834px (md), and 1440px (lg).
+// x is a percentage of the hero width; y is the rem offset from the hero's vertical middle; size is in rem.
+// A badge missing a breakpoint is hidden there.
+type Placement = { x: number; y: number; size: number; rotate: number }
+
+const badges: {
+  id: string
+  Icon: typeof IconReact
+  sm?: Placement
+  md?: Placement
+  lg?: Placement
+}[] = [
+  {
+    id: 'react',
+    Icon: IconReact,
+    sm: { x: 63.846, y: 5.125, size: 3.75, rotate: -6 },
+    md: { x: 71.703, y: 5.688, size: 4.5, rotate: -6 },
+    lg: { x: 70.139, y: -19.375, size: 6, rotate: -6 },
+  },
+  {
+    id: 'typescript',
+    Icon: IconTypeScript,
+    sm: { x: 81.282, y: 11.438, size: 2.75, rotate: 5 },
+    md: { x: 35.132, y: 11.813, size: 3.75, rotate: 5 },
+    lg: { x: 41.944, y: 14.563, size: 4.75, rotate: 5 },
+  },
+  {
+    id: 'next',
+    Icon: IconNextjs,
+    sm: { x: 54.359, y: 16.75, size: 3.5, rotate: -4 },
+    md: { x: 50.719, y: 7.25, size: 4.75, rotate: -4 },
+    lg: { x: 53.681, y: 9.063, size: 5.5, rotate: -4 },
+  },
+  {
+    id: 'astro',
+    Icon: IconAstro,
+    lg: { x: 84.861, y: -22, size: 4.5, rotate: 7 },
+  },
+  {
+    id: 'tailwind',
+    Icon: IconTailwind,
+    lg: { x: 84.028, y: 1.875, size: 4.75, rotate: -3 },
+  },
+  {
+    id: 'claude',
+    Icon: IconClaude,
+    sm: { x: 80.769, y: 17.75, size: 3, rotate: 6 },
+    md: { x: 67.026, y: 14.063, size: 4.5, rotate: 6 },
+    lg: { x: 68.056, y: 6.875, size: 5.5, rotate: 6 },
+  },
+  {
+    id: 'vscode',
+    Icon: IconVscode,
+    lg: { x: 73.056, y: -7.375, size: 5.5, rotate: -7 },
+  },
+  {
+    id: 'ghostty',
+    Icon: IconGhostty,
+    lg: { x: 80.208, y: 13.063, size: 4.25, rotate: 4 },
+  },
+  {
+    id: 'figma',
+    Icon: IconFigma,
+    md: { x: 85.851, y: 11.813, size: 3.75, rotate: -5 },
+    lg: { x: 87.569, y: -9.75, size: 4.75, rotate: -5 },
+  },
+]
+
+const placementStyle = (key: 'sm' | 'md' | 'lg', p?: Placement) =>
+  p
+    ? `--${key}-x:${p.x}%;--${key}-y:${p.y}rem;--${key}-s:${p.size}rem;--${key}-r:${p.rotate}deg;`
+    : ''
 ---
 
 <section
@@ -16,11 +98,35 @@ const { display, tagline, availability, actions } = hero.data
   class="relative flex min-h-[calc(100dvh-16rem)] overflow-x-clip flex-col justify-center pt-8 [--scale-in:0.98] motion-reduce:[--scale-in:1]"
 >
   <div class="wrapper relative flex flex-col items-start">
-    <canvas
-      data-hero-fx
+    <div
       aria-hidden="true"
-      class="pointer-events-none absolute top-1/2 right-[calc((100%-100vw)/2)] hidden h-[calc(50%+6rem)] w-[calc(60%+(100vw-100%)/2)] md:block"
-    ></canvas>
+      class="pointer-events-none absolute inset-y-0 right-[calc((100%-100vw)/2)] left-[calc((100%-100vw)/2)]"
+    >
+      {badges.map(({ id, Icon, sm, md, lg }) => (
+        <div
+          data-badge={id}
+          style={
+            placementStyle('sm', sm) +
+            placementStyle('md', md) +
+            placementStyle('lg', lg)
+          }
+          class={cn(
+            'absolute items-center justify-center rounded-2xl border border-border bg-card text-foreground',
+            sm
+              ? 'flex left-(--sm-x) top-[calc(50%+var(--sm-y))] size-(--sm-s) rotate-(--sm-r)'
+              : 'hidden',
+            md
+              ? 'md:flex md:left-(--md-x) md:top-[calc(50%+var(--md-y))] md:size-(--md-s) md:rotate-(--md-r)'
+              : 'md:hidden',
+            lg
+              ? 'lg:flex lg:left-(--lg-x) lg:top-[calc(50%+var(--lg-y))] lg:size-(--lg-s) lg:rotate-(--lg-r)'
+              : 'lg:hidden',
+          )}
+        >
+          <Icon className="size-[45%]" />
+        </div>
+      ))}
+    </div>
     <p class="mb-6 inline-flex animate-enter items-center gap-2 rounded-full border-2 border-border px-3 py-1 text-xs font-semibold tracking-widest text-muted-foreground uppercase [--blur-in:0px] sm:mb-8">
       <span aria-hidden="true" class="size-2 rounded-full bg-success"></span>
       {availability.label}

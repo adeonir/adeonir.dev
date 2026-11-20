@@ -142,7 +142,7 @@ Use the `new-component` skill when creating a new component. Shared pure helpers
 - Keep the palette at two accent hues and the neutrals; do not add a third accent. Separate surfaces with a tone drop before adding a shadow. Never use pure `#000` or `#fff`. `DESIGN.md` is the authority on what the identity allows.
 - Use Geist for all type roles. Use Fira Code only for genuinely technical content.
 - Ark UI primitives must use the dual-skin tokens and must not retain a default palette. Audit new primitives against `DESIGN.md`. Reference: https://ark-ui.com/llms.txt
-- Icons use `unplugin-icons` with Tabler, for example `import IconFolder from '~icons/tabler/folder'`. Render them statically in Astro.
+- Icons use `unplugin-icons`. Interface icons come from Tabler, for example `import IconFolder from '~icons/tabler/folder'`; brand logos come from Simple Icons, for example `import IconReact from '~icons/simple-icons/react'`. Render them statically in Astro.
 - Biome sorts Tailwind classes in JS/TS helper calls such as `cn`, `clsx`, `cva`, and `tv`; Prettier sorts them in Astro files.
 
 ## Configuration and formatting
