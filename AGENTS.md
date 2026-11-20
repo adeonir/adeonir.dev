@@ -69,6 +69,7 @@ Read the matching rule before making the change:
 | Choosing or composing Tailwind classes in source files | `.agents/rules/tailwind-canonical-classes.md` |
 | Naming highlight fields or rendering highlighted text | `.agents/rules/text-highlight-segments.md` |
 | Importing modules across `src/` directories | `.agents/rules/tilde-alias-imports.md` |
+| Writing a comment in source code | `.agents/rules/comment-restraint.md` |
 
 ## Agent hooks
 

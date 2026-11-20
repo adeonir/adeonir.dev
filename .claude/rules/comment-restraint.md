@@ -1,0 +1,1 @@
+../../.agents/rules/comment-restraint.md
